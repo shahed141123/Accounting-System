@@ -1,93 +1,114 @@
 <x-admin-guest-layout>
-    <div class="d-flex flex-column flex-lg-row flex-column-fluid">
-        <div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative"
-            style="background-image:linear-gradient(45deg,#0a1d5b,#051225)">
-            <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
-                <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
-                    <a href="" class="py-9 mb-5">
-                        <img alt="Logo" src="{{ asset('admin/assets/media/logos/logo-1.svg') }}" class="h-60px">
-                    </a>
-                    <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #ffffff;">Welcome to Metronic</h1>
-                    <p class="fw-bold fs-2" style="color: #ffffff;">Discover Amazing Metronic
-                        <br>with great build tools
-                    </p>
+    <div class="d-flex flex-column flex-root" id="kt_app_root">
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+            <a href="" class="d-block d-lg-none mx-auto py-20">
+                <img alt="Logo" src="https://i.ibb.co/MfYCzZB/logo.png" class="theme-light-show h-25px">
+            </a>
+            <div class="d-flex flex-column flex-column-fluid flex-center w-lg-50 p-10">
+                <div class="d-flex justify-content-between flex-column-fluid ali flex-column w-100 mw-450px">
+                    <div class="py-20">
+                        <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+                            action="{{ route('admin.login') }}" method="POST" id="kt_sign_in_form">
+                            @csrf
+
+
+                            <div class="card-body">
+                                <div class="py-20">
+                                    <img width="200px" class="img-fluid" src="https://i.ibb.co/MfYCzZB/logo.png"
+                                        alt="">
+                                </div>
+                                <div class="text-start mb-10">
+                                    <h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-in-title">
+                                        Sign In
+                                    </h1>
+                                    <div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">
+                                        Get access &amp; to your dashboard
+                                    </div>
+                                </div>
+                                <div class="fv-row mb-8 fv-plugins-icon-container">
+                                    <x-metronic.label
+                                        class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
+                                    <x-metronic.input type="email" name="email"
+                                        class="form-control form-control-solid" placeholder="Enter your email address"
+                                        value="{{ old('email') }}" autocomplete="off"></x-metronic.input>
+                                </div>
+                                <div class="fv-row mb-7 fv-plugins-icon-container">
+                                    <div class="d-flex flex-stack mb-2">
+                                        <x-metronic.label
+                                            class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</x-metronic.label>
+                                    </div>
+                                    <div class="position-relative mb-3">
+                                        <x-metronic.input type="password" name="password" id="passwordField"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Enter your password" autocomplete="off">
+                                        </x-metronic.input>
+                                        <span
+                                            class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-2"
+                                            style="@error('password')top: 34% !important; @enderror"
+                                            data-kt-password-meter-control="visibility"
+                                            onclick="togglePasswordVisibility()">
+                                            <i id="eyeIcon" class="bi bi-eye-slash fs-2"></i>
+                                            <i class="bi bi-eye fs-2 d-none"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-10">
+                                    @if (Route::has('admin.password.request'))
+                                        <a href="{{ route('admin.password.request') }}" class="link-primary"
+                                            data-kt-translate="sign-in-forgot-password">
+                                            {{ __('Forgot password ?') }}</a>
+                                    @endif
+                                    <div class="fv-row mb-0">
+                                        <input id="remember_me" type="checkbox" class="form-check-input me-3" name="remember">
+                                        <x-metronic.label for="remember_me"
+                                            class="form-check-label">{{ __('Remember me') }}</x-metronic.label>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-stack">
+                                    <x-metronic.button type="submit" class="btn btn-primary me-2 flex-shrink-0">
+                                        <span class="indicator-label"> {{ __('Continue') }}</span>
+                                    </x-metronic.button>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="text-gray-500 fw-semibold fs-6 me-3 me-md-6"
+                                            data-kt-translate="general-or">Or</div>
+                                        <a href="#" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">
+                                            <img alt="Logo"
+                                                src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/brand-logos/google-icon.svg"
+                                                class="p-4">
+                                        </a>
+                                        <a href="#" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">
+                                            <img alt="Logo"
+                                                src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/brand-logos/facebook-3.svg"
+                                                class="p-4">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px"
-                    style="background-image: url(assets/media/illustrations/sketchy-1/13.png"></div>
+            </div>
+            <div class="d-none d-lg-flex flex-lg-row-fluid w-50 bgi-size-cover bgi-position-y-center bgi-position-x-start bgi-no-repeat"
+                style="background-image: url(https://preview.keenthemes.com/metronic8/demo1/assets/media/auth/bg11.png)">
             </div>
         </div>
-        <div class="d-flex flex-column flex-lg-row-fluid py-10">
-            <div class="d-flex flex-center flex-column flex-column-fluid">
-                <div class="w-lg-500px p-10 p-lg-15 mx-auto">
-
-                    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-                    <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.login') }}" method="POST">
-                        @csrf
-
-                        <div class="fv-row mb-10">
-                            <x-metronic.label
-                                class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
-                            <x-metronic.input type="email" name="email"
-                                class="form-control form-control-lg form-control-solid"
-                                placeholder="Enter your email address" value="{{ old('email') }}"
-                                autocomplete="off"></x-metronic.input>
-                        </div>
-
-                        <div class="fv-row mb-10">
-                            <div class="d-flex flex-stack mb-2">
-                                <x-metronic.label
-                                    class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</x-metronic.label>
-                                @if (Route::has('admin.password.request'))
-                                    <a href="{{ route('admin.password.request') }}" class="link-primary fs-6 fw-bolder">
-                                        {{ __('Forgot password ?') }}</a>
-                                @endif
-                            </div>
-                            <div class="position-relative mb-3">
-                                <x-metronic.input type="password" name="password" id="passwordField"
-                                    class="form-control form-control-lg form-control-solid"
-                                    placeholder="Enter your password" autocomplete="off">
-                                </x-metronic.input>
-                                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-2" style="@error('password')top: 34% !important; @enderror"
-                                    data-kt-password-meter-control="visibility" onclick="togglePasswordVisibility()">
-                                    <i id="eyeIcon" class="bi bi-eye-slash fs-2"></i>
-                                    <i class="bi bi-eye fs-2 d-none"></i>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="fv-row mb-10">
-                            <input id="remember_me" type="checkbox" class="form-check-input me-3" name="remember">
-                            <x-metronic.label for="remember_me"
-                                class="form-check-label">{{ __('Remember me') }}</x-metronic.label>
-                        </div>
-
-                        <div class="text-center">
-                            <x-metronic.button type="submit" class="primary btn-lg w-100 mb-5 rounded-1">
-                                <span class="indicator-label"> {{ __('Continue') }}</span>
-                            </x-metronic.button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-        @push('scripts')
-            <script>
-                function togglePasswordVisibility() {
-                    const passwordField = document.getElementById('passwordField');
-                    const eyeIcon = document.getElementById('eyeIcon');
-                    if (passwordField.type === 'password') {
-                        passwordField.type = 'text';
-                        eyeIcon.classList.remove('bi-eye');
-                        eyeIcon.classList.add('bi-eye-slash');
-                    } else {
-                        passwordField.type = 'password';
-                        eyeIcon.classList.remove('bi-eye-slash');
-                        eyeIcon.classList.add('bi-eye');
-                    }
+    </div>
+    @push('scripts')
+        <script>
+            function togglePasswordVisibility() {
+                const passwordField = document.getElementById('passwordField');
+                const eyeIcon = document.getElementById('eyeIcon');
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    eyeIcon.classList.remove('bi-eye');
+                    eyeIcon.classList.add('bi-eye-slash');
+                } else {
+                    passwordField.type = 'password';
+                    eyeIcon.classList.remove('bi-eye-slash');
+                    eyeIcon.classList.add('bi-eye');
                 }
-            </script>
-        @endpush
+            }
+        </script>
+    @endpush
 </x-admin-guest-layout>

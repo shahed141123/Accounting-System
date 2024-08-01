@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link href="img/favicon.png" rel="apple-touch-icon-precomposed">
-    <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="apple-touch-icon-precomposed">
+    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="shortcut icon" type="image/png">
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -41,7 +41,7 @@
         {{-- Footer --}}
     </div>
     @include('frontend.layouts.extra')
-    
+
     <script src="{{ asset('frontend/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/popper.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/bootstrap4/js/bootstrap.min.js') }}"></script>
