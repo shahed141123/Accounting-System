@@ -81,6 +81,26 @@
                     </div>
                     <div class="card-body pt-0">
                         <div class="fv-row">
+                            <label class="form-label">Brand Id</label>
+                            <select class="form-select mb-2" name="brand_id" data-control="select2"
+                                data-placeholder="Select an option" data-allow-clear="true">
+                                <option></option>
+                                <option value="">Apolo</option>
+                                <option value="">Redian</option>
+                                <option value="">Nike</option>
+                            </select>
+                        </div>
+                        <div class="fv-row">
+                            <label class="form-label">Category Id</label>
+                            <select class="form-select mb-2" name="category_id" data-control="select2"
+                                data-placeholder="Select an option" data-allow-clear="true">
+                                <option></option>
+                                <option value="">Red</option>
+                                <option value="">White</option>
+                                <option value="">Black</option>
+                            </select>
+                        </div>
+                        <div class="fv-row">
                             <label class="form-label">Attribute Id</label>
                             <select class="form-select mb-2" name="attribute_id" data-control="select2"
                                 data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
@@ -97,31 +117,10 @@
                                 <option value="">Sandals</option>
                             </select>
                         </div>
-
                         <div class="fv-row">
                             <label class="form-label">Color Id</label>
                             <select class="form-select mb-2" name="color_id" data-control="select2"
                                 data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
-                                <option></option>
-                                <option value="">Red</option>
-                                <option value="">White</option>
-                                <option value="">Black</option>
-                            </select>
-                        </div>
-                        <div class="fv-row">
-                            <label class="form-label">Brand Id</label>
-                            <select class="form-select mb-2" name="brand_id" data-control="select2"
-                                data-placeholder="Select an option" data-allow-clear="true">
-                                <option></option>
-                                <option value="">Apolo</option>
-                                <option value="">Redian</option>
-                                <option value="">Nike</option>
-                            </select>
-                        </div>
-                        <div class="fv-row">
-                            <label class="form-label">Category Id</label>
-                            <select class="form-select mb-2" name="category_id" data-control="select2"
-                                data-placeholder="Select an option" data-allow-clear="true">
                                 <option></option>
                                 <option value="">Red</option>
                                 <option value="">White</option>
