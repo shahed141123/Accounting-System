@@ -1,9 +1,7 @@
 <x-admin-guest-layout>
     <div class="d-flex flex-column flex-root" id="kt_app_root">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
-            <a href="" class="d-block d-lg-none mx-auto py-20">
-                <img alt="Logo" src="https://i.ibb.co/MfYCzZB/logo.png" class="theme-light-show h-25px">
-            </a>
+
             <div class="d-flex flex-column flex-column-fluid flex-center w-lg-50 p-10">
                 <div class="d-flex justify-content-between flex-column-fluid ali flex-column w-100 mw-450px">
                     <div class="py-20">
@@ -14,7 +12,7 @@
 
                             <div class="card-body">
                                 <div class="py-20">
-                                    <img width="200px" class="img-fluid" src="https://i.ibb.co/MfYCzZB/logo.png"
+                                    <img width="200px" class="img-fluid" src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : 'https://i.ibb.co/MfYCzZB/logo.png' }}"
                                         alt="">
                                 </div>
                                 <div class="text-start mb-10">
@@ -90,7 +88,7 @@
                 </div>
             </div>
             <div class="d-none d-lg-flex flex-lg-row-fluid w-50 bgi-size-cover bgi-position-y-center bgi-position-x-start bgi-no-repeat"
-                style="background-image: url(https://preview.keenthemes.com/metronic8/demo1/assets/media/auth/bg11.png)">
+                style="background-image: url({{ asset('admin/assets/images/adminImage.jpg') }})">
             </div>
         </div>
     </div>
