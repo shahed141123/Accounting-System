@@ -63,24 +63,9 @@
                                     </div>
                                 </div>
                                 <div class="d-flex flex-stack">
-                                    <x-metronic.button type="submit" class="btn btn-primary me-2 flex-shrink-0">
-                                        <span class="indicator-label"> {{ __('Continue') }}</span>
+                                    <x-metronic.button type="submit" class="btn btn-primary me-2 flex-shrink-0 w-100">
+                                        <span class="indicator-label"> {{ __('Sign In Now') }}</span>
                                     </x-metronic.button>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="text-gray-500 fw-semibold fs-6 me-3 me-md-6"
-                                            data-kt-translate="general-or">Or</div>
-                                        <a href="#" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">
-                                            <img alt="Logo"
-                                                src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/brand-logos/google-icon.svg"
-                                                class="p-4">
-                                        </a>
-                                        <a href="#" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">
-                                            <img alt="Logo"
-                                                src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/brand-logos/facebook-3.svg"
-                                                class="p-4">
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -88,7 +73,7 @@
                 </div>
             </div>
             <div class="d-none d-lg-flex flex-lg-row-fluid w-50 bgi-size-cover bgi-position-y-center bgi-position-x-start bgi-no-repeat"
-                style="background-image: url({{ asset('admin/assets/images/adminImage.jpg') }})">
+                style="background-image: url({{ asset('admin/assets/images/adminImage.png') }})">
             </div>
         </div>
     </div>
