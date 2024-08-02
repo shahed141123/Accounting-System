@@ -97,7 +97,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             'blog-category'    => BlogCategoryController::class, //done
             'blog-tags'        => BlogTagController::class, //done
         ],
-        ['except' => ['show', 'index','create','edit']]
+        ['except' => ['show','create','edit']]
     );
     Route::resources(
         [

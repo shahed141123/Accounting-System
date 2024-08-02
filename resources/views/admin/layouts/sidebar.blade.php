@@ -98,6 +98,32 @@
                             ],
                         ],
                         [
+                            'title' => 'Blog Management',
+                            'icon' => 'icons/duotune/general/gen051.svg',
+                            'routes' => [
+                                'admin.blog-category.index',
+                                'admin.blog-tags.index',
+                                // 'admin.brands.create',
+                                // 'admin.brands.edit',
+                                // 'admin.categories.index',
+                                // 'admin.categories.create',
+                                // 'admin.categories.edit',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Blog Category',
+                                    'routes' => ['admin.blog-category.index'],
+                                    'route' => 'admin.blog-category.index',
+                                ],
+                                [
+                                    'title' => 'Blog Tag',
+                                    'routes' => ['admin.blog-tags.index'],
+                                    'route' => 'admin.blog-tags.index',
+                                ],
+
+                            ],
+                        ],
+                        [
                             'title' => 'Customer Support',
                             'icon' => 'icons/duotune/ecommerce/ecm002.svg',
                             'routes' => [
