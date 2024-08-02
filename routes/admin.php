@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FaqCategoryController;
@@ -30,7 +32,6 @@ use App\Http\Controllers\Admin\IconController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\TermsAndConditionController;
 use App\Http\Controllers\Admin\UserManagementController;
@@ -88,6 +89,13 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     Route::resources(
         [
             'faq-category'    => FaqCategoryController::class, //done
+        ],
+        ['except' => ['show', 'index','create','edit']]
+    );
+    Route::resources(
+        [
+            'blog-category'    => BlogCategoryController::class, //done
+            'blog-tags'        => BlogTagController::class, //done
         ],
         ['except' => ['show', 'index','create','edit']]
     );

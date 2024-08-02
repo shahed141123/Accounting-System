@@ -23,7 +23,6 @@ return new class extends Migration
             $table->boolean('newsletter')->default(1)->nullable()->comment('0 for inactive, 1 for active');
             $table->boolean('new_product')->default(1)->nullable()->comment('0 for inactive, 1 for active');
             $table->boolean('notification_email')->default(1)->nullable()->comment('0 for inactive, 1 for active');
-
             $table->timestamps();
         });
     }
