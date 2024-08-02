@@ -153,8 +153,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [SettingController::class, 'updateOrcreateSetting'])->name('settings.updateOrCreate');
 
-    Route::get('/banner', [BannerController::class, 'index'])->name('banner.index');
-    Route::put('/banner', [BannerController::class, 'updateOrcreateBanner'])->name('banner.updateOrCreate');
+    // Route::get('/banner', [BannerController::class, 'index'])->name('banner.index');
+    // Route::put('/banner', [BannerController::class, 'updateOrcreateBanner'])->name('banner.updateOrCreate');
 
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.index');
     Route::put('/about-us', [AboutUsController::class, 'updateOrcreateAboutUs'])->name('about-us.updateOrCreate');
