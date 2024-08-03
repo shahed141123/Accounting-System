@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BlogCategoryController extends Controller
 {
@@ -12,7 +13,10 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.blogCategory.index');
+        $data=[
+            'blogCategories'=>BlogCategory::latest('id')->get(),
+        ];
+        return view('admin.pages.blogCategory.index',$data);
     }
 
     /**

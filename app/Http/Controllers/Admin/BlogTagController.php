@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\BlogTag;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BlogTagController extends Controller
 {
@@ -12,7 +13,10 @@ class BlogTagController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.blogTag.index');
+        $data=[
+            'blogTags'=>BlogTag::latest('id')->get(),
+        ];
+        return view('admin.pages.blogTag.index',$data);
     }
 
     /**
