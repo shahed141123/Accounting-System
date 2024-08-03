@@ -20,7 +20,7 @@
         </div>
         <div class="card-body py-0">
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
-                <thead class="bg-light-danger">
+                <thead class="">
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>Name</th>
                         <th>Position</th>

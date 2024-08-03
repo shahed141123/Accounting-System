@@ -20,7 +20,7 @@
         </div>
         <div class="card-body py-0">
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
-                <thead class="bg-light-danger">
+                <thead class="">
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>Name</th>
                         <th>Position</th>
@@ -61,7 +61,7 @@
                         method="post">
                         @csrf
                         <div class="fv-row mb-5">
-                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog tag
+                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Tag
                                 Title</x-metronic.label>
                             <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
                                 placeholder="Set Blog tag Title" :valu="old('name')" />
