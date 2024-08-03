@@ -17,7 +17,10 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.blogCategory.index');
+        $data=[
+            'blogCategories'=>BlogCategory::latest('id')->get(),
+        ];
+        return view('admin.pages.blogCategory.index',$data);
     }
 
     /**

@@ -54504,3 +54504,14 @@ body {
     background-color: #fff;
     border: 0
 }
+
+/* Custom Style  */
+thead{
+    background-color: #dceaf0;
+    font-weight: bold;
+}
+th {
+    font-weight: 600 !important;
+    color: #6c757d !important;
+}
+/* Custom Style  End */
