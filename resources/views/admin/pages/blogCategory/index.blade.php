@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Blog Category List'">
+h h<x-admin-app-layout :title="'Blog Category List'">
     <div class="card">
         <div class="card-header bg-info d-flex justify-content-between align-items-center">
             <h1 class="mb-0 text-white">Manage Your Blog Category</h1>
@@ -22,7 +22,7 @@
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                 <thead class="">
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th>Name</th>
+                        <th>Sl No.</th>
                         <th>Position</th>
                         <th>Office</th>
                         <th>Age</th>

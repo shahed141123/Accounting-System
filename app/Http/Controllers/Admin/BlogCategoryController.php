@@ -40,7 +40,7 @@ class BlogCategoryController extends Controller
         DB::beginTransaction();
 
         try {
-            $categoryId = $this->route('category') ?? null;
+            $categoryId = $this->route('blog-category') ?? null;
             $validator = Validator::make($request->all(), [
                 'name'         => [
                     'required',
@@ -48,7 +48,7 @@ class BlogCategoryController extends Controller
                     'max:255',
                     Rule::unique('blog_categories', 'name')->ignore($categoryId),
                 ],
-                'image'       => 'nullable|string',
+                // 'image'       => 'nullable|string',
                 'meta_title'  => 'nullable|string|max:255',
                 'description' => 'nullable|string',
                 'status'      => 'required|in:active,inactive',
