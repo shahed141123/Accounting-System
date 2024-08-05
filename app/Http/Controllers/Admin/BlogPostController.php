@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class BlogPostController extends Controller
@@ -12,7 +13,10 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        //
+        $data=[
+            'blogCategories'=>BlogPost::latest('id')->get(),
+        ];
+        return view('admin.pages.blogPost.index',$data);
     }
 
     /**
@@ -20,7 +24,7 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.blogPost.create');
     }
 
     /**
@@ -44,7 +48,7 @@ class BlogPostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.pages.blogPost.edit');
     }
 
     /**
