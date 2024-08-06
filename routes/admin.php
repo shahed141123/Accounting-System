@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ContactController;
@@ -34,7 +35,6 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\TermsAndConditionController;
 use App\Http\Controllers\Admin\UserManagementController;
-use App\Models\BlogPost;
 
 // Route::get('/', function () {
 //     return redirect()->route('admin.dashboard');
@@ -107,7 +107,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             'email-settings'  => EmailSettingController::class,
             'terms-condition' => TermsAndConditionController::class,
             'privacy-policy'  => PrivacyPolicyController::class,
-            'blog-post'       => BlogPost::class,
+            'blog-post'       => BlogPostController::class,
         ],
         ['except' => ['show']]
     );
