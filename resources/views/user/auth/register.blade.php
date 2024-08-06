@@ -50,7 +50,7 @@
                                 </h6>
                             </div>
                             <div class="ps-form__submit">
-                                <x-primary-button class="ps-btn ps-btn--warning">
+                                <x-primary-button class="ps-btn ps-btn--warning" type="submit">
                                     {{ __('Register') }}
                                 </x-primary-button>
                             </div>

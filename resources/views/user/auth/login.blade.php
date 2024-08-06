@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <div class="ps-form__submit">
-                                <x-primary-button class="ps-btn ps-btn--warning">
+                                <x-primary-button class="ps-btn ps-btn--warning" type="submit">
                                     {{ __('Log in') }}
                                 </x-primary-button>
                                 <div class="form-check">
