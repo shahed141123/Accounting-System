@@ -1,4 +1,4 @@
-h h<x-admin-app-layout :title="'Blog Category List'">
+<x-admin-app-layout :title="'Blog Category List'">
     <div class="card">
         <div class="card-header bg-info d-flex justify-content-between align-items-center">
             <h1 class="mb-0 text-white">Manage Your Blog Category</h1>
