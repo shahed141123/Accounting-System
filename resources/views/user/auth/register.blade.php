@@ -3,7 +3,8 @@
         <div class="container">
             <div class="row my-5 align-items-center">
                 <div class="col-12 col-md-6">
-                    <form action="http://nouthemes.net/html/mymedi/do_action" method="post">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
                         <div class="ps-form--review">
                             <h2 class="ps-form__title">Register</h2>
                             <div class="ps-form__group">
