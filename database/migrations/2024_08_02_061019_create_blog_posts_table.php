@@ -13,6 +13,23 @@ return new class extends Migration
     {
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
+            $table->json('category_id')->nullable()->comment('multi_id');
+            $table->json('tag_id')->nullable()->comment('multi_id');
+            $table->enum('featured', ['0', '1'])->default('0')->nullable();
+            $table->string('type')->nullable();
+            $table->string('badge', 50)->nullable();
+            $table->string('title', 255)->nullable();
+            $table->text('header')->nullable();
+            $table->longText('short_description')->comment('text-editor')->nullable();
+            $table->longText('long_description')->comment('text-editor')->nullable();
+            $table->string('author')->nullable();
+            $table->text('address')->nullable();
+            $table->json('tags')->nullable();
+            $table->string('logo', 220)->nullable();
+            $table->string('image', 220)->nullable();
+            $table->string('banner_image', 220)->nullable();
+            $table->string('additional_url')->nullable();
+            $table->text('footer')->nullable()->comment('text-editor')->nullable();
             $table->timestamps();
         });
     }
