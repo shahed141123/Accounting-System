@@ -1,4 +1,4 @@
-<x-frontend-app-layout :title="'Login'">
+<x-frontend-app-layout :title="'Sign Up'">
     <div class="ps-account">
         <div class="container">
             <div class="row my-5 align-items-center">
