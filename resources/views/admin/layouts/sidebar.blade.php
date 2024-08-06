@@ -103,8 +103,9 @@
                             'routes' => [
                                 'admin.blog-category.index',
                                 'admin.blog-tags.index',
-                                // 'admin.brands.create',
-                                // 'admin.brands.edit',
+                                'admin.blog-post.index',
+                                'admin.blog-post.create',
+                                'admin.blog-post.edit',
                                 // 'admin.categories.index',
                                 // 'admin.categories.create',
                                 // 'admin.categories.edit',
@@ -119,6 +120,11 @@
                                     'title' => 'Blog Tag',
                                     'routes' => ['admin.blog-tags.index'],
                                     'route' => 'admin.blog-tags.index',
+                                ],
+                                [
+                                    'title' => 'Blog Post',
+                                    'routes' => ['admin.blog-post.index'],
+                                    'route' => 'admin.blog-post.index',
                                 ],
 
                             ],
