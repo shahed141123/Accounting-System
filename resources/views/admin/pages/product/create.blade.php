@@ -397,7 +397,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-danger me-5">
+                    <a href="{{ route('admin.product.index') }}" class="btn btn-danger me-5">
                         Back To Product List
                     </a>
                     <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
