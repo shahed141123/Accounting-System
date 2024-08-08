@@ -131,7 +131,7 @@
                                 <button id="kt_docs_formvalidation_text_submit" type="submit"
                                     class="btn btn-primary">
                                     <span class="indicator-label">
-                                        Submit
+                                        Validation Form
                                     </span>
                                     <span class="indicator-progress">
                                         Please wait... <span
@@ -218,7 +218,7 @@
                                                 <button id="kt_docs_formvalidation_text_submit" type="submit"
                                                     class="btn btn-primary">
                                                     <span class="indicator-label">
-                                                        Submit
+                                                        Validation Form
                                                     </span>
                                                     <span class="indicator-progress">
                                                         Please wait... <span
