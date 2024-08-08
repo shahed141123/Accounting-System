@@ -67,6 +67,9 @@
                                 'admin.categories.index',
                                 'admin.categories.create',
                                 'admin.categories.edit',
+                                'admin.stock-management.index',
+                                'admin.shipping-management.index',
+                                'admin.order-management.index',
                             ],
                             'subMenu' => [
                                 [
@@ -94,6 +97,27 @@
                                         'admin.product.edit',
                                     ],
                                     'route' => 'admin.product.index',
+                                ],
+                                [
+                                    'title' => 'Stock Management',
+                                    'routes' => [
+                                        'admin.stock-management.index',
+                                    ],
+                                    'route' => 'admin.stock-management.index',
+                                ],
+                                [
+                                    'title' => 'Shipping Management',
+                                    'routes' => [
+                                        'admin.shipping-management.index',
+                                    ],
+                                    'route' => 'admin.shipping-management.index',
+                                ],
+                                [
+                                    'title' => 'Order Management',
+                                    'routes' => [
+                                        'admin.order-management.index',
+                                    ],
+                                    'route' => 'admin.order-management.index',
                                 ],
                             ],
                         ],

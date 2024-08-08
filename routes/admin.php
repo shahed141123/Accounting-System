@@ -30,9 +30,12 @@ use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\IconController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\OrderManagementController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ShippingManagementController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\StockManagementController;
 use App\Http\Controllers\Admin\TermsAndConditionController;
 use App\Http\Controllers\Admin\UserManagementController;
 
@@ -125,6 +128,16 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             'product'               => ProductController::class,
         ],
     );
+
+    Route::controller(StockManagementController::class)->group(function () {
+        Route::get('/stock-management', 'index')->name('stock-management.index');
+    });
+    Route::controller(ShippingManagementController::class)->group(function () {
+        Route::get('/shipping-management', 'index')->name('shipping-management.index');
+    });
+    Route::controller(OrderManagementController::class)->group(function () {
+        Route::get('/order-management', 'index')->name('order-management.index');
+    });
 
     Route::get('active-mail-configuration', [EmailSettingController::class, 'activeMailConfiguration'])->name('active.mail.configuration');
     Route::put('email-settings', [EmailSettingController::class, 'emailUpdateOrCreate'])->name('email.settings.updateOrCreate');
