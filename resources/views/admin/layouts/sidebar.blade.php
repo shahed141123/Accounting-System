@@ -5,11 +5,11 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <a href="{{ route('dashboard') }}">
             <img alt="Logo"
-                src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : 'https://i.ibb.co/MfYCzZB/logo.png' }}"
+                src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
                 class="h-50px logo w-150px">
             {{-- <img alt="Logo" src="https://i.ibb.co/MfYCzZB/logo.png" class="h-50px logo w-150px"> --}}
         </a>
-        <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle active"
+        <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-dark aside-toggle active"
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
             data-kt-toggle-name="aside-minimize">
             <span class="svg-icon svg-icon-1 rotate-180">
@@ -99,21 +99,21 @@
                                     'route' => 'admin.product.index',
                                 ],
                                 [
-                                    'title' => 'Stock Management',
+                                    'title' => 'Stock Info',
                                     'routes' => [
                                         'admin.stock-management.index',
                                     ],
                                     'route' => 'admin.stock-management.index',
                                 ],
                                 [
-                                    'title' => 'Shipping Management',
+                                    'title' => 'Shipping Setup',
                                     'routes' => [
                                         'admin.shipping-management.index',
                                     ],
                                     'route' => 'admin.shipping-management.index',
                                 ],
                                 [
-                                    'title' => 'Order Management',
+                                    'title' => 'Orders',
                                     'routes' => [
                                         'admin.order-management.index',
                                     ],
