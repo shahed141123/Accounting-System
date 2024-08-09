@@ -1,186 +1,145 @@
-<x-admin-app-layout :title="'Category Management'">
-    <div class="row">
-        <div class="col-xl-4 mx-auto">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-solid text-white fa-list fs-3"
-                                        aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Category
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<x-admin-app-layout>
 
-    <div class="card card-flush mt-10">
-        <div class="card-header bg-success align-items-center">
-            <h3 class="card-title">Mange & Create Your Category</h3>
-            <div>
-                <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#CategoryMethodsEdit">
-                    <i class="fa-solid fa-plus"></i> Create
-                </button>
-
-                <div class="modal fade" id="CategoryMethodsEdit" tabindex="-1" aria-labelledby="CategoryMethodsEditLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title" id="CategoryMethodsEditLabel">Category Methods</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="kt_docs_formvalidation_text" class="form" action="#" autocomplete="off">
-                                    <div class="fv-row mb-10">
-                                        <label class="fw-semibold fs-6 mb-2">Title</label>
-                                        <input type="text" name="title"
-                                            class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                            value="Super Fast Delivery" />
-                                    </div>
-                                    <div class="fv-row mb-10">
-                                        <label class="fw-semibold fs-6 mb-2">Zone</label>
-                                        <input type="text" name="zone"
-                                            class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                            value="ASIA" />
-                                    </div>
-                                    <div class="fv-row mb-10">
-                                        <label class="fw-semibold fs-6 mb-2">Cost</label>
-                                        <input type="text" name="cost"
-                                            class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                            value="$5661" />
-                                    </div>
-                                    <div class="fv-row mb-10">
-                                        <label class="fw-semibold fs-6 mb-2">Status</label>
-                                        <select class="form-select" name="status" data-control="select2"
-                                            data-placeholder="Select an option">
-                                            <option></option>
-                                            <option value="1">Active</option>
-                                            <option value="2">Deactive</option>
-                                        </select>
-                                    </div>
-                                    <button id="kt_docs_formvalidation_text_submit" type="submit"
-                                        class="btn btn-primary">
-                                        <span class="indicator-label">Validation Form</span>
-                                        <span class="indicator-progress">
-                                            Please wait... <span
-                                                class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                        </span>
-                                    </button>
-                                </form>
-                            </div>
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div class="container-xxl">
+            <div class="card card-flush">
+                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                    <div class="card-title">
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <span class="svg-icon svg-icon-1 position-absolute ms-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
+                                        rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                    <path
+                                        d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
+                            <input type="text" data-kt-ecommerce-category-filter="search"
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Category" />
                         </div>
                     </div>
+
+                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+
+                        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Add
+                            Category</a>
+
+                    </div>
+
                 </div>
+
+
+                <div class="card-body pt-0">
+                    <div class="table-responsive">
+
+                            <table class="table table-hover align-middle table-row-dashed fs-6 gy-5" id="kt_category_table">
+                                <thead>
+                                    <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                        <th class="w-10px pe-2">
+                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                                <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                                    data-kt-check-target="#kt_category_table .form-check-input"
+                                                    value="1" id="select-all" />
+                                            </div>
+                                        </th>
+                                        <th class="min-w-150px">{{ __('category.Sl') }}</th>
+                                        <th class="min-w-150px">{{ __('category.Name') }}</th>
+                                        <th class="min-w-150px">{{ __('category.Slug') }}</th>
+                                        <th class="min-w-150px">{{ __('category.Status') }}</th>
+                                        <th class="min-w-150px">{{ __('category.Parent') }}</th>
+                                        <th class="text-end min-w-70px">{{ __('category.Action') }}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="fw-bold text-gray-600">
+                                    @forelse ($categories as $category)
+                                        <tr>
+                                            <td>
+                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
+                                                        value="{{ $category->id }}" />
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <span class="fw-bolder">{{ $loop->iteration }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-bolder">{{ $category->name }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-bolder">{{ $category->slug }}</span>
+                                            </td>
+                                            <td>
+                                                <div
+                                                    class="badge {{ $category->status == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
+                                                    {{ $category->status == 1 ? 'Active' : 'InActive' }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="fw-bolder">
+                                                    {{ $category->parent_id ? $category->parent->name : 'N/A' }}</span>
+                                            </td>
+
+                                            <td class="text-end">
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                    <!-- Action menu SVG -->
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @foreach ($category->children as $child)
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
+                                                            value="{{ $child->id }}" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bolder">
+                                                        {{ $loop->parent->iteration }}.{{ $loop->iteration }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bolder"> -- {{ $child->name }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bolder">{{ $child->slug }}</span>
+                                                </td>
+                                                <td>
+                                                    <div
+                                                        class="badge {{ $child->status == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
+                                                        {{ $child->status == 1 ? 'Active' : 'InActive' }}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bolder">
+                                                        {{ $child->parent->name ?? 'N/A' }}
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                        <!-- Action menu SVG -->
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                            <button type="submit" class="btn btn-danger mt-3">Delete Selected</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
+
         </div>
 
-        <div class="card-body table-responsive">
-            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7 border rounded">
-                <thead>
-                    <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                        <th class="w-10px pe-2">
-                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                    data-kt-check-target="#kt_category_table .form-check-input" value="1" />
-                            </div>
-                        </th>
-                        <th class="min-w-150px">{{ __('category.Sl') }}</th>
-                        <th class="min-w-150px">{{ __('category.Name') }}</th>
-                        <th class="min-w-150px">{{ __('category.Slug') }}</th>
-                        <th class="min-w-150px">{{ __('category.Status') }}</th>
-                        <th class="min-w-150px">{{ __('category.Parent') }}</th>
-                        <th class="text-end min-w-70px">{{ __('category.Action') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($categories as $category)
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </div>
-                            </td>
-                            <td>
-                                <span class="fw-bolder">{{ $loop->iteration }}</span>
-                            </td>
-                            <td>
-                                <span class="fw-bolder"> {{ $category->name }}</span>
-                            </td>
-                            <td>
-                                <span class="fw-bolder"> {{ $category->slug }}</span>
-                            </td>
-                            <td>
-                                <div
-                                    class="badge {{ $category->status == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
-                                    {{ $category->status == 1 ? 'Active' : 'InActive' }}
-                                </div>
-                            </td>
-                            <td>
-                                <span class="fw-bolder">
-                                    {{ $category->parent_id ? $category->parent->name : 'N/A' }}
-                                </span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="btn btn-sm btn-icon btn-light-primary me-1"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="#" class="btn btn-sm btn-icon btn-light-danger"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
     </div>
 
-    @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const submitButton = document.getElementById('kt_docs_formvalidation_text_submit');
-                if (submitButton) {
-                    submitButton.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        submitButton.setAttribute('data-kt-indicator', 'on');
-                        submitButton.disabled = true;
-
-                        // Simulate form submission
-                        setTimeout(function() {
-                            submitButton.removeAttribute('data-kt-indicator');
-                            submitButton.disabled = false;
-
-                            // Show popup confirmation
-                            Swal.fire({
-                                text: "Form has been successfully submitted!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn btn-primary"
-                                }
-                            });
-                        }, 2000);
-                    });
-                }
-            });
-        </script>
-    @endpush
+    <script></script>
 </x-admin-app-layout>

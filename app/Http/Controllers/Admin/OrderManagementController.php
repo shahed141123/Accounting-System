@@ -15,6 +15,11 @@ class OrderManagementController extends Controller
         return view('admin.pages.orderManagement.index');
     }
 
+    public function orderReport()
+    {
+        return view('admin.pages.orderManagement.orderReport');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
