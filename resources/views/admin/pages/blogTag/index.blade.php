@@ -1,6 +1,6 @@
 <x-admin-app-layout :title="'Blog Tag List'">
     <div class="card">
-        <div class="card-header bg-info d-flex justify-content-between align-items-center">
+        <div class="card-header bg-primary d-flex justify-content-between align-items-center">
             <h1 class="mb-0 text-white">Manage Your Blog Tags</h1>
             <a href="javascript:void(0)" class="btn btn-light-primary rounded-2" data-bs-toggle="modal"
                 data-bs-target="#blogTagCreate">
