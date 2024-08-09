@@ -137,6 +137,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     });
     Route::controller(OrderManagementController::class)->group(function () {
         Route::get('/order-management', 'index')->name('order-management.index');
+        Route::get('/order/report', 'orderReport')->name('orderReport');
     });
 
     Route::get('active-mail-configuration', [EmailSettingController::class, 'activeMailConfiguration'])->name('active.mail.configuration');
