@@ -9,15 +9,17 @@
                                 <span class="bg-black rounded-3 p-3 me-3"><i
                                         class="fa-solid text-white fa-copyright fs-3" aria-hidden="true"></i></span>
                             </a>
-                            <div class="flex-grow-1"><a href="">
-                                </a><a href="#" class="text-black fs-5 fw-bold lh-0">Total Brand
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
+                            <div class="flex-grow-1">
+                                <a href="">
+                                </a>
+                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Brand : 866
+                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d-M-Y') }}</span>
                                 </a>
                             </div>
                         </div>
                         <div class="d-flex flex-column align-items-center pe-4">
                             <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
+                                {{-- <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">{{ $brands->count() }}</span> --}}
                             </div>
                         </div>
                     </div>
@@ -29,13 +31,13 @@
         <div class="card-header bg-success align-items-center">
             <h3 class="card-title">Create Brands Methods</h3>
             <div>
-                <!-- Button trigger modal -->
+
                 <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
                     data-bs-target="#BrandsMethodsEdit">
                     <i class="fa-solid fa-plus"></i> Create
                 </button>
 
-                <!-- Modal -->
+
                 <div class="modal fade" id="BrandsMethodsEdit" tabindex="-1"
                     aria-labelledby="BrandsMethodsEditLabel" aria-hidden="true">
                     <div class="modal-dialog">

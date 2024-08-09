@@ -15,7 +15,6 @@
                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                             <a href="{{ route('admin.categories.create') }}" class="btn btn-primary me-2">Add
                                 Category</a>
-
                         </div>
                     </div>
 
