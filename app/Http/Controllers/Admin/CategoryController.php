@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\CategoryRequest;
 
@@ -221,4 +222,38 @@ class CategoryController extends Controller
         }
         $category->delete();
     }
+    // CategoryController.php
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('categories');
+
+        if (is_array($ids) && !empty($ids)) {
+            // Find all categories that are about to be deleted
+            $categories = Category::whereIn('id', $ids)->get();
+
+            foreach ($categories as $category) {
+                $files = [
+                    'logo' => $category->logo,
+                    'image' => $category->image,
+                    'banner_image' => $category->banner_image,
+                ];
+                foreach ($files as $key => $file) {
+                    if (!empty($file)) {
+                        $oldFile = $category->$key ?? null;
+                        if ($oldFile) {
+                            Storage::delete("public/" . $oldFile);
+                        }
+                    }
+                }
+                // Delete the category after deleting its files
+                $category->delete();
+            }
+
+            return redirect()->back()->with('success', 'Categories deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'No categories selected.');
+    }
+
+    
 }

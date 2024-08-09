@@ -125,7 +125,34 @@
     <script src="{{ asset('admin/js/custom.js') }}"></script>
     @include('toastr')
     @stack('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
+            const $selectAllCheckbox = $('.metronic_select_all');
+            const $categoryCheckboxes = $('.bulkDelete-checkbox');
+            const $deleteButton = $('#bulkDelete');
+
+            function updateDeleteButtonVisibility() {
+                // Check if any checkbox is checked
+                const anyChecked = $categoryCheckboxes.is(':checked');
+                $deleteButton.toggle(anyChecked);
+            }
+
+            // Handle 'Select All' checkbox change
+            $selectAllCheckbox.on('change', function() {
+                $categoryCheckboxes.prop('checked', $(this).prop('checked'));
+                updateDeleteButtonVisibility();
+            });
+
+            // Handle individual checkbox changes
+            $categoryCheckboxes.on('change', function() {
+                updateDeleteButtonVisibility();
+            });
+
+            // Initial check to set the button visibility correctly
+            updateDeleteButtonVisibility();
+        });
+    </script>
     <script>
         class DataTableInitializer {
             constructor(selector) {

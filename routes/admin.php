@@ -93,14 +93,14 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
         [
             'faq-category'    => FaqCategoryController::class, //done
         ],
-        ['except' => ['show', 'index','create','edit']]
+        ['except' => ['show', 'index', 'create', 'edit']]
     );
     Route::resources(
         [
             'blog-category'    => BlogCategoryController::class, //done
             'blog-tags'        => BlogTagController::class, //done
         ],
-        ['except' => ['show','create','edit']]
+        ['except' => ['show', 'create', 'edit']]
     );
     Route::resources(
         [
@@ -174,4 +174,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.index');
     Route::put('/about-us', [AboutUsController::class, 'updateOrcreateAboutUs'])->name('about-us.updateOrCreate');
+
+    // Bulk Delete
+    // web.php
+    Route::post('/categories/bulk-delete', [CategoryController::class, 'bulkDelete'])->name('categories.bulk-delete');
 });
