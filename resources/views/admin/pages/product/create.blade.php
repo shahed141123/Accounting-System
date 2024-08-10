@@ -9,50 +9,6 @@
             action="{{ route('admin.product.create') }}" method="POST">
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-                {{-- Media Card Start --}}
-                <div class="card card-flush">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2>Media</h2>
-                        </div>
-                    </div>
-                    <div class="card-body text-center pt-0">
-                        <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-                            data-kt-image-input="true">
-                            <div class="image-input-wrapper w-150px h-150px"></div>
-                            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                <i class="fa-solid fa-pencil fs-7">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                </i>
-                                <input type="file" name="thumbnail" accept=".png, .jpg, .jpeg" />
-                                <input type="hidden" name="thumbnail_remove" />
-                            </label>
-                        </div>
-                        <div class="text-muted fs-7">
-                            Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image
-                            files are accepted
-                        </div>
-                        {{-- Product Mutli Image --}}
-                        <div class="fv-row pt-5">
-                            <div class="dropzone" id="productmulti_imag">
-                                <div class="dz-message needsclick">
-                                    <i class="fa-solid fa-photo-film fs-3x text-primary"></i>
-                                    <div class="ms-4">
-                                        <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or click to upload.
-                                        </h3>
-                                        <span class="fs-7 fw-semibold text-gray-500">Upload up to 10 files</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-muted fs-7 pt-4">
-                            Add the product multi image
-                        </div>
-                    </div>
-                </div>
-                {{-- Media Card End --}}
                 {{-- Status Card Start --}}
                 <div class="card card-flush py-4">
                     <div class="card-header">
@@ -114,7 +70,7 @@
                                 <option value="">Black</option>
                             </select>
                         </div>
-                        <div class="fv-row">
+                        {{-- <div class="fv-row">
                             <label class="form-label">Attribute Id</label>
                             <select class="form-select mb-2" name="attribute_id" data-control="select2"
                                 data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
@@ -130,7 +86,7 @@
                                 <option value="">Wines</option>
                                 <option value="">Sandals</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="fv-row">
                             <label class="form-label">Color Id</label>
                             <select class="form-select mb-2" name="color_id" data-control="select2"
@@ -148,28 +104,33 @@
                 <div class="card card-flush py-4">
                     <div class="card-header">
                         <div class="card-title">
-                            <h2>Shipping Details</h2>
+                            <h2>Package Details</h2>
                         </div>
                         <div class="text-muted fs-7">Add shipping details.</div>
                     </div>
                     <div class="card-body pt-0">
                         <div class="fv-row">
-                            <label class="form-label">Weight</label>
-                            <input type="text" name="weight" class="form-control mb-2"
-                                placeholder="Set the product Weight" value="">
-                        </div>
-                        <div class="fv-row">
-                            <label class="form-label">Dimension</label>
-                            <input type="text" name="dimension" class="form-control mb-2"
-                                placeholder="Set the product Dimension" value="">
-                        </div>
-                        <div class="fv-row pt-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Is Refurbished
-                                </label>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="form-label">Weight</label>
+                                    <input type="text" name="weight" class="form-control mb-2"
+                                        placeholder="Set the product Weight" value="">
+                                </div>
+                                <div class="col-lg-12">
+                                    <label class="form-label">Length</label>
+                                    <input type="text" name="dimension" class="form-control mb-2"
+                                        placeholder="Set the product Length" value="">
+                                </div>
+                                <div class="col-lg-12">
+                                    <label class="form-label">Width</label>
+                                    <input type="text" name="dimension" class="form-control mb-2"
+                                        placeholder="Set the product Width" value="">
+                                </div>
+                                <div class="col-lg-12">
+                                    <label class="form-label">Height</label>
+                                    <input type="text" name="dimension" class="form-control mb-2"
+                                        placeholder="Set the product Height" value="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +145,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
-                            href="#kt_ecommerce_add_product_advanced">Advanced</a>
+                            href="#kt_ecommerce_add_product_media">Media</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                            href="#kt_ecommerce_add_product_advanced">Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                            href="#kt_ecommerce_add_product_meta">Meta Options</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -259,43 +228,118 @@
                             <div class="card card-flush py-4">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <h2>Pricing</h2>
+                                        <h2>Box Pricing</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0 row">
+                                    <div class="mb-5 fv-row col-4">
+                                        <label class="form-label">Box Contains</label>
+                                        <input type="number" name="box_contains" id="box_contains"
+                                            class="form-control mb-2" placeholder="how much in a box"
+                                            value="" />
+                                        <div class="text-muted fs-7">How much product in a box.</div>
+                                    </div>
+                                    <div class="mb-5 fv-row col-4">
+                                        <label class="form-label">Box Price</label>
+                                        <input type="number" name="box_price" id="box_price"
+                                            class="form-control mb-2" placeholder="how much the box price"
+                                            value="" />
+                                        <div class="text-muted fs-7">How much box price.</div>
+                                    </div>
+                                    <div class="mb-5 fv-row col-4">
+                                        <label class="form-label">Box Discount Price</label>
+                                        <input type="number" name="box_discount_price" id="box_discount_price"
+                                            class="form-control mb-2" placeholder="how much the box discount price"
+                                            value="" />
+                                        <div class="text-muted fs-7">How much box discount price.</div>
+                                    </div>
+                                    <div class="mb-5 fv-row col-4">
+                                        <label class="form-label">Unit Price</label>
+                                        <input type="number" name="unit_price" id="unit_price"
+                                            class="form-control mb-2" placeholder="how much the unit price"
+                                            value="" readonly />
+                                        <div class="text-muted fs-7">How much unit price.</div>
+                                    </div>
+                                    <div class="mb-5 fv-row col-4">
+                                        <label class="form-label">Unit Discount</label>
+                                        <input type="number" name="unit_discount" id="unit_discount"
+                                            class="form-control mb-2" placeholder="how much the unit discount price"
+                                            value="" readonly />
+                                        <div class="text-muted fs-7">How much unit discount price.</div>
+                                    </div>
+                                    <div class="mb-5 fv-row col-4">
+                                        <label class="form-label">Box Stock</label>
+                                        <input type="number" name="box_stock" id="box_stock"
+                                            class="form-control mb-2" placeholder="how much the box stock"
+                                            value="" />
+                                        <div class="text-muted fs-7">How much box stock. Eg: 50</div>
+                                    </div>
+                                    <div class="fv-row pt-2 col-4 mt-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Is Refurbished
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_ecommerce_add_product_media" role="tab-panel">
+                        <div class="d-flex flex-column gap-7 gap-lg-10">
+                            {{-- Inventory --}}
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Media</h2>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Price</label>
-                                        <input type="text" name="price" class="form-control mb-2"
-                                            placeholder="Product price" value="" />
-                                        <div class="text-muted fs-7">Set the product price.</div>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Discount Price</label>
-                                        <input type="text" name="discount_price" class="form-control mb-2"
-                                            placeholder="Set Product Discount price" value="" />
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Deals</label>
-                                        <input type="text" name="deal" class="form-control mb-2"
-                                            placeholder="Add Product Deal" value="" />
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Currency Id</label>
-                                        <select class="form-select mb-2" name="currency_id" data-control="select2"
-                                            data-placeholder="Select an option" data-allow-clear="true"
-                                            multiple="multiple">
-                                            <option></option>
-                                            <option value="">Computers</option>
-                                            <option value="">Watches</option>
-                                            <option value="">Headphones</option>
-                                            <option value="">Footwear</option>
-                                            <option value="">Cameras</option>
-                                            <option value="">Shirts</option>
-                                            <option value="">Household</option>
-                                            <option value="">Handbags</option>
-                                            <option value="">Wines</option>
-                                            <option value="">Sandals</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label for="" class="form-label">Set the product thumbnail image.
+                                                Only *.png, *.jpg and *.jpeg image
+                                                files are accepted</label>
+                                            <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
+                                                data-kt-image-input="true">
+                                                <div class="image-input-wrapper w-150px h-150px"></div>
+                                                <label
+                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                    title="Change avatar">
+                                                    <i class="fa-solid fa-pencil fs-7">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                    <input type="file" name="thumbnail"
+                                                        accept=".png, .jpg, .jpeg" />
+                                                    <input type="hidden" name="thumbnail_remove" />
+                                                </label>
+                                            </div>
+                                        </div>
+                                        {{-- Product Mutli Image --}}
+                                        <div class="col-8">
+                                            <div class="fv-row pt-5">
+                                                <label for="" class="form-label">Add the product multi
+                                                    image</label>
+                                                <div class="dropzone" id="productmulti_imag">
+                                                    <div class="dz-message needsclick">
+                                                        <i class="fa-solid fa-photo-film fs-3x text-primary"></i>
+                                                        <div class="ms-4">
+                                                            <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here
+                                                                or
+                                                                click to upload.
+                                                            </h3>
+                                                            <span class="fs-7 fw-semibold text-gray-500">Upload up to
+                                                                10
+                                                                files</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -310,32 +354,26 @@
                                         <h2>Inventory</h2>
                                     </div>
                                 </div>
-                                <div class="card-body pt-0">
-                                    <div class="mb-10 fv-row">
+                                <div class="card-body pt-0 row">
+                                    <div class="mb-10 fv-row col-6">
                                         <label class="form-label">SKU Code</label>
                                         <input type="text" name="sku_code" class="form-control mb-2"
                                             placeholder="SKU Number" value="" />
                                         <div class="text-muted fs-7">Enter the product SKU.</div>
                                     </div>
-                                    <div class="mb-10 fv-row">
+                                    <div class="mb-10 fv-row col-6">
                                         <label class="form-label">MF Code</label>
                                         <input type="text" name="mf_code" class="form-control mb-2"
                                             placeholder="MF Number" value="" />
                                         <div class="text-muted fs-7">Enter the product MF.</div>
                                     </div>
-                                    <div class="mb-10 fv-row">
-                                        <label class="form-label">Product Code</label>
-                                        <input type="text" name="product_code" class="form-control mb-2"
-                                            placeholder="Product Code Number" value="" />
-                                        <div class="text-muted fs-7">Enter the product MF.</div>
-                                    </div>
-                                    <div class="mb-10 fv-row">
+                                    <div class="mb-10 fv-row col-4">
                                         <label class="form-label">Stock</label>
                                         <input type="text" name="stock" class="form-control mb-2"
                                             placeholder="Product Code Number" value="" />
                                         <div class="text-muted fs-7">Enter the product MF.</div>
                                     </div>
-                                    <div class="mb-10 fv-row">
+                                    <div class="mb-10 fv-row col-4">
                                         <label class="form-label">Stock Availability</label>
                                         <select class="form-select mb-2" name="stock_availability"
                                             data-control="select2" data-placeholder="Select an option"
@@ -346,7 +384,7 @@
                                         </select>
                                         <div class="text-muted fs-7">Enter the product MF.</div>
                                     </div>
-                                    <div class="mb-10 fv-row">
+                                    <div class="mb-10 fv-row col-4">
                                         <label class="form-label">Barcode</label>
                                         <input type="text" name="barcode" class="form-control mb-2"
                                             placeholder="Barcode Number" value="" />
@@ -356,6 +394,10 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_ecommerce_add_product_meta" role="tab-panel">
+                        <div class="d-flex flex-column gap-7 gap-lg-10">
                             {{-- Meta Options --}}
                             <div class="card card-flush py-4">
                                 <div class="card-header">
@@ -426,6 +468,23 @@
         </form>
     </div>
     @push('scripts')
+        <script>
+            function calculatePrices() {
+                const boxContains = parseFloat(document.getElementById('box_contains').value) || 0;
+                const boxPrice = parseFloat(document.getElementById('box_price').value) || 0;
+                const boxDiscountPrice = parseFloat(document.getElementById('box_discount_price').value) || 0;
+
+                const unitPrice = boxContains ? (boxPrice / boxContains).toFixed(2) : 0;
+                const unitDiscount = boxContains ? (boxDiscountPrice / boxContains).toFixed(2) : 0;
+
+                document.getElementById('unit_price').value = unitPrice;
+                document.getElementById('unit_discount').value = unitDiscount;
+            }
+
+            document.getElementById('box_contains').addEventListener('input', calculatePrices);
+            document.getElementById('box_price').addEventListener('input', calculatePrices);
+            document.getElementById('box_discount_price').addEventListener('input', calculatePrices);
+        </script>
         <script>
             var myDropzone = new Dropzone("#productmulti_imag", {
                 url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
