@@ -86,7 +86,7 @@ class BrandController extends Controller
                 } else {
                     $uploadedFiles[$key] = ['status' => 0];
                 }
-            }
+            } 
             // Create the Brand model instance
             $brand = Brand::create([
                 'name'         => $request->name,
