@@ -1,11 +1,79 @@
 <x-admin-app-layout :title="'Product Add'">
     <style>
-        .image-input-placeholder {
-            background-image: url("https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/files/blank-image.svg");
+        .image-input-empty {
+            background-image: url({{ asset('admin/assets/media/svg/files/blank-image.svg') }});
         }
+
+        /* Custom Multi file upload */
+        .img-thumb {
+            border: 2px solid none;
+            border-radius: 3px;
+            padding: 1px;
+            cursor: pointer;
+            width: 70px;
+            height: 60px;
+            border-radius: 0.475rem;
+        }
+
+
+        .img-thumb-wrapper {
+            display: inline-block;
+            margin: 1rem 1rem 0 0;
+        }
+
+
+        .remove {
+            display: block;
+            background: #cf054f;
+            border: 1px solid none;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 5px;
+        }
+
+
+        .remove:hover {
+            background: white;
+            color: black;
+        }
+
+
+        .dropzone-field {
+            border: 1px dashed #009ef7;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow multiple images in a row */
+            align-items: center;
+            border-radius: 4px;
+            padding: 10px 5px;
+            justify-content: center;
+        }
+
+
+        #files {
+            display: none;
+        }
+
+
+        .custom-file-upload {
+            border: 0px solid #ccc;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: transparent;
+        }
+
+
+        .custom-file-upload i {
+            margin-right: 5px;
+        }
+
+        /* Custom Multi file upload */
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
-        <form id="kt_ecommerce_add_product_form" class="" action="{{ route('admin.product.create') }}" method="POST">
+        <form id="kt_ecommerce_add_product_form" method="post" action="{{ route('admin.product.store') }}"
+            enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="gap-7 gap-lg-10 mb-7  col-4">
@@ -68,10 +136,10 @@
                                 </select>
                             </div> --}}
                             <div class="fv-row">
-                                <x-metronic.label for="color_id" class="col-form-label required fw-bold fs-6">
+                                <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
                                     {{ __('Select Color') }}</x-metronic.label>
-                                <x-metronic.select-option class="form-select" placeholder="Color" name="color_id"
-                                    id="color_id">
+                                <x-metronic.select-option class="form-select" placeholder="Color" name="color"
+                                    id="color">
                                     <option :value="old('address')">Select Color</option>
                                     <option value="red" data-color="#ff0000">Red</option>
                                     <option value="green" data-color="#00ff00">Green</option>
@@ -214,49 +282,61 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <x-metronic.label for="" class="form-label">Set the product
-                                                    thumbnail
-                                                    image.
-                                                    Only *.png, *.jpg and *.jpeg image
+                                                    thumbnail image. Only *.png, *.jpg and *.jpeg image
                                                     files are accepted</x-metronic.label>
-                                                <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-                                                    data-kt-image-input="true">
-                                                    <div class="image-input-wrapper w-150px h-150px"></div>
-                                                    <x-metronic.label
-                                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                <div class="image-input image-input-empty" data-kt-image-input="true"
+                                                    style="width: auto;
+                                                    background-size: contain;
+                                                    border: 1px solid #009ae5;">
+                                                    <div class="image-input-wrapper w-100px h-70px"></div>
+
+                                                    <label
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
                                                         data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                        title="Change avatar">
-                                                        <i class="fa-solid fa-pencil fs-7">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                        </i>
-                                                        <x-metronic.file-input type="file" name="thumbnail"
-                                                            accept=".png, .jpg, .jpeg"></x-metronic.file-input>
-                                                        <x-metronic.input type="hidden"
-                                                            name="thumbnail_remove"></x-metronic.input>
-                                                    </x-metronic.label>
+                                                        data-bs-dismiss="click" title="Change avatar">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                        <input type="file" name="thumbnail"
+                                                            accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="avatar_remove" />
+                                                    </label>
+
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Cancel avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Remove avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
                                                 </div>
                                             </div>
                                             {{-- Product Mutli Image --}}
                                             <div class="col-8">
                                                 <div class="fv-row pt-5">
                                                     <x-metronic.label for="" class="form-label">Add the
-                                                        product multi
-                                                        image</x-metronic.label>
-                                                    <div class="dropzone" id="productmulti_imag">
-                                                        <div class="dz-message needsclick">
-                                                            <i class="fa-solid fa-photo-film fs-3x text-primary"></i>
-                                                            <div class="ms-4">
-                                                                <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files
-                                                                    here
-                                                                    or
-                                                                    click to upload.
-                                                                </h3>
-                                                                <span class="fs-7 fw-semibold text-gray-500">Upload up
-                                                                    to
-                                                                    10
-                                                                    files</span>
+                                                        product multi image</x-metronic.label>
+                                                    <div class="dropzone-field">
+                                                        <label for="files" class="custom-file-upload">
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="mb-0"><i
+                                                                        class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
+                                                                </p>
+                                                                <h5 class="mb-0">Drop files here or click to upload.
+                                                                    <br>
+                                                                    <span class="text-muted"
+                                                                        style="font-size: 10px">Upload 10 File</span>
+                                                                </h5>
                                                             </div>
-                                                        </div>
+                                                        </label>
+                                                        <input type="file" id="files" name="multi_img[]"
+                                                            multiple class="form-control" style="display: none;"
+                                                            onchange="console.log(this.selected.value)" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -479,7 +559,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-end mt-10">
                         <a href="{{ route('admin.product.index') }}" class="btn btn-danger me-5">
                             Back To Product List
                         </a>
@@ -569,19 +649,29 @@
             document.getElementById('box_discount_price').addEventListener('input', calculatePrices);
         </script>
         <script>
-            var myDropzone = new Dropzone("#productmulti_imag", {
-                url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-                paramName: "file", // The name that will be used to transfer the file
+            var uploadedDocumentMap = {}; // Assuming you have this variable defined somewhere
+
+            var myDropzone = new Dropzone("#product_multiimage", {
+                url: "{{ route('admin.product.store') }}",
+                paramName: "multi_image", // The name that will be used to transfer the file
+                uploadMultiple: true,
+                parallelUploads: 10,
                 maxFiles: 10,
                 maxFilesize: 10, // MB
                 addRemoveLinks: true,
                 accept: function(file, done) {
-                    if (file.name == "wow.jpg") {
-                        done("Naha, you don't.");
-                    } else {
-                        done();
-                    }
-                }
+                    console.log(file);
+                    $('#kt_ecommerce_add_product_form').append(
+                        '<input type="hidden" name="document[ value="{{ old('document') }}"]" value="' + file
+                        .file + '">');
+                    done();
+                },
+                method: "post",
+            });
+
+            document.getElementById('kt_ecommerce_add_product_form').addEventListener('submit', function(event) {
+                var formData = new FormData(this);
+                console.log(formData);
             });
         </script>
         <script>
@@ -612,18 +702,7 @@
                     this.saveInterval = setInterval(() => {
                         if (this.change.length() > 0) {
                             console.log('Saving changes', this.change);
-                            // Send partial changes
-                            /*
-                            $.post(this.endpoint, {
-                                partial: JSON.stringify(this.change)
-                            });
-                            */
-                            // Send entire document
-                            /*
-                            $.post(this.endpoint, {
-                                doc: JSON.stringify(this.quill.getContents())
-                            });
-                            */
+
                             this.change = new Delta();
                         }
                     }, 5 * 1000);

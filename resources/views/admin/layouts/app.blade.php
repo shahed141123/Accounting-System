@@ -126,6 +126,64 @@
     @include('toastr')
     @stack('scripts')
     <script>
+        //  DropZone Image
+        $(document).ready(function() {
+            var selectedFiles = [];
+
+            $(".dropzone-field").on("change", "#files", function(e) {
+                var files = e.target.files,
+                    filesLength = files.length;
+
+                $(".custom-file-upload").toggle(filesLength === 0 && selectedFiles.length === 0);
+
+                for (var i = 0; i < filesLength; i++) {
+                    var f = files[i];
+                    selectedFiles.push(f);
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function(file) {
+                        return function(e) {
+                            $("<div class=\"img-thumb-wrapper card shadow\">" +
+                                "<img class=\"img-thumb\" src=\"" + e.target.result +
+                                "\" title=\"" + file.name + "\"/>" +
+                                "<br/><span class=\"remove\">Remove</span>" +
+                                "</div>").insertAfter("#files");
+                        };
+                    })(f);
+                    fileReader.readAsDataURL(f);
+                }
+                // console.log(selectedFiles);
+                $(".existing-images").show();
+            });
+
+            // Use event delegation for the click event
+            $(".dropzone-field").on("click", ".remove", function() {
+                var wrapper = $(this).parent(".img-thumb-wrapper");
+                wrapper.remove();
+                var removedFile = wrapper.find('img').prop('title');
+                selectedFiles = selectedFiles.filter(function(file) {
+                    return file.name !== removedFile;
+                });
+                updateInputFiles();
+                $(".custom-file-upload").toggle(selectedFiles.length === 0);
+                // alert(selectedFiles.length);
+            });
+
+            function updateInputFiles() {
+                // Create a new set of files excluding the removed one
+                var newInputFiles = new DataTransfer();
+                selectedFiles.forEach(function(file) {
+                    newInputFiles.items.add(file);
+                });
+
+                // Clear the input
+                $("#files").val("");
+
+                // Assign the new set of files to the input
+                $("#files")[0].files = newInputFiles.files;
+            }
+        });
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
 
             const $selectAllCheckbox = $('.metronic_select_all');
