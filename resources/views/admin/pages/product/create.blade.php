@@ -17,14 +17,13 @@
                             </div>
                         </div>
                         <div class="card-body pt-0">
-                            <select class="form-select mb-2" data-control="select2" data-hide-search="true"
-                                name="status" data-placeholder="Select an option"
-                                id="kt_ecommerce_add_product_status_select">
+                            <x-metronic.select-option id="kt_ecommerce_add_product_status_select" class="form-select mb-2" data-control="select2" data-hide-search="true"
+                                name="status" data-placeholder="Select an option">
                                 <option></option>
                                 <option value="published" selected>Published</option>
                                 <option value="draft">Draft</option>
                                 <option value="inactive">Inactive</option>
-                            </select>
+                            </x-metronic.select-option>
                             <div class="text-muted fs-7">Set the product status.</div>
                         </div>
                     </div>
@@ -38,30 +37,25 @@
                         </div>
                         <div class="card-body pt-0">
                             <div class="fv-row">
-                                <label class="form-label">Brand Id</label>
-                                <select class="form-select mb-2" name="brand_id" data-control="select2"
+                                <x-metronic.label for="brand_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Brand') }}</x-metronic.label>
+                                <x-metronic.select-option id="brand_id" class="form-select mb-2" name="brand_id" data-control="select2"
                                     data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
                                     @foreach ($brands as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->name }}
                                         </option>
                                     @endforeach
-                                </select>
+                                </x-metronic.select-option>
                             </div>
                             <div class="fv-row">
-                                <label class="form-label">Category Id</label>
-                                <select class="form-control select mb-2" name="category_id[]" multiple
+                                <x-metronic.label for="category_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Category') }}</x-metronic.label>
+                                <x-metronic.select-option id="category_id" class="form-control select mb-2" name="category_id[]" multiple
                                     multiselect-search="true" multiselect-select-all="true" data-control="select2"
                                     data-placeholder="Select an option" data-allow-clear="true">
                                     {!! $categoriesOptions !!}
-                                </select>
-                                {{-- <select class="form-select mb-2" name="category_id" data-control="select2"
-                                    data-placeholder="Select an option" data-allow-clear="true">
-                                    <option></option>
-                                    <option value="">Red</option>
-                                    <option value="">White</option>
-                                    <option value="">Black</option>
-                                </select> --}}
+                                </x-metronic.select-option>
                             </div>
                             {{-- <div class="fv-row">
                                 <label class="form-label">Attribute Id</label>
@@ -69,22 +63,14 @@
                                     data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
                                     <option></option>
                                     <option value="">Computers</option>
-                                    <option value="">Watches</option>
-                                    <option value="">Headphones</option>
-                                    <option value="">Footwear</option>
-                                    <option value="">Cameras</option>
-                                    <option value="">Shirts</option>
-                                    <option value="">Household</option>
-                                    <option value="">Handbags</option>
-                                    <option value="">Wines</option>
-                                    <option value="">Sandals</option>
                                 </select>
                             </div> --}}
                             <div class="fv-row">
-                                <label for="kt_docs_select2_country" class="mb-2">Select Color</label>
-                                <select class="form-select" placeholder="Color" name="color_id"
-                                    id="kt_docs_select2_country">
-                                    <option data-color="#000">Select Color</option>
+                                <x-metronic.label for="color_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Color') }}</x-metronic.label>
+                                <x-metronic.select-option class="form-select" placeholder="Color" name="color_id"
+                                    id="color_id">
+                                    <option value="">Select Color</option>
                                     <option value="red" data-color="#ff0000">Red</option>
                                     <option value="green" data-color="#00ff00">Green</option>
                                     <option value="blue" data-color="#0000ff">Blue</option>
@@ -106,7 +92,7 @@
                                     <option value="silver" data-color="#c0c0c0">Silver</option>
                                     <option value="gold" data-color="#ffd700">Gold</option>
                                     <!-- Add more options with respective colors -->
-                                </select>
+                                </x-metronic.select-option>
                             </div>
                         </div>
                     </div>
@@ -153,8 +139,8 @@
                                     <div class="card-body pt-0">
                                         <div class="mb-5 fv-row">
                                             <label class="form-label">Product Name</label>
-                                            <input type="text" name="name" class="form-control mb-2"
-                                                placeholder="Product name recommended" />
+                                            <x-metronic.input type="text" name="name" class="form-control mb-2"
+                                                placeholder="Product name recommended"> </x-metronic.input>
                                             <div class="text-muted fs-7">
                                                 A product name is and recommended to be unique.
                                             </div>
@@ -179,8 +165,8 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <label class="form-label">Short Description</label>
-                                            <textarea name="short_description" placeholder="Add Product Short Description" class="form-control mb-2"
-                                                cols="30" rows="3"></textarea>
+                                            <x-metronic.textarea id="short_description" name="short_description" placeholder="Add Product Short Description" class="form-control mb-2"
+                                                cols="30" rows="3"></x-metronic.textarea>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <label class="form-label">Product Overview</label>
@@ -237,9 +223,9 @@
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
                                                         </i>
-                                                        <input type="file" name="thumbnail"
-                                                            accept=".png, .jpg, .jpeg" />
-                                                        <input type="hidden" name="thumbnail_remove" />
+                                                        <x-metronic.file-input type="file" name="thumbnail"
+                                                            accept=".png, .jpg, .jpeg"></x-metronic.file-input>
+                                                        <x-metronic.input type="hidden" name="thumbnail_remove"></x-metronic.input>
                                                     </label>
                                                 </div>
                                             </div>
@@ -283,37 +269,21 @@
                                     <div class="card-body pt-0 row">
                                         <div class="mb-10 fv-row col-6">
                                             <label class="form-label">SKU Code</label>
-                                            <input type="text" name="sku_code" class="form-control mb-2"
-                                                placeholder="SKU Number" value="" />
+                                            <x-metronic.input type="text" name="sku_code" class="form-control mb-2"
+                                                placeholder="SKU Number" value=""></x-metronic.file-input>
                                             <div class="text-muted fs-7">Enter the product SKU.</div>
                                         </div>
                                         <div class="mb-10 fv-row col-6">
                                             <label class="form-label">MF Code</label>
-                                            <input type="text" name="mf_code" class="form-control mb-2"
-                                                placeholder="MF Number" value="" />
+                                            <x-metronic.input type="text" name="mf_code" class="form-control mb-2"
+                                                placeholder="MF Number" value=""></x-metronic.file-input>
                                             <div class="text-muted fs-7">Enter the product MF.</div>
                                         </div>
-                                        <div class="mb-10 fv-row col-4">
-                                            <label class="form-label">Stock</label>
-                                            <input type="text" name="stock" class="form-control mb-2"
-                                                placeholder="Product Code Number" value="" />
-                                            <div class="text-muted fs-7">Enter the product MF.</div>
-                                        </div>
-                                        <div class="mb-10 fv-row col-4">
-                                            <label class="form-label">Stock Availability</label>
-                                            <select class="form-select mb-2" name="stock_availability"
-                                                data-control="select2" data-placeholder="Select an option"
-                                                data-allow-clear="true" multiple="multiple">
-                                                <option></option>
-                                                <option value="Computers">Available</option>
-                                                <option value="Watches">Not Available</option>
-                                            </select>
-                                            <div class="text-muted fs-7">Enter the product MF.</div>
-                                        </div>
+
                                         <div class="mb-10 fv-row col-4">
                                             <label class="form-label">Barcode</label>
-                                            <input type="text" name="barcode" class="form-control mb-2"
-                                                placeholder="Barcode Number" value="" />
+                                            <x-metronic.input type="text" name="barcode" class="form-control mb-2"
+                                                placeholder="Barcode Number" value=""></x-metronic.file-input>
                                             <div class="text-muted fs-7">
                                                 Enter the product barcode number.
                                             </div>
@@ -334,51 +304,51 @@
                                     <div class="card-body pt-0 row">
                                         <div class="mb-5 fv-row col-4">
                                             <label class="form-label">Box Contains</label>
-                                            <input type="number" name="box_contains" id="box_contains"
+                                            <x-metronic.input type="number" name="box_contains" id="box_contains"
                                                 class="form-control mb-2" placeholder="how much in a box"
-                                                value="" />
+                                                value=""></x-metronic.file-input>
                                             <div class="text-muted fs-7">How much product in a box.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <label class="form-label">Box Price</label>
-                                            <input type="number" name="box_price" id="box_price"
+                                            <x-metronic.input type="number" name="box_price" id="box_price"
                                                 class="form-control mb-2" placeholder="how much the box price"
-                                                value="" />
+                                                value=""></x-metronic.file-input>
                                             <div class="text-muted fs-7">How much box price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <label class="form-label">Box Discount Price</label>
-                                            <input type="number" name="box_discount_price" id="box_discount_price"
+                                            <x-metronic.input type="number" name="box_discount_price" id="box_discount_price"
                                                 class="form-control mb-2"
-                                                placeholder="how much the box discount price" value="" />
+                                                placeholder="how much the box discount price" value=""></x-metronic.file-input>
                                             <div class="text-muted fs-7">How much box discount price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <label class="form-label">Unit Price</label>
-                                            <input type="number" name="unit_price" id="unit_price"
+                                            <x-metronic.input type="number" name="unit_price" id="unit_price"
                                                 class="form-control mb-2" placeholder="how much the unit price"
-                                                value="" readonly />
+                                                value="" readonly></x-metronic.file-input>
                                             <div class="text-muted fs-7">How much unit price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <label class="form-label">Unit Discount</label>
-                                            <input type="number" name="unit_discount" id="unit_discount"
+                                            <x-metronic.input type="number" name="unit_discount" id="unit_discount"
                                                 class="form-control mb-2"
                                                 placeholder="how much the unit discount price" value=""
-                                                readonly />
+                                                readonly></x-metronic.file-input>
                                             <div class="text-muted fs-7">How much unit discount price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <label class="form-label">Box Stock</label>
-                                            <input type="number" name="box_stock" id="box_stock"
+                                            <x-metronic.input type="number" name="box_stock" id="box_stock"
                                                 class="form-control mb-2" placeholder="how much the box stock"
-                                                value="" />
+                                                value=""></x-metronic.file-input>
                                             <div class="text-muted fs-7">How much box stock. Eg: 50</div>
                                         </div>
                                         <div class="fv-row pt-2 col-4 mt-10">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault" />
+                                                <x-metronic.input class="form-check-input" name="is_refurbished" type="checkbox" value=""
+                                                    id="flexCheckDefault"></x-metronic.file-input>
                                                 <label class="form-check-label" for="flexCheckDefault">
                                                     Is Refurbished
                                                 </label>
@@ -403,20 +373,20 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <label class="form-label">Length (cm)</label>
-                                                        <input type="number" name="length" id="length"
+                                                        <x-metronic.input type="number" name="length" id="length"
                                                             class="form-control mb-2" placeholder="15"
-                                                            value="">
+                                                            value=""></x-metronic.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <label class="form-label">Width (cm)</label>
-                                                        <input type="number" name="width" id="width"
+                                                        <x-metronic.input type="number" name="width" id="width"
                                                             class="form-control mb-2" placeholder="10"
-                                                            value="">
+                                                            value=""></x-metronic.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <label class="form-label">Height (cm)</label>
-                                                        <input type="number" name="height" id="height"
-                                                            class="form-control mb-2" placeholder="9" value="">
+                                                        <x-metronic.input type="number" name="height" id="height"
+                                                            class="form-control mb-2" placeholder="9" value=""></x-metronic.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <p id="dimensionPreview">Length(0") X Width(0") X Height(0")
@@ -449,8 +419,8 @@
                                     <div class="card-body pt-0">
                                         <div class="mb-10">
                                             <label class="form-label">Meta Tag Title</label>
-                                            <input type="text" class="form-control mb-2" name="meta_title"
-                                                placeholder="Meta tag name" />
+                                            <x-metronic.input type="text" class="form-control mb-2" name="meta_title"
+                                                placeholder="Meta tag name"></x-metronic.input>
 
                                             <div class="text-muted fs-7">
                                                 Set a meta tag title. Recommended to be simple and precise
