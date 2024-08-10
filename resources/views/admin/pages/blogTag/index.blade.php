@@ -33,12 +33,24 @@
                 <tbody>
                     @foreach ($blogTags as $tag)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><img class="w-65px" src="{{ asset('storage/'.$tag->image ) }}" alt=""></td>
                             <td>{{ $tag->name }}</td>
-                            <td>{{ $tag->position }}</td>
-                            <td>{{ $tag->office }}</td>
-                            <td>{{ $tag->age }}</td>
-                            <td>{{ $tag->start_date }}</td>
-                            <td>{{ $tag->salary }}</td>
+                            <td>{{ $tag->meta_title }}</td>
+                            <td>
+                                <span class="badge {{ $tag->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                {{ $tag->status == 'active' ? 'Active' : 'InActive' }}</span>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                    data-bs-toggle="modal" data-bs-target="#EditModal-{{ $tag->id }}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="{{ route('admin.blog-tags.destroy', $tag->id) }}"
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete">
+                                    <i class="fa-solid fa-trash-alt"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -58,7 +70,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="kt_docs_formvalidation_text" class="form" action="{{ route('admin.blog-tags.store') }}"
-                        method="post">
+                        method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="fv-row mb-5">
                             <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Tag
@@ -105,6 +117,65 @@
             </div>
         </div>
     </div>
+    @foreach ($blogTags as $category)
+        <div class="modal fade" tabindex="-1" id="EditModal-{{ $category->id }}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header py-3 bg-light-primary">
+                        <h3 class="modal-title">Update Blog Tag</h3>
+                        <button type="button" class="btn btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="kt_docs_formvalidation_text" class="form"
+                            action="{{ route('admin.blog-tags.update',$category->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="fv-row mb-5">
+                                <x-metronic.label class="required fw-semibold fs-6 mb-2">Title</x-metronic.label>
+                                <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
+                                    placeholder="Set Title" :valu="old('name',$category->name)" />
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label class="fw-semibold fs-6 mb-2">Meta Title</x-metronic.label>
+                                <x-metronic.input type="text" name="meta_title" class="form-control mb-3 mb-lg-0"
+                                    placeholder="Set Meta Title" :valu="old('meta_title',$category->meta_title)" />
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Image') }}
+                                </x-metronic.label>
+                                <x-metronic.file-input id="image" name="image" class="form-control mb-3 mb-lg-0"
+                                    :value="old('image')" :source="asset('storage/'.$category->image)"></x-metronic.file-input>
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select a Status ') }}</x-metronic.label>
+                                <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                                    data-placeholder="Select an option">
+                                    <option></option>
+                                    <option value="active" @selected($category->status == "active") >Active</option>
+                                    <option value="inactive" @selected($category->status == "inactive") >Inactive</option>
+                                </x-metronic.select-option>
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label class="fw-semibold fs-6 mb-2">Description</x-metronic.label>
+                                <x-metronic.textarea class="form-control" placeholder="Set The Description"
+                                    name="description" id="floatingTextarea2" style="height: 100px"
+                                    :valu="old('description')">{!! $category->description !!}</x-metronic.textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
     {{-- Blog tag Create Modal End --}}
     @push('scripts')
         <script>
