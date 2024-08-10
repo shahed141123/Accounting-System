@@ -17,16 +17,27 @@
                             <div class="col-12">
                                 <h2 class="ps-form__title">Register</h2>
                             </div>
+                            <div class="ps-form__group col-2">
+                                <x-input-label class="ps-form__label" for="title" :value="__('Title')" />
+                                <div class="input-group">
+                                    <select name="title" class="form-select ps-form__input" id="title">
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                        <option value="Ms">Ms</option>
+                                    </select>
+                                </div>
+                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                            </div>
                             <!-- First Name -->
-                            <div class="ps-form__group col-4">
-                                <x-input-label class="ps-form__label" for="first_name" :value="__('First Name')" />
+                            <div class="ps-form__group col-5">
+                                <x-input-label class="ps-form__label" for="first_name">First Name <span class="text-danger">*</span></x-input-label>
                                 <x-text-input id="first_name" class="form-control ps-form__input" type="text"
                                     name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name" />
                                 <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                             </div>
 
                             <!-- Last Name -->
-                            <div class="ps-form__group col-4">
+                            <div class="ps-form__group col-5">
                                 <x-input-label class="ps-form__label" for="last_name" :value="__('Last Name')" />
                                 <x-text-input id="last_name" class="form-control ps-form__input" type="text"
                                     name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
@@ -34,7 +45,7 @@
                             </div>
 
                             <!-- Email -->
-                            <div class="ps-form__group col-4">
+                            <div class="ps-form__group col-6">
                                 <x-input-label class="ps-form__label" for="email" :value="__('Email')" />
                                 <x-text-input id="email" class="form-control ps-form__input" type="email"
                                     name="email" :value="old('email')" required autocomplete="email" />
@@ -42,19 +53,22 @@
                             </div>
 
                             <!-- Confirm Email -->
-                            <div class="ps-form__group col-4">
-                                <x-input-label class="ps-form__label" for="confirm_email" :value="__('Confirm Email')" />
-                                <x-text-input id="confirm_email" class="form-control ps-form__input" type="email"
-                                    name="confirm_email" :value="old('confirm_email')" required autocomplete="confirm_email" />
-                                <x-input-error :messages="$errors->get('confirm_email')" class="mt-2" />
+                            <!-- Phone -->
+                            <div class="ps-form__group col-6">
+                                <x-input-label class="ps-form__label" for="phone" :value="__('Phone')" />
+                                <div class="input-group">
+                                    <x-text-input id="phone" class="form-control ps-form__input" type="tel"
+                                        name="phone" :value="old('phone')" required autocomplete="tel" />
+                                </div>
+                                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                             </div>
-
                             <!-- Password -->
-                            <div class="ps-form__group col-4">
+
+                            <div class="ps-form__group col-6">
                                 <x-input-label class="ps-form__label" for="password" :value="__('Password')" />
                                 <div class="input-group">
                                     <x-text-input id="password" class="form-control ps-form__input" type="password"
-                                        name="password" required autocomplete="new-password" />
+                                        name="password" :value="old('password')" required autocomplete="new-password" />
                                     <div class="input-group-append">
                                         <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
                                     </div>
@@ -63,11 +77,11 @@
                             </div>
 
                             <!-- Confirm Password -->
-                            <div class="ps-form__group col-4">
+                            <div class="ps-form__group col-6">
                                 <x-input-label class="ps-form__label" for="password_confirmation" :value="__('Confirm Password')" />
                                 <div class="input-group">
                                     <x-text-input id="password_confirmation" class="form-control ps-form__input"
-                                        type="password" name="password_confirmation" required
+                                        type="password" name="password_confirmation" required :value="old('password_confirmation')"
                                         autocomplete="new-password" />
                                     <div class="input-group-append">
                                         <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
@@ -77,27 +91,9 @@
                             </div>
 
                             <!-- Title -->
-                            <div class="ps-form__group col-4">
-                                <x-input-label class="ps-form__label" for="title" :value="__('Title')" />
-                                <div class="input-group">
-                                    <select name="title" class="form-select ps-form__input" id="title">
-                                        <option value="mrs">Mrs</option>
-                                        <option value="mr">Mr</option>
-                                        <option value="miss">Miss</option>
-                                    </select>
-                                </div>
-                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                            </div>
 
-                            <!-- Phone -->
-                            <div class="ps-form__group col-8">
-                                <x-input-label class="ps-form__label" for="phone" :value="__('Phone')" />
-                                <div class="input-group">
-                                    <x-text-input id="phone" class="form-control ps-form__input" type="tel"
-                                        name="phone" required autocomplete="tel" />
-                                </div>
-                                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-                            </div>
+
+
                         </div>
 
                         <div class="col-12">
@@ -123,7 +119,7 @@
                                                         :value="__('House/Block/Road')" />
                                                     <div class="input-group">
                                                         <x-text-input id="address_one"
-                                                            class="form-control ps-form__input" type="text"
+                                                            class="form-control ps-form__input" type="text" :value="old('address_one')"
                                                             name="address_one" required autocomplete="address_one" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('address_one')" class="mt-2" />
@@ -135,7 +131,7 @@
                                                         :value="__('Zip Code')" />
                                                     <div class="input-group">
                                                         <x-text-input id="zipcode"
-                                                            class="form-control ps-form__input" type="text"
+                                                            class="form-control ps-form__input" type="text" :value="old('zipcode')"
                                                             name="zipcode" required autocomplete="zipcode" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
@@ -148,7 +144,7 @@
                                                     <div class="input-group">
                                                         <x-text-input id="state"
                                                             class="form-control ps-form__input" type="text"
-                                                            name="state" required autocomplete="state" />
+                                                            name="state" :value="old('state')" required autocomplete="state" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                                 </div>
@@ -160,7 +156,7 @@
                                                     <div class="input-group">
                                                         <x-text-input id="address_two"
                                                             class="form-control ps-form__input" type="text"
-                                                            name="address_two" required autocomplete="address_two" />
+                                                            name="address_two" :value="old('address_two')" required autocomplete="address_two" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
                                                 </div>
@@ -227,10 +223,12 @@
                                                     <div class="input-group">
                                                         <select name="selling_platforms"
                                                             class="form-select ps-form__input" id="selling_platforms">
-                                                            <option value="wholesaler">Wholesaler</option>
-                                                            <option value="garden_center">Garden Center</option>
-                                                            <option value="charity">Charity</option>
-                                                            <option value="garage">Garage</option>
+                                                            <option value="ebay">Ebay</option>
+                                                            <option value="amazon">Amazon</option>
+                                                            <option value="own_website">Own Website</option>
+                                                            <option value="facebook">Facebook</option>
+                                                            <option value="etsy">Etsy</option>
+                                                            <option value="other">Other</option>
                                                         </select>
                                                     </div>
                                                     <x-input-error :messages="$errors->get('selling_platforms')" class="mt-2" />
@@ -242,10 +240,31 @@
                                                     <div class="input-group">
                                                         <select name="customer_type"
                                                             class="form-select ps-form__input" id="customer_type">
-                                                            <option value="wholesaler">Wholesaler</option>
-                                                            <option value="garden_center">Garden Center</option>
-                                                            <option value="charity">Charity</option>
-                                                            <option value="garage">Garage</option>
+                                                            <option value="Wholesaler">Wholesaler</option>
+                                                            <option value="Garden Centre">Garden Centre</option>
+                                                            <option value="Internet Retailer - Ebay and/or Amazon">
+                                                                Internet Retailer - Ebay and/or Amazon</option>
+                                                            <option value="Internet Retailer - own website">Internet
+                                                                Retailer - own website</option>
+                                                            <option value="Other">Other</option>
+                                                            <option value="Charity">Charity</option>
+                                                            <option value="Garage">Garage</option>
+                                                            <option value="Factory Shop">Factory Shop</option>
+                                                            <option value="School/University">School/University
+                                                            </option>
+                                                            <option value="Nursing Home/Hospital">Nursing Home/Hospital
+                                                            </option>
+                                                            <option value="Hotels/Pubs/Clubs/Events">
+                                                                Hotels/Pubs/Clubs/Events</option>
+                                                            <option value="Tradesman">Tradesman</option>
+                                                            <option value="Market Trader">Market Trader</option>
+                                                            <option value="Pound Shop/Discount Store">Pound
+                                                                Shop/Discount Store</option>
+                                                            <option value="Retailer 6 plus shops">Retailer 6 plus shops
+                                                            </option>
+                                                            <option value="Retailer 1 - 5 shops">Retailer 1 - 5 shops
+                                                            </option>
+                                                            <option value="Retailer 1 shop">Retailer 1 shop</option>
                                                         </select>
                                                     </div>
                                                     <x-input-error :messages="$errors->get('customer_type')" class="mt-2" />
@@ -258,17 +277,21 @@
                                                         <select name="referral_source"
                                                             class="form-select ps-form__input" id="referral_source">
                                                             <option value="internet_search">Internet Search</option>
-                                                            <option value="google_search">Google Search</option>
-                                                            <option value="facebook_ad">Facebook Ad</option>
-                                                            <option value="amazon_ad">Amazon Ad</option>
+                                                            <option value="advert_in_news">Advert in News</option>
+                                                            <option value="facebook">Facebook</option>
+                                                            <option value="linked_in">Linked In</option>
+                                                            <option value="trade_show">Trade Show</option>
+                                                            <option value="word_of_mouth">Word of Mouth</option>
+                                                            <option value="existing_customer">Existing Customer</option>
+                                                            <option value="other">Other</option>
                                                         </select>
                                                     </div>
                                                     <x-input-error :messages="$errors->get('referral_source')" class="mt-2" />
                                                 </div>
 
-                                                <div class="ps-form__group col-8">
-                                                    <x-input-label class="ps-form__label"
-                                                        for="buying_group_membership" :value="__('Are You a Member of a Buying Group?')" />
+                                                <div class="ps-form__group col-6">
+                                                    <x-input-label class="ps-form__label fs-6"
+                                                        for="buying_group_membership" :value="__('Member of a Buying Group?')" />
                                                     <div class="input-group">
                                                         <select name="buying_group_membership"
                                                             class="form-select ps-form__input"
@@ -280,7 +303,7 @@
                                                     <x-input-error :messages="$errors->get('buying_group_membership')" class="mt-2" />
                                                 </div>
 
-                                                <div class="ps-form__group col-4">
+                                                <div class="ps-form__group col-6">
                                                     <x-input-label class="ps-form__label" for="website_address"
                                                         :value="__('Website Address')" />
                                                     <div class="input-group">
@@ -295,7 +318,7 @@
                                                     <x-input-label class="ps-form__label" for="buying_group_name"
                                                         :value="__('Name of Your Buying Group (If applicable)')" />
                                                     <div class="input-group">
-                                                        <textarea id="buying_group_name" class="form-control ps-form__input" name="buying_group_name" rows="4"
+                                                        <textarea id="buying_group_name" class="form-control ps-form__input" name="buying_group_name" rows="1"
                                                             autocomplete="buying_group_name"></textarea>
                                                     </div>
                                                     <x-input-error :messages="$errors->get('buying_group_name')" class="mt-2" />
@@ -305,7 +328,7 @@
                                                     <x-input-label class="ps-form__label" for="current_suppliers"
                                                         :value="__('Who Are Your Current Suppliers?')" />
                                                     <div class="input-group">
-                                                        <textarea id="current_suppliers" class="form-control ps-form__input" name="current_suppliers" rows="4"
+                                                        <textarea id="current_suppliers" class="form-control ps-form__input" name="current_suppliers" rows="1"
                                                             autocomplete="current_suppliers"></textarea>
                                                     </div>
                                                     <x-input-error :messages="$errors->get('current_suppliers')" class="mt-2" />
@@ -317,8 +340,18 @@
                                                             'How Much Do You Expect to Spend With Us Per Annum?',
                                                         )" />
                                                     <div class="input-group">
-                                                        <textarea id="annual_spend" class="form-control ps-form__input" name="annual_spend" rows="4"
-                                                            autocomplete="annual_spend"></textarea>
+                                                        <select name="annual_spend" class="form-select ps-form__input"
+                                                            id="annual_spend">
+                                                            <option value="Under £500">Under £500</option>
+                                                            <option value="£1,000 - £2,000">£1,000 - £2,000</option>
+                                                            <option value="£2,000 - £5,000">£2,000 - £5,000</option>
+                                                            <option value="£5,000 - £10,000">£5,000 - £10,000</option>
+                                                            <option value="£10,000 - £30,000">£10,000 - £30,000
+                                                            </option>
+                                                            <option value="£30,000 - £50,000">£30,000 - £50,000
+                                                            </option>
+                                                            <option value="Over £50,000">Over £50,000</option>
+                                                        </select>
                                                     </div>
                                                     <x-input-error :messages="$errors->get('annual_spend')" class="mt-2" />
                                                 </div>
@@ -340,16 +373,21 @@
                                         data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="newsletterYes"
+                                                <input type="radio" class="form-check-input" id="newsletterYes"
                                                     name="newsletter_preference" value="yes">
                                                 <label class="form-check-label" for="newsletterYes">Yes please, send
                                                     me email newsletters</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="newsletterNo"
+                                                <input type="radio" class="form-check-input" id="newsletterNo"
                                                     name="newsletter_preference" value="no">
                                                 <label class="form-check-label" for="newsletterNo">No thanks, please
                                                     don't send me email newsletters</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="terms_condition"
+                                                    name="terms_condition" value="yes">
+                                                <label class="form-check-label" for="terms_condition">I accept the Terms and Conditions & Privacy Policy. <span class="text-danger">*</span></label>
                                             </div>
                                         </div>
                                     </div>
