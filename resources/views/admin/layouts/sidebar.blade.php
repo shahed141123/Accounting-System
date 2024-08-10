@@ -105,27 +105,28 @@
                                 'admin.categories.edit',
                                 'admin.stock-management.index',
                                 'admin.shipping-management.index',
-                                'admin.order-management.index',
+                                'admin.order-management.index','admin.product.index', 'admin.product.create', 'admin.product.edit',
                             ],
                             'subMenu' => [
+
                                 [
-                                    'title' => 'Manage Products',
-                                    'routes' => ['admin.product.index', 'admin.product.create', 'admin.product.edit'],
-                                    'route' => 'admin.product.index',
-                                ],
-                                [
-                                    'title' => 'Brands Lists',
+                                    'title' => 'Brand List',
                                     'routes' => ['admin.brands.index', 'admin.brands.create', 'admin.brands.edit'],
                                     'route' => 'admin.brands.index',
                                 ],
                                 [
-                                    'title' => 'Categorys Lists',
+                                    'title' => 'Category List',
                                     'routes' => [
                                         'admin.categories.index',
                                         'admin.categories.create',
                                         'admin.categories.edit',
                                     ],
                                     'route' => 'admin.categories.index',
+                                ],
+                                [
+                                    'title' => 'Manage Products',
+                                    'routes' => ['admin.product.index', 'admin.product.create', 'admin.product.edit'],
+                                    'route' => 'admin.product.index',
                                 ],
                                 [
                                     'title' => 'Stock Info',

@@ -85,9 +85,10 @@
                             <select class="form-select mb-2" name="brand_id" data-control="select2"
                                 data-placeholder="Select an option" data-allow-clear="true">
                                 <option></option>
-                                <option value="">Apolo</option>
-                                <option value="">Redian</option>
-                                <option value="">Nike</option>
+                                @foreach ($brands as $brand)
+                                    <option value="{{ $brand->id }}">{{ $brand->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="fv-row">

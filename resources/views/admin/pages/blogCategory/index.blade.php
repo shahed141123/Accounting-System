@@ -22,7 +22,7 @@
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                 <thead class="">
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th>Sl No.</th>
+                        <th>SL No.</th>
                         <th>Position</th>
                         <th>Office</th>
                         <th>Age</th>

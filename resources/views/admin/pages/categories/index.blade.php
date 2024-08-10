@@ -8,79 +8,89 @@
                     <div class="card-header align-items-center py-5 gap-2 gap-md-5">
                         <div class="card-title">
                             <div class="d-flex align-items-center position-relative my-1">
-                                <button type="submit" id="bulkDelete" class="btn btn-danger" style="display:none;">Delete
+                                <button type="submit" id="bulkDelete" class="btn btn-danger"
+                                    style="display:none;">Delete
                                     Selected</button>
                             </div>
+
                         </div>
+
+
                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary me-2">Add
+
+                            <a href="{{ route('admin.categories.create') }}" class="btn btn-light-primary">Add
                                 Category</a>
+
                         </div>
+
                     </div>
 
+
                     <div class="card-body pt-0">
+
                         <div class="table-responsive">
-                            <table class="my-datatable text-center table table-hover align-middle table-row-dashed fs-6 gy-5">
+                            <table class="table my-datatable table-striped table-row-bordered gy-5 gx-5 border rounded">
                                 <thead>
-                                    <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                        <th class="min-w-25px">
-                                            <div
-                                                class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                <input class="form-check-input metronic_select_all" type="checkbox" data-kt-check="true"
-                                                    data-kt-check-target="#kt_category_table .form-check-input"
-                                                    value="1" id="select-all" />
+                                    <tr class="fw-bold fs-6 text-gray-800 px-7 text-center">
+                                        <th width="8%">
+                                            <div class="form-check form-check-sm form-check-solid">
+                                                <input class="form-check-input metronic_select_all" type="checkbox"
+                                                    id="select-all" />
                                             </div>
                                         </th>
-                                        <th class="min-w-25px">{{ __('category.Sl') }}</th>
-                                        <th class="min-w-150px">{{ __('category.Name') }}</th>
-                                        <th class="min-w-150px">{{ __('category.Slug') }}</th>
-                                        <th class="min-w-150px">{{ __('category.Status') }}</th>
-                                        <th class="min-w-150px">{{ __('category.Parent') }}</th>
-                                        <th class="min-w-70px">{{ __('category.Action') }}</th>
+                                        <th width="8%">{{ __('category.Sl') }}</th>
+                                        <th width="28%">{{ __('category.Parent') }}</th>
+                                        <th width="30%">{{ __('category.Name') }}</th>
+                                        <th width="12%">{{ __('category.Status') }}</th>
+                                        <th width="15%">{{ __('category.Action') }}</th>
                                     </tr>
+
                                 </thead>
 
-                                <tbody class="text-center fw-bold text-gray-600">
+
+                                <tbody class="fw-bold text-gray-600">
                                     @forelse ($categories as $category)
                                         <tr>
                                             <td>
-                                                <div
-                                                    class="form-check form-check-sm form-check-custom form-check-solid">
+                                                <div class="form-check form-check-sm form-check-solid">
                                                     <input class="form-check-input bulkDelete-checkbox" type="checkbox"
                                                         name="categories[]" value="{{ $category->id }}" />
                                                 </div>
                                             </td>
-
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <span class="fw-bolder">{{ $loop->iteration }}</span>
+                                                {{ $category->parent_id ? $category->parent->name : 'N/A' }}
                                             </td>
                                             <td>
-                                                <span class="fw-bolder">{{ $category->name }}</span>
-                                            </td>
-                                            <td>
-                                                <span class="fw-bolder">{{ $category->slug }}</span>
+                                                {{ $category->name }}
                                             </td>
                                             <td>
                                                 <div
-                                                    class="badge {{ $category->status == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
-                                                    {{ $category->status == 1 ? 'Active' : 'InActive' }}
+                                                    class="badge {{ $category->status == 'active' ? 'badge-light-success' : 'badge-light-danger' }}">
+                                                    {{ $category->status == 'active' ? 'Active' : 'InActive' }}
                                                 </div>
                                             </td>
-                                            <td>
-                                                <span class="fw-bolder">
-                                                    {{ $category->parent_id ? $category->parent->name : 'N/A' }}</span>
-                                            </td>
 
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                                    data-kt-menu-trigger="click"
-                                                    data-kt-menu-placement="bottom-end">Actions
-                                                    <!-- Action menu SVG -->
+
+                                            <td class="text-center">
+                                                <a href="{{ route('admin.categories.show', $category->id) }}"
+                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <a href="{{ route('admin.categories.edit', $category->id) }}"
+                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                <a href="{{ route('admin.categories.destroy', $category->id) }}"
+                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
+                                                    data-kt-docs-table-filter="delete_row">
+                                                    <i class="fa-solid fa-trash-can-arrow-up"></i>
                                                 </a>
                                             </td>
                                         </tr>
                                         @foreach ($category->children as $child)
                                             <tr>
+
                                                 <td>
                                                     <div
                                                         class="form-check form-check-sm form-check-custom form-check-solid">
@@ -89,47 +99,81 @@
                                                             value="{{ $child->id }}" />
                                                     </div>
                                                 </td>
+
                                                 <td>
-                                                    <span class="fw-bolder">
-                                                        {{ $loop->parent->iteration }}.{{ $loop->iteration }}</span>
+                                                    {{ $loop->parent->iteration }}.{{ $loop->iteration }}
                                                 </td>
                                                 <td>
-                                                    <span class="fw-bolder"> -- {{ $child->name }}</span>
+                                                    {{ $child->parent->name ?? 'N/A' }}
                                                 </td>
                                                 <td>
-                                                    <span class="fw-bolder">{{ $child->slug }}</span>
+                                                    -- {{ $child->name }}
                                                 </td>
                                                 <td>
                                                     <div
-                                                        class="badge {{ $child->status == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
-                                                        {{ $child->status == 1 ? 'Active' : 'InActive' }}
+                                                        class="badge {{ $child->status == 'active' ? 'badge-light-success' : 'badge-light-danger' }}">
+                                                        {{ $child->status == 'active' ? 'Active' : 'InActive' }}
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <span class="fw-bolder">
-                                                        {{ $child->parent->name ?? 'N/A' }}
-                                                </td>
-                                                <td class="text-end">
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-light btn-active-light-primary"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end">Actions
-                                                        <!-- Action menu SVG -->
+                                                <td class="text-center">
+                                                    <a href="{{ route('admin.categories.show', $child->id) }}"
+                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.categories.edit', $child->id) }}"
+                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.categories.destroy', $child->id) }}"
+                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
+                                                        data-kt-docs-table-filter="delete_row">
+                                                        <i class="fa-solid fa-trash-can-arrow-up"></i>
                                                     </a>
                                                 </td>
+
                                             </tr>
                                         @endforeach
+
                                     @endforeach
                                 </tbody>
+
                             </table>
+
                         </div>
                     </div>
                 </form>
             </div>
-
         </div>
-
     </div>
 
-    <script></script>
+    @push('scripts')
+        <script>
+            $(document).on('change', '.status-toggle', function() {
+                const id = $(this).data('id');
+                const route = "{{ route('admin.categories.toggle-status', ':id') }}".replace(':id', id);
+                toggleStatus(route, id);
+            });
+
+            function toggleStatus(route, id) {
+                $.ajax({
+                    url: route,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Status updated successfully!');
+                            table.ajax.reload(null, false); // Reload the DataTable
+                        } else {
+                            alert('Failed to update status.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while updating the status.');
+                    }
+                });
+            }
+        </script>
+    @endpush
 </x-admin-app-layout>

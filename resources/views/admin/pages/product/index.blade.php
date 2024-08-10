@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Product Management'">
+<x-admin-app-layout :title="'Product List'">
     <div class="row">
         <div class="col-xl-4 mx-auto">
             <div class="card card-flush shadow-sm">
@@ -11,7 +11,7 @@
                             </a>
                             <div class="flex-grow-1">
                                 <a href="#" class="text-white fs-5 fw-bold lh-0">Total Product
-                                    <span class="text-white fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
+                                    <span class="text-white fw-semibold d-block fs-6 pt-4">{{ date('d-M-Y') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -28,9 +28,9 @@
 
     <div class="card card-flush mt-10">
         <div class="card-header bg-success align-items-center">
-            <h3 class="card-title text-white">Mange & Create Your product</h3>
+            <h3 class="card-title text-white">Product List</h3>
             <div>
-                <a type="button" href="{{ route('admin.product.create') }}" class="btn btn-primary btn btn-sm">
+                <a type="button" href="{{ route('admin.product.create') }}" class="btn btn-light-primary">
                     <i class="fa-solid fa-plus"></i> Create
                 </a>
             </div>
@@ -40,18 +40,17 @@
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7 border rounded">
                 <thead>
                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                        <th class="w-10px pe-2">
+                        <th width="10%">
                             <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                 <input class="form-check-input" type="checkbox" data-kt-check="true"
                                     data-kt-check-target="#kt_product_table .form-check-input" value="1" />
                             </div>
                         </th>
-                        <th>{{ __('product.Sl') }}</th>
-                        <th>{{ __('product.Name') }}</th>
-                        <th>{{ __('product.Slug') }}</th>
-                        <th>{{ __('product.Status') }}</th>
-                        <th>{{ __('product.Parent') }}</th>
-                        <th class="text-end min-w-70px">{{ __('product.Action') }}</th>
+                        <th width="8%">{{ __('product.Sl') }}</th>
+                        <th width="12%">{{ __('product.Image') }}</th>
+                        <th width="45%">{{ __('product.Name') }}</th>
+                        <th width="15%">{{ __('product.Status') }}</th>
+                        <th width="10%">{{ __('product.Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,7 +66,6 @@
                         <td>asd</td>
                         <td>asd</td>
                         <td>asd</td>
-                        <td>asdasdasd</td>
                     </tr>
                     {{-- @endforeach --}}
                 </tbody>

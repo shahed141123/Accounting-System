@@ -21,34 +21,36 @@ class BrandController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $data = Brand::latest('id')->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $editUrl   = route('admin.brands.edit', $row->id);
-                    $deleteUrl = route('admin.brands.destroy', $row->id);
+        // if ($request->ajax()) {
+        //     $data = Brand::latest('id')->get();
+        //     return DataTables::of($data)
+        //         ->addIndexColumn()
+        //         ->addColumn('action', function ($row) {
+        //             $editUrl   = route('admin.brands.edit', $row->id);
+        //             $deleteUrl = route('admin.brands.destroy', $row->id);
 
-                    $html = <<<HTML
-                    <td class="text-end">
-                        <a href="{$editUrl}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
-                            <span class="svg-icon svg-icon-3">
-                                <i class="fas fa-pen"></i>
-                            </span>
-                        </a>
-                        <a href="{$deleteUrl}" class="btn btn-icon btn-active-light-danger w-30px h-30px delete">
-                            <span class="svg-icon svg-icon-3">
-                                <i class="fas fa-trash-alt"></i>
-                            </span>
-                        </a>
-                    </td>
-                    HTML;
+        //             $html = <<<HTML
+        //             <td class="text-end">
+        //                 <a href="{$editUrl}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
+        //                     <span class="svg-icon svg-icon-3">
+        //                         <i class="fas fa-pen"></i>
+        //                     </span>
+        //                 </a>
+        //                 <a href="{$deleteUrl}" class="btn btn-icon btn-active-light-danger w-30px h-30px delete">
+        //                     <span class="svg-icon svg-icon-3">
+        //                         <i class="fas fa-trash-alt"></i>
+        //                     </span>
+        //                 </a>
+        //             </td>
+        //             HTML;
 
-                    return new HtmlString($html);
-                })->rawColumns(['action'])->make(true);
-        }
-
-        return view('admin.pages.brands.index');
+        //             return new HtmlString($html);
+        //         })->rawColumns(['action'])->make(true);
+        // }
+        $data =[
+            'brands' => Brand::latest('id')->get(),
+        ];
+        return view('admin.pages.brands.index',$data);
     }
 
     /**
@@ -156,7 +158,7 @@ class BrandController extends Controller
                     $uploadedFiles[$key] = ['status' => 0];
                 }
             }
-            
+
             // Update the brand with the new or existing file paths
             $brand->update([
                 'name'         => $request->name,

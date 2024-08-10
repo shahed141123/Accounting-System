@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -21,7 +23,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.product.create');
+        
+        $data = [
+            'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
+            'categories' => Category::with('children.children.children.children.children.children')->latest('id')->get(),
+        ];
+        return view('admin.pages.product.create',$data);
     }
 
     /**

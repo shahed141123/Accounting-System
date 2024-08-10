@@ -19,9 +19,9 @@ class Category extends Model
      */
     protected $guarded = [];
 
-    protected $casts = [
-        'status' => 'boolean',
-    ];
+    // protected $casts = [
+    //     'status' => 'boolean',
+    // ];
 
     public function parent()
     {
@@ -35,6 +35,6 @@ class Category extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('status', 1);
+        return $query->where('status', 'active');
     }
 }
