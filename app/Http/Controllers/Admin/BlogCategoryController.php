@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -18,19 +17,10 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        $data=[
+        $data = [
             'blogCategories' => BlogCategory::latest('id')->get(),
         ];
-        // dd($data);
-        return view('admin.pages.blogCategory.index',$data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('admin.pages.blogCategory.index', $data);
     }
 
     /**
@@ -38,12 +28,10 @@ class BlogCategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         DB::beginTransaction();
         try {
             $validator = Validator::make($request->all(), [
-                'name'          => 'required|string|max:255|unique:blog_categories,name',
-                // 'image'       => 'nullable|string',
+                'name'        => 'required|string|max:255|unique:blog_categories,name',
                 'meta_title'  => 'nullable|string|max:255',
                 'description' => 'nullable|string',
                 'status'      => 'required|in:active,inactive',
@@ -52,68 +40,37 @@ class BlogCategoryController extends Controller
                 'name.string'         => 'The name must be a string.',
                 'name.max'            => 'The name may not be greater than :max characters.',
                 'name.unique'         => 'This name has already been taken.',
-                'image.string'        => 'The image must be a string.',
                 'meta_title.string'   => 'The meta title must be a string.',
                 'meta_title.max'      => 'The meta title may not be greater than :max characters.',
                 'description.string'  => 'The description must be a string.',
                 'status.required'     => 'The status field is required.',
                 'status.in'           => 'The status must be one of: active, inactive.',
             ]);
-            $files = [
-                'image' => $request->file('image'),
-            ];
-            $uploadedFiles = [];
-            foreach ($files as $key => $file) {
-                if (!empty($file)) {
-                    $filePath = 'blog_category/' . $key;
-                    $uploadedFiles[$key] = customUpload($file, $filePath);
-                    if ($uploadedFiles[$key]['status'] === 0) {
-                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
-                    }
-                } else {
-                    $uploadedFiles[$key] = ['status' => 0];
-                }
-            }
+
             if ($validator->fails()) {
-                foreach ($validator->messages()->all() as $message) {
-                    Session::flash('error', $message);
-                }
-                return redirect()->back()->withInput();
+                return redirect()->back()->withErrors($validator)->withInput();
             }
-            dd($request->all());
+
+            $uploadedFiles = $this->handleFileUpload($request);
+
+            if (isset($uploadedFiles['error'])) {
+                return redirect()->back()->with('error', $uploadedFiles['error']);
+            }
+
             BlogCategory::create([
                 'name'        => $request->name,
-                'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+                'image'       => $uploadedFiles['image'] ?? null,
                 'meta_title'  => $request->meta_title,
                 'description' => $request->description,
                 'status'      => $request->status,
             ]);
 
-            // toastr()->success('Data has been saved successfully!');
+            DB::commit();
             return redirect()->back()->with('success', 'Data has been saved successfully!');
         } catch (\Exception $e) {
-            // Rollback the database transaction in case of an error
             DB::rollback();
-
-            // Return back with error message
             return redirect()->back()->withInput()->with('error', 'An error occurred while creating the Category: ' . $e->getMessage());
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -125,17 +82,14 @@ class BlogCategoryController extends Controller
         $blog_category = BlogCategory::findOrFail($id);
         try {
             $validator = Validator::make($request->all(), [
-
-                // 'image'       => 'nullable|string',
+                'name'        => 'nullable|string|max:255|unique:blog_categories,name,' . $id,
                 'meta_title'  => 'nullable|string|max:255',
                 'description' => 'nullable|string',
                 'status'      => 'required|in:active,inactive',
             ], [
-                'name.required'       => 'The name field is required.',
                 'name.string'         => 'The name must be a string.',
                 'name.max'            => 'The name may not be greater than :max characters.',
                 'name.unique'         => 'This name has already been taken.',
-                'image.string'        => 'The image must be a string.',
                 'meta_title.string'   => 'The meta title must be a string.',
                 'meta_title.max'      => 'The meta title may not be greater than :max characters.',
                 'description.string'  => 'The description must be a string.',
@@ -144,48 +98,28 @@ class BlogCategoryController extends Controller
             ]);
 
             if ($validator->fails()) {
-                foreach ($validator->messages()->all() as $message) {
-                    Session::flash('error', $message);
-                }
-                return redirect()->back()->withInput();
+                return redirect()->back()->withErrors($validator)->withInput();
             }
-            $files = [
-                'image' => $request->file('image'),
-            ];
-            $uploadedFiles = [];
-            foreach ($files as $key => $file) {
-                if (!empty($file)) {
-                    $filePath = 'blog_category/' . $key;
-                    $oldFile = $brand->$key ?? null;
 
-                    if ($oldFile) {
-                        Storage::delete("public/" . $oldFile);
-                    }
-                    $uploadedFiles[$key] = customUpload($file, $filePath);
-                    if ($uploadedFiles[$key]['status'] === 0) {
-                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
-                    }
-                } else {
-                    $uploadedFiles[$key] = ['status' => 0];
-                }
+            $uploadedFiles = $this->handleFileUpload($request, $blog_category);
+
+            if (isset($uploadedFiles['error'])) {
+                return redirect()->back()->with('error', $uploadedFiles['error']);
             }
 
             $blog_category->update([
-                'name'        => $request->name,
-                'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : $blog_category->image,
+                'name'        => $request->name ?? $blog_category->name,
+                'image'       => $uploadedFiles['image'] ?? $blog_category->image,
                 'meta_title'  => $request->meta_title,
                 'description' => $request->description,
                 'status'      => $request->status,
             ]);
 
-            // toastr()->success('Data has been saved successfully!');
-            return redirect()->back()->with('success', 'Data has been saved successfully!');
+            DB::commit();
+            return redirect()->back()->with('success', 'Data has been updated successfully!');
         } catch (\Exception $e) {
-            // Rollback the database transaction in case of an error
             DB::rollback();
-
-            // Return back with error message
-            return redirect()->back()->withInput()->with('error', 'An error occurred while creating the Category: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'An error occurred while updating the Category: ' . $e->getMessage());
         }
     }
 
@@ -194,18 +128,47 @@ class BlogCategoryController extends Controller
      */
     public function destroy(BlogCategory $blog_category)
     {
-         //Delete the image if it exists
-         $files = [
+        // Delete the image if it exists
+        $files = [
             'image' => $blog_category->image,
         ];
         foreach ($files as $key => $file) {
             if (!empty($file)) {
-                $oldFile = $blog_category->$key ?? null;
-                if ($oldFile) {
-                    Storage::delete("public/" . $oldFile);
-                }
+                Storage::delete("public/" . $file);
             }
         }
         $blog_category->delete();
+    }
+
+    /**
+     * Handle file upload.
+     */
+    protected function handleFileUpload(Request $request, BlogCategory $blog_category = null)
+    {
+        $files = [
+            'image' => $request->file('image'),
+        ];
+
+        $uploadedFiles = [];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $filePath = 'blog_category/' . $key;
+                if ($blog_category) {
+                    $oldFile = $blog_category->$key ?? null;
+                    if ($oldFile) {
+                        Storage::delete("public/" . $oldFile);
+                    }
+                }
+                $uploadResult = customUpload($file, $filePath);
+                if ($uploadResult['status'] === 0) {
+                    return ['error' => $uploadResult['error_message']];
+                }
+                $uploadedFiles[$key] = $uploadResult['file_path'];
+            } else {
+                $uploadedFiles[$key] = null;
+            }
+        }
+
+        return $uploadedFiles;
     }
 }

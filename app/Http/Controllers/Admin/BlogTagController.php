@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\BlogTag;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -39,80 +38,48 @@ class BlogTagController extends Controller
     {
         DB::beginTransaction();
         try {
-
             $validator = Validator::make($request->all(), [
                 'name'          => 'required|string|max:255|unique:blog_tags,name',
                 // 'image'       => 'nullable|string',
-                'meta_title'  => 'nullable|string|max:255',
-                'description' => 'nullable|string',
-                'status'      => 'required|in:active,inactive',
+                'meta_title'    => 'nullable|string|max:255',
+                'description'   => 'nullable|string',
+                'status'        => 'required|in:active,inactive',
             ], [
                 'name.required'       => 'The name field is required.',
                 'name.string'         => 'The name must be a string.',
                 'name.max'            => 'The name may not be greater than :max characters.',
                 'name.unique'         => 'This name has already been taken.',
-                'image.string'        => 'The image must be a string.',
                 'meta_title.string'   => 'The meta title must be a string.',
                 'meta_title.max'      => 'The meta title may not be greater than :max characters.',
                 'description.string'  => 'The description must be a string.',
                 'status.required'     => 'The status field is required.',
                 'status.in'           => 'The status must be one of: active, inactive.',
             ]);
-            $files = [
-                'image' => $request->file('image'),
-            ];
-            $uploadedFiles = [];
-            foreach ($files as $key => $file) {
-                if (!empty($file)) {
-                    $filePath = 'blog_tag/' . $key;
-                    $uploadedFiles[$key] = customUpload($file, $filePath);
-                    if ($uploadedFiles[$key]['status'] === 0) {
-                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
-                    }
-                } else {
-                    $uploadedFiles[$key] = ['status' => 0];
-                }
-            }
+
             if ($validator->fails()) {
-                foreach ($validator->messages()->all() as $message) {
-                    Session::flash('error', $message);
-                }
-                return redirect()->back()->withInput();
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $uploadedFiles = $this->handleFileUpload($request);
+
+            if (isset($uploadedFiles['error'])) {
+                return redirect()->back()->with('error', $uploadedFiles['error']);
             }
 
             BlogTag::create([
                 'name'        => $request->name,
-                'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+                'image'       => $uploadedFiles['image'] ?? null,
                 'meta_title'  => $request->meta_title,
                 'description' => $request->description,
                 'status'      => $request->status,
             ]);
 
-            // toastr()->success('Data has been saved successfully!');
+            DB::commit();
             return redirect()->back()->with('success', 'Data has been saved successfully!');
         } catch (\Exception $e) {
-            // Rollback the database transaction in case of an error
             DB::rollback();
-
-            // Return back with error message
-            return redirect()->back()->withInput()->with('error', 'An error occurred while creating the Category: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'An error occurred while creating the Tag: ' . $e->getMessage());
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -124,17 +91,15 @@ class BlogTagController extends Controller
         $blog_tag = BlogTag::findOrFail($id);
         try {
             $validator = Validator::make($request->all(), [
-
+                'name'          => 'nullable|string|max:255|unique:blog_tags,name,' . $id,
                 // 'image'       => 'nullable|string',
-                'meta_title'  => 'nullable|string|max:255',
-                'description' => 'nullable|string',
-                'status'      => 'required|in:active,inactive',
+                'meta_title'    => 'nullable|string|max:255',
+                'description'   => 'nullable|string',
+                'status'        => 'required|in:active,inactive',
             ], [
-                'name.required'       => 'The name field is required.',
                 'name.string'         => 'The name must be a string.',
                 'name.max'            => 'The name may not be greater than :max characters.',
                 'name.unique'         => 'This name has already been taken.',
-                'image.string'        => 'The image must be a string.',
                 'meta_title.string'   => 'The meta title must be a string.',
                 'meta_title.max'      => 'The meta title may not be greater than :max characters.',
                 'description.string'  => 'The description must be a string.',
@@ -143,48 +108,28 @@ class BlogTagController extends Controller
             ]);
 
             if ($validator->fails()) {
-                foreach ($validator->messages()->all() as $message) {
-                    Session::flash('error', $message);
-                }
-                return redirect()->back()->withInput();
+                return redirect()->back()->withErrors($validator)->withInput();
             }
-            $files = [
-                'image' => $request->file('image'),
-            ];
-            $uploadedFiles = [];
-            foreach ($files as $key => $file) {
-                if (!empty($file)) {
-                    $filePath = 'blog_tag/' . $key;
-                    $oldFile = $brand->$key ?? null;
 
-                    if ($oldFile) {
-                        Storage::delete("public/" . $oldFile);
-                    }
-                    $uploadedFiles[$key] = customUpload($file, $filePath);
-                    if ($uploadedFiles[$key]['status'] === 0) {
-                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
-                    }
-                } else {
-                    $uploadedFiles[$key] = ['status' => 0];
-                }
+            $uploadedFiles = $this->handleFileUpload($request, $blog_tag);
+
+            if (isset($uploadedFiles['error'])) {
+                return redirect()->back()->with('error', $uploadedFiles['error']);
             }
 
             $blog_tag->update([
-                'name'        => $request->name,
-                'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : $blog_tag->image,
+                'name'        => $request->name ?? $blog_tag->name,
+                'image'       => $uploadedFiles['image'] ?? $blog_tag->image,
                 'meta_title'  => $request->meta_title,
                 'description' => $request->description,
                 'status'      => $request->status,
             ]);
 
-            // toastr()->success('Data has been saved successfully!');
+            DB::commit();
             return redirect()->back()->with('success', 'Data has been updated successfully!');
         } catch (\Exception $e) {
-            // Rollback the database transaction in case of an error
             DB::rollback();
-
-            // Return back with error message
-            return redirect()->back()->withInput()->with('error', 'An error occurred while creating the Category: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'An error occurred while updating the Tag: ' . $e->getMessage());
         }
     }
 
@@ -198,12 +143,41 @@ class BlogTagController extends Controller
         ];
         foreach ($files as $key => $file) {
             if (!empty($file)) {
-                $oldFile = $blog_tag->$key ?? null;
-                if ($oldFile) {
-                    Storage::delete("public/" . $oldFile);
-                }
+                Storage::delete("public/" . $file);
             }
         }
         $blog_tag->delete();
+    }
+
+    /**
+     * Handle file upload.
+     */
+    protected function handleFileUpload(Request $request, BlogTag $blog_tag = null)
+    {
+        $files = [
+            'image' => $request->file('image'),
+        ];
+
+        $uploadedFiles = [];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $filePath = 'blog_tag/' . $key;
+                if ($blog_tag) {
+                    $oldFile = $blog_tag->$key ?? null;
+                    if ($oldFile) {
+                        Storage::delete("public/" . $oldFile);
+                    }
+                }
+                $uploadResult = customUpload($file, $filePath);
+                if ($uploadResult['status'] === 0) {
+                    return ['error' => $uploadResult['error_message']];
+                }
+                $uploadedFiles[$key] = $uploadResult['file_path'];
+            } else {
+                $uploadedFiles[$key] = null;
+            }
+        }
+
+        return $uploadedFiles;
     }
 }
