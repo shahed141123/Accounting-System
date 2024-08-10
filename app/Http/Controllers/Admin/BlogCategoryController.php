@@ -40,14 +40,8 @@ class BlogCategoryController extends Controller
 
         DB::beginTransaction();
         try {
-            $blog_category = $this->route('blog-category') ?? null;
             $validator = Validator::make($request->all(), [
-                'name'         => [
-                    'required',
-                    'string',
-                    'max:255',
-                    Rule::unique('blog_categories', 'name')->ignore($blog_category),
-                ],
+                'name'          => 'required|string|max:255|unique:blog_categories,name',
                 // 'image'       => 'nullable|string',
                 'meta_title'  => 'nullable|string|max:255',
                 'description' => 'nullable|string',

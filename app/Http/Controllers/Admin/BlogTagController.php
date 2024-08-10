@@ -37,17 +37,11 @@ class BlogTagController extends Controller
      */
     public function store(Request $request)
     {
-
         DB::beginTransaction();
         try {
-            $blog_tag = $this->route('blog-tag') ?? null;
+
             $validator = Validator::make($request->all(), [
-                'name'         => [
-                    'required',
-                    'string',
-                    'max:255',
-                    Rule::unique('blog_categories', 'name')->ignore($blog_tag),
-                ],
+                'name'          => 'required|string|max:255|unique:blog_tags,name',
                 // 'image'       => 'nullable|string',
                 'meta_title'  => 'nullable|string|max:255',
                 'description' => 'nullable|string',
