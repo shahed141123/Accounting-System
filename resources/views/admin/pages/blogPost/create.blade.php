@@ -81,30 +81,30 @@
                         <div class="fv-row">
                             <div class="mb-10 mt-5">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="featured" value="1"
-                                        id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Is Feature
-                                    </label>
+                                    <x-metronic.input class="form-check-input" type="checkbox" name="featured"
+                                        value="1" id="flexCheckDefault" :value="old('featured')"></x-metronic.input>
+                                    <x-metronic.label class="form-check-label" for="flexCheckDefault">
+                                        {{ __('Is Feature') }}
+                                    </x-metronic.label>
                                 </div>
                             </div>
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <label class="form-label">Status</label>
-                                <select class="form-select mb-2" name="status" data-control="select2"
-                                    data-placeholder="Select an option" data-allow-clear="true">
+                                <x-metronic.label class="form-label">{{ __('Status') }}</x-metronic.label>
+                                <x-metronic.select-option class="form-select mb-2" name="status" id="status"
+                                    data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
                                     <option value="publish">Publish</option>
                                     <option value="draft">Draft</option>
                                     <option value="unpublish">UnPublish</option>
-                                </select>
+                                </x-metronic.select-option>
                             </div>
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <label class="form-label">Blogs Type</label>
-                                <select class="form-select mb-2" name="type"
+                                <x-metronic.label class="form-label">{{ __('Blog Type') }}</x-metronic.label>
+                                <x-metronic.select-option class="form-select mb-2" name="type" id="type"
                                     data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
                                     <option value="blog">Blog</option>
@@ -113,19 +113,19 @@
                                     {{-- <option value="1">Footwear</option>
                                     <option value="1">Cameras</option>
                                     <option value="1">Shirts</option> --}}
-                                </select>
+                                </x-metronic.select-option>
                             </div>
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <label class="form-label">Badge</label>
-                                <input type="text" name="badge" class="form-control mb-2"
-                                    placeholder="Set the blogs badge" value="">
+                                <x-metronic.label class="form-label">{{ __('Badge') }}</x-metronic.label>
+                                <x-metronic.input type="text" name="badge" class="form-control mb-2"
+                                    placeholder="Set the blogs badge" :value="old('badge')"></x-metronic.input>
                             </div>
                             <div class="">
-                                <label class="form-label">Additional Url</label>
-                                <input type="url" name="additional_url" class="form-control mb-2"
-                                    placeholder="Set the blogs additional url" value="">
+                                <x-metronic.label class="form-label">{{ __('Additional Url') }}</x-metronic.label>
+                                <x-metronic.input type="url" name="additional_url" class="form-control mb-2"
+                                    placeholder="Set the blogs additional url" :value="old('additional_url')"></x-metronic.input>
                             </div>
                         </div>
                     </div>
@@ -144,23 +144,28 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-5 fv-row">
-                                    <label class="form-label">Blog Title</label>
-                                    <input type="text" name="title" class="form-control mb-2"
-                                        placeholder="Set the blog title" />
+                                    <x-metronic.label class="form-label">{{ __('Blog Title') }}</x-metronic.label>
+                                    <x-metronic.input type="text" name="title" class="form-control mb-2"
+                                        placeholder="Set the blog title" :value="old('title')"></x-metronic.input>
                                     <div class="text-muted fs-7">
                                         A blog title is recommended.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <label class="form-label">Blog Header</label>
-                                    <textarea name="header" placeholder="Add Blog Header" class="form-control mb-2" cols="30" rows="3"></textarea>
+                                    <x-metronic.label class="form-label">{{ __('Blog Header') }}</x-metronic.label>
+                                    <x-metronic.textarea id="header" :value="old('header')" name="header"
+                                        placeholder="Add Blog Header" class="form-control mb-2" cols="30"
+                                        rows="3">{{ old('banner_image') }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <label class="form-label">Address</label>
-                                    <textarea name="address" placeholder="Add Blog Address" class="form-control mb-2" cols="30" rows="3"></textarea>
+                                    <x-metronic.label class="form-label">{{ __('Address') }}</x-metronic.label>
+                                    <x-metronic.textarea id="address" :value="old('address')" name="address"
+                                        placeholder="Add Blog Address" class="form-control mb-2" cols="30"
+                                        rows="3">{{ old('banner_image') }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <label class="form-label">Blog Short Description</label>
+                                    <x-metronic.label
+                                        class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
                                     <div id="overview_editor" name="short_description">
                                         {{-- Content --}}
                                     </div>
@@ -169,7 +174,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <label class="form-label">Blog Long Description</label>
+                                    <x-metronic.label class="form-label">Blog Long Description</x-metronic.label>
                                     <div id="description_editor" name="long_description">
                                         {{-- Content --}}
                                     </div>
@@ -178,7 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <label class="form-label">Blog Footer</label>
+                                    <x-metronic.label class="form-label">Blog Footer</x-metronic.label>
                                     <div id="specification_editor" name="footer">
                                         {{-- Content --}}
                                     </div>
@@ -194,30 +199,33 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="fv-row">
-                                    <label class="form-label">Category Id</label>
-                                    <select class="form-select mb-2" name="category_id[]" data-control="select2"
-                                        data-placeholder="Select an option" data-allow-clear="true">
+                                    <x-metronic.label class="form-label">Category Id</x-metronic.label>
+                                    <x-metronic.select-option class="form-select mb-2" name="category_id[]"
+                                        data-control="select2" data-placeholder="Select an option"
+                                        data-allow-clear="true" id="category_id">
                                         <option></option>
                                         @foreach ($blogCategories as $blogcategory)
-                                        <option value="{{ $blogcategory->id }}">{{ $blogcategory->name }}</option>
+                                            <option value="{{ $blogcategory->id }}">{{ $blogcategory->name }}
+                                            </option>
                                         @endforeach
-                                    </select>
+                                    </x-metronic.select-option>
                                 </div>
                                 <div class="fv-row">
-                                    <label class="form-label">Tag Id</label>
-                                    <select class="form-select mb-2" name="tag_id[]" data-control="select2"
-                                        data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
+                                    <x-metronic.label class="form-label">Tag Id</x-metronic.label>
+                                    <x-metronic.select-option class="form-select mb-2" name="tag_id[]" id="tag_id"
+                                        data-control="select2" data-placeholder="Select an option"
+                                        data-allow-clear="true" multiple="multiple">
                                         <option></option>
                                         @foreach ($blogTags as $blogtag)
                                             <option value="{{ $blogtag->id }}">{{ $blogtag->name }}</option>
                                         @endforeach
-                                    </select>
+                                    </x-metronic.select-option>
                                 </div>
                                 <div class="fv-row">
                                     <div class="mb-5">
-                                        <label class="form-label">Blog Author</label>
-                                        <input type="text" name="author" class="form-control mb-2"
-                                            placeholder="Set the blog author" />
+                                        <x-metronic.label class="form-label">Blog Author</x-metronic.label>
+                                        <x-metronic.input type="text" name="author" class="form-control mb-2"
+                                            placeholder="Set the blog author"></x-metronic.input>
                                     </div>
                                 </div>
                             </div>

@@ -41,7 +41,9 @@
                     </div>
 
                     <div class="col-lg-6 mb-7">
-                        <x-metronic.label for="url" class="col-form-label fw-bold fs-6 required">{{ __('Url') }}</x-metronic.label>
+                        <x-metronic.label for="url"
+                            class="col-form-label fw-bold fs-6 required">{{ __('Url') }}
+                        </x-metronic.label>
                         <x-metronic.input id="url" type="url" name="url" :value="old('url')"
                             placeholder="Enter the Url"></x-metronic.input>
                     </div>
