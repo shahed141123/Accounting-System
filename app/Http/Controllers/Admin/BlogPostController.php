@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\BlogTag;
 use App\Models\BlogPost;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BlogPostController extends Controller
 {
@@ -14,7 +16,8 @@ class BlogPostController extends Controller
     public function index()
     {
         $data=[
-            'blogCategories'=>BlogPost::latest('id')->get(),
+            'blogPosts'=>BlogPost::latest('id')->get(),
+
         ];
         return view('admin.pages.blogPost.index',$data);
     }
@@ -24,7 +27,12 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.blogPost.create');
+        $data=[
+            'blogTags' => BlogTag::latest('id')->get(['name','id']),
+            'blogCategories'=>BlogCategory::latest('id')->get(['name','id']),
+
+        ];
+        return view('admin.pages.blogPost.create',$data);
     }
 
     /**

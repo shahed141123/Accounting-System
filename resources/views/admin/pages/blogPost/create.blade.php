@@ -6,7 +6,7 @@
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
         <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row"
-            action="{{ route('admin.product.create') }}" method="POST">
+            action="{{ route('admin.blog-post.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 {{-- Media Card Start --}}
@@ -81,7 +81,7 @@
                         <div class="fv-row">
                             <div class="mb-10 mt-5">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="featured" value=""
+                                    <input class="form-check-input" type="checkbox" name="featured" value="1"
                                         id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Is Feature
@@ -91,28 +91,28 @@
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <label class="form-label">Blog Type.</label>
-                                <select class="form-select mb-2" name="type" data-control="select2"
+                                <label class="form-label">Status</label>
+                                <select class="form-select mb-2" name="status" data-control="select2"
                                     data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
-                                    <option value="">Apolo</option>
-                                    <option value="">Redian</option>
-                                    <option value="">Nike</option>
+                                    <option value="publish">Publish</option>
+                                    <option value="draft">Draft</option>
+                                    <option value="unpublish">UnPublish</option>
                                 </select>
                             </div>
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <label class="form-label">Blogs Tags</label>
-                                <select class="form-select mb-2" name="tags" data-control="select2"
-                                    data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
+                                <label class="form-label">Blogs Type</label>
+                                <select class="form-select mb-2" name="type"
+                                    data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
-                                    <option value="1">Computers</option>
-                                    <option value="1">Watches</option>
-                                    <option value="1">Headphones</option>
-                                    <option value="1">Footwear</option>
+                                    <option value="blog">Blog</option>
+                                    <option value="news">News</option>
+                                    <option value="promotional_article">Promotional Article</option>
+                                    {{-- <option value="1">Footwear</option>
                                     <option value="1">Cameras</option>
-                                    <option value="1">Shirts</option>
+                                    <option value="1">Shirts</option> --}}
                                 </select>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                                     <textarea name="header" placeholder="Add Blog Header" class="form-control mb-2" cols="30" rows="3"></textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <label class="form-label">Blog Address</label>
+                                    <label class="form-label">Address</label>
                                     <textarea name="address" placeholder="Add Blog Address" class="form-control mb-2" cols="30" rows="3"></textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
@@ -195,29 +195,22 @@
                             <div class="card-body pt-0">
                                 <div class="fv-row">
                                     <label class="form-label">Category Id</label>
-                                    <select class="form-select mb-2" name="category_id" data-control="select2"
+                                    <select class="form-select mb-2" name="category_id[]" data-control="select2"
                                         data-placeholder="Select an option" data-allow-clear="true">
                                         <option></option>
-                                        <option value="">Red</option>
-                                        <option value="">White</option>
-                                        <option value="">Black</option>
+                                        @foreach ($blogCategories as $blogcategory)
+                                        <option value="{{ $blogcategory->id }}">{{ $blogcategory->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="fv-row">
                                     <label class="form-label">Tag Id</label>
-                                    <select class="form-select mb-2" name="tag_id" data-control="select2"
+                                    <select class="form-select mb-2" name="tag_id[]" data-control="select2"
                                         data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
                                         <option></option>
-                                        <option value="">Computers</option>
-                                        <option value="">Watches</option>
-                                        <option value="">Headphones</option>
-                                        <option value="">Footwear</option>
-                                        <option value="">Cameras</option>
-                                        <option value="">Shirts</option>
-                                        <option value="">Household</option>
-                                        <option value="">Handbags</option>
-                                        <option value="">Wines</option>
-                                        <option value="">Sandals</option>
+                                        @foreach ($blogTags as $blogtag)
+                                            <option value="{{ $blogtag->id }}">{{ $blogtag->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="fv-row">

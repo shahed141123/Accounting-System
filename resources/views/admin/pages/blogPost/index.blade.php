@@ -30,14 +30,14 @@ h h<x-admin-app-layout :title="'Blog Posts'">
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($blogCategories as $category)
+                    @foreach ($blogPosts as $post)
                         <tr>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->position }}</td>
-                            <td>{{ $category->office }}</td>
-                            <td>{{ $category->age }}</td>
-                            <td>{{ $category->start_date }}</td>
-                            <td>{{ $category->salary }}</td>
+                            <td>{{ $post->name }}</td>
+                            <td>{{ $post->position }}</td>
+                            <td>{{ $post->office }}</td>
+                            <td>{{ $post->age }}</td>
+                            <td>{{ $post->start_date }}</td>
+                            <td>{{ $post->salary }}</td>
                         </tr>
                     @endforeach
                 </tbody>

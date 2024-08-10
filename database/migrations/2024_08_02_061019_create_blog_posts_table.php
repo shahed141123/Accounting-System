@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('banner_image', 220)->nullable();
             $table->string('additional_url')->nullable();
             $table->text('footer')->nullable()->comment('text-editor')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
