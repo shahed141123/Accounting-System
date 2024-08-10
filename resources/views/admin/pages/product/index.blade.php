@@ -10,8 +10,8 @@
                                         class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Product
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
+                                <a href="#" class="text-white fs-5 fw-bold lh-0">Total Product
+                                    <span class="text-white fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
                                 </a>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
 
     <div class="card card-flush mt-10">
         <div class="card-header bg-success align-items-center">
-            <h3 class="card-title">Mange & Create Your product</h3>
+            <h3 class="card-title text-white">Mange & Create Your product</h3>
             <div>
                 <a type="button" href="{{ route('admin.product.create') }}" class="btn btn-primary btn btn-sm">
                     <i class="fa-solid fa-plus"></i> Create

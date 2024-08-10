@@ -12,7 +12,7 @@
                                     <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">69,700</span>
 
                                     <span class="badge badge-light-success fs-base">
-                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span
+                                        <i class="fa-solid fa-arrow-up fs-5 text-success ms-n1"><span
                                                 class="path1"></span><span class="path2"></span></i>
                                         2.2%
                                     </span>
@@ -64,7 +64,7 @@
                                     <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">1,836</span>
 
                                     <span class="badge badge-light-danger fs-base">
-                                        <i class="ki-duotone ki-arrow-down fs-5 text-danger ms-n1"><span
+                                        <i class="fa-solid fa-arrow-down fs-5 text-danger ms-n1"><span
                                                 class="path1"></span><span class="path2"></span></i>
                                         2.2%
                                     </span>
@@ -100,7 +100,7 @@
                                     <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">2,420</span>
 
                                     <span class="badge badge-light-success fs-base">
-                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span
+                                        <i class="fa-solid fa-arrow-up fs-5 text-success ms-n1"><span
                                                 class="path1"></span><span class="path2"></span></i>
                                         2.6%
                                     </span>
@@ -177,7 +177,7 @@
                                     class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                     data-kt-menu-overflow="true">
-                                    <i class="ki-duotone ki-dots-square fs-1"><span class="path1"></span><span
+                                    <i class="fa-solid fa-dots-square fs-1"><span class="path1"></span><span
                                             class="path2"></span><span class="path3"></span><span
                                             class="path4"></span></i>
                                 </button>
@@ -264,7 +264,7 @@
                                 class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                 data-kt-menu-overflow="true">
-                                <i class="ki-duotone ki-dots-square fs-1"><span class="path1"></span><span
+                                <i class="fa-solid fa-dots-square fs-1"><span class="path1"></span><span
                                         class="path2"></span><span class="path3"></span><span
                                         class="path4"></span></i>
                             </button>
@@ -892,7 +892,7 @@
                                         <div class="d-flex align-items-center me-5 me-xl-13">
                                             <div class="symbol symbol-30px symbol-circle me-3">
                                                 <span class="symbol-label" style="background: #35c7ff">
-                                                    <i class="ki-duotone ki-abstract-41 fs-5 text-white"><span
+                                                    <i class="fa-solid fa-abstract-41 fs-5 text-white"><span
                                                             class="path1"></span><span class="path2"></span></i>
                                                 </span>
                                             </div>
@@ -906,7 +906,7 @@
                                         <div class="d-flex align-items-center">
                                             <div class="symbol symbol-30px symbol-circle me-3">
                                                 <span class="symbol-label" style="background: #35c7ff">
-                                                    <i class="ki-duotone ki-abstract-26 fs-5 text-white"><span
+                                                    <i class="fa-solid fa-abstract-26 fs-5 text-white"><span
                                                             class="path1"></span><span class="path2"></span></i>
                                                 </span>
                                             </div>
@@ -1016,7 +1016,7 @@
 
                                     <div class="position-relative my-1">
                                         <i
-                                            class="ki-duotone ki-magnifier fs-2 position-absolute top-50 translate-middle-y ms-4"><span
+                                            class="fa-solid fa-magnifier fs-2 position-absolute top-50 translate-middle-y ms-4"><span
                                                 class="path1"></span><span class="path2"></span></i>
                                         <input type="text" data-kt-table-widget-4="search"
                                             class="form-control w-150px fs-7 ps-12" placeholder="Search" />
@@ -1116,8 +1116,8 @@
                                             <button type="button"
                                                 class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                 data-kt-table-widget-4="expand_row">
-                                                <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i>
-                                                <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i>
+                                                <i class="fa-solid fa-plus fs-4 m-0 toggle-off"></i>
+                                                <i class="fa-solid fa-minus fs-4 m-0 toggle-on"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -1148,8 +1148,8 @@
                                             <button type="button"
                                                 class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                 data-kt-table-widget-4="expand_row">
-                                                <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i>
-                                                <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i>
+                                                <i class="fa-solid fa-plus fs-4 m-0 toggle-off"></i>
+                                                <i class="fa-solid fa-minus fs-4 m-0 toggle-on"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -1179,8 +1179,8 @@
                                             <button type="button"
                                                 class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                 data-kt-table-widget-4="expand_row">
-                                                <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i>
-                                                <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i>
+                                                <i class="fa-solid fa-plus fs-4 m-0 toggle-off"></i>
+                                                <i class="fa-solid fa-minus fs-4 m-0 toggle-on"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -1210,8 +1210,8 @@
                                             <button type="button"
                                                 class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                 data-kt-table-widget-4="expand_row">
-                                                <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i>
-                                                <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i>
+                                                <i class="fa-solid fa-plus fs-4 m-0 toggle-off"></i>
+                                                <i class="fa-solid fa-minus fs-4 m-0 toggle-on"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -1242,8 +1242,8 @@
                                             <button type="button"
                                                 class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                 data-kt-table-widget-4="expand_row">
-                                                <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i>
-                                                <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i>
+                                                <i class="fa-solid fa-plus fs-4 m-0 toggle-off"></i>
+                                                <i class="fa-solid fa-minus fs-4 m-0 toggle-on"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -1274,8 +1274,8 @@
                                             <button type="button"
                                                 class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                 data-kt-table-widget-4="expand_row">
-                                                <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i>
-                                                <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i>
+                                                <i class="fa-solid fa-plus fs-4 m-0 toggle-off"></i>
+                                                <i class="fa-solid fa-minus fs-4 m-0 toggle-on"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -1305,8 +1305,8 @@
                                             <button type="button"
                                                 class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                 data-kt-table-widget-4="expand_row">
-                                                <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i>
-                                                <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i>
+                                                <i class="fa-solid fa-plus fs-4 m-0 toggle-off"></i>
+                                                <i class="fa-solid fa-minus fs-4 m-0 toggle-on"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -1349,7 +1349,7 @@
                                                 class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                                 data-kt-menu-overflow="true">
-                                                <i class="ki-duotone ki-dots-square fs-1"><span
+                                                <i class="fa-solid fa-dots-square fs-1"><span
                                                         class="path1"></span><span class="path2"></span><span
                                                         class="path3"></span><span class="path4"></span></i>
                                             </button>
@@ -1440,7 +1440,7 @@
                                                 class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                                 data-kt-menu-overflow="true">
-                                                <i class="ki-duotone ki-dots-square fs-1"><span
+                                                <i class="fa-solid fa-dots-square fs-1"><span
                                                         class="path1"></span><span class="path2"></span><span
                                                         class="path3"></span><span class="path4"></span></i>
                                             </button>
@@ -1531,7 +1531,7 @@
                                                 class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                                 data-kt-menu-overflow="true">
-                                                <i class="ki-duotone ki-dots-square fs-1"><span
+                                                <i class="fa-solid fa-dots-square fs-1"><span
                                                         class="path1"></span><span class="path2"></span><span
                                                         class="path3"></span><span class="path4"></span></i>
                                             </button>
@@ -1622,7 +1622,7 @@
                                                 class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                                 data-kt-menu-overflow="true">
-                                                <i class="ki-duotone ki-dots-square fs-1"><span
+                                                <i class="fa-solid fa-dots-square fs-1"><span
                                                         class="path1"></span><span class="path2"></span><span
                                                         class="path3"></span><span class="path4"></span></i>
                                             </button>
@@ -1715,7 +1715,7 @@
                                                 class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                                 data-kt-menu-overflow="true">
-                                                <i class="ki-duotone ki-dots-square fs-1"><span
+                                                <i class="fa-solid fa-dots-square fs-1"><span
                                                         class="path1"></span><span class="path2"></span><span
                                                         class="path3"></span><span class="path4"></span></i>
                                             </button>
@@ -1808,7 +1808,7 @@
                                                 class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                                 data-kt-menu-overflow="true">
-                                                <i class="ki-duotone ki-dots-square fs-1"><span
+                                                <i class="fa-solid fa-dots-square fs-1"><span
                                                         class="path1"></span><span class="path2"></span><span
                                                         class="path3"></span><span class="path4"></span></i>
                                             </button>
