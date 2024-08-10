@@ -49,26 +49,18 @@
                         </div>
                         <div class="fv-row">
                             <label class="form-label">Category Id</label>
-                            <select class="form-control select mb-2
-
-                            " name="category_id[]" id="field2" multiple
-                                multiselect-search="true" multiselect-select-all="true">
-                                @if (count($categories) > 0)
-                                    @foreach ($categories->whereNull('parent_id') as $category)
-                                        @include('admin.pages.category.partial.add_parent', [
-                                            'category' => $category,
-                                            'level' => 0,
-                                        ])
-                                    @endforeach
-                                @endif
+                            <select class="form-control select mb-2" name="category_id[]" multiple
+                                multiselect-search="true" multiselect-select-all="true" data-control="select2"
+                                data-placeholder="Select an option" data-allow-clear="true">
+                                {!! $categoriesOptions !!}
                             </select>
-                            <select class="form-select mb-2" name="category_id" data-control="select2"
+                            {{-- <select class="form-select mb-2" name="category_id" data-control="select2"
                                 data-placeholder="Select an option" data-allow-clear="true">
                                 <option></option>
                                 <option value="">Red</option>
                                 <option value="">White</option>
                                 <option value="">Black</option>
-                            </select>
+                            </select> --}}
                         </div>
                         {{-- <div class="fv-row">
                             <label class="form-label">Attribute Id</label>

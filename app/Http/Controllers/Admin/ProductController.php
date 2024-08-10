@@ -23,12 +23,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        
+        $categories = $this->buildCategories(Category::active()->get());
+        $categoriesOptions = $this->buildCategoriesOptions($categories);
         $data = [
             'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
-            'categories' => Category::with('children.children.children.children.children.children')->latest('id')->get(),
+            'categoriesOptions' => $categoriesOptions,
         ];
-        return view('admin.pages.product.create',$data);
+        return view('admin.pages.product.create', $data);
     }
 
     /**
@@ -69,5 +70,38 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function buildCategories($categories, $parentId = null)
+    {
+        $result = [];
+
+        foreach ($categories as $category) {
+            if ($category->parent_id == $parentId) {
+                $children = $this->buildCategories($categories, $category->id);
+
+                if ($children) {
+                    $category->children = $children;
+                }
+
+                $result[] = $category;
+            }
+        }
+
+        return $result;
+    }
+
+    private function buildCategoriesOptions($selectedId = null, $excludeId = null, $parentId = null, $prefix = '')
+    {
+        $categories = Category::active()->where('parent_id', $parentId)->where('id', '!=', $excludeId)->get();
+        $options = '';
+
+        foreach ($categories as $category) {
+            $selected = $category->id == $selectedId ? 'selected' : '';
+            $options .= '<option value="' . $category->id . '" ' . $selected . '>' . $prefix . $category->name . '</option>';
+            $options .= $this->buildCategoriesOptions($selectedId, $excludeId, $category->id, $prefix . '--');
+        }
+
+        return $options;
     }
 }

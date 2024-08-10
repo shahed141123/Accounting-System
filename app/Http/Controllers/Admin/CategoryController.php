@@ -43,7 +43,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    private static function buildCategories($categories, $parentId = null)
+    private function buildCategories($categories, $parentId = null)
     {
         $result = [];
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         return $result;
     }
 
-    private static function buildCategoriesOptions($selectedId = null, $excludeId = null, $parentId = null, $prefix = '')
+    private function buildCategoriesOptions($selectedId = null, $excludeId = null, $parentId = null, $prefix = '')
     {
         $categories = Category::active()->where('parent_id', $parentId)->where('id', '!=', $excludeId)->get();
         $options = '';
@@ -263,5 +263,4 @@ class CategoryController extends Controller
         $category->save();
         return response()->json(['success' => true]);
     }
-
 }
