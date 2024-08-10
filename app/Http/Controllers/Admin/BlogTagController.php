@@ -82,7 +82,6 @@ class BlogTagController extends Controller
 
             BlogTag::create([
                 'name'        => $request->name,
-                'slug'        => $request->slug,
                 'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
                 'meta_title'  => $request->meta_title,
                 'description' => $request->description,
@@ -172,7 +171,6 @@ class BlogTagController extends Controller
 
             $blog_tag->update([
                 'name'        => $request->name,
-                'slug'        => $request->slug,
                 'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : $blog_tag->image,
                 'meta_title'  => $request->meta_title,
                 'description' => $request->description,
