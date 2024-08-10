@@ -19,8 +19,9 @@ class BlogCategoryController extends Controller
     public function index()
     {
         $data=[
-            'blogCategories'=>BlogCategory::latest('id')->get(),
+            'blogCategories' => BlogCategory::latest('id')->get(),
         ];
+        // dd($data);
         return view('admin.pages.blogCategory.index',$data);
     }
 
@@ -79,7 +80,7 @@ class BlogCategoryController extends Controller
                 }
                 return redirect()->back()->withInput();
             }
-
+            dd($request->all());
             BlogCategory::create([
                 'name'        => $request->name,
                 'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,

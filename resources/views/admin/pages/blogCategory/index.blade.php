@@ -31,22 +31,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($blogCategories as $category)
+                    @foreach ($blogCategories as $blogcategory)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><img class="w-65px" src="{{ asset('storage/'.$category->image ) }}" alt=""></td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->meta_title }}</td>
+                            <td><img class="w-65px" src="{{ asset('storage/'.$blogcategory->image ) }}" alt=""></td>
+                            <td>{{ $blogcategory->name }}</td>
+                            <td>{{ $blogcategory->meta_title }}</td>
                             <td>
-                                <span class="badge {{ $category->status == 'active' ? 'bg-success' : 'bg-danger' }}">
-                                {{ $category->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                <span class="badge {{ $blogcategory->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                {{ $blogcategory->status == 'active' ? 'Active' : 'InActive' }}</span>
                             </td>
                             <td>
                                 <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                    data-bs-toggle="modal" data-bs-target="#EditModal-{{ $category->id }}">
+                                    data-bs-toggle="modal" data-bs-target="#EditModal-{{ $blogcategory->id }}">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="{{ route('admin.blog-category.destroy', $category->id) }}"
+                                <a href="{{ route('admin.blog-category.destroy', $blogcategory->id) }}"
                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete">
                                     <i class="fa-solid fa-trash-alt"></i>
                                 </a>

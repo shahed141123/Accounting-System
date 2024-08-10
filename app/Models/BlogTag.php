@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogTag extends Model
 {
-    use HasFactory,HasSlug;
+    use HasFactory, HasSlug;
     protected $slugSourceColumn = 'name';
     /**
      * The attributes that aren't mass assignable.

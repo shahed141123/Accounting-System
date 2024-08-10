@@ -83,6 +83,7 @@ class RegisteredUserController extends Controller
             'annual_spend'                  => $request->annual_spend,
             'newsletter_preference'         => $request->newsletter_preference,
             'terms_condition'               => $request->terms_condition,
+            'status'                        => "pending",
         ]);
         // $request->validate([
         //     'name' => ['required', 'string', 'max:255'],
