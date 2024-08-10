@@ -8,6 +8,7 @@ use App\Events\ActivityLogged;
 use Illuminate\Validation\Rules;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.users.index', ['users' => Admin::get()]);
+        return view('admin.pages.users.index', ['users' => User::get()]);
     }
 
     /**
@@ -49,11 +50,11 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . Admin::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = Admin::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -73,7 +74,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         return view('admin.pages.users.show', [
-            'user' => Admin::find($id),
+            'user' => User::find($id),
             'roles' => Role::get(),
         ]);
     }
@@ -84,7 +85,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         return view('admin.pages.users.edit', [
-            'user' => Admin::find($id),
+            'user' => User::find($id),
             'roles' => Role::get(),
         ]);
     }
@@ -92,11 +93,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $user): RedirectResponse
+    public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate([
             'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:' . Admin::class . ',email,' . $user->id],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:' . User::class . ',email,' . $user->id],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -120,7 +121,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = Admin::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->delete();
 
         event(new ActivityLogged('User deleted', $user));
