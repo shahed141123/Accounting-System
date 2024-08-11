@@ -91,7 +91,6 @@ class ProductController extends Controller
                 'meta_title'                => $request->input('meta_title'),
                 'meta_description'          => $request->input('meta_description'),
                 'meta_keywords'             => json_encode($request->input('meta_keywords')),
-                'action_status'             => $request->input('action_status'),
                 'added_by'                  => Auth::guard('admin')->user()->id,
                 'status'                    => $request->input('status'),
             ]);
@@ -206,7 +205,6 @@ class ProductController extends Controller
                 'meta_title'                => $request->input('meta_title'),
                 'meta_description'          => $request->input('meta_description'),
                 'meta_keywords'             => json_encode($request->input('meta_keywords')),
-                'action_status'             => $request->input('action_status'),
                 'added_by'                  => Auth::guard('admin')->user()->id,
                 'status'                    => $request->input('status'),
             ]);
