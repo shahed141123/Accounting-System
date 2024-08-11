@@ -20,7 +20,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.product.index');
+        $data = [
+            'products'     => DB::table('products')->latest('id')->get(),
+        ];
+        return view('admin.pages.product.index',$data);
     }
 
     /**
@@ -40,9 +43,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
         DB::beginTransaction();
         $thumbnailFile = $request->file('thumbnail');
         $thumbnailFilePath = null;
