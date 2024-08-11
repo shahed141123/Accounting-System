@@ -127,21 +127,13 @@
                                     {!! $categoriesOptions !!}
                                 </x-metronic.select-option>
                             </div>
-                            {{-- <div class="fv-row">
-                                <x-metronic.label class="form-label">Attribute Id</x-metronic.label>
-                                <select class="form-select mb-2" name="attribute_id" data-control="select2"
-                                    data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
-                                    <option></option>
-                                    <option :value="old('address')">Computers</option>
-                                </select>
-                            </div> --}}
                             <div class="fv-row">
                                 <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
                                     {{ __('Add Color') }}
                                 </x-metronic.label>
                                 <!-- Input element for Tagify -->
-                                <input class="form-control d-flex align-items-center" name="color_id"
-                                    :value="old('color_id')" id="kt_tagify_color" />
+                                <input class="form-control d-flex align-items-center" name="color"
+                                    :value="old('color')" id="kt_tagify_color" />
                             </div>
                         </div>
                     </div>
@@ -330,8 +322,8 @@
 
                                         <div class="mb-10 fv-row col-12">
                                             <x-metronic.label class="form-label">Barcode</x-metronic.label>
-                                            <x-metronic.input type="text" name="barcode" class="form-control mb-2"
-                                                placeholder="Barcode Number" :value="old('barcode')"></x-metronic.file-input>
+                                            <x-metronic.input type="text" name="barcode_id" class="form-control mb-2"
+                                                placeholder="Barcode Number" :value="old('barcode_id')"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">
                                                     Enter the product barcode number.
                                                 </div>
@@ -650,8 +642,8 @@
             });
 
             // Add the first 2 tags and make them readonly
-            var tagsToAdd = tagify.settings.whitelist.slice(0, 2);
-            tagify.addTags(tagsToAdd);
+            // var tagsToAdd = tagify.settings.whitelist.slice(0, 2);
+            // tagify.addTags(tagsToAdd);
 
 
 
