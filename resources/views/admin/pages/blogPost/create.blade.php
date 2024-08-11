@@ -6,7 +6,7 @@
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
         <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row"
-            action="{{ route('admin.blog-post.create') }}" method="POST" enctype="multipart/form-data">
+            action="{{ route('admin.blog-post.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 {{-- Media Card Start --}}
@@ -155,37 +155,36 @@
                                     <x-metronic.label class="form-label">{{ __('Blog Header') }}</x-metronic.label>
                                     <x-metronic.textarea id="header" :value="old('header')" name="header"
                                         placeholder="Add Blog Header" class="form-control mb-2" cols="30"
-                                        rows="3">{{ old('banner_image') }}</x-metronic.textarea>
+                                        rows="3">{{ old('header') }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">{{ __('Address') }}</x-metronic.label>
                                     <x-metronic.textarea id="address" :value="old('address')" name="address"
                                         placeholder="Add Blog Address" class="form-control mb-2" cols="30"
-                                        rows="3">{{ old('banner_image') }}</x-metronic.textarea>
+                                        rows="3">{{ old('address') }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label
                                         class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
-                                    <div id="overview_editor" name="short_description">
-                                        {{-- Content --}}
-                                    </div>
+                                    <textarea name="short_description" class="ckeditor">{!! old('short_description') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog short description.
+                                        Add blog Short Description here.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">Blog Long Description</x-metronic.label>
-                                    <div id="description_editor" name="long_description">
-                                        {{-- Content --}}
-                                    </div>
+                                    <x-metronic.label
+                                        class="form-label">{{ __('Blog Long Description') }}</x-metronic.label>
+                                    <textarea name="long_description" class="ckeditor">{!! old('long_description') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog long description.
+                                        Add blog Description here.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">Blog Footer</x-metronic.label>
-                                    <div id="specification_editor" name="footer">
-                                        {{-- Content --}}
+                                    <x-metronic.label
+                                        class="form-label">{{ __('Blog Footer') }}</x-metronic.label>
+                                    <textarea name="footer" class="ckeditor">{!! old('footer') !!}</textarea>
+                                    <div class="text-muted fs-7">
+                                        Add blog Footer here.
                                     </div>
                                 </div>
                             </div>
@@ -234,15 +233,19 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('admin.blog-post.index') }}" class="btn btn-danger me-5">
-                        Back To Product List
+                        Back To List
                     </a>
-                    <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="indicator-label"> Save Changes
+                        </span>
+                    </button>
+                    {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
                         <span class="indicator-label"> Save Changes </span>
                         <span class="indicator-progress">
                             Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                         </span>
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </form>
@@ -287,18 +290,7 @@
                     this.saveInterval = setInterval(() => {
                         if (this.change.length() > 0) {
                             console.log('Saving changes', this.change);
-                            // Send partial changes
-                            /*
-                            $.post(this.endpoint, {
-                                partial: JSON.stringify(this.change)
-                            });
-                            */
-                            // Send entire document
-                            /*
-                            $.post(this.endpoint, {
-                                doc: JSON.stringify(this.quill.getContents())
-                            });
-                            */
+
                             this.change = new Delta();
                         }
                     }, 5 * 1000);
@@ -319,9 +311,9 @@
             }
 
             // Initialize multiple editors
-            const overviewEditor = new QuillEditor('overview_editor', '/save-overview');
-            const descriptionEditor = new QuillEditor('description_editor', '/save-description');
-            const specificationEditor = new QuillEditor('specification_editor', '/save-specification');
+            const overviewEditor = new QuillEditor('short_description', '/save-overview');
+            const descriptionEditor = new QuillEditor('long_description', '/save-description');
+            const specificationEditor = new QuillEditor('footer', '/save-specification');
             const metaEditor = new QuillEditor('meta_editor', '/meta-description');
         </script>
     @endpush

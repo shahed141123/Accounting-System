@@ -24,29 +24,33 @@
                     <li><a class="ps-header__item open-search" href="#"><i class="icon-magnifier"></i></a></li>
                     <li>
                         <div class="dropdown">
-                            <a href="javascript:void(0)" class=" dropdown-toggle" type="button" id="dropdownMenuButton"
+                            <a href="javascript:void(0)" class="dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="icon-user" style="font-size: 20px"></i>
+                                <i class="icon-user"></i>
                             </a>
-                            @auth
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{ route('dashboard') }}">My Dashboard</a>
-                                    <form method="POST" action="{{ route('logout') }}">
+                            <div class="dropdown-menu" style="font-size: 16px;" aria-labelledby="dropdownMenuButton">
+                                @auth
+                                    <!-- If the user is authenticated, show these options -->
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+
+                                    <!-- Logout button inside form -->
+                                    <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
                                         @csrf
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                this.closest('form').submit();"
-                                            class="menu-link px-5"> {{ __('Log Out') }}</a>
+                                        <a type="submit"  href="javascript:void(0)" class="dropdown-item">
+                                            {{ __('Log Out') }}
+                                        </a>
                                     </form>
-                                </div>
-                            @else
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @else
+                                    <!-- If the user is not authenticated, show these options -->
                                     <a class="dropdown-item" href="{{ route('login') }}">Login</a>
                                     <a class="dropdown-item" href="{{ route('register') }}">Register</a>
-                                </div>
-                            @endauth
+                                @endauth
+                            </div>
+
                         </div>
                     </li>
+
+
                     <li><a class="ps-header__item" href="#" id="cart-mini"><i class="icon-cart-empty"></i><span
                                 class="badge">2</span></a>
                         <div class="ps-cart--mini">
@@ -89,7 +93,8 @@
                         <div class="ps-search-table">
                             <div class="input-group">
                                 <input class="form-control ps-input" type="text" placeholder="Search for products">
-                                <div class="input-group-append"><a href="#"><i class="fa fa-search"></i></a></div>
+                                <div class="input-group-append"><a href="#"><i class="fa fa-search"></i></a>
+                                </div>
                             </div>
                         </div>
                     </form>

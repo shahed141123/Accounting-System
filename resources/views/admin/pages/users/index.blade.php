@@ -29,7 +29,7 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        {{-- <th>Role</th> --}}
                         <th>Show User</th>
                         <th>Status</th>
                         <th class="text-end min-w-100px pe-5">Actions</th>
@@ -39,14 +39,19 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>
-                                01
+                                {{ $loop->iteration }}
                             </td>
                             <td class="d-flex align-items-center">
                                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                     <a href="javascript:void(0)">
-                                        <div class="symbol-label">
-                                            <img src="assets/media/avatars/300-6.jpg" alt="{{ $user->name }}"
-                                                class="w-100" />
+                                        <div class="symbol-label" style="background-color: {{ $user->profile_image_url ? 'transparent' : '#d3d3d3' }};">
+                                            @if ($user->profile_image_url)
+                                                <img src="{{ asset('storage/' . $user->profile_image_url) }}" alt="{{ $user->name }}" class="w-100" />
+                                            @else
+                                                <span class="text-gray-800 text-hover-primary mb-1">
+                                                    {{ strtoupper(substr($user->first_name, 0, 1)) }}{{ strtoupper(substr($user->last_name, 0, 1)) }}
+                                                </span>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>
@@ -54,20 +59,13 @@
                             <td>
                                 <div class="d-flex flex-column">
                                     <a href="javascript:void(0)"
-                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->first_name }} {{ $user->last_name }}</a>
                                 </div>
                             </td>
                             <td>
                                 <span>{{ $user->email }}</span>
                             </td>
-                            <td>
-                                {{-- @forelse ($user->getRoleNames() as $role)
-                                    <div class="badge badge-light-success fw-bolder">{{ $role }}</div>
 
-                                @empty
-                                    <div class="badge badge-light-danger fw-bolder">No Role</div>
-                                @endforelse --}}
-                            </td>
                             <td>
                                 <button class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i> Show</button>
                             </td>

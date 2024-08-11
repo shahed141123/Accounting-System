@@ -1,11 +1,79 @@
 <x-admin-app-layout :title="'Product Add'">
     <style>
-        .image-input-placeholder {
-            background-image: url("https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/files/blank-image.svg");
+        .image-input-empty {
+            background-image: url({{ asset('admin/assets/media/svg/files/blank-image.svg') }});
         }
+
+        /* Custom Multi file upload */
+        .img-thumb {
+            border: 2px solid none;
+            border-radius: 3px;
+            padding: 1px;
+            cursor: pointer;
+            width: 70px;
+            height: 60px;
+            border-radius: 0.475rem;
+        }
+
+
+        .img-thumb-wrapper {
+            display: inline-block;
+            margin: 1rem 1rem 0 0;
+        }
+
+
+        .remove {
+            display: block;
+            background: #cf054f;
+            border: 1px solid none;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 5px;
+        }
+
+
+        .remove:hover {
+            background: white;
+            color: black;
+        }
+
+
+        .dropzone-field {
+            border: 1px dashed #009ef7;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow multiple images in a row */
+            align-items: center;
+            border-radius: 4px;
+            padding: 10px 5px;
+            justify-content: center;
+        }
+
+
+        #files {
+            display: none;
+        }
+
+
+        .custom-file-upload {
+            border: 0px solid #ccc;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: transparent;
+        }
+
+
+        .custom-file-upload i {
+            margin-right: 5px;
+        }
+
+        /* Custom Multi file upload */
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
-        <form id="kt_ecommerce_add_product_form" class="" action="{{ route('admin.product.create') }}" method="POST">
+        <form id="kt_ecommerce_add_product_form" method="post" action="{{ route('admin.product.store') }}"
+            enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="gap-7 gap-lg-10 mb-7  col-4">
@@ -59,42 +127,13 @@
                                     {!! $categoriesOptions !!}
                                 </x-metronic.select-option>
                             </div>
-                            {{-- <div class="fv-row">
-                                <x-metronic.label class="form-label">Attribute Id</x-metronic.label>
-                                <select class="form-select mb-2" name="attribute_id" data-control="select2"
-                                    data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
-                                    <option></option>
-                                    <option :value="old('address')">Computers</option>
-                                </select>
-                            </div> --}}
                             <div class="fv-row">
-                                <x-metronic.label for="color_id" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Select Color') }}</x-metronic.label>
-                                <x-metronic.select-option class="form-select" placeholder="Color" name="color_id"
-                                    id="color_id">
-                                    <option :value="old('address')">Select Color</option>
-                                    <option value="red" data-color="#ff0000">Red</option>
-                                    <option value="green" data-color="#00ff00">Green</option>
-                                    <option value="blue" data-color="#0000ff">Blue</option>
-                                    <option value="yellow" data-color="#ffff00">Yellow</option>
-                                    <option value="orange" data-color="#ffa500">Orange</option>
-                                    <option value="purple" data-color="#800080">Purple</option>
-                                    <option value="pink" data-color="#ffc0cb">Pink</option>
-                                    <option value="brown" data-color="#a52a2a">Brown</option>
-                                    <option value="black" data-color="#000000">Black</option>
-                                    <option value="white" data-color="#ffffff">White</option>
-                                    <option value="gray" data-color="#808080">Gray</option>
-                                    <option value="cyan" data-color="#00ffff">Cyan</option>
-                                    <option value="magenta" data-color="#ff00ff">Magenta</option>
-                                    <option value="lime" data-color="#00ff00">Lime</option>
-                                    <option value="maroon" data-color="#800000">Maroon</option>
-                                    <option value="navy" data-color="#000080">Navy</option>
-                                    <option value="olive" data-color="#808000">Olive</option>
-                                    <option value="teal" data-color="#008080">Teal</option>
-                                    <option value="silver" data-color="#c0c0c0">Silver</option>
-                                    <option value="gold" data-color="#ffd700">Gold</option>
-                                    <!-- Add more options with respective colors -->
-                                </x-metronic.select-option>
+                                <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Add Color') }}
+                                </x-metronic.label>
+                                <!-- Input element for Tagify -->
+                                <input class="form-control d-flex align-items-center" name="color"
+                                    :value="old('color')" id="kt_tagify_color" />
                             </div>
                         </div>
                     </div>
@@ -128,8 +167,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general"
-                            role="tab-panel">
+                        <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
                             <div class="d-flex flex-column gap-7 gap-lg-10">
                                 {{-- General Info --}}
                                 <div class="card card-flush py-4">
@@ -150,42 +188,25 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
-                                            <select class="form-select mb-2" name="tags" data-control="select2"
-                                                data-placeholder="Select an option" data-allow-clear="true"
-                                                multiple="multiple">
-                                                <option></option>
-                                                <option value="Computers">Computers</option>
-                                                <option value="Watches">Watches</option>
-                                                <option value="Headphones">Headphones</option>
-                                                <option value="Footwear">Footwear</option>
-                                                <option value="Cameras">Cameras</option>
-                                                <option value="Shirts">Shirts</option>
-                                                <option value="Household">Household</option>
-                                                <option value="Handbags">Handbags</option>
-                                                <option value="Wines">Wines</option>
-                                                <option value="Sandals">Sandals</option>
-                                            </select>
+                                            <input class="form-control" name="tags" id="product_Tags"
+                                                :value="old('tags')" />
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Short Description</x-metronic.label>
                                             <x-metronic.textarea id="short_description" name="short_description"
                                                 placeholder="Add Product Short Description" class="form-control mb-2"
-                                                cols="30" rows="3"></x-metronic.textarea>
+                                                cols="30" rows="3">{!! old('short_description') !!}</x-metronic.textarea>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Overview</x-metronic.label>
-                                            <div id="overview_editor" name="overview">
-                                                {{-- Content --}}
-                                            </div>
+                                            <textarea name="overview" class="ckeditor">{!! old('overview') !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product overview here.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Description</x-metronic.label>
-                                            <div id="description_editor" name="description">
-                                                {{-- Content --}}
-                                            </div>
+                                            <textarea name="description" class="ckeditor">{!! old('description') !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product description here.
                                             </div>
@@ -193,9 +214,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product
                                                 Specification</x-metronic.label>
-                                            <div id="specification_editor" name="specification">
-                                                {{-- Content --}}
-                                            </div>
+                                            <textarea name="specification" class="ckeditor">{!! old('specification') !!}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -214,49 +233,61 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <x-metronic.label for="" class="form-label">Set the product
-                                                    thumbnail
-                                                    image.
-                                                    Only *.png, *.jpg and *.jpeg image
+                                                    thumbnail image. Only *.png, *.jpg and *.jpeg image
                                                     files are accepted</x-metronic.label>
-                                                <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-                                                    data-kt-image-input="true">
-                                                    <div class="image-input-wrapper w-150px h-150px"></div>
-                                                    <x-metronic.label
-                                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                <div class="image-input image-input-empty" data-kt-image-input="true"
+                                                    style="width: auto;
+                                                    background-size: contain;
+                                                    border: 1px solid #009ae5;">
+                                                    <div class="image-input-wrapper w-100px h-70px"></div>
+
+                                                    <label
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
                                                         data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                        title="Change avatar">
-                                                        <i class="fa-solid fa-pencil fs-7">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                        </i>
-                                                        <x-metronic.file-input type="file" name="thumbnail"
-                                                            accept=".png, .jpg, .jpeg"></x-metronic.file-input>
-                                                        <x-metronic.input type="hidden"
-                                                            name="thumbnail_remove"></x-metronic.input>
-                                                    </x-metronic.label>
+                                                        data-bs-dismiss="click" title="Change avatar">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                        <input type="file" name="thumbnail"
+                                                            accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="avatar_remove" />
+                                                    </label>
+
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Cancel avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Remove avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
                                                 </div>
                                             </div>
                                             {{-- Product Mutli Image --}}
                                             <div class="col-8">
                                                 <div class="fv-row pt-5">
                                                     <x-metronic.label for="" class="form-label">Add the
-                                                        product multi
-                                                        image</x-metronic.label>
-                                                    <div class="dropzone" id="productmulti_imag">
-                                                        <div class="dz-message needsclick">
-                                                            <i class="fa-solid fa-photo-film fs-3x text-primary"></i>
-                                                            <div class="ms-4">
-                                                                <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files
-                                                                    here
-                                                                    or
-                                                                    click to upload.
-                                                                </h3>
-                                                                <span class="fs-7 fw-semibold text-gray-500">Upload up
-                                                                    to
-                                                                    10
-                                                                    files</span>
+                                                        product multi image</x-metronic.label>
+                                                    <div class="dropzone-field">
+                                                        <label for="files" class="custom-file-upload">
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="mb-0"><i
+                                                                        class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
+                                                                </p>
+                                                                <h5 class="mb-0">Drop files here or click to upload.
+                                                                    <br>
+                                                                    <span class="text-muted"
+                                                                        style="font-size: 10px">Upload 10 File</span>
+                                                                </h5>
                                                             </div>
-                                                        </div>
+                                                        </label>
+                                                        <input type="file" id="files" name="multi_images[]"
+                                                            multiple class="form-control" style="display: none;"
+                                                            onchange="console.log(this.selected.value)" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -289,10 +320,10 @@
                                                 <div class="text-muted fs-7">Enter the product MF.</div>
                                         </div>
 
-                                        <div class="mb-10 fv-row col-4">
+                                        <div class="mb-10 fv-row col-12">
                                             <x-metronic.label class="form-label">Barcode</x-metronic.label>
-                                            <x-metronic.input type="text" name="barcode" class="form-control mb-2"
-                                                placeholder="Barcode Number" :value="old('barcode')"></x-metronic.file-input>
+                                            <x-metronic.input type="text" name="barcode_id" class="form-control mb-2"
+                                                placeholder="Barcode Number" :value="old('barcode_id')"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">
                                                     Enter the product barcode number.
                                                 </div>
@@ -342,9 +373,9 @@
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Unit Discount</x-metronic.label>
-                                            <x-metronic.input type="number" name="unit_discount" id="unit_discount"
+                                            <x-metronic.input type="number" name="unit_discount_price" id="unit_discount"
                                                 class="form-control mb-2"
-                                                placeholder="how much the unit discount price" :value="old('unit_discount')"
+                                                placeholder="how much the unit discount price" :value="old('unit_discount_price')"
                                                 readonly></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much unit discount price.</div>
                                         </div>
@@ -355,14 +386,13 @@
                                                 :value="old('box_stock')"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box stock. Eg: 50</div>
                                         </div>
-                                        <div class="fv-row pt-2 col-4 mt-10">
+                                        <div class="fv-row col-4 mt-10">
                                             <div class="form-check">
-                                                <x-metronic.input class="form-check-input" name="is_refurbished"
-                                                    type="checkbox" :value="old('address')"
-                                                    id="flexCheckDefault"></x-metronic.file-input>
-                                                    <x-metronic.label class="form-check-label" for="flexCheckDefault">
-                                                        Is Refurbished
-                                                    </x-metronic.label>
+                                                <input class="form-check-input" name="is_refurbished" type="checkbox"
+                                                    value="1" id="is_refurbished" />
+                                                <x-metronic.label class="form-check-label" for="is_refurbished">
+                                                    Is Refurbished
+                                                </x-metronic.label>
                                             </div>
                                         </div>
                                     </div>
@@ -433,45 +463,37 @@
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="mb-10">
-                                            <x-metronic.label class="form-label">Meta Tag Title</x-metronic.label>
-                                            <x-metronic.input type="text" class="form-control mb-2"
-                                                name="meta_title" placeholder="Meta tag name"></x-metronic.input>
-
+                                            <div class="mb-5 fv-row">
+                                                <x-metronic.label class="form-label">Product Meta
+                                                    Title</x-metronic.label>
+                                                <input class="form-control" name="meta_title" type="text"
+                                                    placeholder="Meta tag name" id="meta_title"
+                                                    :value="old('meta_title')" />
+                                            </div>
                                             <div class="text-muted fs-7">
-                                                Set a meta tag title. Recommended to be simple and precise
-                                                keywords.
+                                                Add Product Meta Title.
                                             </div>
                                         </div>
                                         <div class="mb-10">
                                             <div class="mb-5 fv-row">
-                                                <x-metronic.label class="form-label">Meta Tag
+                                                <x-metronic.label class="form-label">Meta
                                                     Description</x-metronic.label>
-                                                <div id="meta_editor" name="meta_description">
-                                                    {{-- Content --}}
+                                                <textarea name="meta_description" class="ckeditor">{!! old('meta_description') !!}</textarea>
+                                                <div class="text-muted fs-7">
+                                                    Add Meta Meta details.
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            <x-metronic.label class="form-label">Meta Tag Keywords</x-metronic.label>
-                                            <select class="form-select mb-2" name="meta_keyword"
-                                                data-control="select2" data-placeholder="Select an option"
-                                                data-allow-clear="true" multiple="multiple">
-                                                <option></option>
-                                                <option value="Computers">Computers</option>
-                                                <option value="Watches">Watches</option>
-                                                <option value="Headphones">Headphones</option>
-                                                <option value="Footwear">Footwear</option>
-                                                <option value="Cameras">Cameras</option>
-                                                <option value="Shirts">Shirts</option>
-                                                <option value="Household">Household</option>
-                                                <option value="Handbags">Handbags</option>
-                                                <option value="Wines">Wines</option>
-                                                <option value="Sandals">Sandals</option>
-                                            </select>
-                                            <div class="text-muted fs-7">
-                                                Set a list of keywords that the product is related to.
-                                                Separate the keywords by adding a comma
-                                                <code>,</code> between each keyword.
+                                            <div class="mb-5 fv-row">
+                                                <x-metronic.label class="form-label">Meta Tag
+                                                    Keywords</x-metronic.label>
+                                                <input class="form-control" name="meta_keywords"
+                                                    placeholder="Meta tag keywords" id="product_meta_keyword"
+                                                    :value="old('meta_keywords')" />
+                                                <div class="text-muted fs-7">
+                                                    Add product Meta tag keywords.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -479,15 +501,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-end mt-10">
                         <a href="{{ route('admin.product.index') }}" class="btn btn-danger me-5">
                             Back To Product List
                         </a>
-                        <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                        {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
                             <span class="indicator-label"> Save Changes </span>
                             <span class="indicator-progress">
                                 Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button> --}}
+                        <button type="submit" class="btn btn-primary">
+                            <span class="indicator-label"> Save Changes </span>
                             </span>
                         </button>
                     </div>
@@ -497,6 +523,21 @@
     </div>
     @push('scripts')
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // The DOM elements you wish to replace with Tagify
+                var input1 = document.querySelector("#product_Tags");
+                var input2 = document.querySelector("#product_meta_tags");
+                var input3 = document.querySelector("#product_meta_keyword");
+
+                // Initialize Tagify components on the above inputs
+                new Tagify(input1);
+                new Tagify(input2);
+                new Tagify(input3);
+            });
+
+
+
+            // Product dimension box
             document.addEventListener('DOMContentLoaded', function() {
                 const lengthInput = document.getElementById('length');
                 const widthInput = document.getElementById('width');
@@ -517,41 +558,96 @@
                 widthInput.addEventListener('input', updatePreview);
                 heightInput.addEventListener('input', updatePreview);
             });
-        </script>
-        <script>
-            // Format options
-            var optionFormat = function(item) {
-                if (!item.id) {
-                    return item.text;
+            // Define color mapping
+            var colorMapping = {
+                'Red': '#FF5733',
+                'Green': '#33FF57',
+                'Blue': '#3357FF',
+                'Yellow': '#FFFF33',
+                'Purple': '#A933FF',
+                'Orange': '#FF8C33',
+                'Pink': '#FF33B5',
+                'Brown': '#8C4C33',
+                'Gray': '#BEBEBE',
+                'Black': '#000000',
+                'White': '#FFFFFF',
+                'Cyan': '#00FFFF',
+                'Magenta': '#FF00FF',
+                'Lime': '#00FF00',
+                'Teal': '#008080',
+                'Olive': '#808000',
+                'Navy': '#000080',
+                'Maroon': '#800000',
+                'Silver': '#C0C0C0',
+                'Gold': '#FFD700',
+                'Coral': '#FF7F50',
+                'Indigo': '#4B0082',
+                'Turquoise': '#40E0D0',
+                'Salmon': '#FA8072'
+            };
+
+            // Convert colorMapping to an array of objects for Tagify dropdown
+            var colorArray = Object.keys(colorMapping).map(key => ({
+                value: key,
+                color: colorMapping[key]
+            }));
+
+            // Initialize Tagify on the input element
+            var tagify = new Tagify(document.querySelector('#kt_tagify_color'), {
+                delimiters: null,
+                templates: {
+                    tag: function(tagData) {
+                        const color = colorMapping[tagData.value] || '#cccccc'; // Default color if not found
+                        try {
+                            return `<tag title='${tagData.value}' contenteditable='false' spellcheck="false"
+                    class='tagify__tag ${tagData.class ? tagData.class : ""}' ${this.getAttributes(tagData)}
+                    style="background-color: ${color}; border: none; display: flex; align-items: center; padding: 0;">
+                        <x title='remove tag' class='tagify__tag__removeBtn'></x>
+                        <div class="d-flex align-items-center" style="width: 25px; height: 25px; background-color: ${color}; border-radius: 4px; margin-right: 8px;"></div>
+                        <span class='tagify__tag-text'>${tagData.value}</span>
+                    </tag>`;
+                        } catch (err) {
+                            console.error('Error in tag template:', err);
+                        }
+                    },
+
+                    dropdownItem: function(tagData) {
+                        const color = colorMapping[tagData.value] || '#cccccc'; // Default color if not found
+                        try {
+                            return `<div ${this.getAttributes(tagData)} class='tagify__dropdown__item ${tagData.class ? tagData.class : ""}'
+                    style="background-color: white; color: black; display: flex; align-items: center; padding: 4px 8px;">
+                        <div style="width: 25px; height: 25px; background-color: ${color}; border-radius: 4px; margin-right: 8px;"></div>
+                        <span>${tagData.value}</span>
+                    </div>`;
+                        } catch (err) {
+                            console.error('Error in dropdown item template:', err);
+                        }
+                    }
+                },
+                // Remove whitelist to allow all colors to be shown in dropdown
+                enforceWhitelist: false,
+                // Display dropdown items based on the colorMapping array
+                whitelist: colorArray,
+                dropdown: {
+                    enabled: 1, // Show the dropdown as the user types
+                    classname: 'extra-properties' // Custom class for the suggestions dropdown
                 }
-
-                var span = document.createElement('span');
-                var color = item.element.getAttribute('data-color');
-
-                var colorCircle = document.createElement('div');
-                colorCircle.style.display = 'inline-block';
-                colorCircle.style.width = '25px';
-                colorCircle.style.height = '25px';
-                colorCircle.style.borderRadius = '50%';
-                colorCircle.style.backgroundColor = color;
-                colorCircle.style.marginRight = '8px';
-                colorCircle.style.verticalAlign = 'middle';
-
-                span.appendChild(colorCircle);
-
-                var textNode = document.createTextNode(item.text);
-                span.appendChild(textNode);
-
-                return $(span);
-            }
-
-            // Init Select2 --- more info: https://select2.org/
-            $('#kt_docs_select2_country').select2({
-                templateSelection: optionFormat,
-                templateResult: optionFormat
             });
-        </script>
-        <script>
+
+            // Show all color options when the input is clicked
+            var inputElement = document.querySelector('#kt_tagify_color');
+
+            inputElement.addEventListener('click', function() {
+                tagify.dropdown.show.call(tagify);
+            });
+
+            // Add the first 2 tags and make them readonly
+            // var tagsToAdd = tagify.settings.whitelist.slice(0, 2);
+            // tagify.addTags(tagsToAdd);
+
+
+
+            // Product Pricing
             function calculatePrices() {
                 const boxContains = parseFloat(document.getElementById('box_contains').value) || 0;
                 const boxPrice = parseFloat(document.getElementById('box_price').value) || 0;
@@ -567,87 +663,56 @@
             document.getElementById('box_contains').addEventListener('input', calculatePrices);
             document.getElementById('box_price').addEventListener('input', calculatePrices);
             document.getElementById('box_discount_price').addEventListener('input', calculatePrices);
-        </script>
-        <script>
-            var myDropzone = new Dropzone("#productmulti_imag", {
-                url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-                paramName: "file", // The name that will be used to transfer the file
+
+            // Product Multiimage Submit
+            var uploadedDocumentMap = {}; // Assuming you have this variable defined somewhere
+
+            var myDropzone = new Dropzone("#product_multiimage", {
+                url: "{{ route('admin.product.store') }}",
+                paramName: "multi_image", // The name that will be used to transfer the file
+                uploadMultiple: true,
+                parallelUploads: 10,
                 maxFiles: 10,
                 maxFilesize: 10, // MB
                 addRemoveLinks: true,
                 accept: function(file, done) {
-                    if (file.name == "wow.jpg") {
-                        done("Naha, you don't.");
-                    } else {
-                        done();
-                    }
-                }
+                    console.log(file);
+                    $('#kt_ecommerce_add_product_form').append(
+                        '<input type="hidden" name="document[ value="{{ old('document') }}"]" value="' + file
+                        .file + '">');
+                    done();
+                },
+                method: "post",
             });
-        </script>
-        <script>
-            class QuillEditor {
-                constructor(elementId, endpoint) {
-                    this.elementId = elementId;
-                    this.endpoint = endpoint;
-                    this.initEditor();
+
+            document.getElementById('kt_ecommerce_add_product_form').addEventListener('submit', function(event) {
+                var formData = new FormData(this);
+                console.log(formData);
+            });
+            // textEditor
+            class CKEditorInitializer {
+                constructor(className) {
+                    this.className = className;
                 }
 
-                initEditor() {
-                    const Delta = Quill.import('delta');
-                    this.quill = new Quill(`#${this.elementId}`, {
-                        modules: {
-                            toolbar: true
-                        },
-                        placeholder: 'Type your text here...',
-                        theme: 'snow'
-                    });
-
-                    // Store accumulated changes
-                    this.change = new Delta();
-                    this.quill.on('text-change', (delta) => {
-                        this.change = this.change.compose(delta);
-                    });
-
-                    // Save periodically
-                    this.saveInterval = setInterval(() => {
-                        if (this.change.length() > 0) {
-                            console.log('Saving changes', this.change);
-                            // Send partial changes
-                            /*
-                            $.post(this.endpoint, {
-                                partial: JSON.stringify(this.change)
+                initialize() {
+                    const elements = document.querySelectorAll(this.className);
+                    elements.forEach(element => {
+                        ClassicEditor
+                            .create(element)
+                            .then(editor => {
+                                console.log('CKEditor initialized:', editor);
+                            })
+                            .catch(error => {
+                                console.error('CKEditor initialization error:', error);
                             });
-                            */
-                            // Send entire document
-                            /*
-                            $.post(this.endpoint, {
-                                doc: JSON.stringify(this.quill.getContents())
-                            });
-                            */
-                            this.change = new Delta();
-                        }
-                    }, 5 * 1000);
-
-                    // Check for unsaved data
-                    window.addEventListener('beforeunload', (e) => {
-                        if (this.change.length() > 0) {
-                            e.preventDefault();
-                            e.returnValue = 'There are unsaved changes. Are you sure you want to leave?';
-                        }
                     });
-                }
-
-                destroy() {
-                    clearInterval(this.saveInterval);
-                    window.removeEventListener('beforeunload', this.handleBeforeUnload);
                 }
             }
 
-            // Initialize multiple editors
-            const overviewEditor = new QuillEditor('overview_editor', '/save-overview');
-            const descriptionEditor = new QuillEditor('description_editor', '/save-description');
-            const specificationEditor = new QuillEditor('specification_editor', '/save-specification');
-            const metaEditor = new QuillEditor('meta_editor', '/meta-description');
+            // Example usage:
+            const ckEditorInitializer = new CKEditorInitializer('.ckeditor');
+            ckEditorInitializer.initialize();
         </script>
     @endpush
 </x-admin-app-layout>
