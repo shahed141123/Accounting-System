@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/plugins/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/lightGallery/dist/css/lightgallery.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/noUiSlider/nouislider.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/home-14.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
@@ -112,8 +114,17 @@
     <script src="{{ asset('frontend/plugins/lightGallery/dist/js/lightgallery-all.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/slick/slick/slick.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/noUiSlider/nouislider.min.js') }}"></script>
+    <!-- jQuery (required for DataTables and Date Range Picker) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Date Range Picker JS -->
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
+    <script src="{{ asset('admin/js/custom.js') }}"></script>
+
+    @stack('scripts')
     <!-- custom code-->
     <script>
         $(window).on('load', function() {
@@ -131,6 +142,52 @@
             }
         }
         updateLoadingProgress();
+    </script>
+    <script>
+        class Dashboard {
+            constructor() {
+                this.initDataTables();
+                this.initDateRangePicker();
+            }
+
+            initDataTables() {
+                $(document).ready(() => {
+                    // Initialize DataTable for elements with class 'order-history-table'
+                    $('.order-history-table').DataTable({
+                        "paging": true,
+                        "lengthChange": true,
+                        "searching": true,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false,
+                        "responsive": true,
+                        "language": {
+                            "paginate": {
+                                "previous": "<i class='fa fa-chevron-left pagination-icon'></i>",
+                                "next": "<i class='fa fa-chevron-right pagination-icon'></i>"
+                            }
+                        }
+                    });
+                });
+            }
+
+            initDateRangePicker() {
+                $(document).ready(() => {
+                    // Initialize Date Range Picker
+                    $('#kt_daterangepicker_1').daterangepicker({
+                        opens: 'left',
+                        locale: {
+                            format: 'MM/DD/YYYY'
+                        }
+                    });
+                });
+            }
+        }
+
+        // Create an instance of the Dashboard class
+        $(document).ready(() => {
+            new Dashboard();
+        });
     </script>
 </body>
 

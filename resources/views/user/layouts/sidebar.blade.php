@@ -20,15 +20,15 @@
                 </div>
             @endif
 
-            <div class="edit-btn">
+            <div class="edit-btn" data-toggle="modal" data-target="#editProfileImage">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-edit">
+                    class="feather feather-edit" id="openModal">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                 </svg>
-                <!-- File input for updating the profile image -->
-                <input class="updateimg" type="file" name="img" id="profileImageUpload">
+                <!-- Hidden input for updating the profile image -->
+                <input class="updateimg" type="file" name="img" id="profileImageUpload" style="display: none;">
             </div>
         </div>
         <div class="user-name">
@@ -37,6 +37,33 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="editProfileImage" tabindex="-1" role="dialog" aria-labelledby="editProfileImageLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white" id="editImageModalLabel">Update Profile Image</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="profileImageUpload">Choose a new profile image</label>
+                            <input type="file" class="form-control-file" name="profile_image" id="profileImageUploadModal"
+                                required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Update Image</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <ul class="nav nav-tabs nav-tabs2" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <a href="{{ route('dashboard') }}" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
@@ -85,3 +112,18 @@
         </li>
     </ul>
 </div>
+
+<script>
+    $(document).ready(function() {
+        // Open modal on clicking the edit button
+        $('#openModal').on('click', function() {
+            $('#editImageModal').modal('show');
+        });
+
+        // Trigger file input click on edit icon click
+        $('#profileImageUploadModal').on('change', function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass('selected').html(fileName);
+        });
+    });
+</script>
