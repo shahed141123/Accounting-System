@@ -373,7 +373,7 @@
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Unit Discount</x-metronic.label>
-                                            <x-metronic.input type="number" name="unit_discount" id="unit_discount"
+                                            <x-metronic.input type="number" name="unit_discount_price" id="unit_discount"
                                                 class="form-control mb-2"
                                                 placeholder="how much the unit discount price" :value="old('unit_discount')"
                                                 readonly></x-metronic.file-input>
