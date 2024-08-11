@@ -25,10 +25,10 @@
         <div class="container">
             <div class="ps-logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ !empty($site->site_logo_black) && file_exists(public_path('storage/' . $site->site_logo_black)) ? asset('storage/' . $site->site_logo_black) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
+                    <img src="{{ !empty($site->site_logo_black) ? asset('storage/' . $site->site_logo_black) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
                         alt>
                     <img class="sticky-logo"
-                        src="{{ !empty($site->site_logo_black) && file_exists(public_path('storage/' . $site->site_logo_black)) ? asset('storage/' . $site->site_logo_black) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
+                        src="{{ !empty($site->site_logo_black) ? asset('storage/' . $site->site_logo_black) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
                         alt>
                 </a>
             </div>
