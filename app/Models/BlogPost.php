@@ -18,4 +18,17 @@ class BlogPost extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function blogCategory()
+    {
+        return $this->belongsToMany(BlogCategory::class, 'category_id');
+    }
+    // public function blogTag()
+    // {
+    //     return $this->belongsTo(BlogTag::class);
+    // }
+    public function blogTags()
+    {
+        return $this->belongsToMany(BlogTag::class,'tag_id' , 'id');
+    }
 }

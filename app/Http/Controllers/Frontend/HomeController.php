@@ -26,6 +26,10 @@ class HomeController extends Controller
     {
         return view('frontend.pages.aboutUs');
     }
+    public function returnPolicy()
+    {
+        return view('frontend.pages.returnPolicy');
+    }
     public function privacyPolicy()
     {
         $data = [
@@ -50,7 +54,7 @@ class HomeController extends Controller
     public function allBlog()
     {
         $data = [
-            'blog_posts'     => BlogPost::latest('id')->where('status', 'active')->get(),
+            'blog_posts'     => BlogPost::latest('id')->where('status', 'publish')->get(),
             'blog_categorys' => BlogCategory::latest('id')->where('status', 'active')->get(),
             'blog_tags'      => BlogTag::latest('id')->where('status', 'active')->get(),
         ];
@@ -59,10 +63,10 @@ class HomeController extends Controller
     public function blogDetails($slug)
     {
         $data = [
-            'blog_posts'     => BlogPost::latest('id')->where('status', 'active')->get(),
+            'blog'     => BlogPost::where('slug', $slug)->first(),
             'blog_categorys' => BlogCategory::latest('id')->where('status', 'active')->get(),
             'blog_tags'      => BlogTag::latest('id')->where('status', 'active')->get(),
         ];
-        return view('frontend.pages.blog.allBlog', $data);
+        return view('frontend.pages.blog.blogDetails', $data);
     }
 }
