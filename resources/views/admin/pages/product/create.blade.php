@@ -334,7 +334,7 @@
                                                                 </h5>
                                                             </div>
                                                         </label>
-                                                        <input type="file" id="files" name="multi_img[]"
+                                                        <input type="file" id="files" name="multi_images[]"
                                                             multiple class="form-control" style="display: none;"
                                                             onchange="console.log(this.selected.value)" />
                                                     </div>

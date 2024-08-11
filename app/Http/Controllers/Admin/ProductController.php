@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductImage;
@@ -45,25 +46,15 @@ class ProductController extends Controller
 
         try {
             // Handle the file upload for the thumbnail
-            $files = [
-                'thumbnail' => $request->file('thumbnail'),
-                'images' => $request->file('images'), // Handle multiple images
-            ];
+            $thumbnailFile = $request->file('thumbnail');
+            $thumbnailFilePath = null;
 
-            $uploadedFiles = [];
-
-            // Process single file uploads
-            foreach (['thumbnail'] as $key) {
-                $file = $files[$key] ?? null;
-                if ($file) {
-                    $filePath = 'product/' . $key;
-                    $uploadedFiles[$key] = customUpload($file, $filePath);
-                    if ($uploadedFiles[$key]['status'] === 0) {
-                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
-                    }
-                } else {
-                    $uploadedFiles[$key] = ['status' => 0];
+            if ($thumbnailFile) {
+                $thumbnailUpload = customUpload($thumbnailFile, 'products/thumbnail');
+                if ($thumbnailUpload['status'] === 0) {
+                    return redirect()->back()->with('error', $thumbnailUpload['error_message']);
                 }
+                $thumbnailFilePath = $thumbnailUpload['file_path'];
             }
 
             // Create a new product record
@@ -80,7 +71,7 @@ class ProductController extends Controller
                 'description'               => $request->input('description'),
                 'specification'             => $request->input('specification'),
                 'warranty'                  => $request->input('warranty'),
-                'thumbnail'                 => $uploadedFiles['thumbnail']['status'] == 1 ? $uploadedFiles['thumbnail']['file_path'] : null,
+                'thumbnail'                 => $thumbnailFilePath,
                 'box_stock'                 => $request->input('box_stock'),
                 'stock'                     => $request->input('stock'),
                 'box_contains'              => $request->input('box_contains'),
@@ -92,42 +83,44 @@ class ProductController extends Controller
                 'deal'                      => $request->input('deal'),
                 'is_refurbished'            => $request->input('is_refurbished'),
                 'product_type'              => $request->input('product_type'),
-                'category_id'               => $request->input('category_id'),
+                'category_id'               => json_encode($request->category_id),
                 'brand_id'                  => $request->input('brand_id'),
-                'create_date'               => $request->input('create_date'),
-                'action_status'             => $request->input('action_status'),
-                'added_by'                  => $request->input('added_by'),
+                'create_date'               => Carbon::now(),
+                // 'action_status'             => $request->input('action_status'),
+                'added_by'                  => Auth::guard('admin')->user()->id,
                 'status'                    => $request->input('status'),
             ]);
 
             // Handle multiple image uploads
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $imagePath = $image->store('product_images', 'public');
-                    ProductImage::create([
-                        'product_id' => $product->id,
-                        'photo'      => $imagePath,
-                        'created_by' => auth()->id(), // Assuming you want to store who created the image
-                    ]);
+            if ($request->hasFile('multi_images')) {
+                foreach ($request->file('multi_images') as $image) {
+                    if ($image) {
+                        $multiImageUpload = customUpload($image, 'products/multi_images');
+                        if ($multiImageUpload['status'] === 0) {
+                            return redirect()->back()->with('error', $multiImageUpload['error_message']);
+                        }
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'photo'      => $multiImageUpload['file_path'],
+                            'created_by' => Auth::guard('admin')->user()->id,
+                            'created_at' => Carbon::now(),
+                        ]);
+                    }
                 }
             }
 
             DB::commit();
 
             // Redirect with success message
-            return redirect()->route('admin.products.index')->with('success', 'Product has been created successfully!');
+            return redirect()->route('admin.product.index')->with('success', 'Product has been created successfully!');
         } catch (\Exception $e) {
             DB::rollback();
-
-            // Handle file deletion if needed
-            if (isset($uploadedFiles['thumbnail']['file_path'])) {
-                Storage::delete("public/" . $uploadedFiles['thumbnail']['file_path']);
-            }
 
             // Redirect with error message
             return redirect()->back()->withInput()->with('error', 'An error occurred while creating the product: ' . $e->getMessage());
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -148,10 +141,106 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            // Find the existing product
+            $product = Product::findOrFail($id);
+
+            // Handle the file upload for the thumbnail
+            $thumbnailFile = $request->file('thumbnail');
+            $thumbnailFilePath = $product->thumbnail; // Retain old thumbnail path if no new file
+
+            if ($thumbnailFile) {
+                // Delete old thumbnail file if exists
+                if ($thumbnailFilePath && Storage::exists("public/" . $thumbnailFilePath)) {
+                    Storage::delete("public/" . $thumbnailFilePath);
+                }
+
+                $thumbnailUpload = customUpload($thumbnailFile, 'products/thumbnail');
+                if ($thumbnailUpload['status'] === 0) {
+                    return redirect()->back()->with('error', $thumbnailUpload['error_message']);
+                }
+                $thumbnailFilePath = $thumbnailUpload['file_path'];
+            }
+
+            // Update the product record
+            $product->update([
+                'name'                      => $request->input('name'),
+                'sku_code'                  => $request->input('sku_code'),
+                'mf_code'                   => $request->input('mf_code'),
+                'product_code'              => $request->input('product_code'),
+                'barcode_id'                => $request->input('barcode_id'),
+                'tags'                      => $request->input('tags'),
+                'color'                     => $request->input('color'),
+                'short_description'         => $request->input('short_description'),
+                'overview'                  => $request->input('overview'),
+                'description'               => $request->input('description'),
+                'specification'             => $request->input('specification'),
+                'warranty'                  => $request->input('warranty'),
+                'thumbnail'                 => $thumbnailFilePath,
+                'box_stock'                 => $request->input('box_stock'),
+                'stock'                     => $request->input('stock'),
+                'box_contains'              => $request->input('box_contains'),
+                'box_price'                 => $request->input('box_price'),
+                'box_discount_price'        => $request->input('box_discount_price'),
+                'unit_price'                => $request->input('unit_price'),
+                'unit_discount_price'       => $request->input('unit_discount_price'),
+                'discount'                  => $request->input('discount'),
+                'deal'                      => $request->input('deal'),
+                'is_refurbished'            => $request->input('is_refurbished'),
+                'product_type'              => $request->input('product_type'),
+                'category_id'               => json_encode($request->category_id),
+                'brand_id'                  => $request->input('brand_id'),
+                'action_status'             => $request->input('action_status'),
+                'status'                    => $request->input('status'),
+            ]);
+
+            // Handle multiple image uploads
+            if ($request->hasFile('multi_images')) {
+                foreach ($request->file('multi_images') as $image) {
+                    if ($image) {
+                        $multiImageUpload = customUpload($image, 'products/multi_images');
+                        if ($multiImageUpload['status'] === 0) {
+                            return redirect()->back()->with('error', $multiImageUpload['error_message']);
+                        }
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'photo'      => $multiImageUpload['file_path'],
+                            'created_by' => Auth::guard('admin')->user()->id,
+                            'created_at' => Carbon::now(),
+                        ]);
+                    }
+                }
+            }
+
+            // Handle deletion of removed images
+            if ($request->input('remove_images')) {
+                $imagesToRemove = json_decode($request->input('remove_images'), true);
+                foreach ($imagesToRemove as $imageId) {
+                    $image = ProductImage::find($imageId);
+                    if ($image) {
+                        if ($image->photo && Storage::exists("public/" . $image->photo)) {
+                            Storage::delete("public/" . $image->photo);
+                        }
+                        $image->delete();
+                    }
+                }
+            }
+
+            DB::commit();
+
+            // Redirect with success message
+            return redirect()->route('admin.product.index')->with('success', 'Product has been updated successfully!');
+        } catch (\Exception $e) {
+            DB::rollback();
+            // Redirect with error message
+            return redirect()->back()->withInput()->with('error', 'An error occurred while updating the product: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
