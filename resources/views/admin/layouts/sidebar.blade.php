@@ -112,6 +112,11 @@
                             ],
                             'subMenu' => [
                                 [
+                                    'title' => 'Manage Products',
+                                    'routes' => ['admin.product.index', 'admin.product.create', 'admin.product.edit'],
+                                    'route' => 'admin.product.index',
+                                ],
+                                [
                                     'title' => 'Brand List',
                                     'routes' => ['admin.brands.index', 'admin.brands.create', 'admin.brands.edit'],
                                     'route' => 'admin.brands.index',
@@ -134,11 +139,6 @@
                                     'title' => 'Shipping Setup',
                                     'routes' => ['admin.shipping-management.index'],
                                     'route' => 'admin.shipping-management.index',
-                                ],
-                                [
-                                    'title' => 'Manage Products',
-                                    'routes' => ['admin.product.index', 'admin.product.create', 'admin.product.edit'],
-                                    'route' => 'admin.product.index',
                                 ],
                             ],
                         ],
@@ -197,11 +197,6 @@
                             'subMenu' => [
                                 [
                                     'title' => 'User List',
-                                    'routes' => ['admin.user.index'],
-                                    'route' => 'admin.user.index',
-                                ],
-                                [
-                                    'title' => 'User Statistic',
                                     'routes' => ['admin.user.index'],
                                     'route' => 'admin.user.index',
                                 ],
