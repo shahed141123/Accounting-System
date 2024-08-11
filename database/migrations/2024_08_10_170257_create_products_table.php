@@ -34,7 +34,7 @@ return new class extends Migration
             $table->decimal('box_price', 8, 2)->nullable();
             $table->decimal('box_discount_price', 8, 2)->nullable();
             $table->decimal('unit_price', 8, 2)->nullable();
-            $table->decimal('unit_discount', 8, 2)->nullable();
+            $table->decimal('unit_discount_price', 8, 2)->nullable();
             $table->string('product_type')->nullable();
             $table->integer('box_stock')->nullable();
             $table->integer('stock')->nullable();

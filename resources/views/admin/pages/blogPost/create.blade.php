@@ -233,7 +233,7 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('admin.blog-post.index') }}" class="btn btn-danger me-5">
-                        Back To Product List
+                        Back To List
                     </a>
                     <button type="submit" class="btn btn-primary">
                         <span class="indicator-label"> Save Changes

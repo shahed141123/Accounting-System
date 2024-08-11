@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -74,7 +75,10 @@ class BlogPostController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                foreach ($validator->messages()->all() as $message) {
+                    Session::flash('error', $message);
+                }
+                return redirect()->back()->withInput();
             }
 
             // Handle file uploads
@@ -193,9 +197,11 @@ class BlogPostController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                foreach ($validator->messages()->all() as $message) {
+                    Session::flash('error', $message);
+                }
+                return redirect()->back()->withInput();
             }
-
             // Handle file uploads
             $files = [
                 'logo' => $request->file('logo'),
