@@ -9,21 +9,17 @@
     </span>
     <div class="profile-box">
         <div class="img-box">
-            <!-- Check if the user has a profile image -->
             @if (Auth::user()->image)
-                <!-- Display the user's profile image -->
                 <img class="img-fluid" src="{{ asset('storage/' . Auth::user()->image) }}"
                     alt="{{ Auth::user()->name }}">
             @else
-                <!-- Display a default avatar with initials if no profile image is available -->
-                <div class="symbol-label">
-                    <span class="text-initials">
+                <div class="symbol-label" style="background-color: #d3d3d3;">
+                    <span class="text-gray-800 text-hover-primary mb-1">
                         {{ strtoupper(substr(Auth::user()->first_name, 0, 1)) }}{{ strtoupper(substr(Auth::user()->last_name, 0, 1)) }}
                     </span>
                 </div>
             @endif
 
-            <!-- Edit button for changing the profile image -->
             <div class="edit-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -42,7 +38,6 @@
     </div>
 
     <ul class="nav nav-tabs nav-tabs2" id="myTab" role="tablist">
-
         <li class="nav-item" role="presentation">
             <a href="{{ route('dashboard') }}" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
                 Dashboard
@@ -83,7 +78,8 @@
             </a>
         </li>
         <li class="nav-item" role="presentation">
-            <a href="#" class="nav-link">
+            <a href="{{ route('user.wishlist') }}"
+                class="nav-link {{ Route::is('user.wishlist') ? 'active' : '' }}">
                 My Shopping List
             </a>
         </li>

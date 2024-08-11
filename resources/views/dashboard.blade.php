@@ -4,9 +4,9 @@
             <img class="bg-img bg-top" src="img/banner-p.jpg" alt="banner" style="display: none;">
             <div class="container-lg">
                 <div class="breadcrumb-box">
-                    <div class="heading-box">
+                    <div class="title-box3 text-center">
                         <h1>
-                          Welcome  {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}  To Your Dashboard
+                        <span class="text-info">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span> <br>Welcome  To Your Dashboard
                         </h1>
                     </div>
                 </div>
