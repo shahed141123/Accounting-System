@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('barcode_id')->nullable();
             $table->string('barcode')->nullable();
             $table->text('tags')->nullable();
+            $table->string('color')->nullable();
             $table->text('short_description')->nullable();
             $table->longText('overview')->nullable();
             $table->longText('description')->nullable();

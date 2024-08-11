@@ -141,26 +141,26 @@
                                 <x-metronic.select-option class="form-select" placeholder="Color" name="color"
                                     id="color">
                                     <option :value="old('address')">Select Color</option>
-                                    <option value="red" data-color="#ff0000">Red</option>
-                                    <option value="green" data-color="#00ff00">Green</option>
-                                    <option value="blue" data-color="#0000ff">Blue</option>
-                                    <option value="yellow" data-color="#ffff00">Yellow</option>
-                                    <option value="orange" data-color="#ffa500">Orange</option>
-                                    <option value="purple" data-color="#800080">Purple</option>
-                                    <option value="pink" data-color="#ffc0cb">Pink</option>
-                                    <option value="brown" data-color="#a52a2a">Brown</option>
-                                    <option value="black" data-color="#000000">Black</option>
-                                    <option value="white" data-color="#ffffff">White</option>
-                                    <option value="gray" data-color="#808080">Gray</option>
-                                    <option value="cyan" data-color="#00ffff">Cyan</option>
-                                    <option value="magenta" data-color="#ff00ff">Magenta</option>
-                                    <option value="lime" data-color="#00ff00">Lime</option>
-                                    <option value="maroon" data-color="#800000">Maroon</option>
-                                    <option value="navy" data-color="#000080">Navy</option>
-                                    <option value="olive" data-color="#808000">Olive</option>
-                                    <option value="teal" data-color="#008080">Teal</option>
-                                    <option value="silver" data-color="#c0c0c0">Silver</option>
-                                    <option value="gold" data-color="#ffd700">Gold</option>
+                                    <option value="#ff0000" data-color="#ff0000">Red</option>
+                                    <option value="#00ff00" data-color="#00ff00">Green</option>
+                                    <option value="#0000ff" data-color="#0000ff">Blue</option>
+                                    <option value="#ffff00" data-color="#ffff00">Yellow</option>
+                                    <option value="#ffa500" data-color="#ffa500">Orange</option>
+                                    <option value="#800080" data-color="#800080">Purple</option>
+                                    <option value="#ffc0cb" data-color="#ffc0cb">Pink</option>
+                                    <option value="#a52a2a" data-color="#a52a2a">Brown</option>
+                                    <option value="#000000" data-color="#000000">Black</option>
+                                    <option value="#ffffff" data-color="#ffffff">White</option>
+                                    <option value="#808080" data-color="#808080">Gray</option>
+                                    <option value="#00ffff" data-color="#00ffff">Cyan</option>
+                                    <option value="#ff00ff" data-color="#ff00ff">Magenta</option>
+                                    <option value="#00ff00" data-color="#00ff00">Lime</option>
+                                    <option value="#800000" data-color="#800000">Maroon</option>
+                                    <option value="#000080" data-color="#000080">Navy</option>
+                                    <option value="#808000" data-color="#808000">Olive</option>
+                                    <option value="#008080" data-color="#008080">Teal</option>
+                                    <option value="#c0c0c0" data-color="#c0c0c0">Silver</option>
+                                    <option value="#ffd700" data-color="#ffd700">Gold</option>
                                     <!-- Add more options with respective colors -->
                                 </x-metronic.select-option>
                             </div>

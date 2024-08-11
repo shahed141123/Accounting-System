@@ -43,11 +43,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         DB::beginTransaction();
-
+        $thumbnailFile = $request->file('thumbnail');
+        $thumbnailFilePath = null;
         try {
             // Handle the file upload for the thumbnail
-            $thumbnailFile = $request->file('thumbnail');
-            $thumbnailFilePath = null;
+
+
 
             if ($thumbnailFile) {
                 $thumbnailUpload = customUpload($thumbnailFile, 'products/thumbnail');
@@ -115,7 +116,9 @@ class ProductController extends Controller
             return redirect()->route('admin.product.index')->with('success', 'Product has been created successfully!');
         } catch (\Exception $e) {
             DB::rollback();
-
+            if ($thumbnailFilePath) {
+                Storage::delete("public/" . $thumbnailFilePath);
+            }
             // Redirect with error message
             return redirect()->back()->withInput()->with('error', 'An error occurred while creating the product: ' . $e->getMessage());
         }
