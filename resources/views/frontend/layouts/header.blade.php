@@ -31,9 +31,9 @@
                                     <!-- Logout button inside form -->
                                     <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
                                         @csrf
-                                        <button type="submit" class="dropdown-item bg-transparent border-0">
+                                        <a type="submit"  href="javascript:void(0)" class="dropdown-item">
                                             {{ __('Log Out') }}
-                                        </button>
+                                        </a>
                                     </form>
                                 @else
                                     <!-- If the user is not authenticated, show these options -->
