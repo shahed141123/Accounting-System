@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $data = [
             'categorys'        => Category::orderBy('name','ASC')->active()->get(),
-            'latest_products'  => Product::latest('id')->where('status','publish')->get(),
+            'latest_products'  => Product::latest('id')->where('status','published')->get(),
         ];
         return view('frontend.pages.home',$data);
     }
@@ -79,7 +79,7 @@ class HomeController extends Controller
     {
         $data = [
             'product'               => Product::where('slug', $slug)->first(),
-            'related_products'      => Product::latest('id')->where('status', 'publish')->get(),
+            'related_products'      => Product::latest('id')->where('status', 'published')->get(),
         ];
         return view('frontend.pages.productDetails', $data);
     }
