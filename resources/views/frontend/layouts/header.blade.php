@@ -17,7 +17,20 @@
             <div class="ps-header__right">
                 <ul class="ps-header__icons">
                     <li><a class="ps-header__item open-search" href="#"><i class="icon-magnifier"></i></a></li>
-                    <li><a class="ps-header__item" href="{{ route('register') }}"><i class="icon-user"></i></a></li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-user"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </div>
+                    </li>
+
+
                     <li><a class="ps-header__item" href="#" id="cart-mini"><i class="icon-cart-empty"></i><span
                                 class="badge">2</span></a>
                         <div class="ps-cart--mini">
