@@ -74,12 +74,14 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-form__group">
-                                <input class="form-control ps-form__input" type="email" name="email" placeholder="Your E-mail" />
+                                <input class="form-control ps-form__input" type="email" name="email"
+                                    placeholder="Your E-mail" />
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-form__group">
-                                <input class="form-control ps-form__input" type="text" name="phone" placeholder="Phone" />
+                                <input class="form-control ps-form__input" type="text" name="phone"
+                                    placeholder="Phone" />
                             </div>
                         </div>
                         <div class="col-12">
@@ -101,33 +103,33 @@
                     <div class="row m-0">
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7FC7pwae/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram1.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram1.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7D5zJqwo/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram2.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram2.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7BnapGmv/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram3.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram3.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7Af8JWDj/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram4.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram4.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf6_QEpWYv/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram5.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram5.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf69FupFee/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram6.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram6.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                     </div>
                 </div>

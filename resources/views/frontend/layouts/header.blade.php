@@ -36,7 +36,7 @@
                                     <!-- Logout button inside form -->
                                     <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
                                         @csrf
-                                        <a type="submit"  href="javascript:void(0)" class="dropdown-item">
+                                        <a type="submit" href="javascript:void(0)" class="dropdown-item">
                                             {{ __('Log Out') }}
                                         </a>
                                     </form>
@@ -186,11 +186,11 @@
             <div class="ps-navigation__left">
                 <nav class="ps-main-menu">
                     <ul class="menu">
-                        <li class="has-mega-menu"><a href="product-category.html"> Food Packaging</a></li>
-                        <li class="has-mega-menu"><a href="product-category.html"> Meal Prep Essentials</a></li>
-                        <li class="has-mega-menu"><a href="product-category.html"> Eco-Friendly Containers</a></li>
-                        <li class="has-mega-menu"><a href="product-category.html"> Takeout Solutions</a></li>
-                        <li class="has-mega-menu"><a href="product-category.html"> Pizza Packaging</a></li>
+                        @foreach ($categories->slice(0, 4) as $category)
+                            <li class="has-mega-menu">
+                                <a href="{{ route('category.products', $category->slug) }}">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
                         <li class="has-mega-menu"><a href="{{ route('allBlog') }}">Blog</a></li>
                         <li class="has-mega-menu"><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
