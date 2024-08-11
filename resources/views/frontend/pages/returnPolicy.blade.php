@@ -22,10 +22,14 @@
             <div class="col-lg-12">
                 <h1 class="text-start mb-5 display-4">PiqPaq</h1>
                 <p class="lead">Last updated: August 11, 2024</p>
-                <p class="mb-5">Thank you for shopping at PiqPaq. We strive to ensure that our customers are fully
-                    satisfied with their purchases. However, if you are not entirely satisfied with your purchase, we're
-                    here to
-                    help.</p>
+                <p class="mb-5">Thank you for choosing PiqPaq for your shopping needs!
+                    At PiqPaq, we are committed to ensuring that each of our customers has a positive and satisfying
+                    shopping experience. Your satisfaction is our top priority. We understand that sometimes things
+                    might not turn out as expected, and we're here to assist you if that happens.
+
+                    If for any reason you are not completely satisfied with your purchase, please know that we are
+                    dedicated to resolving any issues you may have. Whether it’s a question about a product, a concern
+                    with your order, or a need for a return or exchange, our customer support team is ready to help.</p>
             </div>
         </div>
         <div class="row align-items-center">
@@ -46,6 +50,11 @@
         </div>
         <div class="row align-items-center">
             <div class="col-lg-6">
+                <div>
+                    <img src="{{ asset('frontend/img/refund.jpg') }}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
                 <h1 class="text-start mb-5 display-4">Refunds</h1>
                 <p class="mb-5">Once we receive your item, we will inspect it and notify you that we have received
                     your
@@ -56,11 +65,6 @@
                     of payment). You will receive the credit within a certain number of days, depending on your card
                     issuer's
                     policies.</p>
-            </div>
-            <div class="col-lg-6">
-                <div>
-                    <img src="{{ asset('frontend/img/refund.jpg') }}" alt="">
-                </div>
             </div>
             <div class="col-lg-12">
                 <h1 class="text-start mb-5 display-4">Shipping</h1>
