@@ -6,7 +6,7 @@
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
         <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row"
-            action="{{ route('admin.blog-post.create') }}" method="POST" enctype="multipart/form-data">
+            action="{{ route('admin.blog-post.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 {{-- Media Card Start --}}
@@ -236,13 +236,17 @@
                     <a href="{{ route('admin.blog-post.index') }}" class="btn btn-danger me-5">
                         Back To Product List
                     </a>
-                    <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="indicator-label"> Save Changes
+                        </span>
+                    </button>
+                    {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
                         <span class="indicator-label"> Save Changes </span>
                         <span class="indicator-progress">
                             Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                         </span>
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </form>

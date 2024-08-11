@@ -145,7 +145,13 @@ class BlogPostController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.pages.blogPost.edit');
+        $data = [
+            'blogPost' => BlogPost::findOrFail($id),
+            'blogTags' => BlogTag::latest('id')->get(['name', 'id']),
+            'blogCategories' => BlogCategory::latest('id')->get(['name', 'id']),
+
+        ];
+        return view('admin.pages.blogPost.edit',$data);
     }
 
     /**
