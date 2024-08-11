@@ -32,7 +32,7 @@ class ProductRequest extends FormRequest
             'product_code'              => 'nullable|string|max:150',
             'barcode_id'                => 'nullable|string|max:150',
             'tags'                      => 'nullable|json',
-            'color'                     => 'nullable|json',
+            'color'                     => 'nullable',
             'short_description'         => 'nullable|string',
             'overview'                  => 'nullable|string',
             'description'               => 'nullable|string',
