@@ -493,21 +493,24 @@
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="mb-10">
-                                            <x-metronic.label class="form-label">Meta Tag Title</x-metronic.label>
-                                            <x-metronic.input type="text" class="form-control mb-2"
-                                                name="meta_title" placeholder="Meta tag name"></x-metronic.input>
-
+                                            <div class="mb-5 fv-row">
+                                                <x-metronic.label class="form-label">Product Meta
+                                                    Title</x-metronic.label>
+                                                <input class="form-control" name="meta_title" type="text"
+                                                    placeholder="Meta tag name" id="meta_title"
+                                                    :value="old('meta_title')" />
+                                            </div>
                                             <div class="text-muted fs-7">
-                                                Set a meta tag title. Recommended to be simple and precise
-                                                keywords.
+                                                Add Product Meta Title.
                                             </div>
                                         </div>
                                         <div class="mb-10">
                                             <div class="mb-5 fv-row">
-                                                <x-metronic.label class="form-label">Meta Tag
+                                                <x-metronic.label class="form-label">Meta
                                                     Description</x-metronic.label>
-                                                <div id="meta_editor" name="meta_description">
-                                                    {{-- Content --}}
+                                                <textarea name="meta_description" class="ckeditor">{!! old('meta_description') !!}</textarea>
+                                                <div class="text-muted fs-7">
+                                                    Add Meta Meta details.
                                                 </div>
                                             </div>
                                         </div>
@@ -515,15 +518,12 @@
                                             <div class="mb-5 fv-row">
                                                 <x-metronic.label class="form-label">Meta Tag
                                                     Keywords</x-metronic.label>
-                                                <textarea name="meta_keyword" class="ckeditor">{!! old('meta_keyword') !!}</textarea>
+                                                <input class="form-control" name="meta_keywords"
+                                                    placeholder="Meta tag keywords" id="product_meta_keyword"
+                                                    :value="old('meta_keywords')" />
                                                 <div class="text-muted fs-7">
-                                                    Add product overview here.
+                                                    Add product Meta tag keywords.
                                                 </div>
-                                            </div>
-                                            <div class="text-muted fs-7">
-                                                Set a list of keywords that the product is related to.
-                                                Separate the keywords by adding a comma
-                                                <code>,</code> between each keyword.
                                             </div>
                                         </div>
                                     </div>
@@ -553,11 +553,20 @@
     </div>
     @push('scripts')
         <script>
-            // The DOM elements you wish to replace with Tagify
-            var input1 = document.querySelector("#product_Tags");
+            document.addEventListener('DOMContentLoaded', function() {
+                // The DOM elements you wish to replace with Tagify
+                var input1 = document.querySelector("#product_Tags");
+                var input2 = document.querySelector("#product_meta_tags");
+                var input3 = document.querySelector("#product_meta_keyword");
 
-            // Initialize Tagify components on the above inputs
-            new Tagify(input1);
+                // Initialize Tagify components on the above inputs
+                new Tagify(input1);
+                new Tagify(input2);
+                new Tagify(input3);
+            });
+
+
+
             // Product dimension box
             document.addEventListener('DOMContentLoaded', function() {
                 const lengthInput = document.getElementById('length');

@@ -105,10 +105,12 @@
                                 'admin.categories.edit',
                                 'admin.stock-management.index',
                                 'admin.shipping-management.index',
-                                'admin.order-management.index','admin.product.index', 'admin.product.create', 'admin.product.edit',
+                                'admin.order-management.index',
+                                'admin.product.index',
+                                'admin.product.create',
+                                'admin.product.edit',
                             ],
                             'subMenu' => [
-
                                 [
                                     'title' => 'Brand List',
                                     'routes' => ['admin.brands.index', 'admin.brands.create', 'admin.brands.edit'],
