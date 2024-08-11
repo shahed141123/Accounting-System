@@ -25,10 +25,6 @@
     </div>
 </div>
 <button class="btn scroll-top"><i class="fa fa-angle-double-up"></i></button>
-<div class="ps-preloader" id="preloader">
-    <div class="ps-preloader-section ps-preloader-left"></div>
-    <div class="ps-preloader-section ps-preloader-right"></div>
-</div>
 <div class="modal fade" id="popupQuickview" data-backdrop="static" data-keyboard="false" tabindex="-1"
     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered ps-quickview">

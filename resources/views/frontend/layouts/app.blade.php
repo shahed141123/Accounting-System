@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/plugins/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/fonts/Linearicons/Font/demo-files/demo.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:400,500,600,700&amp;display=swap&amp;ver=1607580870">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Jost:400,500,600,700&amp;display=swap&amp;ver=1607580870">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/bootstrap4/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/owl-carousel/assets/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/slick/slick/slick.css') }}">
@@ -29,9 +31,67 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/home-14.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
+    <style>
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            /* Slightly transparent white background */
+            z-index: 9999;
+            /* Ensure it's on top of all content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preloader-inner {
+            text-align: center;
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3;
+            /* Light grey background */
+            border-top: 8px solid #3498db;
+            /* Blue spinner */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-percentage {
+            font-size: 1.5rem;
+            color: #3498db;
+            /* Blue color for percentage text */
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="spinner"></div>
+            <div class="loading-percentage" id="loadingPercentage">0%</div>
+        </div>
+    </div>
+
     <div class="ps-page">
         {{-- Header --}}
         @include('frontend.layouts.header')
@@ -55,5 +115,24 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
     <!-- custom code-->
+    <script>
+        $(window).on('load', function() {
+            $('#preloader').fadeOut('slow');
+        });
+
+        // Simulate loading progress
+        let percentage = 0;
+
+        function updateLoadingProgress() {
+            percentage += 1;
+            $('#loadingPercentage').text(percentage + '%');
+            if (percentage < 100) {
+                setTimeout(updateLoadingProgress, 100); // Update every 100ms
+            }
+        }
+        updateLoadingProgress();
+    </script>
 </body>
+
+
 </html>

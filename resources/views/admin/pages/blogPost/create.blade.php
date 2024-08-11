@@ -166,26 +166,25 @@
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label
                                         class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
-                                    <div id="overview_editor" name="short_description">
-                                        {{-- Content --}}
-                                    </div>
+                                    <textarea name="overview_editor" class="ckeditor">{!! old('overview_editor') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog short description.
+                                        Add blog overview here.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">Blog Long Description</x-metronic.label>
-                                    <div id="description_editor" name="long_description">
-                                        {{-- Content --}}
-                                    </div>
+                                    <x-metronic.label
+                                        class="form-label">{{ __('Blog Long Description') }}</x-metronic.label>
+                                    <textarea name="description_editor" class="ckeditor">{!! old('description_editor') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog long description.
+                                        Add blog Description here.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">Blog Footer</x-metronic.label>
-                                    <div id="specification_editor" name="footer">
-                                        {{-- Content --}}
+                                    <x-metronic.label
+                                        class="form-label">{{ __('Blog Footer') }}</x-metronic.label>
+                                    <textarea name="specification_editor" class="ckeditor">{!! old('specification_editor') !!}</textarea>
+                                    <div class="text-muted fs-7">
+                                        Add blog specification here.
                                     </div>
                                 </div>
                             </div>
