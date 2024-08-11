@@ -61,11 +61,8 @@ class ProductController extends Controller
                 }
                 $thumbnailFilePath = $thumbnailUpload['file_path'];
             }
-            if ($request->is_refurbished) {
-                $is_refurbished = $request->is_refurbished;
-            } else {
-                $is_refurbished = 0;
-            }
+
+                $is_refurbished = $request->has('is_refurbished') ? 1 : 0;
 
 
             // Create a new product record
@@ -181,11 +178,7 @@ class ProductController extends Controller
                 }
                 $thumbnailFilePath = $thumbnailUpload['file_path'];
             }
-            if ($request->is_refurbished) {
-                $is_refurbished = $request->is_refurbished;
-            } else {
-                $is_refurbished = 0;
-            }
+            $is_refurbished = $request->has('is_refurbished') ? 1 : 0;
             // Update the product record
             $product->update([
                 'name'                      => $request->input('name'),
