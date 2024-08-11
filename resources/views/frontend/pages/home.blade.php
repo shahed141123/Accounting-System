@@ -77,7 +77,7 @@
                     <div class="ps-category__content">
                         @foreach ($categorys as $category)
                             <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
-                                <img class="ps-category__icon" src="{{ asset($category->logo) }}" alt>
+                                <img class="ps-category__icon" src="{{ asset('storage/'.$category->logo) }}" alt>
                                 <h6 class="ps-category__name">{{ $category->name }}</h6>
                             </a>
                         @endforeach
@@ -97,7 +97,7 @@
                                                 <a class="ps-product__image" href="{{ route('product.details',$latest_product->slug) }}">
                                                     <figure>
                                                         @foreach ($latest_product->multiImages->slice(0, 2) as $image)
-                                                            <img src="{{ asset($image->photo) }}"
+                                                            <img src="{{ asset('storage/'.$image->photo) }}"
                                                                 alt="{{ $latest_product->meta_title }}"/>
                                                         @endforeach
                                                     </figure>
