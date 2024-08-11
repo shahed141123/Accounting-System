@@ -110,6 +110,7 @@
     <script src="{{ asset('frontend/plugins/bootstrap4/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
+
     <script src="{{ asset('frontend/plugins/jquery-bar-rating/dist/jquery.barrating.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/lightGallery/dist/js/lightgallery-all.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/slick/slick/slick.min.js') }}"></script>

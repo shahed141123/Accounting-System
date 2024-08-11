@@ -39,6 +39,7 @@
                                         <form action="{{ route('profile.update') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            @method('PATCH')
                                             <div class="row">
                                                 <div class="col-12 col-lg-12">
                                                     <div class="ps-checkout__form">
@@ -163,7 +164,7 @@
                                                                 <h4>Login Information</h4>
                                                                 <hr>
                                                             </div>
-                                                            <div class="col-4">
+                                                            <div class="col-12">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Email address
                                                                         <span class="text-danger">*</span> </label>
@@ -172,7 +173,7 @@
                                                                         type="email" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-4">
+                                                            <div class="col-12">
                                                                 <div>
                                                                     <label class="ps-checkout__label pb-2">Password
                                                                         <span class="text-danger">*</span>
