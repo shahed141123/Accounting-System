@@ -121,11 +121,11 @@
                             <div class="ps-footer--block">
                                 <h5 class="ps-block__title">Information</h5>
                                 <ul class="ps-block__list">
-                                    <li><a href="about-us.html">About us</a></li>
-                                    <li><a href="contact-us.html">Contact us</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="{{ route('about-us') }}">About us</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact us</a></li>
+                                    <li><a href="{{ route('allBlog') }}">Blog</a></li>
+                                    <li><a href="{{ route('privacyPolicy') }}">Privacy Policy</a></li>
+                                    <li><a href="{{ route('termsCondition') }}">Terms &amp; Conditions</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -133,10 +133,10 @@
                             <div class="ps-footer--block">
                                 <h5 class="ps-block__title">Account</h5>
                                 <ul class="ps-block__list">
-                                    <li><a href="#">My account</a></li>
-                                    <li><a href="#">My orders</a></li>
+                                    <li><a href="{{ route('user.account.details') }}">My Account</a></li>
+                                    <li><a href="{{ route('user.order.history') }}">My Orders</a></li>
                                     <li><a href="#">Returns</a></li>
-                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="{{ route('user.quick.order') }}">Quick Order</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -5540,7 +5540,7 @@ textarea.form-control {
 
 @media (min-width: 768px) {
     .ps-banner--round .ps-banner {
-        height: 455px;
+        height: 500px;
     }
     .ps-banner--round .ps-banner__content {
         padding: 50px 0 30px 5%;
@@ -5567,7 +5567,7 @@ textarea.form-control {
     }
     .ps-banner--round .ps-banner__thumnail .ps-banner__round {
         height: 300%;
-        left: -38%;
+        left: -60%;
     }
 }
 
