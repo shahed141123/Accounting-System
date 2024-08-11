@@ -29,7 +29,7 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        {{-- <th>Role</th> --}}
                         <th>Show User</th>
                         {{-- <th>Two-step</th>
                         <th>Joined Date</th> --}}
@@ -40,7 +40,7 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>
-                                01
+                                {{ $loop->iteration }}
                             </td>
                             <td class="d-flex align-items-center">
                                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
@@ -55,20 +55,13 @@
                             <td>
                                 <div class="d-flex flex-column">
                                     <a href="javascript:void(0)"
-                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->first_name }} {{ $user->last_name }}</a>
                                 </div>
                             </td>
                             <td>
                                 <span>{{ $user->email }}</span>
                             </td>
-                            <td>
-                                @forelse ($user->getRoleNames() as $role)
-                                    <div class="badge badge-light-success fw-bolder">{{ $role }}</div>
 
-                                @empty
-                                    <div class="badge badge-light-danger fw-bolder">No Role</div>
-                                @endforelse
-                            </td>
                             <td>
                                 <button class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i> Show</button>
                             </td>
