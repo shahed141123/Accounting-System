@@ -218,7 +218,7 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
-                                            <input class="form-control" name="tags" value="tag1, tag2, tag3"
+                                            <input class="form-control" name="tags" value=""
                                                 id="product_Tags" :value="old('tags')" />
                                         </div>
                                         <div class="mb-5 fv-row">
