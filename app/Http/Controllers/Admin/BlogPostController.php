@@ -92,7 +92,7 @@ class BlogPostController extends Controller
             foreach ($files as $key => $file) {
                 if ($file) {
                     $filePath = 'blog_posts/' . $key;
-                    $uploadedFiles[$key] = $this->customUpload($file, $filePath);
+                    $uploadedFiles[$key] = customUpload($file, $filePath);
                     if ($uploadedFiles[$key]['status'] === 0) {
                         return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
                     }
