@@ -18,4 +18,16 @@ class Product extends Model
      * @var array
      */
     protected $guarded = [];
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function brand()
+    {
+        return $this->belongsTo(Category::class, 'brand_id');
+    }
+    public function multiImages()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }

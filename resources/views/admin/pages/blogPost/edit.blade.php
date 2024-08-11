@@ -21,7 +21,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url('{{ $blogPost->image ? asset($blogPost->image) : '' }}');">
+                                style="background-image: url({{ $blogPost->image ? asset($blogPost->image) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
@@ -40,10 +40,11 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url('{{ $blogPost->banner_image ? asset($blogPost->banner_image) : '' }}');">
+                                style="background-image: url({{ $blogPost->banner_image ? asset($blogPost->banner_image) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change banner image">
+                                data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                title="Change banner image">
                                 <i class="fa-solid fa-pencil fs-7">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -58,7 +59,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url('{{ $blogPost->logo ? asset($blogPost->logo) : '' }}');">
+                                style="background-image: url({{ $blogPost->logo ? asset($blogPost->logo) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change logo">
@@ -87,10 +88,9 @@
                         <div class="fv-row">
                             <div class="mb-10 mt-5">
                                 <div class="form-check">
-                                    <x-metronic.input class="form-check-input" type="checkbox" name="featured"
-                                        value="1" id="flexCheckDefault" {{ $blogPost->featured ? 'checked' : '' }}>
-                                    </x-metronic.input>
-                                    <x-metronic.label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" name="featured" value="1" id="featured" @checked($blogPost->featured == '1')>
+
+                                    <x-metronic.label class="form-check-label" for="featured">
                                         {{ __('Is Featured') }}
                                     </x-metronic.label>
                                 </div>
@@ -102,13 +102,13 @@
                                 <x-metronic.select-option class="form-select mb-2" name="status" id="status"
                                     data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
-                                    <option value="publish" {{ $blogPost->status === 'publish' ? 'selected' : '' }}>
+                                    <option value="publish" @selected($blogPost->status === 'publish')>
                                         Publish
                                     </option>
-                                    <option value="draft" {{ $blogPost->status === 'draft' ? 'selected' : '' }}>
+                                    <option value="draft" @selected($blogPost->status === 'draft')>
                                         Draft
                                     </option>
-                                    <option value="unpublish" {{ $blogPost->status === 'unpublish' ? 'selected' : '' }}>
+                                    <option value="unpublish" @selected($blogPost->status === 'unpublish')>
                                         Unpublish
                                     </option>
                                 </x-metronic.select-option>
@@ -126,7 +126,8 @@
                                     <option value="news" {{ $blogPost->type === 'news' ? 'selected' : '' }}>
                                         News
                                     </option>
-                                    <option value="promotional_article" {{ $blogPost->type === 'promotional_article' ? 'selected' : '' }}>
+                                    <option value="promotional_article"
+                                        {{ $blogPost->type === 'promotional_article' ? 'selected' : '' }}>
                                         Promotional Article
                                     </option>
                                 </x-metronic.select-option>
@@ -169,18 +170,19 @@
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">{{ __('Blog Header') }}</x-metronic.label>
-                                    <x-metronic.textarea id="header" :value="old('header', $blogPost->header)" name="header"
-                                        placeholder="Add Blog Header" class="form-control mb-2" cols="30"
+                                    <x-metronic.textarea id="header" name="header" placeholder="Add Blog Header"
+                                        class="form-control mb-2" cols="30"
                                         rows="3">{{ old('header', $blogPost->header) }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">{{ __('Address') }}</x-metronic.label>
-                                    <x-metronic.textarea id="address" :value="old('address', $blogPost->address)" name="address"
-                                        placeholder="Add Blog Address" class="form-control mb-2" cols="30"
+                                    <x-metronic.textarea id="address" name="address" placeholder="Add Blog Address"
+                                        class="form-control mb-2" cols="30"
                                         rows="3">{{ old('address', $blogPost->address) }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
+                                    <x-metronic.label
+                                        class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
                                     <div id="overview_editor" name="short_description">
                                         {!! old('short_description', $blogPost->short_description) !!}
                                     </div>

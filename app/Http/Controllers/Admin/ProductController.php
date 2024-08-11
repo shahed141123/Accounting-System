@@ -43,7 +43,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         // dd($request->all());
         DB::beginTransaction();
@@ -64,7 +64,7 @@ class ProductController extends Controller
 
                 $is_refurbished = $request->has('is_refurbished') ? 1 : 0;
 
-
+            // dd($is_refurbished);
             // Create a new product record
             $product = Product::create([
                 'name'                      => $request->input('name'),
@@ -148,7 +148,14 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.pages.product.edit');
+
+        $data = [
+            'product'    => Product::findOrFail($id),
+            'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
+            'categories' => DB::table('categories')->select('id', 'name')->latest('id')->get(),
+        ];
+        // dd($data['product']);
+        return view('admin.pages.product.edit', $data);
     }
 
     /**
