@@ -186,7 +186,7 @@
                         <li class="has-mega-menu"><a href="product-category.html"> Eco-Friendly Containers</a></li>
                         <li class="has-mega-menu"><a href="product-category.html"> Takeout Solutions</a></li>
                         <li class="has-mega-menu"><a href="product-category.html"> Pizza Packaging</a></li>
-                        <li class="has-mega-menu"><a href="blog.html">Blog</a></li>
+                        <li class="has-mega-menu"><a href="{{ route('allBlog') }}">Blog</a></li>
                         <li class="has-mega-menu"><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                 </nav>

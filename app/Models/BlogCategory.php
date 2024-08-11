@@ -19,5 +19,9 @@ class BlogCategory extends Model
      */
     protected $guarded = [];
 
-    
+    public function blogPost()
+    {
+        return $this->hasMany(BlogPost::class);
+    }
+
 }

@@ -16,4 +16,9 @@ class BlogTag extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function blogPost()
+    {
+        return $this->hasMany(BlogPost::class, 'tag_id');
+    }
 }
