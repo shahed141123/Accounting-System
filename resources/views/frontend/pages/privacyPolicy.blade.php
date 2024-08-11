@@ -1,6 +1,23 @@
 <x-frontend-app-layout :title="'Contact Us'">
-    <div class="container my-5">
-        <h1 class="mb-4">Privacy Policy</h1>
+    <div class="breadcrumb-wrap">
+        <div class="banner b-top bg-size bread-img">
+            <img class="bg-img bg-top" src="img/banner-p.jpg" alt="banner" style="display: none;">
+            <div class="container-lg">
+                <div class="breadcrumb-box">
+                    <div class="title-box3 text-center">
+                        <h1>
+                            Privacy Policy
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="ps-breadcrumb ">
+            <li class="ps-breadcrumb__item"><a href="/">Home</a></li>
+            <li class="ps-breadcrumb__item active" aria-current="page">Privacy</li>
+        </ul>
         <p><strong>Last updated:</strong> 11 Aug 2024</p>
 
         <p>Welcome to PiqPaq! Your privacy is critically important to us. This privacy policy explains how we
@@ -58,8 +75,5 @@
         <p>If you have any questions about this Privacy Policy, please contact us at:</p>
         <p><strong>Email:</strong> [Your Email]</p>
 
-        <footer class="mt-5">
-            <p>&copy; 2024 PiqPaq. All rights reserved.</p>
-        </footer>
     </div>
 </x-frontend-app-layout>
