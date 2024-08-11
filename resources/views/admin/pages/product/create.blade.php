@@ -389,8 +389,8 @@
                                         <div class="fv-row col-4 mt-10">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_refurbished" type="checkbox"
-                                                    value="1" id="flexCheckDefault" />
-                                                <x-metronic.label class="form-check-label" for="flexCheckDefault">
+                                                    value="1" id="is_refurbished" />
+                                                <x-metronic.label class="form-check-label" for="is_refurbished">
                                                     Is Refurbished
                                                 </x-metronic.label>
                                             </div>

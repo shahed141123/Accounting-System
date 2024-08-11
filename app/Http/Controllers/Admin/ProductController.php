@@ -20,7 +20,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.product.index');
+        $data = [
+            'products'     => DB::table('products')->latest('id')->get(),
+        ];
+        return view('admin.pages.product.index',$data);
     }
 
     /**
@@ -40,8 +43,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
+        // dd($request->all());
         DB::beginTransaction();
         $thumbnailFile = $request->file('thumbnail');
         $thumbnailFilePath = null;
@@ -58,6 +62,9 @@ class ProductController extends Controller
                 $thumbnailFilePath = $thumbnailUpload['file_path'];
             }
 
+                $is_refurbished = $request->has('is_refurbished') ? 1 : 0;
+
+            // dd($is_refurbished);
             // Create a new product record
             $product = Product::create([
                 'name'                      => $request->input('name'),
@@ -80,7 +87,7 @@ class ProductController extends Controller
                 'box_discount_price'        => $request->input('box_discount_price'),
                 'unit_price'                => $request->input('unit_price'),
                 'unit_discount_price'       => $request->input('unit_discount_price'),
-                'is_refurbished'            => $request->input('is_refurbished', 0),
+                'is_refurbished'            => $is_refurbished,
                 'product_type'              => $request->input('product_type'),
                 'category_id'               => json_encode($request->input('category_id')),
                 'length'                    => $request->input('length'),
@@ -141,7 +148,14 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.pages.product.edit');
+
+        $data = [
+            'product'    => Product::findOrFail($id),
+            'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
+            'categories' => DB::table('categories')->select('id', 'name')->latest('id')->get(),
+        ];
+        // dd($data['product']);
+        return view('admin.pages.product.edit', $data);
     }
 
     /**
@@ -171,7 +185,7 @@ class ProductController extends Controller
                 }
                 $thumbnailFilePath = $thumbnailUpload['file_path'];
             }
-
+            $is_refurbished = $request->has('is_refurbished') ? 1 : 0;
             // Update the product record
             $product->update([
                 'name'                      => $request->input('name'),
@@ -194,7 +208,7 @@ class ProductController extends Controller
                 'box_discount_price'        => $request->input('box_discount_price'),
                 'unit_price'                => $request->input('unit_price'),
                 'unit_discount_price'       => $request->input('unit_discount_price'),
-                'is_refurbished'            => $request->input('is_refurbished', 0),
+                'is_refurbished'            => $is_refurbished,
                 'product_type'              => $request->input('product_type'),
                 'category_id'               => json_encode($request->input('category_id')),
                 'length'                    => $request->input('length'),

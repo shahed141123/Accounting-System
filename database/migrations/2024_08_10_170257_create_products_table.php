@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('product_type')->nullable();
             $table->integer('box_stock')->nullable();
             $table->integer('stock')->nullable();
-            $table->enum('is_refurbished', ['0', '1'])->default('0')->nullable();
+            $table->string('is_refurbished', 10)->nullable();
             $table->integer('length')->nullable();
             $table->integer('width')->nullable();
             $table->integer('height')->nullable();

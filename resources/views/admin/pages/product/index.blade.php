@@ -55,18 +55,34 @@
                 </thead>
                 <tbody>
                     {{-- @foreach ($products as $product) --}}
-                    <tr>
-                        <td>
-                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1" />
-                            </div>
-                        </td>
-                        <td>asdasd</td>
-                        <td>asd</td>
-                        <td>asd</td>
-                        <td>asd</td>
-                        <td>asd</td>
-                    </tr>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="1" />
+                                </div>
+                            </td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><img class="w-75px" src="{{ asset($product->thumbnail) }}" alt=""></td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->status }}</td>
+                            <td>
+                                {{-- <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                    data-bs-toggle="modal" data-bs-target="#faqViewModal_{{ $faq->id }}">
+                                    <i class="fa-solid fa-expand"></i>
+                                </a> --}}
+                                <a href="{{ route('admin.product.edit', $product->id) }}"
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="{{ route('admin.product.destroy', $product->id) }}"
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
+                                    data-kt-docs-table-filter="delete_row">
+                                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                     {{-- @endforeach --}}
                 </tbody>
             </table>

@@ -26,6 +26,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -40,7 +41,7 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request) 
+    public function destroy(Request $request)
     {
         // $request->validateWithBag('userDeletion', [
         //     'password' => ['required', 'current_password'],
