@@ -137,32 +137,11 @@
                             </div> --}}
                             <div class="fv-row">
                                 <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Select Color') }}</x-metronic.label>
-                                <x-metronic.select-option class="form-select" placeholder="Color" name="color"
-                                    id="color">
-                                    <option :value="old('address')">Select Color</option>
-                                    <option value="#ff0000" data-color="#ff0000">Red</option>
-                                    <option value="#00ff00" data-color="#00ff00">Green</option>
-                                    <option value="#0000ff" data-color="#0000ff">Blue</option>
-                                    <option value="#ffff00" data-color="#ffff00">Yellow</option>
-                                    <option value="#ffa500" data-color="#ffa500">Orange</option>
-                                    <option value="#800080" data-color="#800080">Purple</option>
-                                    <option value="#ffc0cb" data-color="#ffc0cb">Pink</option>
-                                    <option value="#a52a2a" data-color="#a52a2a">Brown</option>
-                                    <option value="#000000" data-color="#000000">Black</option>
-                                    <option value="#ffffff" data-color="#ffffff">White</option>
-                                    <option value="#808080" data-color="#808080">Gray</option>
-                                    <option value="#00ffff" data-color="#00ffff">Cyan</option>
-                                    <option value="#ff00ff" data-color="#ff00ff">Magenta</option>
-                                    <option value="#00ff00" data-color="#00ff00">Lime</option>
-                                    <option value="#800000" data-color="#800000">Maroon</option>
-                                    <option value="#000080" data-color="#000080">Navy</option>
-                                    <option value="#808000" data-color="#808000">Olive</option>
-                                    <option value="#008080" data-color="#008080">Teal</option>
-                                    <option value="#c0c0c0" data-color="#c0c0c0">Silver</option>
-                                    <option value="#ffd700" data-color="#ffd700">Gold</option>
-                                    <!-- Add more options with respective colors -->
-                                </x-metronic.select-option>
+                                    {{ __('Add Color') }}
+                                </x-metronic.label>
+                                <!-- Input element for Tagify -->
+                                <input class="form-control d-flex align-items-center" name="color_id"
+                                    :value="old('color_id')" id="kt_tagify_color" />
                             </div>
                         </div>
                     </div>
@@ -196,8 +175,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general"
-                            role="tab-panel">
+                        <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
                             <div class="d-flex flex-column gap-7 gap-lg-10">
                                 {{-- General Info --}}
                                 <div class="card card-flush py-4">
@@ -218,8 +196,8 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
-                                            <input class="form-control" name="tags" value=""
-                                                id="product_Tags" :value="old('tags')" />
+                                            <input class="form-control" name="tags" value="" id="product_Tags"
+                                                :value="old('tags')" />
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Short Description</x-metronic.label>
@@ -588,38 +566,95 @@
                 widthInput.addEventListener('input', updatePreview);
                 heightInput.addEventListener('input', updatePreview);
             });
-            // Color Select Options
-            // Format options
-            var optionFormat = function(item) {
-                if (!item.id) {
-                    return item.text;
+            // Define color mapping
+            var colorMapping = {
+                'Red': '#FF5733',
+                'Green': '#33FF57',
+                'Blue': '#3357FF',
+                'Yellow': '#FFFF33',
+                'Purple': '#A933FF',
+                'Orange': '#FF8C33',
+                'Pink': '#FF33B5',
+                'Brown': '#8C4C33',
+                'Gray': '#BEBEBE',
+                'Black': '#000000',
+                'White': '#FFFFFF',
+                'Cyan': '#00FFFF',
+                'Magenta': '#FF00FF',
+                'Lime': '#00FF00',
+                'Teal': '#008080',
+                'Olive': '#808000',
+                'Navy': '#000080',
+                'Maroon': '#800000',
+                'Silver': '#C0C0C0',
+                'Gold': '#FFD700',
+                'Coral': '#FF7F50',
+                'Indigo': '#4B0082',
+                'Turquoise': '#40E0D0',
+                'Salmon': '#FA8072'
+            };
+
+            // Convert colorMapping to an array of objects for Tagify dropdown
+            var colorArray = Object.keys(colorMapping).map(key => ({
+                value: key,
+                color: colorMapping[key]
+            }));
+
+            // Initialize Tagify on the input element
+            var tagify = new Tagify(document.querySelector('#kt_tagify_color'), {
+                delimiters: null,
+                templates: {
+                    tag: function(tagData) {
+                        const color = colorMapping[tagData.value] || '#cccccc'; // Default color if not found
+                        try {
+                            return `<tag title='${tagData.value}' contenteditable='false' spellcheck="false"
+                    class='tagify__tag ${tagData.class ? tagData.class : ""}' ${this.getAttributes(tagData)}
+                    style="background-color: ${color}; border: none; display: flex; align-items: center; padding: 0;">
+                        <x title='remove tag' class='tagify__tag__removeBtn'></x>
+                        <div class="d-flex align-items-center" style="width: 25px; height: 25px; background-color: ${color}; border-radius: 4px; margin-right: 8px;"></div>
+                        <span class='tagify__tag-text'>${tagData.value}</span>
+                    </tag>`;
+                        } catch (err) {
+                            console.error('Error in tag template:', err);
+                        }
+                    },
+
+                    dropdownItem: function(tagData) {
+                        const color = colorMapping[tagData.value] || '#cccccc'; // Default color if not found
+                        try {
+                            return `<div ${this.getAttributes(tagData)} class='tagify__dropdown__item ${tagData.class ? tagData.class : ""}'
+                    style="background-color: white; color: black; display: flex; align-items: center; padding: 4px 8px;">
+                        <div style="width: 25px; height: 25px; background-color: ${color}; border-radius: 4px; margin-right: 8px;"></div>
+                        <span>${tagData.value}</span>
+                    </div>`;
+                        } catch (err) {
+                            console.error('Error in dropdown item template:', err);
+                        }
+                    }
+                },
+                // Remove whitelist to allow all colors to be shown in dropdown
+                enforceWhitelist: false,
+                // Display dropdown items based on the colorMapping array
+                whitelist: colorArray,
+                dropdown: {
+                    enabled: 1, // Show the dropdown as the user types
+                    classname: 'extra-properties' // Custom class for the suggestions dropdown
                 }
-
-                var span = document.createElement('span');
-                var color = item.element.getAttribute('data-color');
-
-                var colorCircle = document.createElement('div');
-                colorCircle.style.display = 'inline-block';
-                colorCircle.style.width = '25px';
-                colorCircle.style.height = '25px';
-                colorCircle.style.borderRadius = '50%';
-                colorCircle.style.backgroundColor = color;
-                colorCircle.style.marginRight = '8px';
-                colorCircle.style.verticalAlign = 'middle';
-
-                span.appendChild(colorCircle);
-
-                var textNode = document.createTextNode(item.text);
-                span.appendChild(textNode);
-
-                return $(span);
-            }
-
-            // Init Select2 --- more info: https://select2.org/
-            $('#kt_docs_select2_country').select2({
-                templateSelection: optionFormat,
-                templateResult: optionFormat
             });
+
+            // Show all color options when the input is clicked
+            var inputElement = document.querySelector('#kt_tagify_color');
+
+            inputElement.addEventListener('click', function() {
+                tagify.dropdown.show.call(tagify);
+            });
+
+            // Add the first 2 tags and make them readonly
+            var tagsToAdd = tagify.settings.whitelist.slice(0, 2);
+            tagify.addTags(tagsToAdd);
+
+
+
             // Product Pricing
             function calculatePrices() {
                 const boxContains = parseFloat(document.getElementById('box_contains').value) || 0;
@@ -636,6 +671,7 @@
             document.getElementById('box_contains').addEventListener('input', calculatePrices);
             document.getElementById('box_price').addEventListener('input', calculatePrices);
             document.getElementById('box_discount_price').addEventListener('input', calculatePrices);
+
             // Product Multiimage Submit
             var uploadedDocumentMap = {}; // Assuming you have this variable defined somewhere
 
