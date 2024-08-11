@@ -221,7 +221,7 @@
                                         <option></option>
                                         @foreach ($blogCategories as $blogcategory)
                                             <option value="{{ $blogcategory->id }}"
-                                                {{ in_array($blogcategory->id, $blogPost->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ in_array($blogcategory->id, $blogPost->category_id->pluck('id')->toArray()) ? 'selected' : '' }}>
                                                 {{ $blogcategory->name }}
                                             </option>
                                         @endforeach
@@ -235,7 +235,7 @@
                                         <option></option>
                                         @foreach ($blogTags as $blogtag)
                                             <option value="{{ $blogtag->id }}"
-                                                {{ in_array($blogtag->id, $blogPost->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ in_array($blogtag->id, $blogPost->tag_id->pluck('id')->toArray()) ? 'selected' : '' }}>
                                                 {{ $blogtag->name }}
                                             </option>
                                         @endforeach

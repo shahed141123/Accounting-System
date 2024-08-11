@@ -16,10 +16,10 @@ return new class extends Migration
             $table->json('category_id')->nullable()->comment('multi_id');
             $table->json('tag_id')->nullable()->comment('multi_id');
             $table->enum('featured', ['0', '1'])->default('0')->nullable();
-            $table->string('type')->nullable();
+            $table->string('type', 255)->nullable();
             $table->string('badge')->nullable();
-            $table->text('title')->nullable();
-            $table->text('slug')->nullable();
+            $table->string('title', 255)->nullable();
+            $table->string('slug', 255)->unique()->nullable();
             $table->text('header')->nullable();
             $table->longText('short_description')->comment('text-editor')->nullable();
             $table->longText('long_description')->comment('text-editor')->nullable();

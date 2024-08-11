@@ -21,191 +21,45 @@ h h<x-admin-app-layout :title="'Blog Posts'">
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                 <thead class="">
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th>Sl No.</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th width="5%">Sl No.</th>
+                        <th width="45%">Title</th>
+                        <th width="15%">Author</th>
+                        <th width="10%">Create date</th>
+                        <th width="12%">Status</th>
+                        <th width="13%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($blogPosts as $post)
                         <tr>
-                            <td>{{ $post->name }}</td>
-                            <td>{{ $post->position }}</td>
-                            <td>{{ $post->office }}</td>
-                            <td>{{ $post->age }}</td>
-                            <td>{{ $post->start_date }}</td>
-                            <td>{{ $post->salary }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->author }}</td>
+                            <td>{{ $post->created_at->format('d-M-Y') }}</td>
+                            <td><span class="badge {{ $post->status == 'publish' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $post->status == 'publish' ? 'Publish' : 'Unpublish' }}</td>
+                            <td>
+                                {{-- <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                    data-bs-toggle="modal" data-bs-target="#faqViewModal_{{ $post->id }}">
+                                    <i class="fa-solid fa-expand"></i>
+                                </a> --}}
+                                <a href="{{ route('admin.blog-post.edit', $post->id) }}"
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="{{ route('admin.blog-post.destroy', $post->id) }}"
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
+                                    data-kt-docs-table-filter="delete_row">
+                                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    {{-- Blog Category Create Modal --}}
-    <div class="modal fade" tabindex="-1" id="blogCategoryCreate">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header py-3 bg-light-primary">
-                    <h3 class="modal-title">Create Blog Category</h3>
-                    <button type="button" class="btn btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
-                        aria-label="Close">
-                        <i class="fa-solid fa-xmark fs-1"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="kt_docs_formvalidation_text" class="form"
-                        action="{{ route('admin.blog-category.store') }}" method="post">
-                        @csrf
-                        <div class="fv-row mb-5">
-                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Category
-                                Title</x-metronic.label>
-                            <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
-                                placeholder="Set Blog Category Title" :valu="old('name')" />
-                        </div>
-                        <div class="fv-row mb-5">
-                            <x-metronic.label class="fw-semibold fs-6 mb-2">Blog Meta Title</x-metronic.label>
-                            <x-metronic.input type="text" name="meta_title" class="form-control mb-3 mb-lg-0"
-                                placeholder="Set Blog Meta Title" :valu="old('meta_title')" />
-                        </div>
-                        <div class="fv-row mb-5">
-                            <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Image') }}
-                            </x-metronic.label>
-                            <x-metronic.file-input id="image" name="image" class="form-control mb-3 mb-lg-0"
-                                :value="old('image')"></x-metronic.file-input>
-                        </div>
-                        <div class="fv-row mb-5">
-                            <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                                {{ __('Select a Status ') }}</x-metronic.label>
-                            <x-metronic.select-option id="status" name="status" data-hide-search="true"
-                                data-placeholder="Select an option">
-                                <option></option>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </x-metronic.select-option>
-                        </div>
-                        <div class="fv-row mb-5">
-                            <x-metronic.label class="fw-semibold fs-6 mb-2">Description</x-metronic.label>
-                            <x-metronic.textarea class="form-control" placeholder="Set The Description"
-                                name="description" id="floatingTextarea2" style="height: 100px"
-                                :valu="old('description')"></x-metronic.textarea>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button id="kt_docs_formvalidation_text_submit" type="submit" class="btn btn-primary">
-                                <span class="indicator-label">Create Category</span>
-                                <span class="indicator-progress">Please wait... <span
-                                        class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
     {{-- Blog Category Create Modal End --}}
-    @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const form = document.getElementById('kt_docs_formvalidation_text');
-                const submitButton = document.getElementById('kt_docs_formvalidation_text_submit');
 
-                var validator = FormValidation.formValidation(
-                    form, {
-                        fields: {
-                            'name': {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'This Field Required'
-                                    }
-                                }
-                            },
-                            'status': {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'This Field Required'
-                                    }
-                                }
-                            },
-                        },
-                        plugins: {
-                            trigger: new FormValidation.plugins.Trigger(),
-                            bootstrap: new FormValidation.plugins.Bootstrap5({
-                                rowSelector: '.fv-row',
-                                eleInvalidClass: '',
-                                eleValidClass: ''
-                            })
-                        }
-                    }
-                );
-
-                submitButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (validator) {
-                        validator.validate().then(function(status) {
-                            if (status == 'Valid') {
-                                submitButton.setAttribute('data-kt-indicator', 'on');
-                                submitButton.disabled = true;
-
-                                const formData = new FormData(form);
-                                fetch(form.action, {
-                                        method: 'POST',
-                                        headers: {
-                                            'X-CSRF-TOKEN': document.querySelector(
-                                                'meta[name="csrf-token"]').getAttribute(
-                                                'content')
-                                        },
-                                        body: formData
-                                    })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        submitButton.removeAttribute('data-kt-indicator');
-                                        submitButton.disabled = false;
-                                        if (data.success) {
-                                            Swal.fire({
-                                                text: "Form has been successfully submitted!",
-                                                icon: "success",
-                                                buttonsStyling: false,
-                                                confirmButtonText: "Ok, got it!",
-                                                customClass: {
-                                                    confirmButton: "btn btn-primary"
-                                                }
-                                            }).then(function() {
-                                                window.location.reload();
-                                            });
-                                        } else {
-                                            Swal.fire({
-                                                text: data.message ||
-                                                    "An error occurred. Please try again.",
-                                                icon: "error",
-                                                buttonsStyling: false,
-                                                confirmButtonText: "Ok, got it!",
-                                                customClass: {
-                                                    confirmButton: "btn btn-primary"
-                                                }
-                                            });
-                                        }
-                                    })
-                                    .catch(error => {
-                                        console.error('Error:', error);
-                                        submitButton.removeAttribute('data-kt-indicator');
-                                        submitButton.disabled = false;
-                                        Swal.fire({
-                                            text: "An error occurred. Please try again.",
-                                            icon: "error",
-                                            buttonsStyling: false,
-                                            confirmButtonText: "Ok, got it!",
-                                            customClass: {
-                                                confirmButton: "btn btn-primary"
-                                            }
-                                        });
-                                    });
-                            }
-                        });
-                    }
-                });
-            });
-        </script>
-    @endpush
 </x-admin-app-layout>

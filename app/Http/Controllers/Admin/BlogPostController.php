@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -48,8 +49,8 @@ class BlogPostController extends Controller
         try {
             // Custom validation rules
             $validator = Validator::make($request->all(), [
-                'category_id' => 'nullable|json',
-                'tag_id' => 'nullable|json',
+                'category_id' => 'nullable',
+                'tag_id' => 'nullable',
                 'featured' => 'nullable|in:0,1',
                 'type' => 'nullable|string|max:255',
                 'badge' => 'nullable|string|max:255',
@@ -59,7 +60,7 @@ class BlogPostController extends Controller
                 'long_description' => 'nullable|string',
                 'author' => 'nullable|string|max:255',
                 'address' => 'nullable|string|max:255',
-                'tags' => 'nullable|json',
+                'tags' => 'nullable',
                 'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
@@ -74,7 +75,10 @@ class BlogPostController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                foreach ($validator->messages()->all() as $message) {
+                    Session::flash('error', $message);
+                }
+                return redirect()->back()->withInput();
             }
 
             // Handle file uploads
@@ -88,7 +92,7 @@ class BlogPostController extends Controller
             foreach ($files as $key => $file) {
                 if ($file) {
                     $filePath = 'blog_posts/' . $key;
-                    $uploadedFiles[$key] = $this->customUpload($file, $filePath);
+                    $uploadedFiles[$key] = customUpload($file, $filePath);
                     if ($uploadedFiles[$key]['status'] === 0) {
                         return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
                     }
@@ -167,8 +171,8 @@ class BlogPostController extends Controller
 
             // Custom validation rules
             $validator = Validator::make($request->all(), [
-                'category_id' => 'nullable|json',
-                'tag_id' => 'nullable|json',
+                'category_id' => 'nullable',
+                'tag_id' => 'nullable',
                 'featured' => 'nullable|in:0,1',
                 'type' => 'nullable|string|max:255',
                 'badge' => 'nullable|string|max:255',
@@ -178,7 +182,7 @@ class BlogPostController extends Controller
                 'long_description' => 'nullable|string',
                 'author' => 'nullable|string|max:255',
                 'address' => 'nullable|string|max:255',
-                'tags' => 'nullable|json',
+                'tags' => 'nullable',
                 'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
@@ -193,9 +197,11 @@ class BlogPostController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                foreach ($validator->messages()->all() as $message) {
+                    Session::flash('error', $message);
+                }
+                return redirect()->back()->withInput();
             }
-
             // Handle file uploads
             $files = [
                 'logo' => $request->file('logo'),

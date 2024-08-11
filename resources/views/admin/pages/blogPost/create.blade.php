@@ -155,26 +155,26 @@
                                     <x-metronic.label class="form-label">{{ __('Blog Header') }}</x-metronic.label>
                                     <x-metronic.textarea id="header" :value="old('header')" name="header"
                                         placeholder="Add Blog Header" class="form-control mb-2" cols="30"
-                                        rows="3">{{ old('banner_image') }}</x-metronic.textarea>
+                                        rows="3">{{ old('header') }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">{{ __('Address') }}</x-metronic.label>
                                     <x-metronic.textarea id="address" :value="old('address')" name="address"
                                         placeholder="Add Blog Address" class="form-control mb-2" cols="30"
-                                        rows="3">{{ old('banner_image') }}</x-metronic.textarea>
+                                        rows="3">{{ old('address') }}</x-metronic.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label
                                         class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
-                                    <textarea name="overview_editor" class="ckeditor">{!! old('overview_editor') !!}</textarea>
+                                    <textarea name="short_description" class="ckeditor">{!! old('short_description') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog overview here.
+                                        Add blog Short Description here.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label
                                         class="form-label">{{ __('Blog Long Description') }}</x-metronic.label>
-                                    <textarea name="description_editor" class="ckeditor">{!! old('description_editor') !!}</textarea>
+                                    <textarea name="long_description" class="ckeditor">{!! old('long_description') !!}</textarea>
                                     <div class="text-muted fs-7">
                                         Add blog Description here.
                                     </div>
@@ -182,9 +182,9 @@
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label
                                         class="form-label">{{ __('Blog Footer') }}</x-metronic.label>
-                                    <textarea name="specification_editor" class="ckeditor">{!! old('specification_editor') !!}</textarea>
+                                    <textarea name="footer" class="ckeditor">{!! old('footer') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog specification here.
+                                        Add blog Footer here.
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('admin.blog-post.index') }}" class="btn btn-danger me-5">
-                        Back To Product List
+                        Back To List
                     </a>
                     <button type="submit" class="btn btn-primary">
                         <span class="indicator-label"> Save Changes
@@ -290,18 +290,7 @@
                     this.saveInterval = setInterval(() => {
                         if (this.change.length() > 0) {
                             console.log('Saving changes', this.change);
-                            // Send partial changes
-                            /*
-                            $.post(this.endpoint, {
-                                partial: JSON.stringify(this.change)
-                            });
-                            */
-                            // Send entire document
-                            /*
-                            $.post(this.endpoint, {
-                                doc: JSON.stringify(this.quill.getContents())
-                            });
-                            */
+
                             this.change = new Delta();
                         }
                     }, 5 * 1000);
@@ -322,9 +311,9 @@
             }
 
             // Initialize multiple editors
-            const overviewEditor = new QuillEditor('overview_editor', '/save-overview');
-            const descriptionEditor = new QuillEditor('description_editor', '/save-description');
-            const specificationEditor = new QuillEditor('specification_editor', '/save-specification');
+            const overviewEditor = new QuillEditor('short_description', '/save-overview');
+            const descriptionEditor = new QuillEditor('long_description', '/save-description');
+            const specificationEditor = new QuillEditor('footer', '/save-specification');
             const metaEditor = new QuillEditor('meta_editor', '/meta-description');
         </script>
     @endpush

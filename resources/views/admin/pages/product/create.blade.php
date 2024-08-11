@@ -127,21 +127,13 @@
                                     {!! $categoriesOptions !!}
                                 </x-metronic.select-option>
                             </div>
-                            {{-- <div class="fv-row">
-                                <x-metronic.label class="form-label">Attribute Id</x-metronic.label>
-                                <select class="form-select mb-2" name="attribute_id" data-control="select2"
-                                    data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
-                                    <option></option>
-                                    <option :value="old('address')">Computers</option>
-                                </select>
-                            </div> --}}
                             <div class="fv-row">
                                 <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
                                     {{ __('Add Color') }}
                                 </x-metronic.label>
                                 <!-- Input element for Tagify -->
-                                <input class="form-control d-flex align-items-center" name="color_id"
-                                    :value="old('color_id')" id="kt_tagify_color" />
+                                <input class="form-control d-flex align-items-center" name="color"
+                                    :value="old('color')" id="kt_tagify_color" />
                             </div>
                         </div>
                     </div>
@@ -196,25 +188,25 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
-                                            <input class="form-control" name="tags" value="" id="product_Tags"
+                                            <input class="form-control" name="tags" id="product_Tags"
                                                 :value="old('tags')" />
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Short Description</x-metronic.label>
                                             <x-metronic.textarea id="short_description" name="short_description"
                                                 placeholder="Add Product Short Description" class="form-control mb-2"
-                                                cols="30" rows="3"></x-metronic.textarea>
+                                                cols="30" rows="3">{!! old('short_description') !!}</x-metronic.textarea>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Overview</x-metronic.label>
-                                            <textarea name="product_overview" class="ckeditor">{!! old('product_overview') !!}</textarea>
+                                            <textarea name="overview" class="ckeditor">{!! old('overview') !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product overview here.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Description</x-metronic.label>
-                                            <textarea name="product_description" class="ckeditor">{!! old('product_description') !!}</textarea>
+                                            <textarea name="description" class="ckeditor">{!! old('description') !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product description here.
                                             </div>
@@ -222,7 +214,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product
                                                 Specification</x-metronic.label>
-                                            <textarea name="product_specification" class="ckeditor">{!! old('product_specification') !!}</textarea>
+                                            <textarea name="specification" class="ckeditor">{!! old('specification') !!}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -330,8 +322,8 @@
 
                                         <div class="mb-10 fv-row col-12">
                                             <x-metronic.label class="form-label">Barcode</x-metronic.label>
-                                            <x-metronic.input type="text" name="barcode" class="form-control mb-2"
-                                                placeholder="Barcode Number" :value="old('barcode')"></x-metronic.file-input>
+                                            <x-metronic.input type="text" name="barcode_id" class="form-control mb-2"
+                                                placeholder="Barcode Number" :value="old('barcode_id')"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">
                                                     Enter the product barcode number.
                                                 </div>
@@ -381,9 +373,9 @@
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Unit Discount</x-metronic.label>
-                                            <x-metronic.input type="number" name="unit_discount" id="unit_discount"
+                                            <x-metronic.input type="number" name="unit_discount_price" id="unit_discount"
                                                 class="form-control mb-2"
-                                                placeholder="how much the unit discount price" :value="old('unit_discount')"
+                                                placeholder="how much the unit discount price" :value="old('unit_discount_price')"
                                                 readonly></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much unit discount price.</div>
                                         </div>
@@ -397,7 +389,7 @@
                                         <div class="fv-row col-4 mt-10">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_refurbished" type="checkbox"
-                                                    :value="old('address')" id="flexCheckDefault" />
+                                                    value="1" id="flexCheckDefault" />
                                                 <x-metronic.label class="form-check-label" for="flexCheckDefault">
                                                     Is Refurbished
                                                 </x-metronic.label>
@@ -650,8 +642,8 @@
             });
 
             // Add the first 2 tags and make them readonly
-            var tagsToAdd = tagify.settings.whitelist.slice(0, 2);
-            tagify.addTags(tagsToAdd);
+            // var tagsToAdd = tagify.settings.whitelist.slice(0, 2);
+            // tagify.addTags(tagsToAdd);
 
 
 
