@@ -1,4 +1,4 @@
-<x-frontend-app-layout :title="'Your Dashboard'">
+<x-frontend-app-layout :title="'About Us'">
     <div class="breadcrumb-wrap">
         <div class="banner b-top bg-size bread-img">
           <img class="bg-img bg-top" src="img/banner-p.jpg" alt="banner" style="display: none;">

@@ -30,7 +30,8 @@
                             </div>
                             <!-- First Name -->
                             <div class="ps-form__group col-5">
-                                <x-input-label class="ps-form__label" for="first_name">First Name <span class="text-danger">*</span></x-input-label>
+                                <x-input-label class="ps-form__label" for="first_name">First Name <span
+                                        class="text-danger">*</span></x-input-label>
                                 <x-text-input id="first_name" class="form-control ps-form__input" type="text"
                                     name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name" />
                                 <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
@@ -119,8 +120,9 @@
                                                         :value="__('House/Block/Road')" />
                                                     <div class="input-group">
                                                         <x-text-input id="address_one"
-                                                            class="form-control ps-form__input" type="text" :value="old('address_one')"
-                                                            name="address_one" required autocomplete="address_one" />
+                                                            class="form-control ps-form__input" type="text"
+                                                            :value="old('address_one')" name="address_one" required
+                                                            autocomplete="address_one" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('address_one')" class="mt-2" />
                                                 </div>
@@ -131,8 +133,9 @@
                                                         :value="__('Zip Code')" />
                                                     <div class="input-group">
                                                         <x-text-input id="zipcode"
-                                                            class="form-control ps-form__input" type="text" :value="old('zipcode')"
-                                                            name="zipcode" required autocomplete="zipcode" />
+                                                            class="form-control ps-form__input" type="text"
+                                                            :value="old('zipcode')" name="zipcode" required
+                                                            autocomplete="zipcode" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
                                                 </div>
@@ -144,7 +147,8 @@
                                                     <div class="input-group">
                                                         <x-text-input id="state"
                                                             class="form-control ps-form__input" type="text"
-                                                            name="state" :value="old('state')" required autocomplete="state" />
+                                                            name="state" :value="old('state')" required
+                                                            autocomplete="state" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                                 </div>
@@ -156,7 +160,8 @@
                                                     <div class="input-group">
                                                         <x-text-input id="address_two"
                                                             class="form-control ps-form__input" type="text"
-                                                            name="address_two" :value="old('address_two')" required autocomplete="address_two" />
+                                                            name="address_two" :value="old('address_two')" required
+                                                            autocomplete="address_two" />
                                                     </div>
                                                     <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
                                                 </div>
@@ -282,7 +287,8 @@
                                                             <option value="linked_in">Linked In</option>
                                                             <option value="trade_show">Trade Show</option>
                                                             <option value="word_of_mouth">Word of Mouth</option>
-                                                            <option value="existing_customer">Existing Customer</option>
+                                                            <option value="existing_customer">Existing Customer
+                                                            </option>
                                                             <option value="other">Other</option>
                                                         </select>
                                                     </div>
@@ -387,7 +393,9 @@
                                             <div class="form-check">
                                                 <input type="checkbox" class="form-check-input" id="terms_condition"
                                                     name="terms_condition" value="yes">
-                                                <label class="form-check-label" for="terms_condition">I accept the Terms and Conditions & Privacy Policy. <span class="text-danger">*</span></label>
+                                                <label class="form-check-label" for="terms_condition">I accept the
+                                                    Terms and Conditions & Privacy Policy. <span
+                                                        class="text-danger">*</span></label>
                                             </div>
                                         </div>
                                     </div>
