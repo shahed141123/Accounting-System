@@ -109,6 +109,7 @@
     <script src="{{ asset($hostUrl . 'plugins/global/plugins.bundle.js') }}"></script>
 
     <!--end::Page Vendors Javascript-->
+
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset($hostUrl . 'js/custom/account/settings/signin-methods.js') }}"></script>
     <script src="{{ asset($hostUrl . 'js/custom/account/settings/profile-details.js') }}"></script>
@@ -128,8 +129,6 @@
     <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/users-search.js') }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <script src="{{ asset('admin/js/custom.js') }}"></script>
-    @stack('scripts')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 
