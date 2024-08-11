@@ -17,7 +17,7 @@
                                             <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ route('product.details',$product->slug) }}">
                                                     <figure>
                                                         @foreach ($product->multiImages->slice(0, 2) as $image) 
-                                                            <img src="{{ asset($image) }}" alt="alt" />
+                                                            <img src="{{ asset($image->photo) }}" alt="alt" />
                                                         @endforeach
                                                     </figure>
                                                 </a>

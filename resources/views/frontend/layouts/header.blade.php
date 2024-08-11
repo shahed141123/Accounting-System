@@ -4,21 +4,37 @@
     }
 </style>
 <header class="ps-header ps-header--13">
-    <div class="ps-noti">
-        <div class="container">
-            <p class="m-0">Welcome to PiqPaq, Your <strong>Premier Wholesale</strong> Destination!</p>
-        </div><a class="ps-noti__close"><i class="icon-cross"></i></a>
-    </div>
-    <div class="ps-header__top">
-        <div class="container">
-            <div class="ps-header__text">Need help? <strong>0020 500 - 4564 - 000</strong></div>
+    @if (!empty($site->website_name) || !empty($site->site_motto))
+        <div class="ps-noti">
+            <div class="container">
+                <p class="m-0">Welcome to {{ $site->website_name }}, {{ $site->site_motto }}</p>
+            </div>
+            <a class="ps-noti__close">
+                <i class="icon-cross"></i>
+            </a>
         </div>
-    </div>
+    @endif
+    @if (!empty($site->primary_phone))
+        <div class="ps-header__top">
+            <div class="container">
+                <div class="ps-header__text">Need help? <strong>{{ $site->primary_phone }}</strong></div>
+            </div>
+        </div>
+    @endif
     <div class="ps-header__middle">
         <div class="container">
-            <div class="ps-logo"><a href="index.html"> <img src="img/logo.png" alt><img class="sticky-logo"
-                        src="img/logo.png" alt></a></div><a class="ps-menu--sticky" href="#"><i
-                    class="fa fa-bars"></i></a>
+            <div class="ps-logo">
+                <a href="{{ route('home') }}">
+                    <img src="{{ !empty($site->site_logo_black) && file_exists(public_path('storage/settings/' . $site->site_logo_black)) ? asset('storage/settings/' . $site->site_logo_black) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
+                        alt>
+                    <img class="sticky-logo"
+                        src="{{ !empty($site->site_logo_black) && file_exists(public_path('storage/settings/' . $site->site_logo_black)) ? asset('storage/settings/' . $site->site_logo_black) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
+                        alt>
+                </a>
+            </div>
+            <a class="ps-menu--sticky" href="#">
+                <i class="fa fa-bars"></i>
+            </a>
             <div class="ps-header__right">
                 <ul class="ps-header__icons">
                     <li><a class="ps-header__item open-search" href="#"><i class="icon-magnifier"></i></a></li>
@@ -51,7 +67,8 @@
                     </li>
 
 
-                    <li><a class="ps-header__item" href="#" id="cart-mini"><i class="icon-cart-empty"></i><span
+                    <li>
+                        <a class="ps-header__item" href="#" id="cart-mini"><i class="icon-cart-empty"></i><span
                                 class="badge">2</span></a>
                         <div class="ps-cart--mini">
                             <ul class="ps-cart__items">
@@ -196,16 +213,22 @@
                     </ul>
                 </nav>
             </div>
-            <div class="ps-navigation__right">Need help? <strong>0020 500 - 4564 - 000</strong></div>
+            @if (!empty($site->primary_phone))
+                <div class="ps-navigation__right">Need help? <strong>{{ $site->primary_phone }}</strong></div>
+            @endif
+
         </div>
     </div>
 </header>
 <header class="ps-header ps-header--13 ps-header--mobile">
-    <div class="ps-noti">
-        <div class="container">
-            <p class="m-0">Welcome to PiqPaq, Your <strong>Premier Wholesale</strong> Destination!</p>
-        </div><a class="ps-noti__close"><i class="icon-cross"></i></a>
-    </div>
+    @if (!empty($site->website_name) || !empty($site->site_motto))
+        <div class="ps-noti">
+            <div class="container">
+                <p class="m-0">Welcome to {{ $site->website_name }}, {{ $site->site_motto }}</p>
+            </div>
+            <a class="ps-noti__close"><i class="icon-cross"></i></a>
+        </div>
+    @endif
     <div class="ps-header__middle">
         <div class="container">
             <div class="ps-header__left">

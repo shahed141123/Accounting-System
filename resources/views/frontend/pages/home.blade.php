@@ -97,8 +97,8 @@
                                                 <a class="ps-product__image" href="{{ route('product.details',$latest_product->slug) }}">
                                                     <figure>
                                                         @foreach ($latest_product->multiImages->slice(0, 2) as $image)
-                                                            <img src="{{ asset($image) }}"
-                                                                alt="{{ $latest_product->meta_title }}" />
+                                                            <img src="{{ asset($image->photo) }}"
+                                                                alt="{{ $latest_product->meta_title }}"/>
                                                         @endforeach
                                                     </figure>
                                                 </a>
