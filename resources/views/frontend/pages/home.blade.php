@@ -5,7 +5,8 @@
                 <section class="ps-section--banner">
                     <div class="row">
                         <div class="col-12 col-md-8">
-                            <div class="ps-banner"><img class="ps-banner__imagebg" src="{{ asset('frontend') }}/img/promotion/bg-banner18.jpg" alt>
+                            <div class="ps-banner"><img class="ps-banner__imagebg"
+                                    src="{{ asset('frontend') }}/img/promotion/bg-banner18.jpg" alt>
                                 <div class="ps-banner__block">
                                     <div class="ps-banner__content">
                                         <h2 class="ps-banner__title text-white">Convenient<br>Solutions Await!</h2>
@@ -34,18 +35,19 @@
                 <div class="ps-promo ps-promo--home">
                     <div class="row">
                         <div class="col-12 col-md-4">
-                            <div class="ps-promo__item"><img class="ps-promo__banner" src="{{ asset('frontend') }}/img/promotion/bg-promo1.jpg"
-                                    alt="alt" />
+                            <div class="ps-promo__item"><img class="ps-promo__banner"
+                                    src="{{ asset('frontend') }}/img/promotion/bg-promo1.jpg" alt="alt" />
                                 <div class="ps-promo__content"><span class="ps-promo__badge">New</span>
                                     <h4 class="text-dark ps-promo__name">Power Effect <br />Pro Series</h4>
-                                    <div class="ps-promo__image"><img src="{{ asset('frontend') }}/img/icon/icon10.png" alt="" /></div>
+                                    <div class="ps-promo__image"><img src="{{ asset('frontend') }}/img/icon/icon10.png"
+                                            alt="" /></div>
                                     <a class="btn-green ps-promo__btn" href="category-grid.html">More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
-                            <div class="ps-promo__item"><img class="ps-promo__banner" src="{{ asset('frontend') }}/img/promotion/bg-promo2.jpg"
-                                    alt="alt" />
+                            <div class="ps-promo__item"><img class="ps-promo__banner"
+                                    src="{{ asset('frontend') }}/img/promotion/bg-promo2.jpg" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-white ps-promo__name">Eczema <br />Treatment CBD <br />Ointement
                                     </h4>
@@ -55,8 +57,8 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
-                            <div class="ps-promo__item"><img class="ps-promo__banner" src="{{ asset('frontend') }}/img/promotion/bg-promo3.jpg"
-                                    alt="alt" />
+                            <div class="ps-promo__item"><img class="ps-promo__banner"
+                                    src="{{ asset('frontend') }}/img/promotion/bg-promo3.jpg" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-white ps-promo__name">SFP 50+ <br />Suncream</h4>
                                     <div class="ps-promo__meta">
@@ -72,25 +74,13 @@
             <section class="ps-product--type">
                 <div class="container">
                     <h3 class="ps-section__title">Popular categories</h3>
-                    <div class="ps-category__content"><a class="ps-category__item" href="category-grid-dark.html"><img
-                                class="ps-category__icon" src="{{ asset('frontend') }}/img/icon/icon13.png" alt>
-                            <h6 class="ps-category__name">Food Packaging</h6>
-                        </a><a class="ps-category__item" href="category-grid-dark.html"><img class="ps-category__icon"
-                                src="{{ asset('frontend') }}/img/icon/icon14.png" alt>
-                            <h6 class="ps-category__name">Meal Prep Essentials</h6>
-                        </a><a class="ps-category__item" href="category-grid-dark.html"><img class="ps-category__icon"
-                                src="{{ asset('frontend') }}/img/icon/icon15.png" alt>
-                            <h6 class="ps-category__name">Eco-Friendly Containers</h6>
-                        </a><a class="ps-category__item" href="category-grid-dark.html"><img class="ps-category__icon"
-                                src="{{ asset('frontend') }}/img/icon/icon16.png" alt>
-                            <h6 class="ps-category__name">Takeout Solutions</h6>
-                        </a><a class="ps-category__item" href="category-grid-dark.html"><img class="ps-category__icon"
-                                src="{{ asset('frontend') }}/img/icon/icon17.png" alt>
-                            <h6 class="ps-category__name">Pizza Packaging</h6>
-                        </a><a class="ps-category__item" href="category-grid-dark.html"><img class="ps-category__icon"
-                                src="{{ asset('frontend') }}/img/icon/icon18.png" alt>
-                            <h6 class="ps-category__name">Disposalbe Containers</h6>
-                        </a>
+                    <div class="ps-category__content">
+                        @foreach ($categorys as $category)
+                            <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
+                                <img class="ps-category__icon" src="{{ asset($category->logo) }}" alt>
+                                <h6 class="ps-category__name">{{ $category->name }}</h6>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </section>
@@ -99,716 +89,88 @@
                     <h3 class="ps-section__title">Latest products</h3>
                     <div class="ps-section__content">
                         <div class="row m-0">
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
+                            @foreach ($latest_products as $latest_product)
+                                <div class="col-6 col-md-4 col-lg-2dot4 p-0">
+                                    <div class="ps-section__product">
+                                        <div class="ps-product ps-product--standard">
+                                            <div class="ps-product__thumbnail">
+                                                <a class="ps-product__image" href="{{ route('product.details',$latest_product->slug) }}">
+                                                    <figure>
+                                                        @foreach ($latest_product->multiImages->slice(0, 2) as $image)
+                                                            <img src="{{ asset($image) }}"
+                                                                alt="{{ $latest_product->meta_title }}" />
+                                                        @endforeach
+                                                    </figure>
+                                                </a>
+                                                <div class="ps-product__actions">
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Wishlist"><a href="#"><i
+                                                                class="fa fa-heart-o"></i></a></div>
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Quick view"><a href="#"
+                                                            data-toggle="modal" data-target="#popupQuickview"><i
+                                                                class="fa fa-search"></i></a></div>
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Add to cart"><a href="#"
+                                                            data-toggle="modal" data-target="#popupAddcart"><i
+                                                                class="fa fa-shopping-basket"></i></a></div>
+                                                </div>
+                                                <div class="ps-product__badge">
+                                                    <div class="ps-badge ps-badge--sale">Sale</div>
+                                                </div>
                                             </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta">
-                                                <button class="btn btn-info btn-block">Login to view price</button>
-                                                <!-- <span class="ps-product__price sale">£9.99</span>
-                                                <span class="ps-product__del">$38.24</span> -->
-                                            </div>
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
+                                            <div class="ps-product__content">
+                                                <h5 class="ps-product__title">
+                                                    <a href="{{ route('product.details',$latest_product->slug) }}">
+                                                        {{ $latest_product->name }}
+                                                    </a>
+                                                </h5>
+                                                <div class="ps-product__meta">
+                                                    <button class="btn btn-info btn-block">Login to view price</button>
+                                                    <!-- <span class="ps-product__price sale">£9.99</span>
+                                                    <span class="ps-product__del">$38.24</span> -->
+                                                </div>
+                                                <div class="ps-product__desc">
+                                                    <ul class="ps-product__list">
+                                                        <li>Study history up to 30 days</li>
+                                                        <li>Up to 5 users simultaneously</li>
+                                                        <li>Has HEALTH certificate</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ps-product__actions ps-product__group-mobile">
+                                                    <div class="ps-product__quantity">
+                                                        <div class="def-number-input number-input safari_only">
+                                                            <button class="minus"
+                                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
+                                                                    class="icon-minus"></i></button>
+                                                            <input class="quantity" min="0" name="quantity"
+                                                                value="1" type="number" />
+                                                            <button class="plus"
+                                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
+                                                                    class="icon-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
+                                                            href="#" data-toggle="modal"
+                                                            data-target="#popupAddcart">Add to cart</a></div>
+                                                    <div class="ps-product__item cart" data-toggle="tooltip"
+                                                        data-placement="left" title="Add to cart"><a
+                                                            href="#"><i class="fa fa-shopping-basket"></i></a>
+                                                    </div>
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Wishlist"><a
+                                                            href="wishlist.html"><i class="fa fa-heart-o"></i></a>
+                                                    </div>
+                                                    <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                        data-placement="left" title="Add to compare"><a
+                                                            href="compare.html"><i class="fa fa-align-left"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="product-details.html">
-                                                <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                        src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
-                                                            class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a href="product-details.html">3-layer mask
-                                                    with an elastic band (1 piece)</a></h5>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">£9.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -822,7 +184,8 @@
                                     src="{{ asset('frontend') }}/img/promotion/bg-banner20.jpg" alt="alt" />
                                 <div class="ps-promo__content"><span class="ps-promo__badge">New</span>
                                     <h4 class="text-white ps-promo__name">FaceWash <br />up to -20%</h4>
-                                    <div class="ps-promo__image"><img src="{{ asset('frontend') }}/img/icon/icon19.png" alt="" />
+                                    <div class="ps-promo__image"><img
+                                            src="{{ asset('frontend') }}/img/icon/icon19.png" alt="" />
                                     </div><a class="btn-green ps-promo__btn" href="category-grid.html">More</a>
                                 </div>
                             </div>
@@ -932,30 +295,31 @@
                         </div>
                     </div>
                     <div class="ps-section__carousel">
-                        <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true"
-                            data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
-                            data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
-                            data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000"
-                            data-owl-mousedrag="on">
+                        <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="13000"
+                            data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5"
+                            data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="5"
+                            data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                             <div class="ps-section__product">
                                 <div class="ps-product ps-product--standard">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image"
                                             href="product-details.html">
-                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
+                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg"
+                                                    alt="alt" /><img
+                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg"
+                                                    alt="alt" />
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="#"><i
-                                                        class="fa fa-heart-o"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Quick view"><a href="#"
-                                                    data-toggle="modal" data-target="#popupQuickview"><i
-                                                        class="fa fa-search"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Add to cart"><a href="#"
-                                                    data-toggle="modal" data-target="#popupAddcart"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="#"><i class="fa fa-heart-o"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Quick view"><a href="#" data-toggle="modal"
+                                                    data-target="#popupQuickview"><i class="fa fa-search"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Add to cart"><a href="#" data-toggle="modal"
+                                                    data-target="#popupAddcart"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
                                         </div>
                                         <div class="ps-product__badge">
@@ -995,8 +359,8 @@
                                             <div class="ps-product__item cart" data-toggle="tooltip"
                                                 data-placement="left" title="Add to cart"><a href="#"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="wishlist.html"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="wishlist.html"><i
                                                         class="fa fa-heart-o"></i></a></div>
                                             <div class="ps-product__item rotate" data-toggle="tooltip"
                                                 data-placement="left" title="Add to compare"><a
@@ -1009,21 +373,23 @@
                                 <div class="ps-product ps-product--standard">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image"
                                             href="product-details.html">
-                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
+                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg"
+                                                    alt="alt" /><img
+                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg"
+                                                    alt="alt" />
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="#"><i
-                                                        class="fa fa-heart-o"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Quick view"><a href="#"
-                                                    data-toggle="modal" data-target="#popupQuickview"><i
-                                                        class="fa fa-search"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Add to cart"><a href="#"
-                                                    data-toggle="modal" data-target="#popupAddcart"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="#"><i class="fa fa-heart-o"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Quick view"><a href="#" data-toggle="modal"
+                                                    data-target="#popupQuickview"><i class="fa fa-search"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Add to cart"><a href="#" data-toggle="modal"
+                                                    data-target="#popupAddcart"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
                                         </div>
                                         <div class="ps-product__badge">
@@ -1064,8 +430,8 @@
                                             <div class="ps-product__item cart" data-toggle="tooltip"
                                                 data-placement="left" title="Add to cart"><a href="#"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="wishlist.html"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="wishlist.html"><i
                                                         class="fa fa-heart-o"></i></a></div>
                                             <div class="ps-product__item rotate" data-toggle="tooltip"
                                                 data-placement="left" title="Add to compare"><a
@@ -1078,21 +444,23 @@
                                 <div class="ps-product ps-product--standard">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image"
                                             href="product-details.html">
-                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
+                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg"
+                                                    alt="alt" /><img
+                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg"
+                                                    alt="alt" />
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="#"><i
-                                                        class="fa fa-heart-o"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Quick view"><a href="#"
-                                                    data-toggle="modal" data-target="#popupQuickview"><i
-                                                        class="fa fa-search"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Add to cart"><a href="#"
-                                                    data-toggle="modal" data-target="#popupAddcart"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="#"><i class="fa fa-heart-o"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Quick view"><a href="#" data-toggle="modal"
+                                                    data-target="#popupQuickview"><i class="fa fa-search"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Add to cart"><a href="#" data-toggle="modal"
+                                                    data-target="#popupAddcart"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
                                         </div>
                                         <div class="ps-product__badge">
@@ -1133,8 +501,8 @@
                                             <div class="ps-product__item cart" data-toggle="tooltip"
                                                 data-placement="left" title="Add to cart"><a href="#"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="wishlist.html"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="wishlist.html"><i
                                                         class="fa fa-heart-o"></i></a></div>
                                             <div class="ps-product__item rotate" data-toggle="tooltip"
                                                 data-placement="left" title="Add to compare"><a
@@ -1147,21 +515,23 @@
                                 <div class="ps-product ps-product--standard">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image"
                                             href="product-details.html">
-                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
+                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg"
+                                                    alt="alt" /><img
+                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg"
+                                                    alt="alt" />
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="#"><i
-                                                        class="fa fa-heart-o"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Quick view"><a href="#"
-                                                    data-toggle="modal" data-target="#popupQuickview"><i
-                                                        class="fa fa-search"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Add to cart"><a href="#"
-                                                    data-toggle="modal" data-target="#popupAddcart"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="#"><i class="fa fa-heart-o"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Quick view"><a href="#" data-toggle="modal"
+                                                    data-target="#popupQuickview"><i class="fa fa-search"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Add to cart"><a href="#" data-toggle="modal"
+                                                    data-target="#popupAddcart"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
                                         </div>
                                         <div class="ps-product__badge">
@@ -1202,8 +572,8 @@
                                             <div class="ps-product__item cart" data-toggle="tooltip"
                                                 data-placement="left" title="Add to cart"><a href="#"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="wishlist.html"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="wishlist.html"><i
                                                         class="fa fa-heart-o"></i></a></div>
                                             <div class="ps-product__item rotate" data-toggle="tooltip"
                                                 data-placement="left" title="Add to compare"><a
@@ -1216,21 +586,23 @@
                                 <div class="ps-product ps-product--standard">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image"
                                             href="product-details.html">
-                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg" alt="alt" /><img
-                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg" alt="alt" />
+                                            <figure><img src="{{ asset('frontend') }}/img/products/medicine1.jpg"
+                                                    alt="alt" /><img
+                                                    src="{{ asset('frontend') }}/img/products/medicine3.jpg"
+                                                    alt="alt" />
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="#"><i
-                                                        class="fa fa-heart-o"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Quick view"><a href="#"
-                                                    data-toggle="modal" data-target="#popupQuickview"><i
-                                                        class="fa fa-search"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Add to cart"><a href="#"
-                                                    data-toggle="modal" data-target="#popupAddcart"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="#"><i class="fa fa-heart-o"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Quick view"><a href="#" data-toggle="modal"
+                                                    data-target="#popupQuickview"><i class="fa fa-search"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Add to cart"><a href="#" data-toggle="modal"
+                                                    data-target="#popupAddcart"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
                                         </div>
                                         <div class="ps-product__badge">
@@ -1271,8 +643,8 @@
                                             <div class="ps-product__item cart" data-toggle="tooltip"
                                                 data-placement="left" title="Add to cart"><a href="#"><i
                                                         class="fa fa-shopping-basket"></i></a></div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist"><a href="wishlist.html"><i
+                                            <div class="ps-product__item" data-toggle="tooltip" data-placement="left"
+                                                title="Wishlist"><a href="wishlist.html"><i
                                                         class="fa fa-heart-o"></i></a></div>
                                             <div class="ps-product__item rotate" data-toggle="tooltip"
                                                 data-placement="left" title="Add to compare"><a
@@ -1291,7 +663,8 @@
                         <div class="col-12 col-md-6">
                             <div class="ps-blog--latset">
                                 <div class="ps-blog__thumbnail"><a href="blog-details.html"><img
-                                            src="{{ asset('frontend') }}/img/blog/blog13-496x262.jpg" alt="alt" /></a>
+                                            src="{{ asset('frontend') }}/img/blog/blog13-496x262.jpg"
+                                            alt="alt" /></a>
                                     <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span
                                             class="ps-badge__item">PHARMACY</span><span
                                             class="ps-badge__item">SALE</span>
@@ -1317,7 +690,8 @@
                                             <div class="ps-form__control">
                                                 <input class="form-control ps-input" type="email" name="email"
                                                     placeholder="Enter your email address">
-                                                <button type="submit" class="ps-btn ps-btn--warning">Subscribe</button>
+                                                <button type="submit"
+                                                    class="ps-btn ps-btn--warning">Subscribe</button>
                                             </div>
                                         </div>
                                     </form>

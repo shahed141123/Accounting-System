@@ -17,7 +17,11 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return view('frontend.pages.home');
+        $data = [
+            'categorys'        => Category::orderBy('name','ASC')->active()->get(),
+            'latest_products'  => Product::latest('id')->where('status','publish')->get(),
+        ];
+        return view('frontend.pages.home',$data);
     }
 
     public function contact()
@@ -75,7 +79,7 @@ class HomeController extends Controller
     {
         $data = [
             'product'               => Product::where('slug', $slug)->first(),
-            'related_products'      => Product::latest('id')->where('status', 'active')->get(),
+            'related_products'      => Product::latest('id')->where('status', 'publish')->get(),
         ];
         return view('frontend.pages.productDetails', $data);
     }

@@ -14,7 +14,7 @@
                                 @foreach ($category->products as $product) 
                                     <div class="col-6 col-lg-4 col-xl-3 p-0">                                        
                                         <div class="ps-product ps-product--standard">
-                                            <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ route('produc') }}">
+                                            <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ route('product.details',$product->slug) }}">
                                                     <figure>
                                                         @foreach ($product->multiImages->slice(0, 2) as $image) 
                                                             <img src="{{ asset($image) }}" alt="alt" />
@@ -37,7 +37,11 @@
                                                 </div>
                                             </div>
                                             <div class="ps-product__content">
-                                                <h5 class="ps-product__title"><a href="{{ route('produc') }}">{{ $product->name }}</a></h5>
+                                                <h5 class="ps-product__title">
+                                                    <a href="{{ route('product.details',$product->slug) }}">
+                                                        {{ $product->name }}
+                                                    </a>
+                                                </h5>
                                                 <div class="ps-product__meta">
                                                     <span class="ps-product__price sale">{{ $product->box_discount_price }}</span>
                                                     <span class="ps-product__del">{{ $product->box_price }}</span>
