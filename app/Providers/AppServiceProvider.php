@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -30,8 +31,14 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 View::share('setting', null);
             }
+            if (Schema::hasTable('categories')) {
+                View::share('categories', Category::active()->get());
+            } else {
+                View::share('categories', null);
+            }
         } catch (Exception $e) {
             View::share('setting', null);
+            View::share('categories', null);
         }
         Paginator::useBootstrap();
 

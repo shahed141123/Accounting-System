@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\BlogTag;
+use App\Models\Category;
 use App\Models\Faq;
 use App\Models\PrivacyPolicy;
+use App\Models\Product;
 use App\Models\TermsAndCondition;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,11 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return view('frontend.pages.home');
+        $data = [
+            'categorys'        => Category::orderBy('name','ASC')->active()->get(),
+            'latest_products'  => Product::latest('id')->where('status','published')->get(),
+        ];
+        return view('frontend.pages.home',$data);
     }
 
     public function contact()
@@ -68,5 +74,21 @@ class HomeController extends Controller
             'blog_tags'      => BlogTag::latest('id')->where('status', 'active')->get(),
         ];
         return view('frontend.pages.blog.blogDetails', $data);
+    }
+    public function productDetails($slug)
+    {
+        $data = [
+            'product'               => Product::where('slug', $slug)->first(),
+            'related_products'      => Product::latest('id')->where('status', 'published')->get(),
+        ];
+        return view('frontend.pages.productDetails', $data);
+    }
+    public function categoryProducts($slug)
+    {
+        $data = [
+            'category'       => Category::with('products')->where('slug', $slug)->first(),
+            'categorys'      => Category::orderBy('name','ASC')->active()->get(),
+        ];
+        return view('frontend.pages.categoryDetails', $data);
     }
 }
