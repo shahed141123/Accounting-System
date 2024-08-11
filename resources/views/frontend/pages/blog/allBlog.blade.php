@@ -23,7 +23,7 @@
                                 <div class="ps-blog__content">
                                     <div class="ps-blog__meta"> <span class="ps-blog__date">{{ $blog_post->created_at->format("M d Y") }}</span>
                                         <a class="ps-blog__author" href="#">{{ $blog_post->author }}</a></div>
-                                        <a class="ps-blog__title" href="blog-details.html">{{ $blog_post->title }}</a>
+                                        <a class="ps-blog__title" href="{{ route('blog.details',$blog_post->slug) }}">{{ $blog_post->title }}</a>
                                     <p class="ps-blog__desc">{{ $blog_post->header }}</p>
                                 </div>
                             </div>
