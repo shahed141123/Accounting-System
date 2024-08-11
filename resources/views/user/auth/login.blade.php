@@ -1,11 +1,11 @@
 <x-frontend-app-layout :title="'Login'">
     <div class="ps-account">
         <div class="container">
-            <div class="row my-5 align-items-center">
+            <div class="row my-5 align-items-center gx-5">
                 <div class="col-12 col-md-6">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <div class="ps-form--review">
+                        <div class="ps-form--review w-75">
                             <h2 class="ps-form__title">Login</h2>
                             <div class="ps-form__group">
                                 <x-input-label class="form-label form__label" for="email" :value="__('Email')" />
@@ -25,17 +25,19 @@
                                 </div>
                             </div>
                             <div class="ps-form__submit">
-                                <x-primary-button class="ps-btn ps-btn--warning" type="submit">
-                                    {{ __('Log in') }}
-                                </x-primary-button>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="remember_me" name="remember">
                                     <label class="form-check-label" for="remember_me">Remember me</label>
                                 </div>
                             </div>
+                            <div class="mt-5">
+                                <x-primary-button class="ps-btn ps-btn--warning" type="submit">
+                                    {{ __('Log in') }}
+                                </x-primary-button>
+                            </div>
                             @if (Route::has('password.request'))
-                                <a class="ps-account__link" href="{{ route('password.request') }}">Lost your
-                                    password?</a>
+                                <span>Lost your</span><a class="ps-account__link text-primary" href="{{ route('password.request') }}"> password?</a>
+                               <span class="ps-5">Don't Have Account  <a class="ps-account__link text-primary" href="{{ route('register') }}">Create New Accounts</a></span>
                             @endif
                         </div>
                     </form>

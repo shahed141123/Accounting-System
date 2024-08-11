@@ -17,7 +17,35 @@
             <div class="ps-header__right">
                 <ul class="ps-header__icons">
                     <li><a class="ps-header__item open-search" href="#"><i class="icon-magnifier"></i></a></li>
-                    <li><a class="ps-header__item" href="{{ route('register') }}"><i class="icon-user"></i></a></li>
+                    <li>
+                        <div class="dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-user"></i>
+                            </a>
+                            <div class="dropdown-menu" style="font-size: 16px;" aria-labelledby="dropdownMenuButton">
+                                @auth
+                                    <!-- If the user is authenticated, show these options -->
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+
+                                    <!-- Logout button inside form -->
+                                    <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item bg-transparent border-0">
+                                            {{ __('Log Out') }}
+                                        </button>
+                                    </form>
+                                @else
+                                    <!-- If the user is not authenticated, show these options -->
+                                    <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                                    <a class="dropdown-item" href="{{ route('register') }}">Register</a>
+                                @endauth
+                            </div>
+
+                        </div>
+                    </li>
+
+
                     <li><a class="ps-header__item" href="#" id="cart-mini"><i class="icon-cart-empty"></i><span
                                 class="badge">2</span></a>
                         <div class="ps-cart--mini">
@@ -60,7 +88,8 @@
                         <div class="ps-search-table">
                             <div class="input-group">
                                 <input class="form-control ps-input" type="text" placeholder="Search for products">
-                                <div class="input-group-append"><a href="#"><i class="fa fa-search"></i></a></div>
+                                <div class="input-group-append"><a href="#"><i class="fa fa-search"></i></a>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -69,7 +98,8 @@
                             <div class="row m-0">
                                 <div class="col-12 col-lg-6">
                                     <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
+                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
+                                                href="#">
                                                 <figure><img src="img/products/052.jpg" alt="alt" /></figure>
                                             </a></div>
                                         <div class="ps-product__content">
@@ -78,14 +108,16 @@
                                                     piece)</a></h5>
                                             <p class="ps-product__desc">Study history up to 30 days Up to 5 users
                                                 simultaneously Has HEALTH certificate</p>
-                                            <div class="ps-product__meta"><span class="ps-product__price">$38.24</span>
+                                            <div class="ps-product__meta"><span
+                                                    class="ps-product__price">$38.24</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
+                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
+                                                href="#">
                                                 <figure><img src="img/products/033.jpg" alt="alt" /></figure>
                                             </a></div>
                                         <div class="ps-product__content">

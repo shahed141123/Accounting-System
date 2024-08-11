@@ -6,8 +6,18 @@
       <!--begin::Brand-->
       <div class="aside-logo flex-column-auto" id="kt_aside_logo">
           <!--begin::Logo-->
-          <a href="../../demo1/dist/index.html">
-              <img alt="Logo" src="{{ asset('admin/assets/media/logos/logo-1-dark.svg') }}" class="h-25px logo" />
+          <a href="{{ route('dashboard') }}">
+              @if (Auth::check() && Auth::user()->image)
+                  <!-- If the user is authenticated and has an image, display the image -->
+                  <img alt="User Image" src="{{ asset('storage/' . Auth::user()->image) }}"
+                      class="h-25px logo rounded-circle" />
+              @else
+                  <!-- If no image is available, display the first letter of the user's name -->
+                  <div class="h-25px logo rounded-circle d-flex align-items-center justify-content-center bg-primary text-white"
+                      style="width: 25px; height: 25px;">
+                      {{ strtoupper(Auth::user()->name) }}
+                  </div>
+              @endif
           </a>
           <!--end::Logo-->
           <!--begin::Aside toggler-->
@@ -171,6 +181,6 @@
           <!--end::Menu-->
       </div>
       <!--end::Aside menu-->
-      
+
   </div>
   <!--end::Aside-->
