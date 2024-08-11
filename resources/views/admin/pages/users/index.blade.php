@@ -45,9 +45,14 @@
                             <td class="d-flex align-items-center">
                                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                     <a href="javascript:void(0)">
-                                        <div class="symbol-label">
-                                            <img src="assets/media/avatars/300-6.jpg" alt="{{ $user->name }}"
-                                                class="w-100" />
+                                        <div class="symbol-label" style="background-color: {{ $user->profile_image_url ? 'transparent' : '#d3d3d3' }};">
+                                            @if ($user->profile_image_url)
+                                                <img src="{{ asset('storage/' . $user->profile_image_url) }}" alt="{{ $user->name }}" class="w-100" />
+                                            @else
+                                                <span class="text-gray-800 text-hover-primary mb-1">
+                                                    {{ strtoupper(substr($user->first_name, 0, 1)) }}{{ strtoupper(substr($user->last_name, 0, 1)) }}
+                                                </span>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>

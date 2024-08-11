@@ -219,7 +219,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
                                             <input class="form-control" name="tags" value="tag1, tag2, tag3"
-                                                id="product_Tags" />
+                                                id="product_Tags" :value="old('tags')" />
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Short Description</x-metronic.label>
@@ -229,14 +229,14 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Overview</x-metronic.label>
-                                            <textarea name="product_overview" class="ckeditor"></textarea>
+                                            <textarea name="product_overview" class="ckeditor">{!! old('product_overview') !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product overview here.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Description</x-metronic.label>
-                                            <textarea name="product_description" class="ckeditor"></textarea>
+                                            <textarea name="product_description" class="ckeditor">{!! old('product_description') !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product description here.
                                             </div>
@@ -244,7 +244,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product
                                                 Specification</x-metronic.label>
-                                            <textarea name="product_specification" class="ckeditor"></textarea>
+                                            <textarea name="product_specification" class="ckeditor">{!! old('product_specification') !!}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -350,7 +350,7 @@
                                                 <div class="text-muted fs-7">Enter the product MF.</div>
                                         </div>
 
-                                        <div class="mb-10 fv-row col-4">
+                                        <div class="mb-10 fv-row col-12">
                                             <x-metronic.label class="form-label">Barcode</x-metronic.label>
                                             <x-metronic.input type="text" name="barcode" class="form-control mb-2"
                                                 placeholder="Barcode Number" :value="old('barcode')"></x-metronic.file-input>
@@ -416,7 +416,7 @@
                                                 :value="old('box_stock')"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box stock. Eg: 50</div>
                                         </div>
-                                        <div class="fv-row pt-2 col-4 mt-10">
+                                        <div class="fv-row col-4 mt-10">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_refurbished" type="checkbox"
                                                     :value="old('address')" id="flexCheckDefault" />
@@ -512,22 +512,14 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <x-metronic.label class="form-label">Meta Tag Keywords</x-metronic.label>
-                                            <select class="form-select mb-2" name="meta_keyword"
-                                                data-control="select2" data-placeholder="Select an option"
-                                                data-allow-clear="true" multiple="multiple">
-                                                <option></option>
-                                                <option value="Computers">Computers</option>
-                                                <option value="Watches">Watches</option>
-                                                <option value="Headphones">Headphones</option>
-                                                <option value="Footwear">Footwear</option>
-                                                <option value="Cameras">Cameras</option>
-                                                <option value="Shirts">Shirts</option>
-                                                <option value="Household">Household</option>
-                                                <option value="Handbags">Handbags</option>
-                                                <option value="Wines">Wines</option>
-                                                <option value="Sandals">Sandals</option>
-                                            </select>
+                                            <div class="mb-5 fv-row">
+                                                <x-metronic.label class="form-label">Meta Tag
+                                                    Keywords</x-metronic.label>
+                                                <textarea name="meta_keyword" class="ckeditor">{!! old('meta_keyword') !!}</textarea>
+                                                <div class="text-muted fs-7">
+                                                    Add product overview here.
+                                                </div>
+                                            </div>
                                             <div class="text-muted fs-7">
                                                 Set a list of keywords that the product is related to.
                                                 Separate the keywords by adding a comma
@@ -680,6 +672,10 @@
                     });
                 }
             }
+
+            // Example usage:
+            const ckEditorInitializer = new CKEditorInitializer('.ckeditor');
+            ckEditorInitializer.initialize();
         </script>
     @endpush
 </x-admin-app-layout>
