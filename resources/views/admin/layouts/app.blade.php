@@ -28,6 +28,7 @@
     <link href="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
 
+
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <link href="{{ asset('admin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -105,11 +106,12 @@
     <script src="{{ asset('admin/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
 
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <script src="{{ asset('admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     {{-- <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> --}}
     <script src="{{ asset('admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+
 
 
 
@@ -125,6 +127,20 @@
     <script src="{{ asset('admin/js/custom.js') }}"></script>
     @include('toastr')
     @stack('scripts')
+    <script>
+        document.querySelectorAll('.ckeditor').forEach(element => {
+        if (!element.classList.contains('ck-editor__editable_inline')) {
+            ClassicEditor
+                .create(element)
+                .then(editor => {
+                    console.log('CKEditor initialized:', editor);
+                })
+                .catch(error => {
+                    console.error('CKEditor initialization error:', error);
+                });
+        }
+    });
+    </script>
     <script>
         //  DropZone Image
         $(document).ready(function() {
@@ -182,8 +198,7 @@
                 $("#files")[0].files = newInputFiles.files;
             }
         });
-    </script>
-    <script>
+        // checkbox And Select
         document.addEventListener('DOMContentLoaded', function() {
 
             const $selectAllCheckbox = $('.metronic_select_all');
@@ -210,8 +225,7 @@
             // Initial check to set the button visibility correctly
             updateDeleteButtonVisibility();
         });
-    </script>
-    <script>
+        // Data table
         class DataTableInitializer {
             constructor(selector) {
                 this.selector = selector;
@@ -244,9 +258,7 @@
         $(document).ready(function() {
             new DataTableInitializer('.my-datatable');
         });
-    </script>
-
-    <script>
+        // Modal js
         // Make the DIV element draggable:
         var element = document.querySelector('.modal');
         dragElement(element);

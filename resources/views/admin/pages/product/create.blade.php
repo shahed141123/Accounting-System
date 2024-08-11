@@ -218,21 +218,8 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
-                                            <select class="form-select mb-2" name="tags" data-control="select2"
-                                                data-placeholder="Select an option" data-allow-clear="true"
-                                                multiple="multiple">
-                                                <option></option>
-                                                <option value="Computers">Computers</option>
-                                                <option value="Watches">Watches</option>
-                                                <option value="Headphones">Headphones</option>
-                                                <option value="Footwear">Footwear</option>
-                                                <option value="Cameras">Cameras</option>
-                                                <option value="Shirts">Shirts</option>
-                                                <option value="Household">Household</option>
-                                                <option value="Handbags">Handbags</option>
-                                                <option value="Wines">Wines</option>
-                                                <option value="Sandals">Sandals</option>
-                                            </select>
+                                            <input class="form-control" name="tags" value="tag1, tag2, tag3"
+                                                id="product_Tags" />
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Short Description</x-metronic.label>
@@ -242,18 +229,14 @@
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Overview</x-metronic.label>
-                                            <div id="overview_editor" name="overview">
-                                                {{-- Content --}}
-                                            </div>
+                                            <textarea name="product_overview" class="ckeditor"></textarea>
                                             <div class="text-muted fs-7">
                                                 Add product overview here.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Description</x-metronic.label>
-                                            <div id="description_editor" name="description">
-                                                {{-- Content --}}
-                                            </div>
+                                            <textarea name="product_description" class="ckeditor"></textarea>
                                             <div class="text-muted fs-7">
                                                 Add product description here.
                                             </div>
@@ -261,9 +244,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product
                                                 Specification</x-metronic.label>
-                                            <div id="specification_editor" name="specification">
-                                                {{-- Content --}}
-                                            </div>
+                                            <textarea name="product_specification" class="ckeditor"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -437,12 +418,11 @@
                                         </div>
                                         <div class="fv-row pt-2 col-4 mt-10">
                                             <div class="form-check">
-                                                <x-metronic.input class="form-check-input" name="is_refurbished"
-                                                    type="checkbox" :value="old('address')"
-                                                    id="flexCheckDefault"></x-metronic.file-input>
-                                                    <x-metronic.label class="form-check-label" for="flexCheckDefault">
-                                                        Is Refurbished
-                                                    </x-metronic.label>
+                                                <input class="form-check-input" name="is_refurbished" type="checkbox"
+                                                    :value="old('address')" id="flexCheckDefault" />
+                                                <x-metronic.label class="form-check-label" for="flexCheckDefault">
+                                                    Is Refurbished
+                                                </x-metronic.label>
                                             </div>
                                         </div>
                                     </div>
@@ -581,6 +561,12 @@
     </div>
     @push('scripts')
         <script>
+            // The DOM elements you wish to replace with Tagify
+            var input1 = document.querySelector("#product_Tags");
+
+            // Initialize Tagify components on the above inputs
+            new Tagify(input1);
+            // Product dimension box
             document.addEventListener('DOMContentLoaded', function() {
                 const lengthInput = document.getElementById('length');
                 const widthInput = document.getElementById('width');
@@ -601,8 +587,7 @@
                 widthInput.addEventListener('input', updatePreview);
                 heightInput.addEventListener('input', updatePreview);
             });
-        </script>
-        <script>
+            // Color Select Options
             // Format options
             var optionFormat = function(item) {
                 if (!item.id) {
@@ -634,8 +619,7 @@
                 templateSelection: optionFormat,
                 templateResult: optionFormat
             });
-        </script>
-        <script>
+            // Product Pricing
             function calculatePrices() {
                 const boxContains = parseFloat(document.getElementById('box_contains').value) || 0;
                 const boxPrice = parseFloat(document.getElementById('box_price').value) || 0;
@@ -651,8 +635,7 @@
             document.getElementById('box_contains').addEventListener('input', calculatePrices);
             document.getElementById('box_price').addEventListener('input', calculatePrices);
             document.getElementById('box_discount_price').addEventListener('input', calculatePrices);
-        </script>
-        <script>
+            // Product Multiimage Submit
             var uploadedDocumentMap = {}; // Assuming you have this variable defined somewhere
 
             var myDropzone = new Dropzone("#product_multiimage", {
@@ -677,60 +660,26 @@
                 var formData = new FormData(this);
                 console.log(formData);
             });
-        </script>
-        <script>
-            class QuillEditor {
-                constructor(elementId, endpoint) {
-                    this.elementId = elementId;
-                    this.endpoint = endpoint;
-                    this.initEditor();
+            // textEditor
+            class CKEditorInitializer {
+                constructor(className) {
+                    this.className = className;
                 }
 
-                initEditor() {
-                    const Delta = Quill.import('delta');
-                    this.quill = new Quill(`#${this.elementId}`, {
-                        modules: {
-                            toolbar: true
-                        },
-                        placeholder: 'Type your text here...',
-                        theme: 'snow'
+                initialize() {
+                    const elements = document.querySelectorAll(this.className);
+                    elements.forEach(element => {
+                        ClassicEditor
+                            .create(element)
+                            .then(editor => {
+                                console.log('CKEditor initialized:', editor);
+                            })
+                            .catch(error => {
+                                console.error('CKEditor initialization error:', error);
+                            });
                     });
-
-                    // Store accumulated changes
-                    this.change = new Delta();
-                    this.quill.on('text-change', (delta) => {
-                        this.change = this.change.compose(delta);
-                    });
-
-                    // Save periodically
-                    this.saveInterval = setInterval(() => {
-                        if (this.change.length() > 0) {
-                            console.log('Saving changes', this.change);
-
-                            this.change = new Delta();
-                        }
-                    }, 5 * 1000);
-
-                    // Check for unsaved data
-                    window.addEventListener('beforeunload', (e) => {
-                        if (this.change.length() > 0) {
-                            e.preventDefault();
-                            e.returnValue = 'There are unsaved changes. Are you sure you want to leave?';
-                        }
-                    });
-                }
-
-                destroy() {
-                    clearInterval(this.saveInterval);
-                    window.removeEventListener('beforeunload', this.handleBeforeUnload);
                 }
             }
-
-            // Initialize multiple editors
-            const overviewEditor = new QuillEditor('overview_editor', '/save-overview');
-            const descriptionEditor = new QuillEditor('description_editor', '/save-description');
-            const specificationEditor = new QuillEditor('specification_editor', '/save-specification');
-            const metaEditor = new QuillEditor('meta_editor', '/meta-description');
         </script>
     @endpush
 </x-admin-app-layout>

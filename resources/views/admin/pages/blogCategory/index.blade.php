@@ -61,8 +61,8 @@
     <div class="modal fade" tabindex="-1" id="AddModal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header py-3 bg-light-primary">
-                    <h3 class="modal-title">Create Blog Category</h3>
+                <div class="modal-header py-3 bg-primary">
+                    <h3 class="modal-title text-white">Create Blog Category</h3>
                     <button type="button" class="btn btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
                         aria-label="Close">
                         <i class="fa-solid fa-xmark fs-1"></i>
@@ -73,10 +73,9 @@
                         action="{{ route('admin.blog-category.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="fv-row mb-5">
-                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Category
-                                Title</x-metronic.label>
+                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Category Name</x-metronic.label>
                             <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
-                                placeholder="Set Blog Category Title" :valu="old('name')" />
+                                placeholder="Set Blog Category Name" :valu="old('name')" />
                         </div>
                         <div class="fv-row mb-5">
                             <x-metronic.label class="fw-semibold fs-6 mb-2">Blog Meta Title</x-metronic.label>
@@ -84,7 +83,7 @@
                                 placeholder="Set Blog Meta Title" :valu="old('meta_title')" />
                         </div>
                         <div class="fv-row mb-5">
-                            <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Image') }}
+                            <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Category Image/icon') }}
                             </x-metronic.label>
                             <x-metronic.file-input id="image" name="image" class="form-control mb-3 mb-lg-0"
                                 :value="old('image')"></x-metronic.file-input>

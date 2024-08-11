@@ -124,11 +124,6 @@
                                     'route' => 'admin.categories.index',
                                 ],
                                 [
-                                    'title' => 'Manage Products',
-                                    'routes' => ['admin.product.index', 'admin.product.create', 'admin.product.edit'],
-                                    'route' => 'admin.product.index',
-                                ],
-                                [
                                     'title' => 'Stock Info',
                                     'routes' => ['admin.stock-management.index'],
                                     'route' => 'admin.stock-management.index',
@@ -137,6 +132,11 @@
                                     'title' => 'Shipping Setup',
                                     'routes' => ['admin.shipping-management.index'],
                                     'route' => 'admin.shipping-management.index',
+                                ],
+                                [
+                                    'title' => 'Manage Products',
+                                    'routes' => ['admin.product.index', 'admin.product.create', 'admin.product.edit'],
+                                    'route' => 'admin.product.index',
                                 ],
                             ],
                         ],
