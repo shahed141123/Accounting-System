@@ -16,8 +16,8 @@
                     alt="{{ Auth::user()->name }}">
             @else
                 <!-- Display a default avatar with initials if no profile image is available -->
-                <div class="symbol-label" style="background-color: #d3d3d3;">
-                    <span class="text-gray-800 text-hover-primary mb-1">
+                <div class="symbol-label">
+                    <span class="text-initials">
                         {{ strtoupper(substr(Auth::user()->first_name, 0, 1)) }}{{ strtoupper(substr(Auth::user()->last_name, 0, 1)) }}
                     </span>
                 </div>
@@ -46,101 +46,45 @@
         <li class="nav-item" role="presentation">
             <a href="{{ route('dashboard') }}" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
                 Dashboard
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="{{ route('user.order.history') }}"
                 class="nav-link {{ Route::is('user.order.history') ? 'active' : '' }}">
                 My Order History
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="{{ route('user.account.details') }}"
                 class="nav-link {{ Route::is('user.account.details') ? 'active' : '' }}">
                 My Account Details
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="{{ route('user.quick.order') }}"
                 class="nav-link {{ Route::is('user.quick.order') ? 'active' : '' }}">
                 Quick Order
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="{{ route('user.stock.history') }}"
                 class="nav-link {{ Route::is('user.stock.history') ? 'active' : '' }}">
                 Stock Availability
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="#" class="nav-link ">
                 Product Data Download
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="#" class="nav-link">
                 View Catalogue
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="#" class="nav-link">
                 My Shopping List
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-right">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </span>
             </a>
         </li>
     </ul>
