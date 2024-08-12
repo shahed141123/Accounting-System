@@ -20,9 +20,9 @@ class HomeController extends Controller
     {
         // $latest_products = Product::latest('id')->where('status','published')->get(['slug','multiImages','meta_title','name','box_discount_price','box_price']);
         $latest_products = Cache::remember('latest_products', 60, function () {
-            return Product::latest('id')
+            return Product::latest('id')->with('multiImages')
                 ->where('status', 'published')
-                ->select('slug','meta_title','multiImages','name','box_discount_price','box_price')
+                ->select('slug','meta_title','name','box_discount_price','box_price')
                 ->get();
         });
         $data = [
