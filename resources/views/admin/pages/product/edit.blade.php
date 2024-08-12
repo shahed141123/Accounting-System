@@ -72,7 +72,7 @@
         /* Custom Multi file upload */
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
-        <form id="kt_ecommerce_add_product_form" method="post" action="{{ route('admin.product.update',$product->id) }}"
+        <form id="kt_ecommerce_add_product_form" method="post" action="{{ route('admin.product.update', $product->id) }}"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -90,9 +90,9 @@
                                 class="form-select mb-2" data-control="select2" data-hide-search="true" name="status"
                                 data-placeholder="Select an option">
                                 <option></option>
-                                <option value="published" @selected($product->status == "published")>Published</option>
-                                <option value="draft" @selected($product->status == "draft")>Draft</option>
-                                <option value="inactive" @selected($product->status == "inactive")>Inactive</option>
+                                <option value="published" @selected($product->status == 'published')>Published</option>
+                                <option value="draft" @selected($product->status == 'draft')>Draft</option>
+                                <option value="inactive" @selected($product->status == 'inactive')>Inactive</option>
                             </x-metronic.select-option>
                             <div class="text-muted fs-7">Set the product status.</div>
                         </div>
@@ -113,7 +113,8 @@
                                     data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
                                     @foreach ($brands as $brand)
-                                        <option value="{{ $brand->id }}" @selected($brand->id == $product->brand_id)>{{ $brand->name }}
+                                        <option value="{{ $brand->id }}" @selected($brand->id == $product->brand_id)>
+                                            {{ $brand->name }}
                                         </option>
                                     @endforeach
                                 </x-metronic.select-option>
@@ -126,17 +127,17 @@
                                     multiselect-select-all="true" data-control="select2"
                                     data-placeholder="Select an option" data-allow-clear="true">
                                     @php
-                                        $categoryIds = isset($product->category_id)
-                                            ? json_decode($product->category_id, true)
-                                            : [];
+                                        $categoryIds = is_string($product->category_id)
+                                            ? json_decode($product->category_id, true) // Convert JSON string to array
+                                            : $product->category_id;
                                     @endphp
 
                                     @if (count($categories) > 0)
                                         @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ in_array($category->id, $categoryIds) ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
+                                            <option value="{{ $category->id }}"
+                                                {{ in_array($category->id, $categoryIds) ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
                                         @endforeach
                                     @endif
 
@@ -148,7 +149,7 @@
                                 </x-metronic.label>
                                 <!-- Input element for Tagify -->
                                 <input class="form-control d-flex align-items-center" name="color"
-                                    :value="old('color',$product->color)" id="kt_tagify_color" />
+                                    :value="old('color', $product - > color)" id="kt_tagify_color" />
                             </div>
                         </div>
                     </div>
@@ -195,7 +196,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Name</x-metronic.label>
                                             <x-metronic.input type="text" name="name" class="form-control mb-2"
-                                                placeholder="Product name recommended" :value="old('name',$product->name)">
+                                                placeholder="Product name recommended" :value="old('name', $product->name)">
                                             </x-metronic.input>
                                             <div class="text-muted fs-7">
                                                 A product name is and recommended to be unique.
@@ -211,18 +212,18 @@
                                             <x-metronic.textarea id="short_description" name="short_description"
                                                 placeholder="Add Product Short Description" class="form-control mb-2"
                                                 cols="30"
-                                                rows="3">{!! old('short_description',$product->short_description) !!}</x-metronic.textarea>
+                                                rows="3">{!! old('short_description', $product->short_description) !!}</x-metronic.textarea>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Overview</x-metronic.label>
-                                            <textarea name="overview" class="ckeditor">{!! old('overview',$product->overview) !!}</textarea>
+                                            <textarea name="overview" class="ckeditor">{!! old('overview', $product->overview) !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product overview here.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product Description</x-metronic.label>
-                                            <textarea name="description" class="ckeditor">{!! old('description',$product->description) !!}</textarea>
+                                            <textarea name="description" class="ckeditor">{!! old('description', $product->description) !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product description here.
                                             </div>
@@ -230,7 +231,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Product
                                                 Specification</x-metronic.label>
-                                            <textarea name="specification" class="ckeditor">{!! old('specification',$product->specification) !!}</textarea>
+                                            <textarea name="specification" class="ckeditor">{!! old('specification', $product->specification) !!}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -250,7 +251,7 @@
                                             <div class="col-lg-4">
                                                 <label class="form-label">Thumbnail Image</label>
                                                 <div class="image-input image-input-empty" data-kt-image-input="true"
-                                                    style="background-image: url({{ asset('storage/'.$product->thumbnail) }}); width: auto; background-size: contain;
+                                                    style="background-image: url({{ asset('storage/' . $product->thumbnail) }}); width: auto; background-size: contain;
                                                     background-position: center;
                                                     border: 1px solid #009ae5;">
                                                     <div class="image-input-wrapper w-100px h-70px"
@@ -307,10 +308,12 @@
                                                 <div class="existing-images">
                                                     @foreach ($product->multiImages as $image)
                                                         <div class="img-thumb-wrapper card shadow">
-                                                            <img class="img-thumb" src="{{ asset('storage/'.$image->photo) }}"
+                                                            <img class="img-thumb"
+                                                                src="{{ asset('storage/' . $image->photo) }}"
                                                                 title="{{ $image->photo }}" />
                                                             <br />
-                                                            <a href="{{ route('admin.multiimage.destroy',$image->id) }}" class="remove delete">Remove</a>
+                                                            <a href="{{ route('admin.multiimage.destroy', $image->id) }}"
+                                                                class="remove delete">Remove</a>
                                                             {{-- <span class="remove">Remove</span> --}}
                                                         </div>
                                                     @endforeach
@@ -335,13 +338,13 @@
                                             <x-metronic.label class="form-label">SKU Code</x-metronic.label>
                                             <x-metronic.input type="text" name="sku_code"
                                                 class="form-control mb-2" placeholder="SKU Number"
-                                                :value="old('sku_code',$product->sku_code)"></x-metronic.file-input>
+                                                :value="old('sku_code', $product->sku_code)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">Enter the product SKU.</div>
                                         </div>
                                         <div class="mb-10 fv-row col-6">
                                             <x-metronic.label class="form-label">MF Code</x-metronic.label>
                                             <x-metronic.input type="text" name="mf_code" class="form-control mb-2"
-                                                placeholder="MF Number" :value="old('mf_code',$product->mf_code)"></x-metronic.file-input>
+                                                placeholder="MF Number" :value="old('mf_code', $product->mf_code)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">Enter the product MF.</div>
                                         </div>
 
@@ -349,7 +352,7 @@
                                             <x-metronic.label class="form-label">Barcode</x-metronic.label>
                                             <x-metronic.input type="text" name="barcode_id"
                                                 class="form-control mb-2" placeholder="Barcode Number"
-                                                :value="old('barcode_id',$product->barcode_id)"></x-metronic.file-input>
+                                                :value="old('barcode_id', $product->barcode_id)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">
                                                     Enter the product barcode number.
                                                 </div>
@@ -372,14 +375,14 @@
                                             <x-metronic.label class="form-label">Box Contains</x-metronic.label>
                                             <x-metronic.input type="number" name="box_contains" id="box_contains"
                                                 class="form-control mb-2" placeholder="how much in a box"
-                                                :value="old('box_contains',$product->box_contains)"></x-metronic.file-input>
+                                                :value="old('box_contains', $product->box_contains)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much product in a box.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Box Price</x-metronic.label>
                                             <x-metronic.input type="number" name="box_price" id="box_price"
                                                 class="form-control mb-2" placeholder="how much the box price"
-                                                :value="old('box_price',$product->box_price)"></x-metronic.file-input>
+                                                :value="old('box_price', $product->box_price)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
@@ -387,21 +390,21 @@
                                             <x-metronic.input type="number" name="box_discount_price"
                                                 id="box_discount_price" class="form-control mb-2"
                                                 placeholder="how much the box discount price"
-                                                :value="old('box_discount_price',$product->box_discount_price)"></x-metronic.file-input>
+                                                :value="old('box_discount_price', $product->box_discount_price)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box discount price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Unit Price</x-metronic.label>
                                             <x-metronic.input type="number" name="unit_price" id="unit_price"
                                                 class="form-control mb-2" placeholder="how much the unit price"
-                                                :value="old('unit_price',$product->unit_price)" readonly></x-metronic.file-input>
+                                                :value="old('unit_price', $product->unit_price)" readonly></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much unit price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Unit Discount</x-metronic.label>
                                             <x-metronic.input type="number" name="unit_discount_price"
                                                 id="unit_discount" class="form-control mb-2"
-                                                placeholder="how much the unit discount price" :value="old('unit_discount_price',$product->unit_discount_price)"
+                                                placeholder="how much the unit discount price" :value="old('unit_discount_price', $product->unit_discount_price)"
                                                 readonly></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much unit discount price.</div>
                                         </div>
@@ -409,13 +412,13 @@
                                             <x-metronic.label class="form-label">Box Stock</x-metronic.label>
                                             <x-metronic.input type="number" name="box_stock" id="box_stock"
                                                 class="form-control mb-2" placeholder="how much the box stock"
-                                                :value="old('box_stock',$product->box_stock)"></x-metronic.file-input>
+                                                :value="old('box_stock', $product->box_stock)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box stock. Eg: 50</div>
                                         </div>
                                         <div class="fv-row col-4 mt-10">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_refurbished" type="checkbox"
-                                                    value="1" id="is_refurbished" @checked($product->is_refurbished == "1")/>
+                                                    value="1" id="is_refurbished" @checked($product->is_refurbished == '1') />
                                                 <x-metronic.label class="form-check-label" for="is_refurbished">
                                                     Is Refurbished
                                                 </x-metronic.label>
@@ -443,21 +446,21 @@
                                                             (cm)</x-metronic.label>
                                                         <x-metronic.input type="number" name="length"
                                                             id="length" class="form-control mb-2" placeholder="15"
-                                                            :value="old('length',$product->length)"></x-metronic.file-input>
+                                                            :value="old('length', $product->length)"></x-metronic.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <x-metronic.label class="form-label">Width
                                                             (cm)</x-metronic.label>
                                                         <x-metronic.input type="number" name="width"
                                                             id="width" class="form-control mb-2" placeholder="10"
-                                                            :value="old('width',$product->width)"></x-metronic.file-input>
+                                                            :value="old('width', $product->width)"></x-metronic.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <x-metronic.label class="form-label">Height
                                                             (cm)</x-metronic.label>
                                                         <x-metronic.input type="number" name="height"
                                                             id="height" class="form-control mb-2" placeholder="9"
-                                                            :value="old('height',$product->height)"></x-metronic.file-input>
+                                                            :value="old('height', $product->height)"></x-metronic.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <p id="dimensionPreview">Length(0") X Width(0") X Height(0")
@@ -494,7 +497,7 @@
                                                     Title</x-metronic.label>
                                                 <input class="form-control" name="meta_title" type="text"
                                                     placeholder="Meta tag name" id="meta_title"
-                                                    :value="old('meta_title',$product->meta_title)" />
+                                                    :value="old('meta_title', $product->meta_title)" />
                                             </div>
                                             <div class="text-muted fs-7">
                                                 Add Product Meta Title.
@@ -504,7 +507,7 @@
                                             <div class="mb-5 fv-row">
                                                 <x-metronic.label class="form-label">Meta
                                                     Description</x-metronic.label>
-                                                <textarea name="meta_description" class="ckeditor">{!! old('meta_description',$product->meta_description) !!}</textarea>
+                                                <textarea name="meta_description" class="ckeditor">{!! old('meta_description', $product->meta_description) !!}</textarea>
                                                 <div class="text-muted fs-7">
                                                     Add Meta Meta details.
                                                 </div>

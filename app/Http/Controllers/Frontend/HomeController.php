@@ -85,10 +85,15 @@ class HomeController extends Controller
     }
     public function categoryProducts($slug)
     {
+        $category = Category::where('slug', $slug)->firstOrFail();
+
         $data = [
-            'category'       => Category::with('products')->where('slug', $slug)->first(),
-            'categorys'      => Category::orderBy('name','ASC')->active()->get(),
+            'category'                => $category,
+            'category_products'       => $category->products()->get(), // Use the custom method to get products
+            'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
         ];
+ // For debugging purposes
+        // dd($category->products()); // For debugging purposes
         return view('frontend.pages.categoryDetails', $data);
     }
 }

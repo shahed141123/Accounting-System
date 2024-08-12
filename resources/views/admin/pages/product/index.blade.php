@@ -40,12 +40,12 @@
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7 border rounded">
                 <thead>
                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                        <th width="10%">
+                        {{-- <th width="10%">
                             <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                 <input class="form-check-input" type="checkbox" data-kt-check="true"
                                     data-kt-check-target="#kt_product_table .form-check-input" value="1" />
                             </div>
-                        </th>
+                        </th> --}}
                         <th width="8%">{{ __('product.Sl') }}</th>
                         <th width="12%">{{ __('product.Image') }}</th>
                         <th width="45%">{{ __('product.Name') }}</th>
@@ -57,15 +57,18 @@
                     {{-- @foreach ($products as $product) --}}
                     @foreach ($products as $product)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
                                     <input class="form-check-input" type="checkbox" value="1" />
                                 </div>
-                            </td>
+                            </td> --}}
                             <td>{{ $loop->iteration }}</td>
-                            <td><img class="w-75px" src="{{ asset($product->thumbnail) }}" alt=""></td>
+                            <td><img class="w-75px" src="{{ asset('storage/'.$product->thumbnail) }}" alt="{{ $product->name }}"></td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->status }}</td>
+                            <td>
+                                <span class="badge {{ $product->status == 'published' ? 'bg-success' : 'bg-danger' }}">
+                                {{ $product->status == 'published' ? 'Published' : 'Unpublished' }}</span>
+                            </td>
                             <td>
                                 {{-- <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                     data-bs-toggle="modal" data-bs-target="#faqViewModal_{{ $faq->id }}">
