@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -19,3 +20,6 @@ Route::get('product/details/{slug}', [HomeController::class, 'productDetails'])-
 
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.add');
 Route::post('email-subscription/store', [NewsletterController::class, 'store'])->name('subscription.add');
+
+// Cart routes
+Route::get('mycart', [CartController::class, 'cart'])->name('cart');
