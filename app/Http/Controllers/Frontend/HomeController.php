@@ -98,9 +98,10 @@ class HomeController extends Controller
 
         $data = [
             'category'                => $category,
+            'category_products '      => $category->products()->paginate(12),
             'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
         ];
-        return view('frontend.pages.catego:ryDetails', $data);
+        return view('frontend.pages.categoryDetails', $data);
     }
     public function allProducts()
     {
