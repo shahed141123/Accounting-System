@@ -95,12 +95,12 @@
             </a>
         </li>
         <li class="nav-item" role="presentation">
-            <a href="#" class="nav-link ">
+            <a href="{{ route('user.product.data') }}" class="nav-link {{ Route::is('user.product.data') ? 'active' : '' }} ">
                 Product Data Download
             </a>
         </li>
         <li class="nav-item" role="presentation">
-            <a href="#" class="nav-link">
+            <a href="{{ route('user.view.catalouge') }}" class="nav-link {{ Route::is('user.view.catalouge') ? 'active' : '' }}">
                 View Catalogue
             </a>
         </li>

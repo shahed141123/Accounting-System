@@ -19,7 +19,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.771);
+        background: #f5f5f5c2;
         /* White overlay with 91% opacity */
         z-index: 1;
     }
@@ -119,13 +119,12 @@
                     <div class="row">
                         <div class="col-6 col-md-4">
                             <div class="ps-footer--block">
-                                <h5 class="ps-block__title">Information</h5>
+                                <h5 class="ps-block__title">General</h5>
                                 <ul class="ps-block__list">
-                                    <li><a href="about-us.html">About us</a></li>
-                                    <li><a href="contact-us.html">Contact us</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="{{ route('home') }}">Home</a></li>
+                                    <li><a href="{{ route('about-us') }}">About us</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact us</a></li>
+                                    <li><a href="{{ route('allBlog') }}">Blog</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -133,22 +132,21 @@
                             <div class="ps-footer--block">
                                 <h5 class="ps-block__title">Account</h5>
                                 <ul class="ps-block__list">
-                                    <li><a href="#">My account</a></li>
-                                    <li><a href="#">My orders</a></li>
-                                    <li><a href="#">Returns</a></li>
-                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="{{ route('user.account.details') }}">My Account</a></li>
+                                    <li><a href="{{ route('user.order.history') }}">My Orders</a></li>
+                                    <li><a href="{{ route('user.quick.order') }}">Quick Order</a></li>
+                                    <li><a href="{{ route('user.wishlist') }}">Shopping List</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-6 col-md-4">
                             <div class="ps-footer--block">
-                                <h5 class="ps-block__title">Store</h5>
+                                <h5 class="ps-block__title">Policy</h5>
                                 <ul class="ps-block__list">
-                                    <li><a href="#">Affiliate</a></li>
-                                    <li><a href="#">Bestsellers</a></li>
-                                    <li><a href="#">Discount</a></li>
-                                    <li><a href="#">Latest products</a></li>
-                                    <li><a href="#">Sale</a></li>
+                                    <li><a href="{{ asset('return-policy') }}">Returns</a></li>
+                                    <li><a href="{{ asset('privacy/policy') }}">Privacy & Policy</a></li>
+                                    <li><a href="{{ asset('terms-condition') }}">Terms & Conditions</a></li>
+                                    <li><a href="{{ asset('faq') }}">Faq</a></li>
                                 </ul>
                             </div>
                         </div>

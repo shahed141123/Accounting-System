@@ -31,8 +31,7 @@
                         <th>Email</th>
                         {{-- <th>Role</th> --}}
                         <th>Show User</th>
-                        {{-- <th>Two-step</th>
-                        <th>Joined Date</th> --}}
+                        <th>Status</th>
                         <th class="text-end min-w-100px pe-5">Actions</th>
                     </tr>
                 </thead>
@@ -69,6 +68,12 @@
 
                             <td>
                                 <button class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i> Show</button>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch form-check-custom form-check-solid">
+                                    <input class="form-check-input status-toggle w-60px" type="checkbox"
+                                        id="status_toggle_1" checked="" data-id="1">
+                                </div>
                             </td>
                             <td class="text-end">
                                 <a href="#" class="btn btn-light btn-active-light-primary btn-sm"

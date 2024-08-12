@@ -27,4 +27,12 @@ class ClientController extends Controller
     {
         return view('user.pages.wishlist');
     }
+    public function productData()
+    {
+        return view('user.pages.productData');
+    }
+    public function viewCatalouge()
+    {
+        return view('user.pages.viewCatalouge');
+    }
 }
