@@ -163,6 +163,7 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         DB::beginTransaction();
 
         try {
@@ -178,8 +179,6 @@ class BlogPostController extends Controller
                 'badge' => 'nullable|string|max:255',
                 'title' => 'nullable|string',
                 'header' => 'nullable|string|max:255',
-                'short_description' => 'nullable|string',
-                'long_description' => 'nullable|string',
                 'author' => 'nullable|string|max:255',
                 'address' => 'nullable|string|max:255',
                 'tags' => 'nullable',
@@ -187,7 +186,6 @@ class BlogPostController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
                 'additional_url' => 'nullable|string|max:255|url',
-                'footer' => 'nullable|string',
                 'status' => 'nullable|string|max:255',
             ], [
                 'logo.image' => 'The logo must be an image.',

@@ -168,7 +168,7 @@
                                         class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
                                     <textarea name="short_description" class="ckeditor">{!! old('short_description') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog Short Description here.
+                                        Add blog Short Descriptio here.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
@@ -180,8 +180,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label
-                                        class="form-label">{{ __('Blog Footer') }}</x-metronic.label>
+                                    <x-metronic.label class="form-label">{{ __('Blog Footer') }}</x-metronic.label>
                                     <textarea name="footer" class="ckeditor">{!! old('footer') !!}</textarea>
                                     <div class="text-muted fs-7">
                                         Add blog Footer here.
@@ -262,6 +261,5 @@
             new Tagify(input2);
         </script>
         {{-- Tagify ENd --}}
-        
     @endpush
 </x-admin-app-layout>

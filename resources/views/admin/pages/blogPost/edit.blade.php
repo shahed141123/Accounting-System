@@ -184,27 +184,27 @@
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label
                                         class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
-                                    <div id="overview_editor" name="short_description">
+                                    <textarea class="ckeditor" name="short_description">
                                         {!! old('short_description', $blogPost->short_description) !!}
-                                    </div>
+                                    </textarea>
                                     <div class="text-muted fs-7">
                                         Add blog short description.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">Blog Long Description</x-metronic.label>
-                                    <div id="description_editor" name="long_description">
+                                    <textarea class="ckeditor" name="long_description">
                                         {!! old('long_description', $blogPost->long_description) !!}
-                                    </div>
+                                    </textarea>
                                     <div class="text-muted fs-7">
                                         Add blog long description.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">Blog Footer</x-metronic.label>
-                                    <div id="specification_editor" name="footer">
+                                    <textarea class="ckeditor" name="footer">
                                         {!! old('footer', $blogPost->footer) !!}
-                                    </div>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -288,69 +288,6 @@
             new Tagify(input2);
         </script>
         {{-- Tagify END --}}
-        <script>
-            class QuillEditor {
-                constructor(elementId) {
-                    this.elementId = elementId;
-                    this.initEditor();
-                }
 
-                initEditor() {
-                    const Delta = Quill.import('delta');
-                    this.quill = new Quill(`#${this.elementId}`, {
-                        modules: {
-                            toolbar: true
-                        },
-                        placeholder: 'Type your text here...',
-                        theme: 'snow'
-                    });
-
-                    // Store accumulated changes
-                    this.change = new Delta();
-                    this.quill.on('text-change', (delta) => {
-                        this.change = this.change.compose(delta);
-                    });
-
-                    // Save periodically
-                    this.saveInterval = setInterval(() => {
-                        if (this.change.length() > 0) {
-                            console.log('Saving changes', this.change);
-                            // Send partial changes
-                            /*
-                            $.post(this.endpoint, {
-                                partial: JSON.stringify(this.change)
-                            });
-                            */
-                            // Send entire document
-                            /*
-                            $.post(this.endpoint, {
-                                doc: JSON.stringify(this.quill.getContents())
-                            });
-                            */
-                            this.change = new Delta();
-                        }
-                    }, 5 * 1000);
-
-                    // Check for unsaved data
-                    window.addEventListener('beforeunload', (e) => {
-                        if (this.change.length() > 0) {
-                            e.preventDefault();
-                            e.returnValue = 'There are unsaved changes. Are you sure you want to leave?';
-                        }
-                    });
-                }
-
-                destroy() {
-                    clearInterval(this.saveInterval);
-                    window.removeEventListener('beforeunload', this.handleBeforeUnload);
-                }
-            }
-
-            // Initialize multiple editors
-            const overviewEditor = new QuillEditor('overview_editor');
-            const descriptionEditor = new QuillEditor('description_editor');
-            const specificationEditor = new QuillEditor('specification_editor');
-            const metaEditor = new QuillEditor('meta_editor');
-        </script>
     @endpush
 </x-admin-app-layout>
