@@ -3,15 +3,15 @@
         <div class="container">
             <ul class="ps-breadcrumb">
                 <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
-                <li class="ps-breadcrumb__item active" aria-current="page">Blog Masonry</li>
+                <li class="ps-breadcrumb__item active" aria-current="page">Blog</li>
             </ul>
-            <h1 class="ps-blog__title">Blog Masonry</h1>
             <div class="ps-blog__content">
                 <div class="row">
                     @foreach ($blog_posts as $blog_post)
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a href="{{ route('blog.details',$blog_post->slug) }}"><img src="{{ asset($blog_post->image) }}" alt="alt" /></a>
+                                <div class="ps-blog__thumbnail"><a href="{{ route('blog.details',$blog_post->slug) }}">
+                                    <img src="{{ asset($blog_post->image) }}" alt="alt" /></a>
                                     <div class="ps-blog__badge">
                                         <span class="ps-badge__item">{{ $blog_post->badge }}</span>
                                         {{-- @foreach ($blog_post->blogTag as $tag)

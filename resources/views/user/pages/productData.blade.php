@@ -170,18 +170,18 @@
                                         <table class="table table-striped order-history-table">
                                             <thead>
                                                 <tr>
-                                                    <th>SL</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Status</th>
-                                                    <th>Total QTY</th>
-                                                    <th>In Stock</th>
+                                                    <th width="5%"></th>
+                                                    <th width="5%">SL</th>
+                                                    <th width="20%">Product Image</th>
+                                                    <th width="40%">Product Title</th>
+                                                    <th width="15%">SKU</th>
+                                                    <th width="25%">Category</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <!-- Example Row -->
                                                 <tr>
+                                                    <td></td>
                                                     <td>1</td>
                                                     <td>
                                                         <div>
@@ -192,10 +192,8 @@
                                                     <td>Thie Shoup Spoon</td>
                                                     <td>#sku354</td>
                                                     <td>
-                                                        <span class="badge bg-info text-white">Available</span>
+                                                        Home & Kitchen
                                                     </td>
-                                                    <td>555</td>
-                                                    <td>105</td>
                                                 </tr>
                                                 <!-- Additional rows go here -->
                                             </tbody>
