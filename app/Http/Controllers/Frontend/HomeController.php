@@ -89,11 +89,18 @@ class HomeController extends Controller
 
         $data = [
             'category'                => $category,
-            // 'category_products'       => $category->products()->paginate(12), // Use the custom method to get products
             'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
         ];
- // For debugging purposes
-        // dd($category->products()); // For debugging purposes
         return view('frontend.pages.categoryDetails', $data);
+    }
+    public function allProducts()
+    {
+        // $category = Category::where('slug', $slug)->firstOrFail();
+
+        $data = [
+            // 'category'                => $category,
+            'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
+        ];
+        return view('frontend.pages.allProducts', $data);
     }
 }

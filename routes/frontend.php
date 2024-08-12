@@ -14,6 +14,7 @@ Route::get('blogs', [HomeController::class, 'allBlog'])->name('allBlog');
 Route::get('blog-details/{slug}', [HomeController::class, 'blogDetails'])->name('blog.details');
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('return-policy', [HomeController::class, 'returnPolicy'])->name('returnPolicy');
+Route::get('category-products', [HomeController::class, 'allProducts'])->name('all.products');
 Route::get('category/{slug}', [HomeController::class, 'categoryProducts'])->name('category.products');
 Route::get('product/details/{slug}', [HomeController::class, 'productDetails'])->name('product.details');
 

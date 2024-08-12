@@ -93,12 +93,19 @@
                                                                     </a>
                                                                 </h5>
                                                                 @auth
+                                                                    @if (!empty($product->box_discount_price))
                                                                     <div class="ps-product__meta">
                                                                         <span
-                                                                            class="ps-product__price sale">{{ $category_product->box_discount_price }}</span>
+                                                                            class="ps-product__price sale">£{{ $category_product->box_discount_price }}</span>
                                                                         <span
-                                                                            class="ps-product__del">{{ $category_product->box_price }}</span>
+                                                                            class="ps-product__del">£{{ $category_product->box_price }}</span>
                                                                     </div>
+                                                                    @else
+                                                                        <div class="ps-product__meta"><span
+                                                                                class="ps-product__price sale">£{{ $product->box_price }}</span>
+                                                                        </div>
+                                                                    @endif
+
                                                                 @else
                                                                     <div class="ps-product__meta">
                                                                         <a href="{{ route('login') }}"
@@ -275,7 +282,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ps-widget__promo"><img src="img/banner-sidebar1.jpg" alt></div>
+                            <div class="ps-widget__promo"><img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}"
+                                    alt></div>
                         </div>
                     </div>
                 </div>
