@@ -11,12 +11,12 @@
                     <div class="col-12 col-md-9">
                         <div class="ps-categogy--grid">
                             <div class="row m-0">
-                                @foreach ($category->products as $product) 
-                                    <div class="col-6 col-lg-4 col-xl-3 p-0">                                        
+                                @foreach ($category->products as $product)
+                                    <div class="col-6 col-lg-4 col-xl-3 p-0">
                                         <div class="ps-product ps-product--standard">
                                             <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ route('product.details',$product->slug) }}">
                                                     <figure>
-                                                        @foreach ($product->multiImages->slice(0, 2) as $image) 
+                                                        @foreach ($product->multiImages->slice(0, 2) as $image)
                                                             <img src="{{ asset($image->photo) }}" alt="alt" />
                                                         @endforeach
                                                     </figure>
@@ -24,7 +24,7 @@
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip" data-placement="left" title="Wishlist">
                                                         <a href="#"><i class="fa fa-heart-o"></i></a>
-                                                    </div>                                                    
+                                                    </div>
                                                     <div class="ps-product__item" data-toggle="tooltip" data-placement="left" title="Quick view">
                                                         <a href="#" data-toggle="modal" data-target="#popupQuickview"><i class="fa fa-search"></i></a>
                                                     </div>
@@ -76,10 +76,10 @@
                                                     <div class="ps-product__item rotate" data-toggle="tooltip" data-placement="left" title="Add to compare"><a href="compare.html"><i class="fa fa-align-left"></i></a></div>
                                                 </div>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 @endforeach
-                                <div class="col-6 col-lg-4 col-xl-3 p-0"> 
+                                <div class="col-6 col-lg-4 col-xl-3 p-0">
                                     <a class="ps-nextpage" href="#"><span class="ps-nextpage__text">
                                         Next <br>page</span>
                                         <i class="fa fa-chevron-right"></i>

@@ -53,7 +53,7 @@ class HomeController extends Controller
     public function faq()
     {
         $data = [
-            'faqs' => Faq::latest('id')->where('status', 'active')->get(),
+            'faqs' => Faq::orderBy('order', 'asc')->where('status', 'active')->get(),
         ];
         return view('frontend.pages.faq', $data);
     }

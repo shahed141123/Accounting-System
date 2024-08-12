@@ -1,4 +1,4 @@
-h h<x-admin-app-layout :title="'Blog Posts'">
+<x-admin-app-layout :title="'Blog Posts'">
     <div class="card">
         <div class="card-header bg-primary d-flex justify-content-between align-items-center">
             <h1 class="mb-0 text-white">Manage Your Blog Posts</h1>
