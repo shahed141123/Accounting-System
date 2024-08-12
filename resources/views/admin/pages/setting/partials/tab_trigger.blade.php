@@ -325,7 +325,7 @@
             <span class="ps-2">Services</span>
         </a>
     </li> --}}
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    {{-- <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#banner"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -365,7 +365,7 @@
             </svg>
             <span class="ps-2">Welcome Notice</span>
         </a>
-    </li>
+    </li> --}}
     <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#seo"
             aria-selected="false" role="tab" tabindex="-1">
@@ -635,7 +635,7 @@
             <span class="ps-2">Terms & Condition</span>
         </a>
     </li> --}}
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    {{-- <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#fonts"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -943,5 +943,5 @@
                 </g>
             </svg>
             <span class="ps-2">Page Section</span></a>
-    </li>
+    </li> --}}
 </ul>
