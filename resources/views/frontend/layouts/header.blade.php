@@ -48,14 +48,14 @@
                                 @auth
                                     <!-- If the user is authenticated, show these options -->
                                     <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
-
-                                    <!-- Logout button inside form -->
-                                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                    <a class="dropdown-item" href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                    <!-- Hidden logout form -->
+                                    <form id="logout-form" method="POST" action="{{ route('logout') }}"
+                                        style="display: none;">
                                         @csrf
-                                        <a href="javascript:void(0)" type="submit" class="dropdown-item"
-                                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
-                                            {{ __('Log Out') }}
-                                        </a>
                                     </form>
                                 @else
                                     <!-- If the user is not authenticated, show these options -->
@@ -247,3 +247,26 @@
         </div>
     </div>
 </header>
+<script>
+    // JavaScript to handle logout if using Fetch API (optional)
+    function handleLogout() {
+        fetch('{{ route('logout') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    _method: 'POST'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '{{ url('/') }}'; // Redirect after logout
+                } else {
+                    console.error('Logout failed.');
+                }
+            })
+            .catch(error => console.error('Logout error:', error));
+    }
+</script>

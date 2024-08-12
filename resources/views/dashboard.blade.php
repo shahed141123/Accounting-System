@@ -14,8 +14,8 @@
             </div>
         </div>
     </div>
-    <div class="ps-account">
-        @if (Auth::user()->status == 'active')
+    @if (Auth::user()->status == 'active')
+        <div class="ps-account">
             <section class="user-dashboard py-8">
                 <div class="container">
                     <div class="row g-3 g-xl-4 tab-wrap">
@@ -1165,14 +1165,22 @@
                     </div>
                 </div>
             </section>
-        @else
+        </div>
+    @else
         <section class="user-dashboard py-8">
             <div class="container">
-                <div class="row g-3 g-xl-4 tab-wrap">
-                    <h6 class="text-warning">Please wait for Admin Varication. You will get verified soon.</h6>
+                <div>
+                    <h6 class="text-warning display-4 text-center">Please wait for Admin Varication. <br> You will get
+                        verified soon.
+                    </h6>
+                    <div class="d-flex justify-content-center">
+                        <img class="img-fluid" src="https://cdni.iconscout.com/illustration/premium/thumb/wait-a-minute-6771645-5639826.png?f=webp" alt="">
+                    </div>
+                    <div class="w-25 mx-auto">
+                        <a href="{{ route('home') }}" class="ps-btn ps-btn--warning">Back To Home</a>
+                    </div>
                 </div>
             </div>
         </section>
-        @endif
-    </div>
+    @endif
 </x-frontend-app-layout>
