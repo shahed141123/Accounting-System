@@ -144,6 +144,10 @@
                                                                 class="ps-product__price sale">£{{ $latest_product->box_price }}</span>
                                                         </div>
                                                     @endif
+                                                    <a href="javascript:void(0)"
+                                                        class="btn ps-btn--warning my-3 btn-block add_to_cart"
+                                                        data-product_id="{{ $latest_product->id }}"
+                                                        data-product_qty="1">Add To Cart</a>
                                                 @else
                                                     <div class="ps-product__meta">
                                                         <a href="{{ route('login') }}"
@@ -171,9 +175,9 @@
                                                                     class="icon-plus"></i></button>
                                                         </div>
                                                     </div>
-                                                    <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
+                                                    {{-- <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
                                                             href="#" data-toggle="modal"
-                                                            data-target="#popupAddcart">Add to cart</a></div>
+                                                            data-target="#popupAddcart">Add to cart</a></div> --}}
                                                     <div class="ps-product__item cart" data-toggle="tooltip"
                                                         data-placement="left" title="Add to cart"><a
                                                             href="#"><i class="fa fa-shopping-basket"></i></a>

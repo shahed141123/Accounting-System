@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         /* Preloader Styles */
         #preloader {
@@ -191,6 +193,225 @@
             new Dashboard();
         });
     </script>
+    {{-- add_to_cart_btn_product --}}
+    <script>
+        $('.add_to_cart_btn_product').click(function() {
+
+            var product_id = $(this).data('product_id');
+            var qty = $(this).closest('.d-flex').find('.qty-input').val();
+
+
+            $.ajax({
+
+                type: "POST",
+                dataType: 'json',
+                url: '/product-store-cart',
+
+                data: {
+                    product_id: product_id,
+                    qty: qty,
+                },
+
+                success: function(data) {
+
+                    $('.cart_icon').removeClass('d-none');
+
+                    miniCart();
+                    miniCartRelated();
+
+                    // Start Message
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message
+                }
+
+            })
+
+        })
+    </script>
+    {{-- add_to_cart_btn_product --}}
+
+    {{-- add_to_cart_btn_product_single --}}
+    <script>
+        $(document).ready(function() {
+            $('.add_to_cart_btn_product_single').click(function(e) {
+                e.preventDefault(); // Prevent the default action of the link
+
+                // Find the quantity input
+                var $quantityInput = $(this).closest('.ps-product__feature').find('.quantity');
+                var product_id = $(this).data('product_id');
+                var qty = $quantityInput.val(); // Get the quantity value
+
+                // Check if quantity is valid
+                if (qty <= 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Invalid Quantity',
+                        text: 'Please select a valid quantity.'
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/cart/store/' + product_id,
+                    data: {
+                        _token: "{{ csrf_token() }}", // Include CSRF token for security
+                        quantity: qty
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            });
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        let errorMessage = 'Something went wrong!'; // Default message
+
+                        // Check if the response is JSON and contains an error message
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        } else if (xhr.responseText) {
+                            try {
+                                let response = JSON.parse(xhr.responseText);
+                                if (response.message) {
+                                    errorMessage = response.message;
+                                }
+                            } catch (e) {
+                                // If responseText is not JSON, use default message
+                                console.error('Error parsing response text:', e);
+                            }
+                        }
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: errorMessage
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.add_to_cart').click(function(e) {
+                e.preventDefault(); // Prevent the default action of the link
+                var button = $(this);
+                var product_id = button.data('product_id');
+                var qty = button.data('product_qty'); // Get the quantity value
+
+                // Check if quantity is valid
+                if (qty <= 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Invalid Quantity',
+                        text: 'Please select a valid quantity.'
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/cart/store/' + product_id,
+                    data: {
+                        _token: "{{ csrf_token() }}", // Include CSRF token for security
+                        quantity: qty
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            });
+                            button.prop('disabled', true); // Disable the button
+                            button.text('Already added'); // Change button text
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        let errorMessage = 'Something went wrong!'; // Default message
+
+                        // Check if the response is JSON and contains an error message
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        } else if (xhr.responseText) {
+                            try {
+                                let response = JSON.parse(xhr.responseText);
+                                if (response.message) {
+                                    errorMessage = response.message;
+                                }
+                            } catch (e) {
+                                // If responseText is not JSON, use default message
+                                console.error('Error parsing response text:', e);
+                            }
+                        }
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: errorMessage
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    {{-- add_to_cart_btn_product_single --}}
 </body>
 
 

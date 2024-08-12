@@ -81,20 +81,20 @@
                             <div class="ps-footer--address">
                                 <div class="ps-logo">
                                     <a href="{{ route('home') }}">
-                                        <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                                        <img src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                                             alt=""
                                             onerror="this.onerror=null; this.src='{{ asset('frontend/img/logo.png') }}';">
                                     </a>
                                 </div>
                                 <div class="ps-footer__title">Our store</div>
-                                <p>{{ $setting->address_line_one }}<br>{{ $setting->address_line_two }}</p>
+                                <p>{{ optional($setting)->address_line_one }}<br>{{ optional($setting)->address_line_two }}</p>
 
                                 <!-- In your Blade view (e.g., resources/views/your_view_name.blade.php) -->
                                 <ul class="ps-social">
-                                    @if ($setting->facebook_url)
+                                    @if (optional($setting)->facebook_url)
                                         <li>
                                             <a class="ps-social__link extra-color facebook"
-                                                href="{{ $setting->facebook_url }}" target="_blank"
+                                                href="{{ optional($setting)->facebook_url }}" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-facebook"></i>
                                                 <span class="ps-tooltip">Facebook</span>
@@ -102,10 +102,10 @@
                                         </li>
                                     @endif
 
-                                    @if ($setting->instagram_url)
+                                    @if (optional($setting)->instagram_url)
                                         <li>
                                             <a class="ps-social__link extra-color instagram"
-                                                href="{{ $setting->instagram_url }}" target="_blank"
+                                                href="{{ optional($setting)->instagram_url }}" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-instagram"></i>
                                                 <span class="ps-tooltip">Instagram</span>
@@ -113,10 +113,10 @@
                                         </li>
                                     @endif
 
-                                    @if ($setting->youtube_url)
+                                    @if (optional($setting)->youtube_url)
                                         <li>
                                             <a class="ps-social__link extra-color youtube"
-                                                href="{{ $setting->youtube_url }}" target="_blank"
+                                                href="{{ optional($setting)->youtube_url }}" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-youtube-play"></i>
                                                 <span class="ps-tooltip">YouTube</span>
@@ -124,10 +124,10 @@
                                         </li>
                                     @endif
 
-                                    @if ($setting->pinterest_url)
+                                    @if (optional($setting)->pinterest_url)
                                         <li>
                                             <a class="ps-social__link extra-color pinterest"
-                                                href="{{ $setting->pinterest_url }}" target="_blank"
+                                                href="{{ optional($setting)->pinterest_url }}" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-pinterest-p"></i>
                                                 <span class="ps-tooltip">Pinterest</span>
@@ -135,10 +135,10 @@
                                         </li>
                                     @endif
 
-                                    @if ($setting->linkedin_url)
+                                    @if (optional($setting)->linkedin_url)
                                         <li>
                                             <a class="ps-social__link extra-color linkedin"
-                                                href="{{ $setting->linkedin_url }}" target="_blank"
+                                                href="{{ optional($setting)->linkedin_url }}" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-linkedin"></i>
                                                 <span class="ps-tooltip">LinkedIn</span>
@@ -148,10 +148,10 @@
 
                                     <!-- Add additional social media links similarly -->
 
-                                    @if ($setting->twitter_url)
+                                    @if (optional($setting)->twitter_url)
                                         <li>
                                             <a class="ps-social__link extra-color twitter"
-                                                href="{{ $setting->twitter_url }}" target="_blank"
+                                                href="{{ optional($setting)->twitter_url }}" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-twitter"></i>
                                                 <span class="ps-tooltip">Twitter</span>
@@ -159,10 +159,10 @@
                                         </li>
                                     @endif
 
-                                    @if ($setting->whatsapp_url)
+                                    @if (optional($setting)->whatsapp_url)
                                         <li>
                                             <a class="ps-social__link extra-color whatsapp"
-                                                href="{{ $setting->whatsapp_url }}" target="_blank"
+                                                href="{{ optional($setting)->whatsapp_url }}" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-whatsapp"></i>
                                                 <span class="ps-tooltip">WhatsApp</span>
@@ -175,14 +175,14 @@
                         <div class="col-12 col-md-8">
                             <div class="ps-footer--contact">
                                 <h5 class="ps-footer__title">Need help</h5>
-                                <div class="ps-footer__fax"><i class="icon-telephone"></i>{{ $setting->primary_phone }}
+                                <div class="ps-footer__fax"><i class="icon-telephone"></i>{{ optional($setting)->primary_phone }}
                                 </div>
                                 <p class="ps-footer__work">Monday – Friday: 9:00-20:00<br>Saturday: 11:00 – 15:00</p>
                                 <hr>
                                 <p>
-                                    <a class="ps-footer__email" href="mailto:{{ $setting->contact_email }}">
+                                    <a class="ps-footer__email" href="mailto:{{ optional($setting)->contact_email }}">
                                         <i class="icon-envelope"></i>
-                                        <span>{{ $setting->contact_email }}</span>
+                                        <span>{{ optional($setting)->contact_email }}</span>
                                     </a>
                                 </p>
                             </div>
@@ -231,8 +231,8 @@
         <div class="ps-footer--bottom">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <a href="{{ $setting->copyright_url }}">
-                        <p>{{ $setting->copyright_title }}</p>
+                    <a href="{{ optional($setting)->copyright_url }}">
+                        <p>{{ optional($setting)->copyright_title }}</p>
                     </a>
                 </div>
                 <div class="col-12 col-md-6 text-right">

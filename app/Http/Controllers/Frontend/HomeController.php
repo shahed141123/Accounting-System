@@ -108,4 +108,12 @@ class HomeController extends Controller
         ];
         return view('frontend.pages.allProducts', $data);
     }
+    public function compareList()
+    {
+
+        $data = [
+            'categories'   => Category::orderBy('name', 'ASC')->active()->get(),
+        ];
+        return view('frontend.pages.cart.compareList', $data);
+    }
 }

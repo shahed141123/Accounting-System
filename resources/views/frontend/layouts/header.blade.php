@@ -101,8 +101,8 @@
                             </ul>
                             <div class="ps-cart__total"><span>Subtotal </span><span>$399</span></div>
                             <div class="ps-cart__footer"><a class="ps-btn ps-btn--outline"
-                                    href="shopping-cart.html">View Cart</a><a class="ps-btn ps-btn--warning"
-                                    href="checkout.html">Checkout</a></div>
+                                    href="{{ route('cart') }}">View Cart</a>
+                                    <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Checkout</a></div>
                         </div>
                     </li>
                 </ul>

@@ -9,237 +9,178 @@
             </ul>
             <h3 class="ps-shopping__title">Shopping cart<sup>(co)</sup></h3>
             <div class="ps-shopping__content">
-                <div class="row">
-                    <div class="col-12 col-md-7 col-lg-9">
-                        <ul class="ps-shopping__list">
-                            <li>
-                                <div class="ps-product ps-product--wishlist">
-                                    <div class="ps-product__remove">
-                                        <a href="#"><i class="icon-cross"></i></a>
-                                    </div>
-                                    <div class="ps-product__thumbnail">
-                                        <a class="ps-product__image" href="product1.html">
-                                            <figure>
-                                                <img src="img/products/055.jpg" alt="alt" />
-                                            </figure>
-                                        </a>
-                                    </div>
-                                    <div class="ps-product__content">
-                                        <h5 class="ps-product__title">
-                                            <a href="product1.html">Somersung Sonic X2500 Pro White</a>
-                                        </h5>
-                                        <div class="ps-product__row">
-                                            <div class="ps-product__label">Price:</div>
-                                            <div class="ps-product__value">
-                                                <span class="ps-product__price">$399.99</span>
+                @if ($cartItems->Count() > 0)
+                    <div class="row">
+                        <div class="col-12 col-md-7 col-lg-9">
+                            <ul class="ps-shopping__list">
+                                @foreach ($cartItems as $item)
+                                    <li>
+                                        <div class="ps-product ps-product--wishlist">
+                                            <div class="ps-product__remove">
+                                                <a href="#"><i class="icon-cross"></i></a>
+                                            </div>
+                                            <div class="ps-product__thumbnail">
+                                                <a class="ps-product__image" href="{{ route('product.details',$item->model->slug) }}">
+                                                    <figure>
+                                                        <img src="{{ asset('storage/'.$item->model->image) }}" alt />
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                            <div class="ps-product__content">
+                                                <h5 class="ps-product__title">
+                                                    <a href="{{ route('product.details',$item->model->slug) }}">{{$item->model->name}}</a>
+                                                </h5>
+                                                <div class="ps-product__row">
+                                                    <div class="ps-product__label">Price:</div>
+                                                    <div class="ps-product__value">
+                                                        <span class="ps-product__price">£{{ $item->price }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ps-product__row ps-product__stock">
+                                                    <div class="ps-product__label">Stock:</div>
+                                                    <div class="ps-product__value">
+                                                        <span class="ps-product__in-stock">In Stock</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ps-product__cart">
+                                                    <button class="ps-btn">Add to cart</button>
+                                                </div>
+                                                <div class="ps-product__row ps-product__quantity">
+                                                    <div class="ps-product__label">Quantity:</div>
+                                                    <div class="ps-product__value">{{ $item->qty }}</div>
+                                                </div>
+                                                <div class="ps-product__row ps-product__subtotal">
+                                                    <div class="ps-product__label">Subtotal:</div>
+                                                    <div class="ps-product__value">£{{ ($item->price) * ($item->qty)}}</div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="ps-product__row ps-product__stock">
-                                            <div class="ps-product__label">Stock:</div>
-                                            <div class="ps-product__value">
-                                                <span class="ps-product__in-stock">In Stock</span>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__cart">
-                                            <button class="ps-btn">Add to cart</button>
-                                        </div>
-                                        <div class="ps-product__row ps-product__quantity">
-                                            <div class="ps-product__label">Quantity:</div>
-                                            <div class="ps-product__value">1</div>
-                                        </div>
-                                        <div class="ps-product__row ps-product__subtotal">
-                                            <div class="ps-product__label">Subtotal:</div>
-                                            <div class="ps-product__value">$399.99</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="ps-product ps-product--wishlist">
-                                    <div class="ps-product__remove">
-                                        <a href="#"><i class="icon-cross"></i></a>
-                                    </div>
-                                    <div class="ps-product__thumbnail">
-                                        <a class="ps-product__image" href="product1.html">
-                                            <figure>
-                                                <img src="img/products/001.jpg" alt="alt" />
-                                            </figure>
-                                        </a>
-                                    </div>
-                                    <div class="ps-product__content">
-                                        <h5 class="ps-product__title">
-                                            <a href="product1.html">Digital Thermometer X30-Pro</a>
-                                        </h5>
-                                        <div class="ps-product__row">
-                                            <div class="ps-product__label">Price:</div>
-                                            <div class="ps-product__value">
-                                                <span class="ps-product__price sale">$77.65</span><span
-                                                    class="ps-product__del">$80.65</span>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__row ps-product__stock">
-                                            <div class="ps-product__label">Stock:</div>
-                                            <div class="ps-product__value">
-                                                <span class="ps-product__in-stock">In Stock</span>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__cart">
-                                            <button class="ps-btn">Add to cart</button>
-                                        </div>
-                                        <div class="ps-product__row ps-product__quantity">
-                                            <div class="ps-product__label">Quantity:</div>
-                                            <div class="ps-product__value">1</div>
-                                        </div>
-                                        <div class="ps-product__row ps-product__subtotal">
-                                            <div class="ps-product__label">Subtotal:</div>
-                                            <div class="ps-product__value">$77.65</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="ps-shopping__table">
-                            <table class="table ps-table ps-table--product">
-                                <thead>
-                                    <tr>
-                                        <th class="ps-product__remove"></th>
-                                        <th class="ps-product__thumbnail"></th>
-                                        <th class="ps-product__name">Product name</th>
-                                        <th class="ps-product__meta">Unit price</th>
-                                        <th class="ps-product__quantity">Quantity</th>
-                                        <th class="ps-product__subtotal">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="ps-product__remove">
-                                            <a href="#"><i class="icon-cross"></i></a>
-                                        </td>
-                                        <td class="ps-product__thumbnail">
-                                            <a class="ps-product__image" href="product1.html">
-                                                <figure>
-                                                    <img src="img/products/055.jpg" alt />
-                                                </figure>
-                                            </a>
-                                        </td>
-                                        <td class="ps-product__name">
-                                            <a href="product1.html">Somersung Sonic X2500 Pro White</a>
-                                        </td>
-                                        <td class="ps-product__meta">
-                                            <span class="ps-product__price">$399.99</span>
-                                        </td>
-                                        <td class="ps-product__quantity"><span>1</span></td>
-                                        <td class="ps-product__subtotal">$399.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ps-product__remove">
-                                            <a href="#"><i class="icon-cross"></i></a>
-                                        </td>
-                                        <td class="ps-product__thumbnail">
-                                            <a class="ps-product__image" href="product1.html">
-                                                <figure>
-                                                    <img src="img/products/001.jpg" alt />
-                                                </figure>
-                                            </a>
-                                        </td>
-                                        <td class="ps-product__name">
-                                            <a href="product1.html">Digital Thermometer X30-Pro</a>
-                                        </td>
-                                        <td class="ps-product__meta">
-                                            <span class="ps-product__price sale">$77.65</span><span
-                                                class="ps-product__del">$80.65</span>
-                                        </td>
-                                        <td class="ps-product__quantity">
-                                            <div class="def-number-input number-input safari_only">
-                                                <button class="minus"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                    <i class="icon-minus"></i>
-                                                </button>
-                                                <input class="quantity" min="0" name="quantity"
-                                                    value="1" type="number" />
-                                                <button class="plus"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                    <i class="icon-plus"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td class="ps-product__subtotal">$77.65</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="ps-shopping__footer">
-                            <div class="ps-shopping__coupon">
-                                <input class="form-control ps-input" type="text" placeholder="Coupon code" />
-                                <button class="ps-btn ps-btn--primary" type="button">
-                                    Apply coupon
-                                </button>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                            <div class="ps-shopping__table">
+                                <table class="table ps-table ps-table--product">
+                                    <thead>
+                                        <tr>
+                                            <th class="ps-product__remove"></th>
+                                            <th class="ps-product__thumbnail"></th>
+                                            <th class="ps-product__name">Product name</th>
+                                            <th class="ps-product__meta">Unit price</th>
+                                            <th class="ps-product__quantity">Quantity</th>
+                                            <th class="ps-product__subtotal">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($cartItems as $item)
+                                            <tr>
+                                                <td class="ps-product__remove">
+                                                    <a href="#"><i class="icon-cross"></i></a>
+                                                </td>
+                                                <td class="ps-product__thumbnail">
+                                                    <a class="ps-product__image" href="{{ route('product.details',$item->model->slug) }}">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/'.$item->model->thumbnail) }}" alt />
+                                                        </figure>
+                                                    </a>
+                                                </td>
+                                                <td class="ps-product__name">
+                                                    <a href="{{ route('product.details',$item->model->slug) }}">{{$item->model->name}}</a>
+                                                </td>
+                                                <td class="ps-product__meta">
+                                                    <span class="ps-product__price">£{{ $item->price }}</span>
+                                                </td>
+                                                <td class="ps-product__quantity"><span>{{ $item->qty }}</span></td>
+                                                <td class="ps-product__subtotal">£{{ ($item->price) * ($item->qty)}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="ps-shopping__button">
-                                <button class="ps-btn ps-btn--primary" type="button">
-                                    Clear All
-                                </button>
-                                <button class="ps-btn ps-btn--primary" type="button">
-                                    Update cart
-                                </button>
+                            <div class="ps-shopping__footer">
+                                {{-- <div class="ps-shopping__coupon">
+                                    <input class="form-control ps-input" type="text" placeholder="Coupon code" />
+                                    <button class="ps-btn ps-btn--primary" type="button">
+                                        Apply coupon
+                                    </button>
+                                </div> --}}
+                                <div class="ps-shopping__button">
+                                    <button class="ps-btn ps-btn--primary" type="button">
+                                        Clear All
+                                    </button>
+                                    <button class="ps-btn ps-btn--primary" type="button">
+                                        Update cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-3">
+                            <div class="ps-shopping__label">Cart totals</div>
+                            <div class="ps-shopping__box">
+                                <div class="ps-shopping__row">
+                                    <div class="ps-shopping__label">Subtotal</div>
+                                    <div class="ps-shopping__price">£{{ Cart::subtotal() }}</div>
+                                </div>
+                                <div class="ps-shopping__label">Shipping</div>
+                                <div class="ps-shopping__checkbox">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="cart-free-ship" checked />
+                                        <label class="form-check-label" for="cart-free-ship">Free shipping</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="cart-ship" />
+                                        <label class="form-check-label" for="cart-ship">Local Pickup: $10.00</label>
+                                    </div>
+                                </div>
+                                <div class="ps-shopping__text">
+                                    Shipping options will be updated during checkout.
+                                </div>
+                                <a class="ps-shopping__toggle" href="#">Calculate shipping</a>
+                                <div class="ps-shopping__form">
+                                    <div class="ps-shopping__group">
+                                        <select class="js-example-basic-single" name="state">
+                                            <option selected>Select a country / region…</option>
+                                            <option>Afghanistan</option>
+                                            <option>Åland Islands</option>
+                                            <option>Albania</option>
+                                            <option>Andorra</option>
+                                            <option>American Samoa</option>
+                                            <option>Andorra</option>
+                                        </select>
+                                    </div>
+                                    <div class="ps-shopping__group">
+                                        <input class="form-control ps-input" type="text" placeholder="County" />
+                                    </div>
+                                    <div class="ps-shopping__group">
+                                        <input class="form-control ps-input" type="text"
+                                            placeholder="Town / City" />
+                                    </div>
+                                    <div class="ps-shopping__group">
+                                        <input class="form-control ps-input" type="text" placeholder="Postcode" />
+                                    </div>
+                                </div>
+                                <div class="ps-shopping__row">
+                                    <div class="ps-shopping__label">Total</div>
+                                    <div class="ps-shopping__price">£{{ Cart::subtotal() }}</div>
+                                </div>
+                                <div class="ps-shopping__checkout">
+                                    <a class="ps-btn ps-btn--warning" href="checkout.html">Proceed to checkout</a><a
+                                        class="ps-shopping__link" href="category-list.html">Continue To Shopping</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-5 col-lg-3">
-                        <div class="ps-shopping__label">Cart totals</div>
-                        <div class="ps-shopping__box">
-                            <div class="ps-shopping__row">
-                                <div class="ps-shopping__label">Subtotal</div>
-                                <div class="ps-shopping__price">$120.46</div>
-                            </div>
-                            <div class="ps-shopping__label">Shipping</div>
-                            <div class="ps-shopping__checkbox">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" id="cart-free-ship" checked />
-                                    <label class="form-check-label" for="cart-free-ship">Free shipping</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" id="cart-ship" />
-                                    <label class="form-check-label" for="cart-ship">Local Pickup: $10.00</label>
-                                </div>
-                            </div>
-                            <div class="ps-shopping__text">
-                                Shipping options will be updated during checkout.
-                            </div>
-                            <a class="ps-shopping__toggle" href="#">Calculate shipping</a>
-                            <div class="ps-shopping__form">
-                                <div class="ps-shopping__group">
-                                    <select class="js-example-basic-single" name="state">
-                                        <option selected>Select a country / region…</option>
-                                        <option>Afghanistan</option>
-                                        <option>Åland Islands</option>
-                                        <option>Albania</option>
-                                        <option>Andorra</option>
-                                        <option>American Samoa</option>
-                                        <option>Andorra</option>
-                                    </select>
-                                </div>
-                                <div class="ps-shopping__group">
-                                    <input class="form-control ps-input" type="text" placeholder="County" />
-                                </div>
-                                <div class="ps-shopping__group">
-                                    <input class="form-control ps-input" type="text" placeholder="Town / City" />
-                                </div>
-                                <div class="ps-shopping__group">
-                                    <input class="form-control ps-input" type="text" placeholder="Postcode" />
-                                </div>
-                            </div>
-                            <div class="ps-shopping__row">
-                                <div class="ps-shopping__label">Total</div>
-                                <div class="ps-shopping__price">$120.46</div>
-                            </div>
-                            <div class="ps-shopping__checkout">
-                                <a class="ps-btn ps-btn--warning" href="checkout.html">Proceed to checkout</a><a
-                                    class="ps-shopping__link" href="category-list.html">Continue To Shopping</a>
-                            </div>
+                @else
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h2>Your cart is empty !</h2>
+                            <h5 class="mt-3">Add Items to it now.</h5>
+                            <a href="{{ route('all.products') }}" class="btn btn-warning mt-5">
+                                Shop Now
+                            </a>
                         </div>
                     </div>
-                </div>
+                @endif
                 <section class="ps-section--latest">
                     <div class="container">
                         <h3 class="ps-section__title">You may be interested in…</h3>
