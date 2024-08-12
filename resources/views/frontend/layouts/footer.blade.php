@@ -79,12 +79,14 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="ps-footer--address">
-                                <div class="ps-logo"><a href="index.html"> <img src="img/logo.png" alt><img
-                                            class="logo-white" src="img/logo.png" alt><img class="logo-black"
-                                            src="img/logo.png" alt><img class="logo-white-all" src="img/logo.png"
-                                            alt><img class="logo-green" src="img/logo.png" alt></a></div>
+                                <div class="ps-logo">
+                                    <a href="{{ route('home') }}">
+                                        <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                                            alt="" onerror="this.onerror=null; this.src='{{ asset('frontend/img/logo.png') }}';">
+                                    </a>
+                                </div>
                                 <div class="ps-footer__title">Our store</div>
-                                <p>1487 Rocky Horse Carrefour<br>Arlington, TX 16819</p>
+                                <p>{{ $setting->address_line_one }}<br>{{ $setting->address_line_two }}</p>
                                 <ul class="ps-social">
                                     <li><a class="ps-social__link facebook" href="#"><i class="fa fa-facebook">
                                             </i><span class="ps-tooltip">Facebook</span></a></li>
@@ -106,11 +108,13 @@
                         <div class="col-12 col-md-8">
                             <div class="ps-footer--contact">
                                 <h5 class="ps-footer__title">Need help</h5>
-                                <div class="ps-footer__fax"><i class="icon-telephone"></i>0020 500 – 4546 – 000</div>
+                                <div class="ps-footer__fax"><i class="icon-telephone"></i>{{ $setting->primary_phone }}
+                                </div>
                                 <p class="ps-footer__work">Monday – Friday: 9:00-20:00<br>Saturday: 11:00 – 15:00</p>
                                 <hr>
                                 <p><a class="ps-footer__email" href="#"> <i class="icon-envelope"></i><span
-                                            class="__cf_email__" data-cfemail="">info@piqpaq.com</span> </a></p>
+                                            class="__cf_email__" data-cfemail="">{{ $setting->contact_email }}</span>
+                                    </a></p>
                             </div>
                         </div>
                     </div>

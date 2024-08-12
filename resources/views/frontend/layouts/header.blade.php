@@ -4,20 +4,20 @@
     }
 </style>
 <header class="ps-header ps-header--13">
-    @if (!empty($site->website_name) || !empty($site->site_motto))
+    @if (!empty($setting->website_name) || !empty($setting->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ $site->website_name }}, {{ $site->site_motto }}</p>
+                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }}</p>
             </div>
             <a class="ps-noti__close">
                 <i class="icon-cross"></i>
             </a>
         </div>
     @endif
-    @if (!empty($site->primary_phone))
+    @if (!empty($setting->primary_phone))
         <div class="ps-header__top">
             <div class="container">
-                <div class="ps-header__text">Need help? <strong>{{ $site->primary_phone }}</strong></div>
+                <div class="ps-header__text">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
             </div>
         </div>
     @endif
@@ -25,10 +25,10 @@
         <div class="container">
             <div class="ps-logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ !empty($site->site_logo_black) ? asset('storage/' . $site->site_logo_black) : asset('frontend/img/logo.png') }}"
+                    <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt>
                     <img class="sticky-logo"
-                        src="{{ !empty($site->site_logo_black) ? asset('storage/' . $site->site_logo_black) : asset('frontend/img/logo.png') }}"
+                        src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt>
                 </a>
             </div>
@@ -214,18 +214,18 @@
                     </ul>
                 </nav>
             </div>
-            @if (!empty($site->primary_phone))
-                <div class="ps-navigation__right">Need help? <strong>{{ $site->primary_phone }}</strong></div>
+            @if (!empty($setting->primary_phone))
+                <div class="ps-navigation__right">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
             @endif
 
         </div>
     </div>
 </header>
 <header class="ps-header ps-header--13 ps-header--mobile">
-    @if (!empty($site->website_name) || !empty($site->site_motto))
+    @if (!empty($setting->website_name) || !empty($setting->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ $site->website_name }}, {{ $site->site_motto }}</p>
+                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }}</p>
             </div>
             <a class="ps-noti__close"><i class="icon-cross"></i></a>
         </div>
