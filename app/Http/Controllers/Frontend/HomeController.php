@@ -28,7 +28,7 @@ class HomeController extends Controller
         $data = [
             'categorys'        => Category::orderBy('name','ASC')->active()->get(),
             'latest_products'  => $latest_products,
-            'deal_products'    => $latest_products->whereNotNull('box_discount_price')->get(),
+            'deal_products'    => $latest_products->whereNotNull('box_discount_price'),
         ];
         return view('frontend.pages.home',$data);
     }
