@@ -14,6 +14,7 @@
                                 <div class="col-12 col-xl-6">
                                     <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
+                                            {{-- <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->meta_title }}"> --}}
                                             @foreach ($product->multiImages as $image)
                                                 <div class="slide">
                                                     <img src="{{ asset('storage/' . $image->photo) }}"
@@ -53,11 +54,11 @@
                                                     <td>{{ $product->length }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="ps-table__th">Length </th>
+                                                    <th class="ps-table__th">Width </th>
                                                     <td>{{ $product->width }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="ps-table__th">Length </th>
+                                                    <th class="ps-table__th">Height </th>
                                                     <td>{{ $product->height }}</td>
                                                 </tr>
                                                 <tr>

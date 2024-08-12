@@ -117,9 +117,9 @@
     <script src="{{ asset('frontend/plugins/slick/slick/slick.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/noUiSlider/nouislider.min.js') }}"></script>
     <!-- jQuery (required for DataTables and Date Range Picker) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <!-- Date Range Picker JS -->
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
