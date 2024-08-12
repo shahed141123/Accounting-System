@@ -53,7 +53,7 @@ class HomeController extends Controller
     public function faq()
     {
         $data = [
-            'faqs' => Faq::latest('id')->where('status', 'active')->get(),
+            'faqs' => Faq::orderBy('order', 'asc')->where('status', 'active')->get(),
         ];
         return view('frontend.pages.faq', $data);
     }
@@ -89,7 +89,7 @@ class HomeController extends Controller
 
         $data = [
             'category'                => $category,
-            'category_products'       => $category->products()->get(), // Use the custom method to get products
+            // 'category_products'       => $category->products()->paginate(12), // Use the custom method to get products
             'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
         ];
  // For debugging purposes

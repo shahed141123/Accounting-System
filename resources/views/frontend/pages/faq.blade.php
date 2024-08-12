@@ -48,7 +48,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div>
-                    <h1 class="text-start mb-5 display-4">Piqpaq <br> Frequently Asked Questions (FAQ)</h1>
+                    <h1 class="text-start mb-5 display-4"><span class="display-3 fw-bold">Piqpaq</span> <br> Frequently Asked Questions (FAQ)</h1>
                     <p>Find answers to all your questions about shopping at Piqpaq. Our FAQ section covers everything
                         from ordering and shipping to returns and refunds, ensuring a smooth and satisfying shopping
                         experience.</p>
@@ -63,29 +63,22 @@
     </div>
     <div class="container my-5">
         <div id="accordion" class="accordion pb-5">
-            <div class="card mb-0 border-0">
-                <div id="accordion">
-                    <!-- FAQ Item 1 -->
-                    @foreach ($faqs as $faq) 
-                        <div class="card">
-                            <div class="card-header collapsed bg-info p-4" data-toggle="collapse" data-parent="#accordion{{ $faq->id }}"
-                                href="#collapse{{ $faq->id }}">
-                                <a class="card-title text-white">
-                                    Q: {{ $faq->question }}
-                                </a>
-                            </div>
-                            <div id="collapse{{ $faq->id }}" class="collapse" data-parent="#accordion{{ $faq->id }}">
-                                <div class="card-body">
-                                    {{ $faq->answer }}
-                                </div>
-                            </div>
+            <!-- FAQ Item -->
+            @foreach ($faqs as $faq)
+                <div class="card mb-0 border-0">
+                    <div class="card-header collapsed bg-info p-4" data-toggle="collapse"
+                        data-target="#collapse{{ $faq->id }}">
+                        <a class="card-title text-white">
+                            Q: {{ $faq->question }}
+                        </a>
+                    </div>
+                    <div id="collapse{{ $faq->id }}" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            {{ $faq->answer }}
                         </div>
-                    @endforeach
-
-                    <!-- FAQ Item 2 -->
-
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </x-frontend-app-layout>
