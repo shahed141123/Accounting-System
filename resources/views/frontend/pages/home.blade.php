@@ -97,7 +97,7 @@
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $latest_product->slug) }}">
                                                     <figure>
-                                                        @if ($latest_product->multiImages)
+                                                        @if (count($latest_product->multiImages) > 0)
                                                             @foreach ($latest_product->multiImages->slice(0, 2) as $image)
                                                                 <img src="{{ asset('storage/' . $image->photo) }}"
                                                                     alt="{{ $latest_product->meta_title }}" />
@@ -327,7 +327,7 @@
                                             <a class="ps-product__image"
                                                 href="{{ route('product.details', $deal_product->slug) }}">
                                                 <figure>
-                                                    @if ($deal_product->multiImages)
+                                                    @if (count($deal_product->multiImages) > 0)
                                                         @foreach ($deal_product->multiImages->slice(0, 2) as $image)
                                                             <img src="{{ asset('storage/' . $image->photo) }}"
                                                                 alt="{{ $deal_product->meta_title }}" />

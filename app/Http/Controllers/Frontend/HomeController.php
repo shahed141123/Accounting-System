@@ -22,8 +22,8 @@ class HomeController extends Controller
 
         $data = [
             'categorys'        => Category::orderBy('name','ASC')->active()->get(),
-            'latest_products'  => Product::latest('id')->where('status','published')->limit(10)->get(['slug','meta_title','name','box_discount_price','box_price']),
-            'deal_products'    => Product::whereNotNull('box_discount_price')->where('status','published')->latest('id')->limit(10)->get(['slug','meta_title','name','box_discount_price','box_price']),
+            'latest_products'  => Product::with('multiImages')->latest('id')->where('status','published')->limit(10)->get(['slug','meta_title','name','box_discount_price','box_price']),
+            'deal_products'    => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status','published')->latest('id')->limit(10)->get(['slug','meta_title','name','box_discount_price','box_price']),
         ];
         return view('frontend.pages.home',$data);
     }
