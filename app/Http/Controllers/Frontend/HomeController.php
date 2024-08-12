@@ -18,17 +18,12 @@ class HomeController extends Controller
 {
     public function home()
     {
-        // $latest_products = Product::latest('id')->where('status','published')->get(['slug','multiImages','meta_title','name','box_discount_price','box_price']);
-        $latest_products = Cache::remember('latest_products', 60, function () {
-            return Product::latest('id')->with('multiImages')
-                ->where('status', 'published')
-                ->select('slug','meta_title','name','box_discount_price','box_price')
-                ->get();
-        });
+        // $latest_products = Product::latest('id')->where('status','published')->get(['slug','meta_title','name','box_discount_price','box_price']);
+
         $data = [
             'categorys'        => Category::orderBy('name','ASC')->active()->get(),
-            'latest_products'  => $latest_products,
-            'deal_products'    => $latest_products->whereNotNull('box_discount_price'),
+            'latest_products'  => Product::latest('id')->where('status','published')->limit(10)->get(['slug','meta_title','name','box_discount_price','box_price']),
+            'deal_products'    => Product::whereNotNull('box_discount_price')->where('status','published')->latest('id')->limit(10)->get(['slug','meta_title','name','box_discount_price','box_price']),
         ];
         return view('frontend.pages.home',$data);
     }
