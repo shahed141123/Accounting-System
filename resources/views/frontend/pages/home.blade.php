@@ -97,10 +97,15 @@
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $latest_product->slug) }}">
                                                     <figure>
-                                                        @foreach ($latest_product->multiImages->slice(0, 2) as $image)
-                                                            <img src="{{ asset('storage/' . $image->photo) }}"
+                                                        @if ($latest_product->multiImages)
+                                                            @foreach ($latest_product->multiImages->slice(0, 2) as $image)
+                                                                <img src="{{ asset('storage/' . $image->photo) }}"
+                                                                    alt="{{ $latest_product->meta_title }}" />
+                                                            @endforeach
+                                                        @else
+                                                            <img src="{{ asset('storage/' . $latest_product->thumbnail) }}"
                                                                 alt="{{ $latest_product->meta_title }}" />
-                                                        @endforeach
+                                                        @endif
                                                     </figure>
                                                 </a>
                                                 <div class="ps-product__actions">
@@ -320,14 +325,19 @@
                                     <div class="ps-product ps-product--standard">
                                         <div class="ps-product__thumbnail">
                                             <a class="ps-product__image"
-                                                    href="{{ route('product.details', $deal_product->slug) }}">
-                                                    <figure>
+                                                href="{{ route('product.details', $deal_product->slug) }}">
+                                                <figure>
+                                                    @if ($deal_product->multiImages)
                                                         @foreach ($deal_product->multiImages->slice(0, 2) as $image)
                                                             <img src="{{ asset('storage/' . $image->photo) }}"
                                                                 alt="{{ $deal_product->meta_title }}" />
                                                         @endforeach
-                                                    </figure>
-                                                </a>
+                                                    @else
+                                                        <img src="{{ asset('storage/' . $deal_product->thumbnail) }}"
+                                                            alt="{{ $deal_product->meta_title }}" />
+                                                    @endif
+                                                </figure>
+                                            </a>
                                             <div class="ps-product__actions">
                                                 <div class="ps-product__item" data-toggle="tooltip"
                                                     data-placement="left" title="Wishlist"><a href="#"><i
