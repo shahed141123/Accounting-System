@@ -202,13 +202,13 @@ class BlogPostController extends Controller
                 }
                 return redirect()->back()->withInput();
             }
+
             // Handle file uploads
             $files = [
                 'logo' => $request->file('logo'),
                 'image' => $request->file('image'),
                 'banner_image' => $request->file('banner_image'),
             ];
-
             $uploadedFiles = [];
             foreach ($files as $key => $file) {
                 if (!empty($file)) {
@@ -226,7 +226,8 @@ class BlogPostController extends Controller
                     $uploadedFiles[$key] = ['status' => 0];
                 }
             }
-
+            // dd($request->all());
+            // dd($uploadedFiles['image']['file_path']);
             // Update the BlogPost record
             $blogPost->update([
                 'category_id'       => json_encode($request->category_id),
@@ -241,9 +242,9 @@ class BlogPostController extends Controller
                 'author'            => $request->author,
                 'address'           => $request->address,
                 'tags'              => $request->tags,
-                'logo'              => $uploadedFiles['logo']['status'] === 1 ? $uploadedFiles['logo']['file_path'] : $blogPost->logo,
-                'image'             => $uploadedFiles['image']['status'] === 1 ? $uploadedFiles['image']['file_path'] : $blogPost->image,
-                'banner_image'      => $uploadedFiles['banner_image']['status'] === 1 ? $uploadedFiles['banner_image']['file_path'] : $blogPost->banner_image,
+                'logo'              => $uploadedFiles['logo']['status']         == 1 ? $uploadedFiles['logo']['file_path']         : $blogPost->logo,
+                'image'             => $uploadedFiles['image']['status']        == 1 ? $uploadedFiles['image']['file_path']        : $blogPost->image,
+                'banner_image'      => $uploadedFiles['banner_image']['status'] == 1 ? $uploadedFiles['banner_image']['file_path'] : $blogPost->banner_image,
                 'additional_url'    => $request->additional_url,
                 'footer'            => $request->footer,
                 'status'            => $request->status,
@@ -252,7 +253,7 @@ class BlogPostController extends Controller
             // Commit the transaction
             DB::commit();
 
-            return redirect()->route('admin.blog-post.index')->with('success', 'Blog post updated successfully.');
+            return redirect()->back()->with('success', 'Blog post updated successfully.');
         } catch (\Exception $e) {
             // Rollback the transaction if there's an error
             DB::rollback();
