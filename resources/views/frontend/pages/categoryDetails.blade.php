@@ -42,7 +42,7 @@
                     <!-- Products Section -->
                     <div class="col-12 col-md-9">
                         <!-- Tabs -->
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        {{-- <ul class="nav nav-tabs" id="myTab" role="tablist">
                             @foreach ($categories as $allcategory)
                                 <li class="nav-item">
                                     <a class="nav-link {{ $allcategory->id == $category->id ? 'active' : '' }}"
@@ -54,7 +54,7 @@
                                     </a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> --}}
 
                         <div class="tab-content" id="myTabContent">
                             @foreach ($categories as $allcategory)
