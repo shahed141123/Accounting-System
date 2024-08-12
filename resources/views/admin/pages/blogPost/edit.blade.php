@@ -1,7 +1,7 @@
 <x-admin-app-layout :title="'Blog Edit'">
     <style>
         .image-input-placeholder {
-            background-image: url("https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/files/blank-image.svg");
+            background-image: url({{ asset('admin/assets/media/svg/files/blank-image.svg') }});
         }
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
@@ -21,7 +21,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ $blogPost->image ? asset($blogPost->image) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->image) ? asset("storage/" . $blogPost->image) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
@@ -40,7 +40,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ $blogPost->banner_image ? asset($blogPost->banner_image) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->banner_image) ? asset("storage/{$blogPost->banner_image}") : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip"
@@ -59,7 +59,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ $blogPost->logo ? asset($blogPost->logo) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->logo) ? asset("storage/" . $blogPost->logo) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change logo">
@@ -226,6 +226,9 @@
                                             $categoryIds = isset($blogPost->category_id)
                                                 ? json_decode($blogPost->category_id, true)
                                                 : [];
+                                            $tagIds = isset($blogPost->tag_id)
+                                                ? json_decode($blogPost->tag_id, true)
+                                                : [];
                                         @endphp
 
                                         @foreach ($blogCategories as $blogcategory)
@@ -244,7 +247,7 @@
                                         <option></option>
                                         @foreach ($blogTags as $blogtag)
                                             <option value="{{ $blogtag->id }}"
-                                                {{ in_array($blogtag->id, $blogPost->tag_id->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ in_array($blogtag->id, $tagIds) ? 'selected' : '' }}>
                                                 {{ $blogtag->name }}
                                             </option>
                                         @endforeach
