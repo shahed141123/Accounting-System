@@ -4415,13 +4415,13 @@ textarea.form-control {
     margin-bottom: 80px;
 }
 
-.ps-product--gallery .ps-product__thumbnail {
+/* .ps-product--gallery .ps-product__thumbnail {
     display: none;
-}
+} */
 
-.ps-product--gallery .ps-gallery--image {
+/* .ps-product--gallery .ps-gallery--image {
     display: none;
-}
+} */
 
 .ps-product--gallery .ps-gallery--image .ps-gallery__item {
     border-radius: 4px;
