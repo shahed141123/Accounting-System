@@ -77,7 +77,7 @@
                     <div class="ps-category__content">
                         @foreach ($categorys as $category)
                             <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
-                                <img class="ps-category__icon" src="{{ asset('storage/'.$category->logo) }}" alt>
+                                <img class="ps-category__icon" src="{{ asset('storage/' . $category->logo) }}" alt>
                                 <h6 class="ps-category__name">{{ $category->name }}</h6>
                             </a>
                         @endforeach
@@ -94,11 +94,12 @@
                                     <div class="ps-section__product">
                                         <div class="ps-product ps-product--standard">
                                             <div class="ps-product__thumbnail">
-                                                <a class="ps-product__image" href="{{ route('product.details',$latest_product->slug) }}">
+                                                <a class="ps-product__image"
+                                                    href="{{ route('product.details', $latest_product->slug) }}">
                                                     <figure>
                                                         @foreach ($latest_product->multiImages->slice(0, 2) as $image)
-                                                            <img src="{{ asset('storage/'.$image->photo) }}"
-                                                                alt="{{ $latest_product->meta_title }}"/>
+                                                            <img src="{{ asset('storage/' . $image->photo) }}"
+                                                                alt="{{ $latest_product->meta_title }}" />
                                                         @endforeach
                                                     </figure>
                                                 </a>
@@ -121,15 +122,30 @@
                                             </div>
                                             <div class="ps-product__content">
                                                 <h5 class="ps-product__title">
-                                                    <a href="{{ route('product.details',$latest_product->slug) }}">
+                                                    <a href="{{ route('product.details', $latest_product->slug) }}">
                                                         {{ $latest_product->name }}
                                                     </a>
                                                 </h5>
-                                                <div class="ps-product__meta">
-                                                    <button class="btn btn-info btn-block">Login to view price</button>
-                                                    <!-- <span class="ps-product__price sale">£9.99</span>
-                                                    <span class="ps-product__del">$38.24</span> -->
-                                                </div>
+                                                @auth
+                                                    @if (!empty($product->box_discount_price))
+                                                        <div class="ps-product__meta">
+                                                            <span
+                                                                class="ps-product__price sale">£{{ $category_product->box_discount_price }}</span>
+                                                            <span
+                                                                class="ps-product__del">£{{ $category_product->box_price }}</span>
+                                                        </div>
+                                                    @else
+                                                        <div class="ps-product__meta"><span
+                                                                class="ps-product__price sale">£{{ $product->box_price }}</span>
+                                                        </div>
+                                                    @endif
+                                                @else
+                                                    <div class="ps-product__meta">
+                                                        <a href="{{ route('login') }}"
+                                                            class="btn btn-info btn-block">Login
+                                                            to view price</a>
+                                                    </div>
+                                                @endauth
                                                 <div class="ps-product__desc">
                                                     <ul class="ps-product__list">
                                                         <li>Study history up to 30 days</li>
