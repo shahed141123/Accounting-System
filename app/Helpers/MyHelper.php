@@ -13,9 +13,9 @@ if (!function_exists('customUpload')) {
         try {
             $originalName     = pathinfo($mainFile->getClientOriginalName(), PATHINFO_FILENAME);
             $fileExtention    = $mainFile->getClientOriginalExtension();
-            $currentTime      = Str::random(5) . time();
+            $currentTime      = Str::random(10) . time();
             $name = Str::limit($originalName, 100);
-            $fileName = $name . '_'. $currentTime . '.' . $fileExtention ;
+            $fileName = $currentTime . '.' . $fileExtention ;
 
             if (!is_dir($uploadPath)) {
                 if (!mkdir($uploadPath, 0777, true)) {

@@ -213,8 +213,7 @@ class BlogPostController extends Controller
             foreach ($files as $key => $file) {
                 if (!empty($file)) {
                     $filePath = 'blog_posts/' . $key;
-                    $oldFile = $brand->$key ?? null;
-
+                    $oldFile = $blogPost->$key ?? null;
                     if ($oldFile) {
                         Storage::delete("public/" . $oldFile);
                     }
