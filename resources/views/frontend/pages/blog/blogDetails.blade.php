@@ -2,25 +2,29 @@
     <div class="ps-post ps-post--sidebar">
         <div class="container">
             <ul class="ps-breadcrumb">
-                <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
-                <li class="ps-breadcrumb__item"><a href="index.html">Higiene</a></li>
+                <li class="ps-breadcrumb__item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="ps-breadcrumb__item active" aria-current="page">{{ $blog->title }}</li>
             </ul>
             <div class="ps-post__content">
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span class="ps-badge__item">PHARMACY</span><span class="ps-badge__item">SALE</span></div>
+                        <div class="ps-blog__badge">
+                            <span class="ps-badge__item">MEDIC</span>
+                            <span class="ps-badge__item">PHARMACY</span>
+                            <span class="ps-badge__item">SALE</span></div>
                         <h1 class="ps-post__title">{{ $blog->title }}</h1>
                         <div class="ps-blog__meta"> <span class="ps-blog__date">{{ $blog->created_at->format("M d Y") }}</span>
                             <a class="ps-blog__author" href="#">{{ $blog->author }}</a></div>
-                        <div class="ps-blog__banner"> <img src="img/blog/blog13-992x525.jpg" alt=""></div>
+                        <div class="ps-blog__banner">
+                            <img src="{{ asset('storage/'.$blog->banner_image) }}" alt="{{ $blog->title }}">
+                        </div>
                         <p class="ps-blog__text-large">{!! $blog->header  !!}</p>
                         <p class="ps-blog__text">{!! $blog->short_description  !!}</p>
                         <p class="ps-blog__text">{!! $blog->long_description  !!}</p>
 
                         <p class="ps-blog__text">{!! $blog->footer  !!}</p>
                         <div class="ps-comment--post">
-                            <h2 class="ps-comment__title">Comments (6)</h2>
+                            <h2 class="ps-comment__title">Comments (0)</h2>
                             <ul class="ps-comment__list">
                                 {{-- <li>
                                     <div class="ps-review--product">
@@ -42,7 +46,7 @@
                         <div class="ps-form--review">
                             <div class="ps-form__title">Write a comment</div>
                             <div class="ps-form__desc">Your email address will not be published. All fields are required</div>
-                            <form action="http://nouthemes.net/html/mymedi/do_action" method="post">
+                            <form action="#" method="post">
                                 <div class="row">
                                     <div class="col-6 col-md-6">
                                         <label class="ps-form__label">Your name</label>

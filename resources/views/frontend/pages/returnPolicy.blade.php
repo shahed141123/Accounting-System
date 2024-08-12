@@ -67,17 +67,21 @@
                     policies.</p>
             </div>
             <div class="col-lg-12">
-                <h1 class="text-start mb-5 display-4">Shipping</h1>
-                <p class="mb-5">You will be responsible for paying for your own shipping costs for returning your
-                    item.
-                    Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be
-                    deducted
-                    from your refund.</p>
+                <div class="mt-5 pt-5">
+                    <h1 class="text-start mb-5 display-4">Shipping</h1>
+                    <p class="mb-5">You will be responsible for paying for your own shipping costs for returning your
+                        item.
+                        Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be
+                        deducted
+                        from your refund.</p>
+                </div>
             </div>
             <div class="col-lg-12">
-                <h1 class="text-start mb-5 display-4">Contact Us</h1>
-                <p class="mb-5">If you have any questions on how to return your item to us, contact us at <a
-                        href="mailto:support@piqpaq.com">support@piqpaq.com</a>.</p>
+                <div class="mt-5 pb-5">
+                    <h1 class="text-start mb-5 display-4">Contact Us</h1>
+                    <p class="mb-5">If you have any questions on how to return your item to us, contact us at <a
+                            href="mailto:support@piqpaq.com">support@piqpaq.com</a>.</p>
+                </div>
             </div>
         </div>
     </div>

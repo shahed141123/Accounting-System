@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
-use App\Models\BlogPost;
-use App\Models\BlogTag;
-use App\Models\Category;
 use App\Models\Faq;
-use App\Models\PrivacyPolicy;
+use App\Models\BlogTag;
 use App\Models\Product;
-use App\Models\TermsAndCondition;
+use App\Models\BlogPost;
+use App\Models\Category;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Models\PrivacyPolicy;
+use App\Models\TermsAndCondition;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function home()
     {
+        // $latest_products = Product::latest('id')->where('status','published')->get(['slug','meta_title','name','box_discount_price','box_price']);
+
         $data = [
             'categorys'        => Category::orderBy('name','ASC')->active()->get(),
-            'latest_products'  => Product::latest('id')->where('status','published')->get(),
+            'latest_products'  => Product::select('slug','meta_title','thumbnail','name','box_discount_price','box_price')->with('multiImages')->latest('id')->where('status','published')->limit(10)->get(),
+            'deal_products'    => Product::select('slug','meta_title','thumbnail','name','box_discount_price','box_price')->with('multiImages')->whereNotNull('box_discount_price')->where('status','published')->latest('id')->limit(10)->get(),
         ];
         return view('frontend.pages.home',$data);
     }
@@ -53,7 +57,7 @@ class HomeController extends Controller
     public function faq()
     {
         $data = [
-            'faqs' => Faq::latest('id')->where('status', 'active')->get(),
+            'faqs' => Faq::orderBy('order', 'asc')->where('status', 'active')->get(),
         ];
         return view('frontend.pages.faq', $data);
     }
@@ -85,10 +89,23 @@ class HomeController extends Controller
     }
     public function categoryProducts($slug)
     {
+        $category = Category::where('slug', $slug)->firstOrFail();
+
         $data = [
-            'category'       => Category::with('products')->where('slug', $slug)->first(),
-            'categorys'      => Category::orderBy('name','ASC')->active()->get(),
+            'category'                => $category,
+            'category_products '      => $category->products()->paginate(12),
+            'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
         ];
         return view('frontend.pages.categoryDetails', $data);
+    }
+    public function allProducts()
+    {
+        // $category = Category::where('slug', $slug)->firstOrFail();
+
+        $data = [
+            // 'category'                => $category,
+            'categories'   => Category::orderBy('name', 'ASC')->active()->get(),
+        ];
+        return view('frontend.pages.allProducts', $data);
     }
 }

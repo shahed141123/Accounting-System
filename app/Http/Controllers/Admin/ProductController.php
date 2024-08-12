@@ -75,9 +75,9 @@ class ProductController extends Controller
                 'tags'                      => json_encode($request->input('tags')),
                 'color'                     => json_encode($request->input('color')),
                 'short_description'         => $request->input('short_description'),
-                'overview'                  => $request->input('product_overview'),
-                'description'               => $request->input('product_description'),
-                'specification'             => $request->input('product_specification'),
+                'overview'                  => $request->input('overview'),
+                'description'               => $request->input('description'),
+                'specification'             => $request->input('specification'),
                 'warranty'                  => $request->input('warranty'),
                 'thumbnail'                 => $thumbnailFilePath,
                 'box_stock'                 => $request->input('box_stock', 1),
@@ -196,9 +196,9 @@ class ProductController extends Controller
                 'tags'                      => json_encode($request->input('tags')),
                 'color'                     => json_encode($request->input('color')),
                 'short_description'         => $request->input('short_description'),
-                'overview'                  => $request->input('product_overview'),
-                'description'               => $request->input('product_description'),
-                'specification'             => $request->input('product_specification'),
+                'overview'                  => $request->input('overview'),
+                'description'               => $request->input('description'),
+                'specification'             => $request->input('specification'),
                 'warranty'                  => $request->input('warranty'),
                 'thumbnail'                 => $thumbnailFilePath,
                 'box_stock'                 => $request->input('box_stock', 1),
@@ -224,8 +224,8 @@ class ProductController extends Controller
             ]);
 
             // Handle multiple image uploads
-            if ($request->hasFile('multi_images')) {
-                foreach ($request->file('multi_images') as $image) {
+            if ($request->hasFile('multi_img')) {
+                foreach ($request->file('multi_img') as $image) {
                     if ($image) {
                         $multiImageUpload = customUpload($image, 'products/multi_images');
                         if ($multiImageUpload['status'] === 0) {
@@ -258,7 +258,7 @@ class ProductController extends Controller
             DB::commit();
 
             // Redirect with success message
-            return redirect()->route('admin.product.index')->with('success', 'Product has been updated successfully!');
+            return redirect()->back()->with('success', 'Product has been updated successfully!');
         } catch (\Exception $e) {
             DB::rollback();
             // Redirect with error message
@@ -273,6 +273,22 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function multiImageDestroy(string $id)
+    {
+        $multiImage = ProductImage::findOrFail($id);
+        $files = [
+            'photo' => $multiImage->photo,
+        ];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $oldFile = $multiImage->$key ?? null;
+                if ($oldFile) {
+                    Storage::delete("public/" . $oldFile);
+                }
+            }
+        }
+        $multiImage->delete();
     }
 
     private function buildCategories($categories, $parentId = null)

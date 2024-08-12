@@ -41,7 +41,7 @@
         color: #ff0;
     }
 
-    .ps-social__link {
+    .extra-color {
         color: #fff;
     }
 
@@ -79,38 +79,112 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="ps-footer--address">
-                                <div class="ps-logo"><a href="index.html"> <img src="img/logo.png" alt><img
-                                            class="logo-white" src="img/logo.png" alt><img class="logo-black"
-                                            src="img/logo.png" alt><img class="logo-white-all" src="img/logo.png"
-                                            alt><img class="logo-green" src="img/logo.png" alt></a></div>
+                                <div class="ps-logo">
+                                    <a href="{{ route('home') }}">
+                                        <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                                            alt=""
+                                            onerror="this.onerror=null; this.src='{{ asset('frontend/img/logo.png') }}';">
+                                    </a>
+                                </div>
                                 <div class="ps-footer__title">Our store</div>
-                                <p>1487 Rocky Horse Carrefour<br>Arlington, TX 16819</p>
+                                <p>{{ $setting->address_line_one }}<br>{{ $setting->address_line_two }}</p>
+
+                                <!-- In your Blade view (e.g., resources/views/your_view_name.blade.php) -->
                                 <ul class="ps-social">
-                                    <li><a class="ps-social__link facebook" href="#"><i class="fa fa-facebook">
-                                            </i><span class="ps-tooltip">Facebook</span></a></li>
-                                    <li><a class="ps-social__link instagram" href="#"><i
-                                                class="fa fa-instagram"></i><span
-                                                class="ps-tooltip">Instagram</span></a></li>
-                                    <li><a class="ps-social__link youtube" href="#"><i
-                                                class="fa fa-youtube-play"></i><span
-                                                class="ps-tooltip">Youtube</span></a></li>
-                                    <li><a class="ps-social__link pinterest" href="#"><i
-                                                class="fa fa-pinterest-p"></i><span
-                                                class="ps-tooltip">Pinterest</span></a></li>
-                                    <li><a class="ps-social__link linkedin" href="#"><i
-                                                class="fa fa-linkedin"></i><span class="ps-tooltip">Linkedin</span></a>
-                                    </li>
+                                    @if ($setting->facebook_url)
+                                        <li>
+                                            <a class="ps-social__link extra-color facebook"
+                                                href="{{ $setting->facebook_url }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="fa fa-facebook"></i>
+                                                <span class="ps-tooltip">Facebook</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if ($setting->instagram_url)
+                                        <li>
+                                            <a class="ps-social__link extra-color instagram"
+                                                href="{{ $setting->instagram_url }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="fa fa-instagram"></i>
+                                                <span class="ps-tooltip">Instagram</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if ($setting->youtube_url)
+                                        <li>
+                                            <a class="ps-social__link extra-color youtube"
+                                                href="{{ $setting->youtube_url }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="fa fa-youtube-play"></i>
+                                                <span class="ps-tooltip">YouTube</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if ($setting->pinterest_url)
+                                        <li>
+                                            <a class="ps-social__link extra-color pinterest"
+                                                href="{{ $setting->pinterest_url }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="fa fa-pinterest-p"></i>
+                                                <span class="ps-tooltip">Pinterest</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if ($setting->linkedin_url)
+                                        <li>
+                                            <a class="ps-social__link extra-color linkedin"
+                                                href="{{ $setting->linkedin_url }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="fa fa-linkedin"></i>
+                                                <span class="ps-tooltip">LinkedIn</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    <!-- Add additional social media links similarly -->
+
+                                    @if ($setting->twitter_url)
+                                        <li>
+                                            <a class="ps-social__link extra-color twitter"
+                                                href="{{ $setting->twitter_url }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="fa fa-twitter"></i>
+                                                <span class="ps-tooltip">Twitter</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if ($setting->whatsapp_url)
+                                        <li>
+                                            <a class="ps-social__link extra-color whatsapp"
+                                                href="{{ $setting->whatsapp_url }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="fa fa-whatsapp"></i>
+                                                <span class="ps-tooltip">WhatsApp</span>
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
                         <div class="col-12 col-md-8">
                             <div class="ps-footer--contact">
                                 <h5 class="ps-footer__title">Need help</h5>
-                                <div class="ps-footer__fax"><i class="icon-telephone"></i>0020 500 – 4546 – 000</div>
+                                <div class="ps-footer__fax"><i class="icon-telephone"></i>{{ $setting->primary_phone }}
+                                </div>
                                 <p class="ps-footer__work">Monday – Friday: 9:00-20:00<br>Saturday: 11:00 – 15:00</p>
                                 <hr>
-                                <p><a class="ps-footer__email" href="#"> <i class="icon-envelope"></i><span
-                                            class="__cf_email__" data-cfemail="">info@piqpaq.com</span> </a></p>
+                                <p>
+                                    <a class="ps-footer__email" href="mailto:{{ $setting->contact_email }}">
+                                        <i class="icon-envelope"></i>
+                                        <span>{{ $setting->contact_email }}</span>
+                                    </a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -157,10 +231,14 @@
         <div class="ps-footer--bottom">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <p>Copyright © 2024 PiqPaq. All Rights Reserved</p>
+                    <a href="{{ $setting->copyright_url }}">
+                        <p>{{ $setting->copyright_title }}</p>
+                    </a>
                 </div>
-                <div class="col-12 col-md-6 text-right"><img src="img/payment.png" alt><img class="payment-light"
-                        src="img/payment-light.png" alt></div>
+                <div class="col-12 col-md-6 text-right">
+                    <img src="img/payment.png" alt>
+                    <img class="payment-light" src="img/payment-light.png" alt>
+                </div>
             </div>
         </div>
     </div>

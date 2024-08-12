@@ -1,7 +1,7 @@
 <x-admin-app-layout :title="'Blog Edit'">
     <style>
         .image-input-placeholder {
-            background-image: url("https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/files/blank-image.svg");
+            background-image: url({{ asset('admin/assets/media/svg/files/blank-image.svg') }});
         }
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
@@ -21,7 +21,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ $blogPost->image ? asset($blogPost->image) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->image) ? asset("storage/" . $blogPost->image) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
@@ -40,7 +40,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ $blogPost->banner_image ? asset($blogPost->banner_image) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->banner_image) ? asset("storage/{$blogPost->banner_image}") : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip"
@@ -59,7 +59,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ $blogPost->logo ? asset($blogPost->logo) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->logo) ? asset("storage/" . $blogPost->logo) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change logo">
@@ -88,7 +88,8 @@
                         <div class="fv-row">
                             <div class="mb-10 mt-5">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="featured" value="1" id="featured" @checked($blogPost->featured == '1')>
+                                    <input class="form-check-input" type="checkbox" name="featured" value="1"
+                                        id="featured" @checked($blogPost->featured == '1')>
 
                                     <x-metronic.label class="form-check-label" for="featured">
                                         {{ __('Is Featured') }}
@@ -183,27 +184,27 @@
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label
                                         class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
-                                    <div id="overview_editor" name="short_description">
+                                    <textarea class="ckeditor" name="short_description">
                                         {!! old('short_description', $blogPost->short_description) !!}
-                                    </div>
+                                    </textarea>
                                     <div class="text-muted fs-7">
                                         Add blog short description.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">Blog Long Description</x-metronic.label>
-                                    <div id="description_editor" name="long_description">
+                                    <textarea class="ckeditor" name="long_description">
                                         {!! old('long_description', $blogPost->long_description) !!}
-                                    </div>
+                                    </textarea>
                                     <div class="text-muted fs-7">
                                         Add blog long description.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
                                     <x-metronic.label class="form-label">Blog Footer</x-metronic.label>
-                                    <div id="specification_editor" name="footer">
+                                    <textarea class="ckeditor" name="footer">
                                         {!! old('footer', $blogPost->footer) !!}
-                                    </div>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -221,9 +222,18 @@
                                         data-control="select2" data-placeholder="Select an option"
                                         data-allow-clear="true" id="category_id" multiple>
                                         <option></option>
+                                        @php
+                                            $categoryIds = isset($blogPost->category_id)
+                                                ? json_decode($blogPost->category_id, true)
+                                                : [];
+                                            $tagIds = isset($blogPost->tag_id)
+                                                ? json_decode($blogPost->tag_id, true)
+                                                : [];
+                                        @endphp
+
                                         @foreach ($blogCategories as $blogcategory)
                                             <option value="{{ $blogcategory->id }}"
-                                                {{ in_array($blogcategory->id, $blogPost->category_id->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ in_array($blogcategory->id, $categoryIds) ? 'selected' : '' }}>
                                                 {{ $blogcategory->name }}
                                             </option>
                                         @endforeach
@@ -237,7 +247,7 @@
                                         <option></option>
                                         @foreach ($blogTags as $blogtag)
                                             <option value="{{ $blogtag->id }}"
-                                                {{ in_array($blogtag->id, $blogPost->tag_id->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ in_array($blogtag->id, $tagIds) ? 'selected' : '' }}>
                                                 {{ $blogtag->name }}
                                             </option>
                                         @endforeach
@@ -278,69 +288,6 @@
             new Tagify(input2);
         </script>
         {{-- Tagify END --}}
-        <script>
-            class QuillEditor {
-                constructor(elementId) {
-                    this.elementId = elementId;
-                    this.initEditor();
-                }
 
-                initEditor() {
-                    const Delta = Quill.import('delta');
-                    this.quill = new Quill(`#${this.elementId}`, {
-                        modules: {
-                            toolbar: true
-                        },
-                        placeholder: 'Type your text here...',
-                        theme: 'snow'
-                    });
-
-                    // Store accumulated changes
-                    this.change = new Delta();
-                    this.quill.on('text-change', (delta) => {
-                        this.change = this.change.compose(delta);
-                    });
-
-                    // Save periodically
-                    this.saveInterval = setInterval(() => {
-                        if (this.change.length() > 0) {
-                            console.log('Saving changes', this.change);
-                            // Send partial changes
-                            /*
-                            $.post(this.endpoint, {
-                                partial: JSON.stringify(this.change)
-                            });
-                            */
-                            // Send entire document
-                            /*
-                            $.post(this.endpoint, {
-                                doc: JSON.stringify(this.quill.getContents())
-                            });
-                            */
-                            this.change = new Delta();
-                        }
-                    }, 5 * 1000);
-
-                    // Check for unsaved data
-                    window.addEventListener('beforeunload', (e) => {
-                        if (this.change.length() > 0) {
-                            e.preventDefault();
-                            e.returnValue = 'There are unsaved changes. Are you sure you want to leave?';
-                        }
-                    });
-                }
-
-                destroy() {
-                    clearInterval(this.saveInterval);
-                    window.removeEventListener('beforeunload', this.handleBeforeUnload);
-                }
-            }
-
-            // Initialize multiple editors
-            const overviewEditor = new QuillEditor('overview_editor');
-            const descriptionEditor = new QuillEditor('description_editor');
-            const specificationEditor = new QuillEditor('specification_editor');
-            const metaEditor = new QuillEditor('meta_editor');
-        </script>
     @endpush
 </x-admin-app-layout>

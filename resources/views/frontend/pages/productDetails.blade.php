@@ -2,8 +2,8 @@
     <div class="ps-page--product3">
         <div class="container">
             <ul class="ps-breadcrumb">
-                <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
-                <li class="ps-breadcrumb__item"><a href="product-category.html">All Products</a></li>
+                <li class="ps-breadcrumb__item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="ps-breadcrumb__item"><a href="{{ route('all.products') }}">All Products</a></li>
                 <li class="ps-breadcrumb__item active" aria-current="page">{{ $product->name }}</li>
             </ul>
             <div class="ps-page__content">
@@ -14,17 +14,20 @@
                                 <div class="col-12 col-xl-6">
                                     <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
-                                            @foreach ($product->multiImages as $image) 
+                                            {{-- <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->meta_title }}"> --}}
+                                            @foreach ($product->multiImages as $image)
                                                 <div class="slide">
-                                                    <img src="{{ asset($image) }}" alt="{{ $product->meta_title }}" />
+                                                    <img src="{{ asset('storage/' . $image->photo) }}"
+                                                        alt="{{ $product->meta_title }}" />
                                                 </div>
                                             @endforeach
                                         </div>
                                         <div class="ps-gallery--image">
-                                            @foreach ($product->multiImages as $image) 
+                                            @foreach ($product->multiImages as $image)
                                                 <div class="slide">
                                                     <div class="ps-gallery__item">
-                                                        <img src="{{ asset($image) }}" alt="{{ $product->meta_title }}" />
+                                                        <img src="{{ asset('storage/' . $image->photo) }}"
+                                                            alt="{{ $product->meta_title }}" />
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -40,31 +43,35 @@
                                             <tbody>
                                                 <tr>
                                                     <th class="ps-table__th">CODE</th>
-                                                    <td>FSDT</td>
+                                                    <td>{{ $product->sku_code }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">BARCODE </th>
-                                                    <td>5013478144331</td>
+                                                    <td>{{ $product->sku_code }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="ps-table__th">WEIGHT </th>
-                                                    <td>1.55 KG</td>
+                                                    <th class="ps-table__th">Length </th>
+                                                    <td>{{ $product->length }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="ps-table__th">Width </th>
+                                                    <td>{{ $product->width }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="ps-table__th">Height </th>
+                                                    <td>{{ $product->height }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">BRAND </th>
-                                                    <td>KINGFISHER</td>
+                                                    <td>{{ $product->brand->name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">NO. OF CARTONS </th>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">CARTON BARCODE </th>
-                                                    <td>05013478130204</td>
+                                                    <td>{{ $product->box_stock }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">PALLET QUANTITY </th>
-                                                    <td>240</td>
+                                                    <td>{{ $product->box_stock * $product->box_contains }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -78,7 +85,13 @@
                                                 <tr>
                                                     <td>{{ $product->box_contains }}</td>
                                                     <td>{{ $product->unit_price }}</td>
-                                                    <td><i class="fa fa-check"></i></td>
+                                                    <td>
+                                                        @if (!empty($product->box_stock) && $product->box_stock > 0)
+                                                            <i class="fa fa-check"></i>
+                                                        @else
+                                                            <span class="text-danger">X</span>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -88,12 +101,33 @@
                         </div>
                         <div class="col-12 col-md-3">
                             <div class="ps-product__feature">
-                                <div class="ps-product__badge"><span class="ps-badge ps-badge--outstock">450 In
-                                        Stock</span>
-                                </div>
-                                <div class="ps-product__meta"><span class="ps-product__price sale">£9.99</span><span
-                                        class="ps-product__del">£10.99</span>
-                                </div>
+                                @if (!empty($product->box_stock) && $product->box_stock > 0)
+                                    <div class="ps-product__badge"><span
+                                            class="ps-badge bg-success">{{ $product->box_stock }} In
+                                            Stock</span>
+                                    </div>
+                                @else
+                                    <div class="ps-product__badge"><span class="ps-badge ps-badge--outstock">Out Of
+                                            Stock</span>
+                                    </div>
+                                @endif
+                                @auth
+                                    @if (!empty($product->box_discount_price))
+                                        <div class="ps-product__meta"><span
+                                                class="ps-product__price sale">£{{ $product->box_discount_price }}</span><span
+                                                class="ps-product__del">£{{ $product->box_price }}</span>
+                                        </div>
+                                    @else
+                                        <div class="ps-product__meta"><span
+                                                class="ps-product__price sale">£{{ $product->box_price }}</span>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="ps-product__meta">
+                                        <a href="{{ route('login') }}" class="btn btn-info btn-block">Login
+                                            to view price</a>
+                                    </div>
+                                @endauth
                                 <div class="ps-product__quantity">
                                     <h6>Quantity</h6>
                                     <div class="def-number-input number-input safari_only">
@@ -121,30 +155,28 @@
                     <div class="ps-product__content">
                         <ul class="nav nav-tabs ps-tab-list" id="productContentTabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="description-tab"
-                                    data-toggle="tab" href="#description-content" role="tab"
-                                    aria-controls="description-content" aria-selected="true">
+                                <a class="nav-link active" id="description-tab" data-toggle="tab"
+                                    href="#description-content" role="tab" aria-controls="description-content"
+                                    aria-selected="true">
                                     Overview
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="information-tab"
-                                    data-toggle="tab" href="#information-content" role="tab"
-                                    aria-controls="information-content" aria-selected="false">
+                                <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
+                                    role="tab" aria-controls="information-content" aria-selected="false">
                                     Description
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="specification-tab"
-                                    data-toggle="tab" href="#specification-content" role="tab"
+                                <a class="nav-link" id="specification-tab" data-toggle="tab"
+                                    href="#specification-content" role="tab"
                                     aria-controls="specification-content" aria-selected="false">
                                     Specification
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="reviews-tab"
-                                    data-toggle="tab" href="#reviews-content" role="tab"
-                                    aria-controls="reviews-content" aria-selected="false">
+                                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews-content"
+                                    role="tab" aria-controls="reviews-content" aria-selected="false">
                                     Reviews (5)
                                 </a>
                             </li>

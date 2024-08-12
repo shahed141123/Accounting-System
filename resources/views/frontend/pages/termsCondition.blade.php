@@ -19,7 +19,5 @@
             <li class="ps-breadcrumb__item active" aria-current="page">Terms</li>
         </ul>
         <p>{!! $terms->content !!}</p>
-
-        
     </div>
 </x-frontend-app-layout>

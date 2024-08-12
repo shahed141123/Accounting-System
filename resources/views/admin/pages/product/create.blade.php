@@ -489,7 +489,7 @@
                                                 <x-metronic.label class="form-label">Meta Tag
                                                     Keywords</x-metronic.label>
                                                 <input class="form-control" name="meta_keywords"
-                                                    placeholder="Meta tag keywords" id="product_meta_keyword"
+                                                    placeholder="Meta tag keywords" id="meta_keywords"
                                                     :value="old('meta_keywords')" />
                                                 <div class="text-muted fs-7">
                                                     Add product Meta tag keywords.

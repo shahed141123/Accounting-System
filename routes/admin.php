@@ -161,6 +161,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     Route::get('log', [LogController::class, 'index'])->name('log.index');
     Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
     Route::delete('log/{id}', [LogController::class, 'destroy'])->name('log.destroy');
+    Route::delete('multiimage/{id}', [ProductController::class, 'multiImageDestroy'])->name('multiimage.destroy');
     Route::get('log/download/{id}', [LogController::class, 'download'])->name('log.download');
 
     Route::get('activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs.index');

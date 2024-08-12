@@ -11,16 +11,17 @@ if (!function_exists('customUpload')) {
     function customUpload(UploadedFile $mainFile, string $uploadPath, ?int $reqWidth = null, ?int $reqHeight = null): array
     {
         try {
-            $originalName = pathinfo($mainFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $name = Str::limit($originalName, 180);
-            $hashedName = substr($mainFile->hashName(), -12);
-            $fileName = $name . '_' . $hashedName;
+            $originalName     = pathinfo($mainFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileExtention    = $mainFile->getClientOriginalExtension();
+            $currentTime      = Str::random(10) . time();
+            $name = Str::limit($originalName, 100);
+            $fileName = $currentTime . '.' . $fileExtention ;
 
             if (!is_dir($uploadPath)) {
                 if (!mkdir($uploadPath, 0777, true)) {
                     abort(404, "Failed to create the directory: $uploadPath");
                 }
-                chmod($uploadPath, 0777);// Reset umask to default (optional)
+                chmod($uploadPath, 0777); // Reset umask to default (optional)
             }
 
             $mainFile->storeAs("public/$uploadPath", $fileName);
@@ -32,7 +33,7 @@ if (!function_exists('customUpload')) {
                 'file_extension' => $mainFile->getClientOriginalExtension(),
                 'file_size'      => $mainFile->getSize(),
                 'file_type'      => $mainFile->getMimeType(),
-                'file_path'      => $filePath ,
+                'file_path'      => $filePath,
             ];
 
             return array_map('htmlspecialchars', $output);

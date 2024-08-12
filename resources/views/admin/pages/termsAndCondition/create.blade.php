@@ -1,8 +1,12 @@
 <x-admin-app-layout :title="'Terms and Condition Add'">
-    
+<style>
+    .ck-editor{
+        width: 100% !important;
+    }
+</style>
     <div class="card card-flash">
-        <div class="card-header py-3">
-            <div class="card-title"></div>
+        <div class="card-header bg-info align-items-center d-flex justify-content-between">
+            <div class="card-title text-white">Create Terms & Policy</div>
             <div class="card-toolbar">
                 <a href="{{ route('admin.terms-condition.index') }}" class="btn btn-light-info">
                     <span class="svg-icon svg-icon-3">
@@ -43,8 +47,9 @@
                         </x-metronic.label>
 
                         <input type="date" name="effective_date"
-                            class="form-control @error('effective_date') is-invalid @enderror" placeholder="Effective Date"
-                            min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('effective_date') }}">
+                            class="form-control @error('effective_date') is-invalid @enderror"
+                            placeholder="Effective Date" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                            value="{{ old('effective_date') }}">
 
                         @error('effective_date')
                             <span class="text-danger"> {{ $message }} </span>
@@ -56,8 +61,9 @@
                         </x-metronic.label>
 
                         <input type="date" name="expiration_date"
-                            class="form-control @error('expiration_date') is-invalid @enderror" placeholder="Expiration Date"
-                            min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('expiration_date') }}">
+                            class="form-control @error('expiration_date') is-invalid @enderror"
+                            placeholder="Expiration Date" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                            value="{{ old('expiration_date') }}">
 
                         @error('expiration_date')
                             <span class="text-danger"> {{ $message }} </span>
@@ -65,8 +71,7 @@
                     </div>
 
                     <div class="col-lg-3 mb-lg-7 mb-3">
-                        <x-metronic.label for="version"
-                            class="col-form-label fw-bold fs-6">{{ __('Version') }}
+                        <x-metronic.label for="version" class="col-form-label fw-bold fs-6">{{ __('Version') }}
                         </x-metronic.label>
 
                         <x-metronic.input id="version" type="text" name="version" :value="old('version')"
@@ -87,8 +92,11 @@
                 <div class="row">
                     <x-metronic.label for="content" class="col-form-label required fw-bold fs-6">
                         {{ __('Content') }}</x-metronic.label>
-                    <textarea name="content" rows="3" cols="3"
-                        class="tinymce_metronic form-control @error('content') is-invalid @enderror">{!! old('content') !!}</textarea>
+                    <textarea name="content" class="ckeditor w-100 @error('content') is-invalid @enderror">{!! old('content') !!}</textarea>
+                    <div class="text-muted fs-7">
+                        Add terms content here.
+                    </div>
+
                     @error('content')
                         <span class="text-danger"> {{ $message }} </span>
                     @enderror

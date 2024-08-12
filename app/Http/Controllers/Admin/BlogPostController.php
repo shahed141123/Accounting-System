@@ -163,6 +163,7 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         DB::beginTransaction();
 
         try {
@@ -178,8 +179,6 @@ class BlogPostController extends Controller
                 'badge' => 'nullable|string|max:255',
                 'title' => 'nullable|string',
                 'header' => 'nullable|string|max:255',
-                'short_description' => 'nullable|string',
-                'long_description' => 'nullable|string',
                 'author' => 'nullable|string|max:255',
                 'address' => 'nullable|string|max:255',
                 'tags' => 'nullable',
@@ -187,7 +186,6 @@ class BlogPostController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
                 'additional_url' => 'nullable|string|max:255|url',
-                'footer' => 'nullable|string',
                 'status' => 'nullable|string|max:255',
             ], [
                 'logo.image' => 'The logo must be an image.',
@@ -202,19 +200,18 @@ class BlogPostController extends Controller
                 }
                 return redirect()->back()->withInput();
             }
+
             // Handle file uploads
             $files = [
                 'logo' => $request->file('logo'),
                 'image' => $request->file('image'),
                 'banner_image' => $request->file('banner_image'),
             ];
-
             $uploadedFiles = [];
             foreach ($files as $key => $file) {
                 if (!empty($file)) {
                     $filePath = 'blog_posts/' . $key;
-                    $oldFile = $brand->$key ?? null;
-
+                    $oldFile = $blogPost->$key ?? null;
                     if ($oldFile) {
                         Storage::delete("public/" . $oldFile);
                     }
@@ -226,7 +223,8 @@ class BlogPostController extends Controller
                     $uploadedFiles[$key] = ['status' => 0];
                 }
             }
-
+            // dd($request->all());
+            // dd($uploadedFiles['image']['file_path']);
             // Update the BlogPost record
             $blogPost->update([
                 'category_id'       => json_encode($request->category_id),
@@ -241,9 +239,9 @@ class BlogPostController extends Controller
                 'author'            => $request->author,
                 'address'           => $request->address,
                 'tags'              => $request->tags,
-                'logo'              => $uploadedFiles['logo']['status'] === 1 ? $uploadedFiles['logo']['file_path'] : $blogPost->logo,
-                'image'             => $uploadedFiles['image']['status'] === 1 ? $uploadedFiles['image']['file_path'] : $blogPost->image,
-                'banner_image'      => $uploadedFiles['banner_image']['status'] === 1 ? $uploadedFiles['banner_image']['file_path'] : $blogPost->banner_image,
+                'logo'              => $uploadedFiles['logo']['status']         == 1 ? $uploadedFiles['logo']['file_path']         : $blogPost->logo,
+                'image'             => $uploadedFiles['image']['status']        == 1 ? $uploadedFiles['image']['file_path']        : $blogPost->image,
+                'banner_image'      => $uploadedFiles['banner_image']['status'] == 1 ? $uploadedFiles['banner_image']['file_path'] : $blogPost->banner_image,
                 'additional_url'    => $request->additional_url,
                 'footer'            => $request->footer,
                 'status'            => $request->status,
@@ -252,7 +250,7 @@ class BlogPostController extends Controller
             // Commit the transaction
             DB::commit();
 
-            return redirect()->route('admin.blog-post.index')->with('success', 'Blog post updated successfully.');
+            return redirect()->back()->with('success', 'Blog post updated successfully.');
         } catch (\Exception $e) {
             // Rollback the transaction if there's an error
             DB::rollback();

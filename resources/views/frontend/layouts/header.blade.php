@@ -4,20 +4,20 @@
     }
 </style>
 <header class="ps-header ps-header--13">
-    @if (!empty($site->website_name) || !empty($site->site_motto))
+    @if (!empty($setting->website_name) || !empty($setting->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ $site->website_name }}, {{ $site->site_motto }}</p>
+                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }}</p>
             </div>
             <a class="ps-noti__close">
                 <i class="icon-cross"></i>
             </a>
         </div>
     @endif
-    @if (!empty($site->primary_phone))
+    @if (!empty($setting->primary_phone))
         <div class="ps-header__top">
             <div class="container">
-                <div class="ps-header__text">Need help? <strong>{{ $site->primary_phone }}</strong></div>
+                <div class="ps-header__text">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
             </div>
         </div>
     @endif
@@ -25,10 +25,10 @@
         <div class="container">
             <div class="ps-logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ !empty($site->site_logo_black) ? asset('storage/' . $site->site_logo_black) : asset('frontend/img/logo.png') }}"
+                    <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt>
                     <img class="sticky-logo"
-                        src="{{ !empty($site->site_logo_black) ? asset('storage/' . $site->site_logo_black) : asset('frontend/img/logo.png') }}"
+                        src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt>
                 </a>
             </div>
@@ -48,13 +48,14 @@
                                 @auth
                                     <!-- If the user is authenticated, show these options -->
                                     <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
-
-                                    <!-- Logout button inside form -->
-                                    <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
+                                    <a class="dropdown-item" href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                    <!-- Hidden logout form -->
+                                    <form id="logout-form" method="POST" action="{{ route('logout') }}"
+                                        style="display: none;">
                                         @csrf
-                                        <a type="submit" href="javascript:void(0)" class="dropdown-item">
-                                            {{ __('Log Out') }}
-                                        </a>
                                     </form>
                                 @else
                                     <!-- If the user is not authenticated, show these options -->
@@ -213,18 +214,18 @@
                     </ul>
                 </nav>
             </div>
-            @if (!empty($site->primary_phone))
-                <div class="ps-navigation__right">Need help? <strong>{{ $site->primary_phone }}</strong></div>
+            @if (!empty($setting->primary_phone))
+                <div class="ps-navigation__right">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
             @endif
 
         </div>
     </div>
 </header>
 <header class="ps-header ps-header--13 ps-header--mobile">
-    @if (!empty($site->website_name) || !empty($site->site_motto))
+    @if (!empty($setting->website_name) || !empty($setting->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ $site->website_name }}, {{ $site->site_motto }}</p>
+                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }}</p>
             </div>
             <a class="ps-noti__close"><i class="icon-cross"></i></a>
         </div>
@@ -246,3 +247,26 @@
         </div>
     </div>
 </header>
+<script>
+    // JavaScript to handle logout if using Fetch API (optional)
+    function handleLogout() {
+        fetch('{{ route('logout') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    _method: 'POST'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '{{ url('/') }}'; // Redirect after logout
+                } else {
+                    console.error('Logout failed.');
+                }
+            })
+            .catch(error => console.error('Logout error:', error));
+    }
+</script>

@@ -1,7 +1,9 @@
 <x-admin-app-layout :title="'Terms And Condition'">
-    <div class="card card-flash">
-        <div class="card-header">
-            <div class="card-title"></div>
+    <div class="card">
+        <div class="card-header bg-info align-items-center d-flex justify-content-between">
+            <div class="card-title text-white">
+                Create Or Delete Terms & Policy
+            </div>
             <div class="card-toolbar">
                 <a href="{{ route('admin.terms-condition.create') }}" class="btn btn-light-primary">
                     <span class="svg-icon svg-icon-3">
@@ -15,27 +17,27 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-                    Add Terms & Condition
+                    Create
                 </a>
             </div>
         </div>
-        <div class="card-body pt-0">
-            <table class="kt_datatable_example table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_datatable_example">
-                <thead>
-                    <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                        <th style="width: 40px;">SL</th>
+        <div class="card-body py-0">
+            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
+                <thead class="bg-light-dark">
+                    <tr class="fw-semibold fs-6 text-gray-800">
+                        <th width="5%">SL</th>
                         <th width="37%">Name</th>
                         <th width="12%">Version</th>
                         <th width="13%">Effective Date</th>
                         <th width="13%">Expiration Date</th>
-                        <th width="12%">Status</th>
+                        <th width="10%">Status</th>
                         <th width="10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($terms as $key => $term)
                         <tr class="fw-bold text-gray-400 text-center">
-                            <td>{{ $loop->iteration}}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $term->title }}</td>
                             <td>{{ $term->version }}</td>
                             <td>{{ Carbon\Carbon::parse($term->effective_date)->format('D,d M Y') }}</td>
@@ -48,16 +50,6 @@
                                 @endif
                             </td>
                             <td>
-
-                                {{-- @if ($term->status == 1)
-                                    <a href="" title="Inactive">
-                                        <i class="bi bi-hand-thumbs-down text-danger fs-3"></i>
-                                    </a>
-                                @else
-                                    <a href="" title="Active">
-                                        <i class="bi bi-hand-thumbs-up text-success fs-3"></i>
-                                    </a>
-                                @endif --}}
                                 <a href="{{ route('admin.terms-condition.edit', $term->id) }}"
                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                     <i class="fas fa-pen"></i>
@@ -71,11 +63,9 @@
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
         </div>
     </div>
-
     @push('scripts')
         <script>
             $(document).ready(function() {

@@ -150,7 +150,7 @@
                                 </li>
                             </ul>
                             <div class="ps-wishlist__table">
-                                <table class="table ps-table ps-table--product">
+                                <table class="table ps-table ps-table--product mb-0">
                                     <thead class="thead-light">
                                         <tr>
                                             <th width="5%">
@@ -167,6 +167,29 @@
                                         </tr>
                                         <table class="table ps-table ps-table--product mb-0">
                                             <tbody>
+                                                <tr>
+                                                    <td>01</td>
+                                                    <td class=""><a class="ps-product__image"
+                                                            href="product1.html">
+                                                            <figure><img
+                                                                    src="{{ asset('frontend/img/products/003.jpg') }}"
+                                                                    alt="">
+                                                            </figure>
+                                                        </a></td>
+                                                    <td class=""> <a href="product1.html">Somersung Sonic
+                                                            X2500
+                                                            Pro White</a></td>
+                                                    <td class=""> <span class="ps-product__price">$399.99</span>
+                                                    </td>
+                                                    <td class="ps-product__status"> <span>In Stock</span>
+                                                    </td>
+                                                    <td class="ps-product__cart">
+                                                        <button class="ps-btn">Cart</button>
+                                                    </td>
+                                                    <td class="">
+                                                        <a href="#"><i class="icon-cross"></i></a>
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <td>01</td>
                                                     <td class=""><a class="ps-product__image"

@@ -168,7 +168,7 @@
                                         class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
                                     <textarea name="short_description" class="ckeditor">{!! old('short_description') !!}</textarea>
                                     <div class="text-muted fs-7">
-                                        Add blog Short Description here.
+                                        Add blog Short Descriptio here.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
@@ -180,8 +180,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label
-                                        class="form-label">{{ __('Blog Footer') }}</x-metronic.label>
+                                    <x-metronic.label class="form-label">{{ __('Blog Footer') }}</x-metronic.label>
                                     <textarea name="footer" class="ckeditor">{!! old('footer') !!}</textarea>
                                     <div class="text-muted fs-7">
                                         Add blog Footer here.
@@ -262,59 +261,5 @@
             new Tagify(input2);
         </script>
         {{-- Tagify ENd --}}
-        <script>
-            class QuillEditor {
-                constructor(elementId, endpoint) {
-                    this.elementId = elementId;
-                    this.endpoint = endpoint;
-                    this.initEditor();
-                }
-
-                initEditor() {
-                    const Delta = Quill.import('delta');
-                    this.quill = new Quill(`#${this.elementId}`, {
-                        modules: {
-                            toolbar: true
-                        },
-                        placeholder: 'Type your text here...',
-                        theme: 'snow'
-                    });
-
-                    // Store accumulated changes
-                    this.change = new Delta();
-                    this.quill.on('text-change', (delta) => {
-                        this.change = this.change.compose(delta);
-                    });
-
-                    // Save periodically
-                    this.saveInterval = setInterval(() => {
-                        if (this.change.length() > 0) {
-                            console.log('Saving changes', this.change);
-
-                            this.change = new Delta();
-                        }
-                    }, 5 * 1000);
-
-                    // Check for unsaved data
-                    window.addEventListener('beforeunload', (e) => {
-                        if (this.change.length() > 0) {
-                            e.preventDefault();
-                            e.returnValue = 'There are unsaved changes. Are you sure you want to leave?';
-                        }
-                    });
-                }
-
-                destroy() {
-                    clearInterval(this.saveInterval);
-                    window.removeEventListener('beforeunload', this.handleBeforeUnload);
-                }
-            }
-
-            // Initialize multiple editors
-            const overviewEditor = new QuillEditor('short_description', '/save-overview');
-            const descriptionEditor = new QuillEditor('long_description', '/save-description');
-            const specificationEditor = new QuillEditor('footer', '/save-specification');
-            const metaEditor = new QuillEditor('meta_editor', '/meta-description');
-        </script>
     @endpush
 </x-admin-app-layout>
