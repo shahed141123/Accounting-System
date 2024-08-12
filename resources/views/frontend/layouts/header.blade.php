@@ -50,9 +50,10 @@
                                     <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
 
                                     <!-- Logout button inside form -->
-                                    <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
+                                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
                                         @csrf
-                                        <a type="submit" href="javascript:void(0)" class="dropdown-item">
+                                        <a href="javascript:void(0)" type="submit" class="dropdown-item"
+                                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
                                             {{ __('Log Out') }}
                                         </a>
                                     </form>
