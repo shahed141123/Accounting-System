@@ -2,24 +2,33 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
-use App\Models\BlogPost;
-use App\Models\BlogTag;
-use App\Models\Category;
 use App\Models\Faq;
-use App\Models\PrivacyPolicy;
+use App\Models\BlogTag;
 use App\Models\Product;
-use App\Models\TermsAndCondition;
+use App\Models\BlogPost;
+use App\Models\Category;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Models\PrivacyPolicy;
+use App\Models\TermsAndCondition;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function home()
     {
+        // $latest_products = Product::latest('id')->where('status','published')->get(['slug','multiImages','meta_title','name','box_discount_price','box_price']);
+        $latest_products = Cache::remember('latest_products', 60, function () {
+            return Product::latest('id')
+                ->where('status', 'published')
+                ->select('slug','meta_title','name','box_discount_price','box_price')
+                ->get();
+        });
         $data = [
             'categorys'        => Category::orderBy('name','ASC')->active()->get(),
-            'latest_products'  => Product::latest('id')->where('status','published')->get(),
+            'latest_products'  => $latest_products,
+            'deal_products'    => $latest_products->whereNotNull('box_discount_price')->get(),
         ];
         return view('frontend.pages.home',$data);
     }
