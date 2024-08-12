@@ -14,15 +14,15 @@
                                 <div class="col-12 col-xl-6">
                                     <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
-                                            <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->meta_title }}">
-                                            {{-- @foreach ($product->multiImages as $image)
+                                            {{-- <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->meta_title }}"> --}}
+                                            @foreach ($product->multiImages as $image)
                                                 <div class="slide">
                                                     <img src="{{ asset('storage/' . $image->photo) }}"
                                                         alt="{{ $product->meta_title }}" />
                                                 </div>
-                                            @endforeach --}}
+                                            @endforeach
                                         </div>
-                                        {{-- <div class="ps-gallery--image">
+                                        <div class="ps-gallery--image">
                                             @foreach ($product->multiImages as $image)
                                                 <div class="slide">
                                                     <div class="ps-gallery__item">
@@ -31,7 +31,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-6">
