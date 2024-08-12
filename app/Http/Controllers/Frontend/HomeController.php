@@ -99,7 +99,7 @@ class HomeController extends Controller
 
         $data = [
             // 'category'                => $category,
-            'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
+            'categories'   => Category::orderBy('name', 'ASC')->active()->get(),
         ];
         return view('frontend.pages.allProducts', $data);
     }
