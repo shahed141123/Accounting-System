@@ -88,7 +88,8 @@
                         <div class="fv-row">
                             <div class="mb-10 mt-5">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="featured" value="1" id="featured" @checked($blogPost->featured == '1')>
+                                    <input class="form-check-input" type="checkbox" name="featured" value="1"
+                                        id="featured" @checked($blogPost->featured == '1')>
 
                                     <x-metronic.label class="form-check-label" for="featured">
                                         {{ __('Is Featured') }}
@@ -221,9 +222,15 @@
                                         data-control="select2" data-placeholder="Select an option"
                                         data-allow-clear="true" id="category_id" multiple>
                                         <option></option>
+                                        @php
+                                            $categoryIds = isset($blogPost->category_id)
+                                                ? json_decode($blogPost->category_id, true)
+                                                : [];
+                                        @endphp
+
                                         @foreach ($blogCategories as $blogcategory)
                                             <option value="{{ $blogcategory->id }}"
-                                                {{ in_array($blogcategory->id, $blogPost->category_id->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ in_array($blogcategory->id, $categoryIds) ? 'selected' : '' }}>
                                                 {{ $blogcategory->name }}
                                             </option>
                                         @endforeach
