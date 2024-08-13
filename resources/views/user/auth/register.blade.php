@@ -1,22 +1,20 @@
 <x-frontend-app-layout :title="'Sign Up'">
     <style>
-        .ps-account{
+        .register-bg{
             background-position: center;
             background-size: contain;
             background-image: url('{{ asset('frontend/img/bg3.png') }}');
             background-repeat: no-repeat;
         }
     </style>
-    <div class="ps-account">
+    <div class="ps-account register-bg">
         <div class="container">
             <div class="row my-5 align-items-center pb-5">
                 <div class="col-lg-12">
                     <div class="text-center pb-5">
-                        <h3>Register for an account</h3>
                         <h1>Please Complete the Form Below, <br> to Register for an Account.</h1>
                         <p>Please note: our minimum order quantities are <br> £500 (UK mainland), £750 (restricted
-                            postcodes,
-                            Ireland and Northern Ireland).</p>
+                            postcodes, Ireland and Northern Ireland).</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-8 offset-lg-2 mx-auto">
@@ -355,11 +353,10 @@
                                 </div>
                             </div>
                             <div class="col-12 my-3">
-                                <h6 class="text-center">
-                                    {{ __('Already have an accounts?') }}
+                                <h6 class="">
+                                    <span class="fs-bold">{{ __('Already have an accounts?') }}</span>
                                     <a href="{{ route('login') }}"
-                                        class="btn btn-sm btn-link text-gray fw-bold fs-6">Log
-                                        In Now</a>
+                                        class="btn btn-sm btn-link text-gray fw-bold fs-6 site_text_color_links">Log In Now</a>
                                 </h6>
                             </div>
                             <div class="ps-form__submit">

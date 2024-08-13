@@ -12958,8 +12958,6 @@ textarea.form-control {
 .mega-menu {
     background-color: #fff;
     width: 100%;
-    padding-top: 20px;
-    padding-bottom: 50px;
     z-index: 100;
     box-shadow: 0 5px 5px #f0f2f5;
 }
@@ -12968,6 +12966,10 @@ textarea.form-control {
     width: 100%;
     min-width: 200px;
     padding: 10px 15px;
+}
+.menu_productimg{
+    height: 150px;
+    object-fit: contain;
 }
 
 .mega-menu h4 {

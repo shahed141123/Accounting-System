@@ -46,8 +46,11 @@
                     </ul>
                 </div>
                 <ul class="menu-top">
+                    <li class="nav-item"><a class="nav-link" href="{{ asset('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ asset('blogs') }}">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ asset('contact') }}">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ asset('about-us') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ asset('privacy-policy') }}">Policy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ asset('privacy/policy') }}">Policy</a></li>
                 </ul>
                 @if (!empty($setting->primary_phone))
                     <div class="ps-header__text">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
@@ -243,11 +246,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ps-result__viewall"><a href="product-result.html">View all 5 results</a></div>
+                            <div class="ps-result__viewall"><a href="product-result.html">View all</a></div>
                         </div>
                     </div>
                 </div>
-                <div class="ps-middle__text">Need help? <strong>0020 500 - MYMEDI - 000</strong></div>
+                @if (!empty($setting->primary_phone))
+                    <div class="ps-middle__text">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
+                @endif
             </div>
         </div>
     </div>
@@ -264,21 +269,7 @@
                                 <div class="mega-menu">
                                     <div class="container">
                                         <div class="mega-menu__row">
-                                            <div class="mega-menu__column col-12 col-md-3">
-                                                <ul class="sub-menu--mega sub-menu--bold">
-                                                    <li><a href="blog-post1.html">Diagnosis</a></li>
-                                                    <li><a href="blog-post1.html">Accessories Tools</a></li>
-                                                    <li><a href="blog-post1.html">Bandages</a></li>
-                                                    <li><a href="blog-post1.html">Biopsy tools</a></li>
-                                                    <li><a href="blog-post1.html">Blades</a></li>
-                                                    <li><a href="blog-post1.html">Blood pressure</a></li>
-                                                    <li><a href="blog-post1.html">Capsules</a></li>
-                                                    <li><a href="blog-post1.html">Dental</a></li>
-                                                    <li><a href="blog-post1.html">Devices</a></li>
-                                                    <li><a href="blog-post1.html">Show all</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="mega-menu__column col-12 col-md-9">
+                                            <div class="mega-menu__column col-12 col-md-12">
                                                 <div class="product-list">
                                                     <div class="row">
                                                         <div class="col-12 col-sm-6 col-lg-3">
@@ -286,9 +277,9 @@
                                                                 <div class="ps-product__thumbnail"><a
                                                                         class="ps-product__image"
                                                                         href="product1.html">
-                                                                        <figure><img
+                                                                        <figure><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/054.jpg') }}"
-                                                                                alt="alt"><img
+                                                                                alt="alt"><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/057.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -412,9 +403,9 @@
                                                                 <div class="ps-product__thumbnail"><a
                                                                         class="ps-product__image"
                                                                         href="product1.html">
-                                                                        <figure><img
+                                                                        <figure><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/028.jpg') }}"
-                                                                                alt="alt"><img
+                                                                                alt="alt"><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/045.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -538,9 +529,9 @@
                                                                 <div class="ps-product__thumbnail"><a
                                                                         class="ps-product__image"
                                                                         href="product1.html">
-                                                                        <figure><img
+                                                                        <figure><img  class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/016.jpg') }}"
-                                                                                alt="alt"><img
+                                                                                alt="alt"><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/021.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -662,9 +653,9 @@
                                                                 <div class="ps-product__thumbnail"><a
                                                                         class="ps-product__image"
                                                                         href="product1.html">
-                                                                        <figure><img
+                                                                        <figure><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/002.jpg') }}"
-                                                                                alt="alt"><img
+                                                                                alt="alt"><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/017.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -784,6 +775,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 mx-auto mt-5">
+                                                            <a href="" class="ps-btn ps-btn--warning">View all</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -791,8 +787,6 @@
                                 </div>
                             </li>
                         @endforeach
-                        {{-- <li class="has-mega-menu"><a href="{{ route('allBlog') }}">Blogs</a></li>
-                        <li class="has-mega-menu"><a href="{{ route('contact') }}">Contact</a></li> --}}
                     </ul>
                 </nav>
             </div>
