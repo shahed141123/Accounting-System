@@ -137,13 +137,13 @@
                     <li>
                         <a class="ps-header__item" href="{{ route('user.wishlist') }}">
                             <i class="fa fa-heart-o"></i>
-                            <span class="badge">3</span>
+                            <span class="badge wishlistCount">0</span>
                         </a>
                     </li>
                     <li>
                         <a class="ps-header__item" href="#" id="cart-mini">
                             <i class="icon-cart-empty"></i>
-                            <span class="badge">{{ Cart::instance('cart')->count() }}</span></a>
+                            <span class="badge cartCount">{{ Cart::instance('cart')->count() }}</span></a>
                         <div class="ps-cart--mini cartMini">
                             @include('frontend.pages.cart.partials.minicart')
                         </div>
@@ -165,72 +165,23 @@
                             <div class="row m-0">
                                 <div class="col-12 col-lg-6">
                                     <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="#">
-                                                <figure><img src="img/products/052.jpg" alt="alt"></figure>
-                                            </a></div>
+                                        <div class="ps-product__thumbnail">
+                                            <a class="ps-product__image" href="#">
+                                                <figure>
+                                                    <img src="img/products/052.jpg" alt="alt">
+                                                </figure>
+                                            </a>
+                                        </div>
                                         <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a>3-layer <span
-                                                        class="hightlight">mask</span> with an elastic band (1
-                                                    piece)</a></h5>
+                                            <h5 class="ps-product__title">
+                                                <a>3-layer <span class="hightlight">mask</span> with an elastic band (1
+                                                    piece)
+                                                </a>
+                                            </h5>
                                             <p class="ps-product__desc">Study history up to 30 days Up to 5 users
                                                 simultaneously Has HEALTH certificate</p>
                                             <div class="ps-product__meta"><span
                                                     class="ps-product__price">$38.24</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="#">
-                                                <figure><img src="img/products/033.jpg" alt="alt"></figure>
-                                            </a></div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a>3 Layer Disposable Protective Face <span
-                                                        class="hightlight">mask</span>s</a></h5>
-                                            <p class="ps-product__desc">Study history up to 30 days Up to 5 users
-                                                simultaneously Has HEALTH certificate</p>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">$14.52</span><span
-                                                    class="ps-product__del">$17.24</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="#">
-                                                <figure><img src="img/products/051.jpg" alt="alt"></figure>
-                                            </a></div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a>3-Ply Ear-Loop Disposable Blue Face <span
-                                                        class="hightlight">mask</span></a></h5>
-                                            <p class="ps-product__desc">Study history up to 30 days Up to 5 users
-                                                simultaneously Has HEALTH certificate</p>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">$14.99</span><span
-                                                    class="ps-product__del">$38.24</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="#">
-                                                <figure><img src="img/products/050.jpg" alt="alt"></figure>
-                                            </a></div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a>Disposable Face <span
-                                                        class="hightlight">mask</span> for Unisex</a></h5>
-                                            <p class="ps-product__desc">Study history up to 30 days Up to 5 users
-                                                simultaneously Has HEALTH certificate</p>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price sale">$8.15</span><span
-                                                    class="ps-product__del">$12.24</span>
                                             </div>
                                         </div>
                                     </div>
@@ -263,512 +214,154 @@
                                             <div class="mega-menu__column col-12 col-md-12">
                                                 <div class="product-list">
                                                     <div class="row">
-                                                        <div class="col-12 col-sm-6 col-lg-3">
-                                                            <div class="ps-product ps-product--standard">
-                                                                <div class="ps-product__thumbnail"><a
-                                                                        class="ps-product__image"
-                                                                        href="product1.html">
-                                                                        <figure><img class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/054.jpg') }}"
-                                                                                alt="alt"><img
-                                                                                class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/057.jpg') }}"
-                                                                                alt="alt">
-                                                                        </figure>
-                                                                    </a>
-                                                                    <div class="ps-product__actions">
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist">
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupCompare"><i
-                                                                                    class="fa fa-align-left"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Quick view"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupQuickview"><i
-                                                                                    class="fa fa-search"></i></a></div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ps-product__badge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ps-product__content">
-                                                                    <h5 class="ps-product__title"><a
-                                                                            href="product1.html">Somersung Sonic X2000
-                                                                            Pro
-                                                                            Black</a></h5>
-                                                                    <div class="ps-product__meta"><span
-                                                                            class="ps-product__price">$299.99</span>
-                                                                    </div>
-                                                                    <div class="ps-product__rating">
-                                                                        <div
-                                                                            class="br-wrapper br-theme-fontawesome-stars">
-                                                                            <select class="ps-rating"
-                                                                                data-read-only="true"
-                                                                                style="display: none;">
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3">3</option>
-                                                                                <option value="4"
-                                                                                    selected="selected">4</option>
-                                                                                <option value="5">5</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <span class="ps-product__review">(
-                                                                            Reviews)</span>
-                                                                    </div>
-                                                                    <div class="ps-product__desc">
-                                                                        <ul class="ps-product__list">
-                                                                            <li>Study history up to 30 days</li>
-                                                                            <li>Up to 5 users simultaneously</li>
-                                                                            <li>Has HEALTH certificate</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div
-                                                                        class="ps-product__actions ps-product__group-mobile">
-                                                                        <div class="ps-product__quantity">
-                                                                            <div
-                                                                                class="def-number-input number-input safari_only">
-                                                                                <button class="minus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                                        class="icon-minus"></i></button>
-                                                                                <input class="quantity" min="0"
-                                                                                    name="quantity" value="1"
-                                                                                    type="number">
-                                                                                <button class="plus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                                        class="icon-plus"></i></button>
+                                                        @php
+                                                            $catProducts = $category->products()->limit(8)->get();
+                                                        @endphp
+                                                        @foreach ($catProducts as $catProduct)
+                                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                                <div class="ps-product ps-product--standard">
+                                                                    <div class="ps-product__thumbnail">
+                                                                        <a class="ps-product__image"
+                                                                            href="{{ route('product.details', $catProduct->slug) }}">
+                                                                            <figure>
+                                                                                @if (count($catProduct->multiImages) > 0)
+                                                                                    @foreach ($catProduct->multiImages->slice(0, 2) as $image)
+                                                                                        @php
+                                                                                            $imagePath =
+                                                                                                'storage/' .
+                                                                                                $image->photo;
+                                                                                            $imageSrc = file_exists(
+                                                                                                public_path($imagePath),
+                                                                                            )
+                                                                                                ? asset($imagePath)
+                                                                                                : // : asset('frontend/img/no-product.png');
+                                                                                                asset(
+                                                                                                    'frontend/img/no-product.png',
+                                                                                                );
+                                                                                        @endphp
+                                                                                        <img src="{{ $imageSrc }}"
+                                                                                            alt="{{ $catProduct->meta_title }}"
+                                                                                            width="210"
+                                                                                            height="210"
+                                                                                            style="object-fit: cover;" />
+                                                                                    @endforeach
+                                                                                @else
+                                                                                    @php
+                                                                                        $thumbnailPath =
+                                                                                            'storage/' .
+                                                                                            $catProduct->thumbnail;
+                                                                                        $thumbnailSrc = file_exists(
+                                                                                            public_path($thumbnailPath),
+                                                                                        )
+                                                                                            ? asset($thumbnailPath)
+                                                                                            : asset(
+                                                                                                'frontend/img/no-product.png',
+                                                                                            );
+                                                                                    @endphp
+                                                                                    <img src="{{ $thumbnailSrc }}"
+                                                                                        alt="{{ $catProduct->meta_title }}"
+                                                                                        width="210" height="210"
+                                                                                        style="object-fit: cover;" />
+                                                                                @endif
+                                                                            </figure>
+                                                                        </a>
+                                                                        <div class="ps-product__actions">
+                                                                            <div class="ps-product__item"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="left"
+                                                                                title="Wishlist"><a href="#"><i
+                                                                                        class="fa fa-heart-o"></i></a>
+                                                                            </div>
+                                                                            <div class="ps-product__item"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="left"
+                                                                                title="Quick view"><a href="#"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#popupQuickview{{ $catProduct->id }}"><i
+                                                                                        class="fa fa-search"></i></a>
+                                                                            </div>
+                                                                            <div class="ps-product__item"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="left"
+                                                                                title="Add to cart"><a href="#"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#popupAddcart"><i
+                                                                                        class="fa fa-shopping-basket"></i></a>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="ps-product__cart"> <a
-                                                                                class="ps-btn ps-btn--warning"
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart">Add to
-                                                                                cart</a>
+                                                                        <div class="ps-product__badge">
+                                                                            <div class="ps-badge ps-badge--sale">Sale
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="ps-product__item cart"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist">
-                                                                            <a href="wishlist.html"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="compare.html"><i
-                                                                                    class="fa fa-align-left"></i></a>
+                                                                    </div>
+                                                                    <div class="ps-product__content">
+                                                                        <h5 class="ps-product__title">
+                                                                            <a
+                                                                                href="{{ route('product.details', $catProduct->slug) }}">
+                                                                                {{ $catProduct->name }}
+                                                                            </a>
+                                                                        </h5>
+                                                                        @auth
+                                                                            @if (!empty($catProduct->box_discount_price))
+                                                                                <div class="ps-product__meta">
+                                                                                    <span
+                                                                                        class="ps-product__price sale">£{{ $catProduct->box_discount_price }}</span>
+                                                                                    <span
+                                                                                        class="ps-product__del">£{{ $catProduct->box_price }}</span>
+                                                                                </div>
+                                                                            @else
+                                                                                <div class="ps-product__meta"><span
+                                                                                        class="ps-product__price sale">£{{ $catProduct->box_price }}</span>
+                                                                                </div>
+                                                                            @endif
+                                                                            <a href="{{ route('cart.store', $catProduct->id) }}"
+                                                                                class="btn ps-btn--warning my-3 btn-block add_to_cart"
+                                                                                data-product_id="{{ $catProduct->id }}"
+                                                                                data-product_qty="1">Add To Cart</a>
+                                                                        @else
+                                                                            <div class="ps-product__meta">
+                                                                                <a href="{{ route('login') }}"
+                                                                                    class="btn btn-info btn-block">Login
+                                                                                    to view price</a>
+                                                                            </div>
+                                                                        @endauth
+                                                                        <div
+                                                                            class="ps-product__actions ps-product__group-mobile">
+                                                                            <div class="ps-product__quantity">
+                                                                                <div
+                                                                                    class="def-number-input number-input safari_only">
+                                                                                    <button class="minus"
+                                                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
+                                                                                            class="icon-minus"></i></button>
+                                                                                    <input class="quantity"
+                                                                                        min="0" name="quantity"
+                                                                                        value="1"
+                                                                                        type="number" />
+                                                                                    <button class="plus"
+                                                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
+                                                                                            class="icon-plus"></i></button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="ps-product__item"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="left"
+                                                                                title="Wishlist">
+                                                                                <a href="">
+                                                                                    <i class="fa fa-heart-o"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ps-product__item rotate"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="left"
+                                                                                title="Add to compare"><a
+                                                                                    href="compare.html"><i
+                                                                                        class="fa fa-align-left"></i></a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-12 col-sm-6 col-lg-3">
-                                                            <div class="ps-product ps-product--standard">
-                                                                <div class="ps-product__thumbnail"><a
-                                                                        class="ps-product__image"
-                                                                        href="product1.html">
-                                                                        <figure><img class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/028.jpg') }}"
-                                                                                alt="alt"><img
-                                                                                class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/045.jpg') }}"
-                                                                                alt="alt">
-                                                                        </figure>
-                                                                    </a>
-                                                                    <div class="ps-product__actions">
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist">
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupCompare"><i
-                                                                                    class="fa fa-align-left"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Quick view"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupQuickview"><i
-                                                                                    class="fa fa-search"></i></a></div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ps-product__badge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ps-product__content">
-                                                                    <h5 class="ps-product__title"><a
-                                                                            href="product1.html">Digital Thermometer
-                                                                            X30-Pro</a></h5>
-                                                                    <div class="ps-product__meta"><span
-                                                                            class="ps-product__price sale">$60.39</span><span
-                                                                            class="ps-product__del">$89.99</span>
-                                                                    </div>
-                                                                    <div class="ps-product__rating">
-                                                                        <div
-                                                                            class="br-wrapper br-theme-fontawesome-stars">
-                                                                            <select class="ps-rating"
-                                                                                data-read-only="true"
-                                                                                style="display: none;">
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3">3</option>
-                                                                                <option value="4"
-                                                                                    selected="selected">4</option>
-                                                                                <option value="5">5</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <span class="ps-product__review">(
-                                                                            Reviews)</span>
-                                                                    </div>
-                                                                    <div class="ps-product__desc">
-                                                                        <ul class="ps-product__list">
-                                                                            <li>Study history up to 30 days</li>
-                                                                            <li>Up to 5 users simultaneously</li>
-                                                                            <li>Has HEALTH certificate</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div
-                                                                        class="ps-product__actions ps-product__group-mobile">
-                                                                        <div class="ps-product__quantity">
-                                                                            <div
-                                                                                class="def-number-input number-input safari_only">
-                                                                                <button class="minus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                                        class="icon-minus"></i></button>
-                                                                                <input class="quantity" min="0"
-                                                                                    name="quantity" value="1"
-                                                                                    type="number">
-                                                                                <button class="plus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                                        class="icon-plus"></i></button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="ps-product__cart"> <a
-                                                                                class="ps-btn ps-btn--warning"
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart">Add to
-                                                                                cart</a>
-                                                                        </div>
-                                                                        <div class="ps-product__item cart"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist">
-                                                                            <a href="wishlist.html"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="compare.html"><i
-                                                                                    class="fa fa-align-left"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-sm-6 col-lg-3">
-                                                            <div class="ps-product ps-product--standard">
-                                                                <div class="ps-product__thumbnail"><a
-                                                                        class="ps-product__image"
-                                                                        href="product1.html">
-                                                                        <figure><img class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/016.jpg') }}"
-                                                                                alt="alt"><img
-                                                                                class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/021.jpg') }}"
-                                                                                alt="alt">
-                                                                        </figure>
-                                                                    </a>
-                                                                    <div class="ps-product__actions">
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist">
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupCompare"><i
-                                                                                    class="fa fa-align-left"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Quick view"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupQuickview"><i
-                                                                                    class="fa fa-search"></i></a></div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ps-product__badge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ps-product__content">
-                                                                    <h5 class="ps-product__title"><a
-                                                                            href="product1.html">Oxygen concentrator
-                                                                            model
-                                                                            KTS-5000</a></h5>
-                                                                    <div class="ps-product__meta"><span
-                                                                            class="ps-product__price">$53.99</span>
-                                                                    </div>
-                                                                    <div class="ps-product__rating">
-                                                                        <div
-                                                                            class="br-wrapper br-theme-fontawesome-stars">
-                                                                            <select class="ps-rating"
-                                                                                data-read-only="true"
-                                                                                style="display: none;">
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3"
-                                                                                    selected="selected">3</option>
-                                                                                <option value="4">4</option>
-                                                                                <option value="5">5</option>
-                                                                            </select>
-                                                                        </div><span class="ps-product__review">(
-                                                                            Reviews)</span>
-                                                                    </div>
-                                                                    <div class="ps-product__desc">
-                                                                        <ul class="ps-product__list">
-                                                                            <li>Study history up to 30 days</li>
-                                                                            <li>Up to 5 users simultaneously</li>
-                                                                            <li>Has HEALTH certificate</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div
-                                                                        class="ps-product__actions ps-product__group-mobile">
-                                                                        <div class="ps-product__quantity">
-                                                                            <div
-                                                                                class="def-number-input number-input safari_only">
-                                                                                <button class="minus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                                        class="icon-minus"></i></button>
-                                                                                <input class="quantity" min="0"
-                                                                                    name="quantity" value="1"
-                                                                                    type="number">
-                                                                                <button class="plus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                                        class="icon-plus"></i></button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="ps-product__cart"> <a
-                                                                                class="ps-btn ps-btn--warning"
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart">Add to
-                                                                                cart</a></div>
-                                                                        <div class="ps-product__item cart"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist"><a
-                                                                                href="wishlist.html"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="compare.html"><i
-                                                                                    class="fa fa-align-left"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-sm-6 col-lg-3">
-                                                            <div class="ps-product ps-product--standard">
-                                                                <div class="ps-product__thumbnail"><a
-                                                                        class="ps-product__image"
-                                                                        href="product1.html">
-                                                                        <figure><img class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/002.jpg') }}"
-                                                                                alt="alt"><img
-                                                                                class="menu_productimg"
-                                                                                src="{{ asset('frontend/img/products/017.jpg') }}"
-                                                                                alt="alt">
-                                                                        </figure>
-                                                                    </a>
-                                                                    <div class="ps-product__actions">
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist"><a
-                                                                                href="#"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupCompare"><i
-                                                                                    class="fa fa-align-left"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Quick view"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupQuickview"><i
-                                                                                    class="fa fa-search"></i></a></div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ps-product__badge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ps-product__content">
-                                                                    <h5 class="ps-product__title"><a
-                                                                            href="product1.html">Blue Hot Water Bottle,
-                                                                            2
-                                                                            Quart Capacity</a></h5>
-                                                                    <div class="ps-product__meta"><span
-                                                                            class="ps-product__price sale">$38.39</span><span
-                                                                            class="ps-product__del">$14.52 -
-                                                                            $15.52</span>
-                                                                    </div>
-                                                                    <div class="ps-product__rating">
-                                                                        <div
-                                                                            class="br-wrapper br-theme-fontawesome-stars">
-                                                                            <select class="ps-rating"
-                                                                                data-read-only="true"
-                                                                                style="display: none;">
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3">3</option>
-                                                                                <option value="4">4</option>
-                                                                                <option value="5"
-                                                                                    selected="selected">5</option>
-                                                                            </select>
-                                                                        </div><span class="ps-product__review">(
-                                                                            Reviews)</span>
-                                                                    </div>
-                                                                    <div class="ps-product__desc">
-                                                                        <ul class="ps-product__list">
-                                                                            <li>Study history up to 30 days</li>
-                                                                            <li>Up to 5 users simultaneously</li>
-                                                                            <li>Has HEALTH certificate</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div
-                                                                        class="ps-product__actions ps-product__group-mobile">
-                                                                        <div class="ps-product__quantity">
-                                                                            <div
-                                                                                class="def-number-input number-input safari_only">
-                                                                                <button class="minus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                                        class="icon-minus"></i></button>
-                                                                                <input class="quantity" min="0"
-                                                                                    name="quantity" value="1"
-                                                                                    type="number">
-                                                                                <button class="plus"
-                                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                                        class="icon-plus"></i></button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="ps-product__cart"> <a
-                                                                                class="ps-btn ps-btn--warning"
-                                                                                href="#" data-toggle="modal"
-                                                                                data-target="#popupAddcart">Add to
-                                                                                cart</a></div>
-                                                                        <div class="ps-product__item cart"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to cart"><a
-                                                                                href="#"><i
-                                                                                    class="fa fa-shopping-basket"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Wishlist"><a
-                                                                                href="wishlist.html"><i
-                                                                                    class="fa fa-heart-o"></i></a>
-                                                                        </div>
-                                                                        <div class="ps-product__item rotate"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left" title=""
-                                                                            data-original-title="Add to compare"><a
-                                                                                href="compare.html"><i
-                                                                                    class="fa fa-align-left"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        @endforeach
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-4 mx-auto mt-5">

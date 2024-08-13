@@ -2,7 +2,7 @@
     $cartItems = Cart::instance('cart')->content();
     $subTotal = Cart::instance('cart')->subtotal();
 @endphp
-    <ul class="ps-cart__items miniCart">
+    <ul class="ps-cart__items">
         @foreach ($cartItems as $item)
             <li class="ps-cart__item">
                 <div class="ps-product--mini-cart">
@@ -13,6 +13,7 @@
                         <a class="ps-product__name" href="{{ route('product.details', $item->model->slug) }}">
                             {{ $item->model->name }}</a>
                         <p class="ps-product__meta">
+                            <span class="ps-product__price">{{ $item->qty }}  X  </span>
                             <span class="ps-product__price">£{{ $item->price }}</span>
                         </p>
                     </div>

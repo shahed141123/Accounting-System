@@ -242,16 +242,17 @@
                     <h3 class="ps-section__title">Popular categories</h3>
                     <div class="ps-category__content">
                         @foreach ($categorys as $category)
-                        <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
-                            @php
-                                $logoPath = 'storage/' . $category->logo;
-                                $logoSrc = file_exists(public_path($logoPath))
-                                    ? asset($logoPath)
-                                    : asset('frontend/img/no-category.jpg');
-                            @endphp
-                            <img class="ps-category__icon" src="{{ $logoSrc }}" alt="{{ $category->name }}">
-                            <h6 class="ps-category__name">{{ $category->name }}</h6>
-                        </a>
+                            <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
+                                @php
+                                    $logoPath = 'storage/' . $category->logo;
+                                    $logoSrc = file_exists(public_path($logoPath))
+                                        ? asset($logoPath)
+                                        : asset('frontend/img/no-category.jpg');
+                                @endphp
+                                <img class="ps-category__icon" src="{{ $logoSrc }}"
+                                    alt="{{ $category->name }}">
+                                <h6 class="ps-category__name">{{ $category->name }}</h6>
+                            </a>
                         @endforeach
                     </div>
                 </div>
@@ -275,10 +276,13 @@
                                                                     $imagePath = 'storage/' . $image->photo;
                                                                     $imageSrc = file_exists(public_path($imagePath))
                                                                         ? asset($imagePath)
-                                                                        // : asset('frontend/img/no-product.png');
-                                                                        : asset('frontend/img/about/about-bg.png');
+                                                                        : // : asset('frontend/img/no-product.png');
+                                                                        asset('frontend/img/no-product.png');
                                                                 @endphp
-                                                                <img src="{{ $imageSrc }}" alt="{{ $latest_product->meta_title }}" width="210" height="210" style="object-fit: cover;" />
+                                                                <img src="{{ $imageSrc }}"
+                                                                    alt="{{ $latest_product->meta_title }}"
+                                                                    width="210" height="210"
+                                                                    style="object-fit: cover;" />
                                                             @endforeach
                                                         @else
                                                             @php
@@ -286,19 +290,24 @@
                                                                     'storage/' . $latest_product->thumbnail;
                                                                 $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                     ? asset($thumbnailPath)
-                                                                    : asset('frontend/img/about/about-bg.png');
+                                                                    : asset('frontend/img/no-product.png');
                                                             @endphp
-                                                            <img src="{{ $thumbnailSrc }}" alt="{{ $latest_product->meta_title }}" width="210" height="210" style="object-fit: cover;" />
+                                                            <img src="{{ $thumbnailSrc }}"
+                                                                alt="{{ $latest_product->meta_title }}"
+                                                                width="210" height="210"
+                                                                style="object-fit: cover;" />
                                                         @endif
                                                     </figure>
                                                 </a>
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"
-                                                        data-placement="left" title="Wishlist"><a href="#"><i
+                                                        data-placement="left" title="Wishlist">
+                                                        <a href="{#}"><i
                                                                 class="fa fa-heart-o"></i></a></div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Quick view"><a href="#"
-                                                            data-toggle="modal" data-target="#popupQuickview{{$latest_product->id}}"><i
+                                                            data-toggle="modal"
+                                                            data-target="#popupQuickview{{ $latest_product->id }}"><i
                                                                 class="fa fa-search"></i></a></div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Add to cart"><a href="#"
@@ -328,7 +337,7 @@
                                                                 class="ps-product__price sale">£{{ $latest_product->box_price }}</span>
                                                         </div>
                                                     @endif
-                                                    <a href="javascript:void(0)"
+                                                    <a href="{{ route('cart.store', $latest_product->id) }}"
                                                         class="btn ps-btn--warning my-3 btn-block add_to_cart"
                                                         data-product_id="{{ $latest_product->id }}"
                                                         data-product_qty="1">Add To Cart</a>
@@ -497,112 +506,129 @@
                         </div>
                     </div>
                     <div class="ps-section__carousel">
-                        <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="13000"
-                            data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5"
-                            data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="5"
-                            data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
-                            @foreach ($deal_products as $deal_product)
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail">
-                                            <a class="ps-product__image"
-                                                href="{{ route('product.details', $deal_product->slug) }}">
-                                                <figure>
-                                                    @if (count($deal_product->multiImages) > 0)
-                                                        @foreach ($deal_product->multiImages->slice(0, 2) as $image)
-                                                            <img src="{{ asset('storage/' . $image->photo) }}"
-                                                                alt="{{ $deal_product->meta_title }}" />
-                                                        @endforeach
-                                                    @else
-                                                        <img src="{{ asset('storage/' . $deal_product->thumbnail) }}"
-                                                            alt="{{ $deal_product->meta_title }}" />
-                                                    @endif
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a>
-                                                </div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview{{$deal_product->id}}"><i
-                                                            class="fa fa-search"></i></a>
-                                                </div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                            </div>
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Sale</div>
-                                            </div>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title">
-                                                <a href="{{ route('product.details', $deal_product->slug) }}">
-                                                    {{ $deal_product->name }}
+                        <div class="ps-section__carousel">
+                            <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true"
+                                data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
+                                data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
+                                data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000"
+                                data-owl-mousedrag="on">
+                                @foreach ($deal_products as $deal_product)
+                                    <div class="ps-section__product">
+                                        <div class="ps-product ps-product--standard">
+                                            <div class="ps-product__thumbnail">
+                                                <a class="ps-product__image"
+                                                    href="{{ route('product.details', $deal_product->slug) }}">
+                                                    <figure>
+                                                        @if (count($deal_product->multiImages) > 0)
+                                                            @foreach ($deal_product->multiImages->slice(0, 2) as $image)
+                                                                @php
+                                                                    $imagePath = 'storage/' . $image->photo;
+                                                                    $imageSrc = file_exists(public_path($imagePath))
+                                                                        ? asset($imagePath)
+                                                                        : // : asset('frontend/img/no-product.png');
+                                                                        asset('frontend/img/no-product.png');
+                                                                @endphp
+                                                                <img src="{{ $imageSrc }}"
+                                                                    alt="{{ $deal_product->meta_title }}"
+                                                                    width="210" height="210"
+                                                                    style="object-fit: cover;" />
+                                                            @endforeach
+                                                        @else
+                                                            @php
+                                                                $thumbnailPath = 'storage/' . $deal_product->thumbnail;
+                                                                $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                                    ? asset($thumbnailPath)
+                                                                    : asset('frontend/img/no-product.png');
+                                                            @endphp
+                                                            <img src="{{ $thumbnailSrc }}"
+                                                                alt="{{ $deal_product->meta_title }}" width="210"
+                                                                height="210" style="object-fit: cover;" />
+                                                        @endif
+                                                    </figure>
                                                 </a>
-                                            </h5>
-                                            @auth
-                                                @if (!empty($deal_product->box_discount_price))
-                                                    <div class="ps-product__meta">
-                                                        <span
-                                                            class="ps-product__price sale">£{{ $deal_product->box_discount_price }}</span>
-                                                        <span
-                                                            class="ps-product__del">£{{ $deal_product->box_price }}</span>
-                                                    </div>
-                                                @else
-                                                    <div class="ps-product__meta"><span
-                                                            class="ps-product__price sale">£{{ $deal_product->box_price }}</span>
-                                                    </div>
-                                                @endif
-                                            @else
-                                                <div class="ps-product__meta">
-                                                    <a href="{{ route('login') }}" class="btn btn-info btn-block">Login
-                                                        to view price</a>
+                                                <div class="ps-product__actions">
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Wishlist"><a href="#"><i
+                                                                class="fa fa-heart-o"></i></a></div>
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Quick view"><a href="#"
+                                                            data-toggle="modal"
+                                                            data-target="#popupQuickview{{ $deal_product->id }}"><i
+                                                                class="fa fa-search"></i></a></div>
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Add to cart"><a href="#"
+                                                            data-toggle="modal" data-target="#popupAddcart"><i
+                                                                class="fa fa-shopping-basket"></i></a></div>
                                                 </div>
-                                            @endauth
-
-                                            <div class="ps-product__desc">
-                                                <ul class="ps-product__list">
-                                                    <li>Study history up to 30 days</li>
-                                                    <li>Up to 5 users simultaneously</li>
-                                                    <li>Has HEALTH certificate</li>
-                                                </ul>
+                                                <div class="ps-product__badge">
+                                                    <div class="ps-badge ps-badge--sale">Sale</div>
+                                                </div>
                                             </div>
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i></button>
-                                                        <input class="quantity" min="0" name="quantity"
-                                                            value="1" type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i></button>
+                                            <div class="ps-product__content">
+                                                <h5 class="ps-product__title">
+                                                    <a href="{{ route('product.details', $deal_product->slug) }}">
+                                                        {{ $deal_product->name }}
+                                                    </a>
+                                                </h5>
+                                                @auth
+                                                    @if (!empty($deal_product->box_discount_price))
+                                                        <div class="ps-product__meta">
+                                                            <span
+                                                                class="ps-product__price sale">£{{ $deal_product->box_discount_price }}</span>
+                                                            <span
+                                                                class="ps-product__del">£{{ $deal_product->box_price }}</span>
+                                                        </div>
+                                                    @else
+                                                        <div class="ps-product__meta"><span
+                                                                class="ps-product__price sale">£{{ $deal_product->box_price }}</span>
+                                                        </div>
+                                                    @endif
+                                                    <a href="{{ route('cart.store', $deal_product->id) }}"
+                                                        class="btn ps-btn--warning my-3 btn-block add_to_cart"
+                                                        data-product_id="{{ $deal_product->id }}"
+                                                        data-product_qty="1">Add To Cart</a>
+                                                @else
+                                                    <div class="ps-product__meta">
+                                                        <a href="{{ route('login') }}"
+                                                            class="btn btn-info btn-block">Login
+                                                            to view price</a>
+                                                    </div>
+                                                @endauth
+                                                <div class="ps-product__actions ps-product__group-mobile">
+                                                    <div class="ps-product__quantity">
+                                                        <div class="def-number-input number-input safari_only">
+                                                            <button class="minus"
+                                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
+                                                                    class="icon-minus"></i></button>
+                                                            <input class="quantity" min="0" name="quantity"
+                                                                value="1" type="number" />
+                                                            <button class="plus"
+                                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
+                                                                    class="icon-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
+                                                        href="#" data-toggle="modal"
+                                                        data-target="#popupAddcart">Add to cart</a></div> --}}
+                                                    <div class="ps-product__item cart" data-toggle="tooltip"
+                                                        data-placement="left" title="Add to cart"><a
+                                                            href="#"><i class="fa fa-shopping-basket"></i></a>
+                                                    </div>
+                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                        data-placement="left" title="Wishlist"><a
+                                                            href="wishlist.html"><i class="fa fa-heart-o"></i></a>
+                                                    </div>
+                                                    <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                        data-placement="left" title="Add to compare"><a
+                                                            href="compare.html"><i class="fa fa-align-left"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                        href="#" data-toggle="modal"
-                                                        data-target="#popupAddcart">Add to cart</a></div>
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to compare"><a
-                                                        href="compare.html"><i class="fa fa-align-left"></i></a></div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
                 </section>
             </div>
             <div class="container">
@@ -610,9 +636,9 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a href="{{ route('blog.details',$blog->slug) }}"><img
-                                            src="{{ asset('storage/'.$blog->image) }}"
-                                            alt="alt" /></a>
+                                <div class="ps-blog__thumbnail"><a
+                                        href="{{ route('blog.details', $blog->slug) }}"><img
+                                            src="{{ asset('storage/' . $blog->image) }}" alt="alt" /></a>
                                     @if (!empty($blog->badge))
                                         <div class="ps-blog__badge">
                                             <span class="ps-badge__item">{{ $blog->badge }}</span>
@@ -620,9 +646,11 @@
                                     @endif
                                 </div>
                                 <div class="ps-blog__content">
-                                    <div class="ps-blog__meta"> <span class="ps-blog__date">{{ $blog->created_at->format("M d Y") }}</span><a
+                                    <div class="ps-blog__meta"> <span
+                                            class="ps-blog__date">{{ $blog->created_at->format('M d Y') }}</span><a
                                             class="ps-blog__author" href="#">{{ $blog->author }}</a></div><a
-                                        class="ps-blog__title" href="{{ route('blog.details',$blog->slug) }}">{{ $blog->title }}</a>
+                                        class="ps-blog__title"
+                                        href="{{ route('blog.details', $blog->slug) }}">{{ $blog->title }}</a>
                                 </div>
                             </div>
                         </div>

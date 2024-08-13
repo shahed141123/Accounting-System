@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -60,6 +61,35 @@ class CartController extends Controller
             // Return an error response if something goes wrong
             return response()->json([
                 'error' => 'Failed to add to your cart. Please try again later.'
+            ], 500);
+        }
+    }
+    public function wishListStore(Request $request, $id)
+    {
+        try {
+            // Find the product or fail
+            if (Auth::check()) {
+                $user = Auth::user();
+                $product = Product::findOrFail($id); // Default to 1 if no quantity is provided
+
+                // Add the product to the cart
+                Wishlist::create([
+                    'product_id' => $product->id,
+                    'user_id' => $user->id,
+                ]);
+                $wishlistCount = Wishlist::where('user_id', $user->id)->count();
+                return response()->json([
+                    'success' => 'Successfully added to your wishlist.',
+                    'wishlistCount' => $wishlistCount,
+                ]);
+            } else {
+                return response()->json([
+                    'error' => 'Log in First to add product to your wishlist.'
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to add to your Wishlist. Please try again later.'
             ], 500);
         }
     }

@@ -27,4 +27,6 @@ Route::get('mycart', [CartController::class, 'cart'])->name('cart');
 Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::get('compare-list', [HomeController::class, 'compareList'])->name('compare.list');
 Route::post('/cart/store/{id}', [CartController::class, 'addToCart'])->name('cart.store');
+Route::post('/comparelist/store/{id}', [CartController::class, 'compareList'])->name('compare.store');
+Route::post('/wishlist/store/{id}', [CartController::class, 'wishListStore'])->name('wishlist.store');
 

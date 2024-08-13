@@ -22,11 +22,12 @@ class HomeController extends Controller
 
         $data = [
             'blog'             => BlogPost::inRandomOrder()->active()->first(),
-            'categorys'        => Category::orderBy('name','ASC')->active()->get(),
-            'latest_products'  => Product::select('slug','meta_title','thumbnail','name','box_discount_price','box_price')->with('multiImages')->latest('id')->where('status','published')->limit(10)->get(),
-            'deal_products'    => Product::select('slug','meta_title','thumbnail','name','box_discount_price','box_price')->with('multiImages')->whereNotNull('box_discount_price')->where('status','published')->latest('id')->limit(10)->get(),
+            'categorys'        => Category::orderBy('name', 'ASC')->active()->get(),
+            'latest_products'  => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->latest('id')->where('status', 'published')->limit(10)->get(),
+            'deal_products'    => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->latest('id')->limit(10)->get(),
         ];
-        return view('frontend.pages.home',$data);
+        // dd($data['deal_products']);
+        return view('frontend.pages.home', $data);
     }
 
     public function contact()

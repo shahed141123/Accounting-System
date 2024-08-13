@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @props(['title'])
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
@@ -243,7 +244,7 @@
 
                             // Update mini cart
                             cartHeader.html(data.cartHeader);
-                            $(".cartCount").text(data.cartCount);
+                            $(".cartCount").html(data.cartCount);
                         } else {
                             Toast.fire({
                                 icon: 'error',
@@ -291,6 +292,7 @@
                 var button = $(this);
                 var product_id = button.data('product_id');
                 var qty = button.data('product_qty'); // Get the quantity value
+                var cartUrl = $(this).attr('href');
                 var cartHeader = $('.miniCart');
                 // Check if quantity is valid
                 if (qty <= 0) {
@@ -304,11 +306,11 @@
 
                 $.ajax({
                     type: "POST",
-                    url: '/cart/store/' + product_id,
                     data: {
                         _token: "{{ csrf_token() }}", // Include CSRF token for security
                         quantity: qty
                     },
+                    url: cartUrl,
                     dataType: 'json',
                     success: function(data) {
                         const Toast = Swal.mixin({
@@ -325,7 +327,78 @@
                             });
                             button.prop('disabled', true); // Disable the button
                             button.text('Already added'); // Change button text
+                            $(".cartCount").html(data.cartCount);
                             cartHeader.html(data.cartHeader);
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        let errorMessage = 'Something went wrong!'; // Default message
+
+                        // Check if the response is JSON and contains an error message
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        } else if (xhr.responseText) {
+                            try {
+                                let response = JSON.parse(xhr.responseText);
+                                if (response.message) {
+                                    errorMessage = response.message;
+                                }
+                            } catch (e) {
+                                // If responseText is not JSON, use default message
+                                console.error('Error parsing response text:', e);
+                            }
+                        }
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: errorMessage
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.add_to_wishlist').click(function(e) {
+                e.preventDefault(); // Prevent the default action of the link
+                var button = $(this);
+                var product_id = button.data('product_id');
+                var user_id = button.data('product_id');
+                var wishlistUrl = $(this).attr('href');
+                var wishlistCount = $('.wishlistCount');
+                // Check if quantity is valid
+
+
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    url: wishlistUrl,
+                    dataType: 'json',
+                    success: function(data) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            });
+                            button.prop('disabled', true); // Disable the button
+                            button.text('Already added'); // Change button text
+                            wishlistCount.html(data.wishlistCount);
                         } else {
                             Toast.fire({
                                 icon: 'error',
