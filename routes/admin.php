@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\IconController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderManagementController;
+use App\Http\Controllers\Admin\PageBannerController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ShippingManagementController;
@@ -126,6 +127,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             'brands'                => BrandController::class, //done
             'contacts'              => ContactController::class,
             'product'               => ProductController::class,
+            'banner'                => PageBannerController::class,
         ],
     );
 
@@ -149,7 +151,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     Route::post('icons/toggle-status/{id}', [IconController::class, 'toggleStatus'])->name('icons.toggle-status');
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
     Route::post('categories/toggle-status/{id}', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
-    Route::post('banners/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('banners.toggle-status');
+    Route::post('banner/toggle-status/{id}', [PageBannerController::class, 'toggleStatus'])->name('banner.toggle-status');
     Route::post('product/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('product.toggle-status');
     // Route::post('services/toggle-status/{id}', [ServiceController::class, 'toggleStatus'])->name('services.toggle-status');
 

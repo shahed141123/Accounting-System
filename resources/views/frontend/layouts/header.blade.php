@@ -4,10 +4,11 @@
     }
 </style>
 <header class="ps-header ps-header--2">
-    @if (!empty($setting->website_name) || !empty($setting->site_motto))
+    @if (!empty(optional($setting)->website_name) || !empty(optional($setting)->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }} </p>
+                <p class="m-0">Welcome to {{ optional($setting)->website_name }}, {{ optional($setting)->site_motto }}
+                </p>
             </div>
             <a class="ps-noti__close">
                 <i class="icon-cross"></i>
@@ -16,12 +17,9 @@
     @endif
     <div class="ps-header__top">
         <div class="container">
-            <div class="ps-header__text"> <strong>100% Secure delivery </strong>without contacting the courier </div>
+            <div class="ps-header__text"> {{ optional($setting)->site_motto }} </div>
             <div class="ps-top__right">
-                <div class="ps-language-currency">
-                    <a class="ps-dropdown-value" href="javascript:void(0);">English</a>
-                    <a class="ps-dropdown-value" href="javascript:void(0);">₤</a>
-                </div>
+
                 <div class="ps-top__social">
                     <ul class="ps-social">
                         @if (optional($setting)->facebook_url)
@@ -46,14 +44,15 @@
                     </ul>
                 </div>
                 <ul class="menu-top">
-                    <li class="nav-item"><a class="nav-link" href="{{ asset('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ asset('blogs') }}">Blogs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ asset('contact') }}">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ asset('about-us') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ asset('privacy/policy') }}">Policy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('allBlog') }}">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('privacyPolicy') }}">Policy</a></li>
                 </ul>
-                @if (!empty($setting->primary_phone))
-                    <div class="ps-header__text">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
+                @if (!empty(optional($setting)->primary_phone))
+                    <div class="ps-header__text">Need help? <strong>{{ optional($setting)->primary_phone }}</strong>
+                    </div>
                 @endif
             </div>
         </div>
@@ -62,10 +61,10 @@
         <div class="container">
             <div class="ps-logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                    <img src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt="">
                     <img class="sticky-logo"
-                        src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                        src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt="">
                 </a>
             </div>
@@ -74,46 +73,66 @@
             </a>
             <div class="ps-header__right">
                 <ul class="ps-header__icons">
-                    <li><a class="ps-header__item" href="#" id="login-modal"><i class="icon-user"></i></a>
-                        <div class="ps-login--modal">
-                            <form method="POST" action="{{ route('login') }}">
-                                @csrf
-                                <div class="form-group">
-                                    <x-input-label class="form-label form__label" for="email" :value="__('Email')" />
-                                    <input class="form-control" type="email" name="email" :value="old('email')"
-                                        required />
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                </div>
-                                <div class="form-group">
-                                    <x-input-label class="ps-form__label form-label" for="password" :value="__('Password')" />
-                                    <div class="input-group">
-                                        <x-text-input class="form-control form-control-solid ps-form__input"
-                                            type="password" id="password" name="password" required />
-                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                        <div
-                                            class="input-group-append bg-light text-center d-flex align-items-center p-3 rounded-3 border">
-                                            <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
+                    <li>
+                        <a class="ps-header__item" href="#" id="login-modal">
+                            <i class="icon-user"></i>
+                        </a>
+                        @auth
+                            <div class="ps-login--modal">
+                                <!-- If the user is authenticated, show these options -->
+                                <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+                                <!-- Hidden logout form -->
+                                <form id="logout-form" method="POST" action="{{ route('logout') }}"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        @else
+                            <div class="ps-login--modal">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <x-input-label class="form-label form__label" for="email" :value="__('Email')" />
+                                        <input class="form-control" type="email" name="email" :value="old('email')"
+                                            required autocomplete="username" />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
+                                    <div class="form-group">
+                                        <x-input-label class="ps-form__label form-label" for="password" :value="__('Password')" />
+                                        <div class="input-group">
+                                            <x-text-input class="form-control form-control-solid ps-form__input"
+                                                type="password" id="password" name="password" required
+                                                autocomplete="new-password" />
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                            <div
+                                                class="input-group-append bg-light text-center d-flex align-items-center p-3 rounded-3 border">
+                                                <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input class="form-check-input" type="checkbox" id="remember_me" name="remember">
-                                    <label class="form-check-label" for="remember_me">Remember me</label>
-                                </div>
-                                <x-primary-button class="ps-btn ps-btn--warning" type="submit">
-                                    {{ __('Log in') }}
-                                </x-primary-button>
-                                <div class="pt-3">
-                                    @if (Route::has('password.request'))
-                                        <span>Lost your</span><a class="ps-account__link site_text_color_links"
-                                            href="{{ route('password.request') }}"> password?</a>
-                                        <span class="ps-5">Don't Have Account <a
-                                                class="ps-account__link site_text_color_links"
-                                                href="{{ route('register') }}">Create New Accounts</a></span>
-                                    @endif
-                                </div>
-                            </form>
-                        </div>
+                                    <div class="form-group form-check">
+                                        <input class="form-check-input" type="checkbox" id="remember_me" name="remember">
+                                        <label class="form-check-label" for="remember_me">Remember me</label>
+                                    </div>
+                                    <x-primary-button class="ps-btn ps-btn--warning" type="submit">
+                                        {{ __('Log in') }}
+                                    </x-primary-button>
+                                    <div class="pt-3">
+                                        @if (Route::has('password.request'))
+                                            <span>Lost your</span><a class="ps-account__link site_text_color_links"
+                                                href="{{ route('password.request') }}"> password?</a>
+                                            <span class="ps-5">Don't Have Account <a
+                                                    class="ps-account__link site_text_color_links"
+                                                    href="{{ route('register') }}">Create New Accounts</a></span>
+                                        @endif
+                                    </div>
+                                </form>
+                            </div>
+                        @endauth
                     </li>
                     <li>
                         <a class="ps-header__item" href="{{ route('user.wishlist') }}">
@@ -121,40 +140,12 @@
                             <span class="badge">3</span>
                         </a>
                     </li>
-                    <li><a class="ps-header__item" href="#" id="cart-mini"><i
-                                class="icon-cart-empty"></i><span class="badge">2</span></a>
-                        <div class="ps-cart--mini">
-                            <ul class="ps-cart__items">
-                                <li class="ps-cart__item">
-                                    <div class="ps-product--mini-cart"><a class="ps-product__thumbnail"
-                                            href="#"><img src="{{ asset('frontend/img/products/055.jpg') }}"
-                                                alt="alt"></a>
-                                        <div class="ps-product__content"><a class="ps-product__name"
-                                                href="#">Somersung Sonic X2500 Pro White</a>
-                                            <p class="ps-product__meta"> <span
-                                                    class="ps-product__price">$399.99</span></p>
-                                        </div><a class="ps-product__remove" href="javascript: void(0)"><i
-                                                class="icon-cross"></i></a>
-                                    </div>
-                                </li>
-                                <li class="ps-cart__item">
-                                    <div class="ps-product--mini-cart"><a class="ps-product__thumbnail"
-                                            href="#"><img src="{{ asset('frontend/img/products/001.jpg') }}"
-                                                alt="alt"></a>
-                                        <div class="ps-product__content"><a class="ps-product__name"
-                                                href="#">Digital Thermometer X30-Pro</a>
-                                            <p class="ps-product__meta"> <span
-                                                    class="ps-product__sale">$77.65</span><span
-                                                    class="ps-product__is-price">$80.65</span></p>
-                                        </div><a class="ps-product__remove" href="javascript: void(0)"><i
-                                                class="icon-cross"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="ps-cart__total"><span>Subtotal </span><span>$399</span></div>
-                            <div class="ps-cart__footer"><a class="ps-btn ps-btn--outline"
-                                    href="shopping-cart.html">View Cart</a><a class="ps-btn ps-btn--warning"
-                                    href="checkout.html">Checkout</a></div>
+                    <li>
+                        <a class="ps-header__item" href="#" id="cart-mini">
+                            <i class="icon-cart-empty"></i>
+                            <span class="badge">{{ Cart::instance('cart')->count() }}</span></a>
+                        <div class="ps-cart--mini cartMini">
+                            @include('frontend.pages.cart.partials.minicart')
                         </div>
                     </li>
                 </ul>
@@ -249,8 +240,9 @@
                         </div>
                     </div>
                 </div>
-                @if (!empty($setting->primary_phone))
-                    <div class="ps-middle__text">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
+                @if (!empty(optional($setting)->primary_phone))
+                    <div class="ps-middle__text">Need help? <strong>{{ optional($setting)->primary_phone }}</strong>
+                    </div>
                 @endif
             </div>
         </div>
@@ -278,7 +270,8 @@
                                                                         href="product1.html">
                                                                         <figure><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/054.jpg') }}"
-                                                                                alt="alt"><img class="menu_productimg"
+                                                                                alt="alt"><img
+                                                                                class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/057.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -404,7 +397,8 @@
                                                                         href="product1.html">
                                                                         <figure><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/028.jpg') }}"
-                                                                                alt="alt"><img class="menu_productimg"
+                                                                                alt="alt"><img
+                                                                                class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/045.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -528,9 +522,10 @@
                                                                 <div class="ps-product__thumbnail"><a
                                                                         class="ps-product__image"
                                                                         href="product1.html">
-                                                                        <figure><img  class="menu_productimg"
+                                                                        <figure><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/016.jpg') }}"
-                                                                                alt="alt"><img class="menu_productimg"
+                                                                                alt="alt"><img
+                                                                                class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/021.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -654,7 +649,8 @@
                                                                         href="product1.html">
                                                                         <figure><img class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/002.jpg') }}"
-                                                                                alt="alt"><img class="menu_productimg"
+                                                                                alt="alt"><img
+                                                                                class="menu_productimg"
                                                                                 src="{{ asset('frontend/img/products/017.jpg') }}"
                                                                                 alt="alt">
                                                                         </figure>
@@ -776,7 +772,8 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-4 mx-auto mt-5">
-                                                            <a href="" class="ps-btn ps-btn--warning">View all</a>
+                                                            <a href="" class="ps-btn ps-btn--warning">View
+                                                                all</a>
                                                         </div>
                                                     </div>
                                                 </div>
