@@ -47,7 +47,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">BARCODE </th>
-                                                    <td>{{ $product->sku_code }}</td>
+                                                    <td>{{ $product->barcode_id }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">Length </th>
