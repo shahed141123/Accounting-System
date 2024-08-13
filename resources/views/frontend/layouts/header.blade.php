@@ -3,12 +3,11 @@
         font-size: 16px !important;
     }
 </style>
-<header class="ps-header ps-header--13">
-    @if (!empty(optional($setting)->website_name) || !empty(optional($setting)->site_motto))
+<header class="ps-header ps-header--2">
+    @if (!empty($setting->website_name) || !empty($setting->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ optional($setting)->website_name }}, {{ optional($setting)->site_motto }}
-                </p>
+                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }} </p>
             </div>
             <a class="ps-noti__close">
                 <i class="icon-cross"></i>
@@ -63,11 +62,11 @@
         <div class="container">
             <div class="ps-logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
-                        alt>
+                    <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                        alt="">
                     <img class="sticky-logo"
-                        src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
-                        alt>
+                        src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                        alt="">
                 </a>
             </div>
             <a class="ps-menu--sticky" href="#">
@@ -186,7 +185,8 @@
                                                     piece)</a></h5>
                                             <p class="ps-product__desc">Study history up to 30 days Up to 5 users
                                                 simultaneously Has HEALTH certificate</p>
-                                            <div class="ps-product__meta"><span class="ps-product__price">$38.24</span>
+                                            <div class="ps-product__meta"><span
+                                                    class="ps-product__price">$38.24</span>
                                             </div>
                                         </div>
                                     </div>
@@ -789,38 +789,6 @@
                         @endforeach
                     </ul>
                 </nav>
-            </div>
-            @if (!empty(optional($setting)->primary_phone))
-                <div class="ps-navigation__right">Need help? <strong>{{ optional($setting)->primary_phone }}</strong>
-                </div>
-            @endif
-
-        </div>
-    </div>
-</header>
-<header class="ps-header ps-header--13 ps-header--mobile">
-    @if (!empty(optional($setting)->website_name) || !empty(optional($setting)->site_motto))
-        <div class="ps-noti">
-            <div class="container">
-                <p class="m-0">Welcome to {{ optional($setting)->website_name }},
-                    {{ optional($setting)->site_motto }}</p>
-            </div>
-            <a class="ps-noti__close"><i class="icon-cross"></i></a>
-        </div>
-    @endif
-    <div class="ps-header__middle">
-        <div class="container">
-            <div class="ps-header__left">
-                <ul class="ps-header__icons">
-                    <li><a class="ps-header__item open-search" href="#"><i class="fa fa-search"></i></a></li>
-                </ul>
-            </div>
-            <div class="ps-logo"><a href="index.html"> <img src="img/logo.png" alt></a></div>
-            <div class="ps-header__right">
-                <ul class="ps-header__icons">
-                    <li><a class="ps-header__item" href="#"><i class="icon-cart-empty"></i><span
-                                class="badge">2</span></a></li>
-                </ul>
             </div>
         </div>
     </div>
