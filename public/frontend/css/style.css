@@ -166,6 +166,13 @@ figure {
     margin: 0;
 }
 
+.site_text_color_links{
+    color: #103178;
+    text-decoration: underline;
+}
+.site_text_color{
+    color: #103178;
+}
 .tooltip-inner {
     background-color: #f0f2f5 !important;
     color: #103178;
@@ -7856,7 +7863,7 @@ textarea.form-control {
 
 .ps-search-table {
     background-color: #f0f2f5;
-    border-radius: 0px;
+    border-radius: 40px;
     overflow: hidden;
 }
 
@@ -8115,7 +8122,7 @@ textarea.form-control {
     color: #5b6c8f;
     background-color: #f0f2f5;
     font-size: 16px;
-    padding: 9px 15px;
+    padding: 5px 15px;
     border-radius: 40px;
     border-color: #f0f2f5;
 }
@@ -14489,7 +14496,7 @@ textarea.form-control {
         height: 54px;
     }
     .ps-header--2.ps-header--sticky .ps-logo .sticky-logo {
-        height: 36px;
+        height: auto;
     }
     .ps-header--2.ps-header--sticky .ps-header__middle {
         padding: 0;
