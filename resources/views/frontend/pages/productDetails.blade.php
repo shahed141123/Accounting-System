@@ -51,15 +51,15 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">Length </th>
-                                                    <td>{{ $product->length }}</td>
+                                                    <td>{{ $product->length }} cm</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">Width </th>
-                                                    <td>{{ $product->width }}</td>
+                                                    <td>{{ $product->width }} cm</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">Height </th>
-                                                    <td>{{ $product->height }}</td>
+                                                    <td>{{ $product->height }} cm</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">BRAND </th>
