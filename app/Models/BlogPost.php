@@ -31,4 +31,8 @@ class BlogPost extends Model
     {
         return $this->belongsToMany(BlogTag::class,'tag_id' , 'id');
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'publish');
+    }
 }

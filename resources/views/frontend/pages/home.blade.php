@@ -243,8 +243,14 @@
                     <div class="ps-category__content">
                         @foreach ($categorys as $category)
                             <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
-                                <img class="ps-category__icon" src="{{ asset('storage/' . $category->logo) }}') }}"
-                                    alt>
+                                @php
+                                    $logoPath = 'storage/' . $category->logo;
+                                    $logoSrc = file_exists(public_path($logoPath))
+                                        ? asset($logoPath)
+                                        : asset('frontend/img/no-category.jpg');
+                                @endphp
+                                <img class="ps-category__icon" src="{{ $logoSrc }}"
+                                    alt="{{ $category->name }}">
                                 <h6 class="ps-category__name">{{ $category->name }}</h6>
                             </a>
                         @endforeach
@@ -272,16 +278,19 @@
                                                                         ? asset($imagePath)
                                                                         : asset('frontend/img/no-product.png');
                                                                 @endphp
-                                                                <img src="{{ $imageSrc }}" alt="{{ $latest_product->meta_title }}" />
+                                                                <img src="{{ $imageSrc }}"
+                                                                    alt="{{ $latest_product->meta_title }}" />
                                                             @endforeach
                                                         @else
                                                             @php
-                                                                $thumbnailPath = 'storage/' . $latest_product->thumbnail;
+                                                                $thumbnailPath =
+                                                                    'storage/' . $latest_product->thumbnail;
                                                                 $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                     ? asset($thumbnailPath)
                                                                     : asset('frontend/img/no-product.png');
                                                             @endphp
-                                                            <img src="{{ $thumbnailSrc }}" alt="{{ $latest_product->meta_title }}" />
+                                                            <img src="{{ $thumbnailSrc }}"
+                                                                alt="{{ $latest_product->meta_title }}" />
                                                         @endif
                                                     </figure>
 
@@ -533,9 +542,11 @@
                                             </div>
                                         </div>
                                         <div class="ps-product__content">
-                                            <h5 class="ps-product__title"><a
-                                                    href="product-details.html">{{ route('product.details', $deal_product->slug) }}
-                                                    {{ $deal_product->name }}</a></h5>
+                                            <h5 class="ps-product__title">
+                                                <a href="{{ route('product.details', $deal_product->slug) }}">
+                                                    {{ $deal_product->name }}
+                                                </a>
+                                            </h5>
                                             @auth
                                                 @if (!empty($deal_product->box_discount_price))
                                                     <div class="ps-product__meta">
@@ -602,27 +613,28 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a href="blog-details.html"><img
-                                            src="{{ asset('frontend/img/blog/blog13-496x262.jpg') }}"
+                                <div class="ps-blog__thumbnail"><a href="{{ route('blog.details',$blog->slug) }}"><img
+                                            src="{{ asset('storage/'.$blog->image) }}"
                                             alt="alt" /></a>
-                                    <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span
-                                            class="ps-badge__item">PHARMACY</span><span
-                                            class="ps-badge__item">SALE</span>
-                                    </div>
+                                    @if (!empty($blog->badge))
+                                        <div class="ps-blog__badge">
+                                            <span class="ps-badge__item">{{ $blog->badge }}</span>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="ps-blog__content">
-                                    <div class="ps-blog__meta"> <span class="ps-blog__date">May 18, 2023</span><a
-                                            class="ps-blog__author" href="#">Alfredo Austin</a></div><a
-                                        class="ps-blog__title" href="blog-details.html">The latest tests of popular
-                                        masks in accordance with CV2s standards</a>
+                                    <div class="ps-blog__meta"> <span class="ps-blog__date">{{ $blog->created_at->format("M d Y") }}</span><a
+                                            class="ps-blog__author" href="#">{{ $blog->author }}</a></div><a
+                                        class="ps-blog__title" href="{{ route('blog.details',$blog->slug) }}">{{ $blog->title }}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <section class="ps-section--newsletter">
-                                <h3 class="ps-section__title">Join our newsletter and get <br>£20 discount for your
+                                <h3 class="ps-section__title">Join our newsletter</h3>
+                                {{-- <h3 class="ps-section__title">Join our newsletter and get <br>£20 discount for your
                                     first order</h3>
-                                <p class="ps-section__text">Only for the first order.</p>
+                                <p class="ps-section__text">Only for the first order.</p> --}}
                                 <div class="ps-section__content">
                                     <form action="{{ route('subscription.add') }}" method="post">
                                         @csrf

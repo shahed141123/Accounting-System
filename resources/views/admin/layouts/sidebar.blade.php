@@ -286,11 +286,23 @@
                                 'admin.terms-condition.index',
                                 'admin.terms-condition.create',
                                 'admin.terms-condition.edit',
+                                'admin.banner.index',
+                                'admin.banner.create',
+                                'admin.banner.edit',
                                 'admin.privacy-policy.index',
                                 'admin.privacy-policy.create',
                                 'admin.privacy-policy.edit',
                             ],
                             'subMenu' => [
+                                [
+                                    'title' => 'Banners',
+                                    'routes' => [
+                                        'admin.banner.index',
+                                        'admin.banner.create',
+                                        'admin.banner.edit',
+                                    ],
+                                    'route' => 'admin.banner.index',
+                                ],
                                 [
                                     'title' => 'Terms & Condition',
                                     'routes' => [
