@@ -1,6 +1,6 @@
 <x-frontend-app-layout :title="'Sign Up'">
     <style>
-        .register-bg{
+        .register-bg {
             background-position: center;
             background-size: contain;
             background-image: url('{{ asset('frontend/img/bg3.png') }}');
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-8 offset-lg-2 mx-auto">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" id="customerForm">
                         @csrf
                         <div class="bg-light p-5">
                             <div class="ps-form--review row mb-5">
@@ -38,7 +38,7 @@
                                     <x-input-label class="ps-form__label" for="first_name">First Name <span
                                             class="text-danger">*</span></x-input-label>
                                     <input id="first_name" class="form-control ps-form__input" type="text"
-                                        name="first_name" :value="old('first_name')" required autofocus
+                                        name="first_name" :value="old('first_name')" autofocus required
                                         autocomplete="first_name" />
                                     <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                                 </div>
@@ -47,16 +47,16 @@
                                 <div class="ps-form__group col-5">
                                     <x-input-label class="ps-form__label" for="last_name" :value="__('Last Name')" />
                                     <input id="last_name" class="form-control ps-form__input" type="text"
-                                        name="last_name" :value="old('last_name')" required autofocus
-                                        autocomplete="last_name" />
+                                        name="last_name" :value="old('last_name')" autofocus autocomplete="last_name" />
                                     <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                                 </div>
 
                                 <!-- Email -->
                                 <div class="ps-form__group col-6">
-                                    <x-input-label class="ps-form__label" for="email" :value="__('Email')" />
+                                    <label class="ps-form__label" for="email">Email<span
+                                        class="text-danger">*</span></label>
                                     <input id="email" class="form-control ps-form__input" type="email"
-                                        name="email" :value="old('email')" required autocomplete="email" />
+                                        name="email" :value="old('email')" autocomplete="email" required />
                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
 
@@ -66,7 +66,7 @@
                                     <x-input-label class="ps-form__label" for="phone" :value="__('Phone')" />
                                     <div class="input-group">
                                         <input id="phone" class="form-control ps-form__input" type="tel"
-                                            name="phone" :value="old('phone')" required autocomplete="tel" />
+                                            name="phone" :value="old('phone')" autocomplete="tel" />
                                     </div>
                                     <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                 </div>
@@ -76,8 +76,7 @@
                                     <x-input-label class="ps-form__label" for="password" :value="__('Password')" />
                                     <div class="input-group">
                                         <input id="password" class="form-control ps-form__input" type="password"
-                                            name="password" :value="old('password')" required
-                                            autocomplete="new-password" />
+                                            name="password" :value="old('password')" autocomplete="new-password" />
                                         <div class="input-group-append">
                                             <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
                                         </div>
@@ -91,7 +90,7 @@
                                         :value="__('Confirm Password')" />
                                     <div class="input-group">
                                         <input id="password_confirmation" class="form-control ps-form__input"
-                                            type="password" name="password_confirmation" required
+                                            type="password" name="password_confirmation"
                                             :value="old('password_confirmation')" autocomplete="new-password" />
                                         <div class="input-group-append">
                                             <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
@@ -105,21 +104,23 @@
                                 </div>
                                 <!-- House/Block/Road -->
                                 <div class="ps-form__group col-8">
-                                    <x-input-label class="ps-form__label" for="address_one" :value="__('House/Block/Road')" />
+                                    <label class="ps-form__label" for="House/Block/Road">House/Block/Road<span
+                                        class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="address_one" class="form-control ps-form__input" type="text"
-                                            :value="old('address_one')" name="address_one" required
-                                            autocomplete="address_one" />
+                                            :value="old('address_one')" name="address_one" autocomplete="address_one" required />
                                     </div>
                                     <x-input-error :messages="$errors->get('address_one')" class="mt-2" />
                                 </div>
 
                                 <!-- Zip Code -->
                                 <div class="ps-form__group col-4">
-                                    <x-input-label class="ps-form__label" for="zipcode" :value="__('Zip Code')" />
+                                    <label class="ps-form__label" for="Zip Code">Zip Code<span
+                                        class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="zipcode" class="form-control ps-form__input" type="text"
-                                            :value="old('zipcode')" name="zipcode" required autocomplete="zipcode" />
+                                            :value="old('zipcode')" name="zipcode" autocomplete="zipcode"
+                                            pattern="\d{5}(-\d{4})?" required />
                                     </div>
                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
                                 </div>
@@ -129,18 +130,19 @@
                                     <x-input-label class="ps-form__label" for="state" :value="__('State')" />
                                     <div class="input-group">
                                         <input id="state" class="form-control ps-form__input" type="text"
-                                            name="state" :value="old('state')" required autocomplete="state" />
+                                            name="state" :value="old('state')" autocomplete="state" />
                                     </div>
                                     <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                 </div>
 
                                 <!-- City/Country -->
                                 <div class="ps-form__group col-8">
-                                    <x-input-label class="ps-form__label" for="address_two" :value="__('City/Country')" />
+                                    <label class="ps-form__label" for="City/Country">City/Country<span
+                                        class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="address_two" class="form-control ps-form__input" type="text"
-                                            name="address_two" :value="old('address_two')" required
-                                            autocomplete="address_two" />
+                                            name="address_two" :value="old('address_two')"
+                                            autocomplete="address_two" required/>
                                     </div>
                                     <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
                                 </div>
@@ -151,7 +153,7 @@
                                     <x-input-label class="ps-form__label" for="company_name" :value="__('Company Name')" />
                                     <div class="input-group">
                                         <input id="company_name" class="form-control ps-form__input" type="text"
-                                            name="company_name" required autocomplete="company_name" />
+                                            name="company_name" autocomplete="company_name" />
                                     </div>
                                     <x-input-error :messages="$errors->get('company_name')" class="mt-2" />
                                 </div>
@@ -238,7 +240,7 @@
                                 </div>
 
                                 <div class="ps-form__group col-6">
-                                    <x-input-label class="ps-form__label" for="referral_source" :value="__('How Did You Find Out About Us? *')" />
+                                    <x-input-label class="ps-form__label" for="referral_source" :value="__('How Did You Find Out About Us?')" />
                                     <div class="input-group">
                                         <select name="referral_source" class="form-select ps-form__input"
                                             id="referral_source">
@@ -340,12 +342,12 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <p class="pt-3">Terms & Conditions</p>
+                                    <p class="pt-3">Terms & Conditions <span class="text-danger">*</span></p>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-check ml-0">
                                         <input type="checkbox" class="form-check-input" id="terms_condition"
-                                            name="terms_condition" value="yes">
+                                            name="terms_condition" value="yes" required>
                                         <label class="form-check-label" for="terms_condition">I accept the
                                             Terms and Conditions & Privacy Policy. <span
                                                 class="text-danger">*</span></label>
@@ -356,7 +358,8 @@
                                 <h6 class="">
                                     <span class="fs-bold">{{ __('Already have an accounts?') }}</span>
                                     <a href="{{ route('login') }}"
-                                        class="btn btn-sm btn-link text-gray fw-bold fs-6 site_text_color_links">Log In Now</a>
+                                        class="btn btn-sm btn-link text-gray fw-bold fs-6 site_text_color_links">Log In
+                                        Now</a>
                                 </h6>
                             </div>
                             <div class="ps-form__submit">
@@ -370,4 +373,79 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            document.getElementById('customerForm').addEventListener('submit', function(event) {
+                // Get form elements
+                var first_name = document.getElementById('first_name').value;
+                var email = document.getElementById('email').value;
+                var address_one = document.getElementById('address_one').value;
+                var address_two = document.getElementById('address_two').value;
+                var zipcode = document.getElementById('zipcode').value;
+                var cityCountry = document.getElementById('cityCountry').value;
+                var suppliers = document.getElementById('suppliers').value;
+                var terms_condition = document.getElementById('terms_condition').checked;
+                var customerType = document.getElementById('customerType').value;
+
+                // Basic validation
+                if (first_name.length < 2) {
+                    alert('First Name must be at least 2 characters.');
+                    event.preventDefault();
+                    return;
+                }
+
+                if (!validateEmail(email)) {
+                    alert('Please enter a valid email address.');
+                    event.preventDefault();
+                    return;
+                }
+
+                if (address_two.length < 5) {
+                    alert('Address must be at least 5 characters.');
+                    event.preventDefault();
+                    return;
+                }
+                if (address_one.length < 5) {
+                    alert('Address must be at least 5 characters.');
+                    event.preventDefault();
+                    return;
+                }
+
+                if (!/^\d{5}(-\d{4})?$/.test(zipcode)) {
+                    alert('Zip Code must be in the format 12345 or 12345-6789.');
+                    event.preventDefault();
+                    return;
+                }
+
+                if (cityCountry.length < 2) {
+                    alert('City/Country must be at least 2 characters.');
+                    event.preventDefault();
+                    return;
+                }
+
+                if (suppliers.length < 10) {
+                    alert('Suppliers field must be at least 10 characters.');
+                    event.preventDefault();
+                    return;
+                }
+
+                if (!terms_condition) {
+                    alert('You must accept the Terms and Conditions.');
+                    event.preventDefault();
+                    return;
+                }
+
+                if (!customerType) {
+                    alert('Please select a Customer Type.');
+                    event.preventDefault();
+                    return;
+                }
+            });
+
+            function validateEmail(email) {
+                var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+        </script>
+    @endpush
 </x-frontend-app-layout>

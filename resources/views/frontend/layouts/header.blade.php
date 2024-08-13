@@ -81,15 +81,14 @@
                                 <div class="form-group">
                                     <x-input-label class="form-label form__label" for="email" :value="__('Email')" />
                                     <input class="form-control" type="email" name="email" :value="old('email')"
-                                        required autocomplete="username" />
+                                        required />
                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
                                 <div class="form-group">
                                     <x-input-label class="ps-form__label form-label" for="password" :value="__('Password')" />
                                     <div class="input-group">
                                         <x-text-input class="form-control form-control-solid ps-form__input"
-                                            type="password" id="password" name="password" required
-                                            autocomplete="new-password" />
+                                            type="password" id="password" name="password" required />
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                         <div
                                             class="input-group-append bg-light text-center d-flex align-items-center p-3 rounded-3 border">
