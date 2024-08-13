@@ -242,17 +242,16 @@
                     <h3 class="ps-section__title">Popular categories</h3>
                     <div class="ps-category__content">
                         @foreach ($categorys as $category)
-                            <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
-                                @php
-                                    $logoPath = 'storage/' . $category->logo;
-                                    $logoSrc = file_exists(public_path($logoPath))
-                                        ? asset($logoPath)
-                                        : asset('frontend/img/no-category.jpg');
-                                @endphp
-                                <img class="ps-category__icon" src="{{ $logoSrc }}"
-                                    alt="{{ $category->name }}">
-                                <h6 class="ps-category__name">{{ $category->name }}</h6>
-                            </a>
+                        <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
+                            @php
+                                $logoPath = 'storage/' . $category->logo;
+                                $logoSrc = file_exists(public_path($logoPath))
+                                    ? asset($logoPath)
+                                    : asset('frontend/img/no-category.jpg');
+                            @endphp
+                            <img class="ps-category__icon" src="{{ $logoSrc }}" alt="{{ $category->name }}">
+                            <h6 class="ps-category__name">{{ $category->name }}</h6>
+                        </a>
                         @endforeach
                     </div>
                 </div>
@@ -276,10 +275,10 @@
                                                                     $imagePath = 'storage/' . $image->photo;
                                                                     $imageSrc = file_exists(public_path($imagePath))
                                                                         ? asset($imagePath)
-                                                                        : asset('frontend/img/no-product.png');
+                                                                        // : asset('frontend/img/no-product.png');
+                                                                        : asset('frontend/img/about/about-bg.png');
                                                                 @endphp
-                                                                <img src="{{ $imageSrc }}"
-                                                                    alt="{{ $latest_product->meta_title }}" />
+                                                                <img src="{{ $imageSrc }}" alt="{{ $latest_product->meta_title }}" width="210" height="210" style="object-fit: cover;" />
                                                             @endforeach
                                                         @else
                                                             @php
@@ -287,13 +286,11 @@
                                                                     'storage/' . $latest_product->thumbnail;
                                                                 $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                     ? asset($thumbnailPath)
-                                                                    : asset('frontend/img/no-product.png');
+                                                                    : asset('frontend/img/about/about-bg.png');
                                                             @endphp
-                                                            <img src="{{ $thumbnailSrc }}"
-                                                                alt="{{ $latest_product->meta_title }}" />
+                                                            <img src="{{ $thumbnailSrc }}" alt="{{ $latest_product->meta_title }}" width="210" height="210" style="object-fit: cover;" />
                                                         @endif
                                                     </figure>
-
                                                 </a>
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"
@@ -301,7 +298,7 @@
                                                                 class="fa fa-heart-o"></i></a></div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Quick view"><a href="#"
-                                                            data-toggle="modal" data-target="#popupQuickview"><i
+                                                            data-toggle="modal" data-target="#popupQuickview{{$latest_product->id}}"><i
                                                                 class="fa fa-search"></i></a></div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Add to cart"><a href="#"
@@ -529,7 +526,7 @@
                                                 </div>
                                                 <div class="ps-product__item" data-toggle="tooltip"
                                                     data-placement="left" title="Quick view"><a href="#"
-                                                        data-toggle="modal" data-target="#popupQuickview"><i
+                                                        data-toggle="modal" data-target="#popupQuickview{{$deal_product->id}}"><i
                                                             class="fa fa-search"></i></a>
                                                 </div>
                                                 <div class="ps-product__item" data-toggle="tooltip"
@@ -655,4 +652,5 @@
             </div>
         </div>
     </div>
+    @include('frontend.layouts.HomeQuickViewModal')
 </x-frontend-app-layout>
