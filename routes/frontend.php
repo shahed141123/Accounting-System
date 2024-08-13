@@ -29,4 +29,5 @@ Route::get('compare-list', [HomeController::class, 'compareList'])->name('compar
 Route::post('/cart/store/{id}', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('/comparelist/store/{id}', [CartController::class, 'compareList'])->name('compare.store');
 Route::post('/wishlist/store/{id}', [CartController::class, 'wishListStore'])->name('wishlist.store');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
 

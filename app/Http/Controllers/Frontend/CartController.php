@@ -33,6 +33,7 @@ class CartController extends Controller
             $quantity = $request->input('quantity', 1); // Default to 1 if no quantity is provided
 
             // Add the product to the cart
+
             Cart::instance('cart')->add([
                 'id' => $product->id,
                 'name' => $product->name,
@@ -92,5 +93,30 @@ class CartController extends Controller
                 'error' => 'Failed to add to your Wishlist. Please try again later.'
             ], 500);
         }
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        $rowId = $request->input('rowId');
+
+        if ($rowId) {
+            // Assuming you're using Hardevine Cart
+            Cart::instance('cart')->remove($rowId);
+
+            $data = [
+                'cartItems' => Cart::instance('cart')->content(),
+                'total'     => Cart::instance('cart')->total(),
+                'cartCount' => Cart::instance('cart')->count(),
+                'subTotal'  => Cart::instance('cart')->subtotal(),
+            ];
+            return response()->json([
+                'success' => 'Cart Item removed Successfully.',
+                'cartCount' => $data['cartCount'],
+                'cartHeader' => view('frontend.pages.cart.partials.minicart', $data)->render(),
+                'cartTable' => view('frontend.pages.cart.partials.cartTable', $data)->render(),
+            ]);
+        }
+
+        return response()->json(['error' => 'Unable to remove item.'], 400);
     }
 }

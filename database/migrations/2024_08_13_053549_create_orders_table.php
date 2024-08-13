@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('payment_method',['cod','paypal'])->default('cod');
             $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
             $table->enum('status',['new','process','delivered','cancel'])->default('new');
-            $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('SET NULL');
+            // $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('SET NULL');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');

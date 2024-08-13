@@ -118,4 +118,7 @@ class HomeController extends Controller
         ];
         return view('frontend.pages.cart.compareList', $data);
     }
+
+    // CartController.php
+    
 }

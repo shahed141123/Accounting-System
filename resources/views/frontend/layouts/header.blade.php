@@ -144,7 +144,7 @@
                         <a class="ps-header__item" href="#" id="cart-mini">
                             <i class="icon-cart-empty"></i>
                             <span class="badge cartCount">{{ Cart::instance('cart')->count() }}</span></a>
-                        <div class="ps-cart--mini cartMini">
+                        <div class="ps-cart--mini miniCart">
                             @include('frontend.pages.cart.partials.minicart')
                         </div>
                     </li>
@@ -365,7 +365,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-4 mx-auto mt-5">
-                                                            <a href="" class="ps-btn ps-btn--warning">View
+                                                            <a href="{{ route('category.products',$category->slug) }}" class="ps-btn ps-btn--warning">View
                                                                 all</a>
                                                         </div>
                                                     </div>
