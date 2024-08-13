@@ -634,26 +634,28 @@
             <div class="container">
                 <div class="ps-home__block">
                     <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a
-                                        href="{{ route('blog.details', $blog->slug) }}"><img
-                                            src="{{ asset('storage/' . $blog->image) }}" alt="alt" /></a>
-                                    @if (!empty($blog->badge))
-                                        <div class="ps-blog__badge">
-                                            <span class="ps-badge__item">{{ $blog->badge }}</span>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="ps-blog__content">
-                                    <div class="ps-blog__meta"> <span
-                                            class="ps-blog__date">{{ $blog->created_at->format('M d Y') }}</span><a
-                                            class="ps-blog__author" href="#">{{ $blog->author }}</a></div><a
-                                        class="ps-blog__title"
-                                        href="{{ route('blog.details', $blog->slug) }}">{{ $blog->title }}</a>
+                        @if ($blog)
+                            <div class="col-12 col-md-6">
+                                <div class="ps-blog--latset">
+                                    <div class="ps-blog__thumbnail"><a
+                                            href="{{ route('blog.details', $blog->slug) }}"><img
+                                                src="{{ asset('storage/' . $blog->image) }}" alt="alt" /></a>
+                                        @if (!empty($blog->badge))
+                                            <div class="ps-blog__badge">
+                                                <span class="ps-badge__item">{{ $blog->badge }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="ps-blog__content">
+                                        <div class="ps-blog__meta"> <span
+                                                class="ps-blog__date">{{ $blog->created_at->format('M d Y') }}</span><a
+                                                class="ps-blog__author" href="#">{{ $blog->author }}</a></div><a
+                                            class="ps-blog__title"
+                                            href="{{ route('blog.details', $blog->slug) }}">{{ $blog->title }}</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="col-12 col-md-6">
                             <section class="ps-section--newsletter">
                                 <h3 class="ps-section__title">Join our newsletter</h3>
