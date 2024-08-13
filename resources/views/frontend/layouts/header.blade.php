@@ -140,40 +140,12 @@
                             <span class="badge">3</span>
                         </a>
                     </li>
-                    <li><a class="ps-header__item" href="#" id="cart-mini"><i
-                                class="icon-cart-empty"></i><span class="badge">2</span></a>
-                        <div class="ps-cart--mini">
-                            <ul class="ps-cart__items">
-                                <li class="ps-cart__item">
-                                    <div class="ps-product--mini-cart"><a class="ps-product__thumbnail"
-                                            href="#"><img src="{{ asset('frontend/img/products/055.jpg') }}"
-                                                alt="alt"></a>
-                                        <div class="ps-product__content"><a class="ps-product__name"
-                                                href="#">Somersung Sonic X2500 Pro White</a>
-                                            <p class="ps-product__meta"> <span
-                                                    class="ps-product__price">$399.99</span></p>
-                                        </div><a class="ps-product__remove" href="javascript: void(0)"><i
-                                                class="icon-cross"></i></a>
-                                    </div>
-                                </li>
-                                <li class="ps-cart__item">
-                                    <div class="ps-product--mini-cart"><a class="ps-product__thumbnail"
-                                            href="#"><img src="{{ asset('frontend/img/products/001.jpg') }}"
-                                                alt="alt"></a>
-                                        <div class="ps-product__content"><a class="ps-product__name"
-                                                href="#">Digital Thermometer X30-Pro</a>
-                                            <p class="ps-product__meta"> <span
-                                                    class="ps-product__sale">$77.65</span><span
-                                                    class="ps-product__is-price">$80.65</span></p>
-                                        </div><a class="ps-product__remove" href="javascript: void(0)"><i
-                                                class="icon-cross"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="ps-cart__total"><span>Subtotal </span><span>$399</span></div>
-                            <div class="ps-cart__footer"><a class="ps-btn ps-btn--outline"
-                                    href="shopping-cart.html">View Cart</a><a class="ps-btn ps-btn--warning"
-                                    href="checkout.html">Checkout</a></div>
+                    <li>
+                        <a class="ps-header__item" href="#" id="cart-mini">
+                            <i class="icon-cart-empty"></i>
+                            <span class="badge">{{ Cart::instance('cart')->count() }}</span></a>
+                        <div class="ps-cart--mini cartMini">
+                            @include('frontend.pages.cart.partials.minicart')
                         </div>
                     </li>
                 </ul>
