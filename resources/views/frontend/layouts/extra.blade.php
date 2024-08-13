@@ -38,31 +38,31 @@
                             <div class="col-12 col-xl-6">
                                 <div class="ps-product--gallery">
                                     <div class="ps-product__thumbnail">
-                                        <div class="slide"><img src="img/products/001.jpg" alt="alt" /></div>
-                                        <div class="slide"><img src="img/products/047.jpg" alt="alt" /></div>
-                                        <div class="slide"><img src="img/products/047.jpg" alt="alt" /></div>
-                                        <div class="slide"><img src="img/products/008.jpg" alt="alt" /></div>
-                                        <div class="slide"><img src="img/products/034.jpg" alt="alt" /></div>
+                                        <div class="slide"><img src="{{ asset('frontend') }}/img/products/001.jpg" alt="alt" /></div>
+                                        <div class="slide"><img src="{{ asset('frontend') }}/img/products/047.jpg" alt="alt" /></div>
+                                        <div class="slide"><img src="{{ asset('frontend') }}/img/products/047.jpg" alt="alt" /></div>
+                                        <div class="slide"><img src="{{ asset('frontend') }}/img/products/008.jpg" alt="alt" /></div>
+                                        <div class="slide"><img src="{{ asset('frontend') }}/img/products/034.jpg" alt="alt" /></div>
                                     </div>
                                     <div class="ps-gallery--image">
                                         <div class="slide">
-                                            <div class="ps-gallery__item"><img src="img/products/001.jpg"
+                                            <div class="ps-gallery__item"><img src="{{ asset('frontend') }}/img/products/001.jpg"
                                                     alt="alt" /></div>
                                         </div>
                                         <div class="slide">
-                                            <div class="ps-gallery__item"><img src="img/products/047.jpg"
+                                            <div class="ps-gallery__item"><img src="{{ asset('frontend') }}/img/products/047.jpg"
                                                     alt="alt" /></div>
                                         </div>
                                         <div class="slide">
-                                            <div class="ps-gallery__item"><img src="img/products/047.jpg"
+                                            <div class="ps-gallery__item"><img src="{{ asset('frontend') }}/img/products/047.jpg"
                                                     alt="alt" /></div>
                                         </div>
                                         <div class="slide">
-                                            <div class="ps-gallery__item"><img src="img/products/008.jpg"
+                                            <div class="ps-gallery__item"><img src="{{ asset('frontend') }}/img/products/008.jpg"
                                                     alt="alt" /></div>
                                         </div>
                                         <div class="slide">
-                                            <div class="ps-gallery__item"><img src="img/products/034.jpg"
+                                            <div class="ps-gallery__item"><img src="{{ asset('frontend') }}/img/products/034.jpg"
                                                     alt="alt" /></div>
                                         </div>
                                     </div>

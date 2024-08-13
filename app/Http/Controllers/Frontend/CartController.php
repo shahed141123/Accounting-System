@@ -26,25 +26,41 @@ class CartController extends Controller
     }
     public function addToCart(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
-        // $cartItem = Cart::search(function ($cartItem, $rowId) use ($id) {
-        //     return $cartItem->id === $id;
-        // });
-        $quantity = $request->input('quantity', 1);  // Default to 1 if no quantity is provided
+        try {
+            // Find the product or fail
+            $product = Product::findOrFail($id);
+            $quantity = $request->input('quantity', 1); // Default to 1 if no quantity is provided
 
-        $cartItem = Cart::instance('cart')->content();
-        // dd($cartItem);
-        // if ($cartItem->id == $id ) {
-        //     return response()->json(['error' => 'This Product Has Already Been Added']);
-        // }
+            // Add the product to the cart
+            Cart::instance('cart')->add([
+                'id' => $product->id,
+                'name' => $product->name,
+                'qty' => $quantity,
+                'price' => $product->box_price
+            ])->associate('App\Models\Product');
 
-        Cart::instance('cart')->add([
-            'id' => $product->id,
-            'name' => $product->name,
-            'qty' => $quantity,
-            'price' => $product->box_price
-        ])->associate('App\Models\Product');
+            // Get the updated cart content
 
-        return response()->json(['success' => 'Successfully Added to Your Cart.']);
+            $data = [
+                'cartItems' => Cart::instance('cart')->content(),
+                'total'     => Cart::instance('cart')->total(),
+                'cartCount' => Cart::instance('cart')->count(),
+                'subTotal'  => Cart::instance('cart')->subtotal(),
+            ];
+
+
+
+            // Return the JSON response with cart data
+            return response()->json([
+                'success' => 'Successfully added to your cart.',
+                'cartCount' => $data['cartCount'],
+                'cartHeader' => view('frontend.pages.cart.partials.minicart', $data)->render(),
+            ]);
+        } catch (\Exception $e) {
+            // Return an error response if something goes wrong
+            return response()->json([
+                'error' => 'Failed to add to your cart. Please try again later.'
+            ], 500);
+        }
     }
 }

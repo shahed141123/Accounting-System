@@ -4,20 +4,21 @@
     }
 </style>
 <header class="ps-header ps-header--13">
-    @if (!empty($setting->website_name) || !empty($setting->site_motto))
+    @if (!empty(optional($setting)->website_name) || !empty(optional($setting)->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }}</p>
+                <p class="m-0">Welcome to {{ optional($setting)->website_name }}, {{ optional($setting)->site_motto }}
+                </p>
             </div>
             <a class="ps-noti__close">
                 <i class="icon-cross"></i>
             </a>
         </div>
     @endif
-    @if (!empty($setting->primary_phone))
+    @if (!empty(optional($setting)->primary_phone))
         <div class="ps-header__top">
             <div class="container">
-                <div class="ps-header__text">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
+                <div class="ps-header__text">Need help? <strong>{{ optional($setting)->primary_phone }}</strong></div>
             </div>
         </div>
     @endif
@@ -25,10 +26,10 @@
         <div class="container">
             <div class="ps-logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                    <img src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt>
                     <img class="sticky-logo"
-                        src="{{ !empty($setting->site_logo_black) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/img/logo.png') }}"
+                        src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt>
                 </a>
             </div>
@@ -69,40 +70,14 @@
 
 
                     <li>
-                        <a class="ps-header__item" href="#" id="cart-mini"><i class="icon-cart-empty"></i><span
-                                class="badge">2</span></a>
-                        <div class="ps-cart--mini">
-                            <ul class="ps-cart__items">
-                                <li class="ps-cart__item">
-                                    <div class="ps-product--mini-cart"><a class="ps-product__thumbnail"
-                                            href="product-details.html"><img src="img/products/055.jpg"
-                                                alt="alt" /></a>
-                                        <div class="ps-product__content"><a class="ps-product__name"
-                                                href="product-details.html">Somersung Sonic X2500 Pro White</a>
-                                            <p class="ps-product__meta"> <span class="ps-product__price">$399.99</span>
-                                            </p>
-                                        </div><a class="ps-product__remove" href="javascript: void(0)"><i
-                                                class="icon-cross"></i></a>
-                                    </div>
-                                </li>
-                                <li class="ps-cart__item">
-                                    <div class="ps-product--mini-cart"><a class="ps-product__thumbnail"
-                                            href="product-details.html"><img src="img/products/001.jpg"
-                                                alt="alt" /></a>
-                                        <div class="ps-product__content"><a class="ps-product__name"
-                                                href="product-details.html">Digital Thermometer X30-Pro</a>
-                                            <p class="ps-product__meta"> <span
-                                                    class="ps-product__sale">$77.65</span><span
-                                                    class="ps-product__is-price">$80.65</span></p>
-                                        </div><a class="ps-product__remove" href="javascript: void(0)"><i
-                                                class="icon-cross"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="ps-cart__total"><span>Subtotal </span><span>$399</span></div>
-                            <div class="ps-cart__footer"><a class="ps-btn ps-btn--outline"
-                                    href="{{ route('cart') }}">View Cart</a>
-                                    <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Checkout</a></div>
+                        <a class="ps-header__item" href="#" id="cart-mini">
+                            <i class="icon-cart-empty"></i>
+                            <span class="badge cartCount">
+                                {{ Cart::instance('cart')->count() }}
+                            </span>
+                        </a>
+                        <div class="ps-cart--mini miniCart">
+                            @include('frontend.pages.cart.partials.minicart')
                         </div>
                     </li>
                 </ul>
@@ -121,9 +96,8 @@
                             <div class="row m-0">
                                 <div class="col-12 col-lg-6">
                                     <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="#">
-                                                <figure><img src="img/products/052.jpg" alt="alt" /></figure>
+                                        <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
+                                                <figure><img src="{{ asset('frontend') }}/img/products/052.jpg" alt="alt" /></figure>
                                             </a></div>
                                         <div class="ps-product__content">
                                             <h5 class="ps-product__title"><a>3-layer <span
@@ -131,17 +105,15 @@
                                                     piece)</a></h5>
                                             <p class="ps-product__desc">Study history up to 30 days Up to 5 users
                                                 simultaneously Has HEALTH certificate</p>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price">$38.24</span>
+                                            <div class="ps-product__meta"><span class="ps-product__price">$38.24</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="#">
-                                                <figure><img src="img/products/033.jpg" alt="alt" /></figure>
+                                        <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
+                                                <figure><img src="{{ asset('frontend') }}/img/products/033.jpg" alt="alt" /></figure>
                                             </a></div>
                                         <div class="ps-product__content">
                                             <h5 class="ps-product__title"><a>3 Layer Disposable Protective Face <span
@@ -157,9 +129,8 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a class="ps-product__image"
-                                                href="#">
-                                                <figure><img src="img/products/051.jpg" alt="alt" /></figure>
+                                        <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
+                                                <figure><img src="{{ asset('frontend') }}/img/products/051.jpg" alt="alt" /></figure>
                                             </a></div>
                                         <div class="ps-product__content">
                                             <h5 class="ps-product__title"><a>3-Ply Ear-Loop Disposable Blue Face <span
@@ -177,7 +148,7 @@
                                     <div class="ps-product ps-product--horizontal">
                                         <div class="ps-product__thumbnail"><a class="ps-product__image"
                                                 href="#">
-                                                <figure><img src="img/products/050.jpg" alt="alt" /></figure>
+                                                <figure><img src="{{ asset('frontend') }}/img/products/050.jpg" alt="alt" /></figure>
                                             </a></div>
                                         <div class="ps-product__content">
                                             <h5 class="ps-product__title"><a>Disposable Face <span
@@ -214,18 +185,20 @@
                     </ul>
                 </nav>
             </div>
-            @if (!empty($setting->primary_phone))
-                <div class="ps-navigation__right">Need help? <strong>{{ $setting->primary_phone }}</strong></div>
+            @if (!empty(optional($setting)->primary_phone))
+                <div class="ps-navigation__right">Need help? <strong>{{ optional($setting)->primary_phone }}</strong>
+                </div>
             @endif
 
         </div>
     </div>
 </header>
 <header class="ps-header ps-header--13 ps-header--mobile">
-    @if (!empty($setting->website_name) || !empty($setting->site_motto))
+    @if (!empty(optional($setting)->website_name) || !empty(optional($setting)->site_motto))
         <div class="ps-noti">
             <div class="container">
-                <p class="m-0">Welcome to {{ $setting->website_name }}, {{ $setting->site_motto }}</p>
+                <p class="m-0">Welcome to {{ optional($setting)->website_name }},
+                    {{ optional($setting)->site_motto }}</p>
             </div>
             <a class="ps-noti__close"><i class="icon-cross"></i></a>
         </div>

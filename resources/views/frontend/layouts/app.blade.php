@@ -194,64 +194,7 @@
         });
     </script>
     {{-- add_to_cart_btn_product --}}
-    <script>
-        $('.add_to_cart_btn_product').click(function() {
 
-            var product_id = $(this).data('product_id');
-            var qty = $(this).closest('.d-flex').find('.qty-input').val();
-
-
-            $.ajax({
-
-                type: "POST",
-                dataType: 'json',
-                url: '/product-store-cart',
-
-                data: {
-                    product_id: product_id,
-                    qty: qty,
-                },
-
-                success: function(data) {
-
-                    $('.cart_icon').removeClass('d-none');
-
-                    miniCart();
-                    miniCartRelated();
-
-                    // Start Message
-
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    if ($.isEmptyObject(data.error)) {
-
-                        Toast.fire({
-                            type: 'success',
-                            icon: 'success',
-                            title: data.success,
-                        })
-
-                    } else {
-
-                        Toast.fire({
-                            type: 'error',
-                            icon: 'error',
-                            title: data.error,
-                        })
-                    }
-
-                    // End Message
-                }
-
-            })
-
-        })
-    </script>
     {{-- add_to_cart_btn_product --}}
 
     {{-- add_to_cart_btn_product_single --}}
@@ -263,6 +206,7 @@
                 // Find the quantity input
                 var $quantityInput = $(this).closest('.ps-product__feature').find('.quantity');
                 var product_id = $(this).data('product_id');
+                var cartHeader = $('.miniCart');
                 var qty = $quantityInput.val(); // Get the quantity value
 
                 // Check if quantity is valid
@@ -296,6 +240,10 @@
                                 icon: 'success',
                                 title: data.success
                             });
+
+                            // Update mini cart
+                            cartHeader.html(data.cartHeader);
+                            $(".cartCount").text(data.cartCount);
                         } else {
                             Toast.fire({
                                 icon: 'error',
@@ -330,7 +278,11 @@
                 });
             });
         });
+
+
+
     </script>
+
 
     <script>
         $(document).ready(function() {
@@ -339,7 +291,7 @@
                 var button = $(this);
                 var product_id = button.data('product_id');
                 var qty = button.data('product_qty'); // Get the quantity value
-
+                var cartHeader = $('.miniCart');
                 // Check if quantity is valid
                 if (qty <= 0) {
                     Swal.fire({
@@ -373,6 +325,7 @@
                             });
                             button.prop('disabled', true); // Disable the button
                             button.text('Already added'); // Change button text
+                            cartHeader.html(data.cartHeader);
                         } else {
                             Toast.fire({
                                 icon: 'error',
@@ -409,7 +362,121 @@
         });
     </script>
 
+    {{-- MiNiCart  --}}
 
+    <script>
+        function miniCart() {
+
+            $.ajax({
+
+                type: 'GET',
+                dataType: 'json',
+                url: '/product/mini/cart',
+
+                success: function(response) {
+
+                    $('span[id="cartSubTotal"]').text(response.cartTotal);
+                    $('#cartQty').text(response.cartQty);
+
+                    var miniCart = ""
+
+                    $.each(response.carts, function(key, value) {
+
+                        miniCart += `<ul id="minicartHeader" class="product_list_widget list-unstyled">
+
+                            <li>
+                                <div class="media clearfix">
+
+                                    <div class="media-lefta">
+                                        <a href="single-product.html">
+                                            <img src="/${value.options.image}" style="width:50px;height:50px;" alt="hoodie_5_front" />
+                                        </a>
+                                    </div>
+
+                                    <div class="media-body">
+                                        <a href="">${value.name}</a>
+
+                                        <span class="price">
+                                            <span class="amount">
+                                                Tk ${value.price}
+                                            </span>
+                                        </span>
+
+                                        <span class="quantity">Qty: ${value.qty} Pcs</span>
+
+                                    </div>
+
+                                </div>
+                                <div class="product-remove">
+
+                                    <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)" class="btn-remove" title="Remove this item">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+
+                                </div>
+                            </li>
+
+                            </ul>`
+
+                    });
+
+                    $('#miniCart').html(miniCart);
+
+                }
+
+            })
+
+        }
+
+        miniCart();
+    </script>
+
+    {{-- //MiNiCart Remove  --}}
+    <script>
+        function miniCartRemove(rowId) {
+
+            $.ajax({
+
+                type: 'GET',
+                url: '/minicart/product/remove/' + rowId,
+                dataType: 'json',
+                success: function(data) {
+
+                    miniCart();
+
+                    // Start Message
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message
+
+                }
+
+
+
+            })
+        }
+    </script>
 
     {{-- add_to_cart_btn_product_single --}}
 </body>

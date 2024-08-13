@@ -22,7 +22,7 @@
                                             <div class="ps-product__thumbnail">
                                                 <a class="ps-product__image" href="{{ route('product.details',$item->model->slug) }}">
                                                     <figure>
-                                                        <img src="{{ asset('storage/'.$item->model->image) }}" alt />
+                                                        <img src="{{ asset('storage/'.$item->model->thumbnail) }}" alt />
                                                     </figure>
                                                 </a>
                                             </div>
