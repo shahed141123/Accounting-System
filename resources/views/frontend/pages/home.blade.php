@@ -1,64 +1,230 @@
 <x-frontend-app-layout :title="'Home'">
-    <div class="ps-home ps-home--14">
-        <div class="ps-home__content">
-            <div class="container">
-                <section class="ps-section--banner">
-                    <div class="row">
-                        <div class="col-12 col-md-8">
-                            <div class="ps-banner"><img class="ps-banner__imagebg"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner18.jpg" alt>
+    <section class="ps-section--banner">
+        <div class="ps-section__overlay">
+            <div class="ps-section__loading"></div>
+        </div>
+        <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true" data-owl-speed="15000"
+            data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1"
+            data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000"
+            data-owl-mousedrag="on">
+            <div class="owl-stage-outer">
+                <div class="owl-stage"
+                    style="transform: translate3d(-5709px, 0px, 0px); transition: 1s; width: 13321px;">
+                    <div class="owl-item">
+                        <div class="ps-banner" style="background:#F0F2F5;">
+                            <div class="container container-initial">
                                 <div class="ps-banner__block">
                                     <div class="ps-banner__content">
-                                        <h2 class="ps-banner__title text-white">Convenient<br>Solutions Await!</h2>
-                                        <div class="ps-banner__desc text-white">Only in this week. Don’t misss!</div>
-                                        <div class="ps-banner__price"> <span class="text-warning">$15.99</span>
-                                            <del>$29.99</del>
-                                        </div><a class="ps-banner__shop bg-warning" href="#">Add to cart</a>
+                                        <h2 class="ps-banner__title">Antibacterial<br> Medical Mask</h2>
+                                        <div class="ps-banner__desc">Just a few seconds to measure your body
+                                            temperature.</div>
+                                        <div class="ps-banner__btn-group">
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/bacterial.svg') }}"
+                                                    alt="alt">Anti-Bacterial</div>
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/virus.svg') }}"
+                                                    alt="alt">Anti-Virus</div>
+                                        </div><a class="bg-warning ps-banner__shop" href="#">Shop now</a>
+                                        <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div>
                                     </div>
-                                    <div class="ps-banner__thumnail"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <div class="ps-promo">
-                                <div class="ps-promo__item"><img class="ps-promo__banner"
-                                        src="{{ asset('frontend') }}/img/promotion/bg-banner19.png" alt>
-                                    <div class="ps-promo__content"><span class="ps-promo__badge bg-white">New</span>
-                                        <h4 class="ps-promo__name text-white">Eco-Friendly <br>Packaging</h4>
-                                        <div class="ps-promo__sale">-30%</div>
+                                    <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                            src="{{ asset('frontend/img/round5.png') }}" alt="alt"><img
+                                            class="ps-banner__image"
+                                            src="{{ asset('frontend/img/promotion/slide3.png') }}" alt="alt">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <div class="ps-promo ps-promo--home">
+                    <div class="owl-item">
+                        <div class="ps-banner" style="background:#FFCC00;">
+                            <div class="container container-initial">
+                                <div class="ps-banner__block">
+                                    <div class="ps-banner__content">
+                                        <h2 class="ps-banner__title">Get rid of bacteria <br>in your home</h2>
+                                        <div class="ps-banner__desc">Get rid of all bacteria!</div>
+                                        <div class="ps-banner__btn-group">
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/bacterial.svg') }}"
+                                                    alt="alt">Anti-Bacterial</div>
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/virus.svg') }}"
+                                                    alt="alt">Anti-Virus</div>
+                                        </div><a class="bg-white ps-banner__shop" href="#">Shop now</a>
+                                        <div class="ps-banner__persen bg-primary">-25%</div>
+                                    </div>
+                                    <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                            src="{{ asset('frontend/img/round2.png') }}" alt="alt"><img
+                                            class="ps-banner__image"
+                                            src="{{ asset('frontend/img/promotion/slide4.png') }}" alt="alt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="ps-banner" style="background:#DAECFA;">
+                            <div class="container container-initial">
+                                <div class="ps-banner__block">
+                                    <div class="ps-banner__content">
+                                        <h2 class="ps-banner__title">Candid <br> Whitening Kit</h2>
+                                        <div class="ps-banner__desc">Only in this week. Don’t misss!</div>
+                                        <div class="ps-banner__price"> <span>$15.99</span>
+                                            <del>$29.99</del>
+                                        </div><a class="bg-warning ps-banner__shop" href="#">Shop now</a>
+                                        <div class="ps-banner__persen bg-warning ps-center">-30%</div>
+                                    </div>
+                                    <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                            src="{{ asset('frontend/img/round2.png') }}" alt="alt"><img
+                                            class="ps-banner__image"
+                                            src="{{ asset('frontend/img/promotion/slide1.png') }}" alt="alt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="ps-banner" style="background:#F0F2F5;">
+                            <div class="container container-initial">
+                                <div class="ps-banner__block">
+                                    <div class="ps-banner__content">
+                                        <h2 class="ps-banner__title">Antibacterial<br> Medical Mask</h2>
+                                        <div class="ps-banner__desc">Just a few seconds to measure your body
+                                            temperature.</div>
+                                        <div class="ps-banner__btn-group">
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/bacterial.svg') }}"
+                                                    alt="alt">Anti-Bacterial</div>
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/virus.svg') }}"
+                                                    alt="alt">Anti-Virus</div>
+                                        </div><a class="bg-warning ps-banner__shop" href="#">Shop now</a>
+                                        <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div>
+                                    </div>
+                                    <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                            src="{{ asset('frontend/img/round5.png') }}" alt="alt"><img
+                                            class="ps-banner__image"
+                                            src="{{ asset('frontend/img/promotion/slide3.png') }}" alt="alt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="ps-banner" style="background:#FFCC00;">
+                            <div class="container container-initial">
+                                <div class="ps-banner__block">
+                                    <div class="ps-banner__content">
+                                        <h2 class="ps-banner__title">Get rid of bacteria <br>in your home</h2>
+                                        <div class="ps-banner__desc">Get rid of all bacteria!</div>
+                                        <div class="ps-banner__btn-group">
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/bacterial.svg') }}"
+                                                    alt="alt">Anti-Bacterial</div>
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/virus.svg') }}"
+                                                    alt="alt">Anti-Virus</div>
+                                        </div><a class="bg-white ps-banner__shop" href="#">Shop now</a>
+                                        <div class="ps-banner__persen bg-primary">-25%</div>
+                                    </div>
+                                    <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                            src="{{ asset('frontend/img/round2.png') }}" alt="alt"><img
+                                            class="ps-banner__image"
+                                            src="{{ asset('frontend/img/promotion/slide4.png') }}" alt="alt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="ps-banner" style="background:#DAECFA;">
+                            <div class="container container-initial">
+                                <div class="ps-banner__block">
+                                    <div class="ps-banner__content">
+                                        <h2 class="ps-banner__title">Candid <br> Whitening Kit</h2>
+                                        <div class="ps-banner__desc">Only in this week. Don’t misss!</div>
+                                        <div class="ps-banner__price"> <span>$15.99</span>
+                                            <del>$29.99</del>
+                                        </div><a class="bg-warning ps-banner__shop" href="#">Shop now</a>
+                                        <div class="ps-banner__persen bg-warning ps-center">-30%</div>
+                                    </div>
+                                    <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                            src="{{ asset('frontend/img/round2.png') }}" alt="alt"><img
+                                            class="ps-banner__image"
+                                            src="{{ asset('frontend/img/promotion/slide1.png') }}" alt="alt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item ">
+                        <div class="ps-banner" style="background:#F0F2F5;">
+                            <div class="container container-initial">
+                                <div class="ps-banner__block">
+                                    <div class="ps-banner__content">
+                                        <h2 class="ps-banner__title">Antibacterial<br> Medical Mask</h2>
+                                        <div class="ps-banner__desc">Just a few seconds to measure your body
+                                            temperature.</div>
+                                        <div class="ps-banner__btn-group">
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/bacterial.svg') }}"
+                                                    alt="alt">Anti-Bacterial</div>
+                                            <div class="ps-banner__btn"><img
+                                                    src="{{ asset('frontend/img/icon/virus.svg') }}"
+                                                    alt="alt">Anti-Virus</div>
+                                        </div><a class="bg-warning ps-banner__shop" href="#">Shop now</a>
+                                        <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div>
+                                    </div>
+                                    <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                            src="{{ asset('frontend/img/round5.png') }}" alt="alt"><img
+                                            class="ps-banner__image"
+                                            src="{{ asset('frontend/img/promotion/slide3.png') }}" alt="alt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i
+                        class="fa fa-chevron-left"></i></button><button type="button" role="presentation"
+                    class="owl-next"><i class="fa fa-chevron-right"></i></button></div>
+            <div class="owl-dots"><button role="button" class="owl-dot"><span></span></button><button
+                    role="button" class="owl-dot active"><span></span></button><button role="button"
+                    class="owl-dot"><span></span></button></div>
+        </div>
+    </section>
+    <div class="ps-home ps-home--14">
+        <div class="ps-home__content">
+            <div class="container">
+                <div class="ps-promo ps-promo--home pt-5 mt-5">
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-promo1.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-promo1.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content"><span class="ps-promo__badge">New</span>
                                     <h4 class="text-dark ps-promo__name">Power Effect <br />Pro Series</h4>
-                                    <div class="ps-promo__image"><img src="{{ asset('frontend') }}/img/icon/icon10.png"
-                                            alt="" /></div>
+                                    <div class="ps-promo__image"><img
+                                            src="{{ asset('frontend/img/icon/icon10.png') }}" alt="" /></div>
                                     <a class="btn-green ps-promo__btn" href="category-grid.html">More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-promo2.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-promo2.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-white ps-promo__name">Eczema <br />Treatment CBD <br />Ointement
                                     </h4>
-                                    <div class="ps-promo__sale text-white">-30%</div><a class="btn-green ps-promo__btn"
-                                        href="category-grid.html">Shop now</a>
+                                    <div class="ps-promo__sale text-white">-30%</div><a
+                                        class="btn-green ps-promo__btn" href="category-grid.html">Shop now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-promo3.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-promo3.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-white ps-promo__name">SFP 50+ <br />Suncream</h4>
                                     <div class="ps-promo__meta">
@@ -77,7 +243,8 @@
                     <div class="ps-category__content">
                         @foreach ($categorys as $category)
                             <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
-                                <img class="ps-category__icon" src="{{ asset('storage/' . $category->logo) }}" alt>
+                                <img class="ps-category__icon" src="{{ asset('storage/' . $category->logo) }}') }}"
+                                    alt>
                                 <h6 class="ps-category__name">{{ $category->name }}</h6>
                             </a>
                         @endforeach
@@ -99,14 +266,25 @@
                                                     <figure>
                                                         @if (count($latest_product->multiImages) > 0)
                                                             @foreach ($latest_product->multiImages->slice(0, 2) as $image)
-                                                                <img src="{{ asset('storage/' . $image->photo) }}"
-                                                                    alt="{{ $latest_product->meta_title }}" />
+                                                                @php
+                                                                    $imagePath = 'storage/' . $image->photo;
+                                                                    $imageSrc = file_exists(public_path($imagePath))
+                                                                        ? asset($imagePath)
+                                                                        : asset('frontend/img/no-product.png');
+                                                                @endphp
+                                                                <img src="{{ $imageSrc }}" alt="{{ $latest_product->meta_title }}" />
                                                             @endforeach
                                                         @else
-                                                            <img src="{{ asset('storage/' . $latest_product->thumbnail) }}"
-                                                                alt="{{ $latest_product->meta_title }}" />
+                                                            @php
+                                                                $thumbnailPath = 'storage/' . $latest_product->thumbnail;
+                                                                $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                                    ? asset($thumbnailPath)
+                                                                    : asset('frontend/img/no-product.png');
+                                                            @endphp
+                                                            <img src="{{ $thumbnailSrc }}" alt="{{ $latest_product->meta_title }}" />
                                                         @endif
                                                     </figure>
+
                                                 </a>
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"
@@ -155,13 +333,6 @@
                                                             to view price</a>
                                                     </div>
                                                 @endauth
-                                                <div class="ps-product__desc">
-                                                    <ul class="ps-product__list">
-                                                        <li>Study history up to 30 days</li>
-                                                        <li>Up to 5 users simultaneously</li>
-                                                        <li>Has HEALTH certificate</li>
-                                                    </ul>
-                                                </div>
                                                 <div class="ps-product__actions ps-product__group-mobile">
                                                     <div class="ps-product__quantity">
                                                         <div class="def-number-input number-input safari_only">
@@ -206,18 +377,18 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner20.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-banner20.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content"><span class="ps-promo__badge">New</span>
                                     <h4 class="text-white ps-promo__name">FaceWash <br />up to -20%</h4>
                                     <div class="ps-promo__image"><img
-                                            src="{{ asset('frontend') }}/img/icon/icon19.png" alt="" />
+                                            src="{{ asset('frontend/img/icon/icon19.png') }}" alt="" />
                                     </div><a class="btn-green ps-promo__btn" href="category-grid.html">More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner21.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-banner21.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-white ps-promo__name">PREHCU <br />Workout</h4>
                                     <div class="ps-promo__meta">
@@ -229,7 +400,7 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner22.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-banner22.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-dark ps-promo__name">Neauthy <br />creams</h4>
                                     <div class="ps-promo__meta">
@@ -243,7 +414,7 @@
                     <div class="row ps-promo--horizontal">
                         <div class="col-12 col-md-3">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner23.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-banner23.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-dark ps-promo__name">PowerUp <br />Lemon</h4>
                                     <div class="ps-promo__meta">
@@ -255,7 +426,7 @@
                         </div>
                         <div class="col-12 col-md-3">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner24.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-banner24.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-dark ps-promo__name">TwoEXP+ <br />Areozol</h4>
                                     <div class="ps-promo__meta">
@@ -267,7 +438,7 @@
                         </div>
                         <div class="col-12 col-md-3">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner25.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-banner25.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-dark ps-promo__name">Cranberry <br />Brand</h4>
                                     <div class="ps-promo__meta">
@@ -279,7 +450,7 @@
                         </div>
                         <div class="col-12 col-md-3">
                             <div class="ps-promo__item"><img class="ps-promo__banner"
-                                    src="{{ asset('frontend') }}/img/promotion/bg-banner26.jpg" alt="alt" />
+                                    src="{{ asset('frontend/img/promotion/bg-banner26.jpg') }}" alt="alt" />
                                 <div class="ps-promo__content">
                                     <h4 class="text-dark ps-promo__name">Recoup <br />Recovery</h4>
                                     <div class="ps-promo__meta">
@@ -432,7 +603,7 @@
                         <div class="col-12 col-md-6">
                             <div class="ps-blog--latset">
                                 <div class="ps-blog__thumbnail"><a href="blog-details.html"><img
-                                            src="{{ asset('frontend') }}/img/blog/blog13-496x262.jpg"
+                                            src="{{ asset('frontend/img/blog/blog13-496x262.jpg') }}"
                                             alt="alt" /></a>
                                     <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span
                                             class="ps-badge__item">PHARMACY</span><span
