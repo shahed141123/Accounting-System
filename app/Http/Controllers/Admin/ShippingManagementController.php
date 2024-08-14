@@ -26,7 +26,8 @@ class ShippingManagementController extends Controller
      */
     public function create()
     {
-        //
+        // Return the view for creating a new shipping method
+        return view('admin.pages.shippingManagement.create');
     }
 
     /**
@@ -34,7 +35,6 @@ class ShippingManagementController extends Controller
      */
     public function store(Request $request)
     {
-
         // Define validation rules
         $validator = Validator::make($request->all(), [
             'title' => 'nullable|string|max:250',
@@ -53,43 +53,26 @@ class ShippingManagementController extends Controller
 
         // Check for validation failures
         if ($validator->fails()) {
-            foreach ($validator->messages()->all() as $message) {
-                Session::flash('error', $message);
-            }
-            return redirect()->back()->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         // Create a new shipping method
-        ShippingMethod::create([
-            'title' => $request->title,
-            'location' => $request->location,
-            'duration' => $request->duration,
-            'description' => $request->description,
-            'carrier' => $request->carrier,
-            'min_weight' => $request->min_weight,
-            'max_weight' => $request->max_weight,
-            'price' => $request->price,
-            'status' => $request->status,
-        ]);
+        ShippingMethod::create($request->only([
+            'title', 'location', 'duration', 'description', 'carrier',
+            'min_weight', 'max_weight', 'price', 'status'
+        ]));
 
         // Redirect with success message
-        return redirect()->back()->with('success', 'Shipping method has been created successfully!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('admin.shipping.index')->with('success', 'Shipping method has been created successfully!');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $shippingMethod = ShippingMethod::findOrFail($id);
+        return view('admin.pages.shippingManagement.edit', compact('shippingMethod'));
     }
 
     /**
@@ -118,35 +101,31 @@ class ShippingManagementController extends Controller
 
         // Check for validation failures
         if ($validator->fails()) {
-            foreach ($validator->messages()->all() as $message) {
-                Session::flash('error', $message);
-            }
-            return redirect()->back()->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         // Update the shipping method
-        $shippingMethod->update([
-            'title' => $request->title,
-            'location' => $request->location,
-            'duration' => $request->duration,
-            'description' => $request->description,
-            'carrier' => $request->carrier,
-            'min_weight' => $request->min_weight,
-            'max_weight' => $request->max_weight,
-            'price' => $request->price,
-            'status' => $request->status,
-        ]);
+        $shippingMethod->update($request->only([
+            'title', 'location', 'duration', 'description', 'carrier',
+            'min_weight', 'max_weight', 'price', 'status'
+        ]));
 
         // Redirect with success message
-        return redirect()->back()->with('success', 'Shipping method has been updated successfully!');
+        return redirect()->route('admin.shipping.index')->with('success', 'Shipping method has been updated successfully!');
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Find the shipping method or fail
+        $shippingMethod = ShippingMethod::findOrFail($id);
+
+        // Delete the shipping method
+        $shippingMethod->delete();
+
+        // Redirect with success message
+        return redirect()->route('admin.shipping.index')->with('success', 'Shipping method has been deleted successfully!');
     }
 }

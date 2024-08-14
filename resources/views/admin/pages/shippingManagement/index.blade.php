@@ -1,215 +1,207 @@
 <x-admin-app-layout :title="'Stock Management'">
-    <div class="row">
-        <div class="col-xl-4">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between ">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-primary">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-brands text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1"><a href="">
-                                </a><a href="#" class="text-white fs-5 fw-bold lh-0">Total Product
-                                    <span class="text-white fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between ">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-primary">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-solid text-white fa-copyright fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1"><a href="">
-                                </a><a href="#" class="text-white fs-5 fw-bold lh-0">Total Brand
-                                    <span class="text-white fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between ">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-primary">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-solid text-white fa-list fs-3"
-                                        aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1"><a href="">
-                                </a><a href="#" class="text-white fs-5 fw-bold lh-0">Total Category
-                                    <span class="text-white fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="card card-flush mt-10">
         <div class="card-header bg-primary align-items-center">
-            <h3 class="card-title">Create Shipping Methods</h3>
+            <h3 class="card-title text-white">Manage Your Shipping</h3>
             <div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#shippingMethodsEdit">
+                <button type="button" class="btn btn-white btn btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#shipping_methodsAdd">
                     <i class="fa-solid fa-plus"></i> Create
                 </button>
-
-                <!-- Modal -->
-                
             </div>
         </div>
         <div class="card-body table-responsive">
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7 border rounded">
                 <thead>
                     <tr class="fw-bold fs-6 text-gray-800 px-7">
-                        <th width="5%">ID</th>
-                        <th width="25%">Title</th>
-                        <th width="15%">Zone</th>
-                        <th width="15%">View</th>
-                        <th width="20%">Status</th>
-                        <th width="10%">Const</th>
-                        <th width="10%">Setting</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                        <th>Duration</th>
+                        <th>Min Weight</th>
+                        <th>Max Weight</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>01</td>
-                        <td>Super Fast Delivery</td>
-                        <td>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#shippingMethodsEdit">
-                                <i class="fa-solid fa-pencil"></i> View & Edit
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="shippingMethodsEdit" tabindex="-1"
-                                aria-labelledby="shippingMethodsEditLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary">
-                                            <h5 class="modal-title" id="shippingMethodsEditLabel">Shipping Methods
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="kt_docs_formvalidation_text" class="form" action="#"
-                                                autocomplete="off">
-                                                <div class="fv-row mb-10">
-                                                    <label class="fw-semibold fs-6 mb-2">Title</label>
-
-                                                    <input type="text" name="title"
-                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                        placeholder="" value="Super Fast Delivery" />
-                                                </div>
-                                                <div class="fv-row mb-10">
-                                                    <label class="fw-semibold fs-6 mb-2">Zone</label>
-
-                                                    <input type="text" name="zone"
-                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                        placeholder="" value="ASIA" />
-                                                </div>
-                                                <div class="fv-row mb-10">
-                                                    <label class="fw-semibold fs-6 mb-2">Cost</label>
-
-                                                    <input type="text" name="zone"
-                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                        placeholder="" value="$5661" />
-                                                </div>
-                                                <div class="fv-row mb-10">
-                                                    <label class="fw-semibold fs-6 mb-2">Status</label>
-
-                                                    <select class="form-select" name="status" data-control="select2"
-                                                        data-placeholder="Select an option">
-                                                        <option></option>
-                                                        <option value="1">Active</option>
-                                                        <option value="2">Deactive</option>
-                                                    </select>
-                                                </div>
-
-                                                <button id="kt_docs_formvalidation_text_submit" type="submit"
-                                                    class="btn btn-primary">
-                                                    <span class="indicator-label">
-                                                        Validation Form
-                                                    </span>
-                                                    <span class="indicator-progress">
-                                                        Please wait... <span
-                                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                                    </span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-start">
-                            <select class="form-select form-select-sm w-150px" data-control="select2"
-                                data-placeholder="Select an option">
-                                <option value="1">Options</option>
-                                <option value="1">Active</option>
-                                <option value="2">Deactive</option>
-                            </select>
-                        </td>
-                        <td>$5661</td>
-                        <td class="text-start">
-                            <a href="#" class="btn btn-sm btn-primary">
-                                <i class="fa-solid fa-trash"></i>
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($shipping_methods as $method)
+                        @foreach ($shippingMethods as $method)
+                            <tr>
+                                <td>{{ $method->id }}</td>
+                                <td>{{ $method->title }}</td>
+                                <td>{{ $method->location }}</td>
+                                <td>{{ $method->duration }}</td>
+                                <td>{{ $method->min_weight }}</td>
+                                <td>{{ $method->max_weight }}</td>
+                                <td>${{ $method->price }}</td>
+                                <td>{{ $method->status }}</td>
+                                <td class="text-start">
+                                    <a href="#" class="btn btn-sm btn-primary">
+                                        <i class="fa-solid fa-trash"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+    {{-- Shippng Create Modal --}}
+    <!-- Modal -->
+    <div class="modal fade" id="shipping_methodsAdd" tabindex="-1" aria-labelledby="shipping_methodsAddLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shipping_methodsAddLabel">Shipping Create</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="card">
+                            @csrf
+                            <div class="card-body pt-0 row">
+                                <div class="mb-5 fv-row col-12">
+                                    <x-metronic.label class="form-label">Title</x-metronic.label>
+                                    <x-metronic.input type="text" name="title" class="form-control mb-2"
+                                        placeholder="Enter title" :value="old('title')">
+                                    </x-metronic.input>
+                                    <div class="text-muted fs-7">
+                                        A unique title for the shipping method.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row col-6">
+                                    <x-metronic.label class="form-label">Location</x-metronic.label>
+                                    <x-metronic.input type="text" name="location" class="form-control mb-2"
+                                        placeholder="Enter location" :value="old('location')">
+                                    </x-metronic.input>
+                                    <div class="text-muted">
+                                        Location shipping method.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row w-50 col-6">
+                                    <x-metronic.label class="form-label">Duration</x-metronic.label>
+                                    <x-metronic.input type="text" name="duration" class="form-control mb-2"
+                                        placeholder="Enter duration" :value="old('duration')">
+                                    </x-metronic.input>
+                                    <div class="text-muted fs-7">
+                                        Estimated delivery time.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row">
+                                    <x-metronic.label class="form-label">Description</x-metronic.label>
+                                    <textarea name="description" class="ckeditor form-control mb-2" placeholder="Add detailed description">{!! old('description') !!}</textarea>
+                                    <div class="text-muted fs-7">
+                                        Detailed description of the shipping method.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row col-4">
+                                    <x-metronic.label class="form-label">Carrier</x-metronic.label>
+                                    <x-metronic.input type="text" name="carrier" class="form-control mb-2"
+                                        placeholder="Enter carrier name" :value="old('carrier')">
+                                    </x-metronic.input>
+                                    <div class="text-muted fs-7">
+                                        The carrier or service provider for the shipping method.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row col-4">
+                                    <x-metronic.label class="form-label">Min Weight</x-metronic.label>
+                                    <x-metronic.input type="number" name="min_weight" class="form-control mb-2"
+                                        placeholder="Enter minimum weight" :value="old('min_weight')">
+                                    </x-metronic.input>
+                                    <div class="text-muted fs-7">
+                                        Minimum weight for the shipping method.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row col-4">
+                                    <x-metronic.label class="form-label">Max Weight</x-metronic.label>
+                                    <x-metronic.input type="number" name="max_weight" class="form-control mb-2"
+                                        placeholder="Enter maximum weight" :value="old('max_weight')">
+                                    </x-metronic.input>
+                                    <div class="text-muted fs-7">
+                                        Maximum weight for the shipping method.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row col-6">
+                                    <x-metronic.label class="form-label">Price</x-metronic.label>
+                                    <x-metronic.input type="number" name="price" class="form-control mb-2"
+                                        placeholder="Enter price" :value="old('price')">
+                                    </x-metronic.input>
+                                    <div class="text-muted fs-7">
+                                        Cost associated with the shipping method.
+                                    </div>
+                                </div>
+                                <div class="mb-5 fv-row col-6">
+                                    <x-metronic.label class="form-label">Status</x-metronic.label>
+                                    <select class="form-select" name="status" data-control="select2"
+                                        data-hide-search="true" data-allow-clear="true"
+                                        data-placeholder="Select status">
+                                        <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>
+                                            Active
+                                        </option>
+                                        <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>
+                                            Inactive</option>
+                                    </select>
+                                    <div class="text-muted fs-7">
+                                        Status of the shipping method (Active/Inactive).
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Shippng Create Modal ENd --}}
     @push('scripts')
         <script>
             // Define form element
             const form = document.getElementById('kt_docs_formvalidation_text');
 
-            // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+            // Init form validation rules
             var validator = FormValidation.formValidation(
                 form, {
                     fields: {
-                        'text_input': {
+                        'title': {
                             validators: {
                                 notEmpty: {
-                                    message: 'Text input is required'
+                                    message: 'Title is required'
                                 }
                             }
                         },
+                        'zone': {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Zone is required'
+                                }
+                            }
+                        },
+                        'cost': {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Cost is required'
+                                },
+                                numeric: {
+                                    message: 'Cost must be a number'
+                                }
+                            }
+                        },
+                        'status': {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Status is required'
+                                }
+                            }
+                        }
                     },
 
                     plugins: {
@@ -223,33 +215,40 @@
                 }
             );
 
+            // Handle modal data population
+            document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const title = this.getAttribute('data-title');
+                    const zone = this.getAttribute('data-zone');
+                    const cost = this.getAttribute('data-cost');
+                    const status = this.getAttribute('data-status');
+
+                    const form = document.getElementById('kt_docs_formvalidation_text');
+                    form.querySelector('input[name="title"]').value = title;
+                    form.querySelector('input[name="zone"]').value = zone;
+                    form.querySelector('input[name="cost"]').value = cost;
+                    form.querySelector('select[name="status"]').value = status;
+                });
+            });
+
             // Submit button handler
             const submitButton = document.getElementById('kt_docs_formvalidation_text_submit');
             submitButton.addEventListener('click', function(e) {
-                // Prevent default button action
                 e.preventDefault();
 
-                // Validate form before submit
                 if (validator) {
                     validator.validate().then(function(status) {
                         console.log('validated!');
 
                         if (status == 'Valid') {
-                            // Show loading indication
                             submitButton.setAttribute('data-kt-indicator', 'on');
-
-                            // Disable button to avoid multiple click
                             submitButton.disabled = true;
 
-                            // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             setTimeout(function() {
-                                // Remove loading indication
                                 submitButton.removeAttribute('data-kt-indicator');
-
-                                // Enable button
                                 submitButton.disabled = false;
 
-                                // Show popup confirmation
                                 Swal.fire({
                                     text: "Form has been successfully submitted!",
                                     icon: "success",
@@ -259,8 +258,6 @@
                                         confirmButton: "btn btn-primary"
                                     }
                                 });
-
-                                //form.submit(); // Submit form
                             }, 2000);
                         }
                     });

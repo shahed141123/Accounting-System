@@ -1,7 +1,7 @@
 <x-admin-app-layout :title="'Order Management'">
     <div class="container">
         <div class="card">
-            <div class="card-header bg-info align-items-center d-flex justify-content-between">
+            <div class="card-header bg-primary align-items-center d-flex justify-content-between">
                 <div>
                     <h1 class="mb-0 text-center w-100 text-white">Manage Your Orders</h1>
                 </div>
@@ -80,7 +80,8 @@
                     </h1>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="https://preview.keenthemes.com/metronic8/demo1/index.html" class="text-muted text-hover-primary">
+                            <a href="https://preview.keenthemes.com/metronic8/demo1/index.html"
+                                class="text-muted text-hover-primary">
                                 Home </a>
                         </li>
                         <li class="breadcrumb-item">
