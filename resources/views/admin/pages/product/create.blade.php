@@ -76,70 +76,7 @@
             enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="gap-7 gap-lg-10 mb-7  col-4">
-                    {{-- Status Card Start --}}
-                    <div class="card card-flush py-4 mb-6">
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2>Status</h2>
-                            </div>
-                        </div>
-                        <div class="card-body pt-0">
-                            <x-metronic.select-option id="kt_ecommerce_add_product_status_select"
-                                class="form-select mb-2" data-control="select2" data-hide-search="true" name="status"
-                                data-placeholder="Select an option">
-                                <option></option>
-                                <option value="published" selected>Published</option>
-                                <option value="draft">Draft</option>
-                                <option value="inactive">Inactive</option>
-                            </x-metronic.select-option>
-                            <div class="text-muted fs-7">Set the product status.</div>
-                        </div>
-                    </div>
-                    {{-- Status Card End --}}
-                    {{-- Category Card Start --}}
-                    <div class="card card-flush py-4">
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2>Category</h2>
-                            </div>
-                        </div>
-                        <div class="card-body pt-0">
-                            <div class="fv-row">
-                                <x-metronic.label for="brand_id" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Select Brand') }}</x-metronic.label>
-                                <x-metronic.select-option id="brand_id" class="form-select mb-2" name="brand_id"
-                                    data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
-                                    <option></option>
-                                    @foreach ($brands as $brand)
-                                        <option value="{{ $brand->id }}">{{ $brand->name }}
-                                        </option>
-                                    @endforeach
-                                </x-metronic.select-option>
-                            </div>
-                            <div class="fv-row">
-                                <x-metronic.label for="category_id" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Select Category') }}</x-metronic.label>
-                                <x-metronic.select-option id="category_id" class="form-control select mb-2"
-                                    name="category_id[]" multiple multiselect-search="true"
-                                    multiselect-select-all="true" data-control="select2"
-                                    data-placeholder="Select an option" data-allow-clear="true">
-                                    {!! $categoriesOptions !!}
-                                </x-metronic.select-option>
-                            </div>
-                            <div class="fv-row">
-                                <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Add Color') }}
-                                </x-metronic.label>
-                                <!-- Input element for Tagify -->
-                                <input class="form-control d-flex align-items-center" name="color"
-                                    :value="old('color')" id="kt_tagify_color" />
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Category Card End --}}
-                </div>
-                <div class="gap-7 gap-lg-10 col-8">
+                <div class="gap-7 gap-lg-10 col-9">
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
                         <li class="nav-item">
                             <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
@@ -517,6 +454,69 @@
                             </span>
                         </button>
                     </div>
+                </div>
+                <div class="gap-7 gap-lg-10 mb-7  col-3">
+                    {{-- Status Card Start --}}
+                    <div class="card card-flush py-4 mb-6">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Status</h2>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <x-metronic.select-option id="kt_ecommerce_add_product_status_select"
+                                class="form-select mb-2" data-control="select2" data-hide-search="true" name="status"
+                                data-placeholder="Select an option">
+                                <option></option>
+                                <option value="published" selected>Published</option>
+                                <option value="draft">Draft</option>
+                                <option value="inactive">Inactive</option>
+                            </x-metronic.select-option>
+                            <div class="text-muted fs-7">Set the product status.</div>
+                        </div>
+                    </div>
+                    {{-- Status Card End --}}
+                    {{-- Category Card Start --}}
+                    <div class="card card-flush py-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Category</h2>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="fv-row">
+                                <x-metronic.label for="brand_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Brand') }}</x-metronic.label>
+                                <x-metronic.select-option id="brand_id" class="form-select mb-2" name="brand_id"
+                                    data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+                                    <option></option>
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->name }}
+                                        </option>
+                                    @endforeach
+                                </x-metronic.select-option>
+                            </div>
+                            <div class="fv-row">
+                                <x-metronic.label for="category_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Category') }}</x-metronic.label>
+                                <x-metronic.select-option id="category_id" class="form-control select mb-2"
+                                    name="category_id[]" multiple multiselect-search="true"
+                                    multiselect-select-all="true" data-control="select2"
+                                    data-placeholder="Select an option" data-allow-clear="true">
+                                    {!! $categoriesOptions !!}
+                                </x-metronic.select-option>
+                            </div>
+                            <div class="fv-row">
+                                <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Add Color') }}
+                                </x-metronic.label>
+                                <!-- Input element for Tagify -->
+                                <input class="form-control d-flex align-items-center" name="color"
+                                    :value="old('color')" id="kt_tagify_color" />
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category Card End --}}
                 </div>
             </div>
         </form>

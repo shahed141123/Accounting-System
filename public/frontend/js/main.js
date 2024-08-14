@@ -206,18 +206,36 @@
     }
 
     function openModal() {
-        $('#cart-mini, .ps-cart--mini').hover(function(e) {
-            $(".ps-cart--mini").stop(true, true).addClass("active");
-        }, function() {
-            $(".ps-cart--mini").stop(true, true).removeClass("active");
-        });  
+        // For cart mini
+        $('#cart-mini').click(function(e) {
+            e.stopPropagation(); // Prevents the event from bubbling up to other elements
 
-        $('#login-modal, .ps-login--modal').hover(function(e) {
-            $(".ps-login--modal").stop(true, true).addClass("active");
-        }, function() {
-            $(".ps-login--modal").stop(true, true).removeClass("active");
-        });  
+            // Hide any other open modal
+            $(".ps-login--modal").removeClass("active");
+
+            // Toggle the cart mini modal
+            $(".ps-cart--mini").toggleClass("active");
+        });
+
+        // For login modal
+        $('#login-modal').click(function(e) {
+            e.stopPropagation();
+
+            // Hide any other open modal
+            $(".ps-cart--mini").removeClass("active");
+
+            // Toggle the login modal
+            $(".ps-login--modal").toggleClass("active");
+        });
+
+        // Close any open modal when clicking outside of it
+        $(document).click(function(e) {
+            if (!$(e.target).closest('#cart-mini, .ps-cart--mini, #login-modal, .ps-login--modal').length) {
+                $(".ps-cart--mini, .ps-login--modal").removeClass("active");
+            }
+        });
     }
+
 
     function getTimeRemaining(endtime) {
         var t = Date.parse(endtime) - Date.parse(new Date());
@@ -248,12 +266,12 @@
 
         function updateClock() {
             var t = getTimeRemaining(endtime);
-            
+
             var hoursText = ('0' + t.hours).slice(-2);
             var minutesText = ('0' + t.minutes).slice(-2);
             var secondsText = ('0' + t.seconds).slice(-2);
             var daysText = ('00' + t.days).slice(-3);
-            
+
             daysSpan.each(function (index) {
                 if (daysText >= 100) {
                     $(this).find('.first-1st').text(daysText.slice(0, 1));
@@ -336,7 +354,7 @@
         $('.menu--mobile .sub-toggle').on('click', function(e) {
             e.preventDefault();
             var current = $(this).parent('li');
-            
+
             current.children('.sub-menu').slideToggle(350);
             current.siblings().find('.sub-menu').slideUp(350);
             current.toggleClass('active');
@@ -345,7 +363,7 @@
         $('.ps-language-currency .sub-toggle').on('click', function(e) {
             e.preventDefault();
             var current = $(this).parent('li');
-            
+
             current.children('.sub-menu').slideToggle(350);
             current.toggleClass('active');
         });
@@ -492,7 +510,7 @@
     });
 
     $(window).on('load', function() {
-       
+
     });
 })(jQuery);
 

@@ -31757,7 +31757,7 @@ fieldset:disabled .btn {
 
 :root {
     --bs-light-primary: #f1faff;
-    --bs-active-primary: #0095e8;
+    --bs-active-primary: #1f212a;
     --bs-light-success: #e8fff3;
     --bs-active-success: #47be7d;
     --bs-light-info: #f8f5ff;
@@ -31862,12 +31862,12 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #007bff !important;
+    background-color: #1f212a !important;
     --bg-color: 0, 158, 247 !important;
 }
 
 .bg-primary.hoverable:hover {
-    background-color: #0095e8 !important;
+    background-color: #1f212a !important;
 }
 
 .bg-hover-light-primary {
@@ -41281,8 +41281,8 @@ a:hover {
 .btn.btn-primary:hover:not(.btn-active),
 .show > .btn.btn-primary {
     color: #fff;
-    border-color: #0095e8;
-    background-color: #0095e8 !important;
+    border-color: #1f212a;
+    background-color: #1f212a !important;
 }
 
 .btn-check:active + .btn.btn-primary .svg-icon,
