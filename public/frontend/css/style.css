@@ -10869,7 +10869,7 @@ textarea.form-control {
 }
 
 .ps-section--categories .ps-categories__link img {
-    max-width: 30px;
+    max-width: 60px;
 }
 
 .ps-section--categories .ps-categories__link:hover {
@@ -10916,12 +10916,12 @@ textarea.form-control {
     }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
     .ps-section--categories .ps-categories__item {
         width: 14.285%;
         flex-basis: 14.285%;
     }
-}
+} */
 
 @media (min-width: 1280px) {
     .ps-section--categories .ps-section__title {

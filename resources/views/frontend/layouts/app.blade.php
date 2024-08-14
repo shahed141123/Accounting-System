@@ -39,16 +39,14 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         /* Preloader Styles */
-        #preloader {
+        /* #preloader {
             position: fixed;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.9);
-            /* Slightly transparent white background */
             z-index: 9999;
-            /* Ensure it's on top of all content */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,9 +58,7 @@
 
         .spinner {
             border: 8px solid #f3f3f3;
-            /* Light grey background */
             border-top: 8px solid #3498db;
-            /* Blue spinner */
             border-radius: 50%;
             width: 60px;
             height: 60px;
@@ -83,20 +79,19 @@
         .loading-percentage {
             font-size: 1.5rem;
             color: #3498db;
-            /* Blue color for percentage text */
             font-weight: bold;
-        }
+        } */
     </style>
 </head>
 
 <body>
     <!-- Preloader -->
-    <div id="preloader">
+    {{-- <div id="preloader">
         <div class="preloader-inner">
             <div class="spinner"></div>
             <div class="loading-percentage" id="loadingPercentage">0%</div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="ps-page">
         {{-- Header --}}

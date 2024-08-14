@@ -21,6 +21,7 @@ class HomeController extends Controller
         // $latest_products = Product::latest('id')->where('status','published')->get(['slug','meta_title','name','box_discount_price','box_price']);
 
         $data = [
+            'blog_posts'       => BlogPost::active()->inRandomOrder()->get(),
             'blog'             => BlogPost::inRandomOrder()->active()->first(),
             'categorys'        => Category::orderBy('name', 'ASC')->active()->get(),
             'latest_products'  => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->latest('id')->where('status', 'published')->limit(10)->get(),
@@ -120,5 +121,5 @@ class HomeController extends Controller
     }
 
     // CartController.php
-    
+
 }
