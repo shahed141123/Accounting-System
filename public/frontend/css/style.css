@@ -8114,7 +8114,7 @@ textarea.form-control {
 }
 
 .ps-form--review .ps-form__input {
-    height: 35px;
+    height: 40px;
 }
 
 .ps-form--review .ps-form__input,
@@ -8123,7 +8123,7 @@ textarea.form-control {
     background-color: #f0f2f5;
     font-size: 16px;
     padding: 5px 15px;
-    border-radius: 40px;
+    /* border-radius: 40px; */
     border-color: #f0f2f5;
 }
 
@@ -12126,9 +12126,9 @@ textarea.form-control {
     min-height: 500px;
 }
 
-.ps-account .ps-form--review {
+/* .ps-account .ps-form--review {
     margin: 20px 0 80px;
-}
+} */
 
 .ps-account .ps-form__group {
     margin-bottom: 25px;
@@ -12140,8 +12140,8 @@ textarea.form-control {
     background-color: #f0f2f5;
     display: inline-flex;
     align-items: center;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
+    /* border-top-right-radius: 40px; */
+    border-bottom: 0px solid #f0f2f5;
     font-size: 14px;
 }
 
