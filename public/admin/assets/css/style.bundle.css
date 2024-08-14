@@ -59055,3 +59055,20 @@ th {
     font-size: 18px;
     font-weight: bold;
 }
+
+.nav-line-tabs .nav-item .nav-link.active, .nav-line-tabs .nav-item .nav-link:hover:not(.disabled), .nav-line-tabs .nav-item.show .nav-link {
+    background-color: #1f212a;
+    border: 0;
+    border-bottom: 1px solid #1f212a;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    padding: 13px;
+    color: white !important;
+}
+.nav-line-tabs .nav-item .nav-link{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    padding: 13px;
+    color: #a1a5b7 !important;
+}

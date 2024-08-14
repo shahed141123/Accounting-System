@@ -293,13 +293,13 @@
                                             $logoPath = 'storage/' . $category->logo;
                                             $logoSrc = file_exists(public_path($logoPath))
                                                 ? asset($logoPath)
-                                                : asset('frontend/img/no-category.jpg');
+                                                : asset('frontend/img/no-category.png');
                                         @endphp
                                         <img class="ps-category__icon" src="{{ $logoSrc }}"
                                             alt="{{ $category->name }}">
                                     </a>
                                     <a class="ps-categories__name"
-                                        href="category-grid.html">{{ $category->name }}</a>
+                                        href="">{{ $category->name }}</a>
                                 </div>
                             @endforeach
                         </div>
@@ -328,8 +328,8 @@
                                                                     $imagePath = 'storage/' . $image->photo;
                                                                     $imageSrc = file_exists(public_path($imagePath))
                                                                         ? asset($imagePath)
-                                                                        : // : asset('frontend/img/no-product.png');
-                                                                        asset('frontend/img/no-product.png');
+                                                                        : // : asset('frontend/img/no-product.jpg');
+                                                                        asset('frontend/img/no-product.jpg');
                                                                 @endphp
                                                                 <img src="{{ $imageSrc }}"
                                                                     alt="{{ $latest_product->meta_title }}"
@@ -342,7 +342,7 @@
                                                                     'storage/' . $latest_product->thumbnail;
                                                                 $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                     ? asset($thumbnailPath)
-                                                                    : asset('frontend/img/no-product.png');
+                                                                    : asset('frontend/img/no-product.jpg');
                                                             @endphp
                                                             <img src="{{ $thumbnailSrc }}"
                                                                 alt="{{ $latest_product->meta_title }}"
@@ -576,7 +576,7 @@
                                                                 $imagePath = 'storage/' . $image->photo;
                                                                 $imageSrc = file_exists(public_path($imagePath))
                                                                     ? asset($imagePath)
-                                                                    : asset('frontend/img/no-product.png');
+                                                                    : asset('frontend/img/no-product.jpg');
                                                             @endphp
                                                             <img src="{{ $imageSrc }}"
                                                                 alt="{{ $deal_product->meta_title }}" width="210"
@@ -587,7 +587,7 @@
                                                             $thumbnailPath = 'storage/' . $deal_product->thumbnail;
                                                             $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                 ? asset($thumbnailPath)
-                                                                : asset('frontend/img/no-product.png');
+                                                                : asset('frontend/img/no-product.jpg');
                                                         @endphp
                                                         <img src="{{ $thumbnailSrc }}"
                                                             alt="{{ $deal_product->meta_title }}" width="210"
@@ -679,7 +679,7 @@
                 </section>
 
             </div>
-            <section class="ps-section--blog container">
+            <section class="ps-section--blog container mb-5">
                 <h3 class="ps-section__title">From the blog</h3>
                 <div class="ps-section__carousel">
                     <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true"

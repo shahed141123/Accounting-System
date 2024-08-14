@@ -1,451 +1,730 @@
 <x-admin-app-layout :title="'Order Management'">
-    <div class="row">
-        <div class="col-xl-4 mx-auto">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-info align-items-center d-flex justify-content-between">
+                <div>
+                    <h1 class="mb-0 text-center w-100 text-white">Manage Your Orders</h1>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-4 mx-auto">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Pending
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
+            <div class="card-body py-0">
+                <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
+                    <thead class="bg-light-danger">
+                        <tr class="fw-semibold fs-6 text-gray-800">
+                            <th>Order Id</th>
+                            <th>Customer</th>
+                            <th>Created At</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>QTY</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="order-details.html">
+                                    #as584
                                 </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 mx-auto">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Delivery
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
+                            </td>
+                            <td>Sazeduzzaman Saju</td>
+                            <td>09:00 08/24/2024</td>
+                            <td><span class="text-info fw-bold">£</span>680</td>
+                            <td>Fashion</td>
+                            <td>50</td>
+                            <td class="text-center">
+                                <span class="badge py-3 px-4 fs-7 badge-light-primary">Paid</span>
+                                <span class="badge py-3 px-4 fs-7 badge-light-warning">On Hold</span>
+                                <span class="badge py-3 px-4 fs-7 badge-light-success">Complated</span>
+                            </td>
+                            <td class="text-center">
+                                <a href="javascript:void(0)">
+                                    <button
+                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
+                                        data-bs-toggle="modal" data-bs-target="#printInovice">
+                                        <i class="fa-solid fa-print"></i>
+                                    </button>
                                 </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <a href="javascript:void(0)">
+                                    <button
+                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
+                                        data-bs-toggle="modal" data-bs-target="#vieworderInovice">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <button
+                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
+                                        <i class="fa-solid fa-file-download"></i>
+                                    </button>
+                                </a>
+                                <a href="">
+                                    <button
+                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <div class="card card-flush mt-10">
-        <div class="card-header bg-success align-items-center">
-            <h3 class="card-title">Mange Your Orders</h3>
-            <div>
-                <a type="button" href="{{ route('admin.product.create') }}" class="btn btn-primary btn btn-sm">
-                    <i class="fa-solid fa-plus"></i> Create
-                </a>
+    <div class="d-flex flex-column flex-column-fluid mt-5">
+        <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
+            <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex flex-stack ">
+                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
+                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
+                        Order Details
+                    </h1>
+                    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="https://preview.keenthemes.com/metronic8/demo1/index.html" class="text-muted text-hover-primary">
+                                Home </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-muted">
+                            eCommerce </li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-muted">
+                            Sales </li>
+
+                    </ul>
+                </div>
             </div>
         </div>
+        <div id="kt_app_content" class="app-content  flex-column-fluid ">
+            <div id="kt_app_content_container" class="app-container  container-xxl ">
 
-        <div class="card-body table-responsive">
-            <table class="table  align-middle table-row-dashed fs-6 gy-4" id="kt_docs_datatable_subtable">
-                <thead>
-                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                        <th class="min-w-100px ps-5">Order ID</th>
-                        <th class="min-w-100px">SL</th>
-                        <th class="">Created</th>
-                        <th class="">Customer</th>
-                        <th class="">Total</th>
-                        <th class="">Profit</th>
-                        <th class="">Status</th>
-                        <th class="">Action</th>
-                        <th class=""></th>
-                    </tr>
-                </thead>
+                <div class="d-flex flex-column gap-7 gap-lg-10">
 
+                    <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
 
-                <tbody class="fw-bold text-gray-600">
-                    <tr data-kt-docs-datatable-subtable="subtable_template" class="d-none bg-light">
-                        <td colspan="2">
-                            <div class="d-flex align-items-center gap-3">
-                                <a href="#" class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
-                                    <img src="https://preview.keenthemes.com/html/metronic/docs/assets/media/stock/ecommerce/" alt=""
-                                        data-kt-docs-datatable-subtable="template_image" />
-                                </a>
-                                <div class="d-flex flex-column text-muted">
-                                    <a href="#" class="text-gray-900 text-hover-primary fw-bold"
-                                        data-kt-docs-datatable-subtable="template_name">Product name</a>
-                                    <div class="fs-7" data-kt-docs-datatable-subtable="template_description">Product
-                                        description</div>
+                        <div class="card card-flush py-4 flex-row-fluid">
+
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Order Details (#14534)</h2>
                                 </div>
                             </div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7">Cost</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_cost">1</div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7">Qty</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_qty">1</div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7">Total</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_total">name
+
+
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+
+                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                        <tbody class="fw-semibold text-gray-600">
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-calendar fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        Date Added
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">14/08/2024</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-wallet fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span><span
+                                                                class="path3"></span><span class="path4"></span></i>
+                                                        Payment Method
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">
+                                                    Online
+                                                    <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/card-logos/visa.svg"
+                                                        class="w-50px ms-2">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-truck fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span><span
+                                                                class="path3"></span><span class="path4"></span><span
+                                                                class="path5"></span></i>
+                                                        Shipping Method
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">Flat Shipping Rate</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
                             </div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7 me-3">On hand</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_stock">32
+
+                        </div>
+
+
+
+                        <div class="card card-flush py-4  flex-row-fluid">
+
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Customer Details</h2>
+                                </div>
                             </div>
-                        </td>
-                        <td></td>
-                    </tr>
 
-                    <tr>
-                        <td>
-                            <a href="#" class="text-gray-900 text-hover-primary">#XGT-346</a>
-                        </td>
 
-                        <td class="">
-                            01
-                        </td>
-                        <td class="">
-                            10 Nov 2021, 10:30 am
-                        </td>
 
-                        <td class="">
-                            <a href="" class="text-gray-900 text-hover-primary">Emma Smith</a>
-                        </td>
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
 
-                        <td class="">
-                            $630.00
-                        </td>
+                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                        <tbody class="fw-semibold text-gray-600">
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-profile-circle fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span><span
+                                                                class="path3"></span></i>
+                                                        Customer
+                                                    </div>
+                                                </td>
 
-                        <td class="">
-                            <span class="text-gray-900 fw-bold">$86.70</span>
-                        </td>
+                                                <td class="fw-bold text-end">
+                                                    <div class="d-flex align-items-center justify-content-end">
 
-                        <td class="">
-                            <span class="badge py-3 px-4 fs-7 badge-light-primary">Confirmed</span>
-                        </td>
-                        <td class="">
-                            <span class="badge py-3 px-4 fs-7 badge-light-primary">Confirmed</span>
-                        </td>
+                                                        <div
+                                                            class="symbol symbol-circle symbol-25px overflow-hidden me-3">
+                                                            <a
+                                                                href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/customers/details.html">
+                                                                <div class="symbol-label">
+                                                                    <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-23.jpg"
+                                                                        alt="Dan Wilson" class="w-100">
+                                                                </div>
+                                                            </a>
+                                                        </div>
 
-                        <td class="">
-                            <button type="button"
-                                class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
-                                data-kt-docs-datatable-subtable="expand_row">
-                                <span class="svg-icon fs-3 m-0 toggle-off">
-                                    <i class="fa-solid fa-plus"></i>
-                                </span>
-                                <span class="svg-icon fs-3 m-0 toggle-on">
-                                    <i class="fa-solid fa-minus"></i>
-                                </span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+
+                                                        <a href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/customers/details.html"
+                                                            class="text-gray-600 text-hover-primary">
+                                                            Dan Wilson </a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-sms fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        Email
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">
+                                                    <a href="https://preview.keenthemes.com/metronic8/demo1/apps/user-management/users/view.html"
+                                                        class="text-gray-600 text-hover-primary">
+                                                        dam@consilting.com </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-phone fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        Phone
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">+6141 234 567</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="card card-flush py-4  flex-row-fluid">
+
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Documents</h2>
+                                </div>
+                            </div>
+
+
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+
+                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                        <tbody class="fw-semibold text-gray-600">
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-devices fs-2 me-2"><span
+                                                                class="path1"></span><span
+                                                                class="path2"></span><span
+                                                                class="path3"></span><span
+                                                                class="path4"></span><span class="path5"></span></i>
+                                                        Invoice
+
+
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            aria-label="View the invoice generated by this order."
+                                                            data-bs-original-title="View the invoice generated by this order."
+                                                            data-kt-initialized="1">
+                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6"><span
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i></span>
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end"><a
+                                                        href="https://preview.keenthemes.com/metronic8/demo1/apps/invoices/view/invoice-3.html"
+                                                        class="text-gray-600 text-hover-primary">#INV-000414</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-truck fs-2 me-2"><span
+                                                                class="path1"></span><span
+                                                                class="path2"></span><span
+                                                                class="path3"></span><span
+                                                                class="path4"></span><span class="path5"></span></i>
+                                                        Shipping
+
+
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            aria-label="View the shipping manifest generated by this order."
+                                                            data-bs-original-title="View the shipping manifest generated by this order."
+                                                            data-kt-initialized="1">
+                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6"><span
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i></span>
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end"><a href="#"
+                                                        class="text-gray-600 text-hover-primary">#SHP-0025410</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-discount fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        Reward Points
+
+
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            aria-label="Reward value earned by customer when purchasing this order"
+                                                            data-bs-original-title="Reward value earned by customer when purchasing this order"
+                                                            data-kt-initialized="1">
+                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6"><span
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i></span>
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">600</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                        <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
+                            <div class="card card-flush py-4 flex-row-fluid position-relative">
+                                <div
+                                    class="position-absolute top-0 end-0 bottom-0 opacity-10 d-flex align-items-center me-5">
+                                    <i class="ki-solid ki-two-credit-cart" style="font-size: 14em">
+                                    </i>
+                                </div>
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Billing Address</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    Unit 1/23 Hastings Road,<br>
+                                    Melbourne 3000,<br>
+                                    Victoria,<br>
+                                    Australia.
+                                </div>
+                            </div>
+                            <div class="card card-flush py-4 flex-row-fluid position-relative">
+
+                                <div
+                                    class="position-absolute top-0 end-0 bottom-0 opacity-10 d-flex align-items-center me-5">
+                                    <i class="ki-solid ki-delivery" style="font-size: 13em">
+                                    </i>
+                                </div>
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Shipping Address</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    Unit 1/23 Hastings Road,<br>
+                                    Melbourne 3000,<br>
+                                    Victoria,<br>
+                                    Australia.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-flush py-4 flex-row-fluid overflow-hidden">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Order #14534</h2>
+                                </div>
+                                <div class="card-title">
+                                    <a href="javascript:void(0)" class="btn btn-sm fw-bold btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#printInovice"> <i
+                                            class="fa-solid fa-print"></i> Print Or Download </a>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                        <thead>
+                                            <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                                <th class="min-w-175px ps-5">Product</th>
+                                                <th class="min-w-100px text-end">SKU</th>
+                                                <th class="min-w-70px text-end">Qty</th>
+                                                <th class="min-w-100px text-end">Unit Price</th>
+                                                <th class="min-w-100px text-end pe-5">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fw-semibold text-gray-600">
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+
+                                                        <a href="" class="symbol symbol-50px">
+                                                            <span class="symbol-label"
+                                                                style="background-image:url('https://preview.keenthemes.com/metronic8/demo1/assets/media/stock/ecommerce/210.png');"></span>
+                                                        </a>
+
+
+
+                                                        <div class="ms-5">
+                                                            <a href=""
+                                                                class="fw-bold text-gray-600 text-hover-primary">Product
+                                                                1</a>
+                                                            <div class="fs-7 text-muted">Delivery Date:
+                                                                14/08/2024</div>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td class="text-end">
+                                                    03662006 </td>
+                                                <td class="text-end">
+                                                    2
+                                                </td>
+                                                <td class="text-end">
+                                                    $120.00
+                                                </td>
+                                                <td class="text-end">
+                                                    $240.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+
+                                                        <a href="" class="symbol symbol-50px">
+                                                            <span class="symbol-label"
+                                                                style="background-image:url(https://preview.keenthemes.com/metronic8/demo1/assets/media//stock/ecommerce/100.png);"></span>
+                                                        </a>
+                                                        <div class="ms-5">
+                                                            <a href=""
+                                                                class="fw-bold text-gray-600 text-hover-primary">Footwear</a>
+                                                            <div class="fs-7 text-muted">Delivery Date:
+                                                                14/08/2024</div>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td class="text-end">
+                                                    03261009 </td>
+                                                <td class="text-end">
+                                                    1
+                                                </td>
+                                                <td class="text-end">
+                                                    $24.00
+                                                </td>
+                                                <td class="text-end">
+                                                    $24.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-end">
+                                                    Subtotal
+                                                </td>
+                                                <td class="text-end">
+                                                    $264.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-end">
+                                                    VAT (0%)
+                                                </td>
+                                                <td class="text-end">
+                                                    $0.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-end">
+                                                    Shipping Rate
+                                                </td>
+                                                <td class="text-end">
+                                                    $5.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="fs-3 text-gray-900 text-end">
+                                                    Grand Total
+                                                </td>
+                                                <td class="text-gray-900 fs-3 fw-bolder text-end">
+                                                    $269.00
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    @push('scripts')
-        <script>
-            "use strict";
+    {{-- Print Invoice Modal  --}}
+    <!-- Modal -->
+    <div class="modal fade" id="printInovice" tabindex="-1" aria-labelledby="printInoviceLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {{-- <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Invoice</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> --}}
+                <div class="modal-body">
+                    {{-- Invoice --}}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mx-auto w-100">
+                                <div class="d-flex justify-content-between flex-column flex-sm-row mb-19">
+                                    <h4 class="fw-bolder text-gray-800 fs-2qx pe-5 pb-7">INVOICE</h4>
 
-            // Class definition
-            var KTDocsDatatableSubtable = function() {
-                var table;
-                var datatable;
-                var template;
+                                    <div class="text-sm-end">
+                                        <a href="#" class="d-block mw-150px ms-sm-auto">
+                                            <img alt="Logo"
+                                                src="https://piqpaq.flixzaglobal.com/frontend/img/logo.png"
+                                                class="w-100">
+                                        </a>
 
-                // Private methods
-                const initDatatable = () => {
-                    // Set date data order
-                    const tableRows = table.querySelectorAll('tbody tr');
+                                        <div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
+                                            <div>144 Hampton Road , Ilford , Essex IG1 1PR</div>
 
-                    // tableRows.forEach(row => {
-                    //     const dateRow = row.querySelectorAll('td');
-                    //     const realDate = moment(dateRow[1].innerHTML, "DD MMM YYYY, LT")
-                    // .format(); // select date from 2nd column in table
+                                            <div>+447852802476</div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    //     // Skip template
-                    //     if (!row.closest('[data-kt-docs-datatable-subtable="subtable_template"]')) {
-                    //         dateRow[1].setAttribute('data-order', realDate);
-                    //         dateRow[1].innerText = moment(realDate).fromNow();
-                    //     }
-                    // });
+                                <div class="d-flex flex-column gap-7 gap-md-10">
+                                    <div class="fw-bold fs-2">
+                                        Dear Rasheduzzaman <span class="fs-6">(rashed@corpmail.com)</span>,<br>
+                                        <span class="text-muted fs-5">Here are your order details. We thank you for
+                                            your purchase.</span>
+                                    </div>
 
-                    // Get subtable template
-                    const subtable = document.querySelector('[data-kt-docs-datatable-subtable="subtable_template"]');
-                    template = subtable.cloneNode(true);
-                    template.classList.remove('d-none');
+                                    <div class="separator"></div>
 
-                    // Remove subtable template
-                    subtable.parentNode.removeChild(subtable);
+                                    <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
+                                        <div class="flex-root d-flex flex-column">
+                                            <span class="text-muted">Order ID</span>
+                                            <span class="fs-5">#14534</span>
+                                        </div>
 
-                    // Init datatable with search, length, and pagination
-                    datatable = $(table).DataTable({
-                        "info": false,
-                        "lengthChange": true,
-                        "pageLength": 6,
-                        "ordering": false,
-                        "paging": true,
-                        "searching": true,
-                        "language": {
-                            "lengthMenu": "Show _MENU_",
-                            "search": "Search:",
-                            "paginate": {
-                                "previous": "Previous",
-                                "next": "Next"
-                            },
-                            "info": "Showing _START_ to _END_ of _TOTAL_ entries"
-                        },
-                        "dom": "<'row mb-2'" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-start dt-toolbar'l>" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
-                            ">" +
-                            "<'table-responsive'tr>" +
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
+                                        <div class="flex-root d-flex flex-column">
+                                            <span class="text-muted">Date</span>
+                                            <span class="fs-5">14 August, 2024</span>
+                                        </div>
 
-                    // Re-init functions on every table re-draw
-                    datatable.on('draw', function() {
-                        resetSubtable();
-                        handleActionButton();
-                    });
-                }
+                                        <div class="flex-root d-flex flex-column">
+                                            <span class="text-muted">Invoice ID</span>
+                                            <span class="fs-5">#INV-000414</span>
+                                        </div>
 
-                // Subtable data sample
-                const data = [{
-                        image: '76',
-                        name: 'Go Pro 8',
-                        description: 'Latest version of Go Pro.',
-                        cost: '500.00',
-                        qty: '1',
-                        total: '500.00',
-                        stock: '12'
-                    },
-                    {
-                        image: '60',
-                        name: 'Bose Earbuds',
-                        description: 'Top quality earbuds from Bose.',
-                        cost: '300.00',
-                        qty: '1',
-                        total: '300.00',
-                        stock: '8'
-                    },
-                    {
-                        image: '211',
-                        name: 'Dry-fit Sports T-shirt',
-                        description: 'Comfortable sportswear for everyday use.',
-                        cost: '89.00',
-                        qty: '1',
-                        total: '89.00',
-                        stock: '18'
-                    },
-                    {
-                        image: '21',
-                        name: 'Apple Airpod 3',
-                        description: 'Apple\'s latest and most advanced earbuds.',
-                        cost: '200.00',
-                        qty: '2',
-                        total: '400.00',
-                        stock: '32'
-                    },
-                    {
-                        image: '83',
-                        name: 'Nike Pumps',
-                        description: 'Apple\'s latest and most advanced headphones.',
-                        cost: '200.00',
-                        qty: '1',
-                        total: '200.00',
-                        stock: '8'
-                    }
-                ];
+                                        <div class="flex-root d-flex flex-column">
+                                            <span class="text-muted">Shipment ID</span>
+                                            <span class="fs-5">#SHP-0025410</span>
+                                        </div>
+                                    </div>
 
-                // Handle action button
-                const handleActionButton = () => {
-                    const buttons = document.querySelectorAll('[data-kt-docs-datatable-subtable="expand_row"]');
+                                    <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
+                                        <div class="flex-root d-flex flex-column">
+                                            <span class="text-muted">Billing Address</span>
+                                            <span class="fs-6">
+                                                Unit 1/23 Hastings Road,<br>
+                                                Melbourne 3000,<br>
+                                                Victoria,<br>
+                                                Australia.
+                                            </span>
+                                        </div>
 
-                    // Sample row items counter --- for demo purpose only, remove this variable in your project
-                    const rowItems = [4, 1, 5, 1, 4, 2];
+                                        <div class="flex-root d-flex flex-column">
+                                            <span class="text-muted">Shipping Address</span>
+                                            <span class="fs-6">
+                                                Unit 1/23 Hastings Road,<br>
+                                                Melbourne 3000,<br>
+                                                Victoria,<br>
+                                                Australia.
+                                            </span>
+                                        </div>
+                                    </div>
 
-                    buttons.forEach((button, index) => {
-                        button.addEventListener('click', e => {
-                            e.stopImmediatePropagation();
-                            e.preventDefault();
+                                    <div class="d-flex justify-content-between flex-column">
+                                        <div class="table-responsive border-bottom mb-9">
+                                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                <thead>
+                                                    <tr class="border-bottom fs-6 fw-bold text-muted">
+                                                        <th class="min-w-175px pb-2 ps-5">Products</th>
+                                                        <th class="min-w-70px text-end pb-2">SKU</th>
+                                                        <th class="min-w-80px text-end pb-2">QTY</th>
+                                                        <th class="min-w-100px text-end pb-2 pe-5">Total</th>
+                                                    </tr>
+                                                </thead>
 
-                            const row = button.closest('tr');
-                            const rowClasses = ['isOpen', 'border-bottom-0'];
+                                                <tbody class="fw-semibold text-gray-600">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <a href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/catalog/edit-product.html"
+                                                                    class="symbol symbol-50px">
+                                                                    <span class="symbol-label"
+                                                                        style="background-image:url(https://preview.keenthemes.com/metronic8/demo1/assets/media//stock/ecommerce/1.png);"></span>
+                                                                </a>
 
-                            // Get total number of items to generate --- for demo purpose only, remove this code snippet in your project
-                            const demoData = [];
-                            for (var j = 0; j < rowItems[index]; j++) {
-                                demoData.push(data[j]);
-                            }
-                            // End of generating demo data
+                                                                <div class="ms-5">
+                                                                    <div class="fw-bold">Product 1</div>
+                                                                    <div class="fs-7 text-muted">Delivery Date:
+                                                                        14/08/2024</div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-end">
+                                                            04483007 </td>
+                                                        <td class="text-end">
+                                                            2
+                                                        </td>
+                                                        <td class="text-end">
+                                                            $240.00
+                                                        </td>
+                                                    </tr>
 
-                            // Handle subtable expanded state
-                            if (row.classList.contains('isOpen')) {
-                                // Remove all subtables from current order row
-                                while (row.nextSibling && row.nextSibling.getAttribute(
-                                        'data-kt-docs-datatable-subtable') === 'subtable_template') {
-                                    row.nextSibling.parentNode.removeChild(row.nextSibling);
-                                }
-                                row.classList.remove(...rowClasses);
-                                button.classList.remove('active');
-                            } else {
-                                populateTemplate(demoData, row);
-                                row.classList.add(...rowClasses);
-                                button.classList.add('active');
-                            }
-                        });
-                    });
-                }
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <a href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/catalog/edit-product.html"
+                                                                    class="symbol symbol-50px">
+                                                                    <span class="symbol-label"
+                                                                        style="background-image:url(https://preview.keenthemes.com/metronic8/demo1/assets/media//stock/ecommerce/100.png);"></span>
+                                                                </a>
 
-                // Populate template with content/data
-                const populateTemplate = (data, target) => {
-                    data.forEach((d, index) => {
-                        // Clone template node
-                        const newTemplate = template.cloneNode(true);
+                                                                <div class="ms-5">
+                                                                    <div class="fw-bold">Footwear</div>
+                                                                    <div class="fs-7 text-muted">Delivery Date:
+                                                                        14/08/2024</div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-end">
+                                                            02618001 </td>
+                                                        <td class="text-end">
+                                                            1
+                                                        </td>
+                                                        <td class="text-end">
+                                                            $24.00
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" class="text-end">
+                                                            Subtotal
+                                                        </td>
+                                                        <td class="text-end">
+                                                            $264.00
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" class="text-end">
+                                                            VAT (0%)
+                                                        </td>
+                                                        <td class="text-end">
+                                                            $0.00
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3"
+                                                            class="fs-3 text-gray-900 fw-bold text-end">
+                                                            Grand Total
+                                                        </td>
+                                                        <td class="text-gray-900 fs-3 fw-bolder text-end">
+                                                            $269.00
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        // Stock badges
-                        const lowStock = `<div class="badge badge-light-warning">Low Stock</div>`;
-                        const inStock = `<div class="badge badge-light-success">In Stock</div>`;
+                                <div class="d-flex flex-stack flex-wrap mt-lg-10 pt-05">
+                                    <div class="my-1 me-5">
+                                        <button type="button" class="btn btn-success my-1 me-5"
+                                            onclick="window.print();">Print Invoice</button>
 
-                        // Select data elements
-                        const image = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_image"]');
-                        const name = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_name"]');
-                        const description = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_description"]');
-                        const cost = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_cost"]');
-                        const qty = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_qty"]');
-                        const total = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_total"]');
-                        const stock = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_stock"]');
-
-                        // Populate elements with data
-                        const imageSrc = image.getAttribute('src');
-                        image.setAttribute('src', imageSrc + d.image + '.png');
-                        name.innerText = d.name;
-                        description.innerText = d.description;
-                        cost.innerText = d.cost;
-                        qty.innerText = d.qty;
-                        total.innerText = d.total;
-                        if (d.stock > 10) {
-                            stock.innerHTML = inStock;
-                        } else {
-                            stock.innerHTML = lowStock;
-                        }
-
-                        // New template border controller
-                        if (data.length === 1) {
-                            let borderClasses = ['rounded', 'rounded-end-0'];
-                            newTemplate.querySelectorAll('td')[0].classList.add(...borderClasses);
-                            borderClasses = ['rounded', 'rounded-start-0'];
-                            newTemplate.querySelectorAll('td')[4].classList.add(...borderClasses);
-                            newTemplate.classList.add('border-bottom-0');
-                        } else {
-                            if (index === (data.length - 1)) {
-                                let borderClasses = ['rounded-start', 'rounded-bottom-0'];
-                                newTemplate.querySelectorAll('td')[0].classList.add(...borderClasses);
-                                borderClasses = ['rounded-end', 'rounded-bottom-0'];
-                                newTemplate.querySelectorAll('td')[4].classList.add(...borderClasses);
-                            }
-                            if (index === 0) {
-                                let borderClasses = ['rounded-start', 'rounded-top-0'];
-                                newTemplate.querySelectorAll('td')[0].classList.add(...borderClasses);
-                                borderClasses = ['rounded-end', 'rounded-top-0'];
-                                newTemplate.querySelectorAll('td')[4].classList.add(...borderClasses);
-                                newTemplate.classList.add('border-bottom-0');
-                            }
-                        }
-
-                        // Insert new template into table
-                        const tbody = table.querySelector('tbody');
-                        tbody.insertBefore(newTemplate, target.nextSibling);
-                    });
-                }
-
-                // Reset subtable
-                const resetSubtable = () => {
-                    const subtables = document.querySelectorAll(
-                    '[data-kt-docs-datatable-subtable="subtable_template"]');
-                    subtables.forEach(st => {
-                        st.parentNode.removeChild(st);
-                    });
-
-                    const rows = table.querySelectorAll('tbody tr');
-                    rows.forEach(r => {
-                        r.classList.remove('isOpen');
-                        if (r.querySelector('[data-kt-docs-datatable-subtable="expand_row"]')) {
-                            r.querySelector('[data-kt-docs-datatable-subtable="expand_row"]').classList.remove(
-                                'active');
-                        }
-                    });
-                }
-
-                // Public methods
-                return {
-                    init: function() {
-                        table = document.querySelector('#kt_docs_datatable_subtable');
-
-                        if (!table) {
-                            return;
-                        }
-
-                        initDatatable();
-                        handleActionButton();
-                    }
-                }
-            }();
-
-            // Document Ready
-            KTUtil.onDOMContentLoaded(function() {
-                KTDocsDatatableSubtable.init();
-            });
-        </script>
-    @endpush
+                                        <button type="button" class="btn btn-light-success my-1">Download</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Invoice end --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Print Invoice Modal End --}}
+    {{-- view order Modal  --}}
+    <!-- Modal -->
+    <div class="modal fade" id="vieworderInovice" tabindex="-1" aria-labelledby="vieworderInoviceLabel"
+        aria-hidden="true">
+        <div class="modal-dialog        ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View Worder</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Print Invoice Modal End --}}
 </x-admin-app-layout>

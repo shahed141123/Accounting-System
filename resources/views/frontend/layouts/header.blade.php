@@ -272,9 +272,9 @@
                                                                                                 public_path($imagePath),
                                                                                             )
                                                                                                 ? asset($imagePath)
-                                                                                                : // : asset('frontend/img/no-product.png');
+                                                                                                : // : asset('frontend/img/no-product.jpg');
                                                                                                 asset(
-                                                                                                    'frontend/img/no-product.png',
+                                                                                                    'frontend/img/no-product.jpg',
                                                                                                 );
                                                                                         @endphp
                                                                                         <img src="{{ $imageSrc }}"
@@ -293,7 +293,7 @@
                                                                                         )
                                                                                             ? asset($thumbnailPath)
                                                                                             : asset(
-                                                                                                'frontend/img/no-product.png',
+                                                                                                'frontend/img/no-product.jpg',
                                                                                             );
                                                                                     @endphp
                                                                                     <img src="{{ $thumbnailSrc }}"

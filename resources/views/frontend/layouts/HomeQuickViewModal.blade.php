@@ -14,7 +14,7 @@
                                                 @foreach ($latest_product->multiImages->slice(0, 5) as $image)
                                                     @php
                                                         $imagePath = 'storage/' . $image->photo;
-                                                        $imageSrc = file_exists(public_path($imagePath)) ? asset($imagePath) : asset('frontend/img/no-product.png');
+                                                        $imageSrc = file_exists(public_path($imagePath)) ? asset($imagePath) : asset('frontend/img/no-product.jpg');
                                                     @endphp
                                                     <div class="slide">
                                                         <img src="{{ $imageSrc }}" alt="{{ $latest_product->name }}" />
@@ -23,7 +23,7 @@
                                             @else
                                                 @php
                                                     $thumbnailPath = 'storage/' . $latest_product->thumbnail;
-                                                    $thumbnailSrc = file_exists(public_path($thumbnailPath)) ? asset($thumbnailPath) : asset('frontend/img/no-product.png');
+                                                    $thumbnailSrc = file_exists(public_path($thumbnailPath)) ? asset($thumbnailPath) : asset('frontend/img/no-product.jpg');
                                                 @endphp
                                                 <div class="slide">
                                                     <img src="{{ $thumbnailSrc }}" alt="{{ $latest_product->name }}" />
@@ -35,7 +35,7 @@
                                                 @foreach ($latest_product->multiImages->slice(0, 5) as $image)
                                                     @php
                                                         $imagePath = 'storage/' . $image->photo;
-                                                        $imageSrc = file_exists(public_path($imagePath)) ? asset($imagePath) : asset('frontend/img/no-product.png');
+                                                        $imageSrc = file_exists(public_path($imagePath)) ? asset($imagePath) : asset('frontend/img/no-product.jpg');
                                                     @endphp
                                                     <div class="slide">
                                                         <div class="ps-gallery__item">
@@ -46,7 +46,7 @@
                                             @else
                                                 @php
                                                     $thumbnailPath = 'storage/' . $latest_product->thumbnail;
-                                                    $thumbnailSrc = file_exists(public_path($thumbnailPath)) ? asset($thumbnailPath) : asset('frontend/img/no-product.png');
+                                                    $thumbnailSrc = file_exists(public_path($thumbnailPath)) ? asset($thumbnailPath) : asset('frontend/img/no-product.jpg');
                                                 @endphp
                                                 <div class="slide">
                                                     <div class="ps-gallery__item">

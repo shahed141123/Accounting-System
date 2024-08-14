@@ -1,10 +1,10 @@
 <x-admin-app-layout :title="'Product List'">
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-4 mx-auto">
             <div class="card card-flush shadow-sm">
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
+                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
                                         class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
@@ -24,10 +24,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="card card-flush mt-10">
-        <div class="card-header bg-success align-items-center">
+        <div class="card-header bg-dark align-items-center">
             <h3 class="card-title text-white">Product List</h3>
             <div>
                 <a type="button" href="{{ route('admin.product.create') }}" class="btn btn-light-primary">
