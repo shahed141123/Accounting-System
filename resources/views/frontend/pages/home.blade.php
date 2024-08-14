@@ -363,10 +363,7 @@
                                                             data-toggle="modal"
                                                             data-target="#popupQuickview{{ $latest_product->id }}"><i
                                                                 class="fa fa-search"></i></a></div>
-                                                    <div class="ps-product__item" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to cart"><a href="#"
-                                                            data-toggle="modal" data-target="#popupAddcart"><i
-                                                                class="fa fa-shopping-basket"></i></a></div>
+
                                                 </div>
                                                 <div class="ps-product__badge">
                                                     <div class="ps-badge ps-badge--sale">Sale</div>
@@ -378,7 +375,7 @@
                                                         {{ $latest_product->name }}
                                                     </a>
                                                 </h5>
-                                                @auth
+                                                @if (Auth::check() && Auth::user()->status == 'active')
                                                     @if (!empty($latest_product->box_discount_price))
                                                         <div class="ps-product__meta">
                                                             <span
@@ -415,9 +412,7 @@
                                                                     class="icon-plus"></i></button>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning"
-                                                            href="#" data-toggle="modal"
-                                                            data-target="#popupAddcart">Add to cart</a></div> --}}
+
                                                     <div class="ps-product__item cart" data-toggle="tooltip"
                                                         data-placement="left" title="Add to cart"><a
                                                             href="#"><i class="fa fa-shopping-basket"></i></a>
@@ -608,10 +603,7 @@
                                                         data-toggle="modal"
                                                         data-target="#popupQuickview{{ $deal_product->id }}"><i
                                                             class="fa fa-search"></i></a></div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a href="#"
-                                                        data-toggle="modal" data-target="#popupAddcart"><i
-                                                            class="fa fa-shopping-basket"></i></a></div>
+
                                             </div>
                                             <div class="ps-product__badge">
                                                 <div class="ps-badge ps-badge--sale">Sale</div>
@@ -623,7 +615,7 @@
                                                     {{ $deal_product->name }}
                                                 </a>
                                             </h5>
-                                            @auth
+                                            @if (Auth::check() && Auth::user()->status == 'active')
                                                 @if (!empty($deal_product->box_discount_price))
                                                     <div class="ps-product__meta">
                                                         <span
@@ -646,7 +638,7 @@
                                                     <a href="{{ route('login') }}" class="btn btn-info btn-block">Login
                                                         to view price</a>
                                                 </div>
-                                            @endauth
+                                            @endif
                                             <div class="ps-product__actions ps-product__group-mobile">
                                                 <div class="ps-product__quantity">
                                                     <div class="def-number-input number-input safari_only">
@@ -664,8 +656,12 @@
                                                     data-placement="left" title="Add to cart"><a href="#"><i
                                                             class="fa fa-shopping-basket"></i></a></div>
                                                 <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="wishlist.html"><i
-                                                            class="fa fa-heart-o"></i></a></div>
+                                                    data-placement="left" title="Wishlist">
+                                                    <a class="add_to_wishlist"
+                                                        href="{{ route('wishlist.store', $deal_product->id) }}">
+                                                        <i class="fa fa-heart-o"></i>
+                                                    </a>
+                                                </div>
                                                 <div class="ps-product__item rotate" data-toggle="tooltip"
                                                     data-placement="left" title="Add to compare"><a
                                                         href="compare.html"><i class="fa fa-align-left"></i></a></div>

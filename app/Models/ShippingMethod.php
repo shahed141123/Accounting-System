@@ -6,10 +6,11 @@ use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PageBanner extends Model
+class ShippingMethod extends Model
 {
     use HasFactory, HasSlug;
-    protected $slugSourceColumn = 'page_name';
+    protected $slugSourceColumn = 'title';
+
     /**
      * The attributes that aren't mass assignable.
      *
