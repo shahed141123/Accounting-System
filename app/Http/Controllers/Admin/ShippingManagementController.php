@@ -16,7 +16,7 @@ class ShippingManagementController extends Controller
     public function index()
     {
         $data = [
-            'shipping_methods' => ShippingMethod::latest('id')->active()->get(),
+            'shipping_methods' => ShippingMethod::latest('id')->get(),
         ];
         return view('admin.pages.shippingManagement.index', $data);
     }
@@ -37,15 +37,15 @@ class ShippingManagementController extends Controller
     {
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'title' => 'nullable|string|max:250',
+            'title' => 'required|string|max:250',
             'location' => 'nullable|string|max:250',
             'duration' => 'nullable|string|max:250',
             'description' => 'nullable|string',
             'carrier' => 'nullable|string|max:250',
             'min_weight' => 'nullable|numeric|min:0',
             'max_weight' => 'nullable|numeric|min:0|gte:min_weight',
-            'price' => 'nullable|numeric|min:0',
-            'status' => 'nullable|string|in:active,inactive',
+            'price' => 'required|numeric|min:0',
+            'status' => 'required|string|in:active,inactive',
         ], [
             'max_weight.gte' => 'The maximum weight must be greater than or equal to the minimum weight.',
             'status.in' => 'The status must be either active or inactive.',
@@ -63,7 +63,7 @@ class ShippingManagementController extends Controller
         ]));
 
         // Redirect with success message
-        return redirect()->route('admin.shipping.index')->with('success', 'Shipping method has been created successfully!');
+        return redirect()->back()->with('success', 'Shipping method has been created successfully!');
     }
 
     /**
@@ -85,15 +85,15 @@ class ShippingManagementController extends Controller
 
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'title' => 'nullable|string|max:250',
+            'title' => 'required|string|max:250',
             'location' => 'nullable|string|max:250',
             'duration' => 'nullable|string|max:250',
             'description' => 'nullable|string',
             'carrier' => 'nullable|string|max:250',
             'min_weight' => 'nullable|numeric|min:0',
             'max_weight' => 'nullable|numeric|min:0|gte:min_weight',
-            'price' => 'nullable|numeric|min:0',
-            'status' => 'nullable|string|in:active,inactive',
+            'price' => 'required|numeric|min:0',
+            'status' => 'required|string|in:active,inactive',
         ], [
             'max_weight.gte' => 'The maximum weight must be greater than or equal to the minimum weight.',
             'status.in' => 'The status must be either active or inactive.',
@@ -111,7 +111,7 @@ class ShippingManagementController extends Controller
         ]));
 
         // Redirect with success message
-        return redirect()->route('admin.shipping.index')->with('success', 'Shipping method has been updated successfully!');
+        return redirect()->back()->with('success', 'Shipping method has been updated successfully!');
     }
 
     /**
@@ -119,13 +119,7 @@ class ShippingManagementController extends Controller
      */
     public function destroy($id)
     {
-        // Find the shipping method or fail
         $shippingMethod = ShippingMethod::findOrFail($id);
-
-        // Delete the shipping method
         $shippingMethod->delete();
-
-        // Redirect with success message
-        return redirect()->route('admin.shipping.index')->with('success', 'Shipping method has been deleted successfully!');
     }
 }

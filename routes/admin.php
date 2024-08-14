@@ -98,8 +98,9 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     );
     Route::resources(
         [
-            'blog-category'    => BlogCategoryController::class, //done
-            'blog-tags'        => BlogTagController::class, //done
+            'blog-category'       => BlogCategoryController::class, //done
+            'blog-tags'           => BlogTagController::class, //done
+            'shipping-management' => ShippingManagementController::class, //done
         ],
         ['except' => ['show', 'create', 'edit']]
     );
@@ -134,9 +135,9 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     Route::controller(StockManagementController::class)->group(function () {
         Route::get('/stock-management', 'index')->name('stock-management.index');
     });
-    Route::controller(ShippingManagementController::class)->group(function () {
-        Route::get('/shipping-management', 'index')->name('shipping-management.index');
-    });
+    // Route::controller(ShippingManagementController::class)->group(function () {
+    //     Route::get('/shipping-management', 'index')->name('shipping-management.index');
+    // });
     Route::controller(OrderManagementController::class)->group(function () {
         Route::get('/order-management', 'index')->name('order-management.index');
         Route::get('/order/report', 'orderReport')->name('orderReport');

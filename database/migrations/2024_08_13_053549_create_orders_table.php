@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('order_number')->unique();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('SET NULL');
-            $table->unsignedBigInteger('shipping_id')->nullable();
+            $table->foreignId('shipping_id')->nullable()->constrained('shipping_methods')->onDelete('SET NULL');
             $table->float('sub_total');
             $table->float('coupon')->nullable();
+            $table->float('discount')->nullable(); // Added for order-level discounts
             $table->float('total_amount');
             $table->integer('quantity');
-            $table->enum('payment_method',['cod','paypal'])->default('cod');
-            $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
-            $table->enum('status',['new','process','delivered','cancel'])->default('new');
-            // $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('SET NULL');
+            $table->string('payment_method')->default('cod');
+            $table->enum('payment_status', ['paid', 'unpaid', 'pending', 'failed'])->default('unpaid'); // Added more payment statuses
+            $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'])->default('new'); // Updated order statuses
+            $table->foreign('shipping_id')->references('id')->on('shipping_methods')->onDelete('SET NULL');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->string('post_code')->nullable();
             $table->text('address1');
             $table->text('address2')->nullable();
+            $table->text('special_instructions')->nullable(); // Added for special instructions
             $table->timestamps();
         });
     }
