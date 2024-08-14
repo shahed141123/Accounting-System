@@ -79,70 +79,12 @@
             <div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
-                data-bs-target="#shippingMethodsEdit">
-                <i class="fa-solid fa-plus"></i> Create
-            </button>
+                    data-bs-target="#shippingMethodsEdit">
+                    <i class="fa-solid fa-plus"></i> Create
+                </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="shippingMethodsEdit" tabindex="-1" aria-labelledby="shippingMethodsEditLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title" id="shippingMethodsEditLabel">Shipping Methods</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="kt_docs_formvalidation_text" class="form" action="#"
-                                autocomplete="off">
-                                <div class="fv-row mb-10">
-                                    <label class="fw-semibold fs-6 mb-2">Title</label>
-
-                                    <input type="text" name="title"
-                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                        placeholder="" value="Super Fast Delivery" />
-                                </div>
-                                <div class="fv-row mb-10">
-                                    <label class="fw-semibold fs-6 mb-2">Zone</label>
-
-                                    <input type="text" name="zone"
-                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                        placeholder="" value="ASIA" />
-                                </div>
-                                <div class="fv-row mb-10">
-                                    <label class="fw-semibold fs-6 mb-2">Cost</label>
-
-                                    <input type="text" name="zone"
-                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                        placeholder="" value="$5661" />
-                                </div>
-                                <div class="fv-row mb-10">
-                                    <label class="fw-semibold fs-6 mb-2">Status</label>
-
-                                    <select class="form-select" name="status" data-control="select2"
-                                        data-placeholder="Select an option">
-                                        <option></option>
-                                        <option value="1">Active</option>
-                                        <option value="2">Deactive</option>
-                                    </select>
-                                </div>
-
-                                <button id="kt_docs_formvalidation_text_submit" type="submit"
-                                    class="btn btn-primary">
-                                    <span class="indicator-label">
-                                        Validation Form
-                                    </span>
-                                    <span class="indicator-progress">
-                                        Please wait... <span
-                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                    </span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <!-- Modal -->
+                
             </div>
         </div>
         <div class="card-body table-responsive">
@@ -171,12 +113,13 @@
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="shippingMethodsEdit" tabindex="-1" aria-labelledby="shippingMethodsEditLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="shippingMethodsEdit" tabindex="-1"
+                                aria-labelledby="shippingMethodsEditLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header bg-primary">
-                                            <h5 class="modal-title" id="shippingMethodsEditLabel">Shipping Methods</h5>
+                                            <h5 class="modal-title" id="shippingMethodsEditLabel">Shipping Methods
+                                            </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
