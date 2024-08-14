@@ -965,6 +965,7 @@
     font-weight: normal;
     color: #767676;
     font-size: 14px;
+    word-break: break-word;
 }
 .user-dashboard .tab-wrap .right-content > div {
     height: 100%;

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -25,7 +27,10 @@ class ClientController extends Controller
     }
     public function wishlist()
     {
-        return view('user.pages.wishlist');
+        $data = [
+            'wishlists' => Wishlist::with('product')->where('user_id' , Auth::user()->id)->latest('id')->get(),
+        ];
+        return view('user.pages.wishlist',$data);
     }
     public function productData()
     {

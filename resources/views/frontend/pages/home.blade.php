@@ -354,7 +354,9 @@
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Wishlist">
-                                                        <a href="{#}"><i class="fa fa-heart-o"></i></a>
+                                                        <a class="add_to_wishlist"
+                                                            href="{{ route('wishlist.store', $latest_product->id) }}"><i
+                                                                class="fa fa-heart-o"></i></a>
                                                     </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Quick view"><a href="#"
@@ -422,7 +424,9 @@
                                                     </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Wishlist"><a
-                                                            href="wishlist.html"><i class="fa fa-heart-o"></i></a>
+                                                            class="add_to_wishlist"
+                                                            href="{{ route('wishlist.store', $latest_product->id) }}"><i
+                                                                class="fa fa-heart-o"></i></a>
                                                     </div>
                                                     <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
@@ -593,8 +597,12 @@
                                             </a>
                                             <div class="ps-product__actions">
                                                 <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a href="#"><i
-                                                            class="fa fa-heart-o"></i></a></div>
+                                                    data-placement="left" title="Wishlist">
+                                                    <a class="add_to_wishlist"
+                                                        href="{{ route('wishlist.store', $deal_product->id) }}">
+                                                        <i class="fa fa-heart-o"></i>
+                                                    </a>
+                                                </div>
                                                 <div class="ps-product__item" data-toggle="tooltip"
                                                     data-placement="left" title="Quick view"><a href="#"
                                                         data-toggle="modal"
