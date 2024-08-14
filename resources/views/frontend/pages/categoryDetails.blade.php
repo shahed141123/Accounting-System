@@ -66,9 +66,9 @@
                                     <div class="ps-categogy--grid">
                                         <div class="row m-0">
                                             @php
-                                                $category_products = $allcategory->products()->paginate(12);
+                                                $catProducts = $allcategory->products()->paginate(12);
                                             @endphp
-                                            @forelse ($category_products as $category_product)
+                                            @forelse ($catProducts as $category_product)
                                                 <div class="col-6 col-lg-4 col-xl-3 p-0">
                                                     <div class="ps-product ps-product--standard">
                                                         <div class="ps-product__thumbnail">

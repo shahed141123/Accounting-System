@@ -84,7 +84,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td>{{ $product->box_contains }}</td>
-                                                    <td>{{ $product->unit_price }}</td>
+                                                    <td>
+                                                        @if (Auth::check() && Auth::user()->status == 'active')
+                                                            {{ $product->unit_price }}
+                                                            @else
+                                                            <a href="{{ route('login') }}" class="btn btn-warning btn-block">Login</a>
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         @if (!empty($product->box_stock) && $product->box_stock > 0)
                                                             <i class="fa fa-check"></i>
@@ -109,10 +115,12 @@
                                             Stock</span></div>
                                 @endif
 
-                                @auth
+
+                                @if (Auth::check() && Auth::user()->status == 'active')
                                     @if (!empty($product->box_discount_price))
                                         <div class="ps-product__meta">
-                                            <span class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
+                                            <span
+                                                class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
                                             <span class="ps-product__del">£{{ $product->box_price }}</span>
                                         </div>
                                     @else
@@ -142,7 +150,7 @@
                                         <a href="{{ route('login') }}" class="btn btn-info btn-block">Login to view
                                             price</a>
                                     </div>
-                                @endauth
+                                @endif
 
 
 
