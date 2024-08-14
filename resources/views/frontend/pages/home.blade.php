@@ -302,8 +302,10 @@
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Wishlist">
-                                                        <a href="{#}"><i
-                                                                class="fa fa-heart-o"></i></a></div>
+                                                        <a class="add_to_wishlist"
+                                                            href="{{ route('wishlist.store', $latest_product->id) }}"><i
+                                                                class="fa fa-heart-o"></i></a>
+                                                    </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Quick view"><a href="#"
                                                             data-toggle="modal"
@@ -370,7 +372,9 @@
                                                     </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Wishlist"><a
-                                                            href="wishlist.html"><i class="fa fa-heart-o"></i></a>
+                                                            class="add_to_wishlist"
+                                                            href="{{ route('wishlist.store', $latest_product->id) }}"><i
+                                                                class="fa fa-heart-o"></i></a>
                                                     </div>
                                                     <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
@@ -548,17 +552,21 @@
                                                 </a>
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"
-                                                        data-placement="left" title="Wishlist"><a href="#"><i
-                                                                class="fa fa-heart-o"></i></a></div>
+                                                        data-placement="left" title="Wishlist">
+                                                        <a class="add_to_wishlist"
+                                                            href="{{ route('wishlist.store', $deal_product->id) }}">
+                                                            <i class="fa fa-heart-o"></i>
+                                                        </a>
+                                                    </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Quick view"><a href="#"
                                                             data-toggle="modal"
                                                             data-target="#popupQuickview{{ $deal_product->id }}"><i
                                                                 class="fa fa-search"></i></a></div>
-                                                    <div class="ps-product__item" data-toggle="tooltip"
+                                                    {{-- <div class="ps-product__item" data-toggle="tooltip"
                                                         data-placement="left" title="Add to cart"><a href="#"
                                                             data-toggle="modal" data-target="#popupAddcart"><i
-                                                                class="fa fa-shopping-basket"></i></a></div>
+                                                                class="fa fa-shopping-basket"></i></a></div> --}}
                                                 </div>
                                                 <div class="ps-product__badge">
                                                     <div class="ps-badge ps-badge--sale">Sale</div>
@@ -611,12 +619,17 @@
                                                         href="#" data-toggle="modal"
                                                         data-target="#popupAddcart">Add to cart</a></div> --}}
                                                     <div class="ps-product__item cart" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to cart"><a
-                                                            href="#"><i class="fa fa-shopping-basket"></i></a>
+                                                        data-placement="left" title="Add to cart">
+                                                        <a href="#">
+                                                            <i class="fa fa-shopping-basket"></i>
+                                                        </a>
                                                     </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
-                                                        data-placement="left" title="Wishlist"><a
-                                                            href="wishlist.html"><i class="fa fa-heart-o"></i></a>
+                                                        data-placement="left" title="Wishlist">
+                                                        <a class="add_to_wishlist"
+                                                            href="{{ route('wishlist.store', $deal_product->id) }}">
+                                                            <i class="fa fa-heart-o"></i>
+                                                        </a>
                                                     </div>
                                                     <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
@@ -649,8 +662,8 @@
                                     <div class="ps-blog__content">
                                         <div class="ps-blog__meta"> <span
                                                 class="ps-blog__date">{{ $blog->created_at->format('M d Y') }}</span><a
-                                                class="ps-blog__author" href="#">{{ $blog->author }}</a></div><a
-                                            class="ps-blog__title"
+                                                class="ps-blog__author" href="#">{{ $blog->author }}</a></div>
+                                        <a class="ps-blog__title"
                                             href="{{ route('blog.details', $blog->slug) }}">{{ $blog->title }}</a>
                                     </div>
                                 </div>
