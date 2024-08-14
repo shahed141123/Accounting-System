@@ -112,7 +112,7 @@
                             ],
                             'subMenu' => [
                                 [
-                                    'title' => 'Manage Products',
+                                    'title' => 'Products List',
                                     'routes' => ['admin.product.index', 'admin.product.create', 'admin.product.edit'],
                                     'route' => 'admin.product.index',
                                 ],
@@ -136,7 +136,7 @@
                                     'route' => 'admin.stock-management.index',
                                 ],
                                 [
-                                    'title' => 'Shipping Setup',
+                                    'title' => 'Shipping',
                                     'routes' => ['admin.shipping-management.index'],
                                     'route' => 'admin.shipping-management.index',
                                 ],
@@ -178,11 +178,6 @@
                                     'title' => 'Blog Category',
                                     'routes' => ['admin.blog-category.index'],
                                     'route' => 'admin.blog-category.index',
-                                ],
-                                [
-                                    'title' => 'Blog Tag',
-                                    'routes' => ['admin.blog-tags.index'],
-                                    'route' => 'admin.blog-tags.index',
                                 ],
                                 [
                                     'title' => 'Blog Post',

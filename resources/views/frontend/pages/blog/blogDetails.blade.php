@@ -8,10 +8,11 @@
             <div class="ps-post__content">
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        <div class="ps-blog__badge">
-                            <span class="ps-badge__item">MEDIC</span>
-                            <span class="ps-badge__item">PHARMACY</span>
-                            <span class="ps-badge__item">SALE</span></div>
+                        {{-- <div class="ps-blog__badge">
+                            @foreach ($blog as $slug)
+                                <span class="ps-badge__item">{{ $slug }}</span>
+                            @endforeach
+                        </div> --}}
                         <h1 class="ps-post__title">{{ $blog->title }}</h1>
                         <div class="ps-blog__meta"> <span class="ps-blog__date">{{ $blog->created_at->format("M d Y") }}</span>
                             <a class="ps-blog__author" href="#">{{ $blog->author }}</a></div>

@@ -19,7 +19,6 @@
         <div class="container">
             <div class="ps-header__text"> {{ optional($setting)->site_motto }} </div>
             <div class="ps-top__right">
-
                 <div class="ps-top__social">
                     <ul class="ps-social">
                         @if (optional($setting)->facebook_url)
@@ -74,6 +73,7 @@
             <div class="ps-header__right">
                 <ul class="ps-header__icons">
                     <li>
+                        {{-- Log Out --}}
                         <a class="ps-header__item" href="#" id="login-modal">
                             <i class="icon-user"></i>
                         </a>
@@ -93,7 +93,7 @@
                             </div>
                         @else
                             <div class="ps-login--modal">
-                                <form method="POST" action="{{ route('login') }}">
+                                {{-- <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">
                                         <x-input-label class="form-label form__label" for="email" :value="__('Email')" />
@@ -124,13 +124,51 @@
                                     <div class="pt-3">
                                         @if (Route::has('password.request'))
                                             <span>Lost your</span><a class="ps-account__link site_text_color_links"
-                                                href="{{ route('password.request') }}"> password?</a>
-                                            <span class="ps-5">Don't Have Account <a
+                                                href="{{ route('password.request') }}"> password?</a> <br>
+                                            <span class="ps-5">Account? <a
                                                     class="ps-account__link site_text_color_links"
                                                     href="{{ route('register') }}">Create New Accounts</a></span>
                                         @endif
                                     </div>
-                                </form>
+                                </form> --}}
+                                {{-- If Not Logged In --}}
+                                @guest
+                                    <div>
+                                        <p>Already Have An Account?</p>
+                                        <a class="ps-btn ps-btn--warning" href="{{ route('login') }}">
+                                            Log in
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p>Don't Have An Account?</p>
+                                        <a class="ps-btn ps-btn--warning" href="{{ route('register') }}">
+                                            Register
+                                        </a>
+                                    </div>
+                                @endguest
+
+                                {{-- If Logged In --}}
+                                @auth
+                                    <div>
+                                        <p>Manage Your Dashboard?</p>
+                                        <a class="ps-btn ps-btn--warning" href="{{ route('dashboard') }}">
+                                            Dashboard
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p>Want to Log Out?</p>
+                                        <a class="ps-btn ps-btn--warning" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Log Out
+                                        </a>
+                                        <form id="logout-form" method="POST" action="{{ route('logout') }}"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                @endauth
+
+
                             </div>
                         @endauth
                     </li>
@@ -365,7 +403,8 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-4 mx-auto mt-5">
-                                                            <a href="{{ route('category.products',$category->slug) }}" class="ps-btn ps-btn--warning">View
+                                                            <a href="{{ route('category.products', $category->slug) }}"
+                                                                class="ps-btn ps-btn--warning">View
                                                                 all</a>
                                                         </div>
                                                     </div>

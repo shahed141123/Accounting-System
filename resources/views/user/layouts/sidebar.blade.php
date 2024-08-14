@@ -33,7 +33,7 @@
         </div>
         <div class="user-name">
             <h5>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h5>
-            <h6>{{ Auth::user()->email }}</h6>
+            <h6 class="mb-0">{{ Auth::user()->email }}</h6>
         </div>
     </div>
 
