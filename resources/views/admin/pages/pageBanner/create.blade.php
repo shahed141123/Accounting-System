@@ -55,6 +55,27 @@
                         <x-metronic.file-input id="image" type="file" name="image"></x-metronic.file-input>
                     </div>
                     <div class="col-lg-4 mb-7">
+                        <x-metronic.label for="title" class="col-form-label fw-bold fs-6 ">{{ __('Title') }}
+                        </x-metronic.label>
+
+                        <x-metronic.input id="title" type="text" name="title" placeholder="Enter the Title"
+                            :value="old('title')"></x-metronic.input>
+                    </div>
+                    <div class="col-lg-4 mb-7">
+                        <x-metronic.label for="subtitle" class="col-form-label fw-bold fs-6 ">{{ __('Subtitle') }}
+                        </x-metronic.label>
+
+                        <x-metronic.input id="subtitle" type="text" name="subtitle" placeholder="Enter the Subtitle"
+                            :value="old('subtitle')"></x-metronic.input>
+                    </div>
+                    <div class="col-lg-4 mb-7">
+                        <x-metronic.label for="banner_link" class="col-form-label fw-bold fs-6 ">{{ __('Banner Link') }}
+                        </x-metronic.label>
+
+                        <x-metronic.input id="banner_link" type="text" name="banner_link" placeholder="Enter the Banner_Link"
+                            :value="old('banner_link')"></x-metronic.input>
+                    </div>
+                    <div class="col-lg-4 mb-7">
                         <x-metronic.label for="badge" class="col-form-label fw-bold fs-6 ">{{ __('Badge') }}
                         </x-metronic.label>
 

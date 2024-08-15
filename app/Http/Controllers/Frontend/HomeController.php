@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
+use App\Models\PageBanner;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -21,12 +22,16 @@ class HomeController extends Controller
         // $latest_products = Product::latest('id')->where('status','published')->get(['slug','meta_title','name','box_discount_price','box_price']);
 
         $data = [
-            
-            'blog_posts'       => BlogPost::active()->inRandomOrder()->get(),
-            'blog'             => BlogPost::inRandomOrder()->active()->first(),
-            'categorys'        => Category::orderBy('name', 'ASC')->active()->get(),
-            'latest_products'  => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->latest('id')->where('status', 'published')->limit(10)->get(),
-            'deal_products'    => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->latest('id')->limit(10)->get(),
+
+            'sliders'                   => PageBanner::active()->where('page_name','home_slider')->latest('id')->get(),
+            'home_slider_bottom_first'  => PageBanner::active()->where('page_name','home_slider_bottom_first')->latest('id')->first(),
+            'home_slider_bottom_second' => PageBanner::active()->where('page_name','home_slider_bottom_second')->latest('id')->first(),
+            'home_slider_bottom_third'  => PageBanner::active()->where('page_name','home_slider_bottom_third')->latest('id')->first(),
+            'blog_posts'                => BlogPost  ::active()->inRandomOrder()->get(),
+            'blog'                      => BlogPost  ::inRandomOrder()->active()->first(),
+            'categorys'                 => Category  ::orderBy('name', 'ASC')->active()->get(),
+            'latest_products'           => Product   ::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->latest('id')->where('status', 'published')->limit(10)->get(),
+            'deal_products'             => Product   ::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->latest('id')->limit(10)->get(),
         ];
         // dd($data['deal_products']);
         return view('frontend.pages.home', $data);

@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="card-body pt-0">
-            <table class=" table my-datatable align-middle table-row-dashed fs-6 gy-5 mb-0">
+            <table class="table my-datatable align-middle table-row-dashed fs-6 gy-5 mb-0">
                 <thead>
                     <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                         <th width="5%">Sl</th>
@@ -55,11 +55,11 @@
                                         data-bs-toggle="modal" data-bs-target="#faqViewModal_{{ $banner->id }}">
                                         <i class="fa-solid fa-expand"></i>
                                     </a>
-                                    <a href="{{ route('admin.faq.edit', $banner->id) }}"
+                                    <a href="{{ route('admin.banner.edit', $banner->id) }}"
                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="fa-solid fa-pen"></i>
                                     </a>
-                                    <a href="{{ route('admin.faq.destroy', $banner->id) }}"
+                                    <a href="{{ route('admin.banner.destroy', $banner->id) }}"
                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
                                         data-kt-docs-table-filter="delete_row">
                                         <i class="fa-solid fa-trash-can-arrow-up"></i>
