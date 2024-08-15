@@ -1,10 +1,11 @@
 <x-admin-app-layout :title="'Page Banner List'">
-    <div class="card card-flash">
-        <div class="card-header mt-6">
-            <div class="card-title">
+    <div class="card">
+        <div class="card-header bg-dark align-items-center d-flex justify-content-between">
+            <div>
+                <h1 class="mb-0 text-center w-100 text-white">Manage Your Blog Category</h1>
             </div>
-            <div class="card-toolbar">
-                <a href="{{ route('admin.banner.create') }}" class="btn btn-light-primary rounded-2">
+            <div>
+                <a href="#" class="btn btn-white rounded-2">
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -16,13 +17,13 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-                    Add Page Banner
+                    Add Banner
                 </a>
             </div>
         </div>
-        <div class="card-body pt-0">
-            <table class="table my-datatable align-middle table-row-dashed fs-6 gy-5 mb-0">
-                <thead>
+        <div class="card-body py-0">
+            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
+                <thead class="bg-light-danger">
                     <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                         <th width="5%">Sl</th>
                         <th width="40%">Image</th>
@@ -31,8 +32,7 @@
                         <th width="12%">Action</th>
                     </tr>
                 </thead>
-
-                <tbody class="fw-bold text-gray-600 text-center">
+                <tbody>
                     @if ($banners)
                         @foreach ($banners as $banner)
                             <tr class="odd">
@@ -40,7 +40,8 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                    <img class="w-450px h-50px" src="{{ asset('storage/'.$banner->image) }}" alt="{{ $banner->page_name }}">
+                                    <img class="w-450px h-50px" src="{{ asset('storage/' . $banner->image) }}"
+                                        alt="{{ $banner->page_name }}">
                                 </td>
                                 <td>
                                     {{ ucfirst($banner->page_name) }}
@@ -72,7 +73,6 @@
             </table>
         </div>
     </div>
-
     @push('scripts')
         <script>
             $(document).ready(function() {
