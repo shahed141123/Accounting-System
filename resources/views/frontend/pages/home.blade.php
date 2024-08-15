@@ -33,64 +33,55 @@
         <div class="ps-section__overlay">
             <div class="ps-section__loading"></div>
         </div>
-        <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true" data-owl-speed="15000"
-            data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1"
-            data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000"
-            data-owl-mousedrag="on">
-            <div class="owl-stage-outer">
-                <div class="owl-stage"
-                    style="transform: translate3d(-5709px, 0px, 0px); transition: 1s; width: 13321px;">
-                    @if ($sliders)
-                        @foreach ($sliders as $slider)
-                            <div class="owl-item">
-                                <div class="ps-banner" style="background:#F0F2F5;">
-                                    <div class="container container-initial">
-                                        <div class="ps-banner__block">
-                                            <div class="ps-banner__content">
-                                                <h2 class="ps-banner__title">{{ $slider->title }}</h2>
-                                                <div class="ps-banner__desc">{{ $slider->subtitle }}</div>
-                                                <div class="ps-banner__btn-group">
-                                                    <div class="ps-banner__btn">
-                                                        {{ $slider->badge }}
-                                                    </div>
-                                                </div><a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">{{ $slider->button_name }}</a>
-                                                {{-- <div class="ps-banner__persen bg-yellow ps-top">
-                                                    <small>only</small>$25
-                                                </div> --}}
-                                            </div>
-                                            <div class="ps-banner__thumnail">
-                                                <img class="ps-banner__round"
-                                                    src="{{ asset('frontend/img/round5.png') }}" alt="alt"><img
-                                                    class="ps-banner__image"
-                                                    src="{{ asset('storage/'.$slider->image) }}"
-                                                    alt="alt">
+        <div class="custom-carousel owl-loaded owl-drag">
+            @if ($sliders && count($sliders) > 0)
+                @foreach ($sliders as $slider)
+                    <div class="owl-item">
+                        <div class="ps-banner" style="background:#F0F2F5;">
+                            <div class="container container-initial">
+                                <div class="ps-banner__block">
+                                    <div class="ps-banner__content">
+                                        <h2 class="ps-banner__title">{{ $slider->title }}</h2>
+                                        <div class="ps-banner__desc">{{ $slider->subtitle }}</div>
+                                        <div class="ps-banner__btn-group">
+                                            <div class="ps-banner__btn">
+                                                {{ $slider->badge }}
                                             </div>
                                         </div>
+                                        <a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">
+                                            {{ $slider->button_name }}
+                                        </a>
+                                    </div>
+                                    <div class="ps-banner__thumnail">
+                                        <img class="ps-banner__round" src="{{ asset('frontend/img/round5.png') }}"
+                                            alt="alt">
+                                        <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}"
+                                            onerror="this.onerror=null; this.src='{{ asset('frontend/img/noBnnnerImg.png') }}';"
+                                            alt="alt">
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    @else
-                    @endif
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                {{-- Show the default image if there is no slider data --}}
+                <div class="">
+                    <img class="w-100" style="height: 550px; object-fit: cover;"
+                        src="{{ asset('frontend/img/noBnnnerImg.png') }}" alt="alt">
                 </div>
-            </div>
-            <div class="owl-nav">
+            @endif
+            {{-- <div class="owl-nav">
                 <button type="button" role="presentation" class="owl-prev">
                     <i class="fa fa-chevron-left"></i>
                 </button>
                 <button type="button" role="presentation" class="owl-next">
                     <i class="fa fa-chevron-right"></i>
                 </button>
-            </div>
-            {{-- <div class="owl-dots">
-                <button role="button" class="owl-dot">
-                </button>
-                <button role="button" class="owl-dot">
-                </button>
-                <button role="button" class="owl-dot">
-                </button>
             </div> --}}
         </div>
+
+
     </section>
     <div class="ps-home ps-home--14">
         <div class="ps-home__content">
@@ -100,13 +91,17 @@
                         @if ($home_slider_bottom_first)
                             <div class="col-12 col-md-4">
                                 <div class="ps-promo__item"><img class="ps-promo__banner"
-                                        src="{{ asset('storage/'.$home_slider_bottom_first->image) }}" alt="alt" />
-                                    <div class="ps-promo__content"><span class="ps-promo__badge">{{ $home_slider_bottom_first->badge }}</span>
-                                        <h4 class="text-dark ps-promo__name">{{ $home_slider_bottom_first->title }}</h4>
+                                        src="{{ asset('storage/' . $home_slider_bottom_first->image) }}"
+                                        alt="alt" />
+                                    <div class="ps-promo__content"><span
+                                            class="ps-promo__badge">{{ $home_slider_bottom_first->badge }}</span>
+                                        <h4 class="text-dark ps-promo__name">{{ $home_slider_bottom_first->title }}
+                                        </h4>
                                         <div class="ps-promo__image">
-                                            <img src="{{ asset('frontend/img/icon/icon10.png') }}"
-                                                alt="" /></div>
-                                        <a class="btn-green ps-promo__btn" href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
+                                            <img src="{{ asset('frontend/img/icon/icon10.png') }}" alt="" />
+                                        </div>
+                                        <a class="btn-green ps-promo__btn"
+                                            href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -114,11 +109,15 @@
                         @if ($home_slider_bottom_second)
                             <div class="col-12 col-md-4">
                                 <div class="ps-promo__item"><img class="ps-promo__banner"
-                                        src="{{ asset('storage/'.$home_slider_bottom_second->image) }}" alt="alt" />
+                                        src="{{ asset('storage/' . $home_slider_bottom_second->image) }}"
+                                        alt="alt" />
                                     <div class="ps-promo__content">
-                                        <h4 class="text-white ps-promo__name">{{ $home_slider_bottom_second->title }}ement
+                                        <h4 class="text-white ps-promo__name">
+                                            {{ $home_slider_bottom_second->title }}ement
                                         </h4>
-                                        <div class="ps-promo__sale text-white">{{ $home_slider_bottom_first->subtitle }}</div><a class="btn-green ps-promo__btn"
+                                        <div class="ps-promo__sale text-white">
+                                            {{ $home_slider_bottom_first->subtitle }}</div><a
+                                            class="btn-green ps-promo__btn"
                                             href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
                                     </div>
                                 </div>
@@ -127,12 +126,16 @@
                         @if ($home_slider_bottom_third)
                             <div class="col-12 col-md-4">
                                 <div class="ps-promo__item"><img class="ps-promo__banner"
-                                        src="{{ asset('storage/'.$home_slider_bottom_third->image) }}" alt="alt" />
+                                        src="{{ asset('storage/' . $home_slider_bottom_third->image) }}"
+                                        alt="alt" />
                                     <div class="ps-promo__content">
-                                        <h4 class="text-white ps-promo__name">{{ $home_slider_bottom_third->title }}</h4>
+                                        <h4 class="text-white ps-promo__name">{{ $home_slider_bottom_third->title }}
+                                        </h4>
                                         <div class="ps-promo__meta">
-                                            <p class="ps-promo__price text-warning">{{ $home_slider_bottom_first->subtitle }}</p>
-                                        </div><a class="btn-green ps-promo__btn" href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
+                                            <p class="ps-promo__price text-warning">
+                                                {{ $home_slider_bottom_first->subtitle }}</p>
+                                        </div><a class="btn-green ps-promo__btn"
+                                            href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +145,7 @@
             </div>
             {{-- <section class="ps-product--type">
                 <div class="container">
-                    <h3 class="ps-section__title">Popular categories</h3>
+                    <h3 class="ps-section__title" style="font-size: 30px;">Popular categories</h3>
                     <div class="ps-category__content">
 
                             <a class="ps-category__item" href="{{ route('category.products', $category->slug) }}">
@@ -155,13 +158,14 @@
                 </div>
             </section> --}}
             <section class="ps-section--categories my-5">
-                <h3 class="ps-section__title">Popular categories</h3>
+                <h3 class="ps-section__title" style="font-size: 30px;">Popular categories</h3>
                 <div class="container pt-5">
                     <div class="ps-section__content">
                         <div class="ps-categories__list">
                             @foreach ($categorys as $category)
                                 <div class="ps-categories__item">
-                                    <a class="ps-categories__link" href="{{ route('category.products',$category->slug) }}">
+                                    <a class="ps-categories__link"
+                                        href="{{ route('category.products', $category->slug) }}">
                                         @php
                                             $logoPath = 'storage/' . $category->logo;
                                             $logoSrc = file_exists(public_path($logoPath))
@@ -171,7 +175,8 @@
                                         <img class="ps-category__icon" src="{{ $logoSrc }}"
                                             alt="{{ $category->name }}">
                                     </a>
-                                    <a class="ps-categories__name" href="{{ route('category.products',$category->slug) }}">{{ $category->name }}</a>
+                                    <a class="ps-categories__name"
+                                        href="{{ route('category.products', $category->slug) }}">{{ $category->name }}</a>
                                 </div>
                             @endforeach
                         </div>
@@ -183,7 +188,7 @@
             </section>
             <section class="ps-section--latest-horizontal mt-5">
                 <div class="container">
-                    <h3 class="ps-section__title">Latest products</h3>
+                    <h3 class="ps-section__title" style="font-size: 30px;">Latest products</h3>
                     <div class="ps-section__content">
                         <div class="row m-0">
                             @foreach ($latest_products as $latest_product)
@@ -312,8 +317,8 @@
             </div>
         </section>
         <div class="container">
+            <h3 class="ps-section__title text-center" style="font-size: 30px;">This week deals</h3>
             <div class="ps-promo ps-promo--home">
-                <h3 class="ps-promo__title">This week deals</h3>
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="ps-promo__item"><img class="ps-promo__banner"
@@ -404,7 +409,7 @@
             </div>
             <section class="ps-section--deals">
                 <div class="ps-section__header">
-                    <h3 class="ps-section__title">Best Deals of the week!</h3>
+                    <h3 class="ps-section__title" style="font-size: 30px;">Best Deals of the week!</h3>
                     <div class="ps-countdown">
                         <div class="ps-countdown__content">
                             <div class="ps-countdown__block ps-countdown__days">
@@ -552,7 +557,7 @@
 
         </div>
         <section class="ps-section--blog container mb-5">
-            <h3 class="ps-section__title">From the blog</h3>
+            <h3 class="ps-section__title" style="font-size: 30px;">From the blog</h3>
             <div class="ps-section__carousel">
                 <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true"
                     data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
@@ -649,6 +654,22 @@
                         items: 5
                     }
                 }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.banner-carousel').owlCarousel({
+                nav: true, // Enable navigation arrows
+                dots: true, // Enable dots if needed
+                loop: true, // Loop through items
+                items: 1, // Number of items to display
+                navText: ["<i class='fa fa-chevron-left'></i>",
+                    "<i class='fa fa-chevron-right'></i>"
+                ], // Custom arrow icons
+                autoplay: true, // Enable autoplay
+                autoplayTimeout: 5000, // Time between transitions
+                smartSpeed: 1000, // Transition speed
             });
         });
     </script>

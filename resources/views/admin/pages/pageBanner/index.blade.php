@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header bg-dark align-items-center d-flex justify-content-between">
             <div>
-                <h1 class="mb-0 text-center w-100 text-white">Manage Your Baners</h1>
+                <h1 class="mb-0 text-center w-100 text-white">Manage Your Blog Category</h1>
             </div>
             <div>
                 <a href="#" class="btn btn-white rounded-2">
@@ -21,9 +21,9 @@
                 </a>
             </div>
         </div>
-        <div class="card-body pt-0">
-            <table class="table my-datatable align-middle table-row-dashed fs-6 gy-5 mb-0">
-                <thead>
+        <div class="card-body py-0">
+            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
+                <thead class="bg-light-danger">
                     <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                         <th width="5%">Sl</th>
                         <th width="40%">Image</th>
@@ -73,7 +73,6 @@
             </table>
         </div>
     </div>
-
     @push('scripts')
         <script>
             $(document).ready(function() {

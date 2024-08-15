@@ -23,44 +23,53 @@
             color: #ffd700;
             /* Gold color for filled stars */
         }
+
+        .ps-header.ps-header--sticky {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: top 0.3s;
+            background-color: #fff;
+            /* Ensure a background color if needed */
+        }
     </style>
+
     <div class="ps-categogy ps-categogy--dark">
         <div class="container">
-            <!-- Breadcrumbs -->
-            <ul class="ps-breadcrumb">
-                <li class="ps-breadcrumb__item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="ps-breadcrumb__item active" aria-current="page">{{ $category->name }}</li>
-            </ul>
-
-            <!-- Category Title -->
-            <h1 class="ps-categogy__name">{{ $category->name }}<sup>({{ $category->products()->count() }})</sup></h1>
-
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Breadcrumbs -->
+                    <ul class="ps-breadcrumb">
+                        <li class="ps-breadcrumb__item"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="ps-breadcrumb__item active" aria-current="page">{{ $category->name }}</li>
+                    </ul>
+                    <!-- Category Title -->
+                    <h1 class="ps-categogy__name text-info" style="font-size: 25px">{{ $category->name }}<sup>({{ $category->products()->count() }})</sup>
+                    </h1>
+                </div>
+                <div class="col-lg-9">
+                    <div>
+                        {{-- <img class="img-fluid" style="object-fit: cover;height: 125px;width: 100%;"
+                            src="{{ asset('storage/' . $category->banner_image) }}" alt=""> --}}
+                        <img class="img-fluid ps-categogy__banner" style="object-fit: cover;height: 125px;width: 100%;"
+                            src="{{ asset('storage/' . $category->banner_image) }}" alt="">
+                    </div>
+                </div>
+            </div>
             <!-- Main Content -->
-            <div class="ps-categogy__content">
+            <div class="ps-categogy__content pt-2">
                 <div class="row row-reverse">
-
                     <!-- Products Section -->
                     <div class="col-12 col-md-9">
-                        <!-- Tabs -->
-                        {{-- <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            @foreach ($categories as $allcategory)
-                                <li class="nav-item">
-                                    <a class="nav-link {{ $allcategory->id == $category->id ? 'active' : '' }}"
-                                        id="home-tab{{ $allcategory->id }}" data-toggle="tab"
-                                        href="#home{{ $allcategory->id }}" role="tab"
-                                        aria-controls="home{{ $allcategory->id }}"
-                                        aria-selected="{{ $allcategory->id == $category->id ? 'true' : 'false' }}">
-                                        {{ $allcategory->name }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul> --}}
-
                         <div class="tab-content" id="myTabContent">
                             @foreach ($categories as $allcategory)
                                 <div class="tab-pane fade {{ $allcategory->id == $category->id ? 'show active' : '' }}"
                                     id="home{{ $allcategory->id }}" role="tabpanel"
-                                    aria-labelledby="home-tab{{ $allcategory->id }}">
+                                    aria-labelledby="home-tab{{ $allcategory->id }}"
+                                    data-category-id="{{ $allcategory->id }}"
+                                    data-category-name="{{ $allcategory->name }}"
+                                    data-product-count="{{ $allcategory->products()->count() }}"
+                                    data-banner-image="{{ asset('storage/' . $allcategory->banner_image) }}">
 
                                     <!-- Products Grid -->
                                     <div class="ps-categogy--grid">
@@ -77,7 +86,8 @@
                                                                 <figure>
                                                                     @foreach ($category_product->multiImages->slice(0, 2) as $image)
                                                                         <img src="{{ asset('storage/' . $image->photo) }}"
-                                                                            alt="Product Image" />
+                                                                            alt="Product Image"
+                                                                            onerror="this.onerror=null; this.src='{{ asset('frontend/img/no-product.jpg') }}';" />
                                                                     @endforeach
                                                                 </figure>
                                                             </a>
@@ -129,25 +139,6 @@
                                                                         price</a>
                                                                 </div>
                                                             @endauth
-                                                            <div class="ps-product__rating">
-                                                                <div class="ps-rating-stars">
-                                                                    <span class="star" data-value="1">&#9733;</span>
-                                                                    <span class="star" data-value="2">&#9733;</span>
-                                                                    <span class="star" data-value="3">&#9733;</span>
-                                                                    <span class="star" data-value="4">&#9733;</span>
-                                                                    <span class="star" data-value="5">&#9733;</span>
-                                                                </div>
-                                                                <select class="ps-rating" data-read-only="true"
-                                                                    style="display:none;">
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4" selected="selected">4
-                                                                    </option>
-                                                                    <option value="5">5</option>
-                                                                </select>
-                                                                <span class="ps-product__review">(Reviews)</span>
-                                                            </div>
                                                             <div class="ps-product__desc">
                                                                 <ul class="ps-product__list">
                                                                     <li>Study history up to 30 days</li>
@@ -175,9 +166,8 @@
                                                                         data-toggle="modal"
                                                                         data-target="#popupAddcart">Add to cart</a>
                                                                 </div>
-                                                                <div class="ps-product__item cart"
-                                                                    data-toggle="tooltip" data-placement="left"
-                                                                    title="Add to cart">
+                                                                <div class="ps-product__item cart" data-toggle="tooltip"
+                                                                    data-placement="left" title="Add to cart">
                                                                     <a href="#"><i
                                                                             class="fa fa-shopping-basket"></i></a>
                                                                 </div>
@@ -198,7 +188,9 @@
                                                 </div>
                                             @empty
                                                 <div class="col-12 text-center">
-                                                    <p>No products available in this category.</p>
+                                                    <img class="img-fluid"
+                                                        src="{{ asset('frontend/img/no-products-category.jpg') }}"
+                                                        alt="">
                                                 </div>
                                             @endforelse
                                         </div>
@@ -228,14 +220,14 @@
 
                     <!-- Sidebar Widgets -->
                     <div class="col-12 col-md-3">
-                        <div class="ps-widget ps-widget--product">
+                        <div class="ps-widget ps-widget--product px-0">
                             <div class="ps-widget__block pb-0">
                                 <a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i></a>
                                 <div class="ps-widget__content ps-widget__category">
-                                    <ul class="menu--mobile nav nav-tabs" id="myTab" role="tablist">
+                                    <ul class="menu--mobile nav nav-tabs border-0" id="myTab" role="tablist">
                                         @foreach ($categories as $allcategory)
-                                            <li class="nav-item col-12">
-                                                <a class="nav-link {{ $allcategory->id == $category->id ? 'active' : '' }}"
+                                            <li class="nav-item col-12 py-0 mb-0">
+                                                <a class="nav-link p-4 {{ $allcategory->id == $category->id ? 'active' : '' }}"
                                                     id="home-tab{{ $allcategory->id }}" data-toggle="tab"
                                                     href="#home{{ $allcategory->id }}" role="tab"
                                                     aria-controls="home{{ $allcategory->id }}"
@@ -247,101 +239,94 @@
                                     </ul>
                                 </div>
                             </div>
-
-                            <!-- Rating Filter Widget -->
-                            <div class="ps-widget__block">
-                                <h4 class="ps-widget__title">Ratings</h4>
-                                <a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i></a>
-                                <div class="ps-widget__content">
-                                    <div class="ps-widget__item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="rating5">
-                                            <label class="custom-control-label" for="rating5"></label>
-                                            <div class="custom-label">
-                                                <select class="ps-rating" data-read-only="true">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select><span>(6)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ps-widget__item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="rating4">
-                                            <label class="custom-control-label" for="rating4"></label>
-                                            <div class="custom-label">
-                                                <select class="ps-rating" data-read-only="true">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4" selected="selected">4</option>
-                                                    <option value="5">5</option>
-                                                </select><span>(9)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Promo Banner -->
-                            <div class="ps-widget__promo">
-                                <img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}" alt="Promo Banner">
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Newsletter Section -->
-        <section class="ps-section--newsletter ps-section--newsletter-inline">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12 col-lg-7">
-                        <h3 class="ps-section__title">Join our newsletter and get £5 discount for your first order</h3>
-                    </div>
-                    <div class="col-12 col-lg-5">
-                        <div class="ps-section__content">
-                            <form action="{{ route('subscription.add') }}" method="post">
-                                @csrf
-                                <div class="ps-form--subscribe">
-                                    <div class="ps-form__control">
-                                        <input class="form-control ps-input" type="email" name="email"
-                                            placeholder="Enter your email address" required>
-                                        <button class="ps-btn ps-btn--warning" type="submit">Subscribe</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
+
     @push('scripts')
+        <!-- JavaScript Code -->
         <script>
-            $(document).ready(function() {
-                $('#myTab a:first').tab('show');
+            document.addEventListener('DOMContentLoaded', function() {
+                var currentCategoryId = @json($category->id);
+
+                function activateTab() {
+                    var tabs = document.querySelectorAll('#myTab a');
+                    tabs.forEach(function(tab) {
+                        var tabId = tab.getAttribute('href').substring(1);
+                        if (tabId === 'home' + currentCategoryId) {
+                            tab.classList.add('active');
+                            document.querySelector('#' + tabId).classList.add('show', 'active');
+                        } else {
+                            tab.classList.remove('active');
+                            document.querySelector('#' + tabId).classList.remove('show', 'active');
+                        }
+                    });
+                    updateCategoryContent(currentCategoryId);
+                }
+
+                function updateCategoryContent(categoryId) {
+                    var selectedCategory = document.querySelector('#home' + categoryId);
+                    var categoryNameElement = document.querySelector('.ps-categogy__name');
+                    var bannerImageElement = document.querySelector('.ps-categogy__banner');
+
+                    if (selectedCategory) {
+                        var newName = selectedCategory.getAttribute('data-category-name');
+                        var productCount = selectedCategory.getAttribute('data-product-count');
+                        var newBannerImage = selectedCategory.getAttribute('data-banner-image');
+
+                        if (newName && categoryNameElement) {
+                            categoryNameElement.innerHTML = `${newName}<sup>(${productCount})</sup>`;
+                        }
+
+                        if (newBannerImage && bannerImageElement) {
+                            bannerImageElement.src = newBannerImage;
+                        }
+                    }
+                }
+
+                activateTab();
+
+                document.querySelectorAll('#myTab a').forEach(function(tab) {
+                    tab.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var targetId = this.getAttribute('href').substring(1);
+
+                        document.querySelectorAll('#myTab a').forEach(function(tab) {
+                            tab.classList.remove('active');
+                        });
+                        document.querySelectorAll('.tab-pane').forEach(function(pane) {
+                            pane.classList.remove('show', 'active');
+                        });
+
+                        this.classList.add('active');
+                        var targetPane = document.getElementById(targetId);
+                        targetPane.classList.add('show', 'active');
+
+                        var categoryId = targetPane.getAttribute('data-category-id');
+                        updateCategoryContent(categoryId);
+                    });
+                });
             });
         </script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const selectElement = document.querySelector('.ps-rating');
-                const stars = document.querySelectorAll('.ps-rating-stars .star');
+            // Handle scroll to show/hide header with transition
+            var header = document.querySelector('.ps-header.ps-header--sticky');
+            var lastScrollTop = 0;
 
-                function updateStars(rating) {
-                    stars.forEach(star => {
-                        if (parseInt(star.dataset.value) <= rating) {
-                            star.classList.add('filled');
-                        } else {
-                            star.classList.remove('filled');
-                        }
-                    });
+            window.addEventListener('scroll', function() {
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    header.classList.remove('visible');
+                } else {
+                    // Scrolling up
+                    header.classList.add('visible');
                 }
-                updateStars(parseInt(selectElement.value));
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
             });
         </script>
     @endpush
