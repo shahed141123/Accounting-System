@@ -138,11 +138,16 @@ class HomeController extends Controller
     }
     public function checkout()
     {
+        $formattedSubtotal = Cart::instance('cart')->subtotal();
+        $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
+        $subTotal = (float)$cleanSubtotal;
         $data = [
-            'cartItems' => Cart::instance('cart')->content(),
-            'total'     => Cart::instance('cart')->total(),
-            'cartCount' => Cart::instance('cart')->count(),
-            'subTotal'  => Cart::instance('cart')->subtotal(),
+            'shippingmethods' => ShippingMethod::active()->get(),
+            'cartItems'       => Cart::instance('cart')->content(),
+            'total'           => Cart::instance('cart')->total(),
+            'cartCount'       => Cart::instance('cart')->count(),
+            'subTotal'        => $subTotal,
+            // 'subTotal'        => Cart::instance('cart')->subtotal(),
         ];
         // dd(Cart::instance('cart'));
         return view('frontend.pages.cart.checkout', $data);
