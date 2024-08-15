@@ -206,7 +206,7 @@
 
                                     <!-- Pagination -->
                                     <div class="ps-pagination">
-                                        {{ $category_products->links() }}
+                                        {{ $catProducts->links() }}
                                     </div>
 
                                     <!-- Delivery Info -->

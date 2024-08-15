@@ -58,7 +58,7 @@ class PageBannerController extends Controller
         $uploadedFiles = [];
 
         if ($request->hasFile('image')) {
-            $uploadedFiles['image'] = customUpload($request->file('image'), $filePath, $request->page_name . '_image');
+            $uploadedFiles['image'] = customUpload($request->file('image'), $filePath);
 
             if ($uploadedFiles['image']['status'] === 0) {
                 return redirect()->back()->with('error', $uploadedFiles['image']['error_message']);
@@ -71,6 +71,9 @@ class PageBannerController extends Controller
             'badge'       => $request->badge,
             'button_name' => $request->button_name,
             'button_link' => $request->button_link,
+            'title'       => $request->title,
+            'subtitle'    => $request->subtitle,
+            'banner_link' => $request->banner_link,
             'status'      => $request->status,
         ]);
 
@@ -132,19 +135,22 @@ class PageBannerController extends Controller
             if ($oldFile) {
                 Storage::delete("public/" . $oldFile);
             }
-            $uploadedFiles['image'] = customUpload($request->file('image'), $filePath, $request->page_name . '_image');
+            $uploadedFiles['image'] = customUpload($request->file('image'), $filePath);
 
             if ($uploadedFiles['image']['status'] === 0) {
                 return redirect()->back()->with('error', $uploadedFiles['image']['error_message']);
             }
         }
 
-        PageBanner::create([
+        $banner->update([
             'page_name'   => $request->page_name,
             'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : $banner->image,
             'badge'       => $request->badge,
             'button_name' => $request->button_name,
             'button_link' => $request->button_link,
+            'title'       => $request->title,
+            'subtitle'    => $request->subtitle,
+            'banner_link' => $request->banner_link,
             'status'      => $request->status,
         ]);
 
