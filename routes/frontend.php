@@ -11,12 +11,11 @@ Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('privacy/policy', [HomeController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('terms-condition', [HomeController::class, 'termsCondition'])->name('termsCondition');
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
-Route::get('blogs', [HomeController::class, 'allProducts'])->name('allProducts');
-Route::get('allproducts', [HomeController::class, 'allBlog'])->name('allBlog');
+Route::get('blogs', [HomeController::class, 'allBlog'])->name('allBlog');
+Route::get('allproducts', [HomeController::class, 'allproducts'])->name('allproducts');
 Route::get('blog-details/{slug}', [HomeController::class, 'blogDetails'])->name('blog.details');
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('return-policy', [HomeController::class, 'returnPolicy'])->name('returnPolicy');
-Route::get('category-products', [HomeController::class, 'allProducts'])->name('all.products');
 Route::get('category/{slug}', [HomeController::class, 'categoryProducts'])->name('category.products');
 Route::get('product/details/{slug}', [HomeController::class, 'productDetails'])->name('product.details');
 
