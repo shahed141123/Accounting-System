@@ -53,7 +53,8 @@
                                                     <div class="ps-banner__btn">
                                                         {{ $slider->badge }}
                                                     </div>
-                                                </div><a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">{{ $slider->button_name }}</a>
+                                                </div><a class="bg-warning ps-banner__shop"
+                                                    href="{{ $slider->button_link }}">{{ $slider->button_name }}</a>
                                                 {{-- <div class="ps-banner__persen bg-yellow ps-top">
                                                     <small>only</small>$25
                                                 </div> --}}
@@ -62,8 +63,7 @@
                                                 <img class="ps-banner__round"
                                                     src="{{ asset('frontend/img/round5.png') }}" alt="alt"><img
                                                     class="ps-banner__image"
-                                                    src="{{ asset('storage/'.$slider->image) }}"
-                                                    alt="alt">
+                                                    src="{{ asset('storage/' . $slider->image) }}" alt="alt">
                                             </div>
                                         </div>
                                     </div>
@@ -100,13 +100,15 @@
                         @if ($home_slider_bottom_first)
                             <div class="col-12 col-md-4">
                                 <div class="ps-promo__item"><img class="ps-promo__banner"
-                                        src="{{ asset('storage/'.$home_slider_bottom_first->image) }}" alt="alt" />
-                                    <div class="ps-promo__content"><span class="ps-promo__badge">{{ $home_slider_bottom_first->badge }}</span>
+                                        src="{{ asset('storage/' . $home_slider_bottom_first->image) }}" alt="alt" />
+                                    <div class="ps-promo__content"><span
+                                            class="ps-promo__badge">{{ $home_slider_bottom_first->badge }}</span>
                                         <h4 class="text-dark ps-promo__name">{{ $home_slider_bottom_first->title }}</h4>
                                         <div class="ps-promo__image">
-                                            <img src="{{ asset('frontend/img/icon/icon10.png') }}"
-                                                alt="" /></div>
-                                        <a class="btn-green ps-promo__btn" href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
+                                            <img src="{{ asset('frontend/img/icon/icon10.png') }}" alt="" />
+                                        </div>
+                                        <a class="btn-green ps-promo__btn"
+                                            href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -114,11 +116,15 @@
                         @if ($home_slider_bottom_second)
                             <div class="col-12 col-md-4">
                                 <div class="ps-promo__item"><img class="ps-promo__banner"
-                                        src="{{ asset('storage/'.$home_slider_bottom_second->image) }}" alt="alt" />
+                                        src="{{ asset('storage/' . $home_slider_bottom_second->image) }}"
+                                        alt="alt" />
                                     <div class="ps-promo__content">
-                                        <h4 class="text-white ps-promo__name">{{ $home_slider_bottom_second->title }}ement
+                                        <h4 class="text-white ps-promo__name">
+                                            {{ $home_slider_bottom_second->title }}ement
                                         </h4>
-                                        <div class="ps-promo__sale text-white">{{ $home_slider_bottom_first->subtitle }}</div><a class="btn-green ps-promo__btn"
+                                        <div class="ps-promo__sale text-white">
+                                            {{ $home_slider_bottom_first->subtitle }}</div><a
+                                            class="btn-green ps-promo__btn"
                                             href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
                                     </div>
                                 </div>
@@ -127,12 +133,16 @@
                         @if ($home_slider_bottom_third)
                             <div class="col-12 col-md-4">
                                 <div class="ps-promo__item"><img class="ps-promo__banner"
-                                        src="{{ asset('storage/'.$home_slider_bottom_third->image) }}" alt="alt" />
+                                        src="{{ asset('storage/' . $home_slider_bottom_third->image) }}"
+                                        alt="alt" />
                                     <div class="ps-promo__content">
-                                        <h4 class="text-white ps-promo__name">{{ $home_slider_bottom_third->title }}</h4>
+                                        <h4 class="text-white ps-promo__name">{{ $home_slider_bottom_third->title }}
+                                        </h4>
                                         <div class="ps-promo__meta">
-                                            <p class="ps-promo__price text-warning">{{ $home_slider_bottom_first->subtitle }}</p>
-                                        </div><a class="btn-green ps-promo__btn" href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
+                                            <p class="ps-promo__price text-warning">
+                                                {{ $home_slider_bottom_first->subtitle }}</p>
+                                        </div><a class="btn-green ps-promo__btn"
+                                            href="{{ $home_slider_bottom_first->button_link }}">{{ $home_slider_bottom_first->button_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +171,8 @@
                         <div class="ps-categories__list">
                             @foreach ($categorys as $category)
                                 <div class="ps-categories__item">
-                                    <a class="ps-categories__link" href="{{ route('category.products',$category->slug) }}">
+                                    <a class="ps-categories__link"
+                                        href="{{ route('category.products', $category->slug) }}">
                                         @php
                                             $logoPath = 'storage/' . $category->logo;
                                             $logoSrc = file_exists(public_path($logoPath))
@@ -171,7 +182,8 @@
                                         <img class="ps-category__icon" src="{{ $logoSrc }}"
                                             alt="{{ $category->name }}">
                                     </a>
-                                    <a class="ps-categories__name" href="{{ route('category.products',$category->slug) }}">{{ $category->name }}</a>
+                                    <a class="ps-categories__name"
+                                        href="{{ route('category.products', $category->slug) }}">{{ $category->name }}</a>
                                 </div>
                             @endforeach
                         </div>
@@ -237,9 +249,11 @@
                                                                 class="fa fa-search"></i></a></div>
 
                                                 </div>
-                                                <div class="ps-product__badge">
-                                                    <div class="ps-badge ps-badge--sale">Sale</div>
-                                                </div>
+                                                @if (!empty($latest_product->box_discount_price))
+                                                    <div class="ps-product__badge">
+                                                        <div class="ps-badge ps-badge--sale">Offer</div>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="ps-product__content">
                                                 <h5 class="ps-product__title">
@@ -479,9 +493,11 @@
                                                         class="fa fa-search"></i></a></div>
 
                                         </div>
-                                        <div class="ps-product__badge">
-                                            <div class="ps-badge ps-badge--sale">Sale</div>
-                                        </div>
+                                        @if (!empty($deal_product->box_discount_price))
+                                            <div class="ps-product__badge">
+                                                <div class="ps-badge ps-badge--sale">Offer</div>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="ps-product__content">
                                         <h5 class="ps-product__title">

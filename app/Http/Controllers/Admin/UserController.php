@@ -60,8 +60,6 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->syncRoles($request->roles);
-
         event(new Registered($user));
         event(new ActivityLogged('User created', $user));
 
@@ -75,7 +73,6 @@ class UserController extends Controller
     {
         return view('admin.pages.users.show', [
             'user' => User::find($id),
-            'roles' => Role::get(),
         ]);
     }
 
@@ -86,7 +83,6 @@ class UserController extends Controller
     {
         return view('admin.pages.users.edit', [
             'user' => User::find($id),
-            'roles' => Role::get(),
         ]);
     }
 
@@ -107,10 +103,6 @@ class UserController extends Controller
             'password' => $request->password ? Hash::make($request->password) : $user->password,
         ]);
 
-        if ($request->roles) {
-            $user->syncRoles($request->roles);
-        }
-
         event(new ActivityLogged('User updated', $user));
 
         return redirect()->back()->with('success', 'User updated successfully');
@@ -125,5 +117,12 @@ class UserController extends Controller
         $user->delete();
 
         event(new ActivityLogged('User deleted', $user));
+    }
+    public function toggleStatus(string $id)
+    {
+        $brand = User::findOrFail($id);
+        $brand->status = $brand->status == 'active' ? 'inactive' : 'active';
+        $brand->save();
+        return response()->json(['success' => true]);
     }
 }

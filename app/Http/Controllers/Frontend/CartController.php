@@ -11,20 +11,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
-    public function cart()
-    {
-        $data = [
-            'cartItems' => Cart::instance('cart')->content(),
-        ];
-        return view('frontend.pages.cart.mycart', $data);
-    }
-    public function checkout()
-    {
-        $data = [
-            'cartItems' => Cart::instance('cart')->content(),
-        ];
-        return view('frontend.pages.cart.checkout', $data);
-    }
+
     public function addToCart(Request $request, $id)
     {
         try {
@@ -49,7 +36,7 @@ class CartController extends Controller
                 'cartCount' => Cart::instance('cart')->count(),
                 'subTotal'  => Cart::instance('cart')->subtotal(),
             ];
-
+ 
 
 
             // Return the JSON response with cart data
@@ -68,32 +55,54 @@ class CartController extends Controller
     public function wishListStore(Request $request, $id)
     {
         try {
-            // Find the product or fail
-            if (Auth::check()) {
-                $user = Auth::user();
-                $product = Product::findOrFail($id); // Default to 1 if no quantity is provided
-
-                // Add the product to the cart
-                Wishlist::create([
-                    'product_id' => $product->id,
-                    'user_id' => $user->id,
-                ]);
-                $wishlistCount = Wishlist::where('user_id', $user->id)->count();
+            // Check if user is authenticated
+            if (!Auth::check()) {
                 return response()->json([
-                    'success' => 'Successfully added to your wishlist.',
-                    'wishlistCount' => $wishlistCount,
-                ]);
-            } else {
-                return response()->json([
-                    'error' => 'Log in First to add product to your wishlist.'
-                ], 500);
+                    'error' => 'Log in first to add product to your wishlist.'
+                ]); // Use 401 Unauthorized status code for unauthenticated users
             }
-        } catch (\Exception $e) {
+
+            $user = Auth::user();
+            $product = Product::find($id);
+
+            if (!$product) {
+                return response()->json([
+                    'error' => 'Product not found.'
+                ]); // Use 404 Not Found status code for non-existent products
+            }
+
+            // Check if the product is already in the user's wishlist
+            $wishlistExists = Wishlist::where('product_id', $id)
+                ->where('user_id', $user->id)
+                ->exists();
+
+            if ($wishlistExists) {
+                return response()->json([
+                    'error' => 'The Product is already in your wishlist.'
+                ]); // Use 400 Bad Request status code for conflicts
+            }
+
+            // Add the product to the wishlist
+            Wishlist::create([
+                'product_id' => $id,
+                'user_id' => $user->id,
+            ]);
+
+            $wishlistCount = Wishlist::where('user_id', $user->id)->count();
+
             return response()->json([
-                'error' => 'Failed to add to your Wishlist. Please try again later.'
-            ], 500);
+                'success' => 'Successfully added to your wishlist.',
+                'wishlistCount' => $wishlistCount,
+            ], 200); // Use 200 OK status code for successful operations
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 500); // Use 500 Internal Server Error status code for unexpected errors
         }
     }
+
 
     public function removeFromCart(Request $request)
     {

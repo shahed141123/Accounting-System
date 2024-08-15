@@ -9,7 +9,7 @@
             </ul>
             <h3 class="ps-checkout__title">Checkout</h3>
             <div class="ps-checkout__content">
-                <div class="ps-checkout__wapper">
+                {{-- <div class="ps-checkout__wapper">
                     <p class="ps-checkout__text">
                         Returning customer?
                         <a href="my-account.html">Click here to login</a>
@@ -18,7 +18,7 @@
                         Have a coupon?
                         <a href="shopping-cart.html">Click here to enter your code</a>
                     </p>
-                </div>
+                </div> --}}
                 <form action="http://nouthemes.net/html/mymedi/do_action" method="post">
                     <div class="row">
                         <div class="col-12 col-lg-8">
@@ -82,29 +82,7 @@
                                             <input class="ps-input" type="text" />
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="ps-checkout__group">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="create-account" />
-                                                <label class="form-check-label" for="create-account">Create an
-                                                    account?</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 ps-hidden" data-for="create-account">
-                                        <div class="ps-checkout__group">
-                                            <label class="ps-checkout__label ps-label--danger">Create account password
-                                                *</label>
-                                            <div class="input-group">
-                                                <input class="form-control ps-input" type="password"
-                                                    placeholder="Password" />
-                                                <div class="input-group-append">
-                                                    <a class="fa fa-eye-slash toogle-password"
-                                                        href="javascript: vois(0);"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="col-12">
                                         <div class="ps-checkout__group">
                                             <div class="form-check">
@@ -179,21 +157,19 @@
                                     <div class="ps-title">Product</div>
                                     <div class="ps-title">Subtotal</div>
                                 </div>
-                                <div class="ps-checkout__row ps-product">
-                                    <div class="ps-product__name">
-                                        Somersung Sonic X2500 Pro White x <span>1</span>
+                                @foreach ($cartItems as $cartItem)
+                                    <div class="ps-checkout__row ps-product">
+                                        <div class="ps-product__name">
+                                            <a
+                                                href="{{ route('product.details', $cartItem->model->slug) }}">{{ $cartItem->model->name }}</a>
+                                            x <span>{{ $cartItem->qty }}</span>
+                                        </div>
+                                        <div class="ps-product__price">£{{ $cartItem->price * $cartItem->qty }}</div>
                                     </div>
-                                    <div class="ps-product__price">$399.99</div>
-                                </div>
-                                <div class="ps-checkout__row ps-product">
-                                    <div class="ps-product__name">
-                                        Digital Thermometer X30-Pro x <span>1</span>
-                                    </div>
-                                    <div class="ps-product__price">$77.65</div>
-                                </div>
+                                @endforeach
                                 <div class="ps-checkout__row">
                                     <div class="ps-title">Subtotal</div>
-                                    <div class="ps-product__price">$814.85</div>
+                                    <div class="ps-product__price">£{{$subTotal }}</div>
                                 </div>
                                 <div class="ps-checkout__row">
                                     <div class="ps-title">Shipping</div>
@@ -211,7 +187,7 @@
                                 </div>
                                 <div class="ps-checkout__row">
                                     <div class="ps-title">Total</div>
-                                    <div class="ps-product__price">$814.85</div>
+                                    <div class="ps-product__price">£{{$total }}</div>
                                 </div>
                                 <div class="ps-checkout__payment">
                                     <div class="payment-method">
