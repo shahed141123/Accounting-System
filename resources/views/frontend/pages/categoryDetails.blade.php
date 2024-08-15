@@ -35,8 +35,8 @@
     </style>
 
     <div class="ps-categogy ps-categogy--dark">
-        <div class="container">
-            <div class="row">
+        <div class="container pt-5">
+            <div class="row align-items-center">
                 <div class="col-lg-3">
                     <!-- Breadcrumbs -->
                     <ul class="ps-breadcrumb">
@@ -51,7 +51,7 @@
                     <div>
                         {{-- <img class="img-fluid" style="object-fit: cover;height: 125px;width: 100%;"
                             src="{{ asset('storage/' . $category->banner_image) }}" alt=""> --}}
-                        <img class="img-fluid ps-categogy__banner" style="object-fit: cover;height: 125px;width: 100%;"
+                        <img class="img-fluid ps-categogy__banner" style="object-fit: cover;height: 200px;width: 100%;"
                             src="{{ asset('storage/' . $category->banner_image) }}" alt="">
                     </div>
                 </div>
@@ -220,6 +220,7 @@
 
                     <!-- Sidebar Widgets -->
                     <div class="col-12 col-md-3">
+                        <p class="mb-0 text-dark">All Category</p>
                         <div class="ps-widget ps-widget--product px-0">
                             <div class="ps-widget__block pb-0">
                                 <a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i></a>
