@@ -45476,7 +45476,8 @@ code:not([class*="language-"]) {
 
 .form-check.form-check-solid .form-check-input {
     border: 0;
-    background-color: #eff2f5;
+    /* background-color: #eff2f5; */
+    background-color: #ff0505;
 }
 
 .form-check.form-check-solid .form-check-input:active,
@@ -45486,7 +45487,8 @@ code:not([class*="language-"]) {
 }
 
 .form-check.form-check-solid .form-check-input:checked {
-    background-color: #007bff;
+    /* background-color: #007bff; */
+    background-color: #007c00;
 }
 
 .form-check.form-check-success .form-check-input:checked {

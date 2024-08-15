@@ -12,10 +12,10 @@ Route::get('privacy/policy', [HomeController::class, 'privacyPolicy'])->name('pr
 Route::get('terms-condition', [HomeController::class, 'termsCondition'])->name('termsCondition');
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('blogs', [HomeController::class, 'allBlog'])->name('allBlog');
+Route::get('allproducts', [HomeController::class, 'allproducts'])->name('allproducts');
 Route::get('blog-details/{slug}', [HomeController::class, 'blogDetails'])->name('blog.details');
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('return-policy', [HomeController::class, 'returnPolicy'])->name('returnPolicy');
-Route::get('category-products', [HomeController::class, 'allProducts'])->name('all.products');
 Route::get('category/{slug}', [HomeController::class, 'categoryProducts'])->name('category.products');
 Route::get('product/details/{slug}', [HomeController::class, 'productDetails'])->name('product.details');
 
@@ -23,8 +23,8 @@ Route::post('contact/store', [ContactController::class, 'store'])->name('contact
 Route::post('email-subscription/store', [NewsletterController::class, 'store'])->name('subscription.add');
 
 // Cart routes
-Route::get('mycart', [CartController::class, 'cart'])->name('cart');
-Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::get('mycart', [HomeController::class, 'cart'])->name('cart');
+
 Route::get('compare-list', [HomeController::class, 'compareList'])->name('compare.list');
 Route::post('/cart/store/{id}', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('/comparelist/store/{id}', [CartController::class, 'compareList'])->name('compare.store');

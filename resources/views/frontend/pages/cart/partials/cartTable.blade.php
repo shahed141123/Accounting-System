@@ -28,10 +28,16 @@
                                 </div>
                             </div>
                             <div class="ps-product__row ps-product__stock">
+
                                 <div class="ps-product__label">Stock:</div>
-                                <div class="ps-product__value">
-                                    <span class="ps-product__in-stock">In Stock</span>
-                                </div>
+                                @if (!empty($item->box_stock) && $item->box_stock > 0)
+                                    <div class="ps-product__value">
+                                        <span class="ps-product__in-stock">{{ $item->box_stock }} In Stock</span>
+                                    </div>
+                                @else
+                                    <div class="ps-product__badge"><span class="ps-badge ps-badge--outstock">Out Of
+                                            Stock</span></div>
+                                @endif
                             </div>
                             <div class="ps-product__cart">
                                 <button class="ps-btn">Add to cart</button>
@@ -68,7 +74,8 @@
                     @foreach ($cartItems as $item)
                         <tr>
                             <td class="ps-product__remove">
-                                <a href="javascript:void(0)" class="remove-from-cart" data-cart-item-id="{{ $item->rowId }}">
+                                <a href="javascript:void(0)" class="remove-from-cart"
+                                    data-cart-item-id="{{ $item->rowId }}">
                                     <i class="icon-cross"></i>
                                 </a>
                             </td>
@@ -108,12 +115,7 @@
             </table>
         </div>
         <div class="ps-shopping__footer">
-            {{-- <div class="ps-shopping__coupon">
-                                    <input class="form-control ps-input" type="text" placeholder="Coupon code" />
-                                    <button class="ps-btn ps-btn--primary" type="button">
-                                        Apply coupon
-                                    </button>
-                                </div> --}}
+
             <div class="ps-shopping__button">
                 <button class="ps-btn ps-btn--primary" type="button">
                     Clear All
@@ -134,12 +136,11 @@
             <div class="ps-shopping__label">Shipping</div>
             <div class="ps-shopping__checkbox">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" id="cart-free-ship" checked />
-                    <label class="form-check-label" for="cart-free-ship">Free shipping</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="cart-ship" />
-                    <label class="form-check-label" for="cart-ship">Local Pickup: 0.00</label>
+                    <select name="shipping_id" class="form-select ps-form__input" id="shipping_id">
+                        @foreach ($collection as $item)
+                            <option value="Mr">Mr</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             {{-- <div class="ps-shopping__text">

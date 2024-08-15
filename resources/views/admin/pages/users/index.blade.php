@@ -29,7 +29,6 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Email</th>
-                        {{-- <th>Role</th> --}}
                         <th>Show User</th>
                         <th>Status</th>
                         <th class="text-end min-w-100px pe-5">Actions</th>
@@ -44,9 +43,11 @@
                             <td class="d-flex align-items-center">
                                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                     <a href="javascript:void(0)">
-                                        <div class="symbol-label" style="background-color: {{ $user->profile_image_url ? 'transparent' : '#d3d3d3' }};">
-                                            @if ($user->profile_image_url)
-                                                <img src="{{ asset('storage/' . $user->profile_image_url) }}" alt="{{ $user->name }}" class="w-100" />
+                                        <div class="symbol-label"
+                                            style="background-color: {{ $user->profile_image ? 'transparent' : '#d3d3d3' }};">
+                                            @if ($user->profile_image)
+                                                <img src="{{ asset('storage/' . $user->profile_image) }}"
+                                                    alt="{{ $user->name }}" class="w-100" />
                                             @else
                                                 <span class="text-gray-800 text-hover-primary mb-1">
                                                     {{ strtoupper(substr($user->first_name, 0, 1)) }}{{ strtoupper(substr($user->last_name, 0, 1)) }}
@@ -59,7 +60,8 @@
                             <td>
                                 <div class="d-flex flex-column">
                                     <a href="javascript:void(0)"
-                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->first_name }} {{ $user->last_name }}</a>
+                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->first_name }}
+                                        {{ $user->last_name }}</a>
                                 </div>
                             </td>
                             <td>
@@ -71,8 +73,9 @@
                             </td>
                             <td>
                                 <div class="form-check form-switch form-check-custom form-check-solid">
-                                    <input class="form-check-input status-toggle w-60px" type="checkbox"
-                                        id="status_toggle_1" checked="" data-id="1">
+                                    <input class="form-check-input status-toggle" type="checkbox"
+                                        id="status_toggle_{{ $user->id }}" @checked($user->status == 'active')
+                                        data-id="{{ $user->id }}" />
                                 </div>
                             </td>
                             <td class="text-end">
@@ -110,4 +113,34 @@
             </table>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            $(document).on('change', '.status-toggle', function() {
+                const id = $(this).data('id');
+                const route = "{{ route('admin.user.toggle-status', ':id') }}".replace(':id', id);
+                toggleStatus(route, id);
+            });
+
+            function toggleStatus(route, id) {
+                $.ajax({
+                    url: route,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Status updated successfully!');
+                            table.ajax.reload(null, false); // Reload the DataTable
+                        } else {
+                            alert('Failed to update status.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while updating the status.');
+                    }
+                });
+            }
+        </script>
+    @endpush
 </x-admin-app-layout>

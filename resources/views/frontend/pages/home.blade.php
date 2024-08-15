@@ -236,9 +236,11 @@
                                                                 class="fa fa-search"></i></a></div>
 
                                                 </div>
-                                                <div class="ps-product__badge">
-                                                    <div class="ps-badge ps-badge--sale">Sale</div>
-                                                </div>
+                                                @if (!empty($latest_product->box_discount_price))
+                                                    <div class="ps-product__badge">
+                                                        <div class="ps-badge ps-badge--sale">Offer</div>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="ps-product__content">
                                                 <h5 class="ps-product__title">
@@ -478,9 +480,11 @@
                                                         class="fa fa-search"></i></a></div>
 
                                         </div>
-                                        <div class="ps-product__badge">
-                                            <div class="ps-badge ps-badge--sale">Sale</div>
-                                        </div>
+                                        @if (!empty($deal_product->box_discount_price))
+                                            <div class="ps-product__badge">
+                                                <div class="ps-badge ps-badge--sale">Offer</div>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="ps-product__content">
                                         <h5 class="ps-product__title">
