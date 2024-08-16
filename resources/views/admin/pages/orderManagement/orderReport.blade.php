@@ -11,7 +11,7 @@
                             </a>
                             <div class="flex-grow-1">
                                 <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date("d M Y") }}</span>
+                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -36,13 +36,14 @@
                             </a>
                             <div class="flex-grow-1">
                                 <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Pending
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date("d M Y") }}</span>
+                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
                                 </a>
                             </div>
                         </div>
                         <div class="d-flex flex-column align-items-center pe-4">
                             <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">{{ $pendingOrdersCount}}</span>
+                                <span
+                                    class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">{{ $pendingOrdersCount }}</span>
                             </div>
                         </div>
                     </div>
@@ -61,13 +62,14 @@
                             </a>
                             <div class="flex-grow-1">
                                 <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Delivered
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date("d M Y") }}</span>
+                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
                                 </a>
                             </div>
                         </div>
                         <div class="d-flex flex-column align-items-center pe-4">
                             <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">{{ $deliveredOrdersCount }}</span>
+                                <span
+                                    class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">{{ $deliveredOrdersCount }}</span>
                             </div>
                         </div>
                     </div>
@@ -171,14 +173,15 @@
                                 <td colspan="3">
                                     <div class="d-flex align-items-center gap-3">
                                         <a href="#" class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
-                                            <img src="{{ asset('storage/'.$item->product->thumbnail) }}"
+                                            <img src="{{ asset('storage/' . $item->product->thumbnail) }}"
                                                 alt="" data-kt-docs-datatable-subtable="template_image" />
                                         </a>
                                         <div class="d-flex flex-column text-muted">
                                             <a href="#" class="text-gray-900 text-hover-primary fw-bold"
                                                 data-kt-docs-datatable-subtable="template_name">Product name</a>
                                             <div class="fs-7"
-                                                data-kt-docs-datatable-subtable="template_description">{{ $item->product->name }}</div>
+                                                data-kt-docs-datatable-subtable="template_description">
+                                                {{ $item->product->name }}</div>
                                         </div>
                                     </div>
                                 </td>
@@ -224,6 +227,22 @@
                     $(this).find('.toggle-on, .toggle-off').toggle();
                 });
             });
+        </script>
+        <!-- Your existing HTML content here -->
+
+        <script>
+            function printInvoice(orderId) {
+                var printContents = document.getElementById('invoiceContent' + orderId).innerHTML;
+                var printWindow = window.open('', '', 'height=800,width=600');
+                printWindow.document.write('<html><head><title>Invoice</title>');
+                printWindow.document.write('<style>/* Add your print styles here */</style>');
+                printWindow.document.write('</head><body >');
+                printWindow.document.write(printContents);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.focus();
+                printWindow.print();
+            }
         </script>
     @endpush
 </x-admin-app-layout>

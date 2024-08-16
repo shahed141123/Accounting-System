@@ -1,10 +1,11 @@
 @foreach ($orders as $order)
-    <div class="modal fade" id="printInovice{{ $order->id }}" tabindex="-1" aria-labelledby="printInovice{{ $order->id }}Label" aria-hidden="true">
+    <div class="modal fade" id="printInovice{{ $order->id }}" tabindex="-1"
+        aria-labelledby="printInovice{{ $order->id }}Label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <div class="modal-body">
-                    <div class="card">
+                    <div class="card" id="invoiceContent{{ $order->id }}">
                         <div class="card-body">
                             <div class="mx-auto w-100">
                                 <div class="d-flex justify-content-between flex-column flex-sm-row mb-19">
@@ -12,12 +13,14 @@
 
                                     <div class="text-sm-end">
                                         <a href="#" class="d-block mw-150px ms-sm-auto">
-                                            <img alt="Logo" src="https://piqpaq.flixzaglobal.com/frontend/img/logo.png"
+                                            <img alt="Logo"
+                                                src="https://piqpaq.flixzaglobal.com/frontend/img/logo.png"
                                                 class="w-100">
                                         </a>
 
                                         <div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
-                                            <div>{{ $setting->address_line_one }} , {{ $setting->address_line_one }}</div>
+                                            <div>{{ $setting->address_line_one }} , {{ $setting->address_line_one }}
+                                            </div>
 
                                             <div>{{ $setting->primary_phone }},</div>
                                         </div>
@@ -26,7 +29,8 @@
 
                                 <div class="d-flex flex-column gap-7 gap-md-10">
                                     <div class="fw-bold fs-2">
-                                        Dear {{ $order->user->first_name }} <span class="fs-6">({{ $order->user->email}} )</span>,<br>
+                                        Dear {{ $order->user->first_name }} <span
+                                            class="fs-6">({{ $order->user->email }} )</span>,<br>
                                         <span class="text-muted fs-5">Here are your order details. Thank you for
                                             your purchase.</span>
                                     </div>
@@ -41,7 +45,7 @@
 
                                         <div class="flex-root d-flex flex-column">
                                             <span class="text-muted">Date</span>
-                                            <span class="fs-5">{{ $order->created_at->format("d M, Y") }}</span>
+                                            <span class="fs-5">{{ $order->created_at->format('d M, Y') }}</span>
                                         </div>
 
                                         <div class="flex-root d-flex flex-column">
@@ -59,14 +63,14 @@
                                         <div class="flex-root d-flex flex-column">
                                             <span class="text-muted">Billing Address</span>
                                             <span class="fs-6">
-                                               {{$order->billing_address}}
+                                                {{ $order->billing_address }}
                                             </span>
                                         </div>
 
                                         <div class="flex-root d-flex flex-column">
                                             <span class="text-muted">Shipping Address</span>
                                             <span class="fs-6">
-                                                {{$order->shipping_address}}
+                                                {{ $order->shipping_address }}
                                             </span>
                                         </div>
                                     </div>
@@ -88,20 +92,22 @@
                                                         <tr>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
-                                                                    <a href="{{ route('product.details',optional($item->product)->slug) }}"
+                                                                    <a href="{{ route('product.details', optional($item->product)->slug) }}"
                                                                         class="symbol symbol-50px">
                                                                         <span class="symbol-label"
-                                                                            style="background-image:url({{ asset('storage/'.optional($item->product)->thumbnail) }});"></span>
+                                                                            style="background-image:url({{ asset('storage/' . optional($item->product)->thumbnail) }});"></span>
                                                                     </a>
 
                                                                     <div class="ms-5">
-                                                                        <div class="fw-bold">{{ optional($item)->name }}</div>
+                                                                        <div class="fw-bold">
+                                                                            {{ optional($item->product)->name }}</div>
                                                                         {{-- <div class="fs-7 text-muted">Delivery Date:
                                                                             14/08/2024</div> --}}
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="text-end"> {{ optional($item)->product->sku_code }} </td>
+                                                            <td class="text-end">
+                                                                {{ optional($item)->product->sku_code }} </td>
                                                             <td class="text-end">
                                                                 {{ optional($item)->quantity }}
                                                             </td>
@@ -131,7 +137,7 @@
                                                             Grand Total
                                                         </td>
                                                         <td class="text-gray-900 fs-3 fw-bolder text-end">
-                                                            £ {{ optional($order)->total_amount}}
+                                                            £ {{ optional($order)->total_amount }}
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -142,8 +148,9 @@
 
                                 <div class="d-flex flex-stack flex-wrap mt-lg-10 pt-05">
                                     <div class="my-1 me-5">
-                                        <button type="button" class="btn btn-success my-1 me-5"
-                                            onclick="window.print();">Print Invoice</button>
+                                        <button type="button" class="btn btn-success my-1 me-5" onclick="printInvoice({{ $order->id }})">
+                                            Print Invoice
+                                        </button>
 
                                         <button type="button" class="btn btn-light-success my-1">Download</button>
                                     </div>
@@ -156,5 +163,6 @@
             </div>
         </div>
     </div>
-
 @endforeach
+
+
