@@ -32,6 +32,10 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+    public function orderItem()
+    {
+        return $this->belongsTo(OrderItem::class,'product_id');
+    }
 
     public function multiImages()
     {

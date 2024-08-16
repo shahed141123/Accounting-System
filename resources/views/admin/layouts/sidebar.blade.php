@@ -145,8 +145,7 @@
                         [
                             'title' => 'Orders',
                             'icon' => 'fa-solid fa-cart-shopping text-warning fs-3',
-                            'routes' => ['admin.brands.index', 'admin.brands.create', 'admin.brands.edit'],
-                            'route' => 'admin.brands.index',
+                            'routes' => ['admin.order-management.index', 'admin.order-management.create', 'admin.order-management.edit','admin.orderReport'],
                             'subMenu' => [
                                 [
                                     'title' => 'Order Dashboard',
@@ -155,8 +154,8 @@
                                 ],
                                 [
                                     'title' => 'Order Report',
-                                    'routes' => ['admin.order.report.index'],
-                                    'route' => 'admin.blog-category.index',
+                                    'routes' => ['admin.orderReport'],
+                                    'route' => 'admin.orderReport',
                                 ],
                             ],
                         ],

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderManagementController extends Controller
@@ -12,12 +13,25 @@ class OrderManagementController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.orderManagement.index');
+        $data = [
+            'orders' => Order::with('orderItems')->latest('created_at')->get(),
+        ];
+        return view('admin.pages.orderManagement.index', $data);
     }
 
     public function orderReport()
     {
-        return view('admin.pages.orderManagement.orderReport');
+
+        $data = [
+            'orders' => Order::with('orderItems')->latest('created_at')->get(),
+            'pendingOrdersCount' => Order::pending()->count(),
+            'processingOrdersCount' => Order::processing()->count(),
+            'shippedOrdersCount' => Order::shipped()->count(),
+            'deliveredOrdersCount' => Order::delivered()->count(),
+            'cancelledOrdersCount' => Order::cancelled()->count(),
+            'returnedOrdersCount' => Order::returned()->count(),
+        ];
+        return view('admin.pages.orderManagement.orderReport', $data);
     }
 
     /**

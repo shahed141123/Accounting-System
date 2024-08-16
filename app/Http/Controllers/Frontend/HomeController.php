@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\ShippingMethod;
 use Illuminate\Support\Facades\Cache;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -153,5 +154,16 @@ class HomeController extends Controller
         ];
         // dd(Cart::instance('cart'));
         return view('frontend.pages.cart.checkout', $data);
+    }
+
+    public function checkoutSuccess($id)
+    {
+
+        $data = [
+            'order'           => Order::with('orderItems')->where('order_number',$id)->first(),
+            'user'            => Auth::user(),
+        ];
+        // dd(Cart::instance('cart'));
+        return view('frontend.pages.cart.checkoutSuccess', $data);
     }
 }
