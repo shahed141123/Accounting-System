@@ -29,58 +29,58 @@
                                     <div class="col-12">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">Email address *</label>
-                                            <input class="ps-input" type="email" name="billing_email" required />
+                                            <input class="ps-input" type="email" name="billing_email" value="{{ old('billing_email',$user->email) }}" required />
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">First name *</label>
-                                            <input class="ps-input" type="text" name="billing_first_name" required />
+                                            <input class="ps-input" type="text" name="billing_first_name" value="{{ old('billing_first_name',$user->first_name) }}" required />
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">Last name *</label>
-                                            <input class="ps-input" type="text" name="billing_last_name" required />
+                                            <input class="ps-input" type="text" name="billing_last_name" value="{{ old('billing_last_name',$user->last_name) }}" required />
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">Company name (optional)</label>
-                                            <input class="ps-input" type="text" name="billing_company_name" />
+                                            <input class="ps-input" type="text" name="billing_company_name" value="{{ old('billing_company_name',$user->company_name) }}" />
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">Street address *</label>
-                                            <input class="ps-input mb-3" type="text" name="billing_address_1"
+                                            <input class="ps-input mb-3" type="text" name="billing_address_1" value="{{ old('billing_address_1',$user->address_one) }}"
                                                 placeholder="House number and street name" required />
-                                            <input class="ps-input" type="text" name="billing_address_2"
+                                            <input class="ps-input" type="text" name="billing_address_2" value="{{ old('billing_address_2',$user->address_two) }}"
                                                 placeholder="Apartment, suite, unit, etc. (optional)" />
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">Town / City *</label>
-                                            <input class="ps-input" type="text" name="billing_city" required />
+                                            <input class="ps-input" type="text" name="billing_city" value="{{ old('billing_city',$user->state) }}" required />
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">Postcode *</label>
-                                            <input class="ps-input" type="text" name="billing_postcode" required />
+                                            <input class="ps-input" type="text" name="billing_postcode" value="{{ old('billing_postcode',$user->zipcode) }}" required />
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">County (optional)</label>
-                                            <input class="ps-input" type="text" name="billing_county" />
+                                            <input class="ps-input" type="text" name="billing_county" value="{{ old('billing_county',$user->) }}" />
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="ps-checkout__group">
                                             <label class="ps-checkout__label">Phone *</label>
-                                            <input class="ps-input" type="text" name="billing_phone" required />
+                                            <input class="ps-input" type="text" name="billing_phone" value="{{ old('billing_phone',$user->phone) }}" required />
                                         </div>
                                     </div>
 

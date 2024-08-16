@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Log;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Wishlist;
@@ -166,37 +167,37 @@ class CartController extends Controller
         try {
             // Create the order
             $order = Order::create([
-                'order_number' => 'ORD-' . strtoupper(uniqid()), // Generate a unique order number
-                'user_id' => auth()->id(), // Assuming user is logged in
-                'shipping_method_id' => $request->input('shipping_id'),
-                'sub_total' => Cart::instance('cart')->subtotal(), // Use Cart instance
-                'coupon' => $request->input('coupon', 0),
-                'discount' => $request->input('discount', 0),
-                'total_amount' => $request->input('total_amount'),
-                'quantity' => Cart::instance('cart')->count(), // Total quantity of items in cart
-                'shipping_charge' => ShippingMethod::find($request->input('shipping_id'))->price,
-                'payment_method' => $request->input('payment_method'),
-                'payment_status' => 'unpaid',
-                'status' => 'pending',
+                'order_number'                 => 'ORD-' . strtoupper(uniqid()), // Generate a unique order number
+                'user_id'                      => auth()->id(), // Assuming user is logged in
+                'shipping_method_id'           => $request->input('shipping_id'),
+                'sub_total'                    => Cart::instance('cart')->subtotal(), // Use Cart instance
+                'coupon'                       => $request->input('coupon', 0),
+                'discount'                     => $request->input('discount', 0),
+                'total_amount'                 => $request->input('total_amount'),
+                'quantity'                     => Cart::instance('cart')->count(), // Total quantity of items in cart
+                'shipping_charge'              => ShippingMethod::find($request->input('shipping_id'))->price,
+                'payment_method'               => $request->input('payment_method'),
+                'payment_status'               => 'unpaid',
+                'status'                       => 'pending',
                 'shipped_to_different_address' => $request->has('ship-address') ? 'yes' : 'no',
-                'billing_first_name' => $request->input('billing_first_name'),
-                'billing_last_name' => $request->input('billing_last_name'),
-                'billing_email' => $request->input('billing_email'),
-                'billing_phone' => $request->input('billing_phone'),
-                'billing_address' => $request->input('billing_address_1') . ', ' . $request->input('billing_address_2'),
-                'billing_zipcode' => $request->input('billing_postcode'),
-                'billing_state' => $request->input('billing_county'),
-                'billing_country' => $request->input('billing_country', 'UK'),
-                'shipping_first_name' => $request->input('shipping_first_name', $request->input('billing_first_name')),
-                'shipping_last_name' => $request->input('shipping_last_name', $request->input('billing_last_name')),
-                'shipping_email' => $request->input('shipping_email', $request->input('billing_email')),
-                'shipping_phone' => $request->input('shipping_phone', $request->input('billing_phone')),
-                'shipping_address' => $request->input('shipping_address_1', $request->input('billing_address_1')) . ', ' . $request->input('shipping_address_2', $request->input('billing_address_2')),
-                'shipping_zipcode' => $request->input('shipping_postcode', $request->input('billing_postcode')),
-                'shipping_state' => $request->input('shipping_county', $request->input('billing_county')),
-                'shipping_country' => $request->input('shipping_country', $request->input('billing_country')),
-                'order_note' => $request->input('order_note'),
-                'created_by' => auth()->id(), // Optional: user who created the order
+                'billing_first_name'           => $request->input('billing_first_name'),
+                'billing_last_name'            => $request->input('billing_last_name'),
+                'billing_email'                => $request->input('billing_email'),
+                'billing_phone'                => $request->input('billing_phone'),
+                'billing_address'              => $request->input('billing_address_1') . ', ' . $request->input('billing_address_2'),
+                'billing_zipcode'              => $request->input('billing_postcode'),
+                'billing_state'                => $request->input('billing_county'),
+                'billing_country'              => $request->input('billing_country', 'UK'),
+                'shipping_first_name'          => $request->input('shipping_first_name', $request->input('billing_first_name')),
+                'shipping_last_name'           => $request->input('shipping_last_name', $request->input('billing_last_name')),
+                'shipping_email'               => $request->input('shipping_email', $request->input('billing_email')),
+                'shipping_phone'               => $request->input('shipping_phone', $request->input('billing_phone')),
+                'shipping_address'             => $request->input('shipping_address_1', $request->input('billing_address_1')) . ', ' . $request->input('shipping_address_2', $request->input('billing_address_2')),
+                'shipping_zipcode'             => $request->input('shipping_postcode', $request->input('billing_postcode')),
+                'shipping_state'               => $request->input('shipping_county', $request->input('billing_county')),
+                'shipping_country'             => $request->input('shipping_country', $request->input('billing_country')),
+                'order_note'                   => $request->input('order_note'),
+                'created_by'                   => auth()->id(),
             ]);
 
             // Add items to order_items table
@@ -206,8 +207,8 @@ class CartController extends Controller
                     'product_id' => $item->id,
                     'user_id' => auth()->id(), // Assuming user is logged in
                     'product_name' => $item->name,
-                    'product_color' => $item->options->color ?? null,
-                    'product_sku' => $item->options->sku ?? null,
+                    'product_color' => $item->model->color ?? null,
+                    'product_sku' => $item->model->sku ?? null,
                     'price' => $item->price,
                     'tax' => $item->tax ?? 0, // Assuming tax is an option
                     'quantity' => $item->qty,
@@ -228,10 +229,9 @@ class CartController extends Controller
             DB::rollback();
 
             // Log the error or handle it as needed
-            \Log::error('Order creation failed: ' . $e->getMessage());
 
             // Redirect back with error message
-            return redirect()->back()->withErrors(['error' => 'Something went wrong. Please try again.'])->withInput();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
     }
 }

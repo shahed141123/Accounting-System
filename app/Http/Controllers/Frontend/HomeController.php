@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ShippingMethod;
 use Illuminate\Support\Facades\Cache;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -146,6 +147,7 @@ class HomeController extends Controller
             'cartItems'       => Cart::instance('cart')->content(),
             'total'           => Cart::instance('cart')->total(),
             'cartCount'       => Cart::instance('cart')->count(),
+            'user'            => Auth::user(),
             'subTotal'        => $subTotal,
             // 'subTotal'        => Cart::instance('cart')->subtotal(),
         ];
