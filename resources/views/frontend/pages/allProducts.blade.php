@@ -1,24 +1,12 @@
 <x-frontend-app-layout :title="'All Products'">
     <div class="ps-categogy">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3">
-                    <ul class="ps-breadcrumb">
-                        <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
-                        <li class="ps-breadcrumb__item"><a href="index.html">Shop</a></li>
-                        <li class="ps-breadcrumb__item active" aria-current="page">Diagnosis</li>
-                    </ul>
-                    <h1 class="ps-categogy__name">Diagnosis<sup>(32)</sup></h1>
-                </div>
-                <div class="col-lg-9">
-                    <div>
-                        {{-- <img class="img-fluid" style="object-fit: cover;height: 125px;width: 100%;"
-                            src="{{ asset('storage/' . $category->banner_image) }}" alt=""> --}}
-                        <img class="img-fluid ps-categogy__banner" style="object-fit: cover;height: 200px;width: 100%;"
-                            src="https://nouthemes.net/html/mymedi/img/promotion/bg-banner5.jpg" alt="">
-                    </div>
-                </div>
-            </div>
+            <ul class="ps-breadcrumb">
+                <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
+                <li class="ps-breadcrumb__item"><a href="index.html">Shop</a></li>
+                <li class="ps-breadcrumb__item active" aria-current="page">Shop</li>
+            </ul>
+            <h1 class="ps-categogy__name">Shop<sup>({{ $products->count() }})</sup></h1>
             <div class="ps-categogy__content">
                 <div class="row row-reverse">
                     <div class="col-12 col-md-9">
