@@ -148,14 +148,9 @@
                             'routes' => ['admin.order-management.index', 'admin.order-management.create', 'admin.order-management.edit','admin.orderReport'],
                             'subMenu' => [
                                 [
-                                    'title' => 'Order Dashboard',
+                                    'title' => 'Order Report',
                                     'routes' => ['admin.order-management.index'],
                                     'route' => 'admin.order-management.index',
-                                ],
-                                [
-                                    'title' => 'Order Report',
-                                    'routes' => ['admin.orderReport'],
-                                    'route' => 'admin.orderReport',
                                 ],
                             ],
                         ],

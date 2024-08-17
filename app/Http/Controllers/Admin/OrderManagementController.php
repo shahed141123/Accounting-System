@@ -23,13 +23,7 @@ class OrderManagementController extends Controller
     {
 
         $data = [
-            'orders' => Order::with('orderItems')->latest('created_at')->get(),
-            'pendingOrdersCount' => Order::pending()->count(),
-            'processingOrdersCount' => Order::processing()->count(),
-            'shippedOrdersCount' => Order::shipped()->count(),
-            'deliveredOrdersCount' => Order::delivered()->count(),
-            'cancelledOrdersCount' => Order::cancelled()->count(),
-            'returnedOrdersCount' => Order::returned()->count(),
+            'order' => Order::with('orderItems')->first(),
         ];
         return view('admin.pages.orderManagement.orderReport', $data);
     }
