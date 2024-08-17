@@ -222,7 +222,7 @@ class CartController extends Controller
                 ->first();
 
             // Extract and increment the last number or start at 1 if none exists
-            $newNumber = $lastCode ? (int) substr($lastCode->member_id, strlen($typePrefix . '-' . $year)) + 1 : 1;
+            $newNumber = $lastCode ? (int) substr($lastCode->order_number, strlen($typePrefix . '-' . $year)) + 1 : 1;
 
             // Construct the new code
             $code = $typePrefix . '-' . $year . $newNumber;
