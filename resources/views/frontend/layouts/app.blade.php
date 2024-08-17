@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
+    <script src="https://kit.fontawesome.com/69b7156a94.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>

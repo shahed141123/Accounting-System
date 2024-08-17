@@ -21,4 +21,8 @@ class ShippingMethod extends Model
     {
         return $query->where('status', 'active');
     }
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'shipping_method_id');
+    }
 }

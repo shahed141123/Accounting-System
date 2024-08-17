@@ -15,6 +15,18 @@
 }
 
 /*1. RESET AND TYPHOGRAPHY */
+body::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  body::-webkit-scrollbar-track {
+    box-shadow: none;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #103178;
+    outline: 0px solid slategrey;
+  }
 * {
     font-family: "Jost", sans-serif;
     font-weight: 400;
