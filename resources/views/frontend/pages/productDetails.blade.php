@@ -3,7 +3,7 @@
         <div class="container">
             <ul class="ps-breadcrumb">
                 <li class="ps-breadcrumb__item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="ps-breadcrumb__item"><a href="{{ route('all.products') }}">All Products</a></li>
+                <li class="ps-breadcrumb__item"><a href="{{ route('allproducts') }}">All Products</a></li>
                 <li class="ps-breadcrumb__item active" aria-current="page">{{ $product->name }}</li>
             </ul>
             <div class="ps-page__content">
