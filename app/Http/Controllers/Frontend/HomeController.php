@@ -98,7 +98,7 @@ class HomeController extends Controller
             'product'               => Product::where('slug', $slug)->first(),
             'related_products' => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->where('status', 'published')->inRandomOrder()->limit(12)->get(),
         ];
-        return view('frontend.pages.productDetails', $data);
+        return view('frontend.pages.product.productDetails', $data);
     }
     public function categoryProducts($slug)
     {
@@ -111,7 +111,7 @@ class HomeController extends Controller
         ];
         return view('frontend.pages.categoryDetails', $data);
     }
-    
+
     public function compareList()
     {
 

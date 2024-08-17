@@ -33,5 +33,5 @@ Route::post('/wishlist/store/{id}', [CartController::class, 'wishListStore'])->n
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
 // Shop
 Route::get('allproducts', [ShopController::class, 'allproducts'])->name('allproducts');
-
+Route::get('/products/filter', [ShopController::class, 'filter'])->name('products.filter');
 
