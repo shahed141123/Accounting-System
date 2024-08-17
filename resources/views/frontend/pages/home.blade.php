@@ -157,26 +157,28 @@
                     </div>
                 </div>
             </section> --}}
-            <section class="ps-section--category">
-                <h3 class="ps-section__title">Check out the most popular categories</h3>
+            <section class="ps-section--categories">
+                <h3 class="ps-section__title">Popular categories</h3>
                 <div class="container">
-                    <div class="row">
-                        @foreach ($categorys as $category)
-                            <div class=" col-lg-3 mb-5"> <a class="ps-category__image"
-                                    href="{{ route('category.products', $category->slug) }}">
-                                    @php
-                                        $logoPath = 'storage/' . $category->logo;
-                                        $logoSrc = file_exists(public_path($logoPath))
-                                            ? asset($logoPath)
-                                            : asset('frontend/img/no-category.png');
-                                    @endphp
-                                    <img src="{{ $logoSrc }}" alt="{{ $category->name }}"></a>
-                                <div class="ps-category__content"><a class="ps-category__name"
-                                        href="{{ route('category.products', $category->slug) }}">{{ $category->name }}</a><a
-                                        class="ps-category__more"
-                                        href="{{ route('category.products', $category->slug) }}">More</a></div>
-                            </div>
-                        @endforeach
+                    <div class="ps-section__content pt-5">
+                        <div class="ps-categories__list row my-5">
+                            @foreach ($categorys as $category)
+                                <div class="ps-categories__item"><a class="ps-categories__link"
+                                        href="{{ route('category.products', $category->slug) }}">
+                                        @php
+                                            $logoPath = 'storage/' . $category->logo;
+                                            $logoSrc = file_exists(public_path($logoPath))
+                                                ? asset($logoPath)
+                                                : asset('frontend/img/no-category.png');
+                                        @endphp
+                                        <img src="{{ $logoSrc }}" alt="{{ $category->name }}"></a>
+                                    </a>
+                                    <a class="ps-categories__name" href="{{ route('category.products', $category->slug) }}">{{ $category->name }}</a>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="text-center"> <a class="ps-categories__show" href="{{ route('allproducts') }}">Show all</a>
+                        </div>
                     </div>
                 </div>
             </section>

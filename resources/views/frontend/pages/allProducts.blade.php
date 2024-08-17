@@ -11,7 +11,7 @@
                 <div class="row row-reverse">
                     <div class="col-12 col-md-9">
                         <div class="ps-categogy__wrapper d-flex justify-content-center">
-                            <div class="ps-categogy__sort w-100 text-left">
+                            <div class="ps-categogy__sort w-100 text-left py-0">
                                 <form><span>Sort by</span>
                                     <select class="form-select">
                                         <option selected="">Latest</option>
@@ -23,7 +23,7 @@
                                     </select>
                                 </form>
                             </div>
-                            <div class="ps-categogy__show w-100 text-right">
+                            <div class="ps-categogy__show w-100 text-right py-0">
                                 <form><span>Show</span>
                                     <select class="form-select w-auto">
                                         <option selected="">12</option>
@@ -38,7 +38,8 @@
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/053.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/053.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -52,18 +53,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">MyMedi</a>
-                                        <h5 class="ps-product__title"><a>Somersung Sonic X500 Basic</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating"
-                                                    data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(7 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Somersung Sonic X500
+                                                Basic</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -93,14 +84,14 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/054.jpg') }}" alt="alt"><img
+                                            <figure><img src="{{ asset('frontend/img/products/054.jpg') }}"
+                                                    alt="alt"><img
                                                     src="{{ asset('frontend/img/products/057.jpg') }}" alt="alt">
                                             </figure>
                                         </a>
@@ -116,18 +107,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">MyMedi</a>
-                                        <h5 class="ps-product__title"><a>Somersung Sonic X2000 Pro Black</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4" selected="selected">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(8 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Somersung Sonic X2000 Pro
+                                                Black</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -155,14 +136,14 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/055.jpg') }}" alt="alt"><img
+                                            <figure><img src="{{ asset('frontend/img/products/055.jpg') }}"
+                                                    alt="alt"><img
                                                     src="{{ asset('frontend/img/products/056.jpg') }}" alt="alt">
                                             </figure>
                                         </a>
@@ -177,18 +158,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">MyMedi</a>
-                                        <h5 class="ps-product__title"><a>Somersung Sonic X2500 Pro White</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(9 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Somersung Sonic X2500 Pro
+                                                White</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -216,14 +187,14 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/028.jpg') }}" alt="alt"><img
+                                            <figure><img src="{{ asset('frontend/img/products/028.jpg') }}"
+                                                    alt="alt"><img
                                                     src="{{ asset('frontend/img/products/045.jpg') }}" alt="alt">
                                             </figure>
                                         </a>
@@ -238,18 +209,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">Medicstore</a>
-                                        <h5 class="ps-product__title"><a>Digital Thermometer X30-Pro</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4" selected="selected">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(4 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Digital Thermometer
+                                                X30-Pro</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -279,14 +240,14 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/042.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/042.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -300,18 +261,9 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">iHeart</a>
-                                        <h5 class="ps-product__title"><a>Extractor used to remove teeth</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(5 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Extractor used to remove
+                                                teeth</a></h5>
+
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -339,15 +291,16 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/016.jpg') }}" alt="alt"><img
-                                                    src="{{ asset('frontend/img/products/021.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/016.jpg') }}"
+                                                    alt="alt"><img
+                                                    src="{{ asset('frontend/img/products/021.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -361,18 +314,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">WeTakeCare</a>
-                                        <h5 class="ps-product__title"><a>Oxygen concentrator model KTS-5000</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3" selected="selected">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(2 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Oxygen concentrator model
+                                                KTS-5000</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -400,15 +343,16 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/001.jpg') }}" alt="alt"><img
-                                                    src="{{ asset('frontend/img/products/009.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/001.jpg') }}"
+                                                    alt="alt"><img
+                                                    src="{{ asset('frontend/img/products/009.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -423,18 +367,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">iLovehealth</a>
-                                        <h5 class="ps-product__title"><a>Digital Thermometer X30-Pro</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(1 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Digital Thermometer
+                                                X30-Pro</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -464,15 +398,16 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/003.jpg') }}" alt="alt"><img
-                                                    src="{{ asset('frontend/img/products/008.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/003.jpg') }}"
+                                                    alt="alt"><img
+                                                    src="{{ asset('frontend/img/products/008.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -488,18 +423,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">BestPharm</a>
-                                        <h5 class="ps-product__title"><a>Automatic blood pressure monitor</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(3 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Automatic blood pressure
+                                                monitor</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -529,15 +454,16 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/001.jpg') }}" alt="alt"><img
-                                                    src="{{ asset('frontend/img/products/009.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/001.jpg') }}"
+                                                    alt="alt"><img
+                                                    src="{{ asset('frontend/img/products/009.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -552,18 +478,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">Medicstore</a>
-                                        <h5 class="ps-product__title"><a>Digital Thermometer X30-Pro</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(6 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Digital Thermometer
+                                                X30-Pro</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -593,14 +509,14 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/011.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/011.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -614,18 +530,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">BestPharm</a>
-                                        <h5 class="ps-product__title"><a>Hill-Rom Affinity III Progressa iBed</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5" selected="selected">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(5 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Hill-Rom Affinity III
+                                                Progressa iBed</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -653,15 +559,16 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/012.jpg') }}" alt="alt"><img
-                                                    src="{{ asset('frontend/img/products/013.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/012.jpg') }}"
+                                                    alt="alt"><img
+                                                    src="{{ asset('frontend/img/products/013.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -675,18 +582,8 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">HeartRate</a>
-                                        <h5 class="ps-product__title"><a>Hill-Rom Affinity III Progressa iBed</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4" selected="selected">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(3 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Hill-Rom Affinity III
+                                                Progressa iBed</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -714,15 +611,16 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                             <div class="ps-product ps-product--list">
                                 <div class="ps-product__content">
                                     <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                                            <figure><img src="{{ asset('frontend/img/products/013.jpg') }}" alt="alt"><img
-                                                    src="{{ asset('frontend/img/products/012.jpg') }}" alt="alt">
+                                            <figure><img src="{{ asset('frontend/img/products/013.jpg') }}"
+                                                    alt="alt"><img
+                                                    src="{{ asset('frontend/img/products/012.jpg') }}"
+                                                    alt="alt">
                                             </figure>
                                         </a>
                                         <div class="ps-product__actions">
@@ -736,19 +634,7 @@
                                     </div>
                                     <div class="ps-product__info"><a class="ps-product__branch"
                                             href="#">BestPharm</a>
-                                        <h5 class="ps-product__title"><a>Hill-Rom VersaCare</a></h5>
-                                        <div class="ps-product__rating">
-                                            <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                    class="ps-rating" data-read-only="true"
-                                                    style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4" selected="selected">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div><span class="ps-product__review">(8 Reviews)</span>
-                                        </div>
+                                        <h5 class="ps-product__title shop_product-title"><a>Hill-Rom VersaCare</a></h5>
                                         <div class="ps-product__desc">
                                             <ul class="ps-product__list">
                                                 <li>Study history up to 30 days</li>
@@ -767,8 +653,8 @@
                                             <button class="minus"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
                                                     class="icon-minus"></i></button>
-                                            <input class="quantity" min="0" name="quantity"
-                                                value="1" type="number">
+                                            <input class="quantity" min="0" name="quantity" value="1"
+                                                type="number">
                                             <button class="plus"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
                                                     class="icon-plus"></i></button>
@@ -776,8 +662,7 @@
                                             data-target="#popupAddcart">Add to cart</a>
                                     </div>
                                     <div class="ps-product__variations"><a class="ps-product__link"
-                                            href="wishlist.html">Add to wishlist</a><a class="ps-product__link"
-                                            href="compare.html">Add to Compare</a></div>
+                                            href="wishlist.html">Add to wishlist</a></div>
                                 </div>
                             </div>
                         </div>
@@ -913,51 +798,8 @@
                                 </div>
                             </div>
                             <div class="ps-widget__block">
-                                <h4 class="ps-widget__title">Color</h4><a class="ps-block-control"
-                                    href="#"><i class="fa fa-angle-down"></i></a>
-                                <div class="ps-widget__content">
-                                    <div class="ps-widget__color">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="colorGray">
-                                            <label class="custom-control-label" for="colorGray"
-                                                style="--bg-color: #5b6c8f"></label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="colorGreen">
-                                            <label class="custom-control-label" for="colorGreen"
-                                                style="--bg-color: #12a05c"></label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="colorRed">
-                                            <label class="custom-control-label" for="colorRed"
-                                                style="--bg-color: #f00000"></label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="colorYellow">
-                                            <label class="custom-control-label" for="colorYellow"
-                                                style="--bg-color: #ff9923"></label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="colorBlack">
-                                            <label class="custom-control-label" for="colorBlack"
-                                                style="--bg-color: #313330"></label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="colorBlue">
-                                            <label class="custom-control-label" for="colorBlue"
-                                                style="--bg-color: #58c8ec"></label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="colorNavy">
-                                            <label class="custom-control-label" for="colorNavy"
-                                                style="--bg-color: #103178"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-widget__block">
-                                <h4 class="ps-widget__title">Brands</h4><a class="ps-block-control"
-                                    href="#"><i class="fa fa-angle-down"></i></a>
+                                <h4 class="ps-widget__title">Brands</h4><a class="ps-block-control" href="#"><i
+                                        class="fa fa-angle-down"></i></a>
                                 <div class="ps-widget__content">
                                     <div class="ps-widget__item">
                                         <div class="custom-control custom-checkbox">
@@ -974,8 +816,7 @@
                                     <div class="ps-widget__item">
                                         <div class="custom-control custom-checkbox">
                                             <input class="custom-control-input" type="checkbox" id="HeartShield">
-                                            <label class="custom-control-label"
-                                                for="HeartShield">HeartShield</label>
+                                            <label class="custom-control-label" for="HeartShield">HeartShield</label>
                                         </div>
                                     </div>
                                     <div class="ps-widget__item">
@@ -987,8 +828,7 @@
                                     <div class="ps-widget__item">
                                         <div class="custom-control custom-checkbox">
                                             <input class="custom-control-input" type="checkbox" id="iLovehealth">
-                                            <label class="custom-control-label"
-                                                for="iLovehealth">iLovehealth</label>
+                                            <label class="custom-control-label" for="iLovehealth">iLovehealth</label>
                                         </div>
                                     </div>
                                     <div class="ps-widget__item">
@@ -1023,49 +863,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ps-widget__block">
-                                <h4 class="ps-widget__title">Ratings</h4><a class="ps-block-control"
-                                    href="#"><i class="fa fa-angle-down"></i></a>
-                                <div class="ps-widget__content">
-                                    <div class="ps-widget__item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="rating5">
-                                            <label class="custom-control-label" for="rating5"> </label>
-                                            <div class="custom-label">
-                                                <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                        class="ps-rating" data-read-only="true"
-                                                        style="display: none;">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5" selected="selected">5</option>
-                                                    </select>
-                                                </div><span>(6)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ps-widget__item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="rating4">
-                                            <label class="custom-control-label" for="rating4"> </label>
-                                            <div class="custom-label">
-                                                <div class="br-wrapper br-theme-fontawesome-stars"><select
-                                                        class="ps-rating" data-read-only="true"
-                                                        style="display: none;">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4" selected="selected">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </div><span>(9)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-widget__promo"><img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}" alt=""></div>
+                            <div class="ps-widget__promo"><img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}"
+                                    alt=""></div>
                         </div>
                     </div>
                 </div>
