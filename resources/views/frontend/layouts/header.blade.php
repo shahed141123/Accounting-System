@@ -237,18 +237,20 @@
         </div>
     </div>
     <div class="ps-navigation">
-        <div class="container">
-            <div class="ps-navigation__left">
-                <nav class="ps-main-menu">
-                    <ul class="menu">
-                        @foreach ($categories->slice(0, 6) as $category)
-                            <li class="">
-                                <a href="{{ route('category.products', $category->slug) }}">{{ $category->name }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </nav>
+        <div class="container-fluid text-center" style="border-bottom: 1px solid #f0f2f5;">
+            <div class="container">
+                <div class="ps-navigation__left">
+                    <nav class="ps-main-menu">
+                        <ul class="menu">
+                            @foreach ($categories->slice(0, 6) as $category)
+                                <li class="">
+                                    <a href="{{ route('category.products', $category->slug) }}">{{ $category->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
