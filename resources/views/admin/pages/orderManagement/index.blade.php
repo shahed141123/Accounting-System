@@ -9,63 +9,73 @@
             <div class="card-body py-0">
                 <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                     <thead class="bg-light-danger">
-                        <tr class="fw-semibold fs-6 text-gray-800">
-                            <th>Order Id</th>
+                        <tr class="fw-semibold fs-6 text-gray-800 text-center">
+                            <th>Order Number</th>
                             <th>Customer</th>
                             <th>Created At</th>
                             <th>Price</th>
-                            <th>Category</th>
                             <th>QTY</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Action</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <a href="order-details.html">
-                                    #as584
-                                </a>
-                            </td>
-                            <td>Sazeduzzaman Saju</td>
-                            <td>09:00 08/24/2024</td>
-                            <td><span class="text-info fw-bold">£</span>680</td>
-                            <td>Fashion</td>
-                            <td>50</td>
-                            <td class="text-center">
-                                <span class="badge py-3 px-4 fs-7 badge-light-primary">Paid</span>
-                                <span class="badge py-3 px-4 fs-7 badge-light-warning">On Hold</span>
-                                <span class="badge py-3 px-4 fs-7 badge-light-success">Complated</span>
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">
-                                    <button
-                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
-                                        data-bs-toggle="modal" data-bs-target="#printInovice">
-                                        <i class="fa-solid fa-print"></i>
-                                    </button>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <button
-                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
-                                        data-bs-toggle="modal" data-bs-target="#vieworderInovice">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <button
-                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
-                                        <i class="fa-solid fa-file-download"></i>
-                                    </button>
-                                </a>
-                                <a href="">
-                                    <button
-                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($orders as $order)
+                            <tr class="text-center">
+                                <td>
+                                    <a href="">
+                                        {{ $order->order_number }}
+                                    </a>
+                                </td>
+                                <td>{{ $order->user->first_name }} {{ $order->user->last_name }}</td>
+                                <td>{{ $order->created_at }}</td>
+                                <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}</td>
+                                <td>{{ $order->quantity }}</td>
+                                <td>
+                                    @if ($order->pending())
+                                        <span class="badge py-3 px-4 fs-7 badge-light-primary">Pending</span>
+                                    @elseif ($order->processing())
+                                        <span class="badge py-3 px-4 fs-7 badge-light-warning">Processing</span>
+                                    @elseif ($order->shipped())
+                                        <span class="badge py-3 px-4 fs-7 badge-light-success">Shipped</span>
+                                    @elseif ($order->delivered())
+                                        <span class="badge py-3 px-4 fs-7 badge-light-success">Delivered</span>
+                                    @elseif ($order->cancelled())
+                                        <span class="badge py-3 px-4 fs-7 badge-light-dangered">Cancelled</span>
+                                    @elseif ($order->returned())
+                                        <span class="badge py-3 px-4 fs-7 badge-light-dangered">Returned</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)">
+                                        <button
+                                            class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
+                                            data-bs-toggle="modal" data-bs-target="#printInovice{{ $order->id }}">
+                                            <i class="fa-solid fa-print"></i>
+                                        </button>
+                                    </a>
+                                    <a href="javascript:void(0)">
+                                        <button
+                                            class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
+                                            data-bs-toggle="modal" data-bs-target="#vieworderInovice">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="javascript:void(0)">
+                                        <button
+                                            class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
+                                            <i class="fa-solid fa-file-download"></i>
+                                        </button>
+                                    </a>
+                                    <a href="">
+                                        <button
+                                            class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
+                                            <i class="fa-solid fa-arrow-right"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -512,201 +522,7 @@
     </div>
     {{-- Print Invoice Modal  --}}
     <!-- Modal -->
-    <div class="modal fade" id="printInovice" tabindex="-1" aria-labelledby="printInoviceLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                {{-- <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Invoice</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div> --}}
-                <div class="modal-body">
-                    {{-- Invoice --}}
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="mx-auto w-100">
-                                <div class="d-flex justify-content-between flex-column flex-sm-row mb-19">
-                                    <h4 class="fw-bolder text-gray-800 fs-2qx pe-5 pb-7">INVOICE</h4>
-
-                                    <div class="text-sm-end">
-                                        <a href="#" class="d-block mw-150px ms-sm-auto">
-                                            <img alt="Logo"
-                                                src="https://piqpaq.flixzaglobal.com/frontend/img/logo.png"
-                                                class="w-100">
-                                        </a>
-
-                                        <div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
-                                            <div>144 Hampton Road , Ilford , Essex IG1 1PR</div>
-
-                                            <div>+447852802476</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex flex-column gap-7 gap-md-10">
-                                    <div class="fw-bold fs-2">
-                                        Dear Rasheduzzaman <span class="fs-6">(rashed@corpmail.com)</span>,<br>
-                                        <span class="text-muted fs-5">Here are your order details. We thank you for
-                                            your purchase.</span>
-                                    </div>
-
-                                    <div class="separator"></div>
-
-                                    <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
-                                        <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Order ID</span>
-                                            <span class="fs-5">#14534</span>
-                                        </div>
-
-                                        <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Date</span>
-                                            <span class="fs-5">14 August, 2024</span>
-                                        </div>
-
-                                        <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Invoice ID</span>
-                                            <span class="fs-5">#INV-000414</span>
-                                        </div>
-
-                                        <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Shipment ID</span>
-                                            <span class="fs-5">#SHP-0025410</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
-                                        <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Billing Address</span>
-                                            <span class="fs-6">
-                                                Unit 1/23 Hastings Road,<br>
-                                                Melbourne 3000,<br>
-                                                Victoria,<br>
-                                                Australia.
-                                            </span>
-                                        </div>
-
-                                        <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Shipping Address</span>
-                                            <span class="fs-6">
-                                                Unit 1/23 Hastings Road,<br>
-                                                Melbourne 3000,<br>
-                                                Victoria,<br>
-                                                Australia.
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between flex-column">
-                                        <div class="table-responsive border-bottom mb-9">
-                                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
-                                                <thead>
-                                                    <tr class="border-bottom fs-6 fw-bold text-muted">
-                                                        <th class="min-w-175px pb-2 ps-5">Products</th>
-                                                        <th class="min-w-70px text-end pb-2">SKU</th>
-                                                        <th class="min-w-80px text-end pb-2">QTY</th>
-                                                        <th class="min-w-100px text-end pb-2 pe-5">Total</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody class="fw-semibold text-gray-600">
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <a href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/catalog/edit-product.html"
-                                                                    class="symbol symbol-50px">
-                                                                    <span class="symbol-label"
-                                                                        style="background-image:url(https://preview.keenthemes.com/metronic8/demo1/assets/media//stock/ecommerce/1.png);"></span>
-                                                                </a>
-
-                                                                <div class="ms-5">
-                                                                    <div class="fw-bold">Product 1</div>
-                                                                    <div class="fs-7 text-muted">Delivery Date:
-                                                                        14/08/2024</div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-end">
-                                                            04483007 </td>
-                                                        <td class="text-end">
-                                                            2
-                                                        </td>
-                                                        <td class="text-end">
-                                                            $240.00
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <a href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/catalog/edit-product.html"
-                                                                    class="symbol symbol-50px">
-                                                                    <span class="symbol-label"
-                                                                        style="background-image:url(https://preview.keenthemes.com/metronic8/demo1/assets/media//stock/ecommerce/100.png);"></span>
-                                                                </a>
-
-                                                                <div class="ms-5">
-                                                                    <div class="fw-bold">Footwear</div>
-                                                                    <div class="fs-7 text-muted">Delivery Date:
-                                                                        14/08/2024</div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-end">
-                                                            02618001 </td>
-                                                        <td class="text-end">
-                                                            1
-                                                        </td>
-                                                        <td class="text-end">
-                                                            $24.00
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3" class="text-end">
-                                                            Subtotal
-                                                        </td>
-                                                        <td class="text-end">
-                                                            $264.00
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3" class="text-end">
-                                                            VAT (0%)
-                                                        </td>
-                                                        <td class="text-end">
-                                                            $0.00
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3"
-                                                            class="fs-3 text-gray-900 fw-bold text-end">
-                                                            Grand Total
-                                                        </td>
-                                                        <td class="text-gray-900 fs-3 fw-bolder text-end">
-                                                            $269.00
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex flex-stack flex-wrap mt-lg-10 pt-05">
-                                    <div class="my-1 me-5">
-                                        <button type="button" class="btn btn-success my-1 me-5"
-                                            onclick="window.print();">Print Invoice</button>
-
-                                        <button type="button" class="btn btn-light-success my-1">Download</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Invoice end --}}
-                </div>
-            </div>
-        </div>
-    </div>
+@include('admin.pages.orderManagement.partial.invoice')
     {{-- Print Invoice Modal End --}}
     {{-- view order Modal  --}}
     <!-- Modal -->

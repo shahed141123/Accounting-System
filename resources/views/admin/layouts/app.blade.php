@@ -129,17 +129,17 @@
     @stack('scripts')
     <script>
         document.querySelectorAll('.ckeditor').forEach(element => {
-        if (!element.classList.contains('ck-editor__editable_inline')) {
-            ClassicEditor
-                .create(element)
-                .then(editor => {
-                    console.log('CKEditor initialized:', editor);
-                })
-                .catch(error => {
-                    console.error('CKEditor initialization error:', error);
-                });
-        }
-    });
+            if (!element.classList.contains('ck-editor__editable_inline')) {
+                ClassicEditor
+                    .create(element)
+                    .then(editor => {
+                        console.log('CKEditor initialized:', editor);
+                    })
+                    .catch(error => {
+                        console.error('CKEditor initialization error:', error);
+                    });
+            }
+        });
     </script>
     <script>
         //  DropZone Image
@@ -305,6 +305,7 @@
             }
         }
     </script>
+   
 
 </body>
 

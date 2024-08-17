@@ -21,7 +21,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ !empty($blogPost->image) ? asset("storage/" . $blogPost->image) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->image) ? asset('storage/' . $blogPost->image) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
@@ -59,7 +59,7 @@
                         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4"
                             data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
-                                style="background-image: url({{ !empty($blogPost->logo) ? asset("storage/" . $blogPost->logo) : '' }});">
+                                style="background-image: url({{ !empty($blogPost->logo) ? asset('storage/' . $blogPost->logo) : '' }});">
                             </div>
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                 data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change logo">
@@ -223,6 +223,33 @@
                                         data-allow-clear="true" id="category_id" multiple>
                                         <option></option>
                                         @php
+                                            // Ensure $categoryIds is an array
+                                            $categoryIds = isset($blogPost->category_id)
+                                                ? json_decode($blogPost->category_id, true)
+                                                : [];
+                                            if (!is_array($categoryIds)) {
+                                                $categoryIds = [];
+                                            }
+                                            $tagIds = isset($blogPost->tag_id)
+                                                ? json_decode($blogPost->tag_id, true)
+                                                : [];
+                                            if (!is_array($tagIds)) {
+                                                $tagIds = [];
+                                            }
+                                        @endphp
+
+                                        @foreach ($blogCategories as $blogcategory)
+                                            <option value="{{ $blogcategory->id }}"
+                                                {{ in_array($blogcategory->id, $categoryIds) ? 'selected' : '' }}>
+                                                {{ $blogcategory->name }}
+                                            </option>
+                                        @endforeach
+                                    </x-metronic.select-option>
+                                    {{-- <x-metronic.select-option class="form-select mb-2" name="category_id[]"
+                                        data-control="select2" data-placeholder="Select an option"
+                                        data-allow-clear="true" id="category_id" multiple>
+                                        <option></option>
+                                        @php
                                             $categoryIds = isset($blogPost->category_id)
                                                 ? json_decode($blogPost->category_id, true)
                                                 : [];
@@ -237,7 +264,7 @@
                                                 {{ $blogcategory->name }}
                                             </option>
                                         @endforeach
-                                    </x-metronic.select-option>
+                                    </x-metronic.select-option> --}}
                                 </div>
                                 <div class="fv-row">
                                     <x-metronic.label class="form-label">Tag Id</x-metronic.label>
@@ -288,6 +315,5 @@
             new Tagify(input2);
         </script>
         {{-- Tagify END --}}
-
     @endpush
 </x-admin-app-layout>

@@ -15,27 +15,47 @@ return new class extends Migration
             $table->id();
             $table->string('order_number')->unique();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('SET NULL');
-            $table->foreignId('shipping_id')->nullable()->constrained('shipping_methods')->onDelete('SET NULL');
-            $table->float('sub_total');
-            $table->float('coupon')->nullable();
-            $table->float('discount')->nullable(); // Added for order-level discounts
-            $table->float('total_amount');
-            $table->integer('quantity');
-            $table->string('payment_method')->default('cod');
-            $table->enum('payment_status', ['paid', 'unpaid', 'pending', 'failed'])->default('unpaid'); // Added more payment statuses
-            $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'])->default('new'); // Updated order statuses
-            $table->foreign('shipping_id')->references('id')->on('shipping_methods')->onDelete('SET NULL');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('country');
-            $table->string('post_code')->nullable();
-            $table->text('address1');
-            $table->text('address2')->nullable();
-            $table->text('special_instructions')->nullable(); // Added for special instructions
+            $table->foreignId('shipping_method_id')->nullable()->constrained('shipping_methods')->onDelete('SET NULL');
+            $table->double('sub_total')->nullable();
+            $table->double('coupon')->nullable();
+            $table->double('discount')->nullable();
+            $table->double('total_amount')->nullable();
+            $table->integer('quantity')->default(1)->nullable();
+            $table->double('shipping_charge')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->enum('payment_status', ['paid', 'unpaid', 'pending', 'failed', 'cancel'])->default('unpaid');
+            $table->enum('status', ['new', 'pending', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'])->default('pending');
+            $table->string('shipped_to_different_address')->default('no')->nullable();
+            $table->string('billing_first_name')->nullable();
+            $table->string('billing_last_name')->nullable();
+            $table->string('billing_email')->nullable();
+            $table->string('billing_phone')->nullable();
+            $table->text('billing_address')->nullable();
+            $table->string('billing_zipcode')->nullable();
+            $table->string('billing_state')->nullable();
+            $table->string('billing_country')->nullable();
+            $table->string('billing_company_name')->nullable();
+            $table->string('shipping_first_name')->nullable();
+            $table->string('shipping_last_name')->nullable();
+            $table->string('shipping_email')->nullable();
+            $table->string('shipping_phone')->nullable();
+            $table->text('shipping_address')->nullable();
+            $table->string('shipping_zipcode')->nullable();
+            $table->string('shipping_state')->nullable();
+            $table->string('shipping_country')->nullable();
+            $table->string('shipping_company_name')->nullable();
+            $table->text('order_note')->nullable();
+            $table->timestamp('order_status_updated_at')->nullable();
+            $table->timestamp('order_created_at')->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->string('external_order_id')->nullable();
+            $table->text('customer_request')->nullable();
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('SET NULL');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('SET NULL');
+            $table->timestamp('fulfilled_at')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

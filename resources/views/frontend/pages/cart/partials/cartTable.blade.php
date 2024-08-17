@@ -133,50 +133,15 @@
                 <div class="ps-shopping__label">Subtotal</div>
                 <div class="ps-shopping__price">£{{ Cart::subtotal() }}</div>
             </div>
-            <div class="ps-shopping__label">Shipping</div>
-            <div class="ps-shopping__checkbox">
-                <div class="form-check">
-                    <select name="shipping_id" class="form-select ps-form__input" id="shipping_id">
-                        @foreach ($collection as $item)
-                            <option value="Mr">Mr</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            {{-- <div class="ps-shopping__text">
-                                    Shipping options will be updated during checkout.
-                                </div>
-                                <a class="ps-shopping__toggle" href="#">Calculate shipping</a>
-                                <div class="ps-shopping__form">
-                                    <div class="ps-shopping__group">
-                                        <select class="js-example-basic-single" name="state">
-                                            <option selected>Select a country / region…</option>
-                                            <option>Afghanistan</option>
-                                            <option>Åland Islands</option>
-                                            <option>Albania</option>
-                                            <option>Andorra</option>
-                                            <option>American Samoa</option>
-                                            <option>Andorra</option>
-                                        </select>
-                                    </div>
-                                    <div class="ps-shopping__group">
-                                        <input class="form-control ps-input" type="text" placeholder="County" />
-                                    </div>
-                                    <div class="ps-shopping__group">
-                                        <input class="form-control ps-input" type="text"
-                                            placeholder="Town / City" />
-                                    </div>
-                                    <div class="ps-shopping__group">
-                                        <input class="form-control ps-input" type="text" placeholder="Postcode" />
-                                    </div>
-                                </div> --}}
+           
+
             <div class="ps-shopping__row">
                 <div class="ps-shopping__label">Total</div>
                 <div class="ps-shopping__price">£{{ Cart::subtotal() }}</div>
             </div>
             <div class="ps-shopping__checkout">
                 <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Proceed to checkout</a><a
-                    class="ps-shopping__link" href="#">Continue To Shopping</a>
+                    class="ps-shopping__link" href="{{ route('allproducts') }}">Continue To Shopping</a>
             </div>
         </div>
     </div>
@@ -184,7 +149,7 @@
     <div class="col-md-12 text-center">
         <h2>Your cart is empty !</h2>
         <h5 class="mt-3">Add Items to it now.</h5>
-        <a href="{{ route('all.products') }}" class="btn btn-warning mt-5">
+        <a href="{{ route('allproducts') }}" class="btn btn-warning mt-5 mb-4">
             Shop Now
         </a>
     </div>

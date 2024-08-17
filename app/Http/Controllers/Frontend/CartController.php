@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Log;
+use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Wishlist;
+use App\Models\OrderItem;
+use Illuminate\Http\Request;
+use App\Models\ShippingMethod;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -36,7 +44,7 @@ class CartController extends Controller
                 'cartCount' => Cart::instance('cart')->count(),
                 'subTotal'  => Cart::instance('cart')->subtotal(),
             ];
- 
+
 
 
             // Return the JSON response with cart data
@@ -127,5 +135,163 @@ class CartController extends Controller
         }
 
         return response()->json(['error' => 'Unable to remove item.'], 400);
+    }
+    public function checkoutStore(Request $request)
+    {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'billing_email' => 'required|email',
+            'billing_first_name' => 'required|string|max:255',
+            'billing_last_name' => 'required|string|max:255',
+            'billing_address_1' => 'required|string|max:255',
+            'billing_state' => 'required|string|max:255',
+            'billing_postcode' => 'required|string|max:20',
+            'billing_phone' => 'required|string|max:20',
+            'shipping_first_name' => 'nullable|string|max:255',
+            'shipping_last_name' => 'nullable|string|max:255',
+            'shipping_address_1' => 'nullable|string|max:255',
+            'shipping_state' => 'nullable|string|max:255',
+            'shipping_postcode' => 'nullable|string|max:20',
+            'shipping_phone' => 'nullable|string|max:20',
+            'order_note' => 'nullable|string',
+            'payment_method' => 'required|in:cod,stripe,paypal',
+            'sub_total' => 'required',
+            'total_amount' => 'required|numeric|min:0',
+            'shipping_id' => 'required|exists:shipping_methods,id'
+        ], [
+            'billing_email.required' => 'The billing email is required.',
+            'billing_email.email' => 'The billing email must be a valid email address.',
+            'billing_first_name.required' => 'The billing first name is required.',
+            'billing_first_name.string' => 'The billing first name must be a string.',
+            'billing_first_name.max' => 'The billing first name may not be greater than 255 characters.',
+            'billing_last_name.required' => 'The billing last name is required.',
+            'billing_last_name.string' => 'The billing last name must be a string.',
+            'billing_last_name.max' => 'The billing last name may not be greater than 255 characters.',
+            'billing_address_1.required' => 'The billing address is required.',
+            'billing_address_1.string' => 'The billing address must be a string.',
+            'billing_address_1.max' => 'The billing address may not be greater than 255 characters.',
+            'billing_state.required' => 'The billing state is required.',
+            'billing_state.string' => 'The billing state must be a string.',
+            'billing_state.max' => 'The billing state may not be greater than 255 characters.',
+            'billing_postcode.required' => 'The billing postcode is required.',
+            'billing_postcode.string' => 'The billing postcode must be a string.',
+            'billing_postcode.max' => 'The billing postcode may not be greater than 20 characters.',
+            'billing_phone.required' => 'The billing phone number is required.',
+            'billing_phone.string' => 'The billing phone number must be a string.',
+            'billing_phone.max' => 'The billing phone number may not be greater than 20 characters.',
+            'shipping_first_name.string' => 'The shipping first name must be a string.',
+            'shipping_first_name.max' => 'The shipping first name may not be greater than 255 characters.',
+            'shipping_last_name.string' => 'The shipping last name must be a string.',
+            'shipping_last_name.max' => 'The shipping last name may not be greater than 255 characters.',
+            'shipping_address_1.string' => 'The shipping address must be a string.',
+            'shipping_address_1.max' => 'The shipping address may not be greater than 255 characters.',
+            'shipping_state.string' => 'The shipping state must be a string.',
+            'shipping_state.max' => 'The shipping state may not be greater than 255 characters.',
+            'shipping_postcode.string' => 'The shipping postcode must be a string.',
+            'shipping_postcode.max' => 'The shipping postcode may not be greater than 20 characters.',
+            'shipping_phone.string' => 'The shipping phone number must be a string.',
+            'shipping_phone.max' => 'The shipping phone number may not be greater than 20 characters.',
+            'order_note.string' => 'The order note must be a string.',
+            'payment_method.required' => 'The payment method is required.',
+            'payment_method.in' => 'The selected payment method is invalid.',
+            'total_amount.required' => 'The total amount is required.',
+            'total_amount.numeric' => 'The total amount must be a number.',
+            'total_amount.min' => 'The total amount must be at least 0.',
+            'shipping_id.required' => 'The shipping method is required.',
+            'shipping_id.exists' => 'The selected shipping method does not exist.',
+        ]);
+
+
+        if ($validator->fails()) {
+            foreach ($validator->messages()->all() as $message) {
+                Session::flash('error', $message);
+            }
+            return redirect()->back()->withInput();
+        }
+
+        // Begin a database transaction
+        DB::beginTransaction();
+
+        try {
+            $typePrefix = 'PQ';
+            $year = date('Y'); // Get the last two digits of the year (e.g., '24' for 2024)
+
+            // Find the most recent code for the given type and year
+            $lastCode = Order::where('order_number', 'like', $typePrefix . '-' . $year . '%')
+                ->orderBy('id', 'desc')
+                ->first();
+
+            // Extract and increment the last number or start at 1 if none exists
+            $newNumber = $lastCode ? (int) substr($lastCode->member_id, strlen($typePrefix . '-' . $year)) + 1 : 1;
+
+            // Construct the new code
+            $code = $typePrefix . '-' . $year . $newNumber;
+            // Create the order
+            $order = Order::create([
+                'order_number'                 => $code, // Generate a unique order number
+                'user_id'                      => auth()->id(), // Assuming user is logged in
+                'shipping_method_id'           => $request->input('shipping_id'),
+                'sub_total'                    => $request->input('sub_total'), // Use Cart instance
+                'coupon'                       => $request->input('coupon', 0),
+                'discount'                     => $request->input('discount', 0),
+                'total_amount'                 => $request->input('total_amount'),
+                'quantity'                     => Cart::instance('cart')->count(), // Total quantity of items in cart
+                'shipping_charge'              => ShippingMethod::find($request->input('shipping_id'))->price,
+                'payment_method'               => $request->input('payment_method'),
+                'payment_status'               => 'unpaid',
+                'status'                       => 'pending',
+                'shipped_to_different_address' => $request->has('ship-address') ? 'yes' : 'no',
+                'billing_first_name'           => $request->input('billing_first_name'),
+                'billing_last_name'            => $request->input('billing_last_name'),
+                'billing_email'                => $request->input('billing_email'),
+                'billing_phone'                => $request->input('billing_phone'),
+                'billing_address'              => $request->input('billing_address_1') . ', ' . $request->input('billing_address_2'),
+                'billing_zipcode'              => $request->input('billing_postcode'),
+                'billing_state'                => $request->input('billing_state'),
+                'billing_country'              => $request->input('billing_country', 'UK'),
+                'shipping_first_name'          => $request->input('shipping_first_name', $request->input('billing_first_name')),
+                'shipping_last_name'           => $request->input('shipping_last_name', $request->input('billing_last_name')),
+                'shipping_email'               => $request->input('shipping_email', $request->input('billing_email')),
+                'shipping_phone'               => $request->input('shipping_phone', $request->input('billing_phone')),
+                'shipping_address'             => $request->input('shipping_address_1', $request->input('billing_address_1')) . ', ' . $request->input('shipping_address_2', $request->input('billing_address_2')),
+                'shipping_zipcode'             => $request->input('shipping_postcode', $request->input('billing_postcode')),
+                'shipping_state'               => $request->input('shipping_state', $request->input('billing_state')),
+                'shipping_country'             => $request->input('shipping_country', $request->input('billing_country')),
+                'order_note'                   => $request->input('order_note'),
+                'created_by'                   => auth()->id(),
+                'order_created_at'             => Carbon::now(),
+                'created_at'                   => Carbon::now(),
+            ]);
+
+            // Add items to order_items table
+            foreach (Cart::instance('cart')->content() as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->id,
+                    'user_id' => auth()->id(), // Assuming user is logged in
+                    'product_name' => $item->name,
+                    'product_color' => $item->model->color ?? null,
+                    'product_sku' => $item->model->sku ?? null,
+                    'price' => $item->price,
+                    'tax' => $item->tax ?? 0, // Default tax to 0 if not provided
+                    'quantity' => $item->qty,
+                    'subtotal' => $item->qty * $item->price, // Ensure subtotal is a float
+                ]);
+            }
+
+            // Commit the transaction
+            DB::commit();
+
+            // Clear the cart after successful order
+            Cart::instance('cart')->destroy();
+
+            // Redirect to a confirmation page or thank you page
+            return redirect()->route('checkout.success', $order->order_number)->with('success', 'Order placed successfully!');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+                    Session::flash('error', $e->getMessage());
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+        }
     }
 }

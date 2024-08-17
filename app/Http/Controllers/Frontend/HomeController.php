@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\ShippingMethod;
 use Illuminate\Support\Facades\Cache;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -138,13 +140,30 @@ class HomeController extends Controller
     }
     public function checkout()
     {
+        $formattedSubtotal = Cart::instance('cart')->subtotal();
+        $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
+        $subTotal = (float)$cleanSubtotal;
         $data = [
-            'cartItems' => Cart::instance('cart')->content(),
-            'total'     => Cart::instance('cart')->total(),
-            'cartCount' => Cart::instance('cart')->count(),
-            'subTotal'  => Cart::instance('cart')->subtotal(),
+            'shippingmethods' => ShippingMethod::active()->get(),
+            'cartItems'       => Cart::instance('cart')->content(),
+            'total'           => Cart::instance('cart')->total(),
+            'cartCount'       => Cart::instance('cart')->count(),
+            'user'            => Auth::user(),
+            'subTotal'        => $subTotal,
+            // 'subTotal'        => Cart::instance('cart')->subtotal(),
         ];
         // dd(Cart::instance('cart'));
         return view('frontend.pages.cart.checkout', $data);
+    }
+
+    public function checkoutSuccess($id)
+    {
+
+        $data = [
+            'order'           => Order::with('orderItems')->where('order_number',$id)->first(),
+            'user'            => Auth::user(),
+        ];
+        // dd(Cart::instance('cart'));
+        return view('frontend.pages.cart.checkoutSuccess', $data);
     }
 }
