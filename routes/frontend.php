@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ShopController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');
@@ -12,7 +13,6 @@ Route::get('privacy/policy', [HomeController::class, 'privacyPolicy'])->name('pr
 Route::get('terms-condition', [HomeController::class, 'termsCondition'])->name('termsCondition');
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('blogs', [HomeController::class, 'allBlog'])->name('allBlog');
-Route::get('allproducts', [HomeController::class, 'allproducts'])->name('allproducts');
 Route::get('blog-details/{slug}', [HomeController::class, 'blogDetails'])->name('blog.details');
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('return-policy', [HomeController::class, 'returnPolicy'])->name('returnPolicy');
@@ -31,4 +31,7 @@ Route::post('/cart/store/{id}', [CartController::class, 'addToCart'])->name('car
 Route::post('/comparelist/store/{id}', [CartController::class, 'compareList'])->name('compare.store');
 Route::post('/wishlist/store/{id}', [CartController::class, 'wishListStore'])->name('wishlist.store');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+// Shop
+Route::get('allproducts', [ShopController::class, 'allproducts'])->name('allproducts');
+
 

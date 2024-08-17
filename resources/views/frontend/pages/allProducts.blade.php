@@ -4,9 +4,9 @@
             <ul class="ps-breadcrumb">
                 <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
                 <li class="ps-breadcrumb__item"><a href="index.html">Shop</a></li>
-                <li class="ps-breadcrumb__item active" aria-current="page">Diagnosis</li>
+                <li class="ps-breadcrumb__item active" aria-current="page">Shop</li>
             </ul>
-            <h1 class="ps-categogy__name">Diagnosis<sup>(32)</sup></h1>
+            <h1 class="ps-categogy__name">Shop<sup>({{ $products->count() }})</sup></h1>
             <div class="ps-categogy__content">
                 <div class="row row-reverse">
                     <div class="col-12 col-md-9">

@@ -111,16 +111,7 @@ class HomeController extends Controller
         ];
         return view('frontend.pages.categoryDetails', $data);
     }
-    public function allProducts()
-    {
-        // $category = Category::where('slug', $slug)->firstOrFail();
-
-        $data = [
-            // 'category'                => $category,
-            'categories'   => Category::orderBy('name', 'ASC')->active()->get(),
-        ];
-        return view('frontend.pages.allProducts', $data);
-    }
+    
     public function compareList()
     {
 
