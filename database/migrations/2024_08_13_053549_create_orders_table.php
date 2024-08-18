@@ -20,7 +20,7 @@ return new class extends Migration
             $table->double('coupon')->nullable();
             $table->double('discount')->nullable();
             $table->double('total_amount')->nullable();
-            $table->integer('quantity')->default(1)->nullable();
+            $table->integer('quantity')->nullable();
             $table->double('shipping_charge')->nullable();
             $table->string('payment_method')->nullable();
             $table->enum('payment_status', ['paid', 'unpaid', 'pending', 'failed', 'cancel'])->default('unpaid');

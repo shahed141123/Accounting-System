@@ -96,6 +96,7 @@
                         <th>Created At</th>
                         <th>Price</th>
                         <th>QTY</th>
+                        <th>Payment Status</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -114,17 +115,24 @@
                             <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}</td>
                             <td>{{ $order->quantity }}</td>
                             <td>
-                                @if ($order->status == "pending")
+                                @if ($order->payment_status == 'unpaid')
+                                    <span class="badge py-3 px-4 fs-7 badge-danger">Unpaid</span>
+                                @elseif ($order->payment_status == 'paid')
+                                    <span class="badge py-3 px-4 fs-7 badge-light-success">Paid</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($order->status == 'pending')
                                     <span class="badge py-3 px-4 fs-7 badge-light-primary">Pending</span>
-                                @elseif ($order->status == "processing")
+                                @elseif ($order->status == 'processing')
                                     <span class="badge py-3 px-4 fs-7 badge-light-warning">Processing</span>
-                                @elseif ($order->status == "shipped")
+                                @elseif ($order->status == 'shipped')
                                     <span class="badge py-3 px-4 fs-7 badge-light-success">Shipped</span>
-                                @elseif ($order->status == "delivered")
+                                @elseif ($order->status == 'delivered')
                                     <span class="badge py-3 px-4 fs-7 badge-light-success">Delivered</span>
-                                @elseif ($order->status == "cancelled")
+                                @elseif ($order->status == 'cancelled')
                                     <span class="badge py-3 px-4 fs-7 badge-light-dangered">Cancelled</span>
-                                @elseif ($order->status == "returned")
+                                @elseif ($order->status == 'returned')
                                     <span class="badge py-3 px-4 fs-7 badge-light-dangered">Returned</span>
                                 @endif
                             </td>

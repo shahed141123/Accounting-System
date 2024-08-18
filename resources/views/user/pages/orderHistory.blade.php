@@ -6,7 +6,8 @@
                 <div class="breadcrumb-box">
                     <div class="title-box3 text-center">
                         <h1>
-                        <span class="text-info">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span> <br>Welcome  To Your Dashboard
+                            <span class="text-info">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
+                            <br>Welcome To Your Dashboard
                         </h1>
                     </div>
                 </div>
@@ -26,7 +27,6 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h4>Order History List</h4>
-                                <!-- Order History Table -->
                                 <table class="table table-striped order-history-table">
                                     <thead>
                                         <tr>
@@ -34,18 +34,50 @@
                                             <th>Date</th>
                                             <th>Items</th>
                                             <th>Total Amount</th>
+                                            <th>Payment Status</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- Example Row -->
-                                        <tr>
-                                            <td>12345</td>
-                                            <td>August 10, 2024</td>
-                                            <td>3</td>
-                                            <td>$150.00</td>
-                                            <td>Shipped</td>
-                                        </tr>
+                                        @foreach ($orders as $order)
+                                            <tr>
+                                                <td>{{ $order->order_number }}</td>
+                                                <td>{{ $order->created_at->format('d M, Y') }}</td>
+                                                <td>{{ $order->quantity }}</td>
+                                                <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}
+                                                </td>
+                                                <td>
+                                                    @if ($order->payment_status == 'unpaid')
+                                                        <span class="badge py-3 px-4 fs-7 badge-danger">Unpaid</span>
+                                                    @elseif ($order->payment_status == 'paid')
+                                                        <span
+                                                            class="badge py-3 px-4 fs-7 badge-light-success">Paid</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($order->status == 'pending')
+                                                        <span
+                                                            class="badge py-3 px-4 fs-7 badge-light-primary">Pending</span>
+                                                    @elseif ($order->status == 'processing')
+                                                        <span
+                                                            class="badge py-3 px-4 fs-7 badge-light-warning">Processing</span>
+                                                    @elseif ($order->status == 'shipped')
+                                                        <span
+                                                            class="badge py-3 px-4 fs-7 badge-light-success">Shipped</span>
+                                                    @elseif ($order->status == 'delivered')
+                                                        <span
+                                                            class="badge py-3 px-4 fs-7 badge-light-success">Delivered</span>
+                                                    @elseif ($order->status == 'cancelled')
+                                                        <span
+                                                            class="badge py-3 px-4 fs-7 badge-light-dangered">Cancelled</span>
+                                                    @elseif ($order->status == 'returned')
+                                                        <span
+                                                            class="badge py-3 px-4 fs-7 badge-light-dangered">Returned</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         <!-- Additional rows go here -->
                                     </tbody>
                                 </table>

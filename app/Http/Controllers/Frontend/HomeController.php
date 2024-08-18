@@ -87,7 +87,8 @@ class HomeController extends Controller
     public function blogDetails($slug)
     {
         $data = [
-            'blog'     => BlogPost::where('slug', $slug)->first(),
+            'blog'           => BlogPost::where('slug', $slug)->first(),
+            'blog_posts'     => BlogPost::inRandomOrder()->latest('id')->where('status', 'publish')->get(),
             'blog_categorys' => BlogCategory::latest('id')->where('status', 'active')->get(),
             'blog_tags'      => BlogTag::latest('id')->where('status', 'active')->get(),
         ];
