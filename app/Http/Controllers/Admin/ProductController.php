@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\ProductRequest;
 
@@ -23,7 +24,7 @@ class ProductController extends Controller
         $data = [
             'products'     => DB::table('products')->latest('id')->get(),
         ];
-        return view('admin.pages.product.index',$data);
+        return view('admin.pages.product.index', $data);
     }
 
     /**
@@ -43,7 +44,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         // dd($request->all());
         DB::beginTransaction();
@@ -62,7 +63,7 @@ class ProductController extends Controller
                 $thumbnailFilePath = $thumbnailUpload['file_path'];
             }
 
-                $is_refurbished = $request->has('is_refurbished') ? 1 : 0;
+            $is_refurbished = $request->has('is_refurbished') ? 1 : 0;
 
             // dd($is_refurbished);
             // Create a new product record
@@ -72,8 +73,8 @@ class ProductController extends Controller
                 'mf_code'                   => $request->input('mf_code'),
                 'product_code'              => $request->input('barcode_id'),
                 'barcode_id'                => $request->input('barcode_id'),
-                'tags'                      => json_encode($request->input('tags')),
-                'color'                     => json_encode($request->input('color')),
+                'tags'                      => $request->input('tags'),
+                'color'                     => $request->input('color'),
                 'short_description'         => $request->input('short_description'),
                 'overview'                  => $request->input('overview'),
                 'description'               => $request->input('description'),
@@ -89,7 +90,7 @@ class ProductController extends Controller
                 'unit_discount_price'       => $request->input('unit_discount_price'),
                 'is_refurbished'            => $is_refurbished,
                 'product_type'              => $request->input('product_type'),
-                'category_id'               => json_encode($request->input('category_id')),
+                'category_id'               => $request->input('category_id'),
                 'length'                    => $request->input('length'),
                 'width'                     => $request->input('width'),
                 'height'                    => $request->input('height'),
@@ -97,7 +98,7 @@ class ProductController extends Controller
                 'create_date'               => Carbon::now(),
                 'meta_title'                => $request->input('meta_title'),
                 'meta_description'          => $request->input('meta_description'),
-                'meta_keywords'             => json_encode($request->input('meta_keywords')),
+                'meta_keywords'             => $request->input('meta_keywords'),
                 'added_by'                  => Auth::guard('admin')->user()->id,
                 'status'                    => $request->input('status'),
             ]);
@@ -193,8 +194,8 @@ class ProductController extends Controller
                 'mf_code'                   => $request->input('mf_code'),
                 'product_code'              => $request->input('barcode_id'),
                 'barcode_id'                => $request->input('barcode_id'),
-                'tags'                      => json_encode($request->input('tags')),
-                'color'                     => json_encode($request->input('color')),
+                'tags'                      => $request->input('tags'),
+                'color'                     => $request->input('color'),
                 'short_description'         => $request->input('short_description'),
                 'overview'                  => $request->input('overview'),
                 'description'               => $request->input('description'),
@@ -210,7 +211,7 @@ class ProductController extends Controller
                 'unit_discount_price'       => $request->input('unit_discount_price'),
                 'is_refurbished'            => $is_refurbished,
                 'product_type'              => $request->input('product_type'),
-                'category_id'               => json_encode($request->input('category_id')),
+                'category_id'               => $request->input('category_id'),
                 'length'                    => $request->input('length'),
                 'width'                     => $request->input('width'),
                 'height'                    => $request->input('height'),
@@ -218,7 +219,7 @@ class ProductController extends Controller
                 'create_date'               => Carbon::now(),
                 'meta_title'                => $request->input('meta_title'),
                 'meta_description'          => $request->input('meta_description'),
-                'meta_keywords'             => json_encode($request->input('meta_keywords')),
+                'meta_keywords'             => $request->input('meta_keywords'),
                 'added_by'                  => Auth::guard('admin')->user()->id,
                 'status'                    => $request->input('status'),
             ]);
@@ -272,7 +273,24 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::with('multiImages')->findOrFail($id);
+
+        // Delete the product's thumbnail image if it exists
+        if ($product->thumbnail) {
+            Storage::delete("public/" . $product->thumbnail);
+        }
+
+        // Delete the product
+        $product->delete();
+
+        // Delete all associated multi-images
+        $images = $product->multiImages;
+        foreach ($images as $img) {
+            if ($img->photo) {
+                Storage::delete("public/" . $img->photo);
+            }
+            $img->delete();
+        }
     }
     public function multiImageDestroy(string $id)
     {

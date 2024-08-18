@@ -3,7 +3,7 @@
         <div class="container">
             <ul class="ps-breadcrumb">
                 <li class="ps-breadcrumb__item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="ps-breadcrumb__item"><a href="{{ route('all.products') }}">All Products</a></li>
+                <li class="ps-breadcrumb__item"><a href="{{ route('allproducts') }}">All Products</a></li>
                 <li class="ps-breadcrumb__item active" aria-current="page">{{ $product->name }}</li>
             </ul>
             <div class="ps-page__content">
@@ -292,7 +292,7 @@
                     <section class="ps-section--also" data-background="img/related-bg.jpg">
                         <div class="container">
                             <h3 class="ps-section__title">Customer also bought</h3>
-                            <div class="ps-section__carousel">
+                            <div class="dealCarousel owl-carousel">
                                 @foreach ($related_products as $related_product)
                                     <div class="ps-section__product">
                                         <div class="ps-product ps-product--standard">
@@ -419,7 +419,7 @@
                     </section>
                 </div>
             </div>
-            <div class="ps-delivery" data-background="img/promotion/banner-delivery-2.jpg">
+            <div class="ps-delivery" data-background="{{ asset('frontend/promotion/banner-delivery-2.jpg') }}">
                 <div class="ps-delivery__content">
                     <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
                                 delivery </strong>without contacting the courier</span></div><a

@@ -1,451 +1,420 @@
-<x-admin-app-layout :title="'Order Report'">
-    <div class="row">
-        <div class="col-xl-4 mx-auto">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
+<x-admin-app-layout :title="'Order Details'">
+    <div class="d-flex flex-column flex-column-fluid mt-5">
+        <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
+            <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex flex-stack ">
+                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
+                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
+                        Order Details (#{{ $order->order_number }})
+                    </h1>
+                    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
+                                Dashboard </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-muted">
+                            <a href="{{ route('admin.order-management.index') }}" class="text-muted text-hover-primary">
+                                Order List </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-muted">
+                            Order Details (#{{ $order->order_number }}) </li>
+
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 mx-auto">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Pending
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 mx-auto">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body p-0">
-                    <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-product text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
-                            </a>
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Delivery
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">03 Aug 2024</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center pe-4">
-                            <div>
-                                <span class="fs-3x fw-bold text-gray-800 me-2 lh-1 ls-n2">8,55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card card-flush mt-10">
-        <div class="card-header bg-success align-items-center">
-            <h3 class="card-title">Mange Your Orders</h3>
-            <div>
-                <a type="button" href="{{ route('admin.product.create') }}" class="btn btn-primary btn btn-sm">
-                    <i class="fa-solid fa-plus"></i> Create
-                </a>
-            </div>
-        </div>
+        <div id="kt_app_content" class="app-content  flex-column-fluid ">
+            <div id="kt_app_content_container" class="app-container  container-xxl ">
 
-        <div class="card-body table-responsive">
-            <table class="table  align-middle table-row-dashed fs-6 gy-4" id="kt_docs_datatable_subtable">
-                <thead>
-                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                        <th class="min-w-100px ps-5">Order ID</th>
-                        <th class="min-w-100px">SL</th>
-                        <th class="">Created</th>
-                        <th class="">Customer</th>
-                        <th class="">Total</th>
-                        <th class="">Profit</th>
-                        <th class="">Status</th>
-                        <th class="">Action</th>
-                        <th class=""></th>
-                    </tr>
-                </thead>
+                <div class="d-flex flex-column gap-7 gap-lg-10">
 
+                    <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
 
-                <tbody class="fw-bold text-gray-600">
-                    <tr data-kt-docs-datatable-subtable="subtable_template" class="d-none bg-light">
-                        <td colspan="2">
-                            <div class="d-flex align-items-center gap-3">
-                                <a href="#" class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
-                                    <img src="https://preview.keenthemes.com/html/metronic/docs/assets/media/stock/ecommerce/" alt=""
-                                        data-kt-docs-datatable-subtable="template_image" />
-                                </a>
-                                <div class="d-flex flex-column text-muted">
-                                    <a href="#" class="text-gray-900 text-hover-primary fw-bold"
-                                        data-kt-docs-datatable-subtable="template_name">Product name</a>
-                                    <div class="fs-7" data-kt-docs-datatable-subtable="template_description">Product
-                                        description</div>
+                        <div class="card card-flush py-4 flex-row-fluid">
+
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Order Details (#{{ $order->order_number }})</h2>
                                 </div>
                             </div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7">Cost</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_cost">1</div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7">Qty</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_qty">1</div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7">Total</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_total">name
+
+
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+
+                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                        <tbody class="fw-semibold text-gray-600">
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-calendar fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        Date Created
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">{{ $order->created_at->format('d M , Y') }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-wallet fs-2 me-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                            <span class="path4"></span>
+                                                        </i>
+                                                        Payment Method
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">
+                                                    {{ ucfirst($order->payment_method) }}
+                                                    <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/card-logos/visa.svg"
+                                                        class="w-50px ms-2">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-truck fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span><span
+                                                                class="path3"></span><span class="path4"></span><span
+                                                                class="path5"></span></i>
+                                                        Shipping Method
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">
+                                                    {{ $order->shippingCharge->title }}({{ $order->shippingCharge->price }})
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
                             </div>
-                        </td>
-                        <td class="text-end">
-                            <div class="text-gray-900 fs-7 me-3">On hand</div>
-                            <div class="text-muted fs-7 fw-bold" data-kt-docs-datatable-subtable="template_stock">32
+
+                        </div>
+
+
+
+                        <div class="card card-flush py-4  flex-row-fluid">
+
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Customer Details</h2>
+                                </div>
                             </div>
-                        </td>
-                        <td></td>
-                    </tr>
 
-                    <tr>
-                        <td>
-                            <a href="#" class="text-gray-900 text-hover-primary">#XGT-346</a>
-                        </td>
 
-                        <td class="">
-                            01
-                        </td>
-                        <td class="">
-                            10 Nov 2021, 10:30 am
-                        </td>
 
-                        <td class="">
-                            <a href="" class="text-gray-900 text-hover-primary">Emma Smith</a>
-                        </td>
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
 
-                        <td class="">
-                            $630.00
-                        </td>
+                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                        <tbody class="fw-semibold text-gray-600">
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-profile-circle fs-2 me-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                        Customer
+                                                    </div>
+                                                </td>
 
-                        <td class="">
-                            <span class="text-gray-900 fw-bold">$86.70</span>
-                        </td>
+                                                <td class="fw-bold text-end">
+                                                    <div class="d-flex align-items-center justify-content-end">
 
-                        <td class="">
-                            <span class="badge py-3 px-4 fs-7 badge-light-primary">Confirmed</span>
-                        </td>
-                        <td class="">
-                            <span class="badge py-3 px-4 fs-7 badge-light-primary">Confirmed</span>
-                        </td>
+                                                        {{-- <div
+                                                            class="symbol symbol-circle symbol-25px overflow-hidden me-3">
+                                                            <a
+                                                                href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/customers/details.html">
+                                                                <div class="symbol-label">
+                                                                    <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-23.jpg"
+                                                                        alt="Dan Wilson" class="w-100">
+                                                                </div>
+                                                            </a>
+                                                        </div> --}}
 
-                        <td class="">
-                            <button type="button"
-                                class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
-                                data-kt-docs-datatable-subtable="expand_row">
-                                <span class="svg-icon fs-3 m-0 toggle-off">
-                                    <i class="fa-solid fa-plus"></i>
-                                </span>
-                                <span class="svg-icon fs-3 m-0 toggle-on">
-                                    <i class="fa-solid fa-minus"></i>
-                                </span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+
+                                                        <a href="#" class="text-gray-600 text-hover-primary">
+                                                            {{ $order->user->first_name }}
+                                                            {{ $order->user->last_name }}
+                                                        </a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-sms fs-2 me-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                        </i>
+                                                        Email
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">
+                                                    <a href="mailto:{{ $order->user->email }}"
+                                                        class="text-gray-600 text-hover-primary">
+                                                        {{ $order->user->email }} </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-phone fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        Phone
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end">{{ $order->user->phone }} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card card-flush py-4  flex-row-fluid">
+
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Documents</h2>
+                                </div>
+                            </div>
+
+
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+
+                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                        <tbody class="fw-semibold text-gray-600">
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-devices fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span><span
+                                                                class="path3"></span><span
+                                                                class="path4"></span><span class="path5"></span></i>
+                                                        Invoice
+
+
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            aria-label="View the invoice generated by this order."
+                                                            data-bs-original-title="View the invoice generated by this order."
+                                                            data-kt-initialized="1">
+                                                            <i class="fa-solid fa-information-5 text-gray-500 fs-6"><span
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i></span>
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end"><a
+                                                        href="https://preview.keenthemes.com/metronic8/demo1/apps/invoices/view/invoice-3.html"
+                                                        class="text-gray-600 text-hover-primary">#{{ $order->order_number }}</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-truck fs-2 me-2"><span
+                                                                class="path1"></span><span
+                                                                class="path2"></span><span
+                                                                class="path3"></span><span class="path4"></span>
+                                                            <span class="path5"></span>
+                                                        </i>
+                                                        Shipping Address
+
+
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            aria-label="View the shipping manifest generated by this order."
+                                                            data-bs-original-title="View the shipping manifest generated by this order."
+                                                            data-kt-initialized="1">
+                                                            <i
+                                                                class="fa-solid fa-information-5 text-gray-500 fs-6"></i>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bold text-end"><a href="#"
+                                                        class="text-gray-600 text-hover-primary">{{ $order->shipping_address }}</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                        <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
+                            <div class="card card-flush py-4 flex-row-fluid position-relative">
+                                <div
+                                    class="position-absolute top-0 end-0 bottom-0 opacity-10 d-flex align-items-center me-5">
+                                    <i class="ki-solid ki-two-credit-cart" style="font-size: 14em">
+                                    </i>
+                                </div>
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Billing Address</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    {{ $order->billing_address }}
+                                </div>
+                            </div>
+                            <div class="card card-flush py-4 flex-row-fluid position-relative">
+
+                                <div
+                                    class="position-absolute top-0 end-0 bottom-0 opacity-10 d-flex align-items-center me-5">
+                                    <i class="ki-solid ki-delivery" style="font-size: 13em">
+                                    </i>
+                                </div>
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Shipping Address</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    {{ $order->shipping_address }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-flush py-4 flex-row-fluid overflow-hidden">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Order #{{ $order->order_number }}</h2>
+                                </div>
+                                <div class="card-title">
+                                    <a href="javascript:void(0)" class="btn btn-sm fw-bold btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#printInovice"> <i
+                                            class="fa-solid fa-print"></i> Print Or Download </a>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                        <thead>
+                                            <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                                <th class="min-w-175px ps-5">Product</th>
+                                                <th class="min-w-175px ps-5">Product Description</th>
+                                                <th class="min-w-100px text-end">SKU</th>
+                                                <th class="min-w-70px text-end">Qty</th>
+                                                <th class="min-w-100px text-end">Unit Price</th>
+                                                <th class="min-w-100px text-end pe-5">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fw-semibold text-gray-600">
+
+                                            @foreach ($order->orderItems as $item)
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <img width="50px" height="50px"
+                                                                style="border-radius: 5px;"
+                                                                src="{{ asset('storage/' . optional($item->product)->thumbnail) }}"
+                                                                alt="">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ Str::limit(optional($item->product)->name, 30) }}</span>
+                                                    </td>
+
+                                                    <td class="text-right">
+                                                        <span>{{ optional($item->product)->sku_code }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span>{{ optional($item)->quantity }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span><span
+                                                                class="text-info">(£)</span>{{ optional($item)->price }}</span>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span><span
+                                                                class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            <tr>
+                                                <td colspan="4" class="text-end">
+                                                    Subtotal
+                                                </td>
+                                                <td class="text-end">
+                                                    $264.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-end">
+                                                    VAT (0%)
+                                                </td>
+                                                <td class="text-end">
+                                                    $0.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-end">
+                                                    Shipping Rate
+                                                </td>
+                                                <td class="text-end">
+                                                    $5.00
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="fs-3 text-gray-900 text-end">
+                                                    Grand Total
+                                                </td>
+                                                <td class="text-gray-900 fs-3 fw-bolder text-end">
+                                                    $269.00
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    @push('scripts')
-        <script>
-            "use strict";
-
-            // Class definition
-            var KTDocsDatatableSubtable = function() {
-                var table;
-                var datatable;
-                var template;
-
-                // Private methods
-                const initDatatable = () => {
-                    // Set date data order
-                    const tableRows = table.querySelectorAll('tbody tr');
-
-                    // tableRows.forEach(row => {
-                    //     const dateRow = row.querySelectorAll('td');
-                    //     const realDate = moment(dateRow[1].innerHTML, "DD MMM YYYY, LT")
-                    // .format(); // select date from 2nd column in table
-
-                    //     // Skip template
-                    //     if (!row.closest('[data-kt-docs-datatable-subtable="subtable_template"]')) {
-                    //         dateRow[1].setAttribute('data-order', realDate);
-                    //         dateRow[1].innerText = moment(realDate).fromNow();
-                    //     }
-                    // });
-
-                    // Get subtable template
-                    const subtable = document.querySelector('[data-kt-docs-datatable-subtable="subtable_template"]');
-                    template = subtable.cloneNode(true);
-                    template.classList.remove('d-none');
-
-                    // Remove subtable template
-                    subtable.parentNode.removeChild(subtable);
-
-                    // Init datatable with search, length, and pagination
-                    datatable = $(table).DataTable({
-                        "info": false,
-                        "lengthChange": true,
-                        "pageLength": 6,
-                        "ordering": false,
-                        "paging": true,
-                        "searching": true,
-                        "language": {
-                            "lengthMenu": "Show _MENU_",
-                            "search": "Search:",
-                            "paginate": {
-                                "previous": "Previous",
-                                "next": "Next"
-                            },
-                            "info": "Showing _START_ to _END_ of _TOTAL_ entries"
-                        },
-                        "dom": "<'row mb-2'" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-start dt-toolbar'l>" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
-                            ">" +
-                            "<'table-responsive'tr>" +
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
-
-                    // Re-init functions on every table re-draw
-                    datatable.on('draw', function() {
-                        resetSubtable();
-                        handleActionButton();
-                    });
-                }
-
-                // Subtable data sample
-                const data = [{
-                        image: '76',
-                        name: 'Go Pro 8',
-                        description: 'Latest version of Go Pro.',
-                        cost: '500.00',
-                        qty: '1',
-                        total: '500.00',
-                        stock: '12'
-                    },
-                    {
-                        image: '60',
-                        name: 'Bose Earbuds',
-                        description: 'Top quality earbuds from Bose.',
-                        cost: '300.00',
-                        qty: '1',
-                        total: '300.00',
-                        stock: '8'
-                    },
-                    {
-                        image: '211',
-                        name: 'Dry-fit Sports T-shirt',
-                        description: 'Comfortable sportswear for everyday use.',
-                        cost: '89.00',
-                        qty: '1',
-                        total: '89.00',
-                        stock: '18'
-                    },
-                    {
-                        image: '21',
-                        name: 'Apple Airpod 3',
-                        description: 'Apple\'s latest and most advanced earbuds.',
-                        cost: '200.00',
-                        qty: '2',
-                        total: '400.00',
-                        stock: '32'
-                    },
-                    {
-                        image: '83',
-                        name: 'Nike Pumps',
-                        description: 'Apple\'s latest and most advanced headphones.',
-                        cost: '200.00',
-                        qty: '1',
-                        total: '200.00',
-                        stock: '8'
-                    }
-                ];
-
-                // Handle action button
-                const handleActionButton = () => {
-                    const buttons = document.querySelectorAll('[data-kt-docs-datatable-subtable="expand_row"]');
-
-                    // Sample row items counter --- for demo purpose only, remove this variable in your project
-                    const rowItems = [4, 1, 5, 1, 4, 2];
-
-                    buttons.forEach((button, index) => {
-                        button.addEventListener('click', e => {
-                            e.stopImmediatePropagation();
-                            e.preventDefault();
-
-                            const row = button.closest('tr');
-                            const rowClasses = ['isOpen', 'border-bottom-0'];
-
-                            // Get total number of items to generate --- for demo purpose only, remove this code snippet in your project
-                            const demoData = [];
-                            for (var j = 0; j < rowItems[index]; j++) {
-                                demoData.push(data[j]);
-                            }
-                            // End of generating demo data
-
-                            // Handle subtable expanded state
-                            if (row.classList.contains('isOpen')) {
-                                // Remove all subtables from current order row
-                                while (row.nextSibling && row.nextSibling.getAttribute(
-                                        'data-kt-docs-datatable-subtable') === 'subtable_template') {
-                                    row.nextSibling.parentNode.removeChild(row.nextSibling);
-                                }
-                                row.classList.remove(...rowClasses);
-                                button.classList.remove('active');
-                            } else {
-                                populateTemplate(demoData, row);
-                                row.classList.add(...rowClasses);
-                                button.classList.add('active');
-                            }
-                        });
-                    });
-                }
-
-                // Populate template with content/data
-                const populateTemplate = (data, target) => {
-                    data.forEach((d, index) => {
-                        // Clone template node
-                        const newTemplate = template.cloneNode(true);
-
-                        // Stock badges
-                        const lowStock = `<div class="badge badge-light-warning">Low Stock</div>`;
-                        const inStock = `<div class="badge badge-light-success">In Stock</div>`;
-
-                        // Select data elements
-                        const image = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_image"]');
-                        const name = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_name"]');
-                        const description = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_description"]');
-                        const cost = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_cost"]');
-                        const qty = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_qty"]');
-                        const total = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_total"]');
-                        const stock = newTemplate.querySelector(
-                            '[data-kt-docs-datatable-subtable="template_stock"]');
-
-                        // Populate elements with data
-                        const imageSrc = image.getAttribute('src');
-                        image.setAttribute('src', imageSrc + d.image + '.png');
-                        name.innerText = d.name;
-                        description.innerText = d.description;
-                        cost.innerText = d.cost;
-                        qty.innerText = d.qty;
-                        total.innerText = d.total;
-                        if (d.stock > 10) {
-                            stock.innerHTML = inStock;
-                        } else {
-                            stock.innerHTML = lowStock;
-                        }
-
-                        // New template border controller
-                        if (data.length === 1) {
-                            let borderClasses = ['rounded', 'rounded-end-0'];
-                            newTemplate.querySelectorAll('td')[0].classList.add(...borderClasses);
-                            borderClasses = ['rounded', 'rounded-start-0'];
-                            newTemplate.querySelectorAll('td')[4].classList.add(...borderClasses);
-                            newTemplate.classList.add('border-bottom-0');
-                        } else {
-                            if (index === (data.length - 1)) {
-                                let borderClasses = ['rounded-start', 'rounded-bottom-0'];
-                                newTemplate.querySelectorAll('td')[0].classList.add(...borderClasses);
-                                borderClasses = ['rounded-end', 'rounded-bottom-0'];
-                                newTemplate.querySelectorAll('td')[4].classList.add(...borderClasses);
-                            }
-                            if (index === 0) {
-                                let borderClasses = ['rounded-start', 'rounded-top-0'];
-                                newTemplate.querySelectorAll('td')[0].classList.add(...borderClasses);
-                                borderClasses = ['rounded-end', 'rounded-top-0'];
-                                newTemplate.querySelectorAll('td')[4].classList.add(...borderClasses);
-                                newTemplate.classList.add('border-bottom-0');
-                            }
-                        }
-
-                        // Insert new template into table
-                        const tbody = table.querySelector('tbody');
-                        tbody.insertBefore(newTemplate, target.nextSibling);
-                    });
-                }
-
-                // Reset subtable
-                const resetSubtable = () => {
-                    const subtables = document.querySelectorAll(
-                    '[data-kt-docs-datatable-subtable="subtable_template"]');
-                    subtables.forEach(st => {
-                        st.parentNode.removeChild(st);
-                    });
-
-                    const rows = table.querySelectorAll('tbody tr');
-                    rows.forEach(r => {
-                        r.classList.remove('isOpen');
-                        if (r.querySelector('[data-kt-docs-datatable-subtable="expand_row"]')) {
-                            r.querySelector('[data-kt-docs-datatable-subtable="expand_row"]').classList.remove(
-                                'active');
-                        }
-                    });
-                }
-
-                // Public methods
-                return {
-                    init: function() {
-                        table = document.querySelector('#kt_docs_datatable_subtable');
-
-                        if (!table) {
-                            return;
-                        }
-
-                        initDatatable();
-                        handleActionButton();
-                    }
-                }
-            }();
-
-            // Document Ready
-            KTUtil.onDOMContentLoaded(function() {
-                KTDocsDatatableSubtable.init();
-            });
-        </script>
-    @endpush
+    {{-- Print Invoice Modal  --}}
+    <!-- Modal -->
+    {{-- @include('admin.pages.orderManagement.partial.invoice') --}}
+    {{-- Print Invoice Modal End --}}
+    {{-- view order Modal  --}}
+    <!-- Modal -->
+    <div class="modal fade" id="vieworderInovice" tabindex="-1" aria-labelledby="vieworderInoviceLabel"
+        aria-hidden="true">
+        <div class="modal-dialog        ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View Worder</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Print Invoice Modal End --}}
 </x-admin-app-layout>

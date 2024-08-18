@@ -13,9 +13,12 @@ use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Order;
 use App\Models\ShippingMethod;
 use Illuminate\Support\Facades\Cache;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -84,7 +87,8 @@ class HomeController extends Controller
     public function blogDetails($slug)
     {
         $data = [
-            'blog'     => BlogPost::where('slug', $slug)->first(),
+            'blog'           => BlogPost::where('slug', $slug)->first(),
+            'blog_posts'     => BlogPost::inRandomOrder()->latest('id')->where('status', 'publish')->get(),
             'blog_categorys' => BlogCategory::latest('id')->where('status', 'active')->get(),
             'blog_tags'      => BlogTag::latest('id')->where('status', 'active')->get(),
         ];
@@ -96,29 +100,18 @@ class HomeController extends Controller
             'product'               => Product::where('slug', $slug)->first(),
             'related_products' => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->where('status', 'published')->inRandomOrder()->limit(12)->get(),
         ];
-        return view('frontend.pages.productDetails', $data);
+        return view('frontend.pages.product.productDetails', $data);
     }
     public function categoryProducts($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
-
         $data = [
             'category'                => $category,
-            'category_products '      => $category->products()->paginate(12),
             'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
         ];
         return view('frontend.pages.categoryDetails', $data);
     }
-    public function allProducts()
-    {
-        // $category = Category::where('slug', $slug)->firstOrFail();
 
-        $data = [
-            // 'category'                => $category,
-            'categories'   => Category::orderBy('name', 'ASC')->active()->get(),
-        ];
-        return view('frontend.pages.allProducts', $data);
-    }
     public function compareList()
     {
 
@@ -141,15 +134,49 @@ class HomeController extends Controller
         $formattedSubtotal = Cart::instance('cart')->subtotal();
         $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
         $subTotal = (float)$cleanSubtotal;
+        if ($subTotal > 500) {
+
+            $data = [
+                'shippingmethods' => ShippingMethod::active()->get(),
+                'cartItems'       => Cart::instance('cart')->content(),
+                'total'           => Cart::instance('cart')->total(),
+                'cartCount'       => Cart::instance('cart')->count(),
+                'user'            => Auth::user(),
+                'subTotal'        => $subTotal,
+                // 'subTotal'        => Cart::instance('cart')->subtotal(),
+            ];
+            // dd(Cart::instance('cart'));
+            return view('frontend.pages.cart.checkout', $data);
+        } else {
+            return redirect()->back()->with('error', 'The added product price must be greater than 500£ to proceed to check out.');
+        }
+    }
+
+    public function checkoutSuccess($id)
+    {
+
         $data = [
-            'shippingmethods' => ShippingMethod::active()->get(),
-            'cartItems'       => Cart::instance('cart')->content(),
-            'total'           => Cart::instance('cart')->total(),
-            'cartCount'       => Cart::instance('cart')->count(),
-            'subTotal'        => $subTotal,
-            // 'subTotal'        => Cart::instance('cart')->subtotal(),
+            'order'           => Order::with('orderItems')->where('order_number', $id)->first(),
+            'user'            => Auth::user(),
         ];
         // dd(Cart::instance('cart'));
-        return view('frontend.pages.cart.checkout', $data);
+        return view('frontend.pages.cart.checkoutSuccess', $data);
     }
+
+    public function globalSearch(Request $request)
+    {
+        $query = $request->get('term', '');
+        $data['products'] = Product::join('brands', 'products.brand_id', '=', 'brands.id')
+            ->where('products.name', 'LIKE', '%' . $query . '%')
+            ->where('products.status', 'published')
+            ->where('brands.status', 'active')
+            ->limit(10)
+            ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.box_price', 'products.box_discount_price', 'products.box_stock', 'products.short_description']);
+
+        $data['categorys'] = Category::where('name', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'name', 'slug']);
+        $data['brands'] = Brand::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
+        $data['blogs'] = BlogPost::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
+
+        return response()->json(view('frontend.layouts.search', $data)->render());
+    } // end method
 }

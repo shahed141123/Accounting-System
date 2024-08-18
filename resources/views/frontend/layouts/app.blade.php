@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
+    <link href="{{ asset('frontend/css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/69b7156a94.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
@@ -66,6 +68,7 @@
     @include('frontend.layouts.extra')
 
     <script src="{{ asset('frontend/plugins/jquery.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/popper.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/bootstrap4/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/select2/dist/js/select2.full.min.js') }}"></script>
@@ -75,6 +78,7 @@
     <script src="{{ asset('frontend/plugins/lightGallery/dist/js/lightgallery-all.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/slick/slick/slick.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/noUiSlider/nouislider.min.js') }}"></script>
+
     <!-- jQuery (required for DataTables and Date Range Picker) -->
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <!-- Date Range Picker JS -->
@@ -108,7 +112,7 @@
         class Dashboard {
             constructor() {
                 this.initDataTables();
-                this.initDateRangePicker();
+                // this.initDateRangePicker();
             }
 
             initDataTables() {
@@ -132,17 +136,17 @@
                 });
             }
 
-            initDateRangePicker() {
-                $(document).ready(() => {
-                    // Initialize Date Range Picker
-                    $('#kt_daterangepicker_1').daterangepicker({
-                        opens: 'left',
-                        locale: {
-                            format: 'MM/DD/YYYY'
-                        }
-                    });
-                });
-            }
+            // initDateRangePicker() {
+                // $(document).ready(() => {
+                //     // Initialize Date Range Picker
+                //     $('#kt_daterangepicker_1').daterangepicker({
+                //         opens: 'left',
+                //         locale: {
+                //             format: 'MM/DD/YYYY'
+                //         }
+                //     });
+                // });
+            // }
         }
 
         // Create an instance of the Dashboard class
@@ -507,6 +511,56 @@
 
             })
         }
+    </script>
+    {{-- Search Script --}}
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var searchContainer = $('#search_container');
+            var path = "{{ route('global.search') }}";
+            var searchInput = $('#search_text');
+
+            searchInput.autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: path,
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function(data) {
+                            if (data.length > 0) {
+                                if (searchContainer.hasClass('d-none')) {
+                                    searchContainer.removeClass('d-none');
+                                }
+                                searchContainer.html(data);
+                            } else {
+                                searchContainer.addClass('d-none');
+                            }
+                        }
+                    });
+                },
+                minLength: 1
+            });
+
+            searchInput.on('input', function() {
+                if (searchInput.val() === '') {
+                    searchContainer.addClass('d-none');
+                }
+            });
+
+            searchInput.on('keydown', function(event) {
+                if (event.keyCode === 8 && searchInput.val() === '') {
+                    searchContainer.addClass('d-none');
+                }
+            });
+        });
     </script>
 
     {{-- add_to_cart_btn_product_single --}}

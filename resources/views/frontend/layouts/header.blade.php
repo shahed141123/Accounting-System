@@ -191,42 +191,15 @@
                     <form action="do_action" method="post">
                         <div class="ps-search-table">
                             <div class="input-group rounded-pill">
-                                <input class="form-control ps-input" type="text"
-                                    placeholder="Search for products">
-                                <div class="input-group-append"><a href="#"><i class="fa fa-search"></i></a>
+                                <input id="search_text" class="form-control ps-input" type="text" placeholder="Search for products">
+                                <div class="input-group-append">
+                                    <a href="#"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <div class="ps-search--result">
-                        <div class="ps-result__content">
-                            <div class="row m-0">
-                                <div class="col-12 col-lg-6">
-                                    <div class="ps-product ps-product--horizontal">
-                                        <div class="ps-product__thumbnail">
-                                            <a class="ps-product__image" href="#">
-                                                <figure>
-                                                    <img src="img/products/052.jpg" alt="alt">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title">
-                                                <a>3-layer <span class="hightlight">mask</span> with an elastic band (1
-                                                    piece)
-                                                </a>
-                                            </h5>
-                                            <p class="ps-product__desc">Study history up to 30 days Up to 5 users
-                                                simultaneously Has HEALTH certificate</p>
-                                            <div class="ps-product__meta"><span
-                                                    class="ps-product__price">$38.24</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-result__viewall"><a href="product-result.html">View all</a></div>
-                        </div>
+                    <div id="search_container" class="ps-search--result d-none" style="height: 60vh;overflow-y: auto;">
+                        <!-- Search results will be injected here -->
                     </div>
                 </div>
                 @if (!empty(optional($setting)->primary_phone))
@@ -237,18 +210,24 @@
         </div>
     </div>
     <div class="ps-navigation">
-        <div class="container">
-            <div class="ps-navigation__left">
-                <nav class="ps-main-menu">
-                    <ul class="menu">
-                        @foreach ($categories->slice(0, 6) as $category)
+        <div class="container-fluid text-center" style="border-bottom: 1px solid #f0f2f5;">
+            <div class="container">
+                <div class="ps-navigation__left">
+                    <nav class="ps-main-menu">
+                        <ul class="menu">
+                            @foreach ($categories->slice(0, 6) as $category)
+                                <li class="">
+                                    <a href="{{ route('category.products', $category->slug) }}">{{ $category->name }}
+                                    </a>
+                                </li>
+                            @endforeach
                             <li class="">
-                                <a href="{{ route('category.products', $category->slug) }}">{{ $category->name }}
+                                <a href="{{ route('allproducts')}}"> Shop
                                 </a>
                             </li>
-                        @endforeach
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>

@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
     public function orderHistory()
     {
-        return view('user.pages.orderHistory');
+        $data = [
+
+            'pendingOrdersCount' => Order::where('status','pending')->count(),
+            'deliveredOrdersCount' => Order::where('status','delivered')->count(),
+            'orders' => Order::with('orderItems')->where('user_id' , Auth::user()->id)->latest('created_at')->get(),
+        ];
+        return view('user.pages.orderHistory',$data);
     }
     public function accountDetails()
     {

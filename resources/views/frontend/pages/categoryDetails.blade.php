@@ -44,7 +44,8 @@
                         <li class="ps-breadcrumb__item active" aria-current="page">{{ $category->name }}</li>
                     </ul>
                     <!-- Category Title -->
-                    <h1 class="ps-categogy__name text-info" style="font-size: 25px">{{ $category->name }}<sup>({{ $category->products()->count() }})</sup>
+                    <h1 class="ps-categogy__name text-info" style="font-size: 25px">
+                        {{ $category->name }}<sup>({{ $category->products()->count() }})</sup>
                     </h1>
                 </div>
                 <div class="col-lg-9">
@@ -63,6 +64,10 @@
                     <div class="col-12 col-md-9">
                         <div class="tab-content" id="myTabContent">
                             @foreach ($categories as $allcategory)
+                                @php
+                                    $catProducts = $allcategory->products()->paginate(12);
+                                    // dd($catProducts);
+                                @endphp
                                 <div class="tab-pane fade {{ $allcategory->id == $category->id ? 'show active' : '' }}"
                                     id="home{{ $allcategory->id }}" role="tabpanel"
                                     aria-labelledby="home-tab{{ $allcategory->id }}"
@@ -74,9 +79,7 @@
                                     <!-- Products Grid -->
                                     <div class="ps-categogy--grid">
                                         <div class="row m-0">
-                                            @php
-                                                $catProducts = $allcategory->products()->paginate(12);
-                                            @endphp
+
                                             @forelse ($catProducts as $category_product)
                                                 <div class="col-6 col-lg-4 col-xl-3 p-0">
                                                     <div class="ps-product ps-product--standard">
@@ -84,43 +87,70 @@
                                                             <a class="ps-product__image"
                                                                 href="{{ route('product.details', $category_product->slug) }}">
                                                                 <figure>
-                                                                    @foreach ($category_product->multiImages->slice(0, 2) as $image)
-                                                                        <img src="{{ asset('storage/' . $image->photo) }}"
-                                                                            alt="Product Image"
-                                                                            onerror="this.onerror=null; this.src='{{ asset('frontend/img/no-product.jpg') }}';" />
-                                                                    @endforeach
+                                                                    @if (count($category_product->multiImages) > 0)
+                                                                        @foreach ($category_product->multiImages->slice(0, 2) as $image)
+                                                                            @php
+                                                                                $imagePath = 'storage/' . $image->photo;
+                                                                                $imageSrc = file_exists(
+                                                                                    public_path($imagePath),
+                                                                                )
+                                                                                    ? asset($imagePath)
+                                                                                    : asset(
+                                                                                        'frontend/img/no-product.jpg',
+                                                                                    );
+                                                                            @endphp
+                                                                            <img src="{{ $imageSrc }}"
+                                                                                alt="{{ $category_product->meta_title }}"
+                                                                                width="210" height="210"
+                                                                                style="object-fit: cover;" />
+                                                                        @endforeach
+                                                                    @else
+                                                                        @php
+                                                                            $thumbnailPath =
+                                                                                'storage/' .
+                                                                                $category_product->thumbnail;
+                                                                            $thumbnailSrc = file_exists(
+                                                                                public_path($thumbnailPath),
+                                                                            )
+                                                                                ? asset($thumbnailPath)
+                                                                                : asset('frontend/img/no-product.jpg');
+                                                                        @endphp
+                                                                        <img src="{{ $thumbnailSrc }}"
+                                                                            alt="{{ $category_product->meta_title }}"
+                                                                            width="210" height="210"
+                                                                            style="object-fit: cover;" />
+                                                                    @endif
                                                                 </figure>
                                                             </a>
                                                             <div class="ps-product__actions">
                                                                 <div class="ps-product__item" data-toggle="tooltip"
                                                                     data-placement="left" title="Wishlist">
-                                                                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                                                                    <a class="add_to_wishlist"
+                                                                        href="{{ route('wishlist.store', $category_product->id) }}">
+                                                                        <i class="fa fa-heart-o"></i>
+                                                                    </a>
                                                                 </div>
                                                                 <div class="ps-product__item" data-toggle="tooltip"
-                                                                    data-placement="left" title="Quick view">
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#popupQuickview"><i
-                                                                            class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                                    data-placement="left" title="Add to cart">
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#popupAddcart"><i
-                                                                            class="fa fa-shopping-basket"></i></a>
-                                                                </div>
+                                                                    data-placement="left" title="Quick view"><a
+                                                                        href="#" data-toggle="modal"
+                                                                        data-target="#popupQuickview{{ $category_product->id }}"><i
+                                                                            class="fa fa-search"></i></a></div>
+
                                                             </div>
                                                             @if (!empty($category_product->box_discount_price))
-                                                    <div class="ps-product__badge">
-                                                        <div class="ps-badge ps-badge--sale">Offer</div>
-                                                    </div>
-                                                @endif
+                                                                <div class="ps-product__badge">
+                                                                    <div class="ps-badge ps-badge--sale">Offer</div>
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                         <div class="ps-product__content">
                                                             <h5 class="ps-product__title">
                                                                 <a
-                                                                    href="{{ route('product.details', $category_product->slug) }}">{{ $category_product->name }}</a>
+                                                                    href="{{ route('product.details', $category_product->slug) }}">
+                                                                    {{ $category_product->name }}
+                                                                </a>
                                                             </h5>
-                                                            @auth
+                                                            @if (Auth::check() && Auth::user()->status == 'active')
                                                                 @if (!empty($category_product->box_discount_price))
                                                                     <div class="ps-product__meta">
                                                                         <span
@@ -134,20 +164,18 @@
                                                                             class="ps-product__price sale">£{{ $category_product->box_price }}</span>
                                                                     </div>
                                                                 @endif
+                                                                <a href="{{ route('cart.store', $category_product->id) }}"
+                                                                    class="btn ps-btn--warning my-3 btn-block add_to_cart"
+                                                                    data-product_id="{{ $category_product->id }}"
+                                                                    data-product_qty="1">Add To
+                                                                    Cart</a>
                                                             @else
                                                                 <div class="ps-product__meta">
                                                                     <a href="{{ route('login') }}"
-                                                                        class="btn btn-info btn-block">Login to view
-                                                                        price</a>
+                                                                        class="btn btn-info btn-block">Login
+                                                                        to view price</a>
                                                                 </div>
-                                                            @endauth
-                                                            <div class="ps-product__desc">
-                                                                <ul class="ps-product__list">
-                                                                    <li>Study history up to 30 days</li>
-                                                                    <li>Up to 5 users simultaneously</li>
-                                                                    <li>Has HEALTH certificate</li>
-                                                                </ul>
-                                                            </div>
+                                                            @endif
                                                             <div class="ps-product__actions ps-product__group-mobile">
                                                                 <div class="ps-product__quantity">
                                                                     <div
@@ -163,25 +191,21 @@
                                                                                 class="icon-plus"></i></button>
                                                                     </div>
                                                                 </div>
-                                                                <div class="ps-product__cart">
-                                                                    <a class="ps-btn ps-btn--warning" href="#"
-                                                                        data-toggle="modal"
-                                                                        data-target="#popupAddcart">Add to cart</a>
-                                                                </div>
                                                                 <div class="ps-product__item cart" data-toggle="tooltip"
-                                                                    data-placement="left" title="Add to cart">
-                                                                    <a href="#"><i
+                                                                    data-placement="left" title="Add to cart"><a
+                                                                        href="#"><i
                                                                             class="fa fa-shopping-basket"></i></a>
                                                                 </div>
                                                                 <div class="ps-product__item" data-toggle="tooltip"
                                                                     data-placement="left" title="Wishlist">
-                                                                    <a href="wishlist.html"><i
-                                                                            class="fa fa-heart-o"></i></a>
+                                                                    <a class="add_to_wishlist"
+                                                                        href="{{ route('wishlist.store', $category_product->id) }}">
+                                                                        <i class="fa fa-heart-o"></i>
+                                                                    </a>
                                                                 </div>
                                                                 <div class="ps-product__item rotate"
                                                                     data-toggle="tooltip" data-placement="left"
-                                                                    title="Add to compare">
-                                                                    <a href="compare.html"><i
+                                                                    title="Add to compare"><a href="compare.html"><i
                                                                             class="fa fa-align-left"></i></a>
                                                                 </div>
                                                             </div>
@@ -190,7 +214,7 @@
                                                 </div>
                                             @empty
                                                 <div class="col-12 text-center">
-                                                    <img class="img-fluid"
+                                                    <img class="" style="width: 320px;"
                                                         src="{{ asset('frontend/img/no-products-category.jpg') }}"
                                                         alt="">
                                                 </div>
@@ -312,24 +336,6 @@
                         updateCategoryContent(categoryId);
                     });
                 });
-            });
-        </script>
-        <script>
-            // Handle scroll to show/hide header with transition
-            var header = document.querySelector('.ps-header.ps-header--sticky');
-            var lastScrollTop = 0;
-
-            window.addEventListener('scroll', function() {
-                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-                if (scrollTop > lastScrollTop) {
-                    // Scrolling down
-                    header.classList.remove('visible');
-                } else {
-                    // Scrolling up
-                    header.classList.add('visible');
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
             });
         </script>
     @endpush

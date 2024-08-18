@@ -31,6 +31,7 @@ class Category extends Model
 
     public function products()
     {
+        // return Product::whereJsonContains('category_id', (string) $this->id);
         return Product::whereJsonContains('category_id', json_encode($this->id));
     }
 

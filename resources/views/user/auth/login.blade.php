@@ -109,16 +109,16 @@
                                             Log in
                                         </button>
                                     </div>
-                                    <div class="login-divider text-center pt-3">
+                                    {{-- <div class="login-divider text-center pt-3">
                                         <p class="mb-0 pb-0 divider-text">Or Login With</p>
                                         <p class="devider mb-0 pb-0"></p>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="mt-5">
+                                    {{-- <div class="mt-5">
                                         <button class="btn btn-outline-primary w-100 p-3 display-4 rounded-3">
                                           <i class="fa fa-google-plus"></i>  Sign Up With Google
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     @if (Route::has('password.request'))
                                         <p class="text-center"><span class="ps-5 text-center">
                                                 Don't Have Account
