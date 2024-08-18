@@ -49,12 +49,17 @@
                                             <div class="ps-banner__desc">{{ $slider->subtitle }}</div>
                                             <div class="ps-banner__btn-group">
                                                 <div class="ps-banner__btn">{{ $slider->badge }}</div>
-                                            </div><a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">{{ $slider->button_name }}</a>
-                                            <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div>
+                                            </div>
+                                            @if (!empty($slider->button_link) || !empty($slider->button_name))
+                                                <a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">
+                                                    {{ $slider->button_name }}
+                                                </a>
+                                            @endif
+                                            {{-- <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div> --}}
                                         </div>
-                                        <div class="ps-banner__thumnail"><img class="ps-banner__round"
-                                                src="{{ asset('frontend/img/round5.png') }}" alt="alt"><img class="ps-banner__image"
-                                                src="{{ asset('storage/' . $slider->image) }}" alt="alt">
+                                        <div class="ps-banner__thumnail">
+                                            <img class="ps-banner__round" src="{{ asset('storage/' . $slider->bg_image) }}" alt="alt">
+                                                <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}" alt="alt">
                                         </div>
                                     </div>
                                 </div>
