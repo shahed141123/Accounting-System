@@ -93,6 +93,7 @@
                         <th>Created At</th>
                         <th>Price</th>
                         <th>QTY</th>
+                        <th>Payment Status</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -112,6 +113,13 @@
                             <td>{{ $order->created_at }}</td>
                             <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}</td>
                             <td>{{ $order->quantity }}</td>
+                            <td>
+                                @if ($order->payment_status == 'unpaid')
+                                    <span class="badge py-3 px-4 fs-7 badge-danger">Unpaid</span>
+                                @elseif ($order->payment_status == 'paid')
+                                    <span class="badge py-3 px-4 fs-7 badge-light-success">Paid</span>
+                                @endif
+                            </td>
                             <td>
                                 @if ($order->status == 'pending')
                                     <span class="badge py-3 px-4 fs-7 badge-light-primary">Pending</span>

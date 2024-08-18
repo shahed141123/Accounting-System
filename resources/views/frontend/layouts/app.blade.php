@@ -112,7 +112,7 @@
         class Dashboard {
             constructor() {
                 this.initDataTables();
-                this.initDateRangePicker();
+                // this.initDateRangePicker();
             }
 
             initDataTables() {
@@ -136,17 +136,17 @@
                 });
             }
 
-            initDateRangePicker() {
-                $(document).ready(() => {
-                    // Initialize Date Range Picker
-                    $('#kt_daterangepicker_1').daterangepicker({
-                        opens: 'left',
-                        locale: {
-                            format: 'MM/DD/YYYY'
-                        }
-                    });
-                });
-            }
+            // initDateRangePicker() {
+                // $(document).ready(() => {
+                //     // Initialize Date Range Picker
+                //     $('#kt_daterangepicker_1').daterangepicker({
+                //         opens: 'left',
+                //         locale: {
+                //             format: 'MM/DD/YYYY'
+                //         }
+                //     });
+                // });
+            // }
         }
 
         // Create an instance of the Dashboard class
