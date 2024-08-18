@@ -5352,7 +5352,7 @@ textarea.form-control {
         object-fit: cover;
     }
     .ps-banner .ps-banner__thumnail .ps-banner__round {
-        z-index: 10;
+        z-index: 0;
         -o-object-fit: cover;
         object-fit: cover;
         height: 190%;
@@ -14264,6 +14264,8 @@ textarea.form-control {
 @media (min-width: 768px) {
     .ps-header {
         display: block;
+        position: relative;
+        z-index: 55;
     }
 }
 
