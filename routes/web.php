@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\VendorProfileController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -29,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
+    Route::post('checkout/store', [CartController::class, 'checkoutStore'])->name('checkout.store');
 });
 
 Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:admin'])->prefix(LaravelLocalization::setLocale() . '/admin')->name('admin.')->group(function () {
@@ -40,3 +44,4 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 require __DIR__ . '/frontend.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/client.php';

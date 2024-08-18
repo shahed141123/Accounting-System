@@ -1,497 +1,752 @@
 <x-admin-app-layout :title="'Product Add'">
     <style>
-        .image-input-placeholder {
-            background-image: url("https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/files/blank-image.svg");
+        .image-input-empty {
+            background-image: url({{ asset('admin/assets/media/svg/files/blank-image.svg') }});
         }
+
+        /* Custom Multi file upload */
+        .img-thumb {
+            border: 2px solid none;
+            border-radius: 3px;
+            padding: 1px;
+            cursor: pointer;
+            width: 70px;
+            height: 60px;
+            border-radius: 0.475rem;
+        }
+
+
+        .img-thumb-wrapper {
+            display: inline-block;
+            margin: 1rem 1rem 0 0;
+        }
+
+
+        .remove {
+            display: block;
+            background: #cf054f;
+            border: 1px solid none;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 5px;
+        }
+
+
+        .remove:hover {
+            background: white;
+            color: black;
+        }
+
+
+        .dropzone-field {
+            border: 1px dashed #009ef7;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow multiple images in a row */
+            align-items: center;
+            border-radius: 4px;
+            padding: 10px 5px;
+            justify-content: center;
+        }
+
+
+        #files {
+            display: none;
+        }
+
+
+        .custom-file-upload {
+            border: 0px solid #ccc;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: transparent;
+        }
+
+
+        .custom-file-upload i {
+            margin-right: 5px;
+        }
+
+        /* Custom Multi file upload */
     </style>
     <div id="kt_app_content_container" class="app-container container-xxl">
-        <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row"
-            action="{{ route('admin.product.create') }}" method="POST">
+        <form id="kt_ecommerce_add_product_form" method="post" action="{{ route('admin.product.store') }}"
+            enctype="multipart/form-data">
             @csrf
-            <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-                {{-- Media Card Start --}}
-                <div class="card card-flush">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2>Media</h2>
-                        </div>
-                    </div>
-                    <div class="card-body text-center pt-0">
-                        <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-                            data-kt-image-input="true">
-                            <div class="image-input-wrapper w-150px h-150px"></div>
-                            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                <i class="fa-solid fa-pencil fs-7">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                </i>
-                                <input type="file" name="thumbnail" accept=".png, .jpg, .jpeg" />
-                                <input type="hidden" name="thumbnail_remove" />
-                            </label>
-                        </div>
-                        <div class="text-muted fs-7">
-                            Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image
-                            files are accepted
-                        </div>
-                        {{-- Product Mutli Image --}}
-                        <div class="fv-row pt-5">
-                            <div class="dropzone" id="productmulti_imag">
-                                <div class="dz-message needsclick">
-                                    <i class="fa-solid fa-photo-film fs-3x text-primary"></i>
-                                    <div class="ms-4">
-                                        <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or click to upload.
-                                        </h3>
-                                        <span class="fs-7 fw-semibold text-gray-500">Upload up to 10 files</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-muted fs-7 pt-4">
-                            Add the product multi image
-                        </div>
-                    </div>
-                </div>
-                {{-- Media Card End --}}
-                {{-- Status Card Start --}}
-                <div class="card card-flush py-4">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2>Status</h2>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0">
-                        <select class="form-select mb-2" data-control="select2" data-hide-search="true" name="status"
-                            data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select">
-                            <option></option>
-                            <option value="published" selected>Published</option>
-                            <option value="draft">Draft</option>
-                            <option value="inactive">Inactive</option>
-                        </select>
-                        <div class="text-muted fs-7">Set the product status.</div>
-                    </div>
-                </div>
-                {{-- Status Card End --}}
-                {{-- Category Card Start --}}
-                <div class="card card-flush py-4">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2>Category</h2>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="fv-row">
-                            <label class="form-label">Brand Id</label>
-                            <select class="form-select mb-2" name="brand_id" data-control="select2"
-                                data-placeholder="Select an option" data-allow-clear="true">
-                                <option></option>
-                                <option value="">Apolo</option>
-                                <option value="">Redian</option>
-                                <option value="">Nike</option>
-                            </select>
-                        </div>
-                        <div class="fv-row">
-                            <label class="form-label">Category Id</label>
-                            <select class="form-select mb-2" name="category_id" data-control="select2"
-                                data-placeholder="Select an option" data-allow-clear="true">
-                                <option></option>
-                                <option value="">Red</option>
-                                <option value="">White</option>
-                                <option value="">Black</option>
-                            </select>
-                        </div>
-                        <div class="fv-row">
-                            <label class="form-label">Attribute Id</label>
-                            <select class="form-select mb-2" name="attribute_id" data-control="select2"
-                                data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
-                                <option></option>
-                                <option value="">Computers</option>
-                                <option value="">Watches</option>
-                                <option value="">Headphones</option>
-                                <option value="">Footwear</option>
-                                <option value="">Cameras</option>
-                                <option value="">Shirts</option>
-                                <option value="">Household</option>
-                                <option value="">Handbags</option>
-                                <option value="">Wines</option>
-                                <option value="">Sandals</option>
-                            </select>
-                        </div>
-                        <div class="fv-row">
-                            <label class="form-label">Color Id</label>
-                            <select class="form-select mb-2" name="color_id" data-control="select2"
-                                data-placeholder="Select an option" data-allow-clear="true" multiple="multiple">
-                                <option></option>
-                                <option value="">Red</option>
-                                <option value="">White</option>
-                                <option value="">Black</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                {{-- Category Card End --}}
-                {{-- Shipping Card Start --}}
-                <div class="card card-flush py-4">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2>Shipping Details</h2>
-                        </div>
-                        <div class="text-muted fs-7">Add shipping details.</div>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="fv-row">
-                            <label class="form-label">Weight</label>
-                            <input type="text" name="weight" class="form-control mb-2"
-                                placeholder="Set the product Weight" value="">
-                        </div>
-                        <div class="fv-row">
-                            <label class="form-label">Dimension</label>
-                            <input type="text" name="dimension" class="form-control mb-2"
-                                placeholder="Set the product Dimension" value="">
-                        </div>
-                        <div class="fv-row pt-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Is Refurbished
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- Shipping Card End --}}
-            </div>
-            <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
-                            href="#kt_ecommerce_add_product_general">General</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
-                            href="#kt_ecommerce_add_product_advanced">Advanced</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
-                        <div class="d-flex flex-column gap-7 gap-lg-10">
-                            {{-- General Info --}}
-                            <div class="card card-flush py-4">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>General</h2>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Product Name</label>
-                                        <input type="text" name="name" class="form-control mb-2"
-                                            placeholder="Product name recommended" />
-                                        <div class="text-muted fs-7">
-                                            A product name is and recommended to be unique.
+            <div class="row">
+                <div class="gap-7 gap-lg-10 col-9">
+                    <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
+                                href="#kt_ecommerce_add_product_general">General</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                                href="#kt_ecommerce_add_product_media">Media</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                                href="#kt_ecommerce_add_product_advanced">Inventory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                                href="#kt_ecommerce_add_product_package">Package</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                                href="#kt_ecommerce_add_product_price">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                                href="#kt_ecommerce_add_product_meta">Meta Options</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                {{-- General Info --}}
+                                <div class="card card-flush py-4 mt-3">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>General</h2>
                                         </div>
                                     </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Tags</label>
-                                        <select class="form-select mb-2" name="tags" data-control="select2"
-                                            data-placeholder="Select an option" data-allow-clear="true"
-                                            multiple="multiple">
-                                            <option></option>
-                                            <option value="">Computers</option>
-                                            <option value="">Watches</option>
-                                            <option value="">Headphones</option>
-                                            <option value="">Footwear</option>
-                                            <option value="">Cameras</option>
-                                            <option value="">Shirts</option>
-                                            <option value="">Household</option>
-                                            <option value="">Handbags</option>
-                                            <option value="">Wines</option>
-                                            <option value="">Sandals</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Short Description</label>
-                                        <textarea name="short_description" placeholder="Add Product Short Description" class="form-control mb-2"
-                                            cols="30" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Product Overview</label>
-                                        <div id="overview_editor" name="overview">
-                                            {{-- Content --}}
-                                        </div>
-                                        <div class="text-muted fs-7">
-                                            Add product overview here.
-                                        </div>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Product Description</label>
-                                        <div id="description_editor" name="description">
-                                            {{-- Content --}}
-                                        </div>
-                                        <div class="text-muted fs-7">
-                                            Add product description here.
-                                        </div>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Product Specification</label>
-                                        <div id="specification_editor" name="specification">
-                                            {{-- Content --}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- Pricing --}}
-                            <div class="card card-flush py-4">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Pricing</h2>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Price</label>
-                                        <input type="text" name="price" class="form-control mb-2"
-                                            placeholder="Product price" value="" />
-                                        <div class="text-muted fs-7">Set the product price.</div>
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Discount Price</label>
-                                        <input type="text" name="discount_price" class="form-control mb-2"
-                                            placeholder="Set Product Discount price" value="" />
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Deals</label>
-                                        <input type="text" name="deal" class="form-control mb-2"
-                                            placeholder="Add Product Deal" value="" />
-                                    </div>
-                                    <div class="mb-5 fv-row">
-                                        <label class="form-label">Currency Id</label>
-                                        <select class="form-select mb-2" name="currency_id" data-control="select2"
-                                            data-placeholder="Select an option" data-allow-clear="true"
-                                            multiple="multiple">
-                                            <option></option>
-                                            <option value="">Computers</option>
-                                            <option value="">Watches</option>
-                                            <option value="">Headphones</option>
-                                            <option value="">Footwear</option>
-                                            <option value="">Cameras</option>
-                                            <option value="">Shirts</option>
-                                            <option value="">Household</option>
-                                            <option value="">Handbags</option>
-                                            <option value="">Wines</option>
-                                            <option value="">Sandals</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="kt_ecommerce_add_product_advanced" role="tab-panel">
-                        <div class="d-flex flex-column gap-7 gap-lg-10">
-                            {{-- Inventory --}}
-                            <div class="card card-flush py-4">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Inventory</h2>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="mb-10 fv-row">
-                                        <label class="form-label">SKU Code</label>
-                                        <input type="text" name="sku_code" class="form-control mb-2"
-                                            placeholder="SKU Number" value="" />
-                                        <div class="text-muted fs-7">Enter the product SKU.</div>
-                                    </div>
-                                    <div class="mb-10 fv-row">
-                                        <label class="form-label">MF Code</label>
-                                        <input type="text" name="mf_code" class="form-control mb-2"
-                                            placeholder="MF Number" value="" />
-                                        <div class="text-muted fs-7">Enter the product MF.</div>
-                                    </div>
-                                    <div class="mb-10 fv-row">
-                                        <label class="form-label">Product Code</label>
-                                        <input type="text" name="product_code" class="form-control mb-2"
-                                            placeholder="Product Code Number" value="" />
-                                        <div class="text-muted fs-7">Enter the product MF.</div>
-                                    </div>
-                                    <div class="mb-10 fv-row">
-                                        <label class="form-label">Stock</label>
-                                        <input type="text" name="stock" class="form-control mb-2"
-                                            placeholder="Product Code Number" value="" />
-                                        <div class="text-muted fs-7">Enter the product MF.</div>
-                                    </div>
-                                    <div class="mb-10 fv-row">
-                                        <label class="form-label">Stock Availability</label>
-                                        <select class="form-select mb-2" name="stock_availability"
-                                            data-control="select2" data-placeholder="Select an option"
-                                            data-allow-clear="true" multiple="multiple">
-                                            <option></option>
-                                            <option value="Computers">Available</option>
-                                            <option value="Watches">Not Available</option>
-                                        </select>
-                                        <div class="text-muted fs-7">Enter the product MF.</div>
-                                    </div>
-                                    <div class="mb-10 fv-row">
-                                        <label class="form-label">Barcode</label>
-                                        <input type="text" name="barcode" class="form-control mb-2"
-                                            placeholder="Barcode Number" value="" />
-                                        <div class="text-muted fs-7">
-                                            Enter the product barcode number.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- Meta Options --}}
-                            <div class="card card-flush py-4">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Meta Options</h2>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="mb-10">
-                                        <label class="form-label">Meta Tag Title</label>
-                                        <input type="text" class="form-control mb-2" name="meta_title"
-                                            placeholder="Meta tag name" />
-
-                                        <div class="text-muted fs-7">
-                                            Set a meta tag title. Recommended to be simple and precise
-                                            keywords.
-                                        </div>
-                                    </div>
-                                    <div class="mb-10">
+                                    <div class="card-body pt-0">
                                         <div class="mb-5 fv-row">
-                                            <label class="form-label">Meta Tag Description</label>
-                                            <div id="meta_editor" name="meta_description">
-                                                {{-- Content --}}
+                                            <x-metronic.label class="form-label">Product Name</x-metronic.label>
+                                            <x-metronic.input type="text" name="name" class="form-control mb-2"
+                                                placeholder="Product name recommended" :value="old('name')">
+                                            </x-metronic.input>
+                                            <div class="text-muted fs-7">
+                                                A product name is and recommended to be unique.
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <x-metronic.label class="form-label">Tags</x-metronic.label>
+                                            <input class="form-control" name="tags" id="product_Tags"
+                                                :value="old('tags')" />
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <x-metronic.label class="form-label">Short Description</x-metronic.label>
+                                            <x-metronic.textarea id="short_description" name="short_description"
+                                                placeholder="Add Product Short Description" class="form-control mb-2"
+                                                cols="30"
+                                                rows="3">{!! old('short_description') !!}</x-metronic.textarea>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <x-metronic.label class="form-label">Product Overview</x-metronic.label>
+                                            <textarea name="overview" class="ckeditor">{!! old('overview') !!}</textarea>
+                                            <div class="text-muted fs-7">
+                                                Add product overview here.
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <x-metronic.label class="form-label">Product Description</x-metronic.label>
+                                            <textarea name="description" class="ckeditor">{!! old('description') !!}</textarea>
+                                            <div class="text-muted fs-7">
+                                                Add product description here.
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 fv-row">
+                                            <x-metronic.label class="form-label">Product
+                                                Specification</x-metronic.label>
+                                            <textarea name="specification" class="ckeditor">{!! old('specification') !!}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="kt_ecommerce_add_product_media" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                {{-- Inventory --}}
+                                <div class="card card-flush py-4">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Media</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body py-4 mt-3">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <x-metronic.label for="" class="form-label">Set the product
+                                                    thumbnail image. Only *.png, *.jpg and *.jpeg image
+                                                    files are accepted</x-metronic.label>
+                                                <div class="image-input image-input-empty" data-kt-image-input="true"
+                                                    style="width: auto;
+                                                    background-size: contain;
+                                                    border: 1px solid #009ae5;">
+                                                    <div class="image-input-wrapper w-100px h-70px"></div>
+
+                                                    <label
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Change avatar">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                        <input type="file" name="thumbnail"
+                                                            accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="avatar_remove" />
+                                                    </label>
+
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Cancel avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Remove avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            {{-- Product Mutli Image --}}
+                                            <div class="col-8">
+                                                <div class="fv-row pt-5">
+                                                    <x-metronic.label for="" class="form-label">Add the
+                                                        product multi image</x-metronic.label>
+                                                    <div class="dropzone-field">
+                                                        <label for="files" class="custom-file-upload">
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="mb-0"><i
+                                                                        class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
+                                                                </p>
+                                                                <h5 class="mb-0">Drop files here or click to upload.
+                                                                    <br>
+                                                                    <span class="text-muted"
+                                                                        style="font-size: 10px">Upload 10 File</span>
+                                                                </h5>
+                                                            </div>
+                                                        </label>
+                                                        <input type="file" id="files" name="multi_images[]"
+                                                            multiple class="form-control" style="display: none;"
+                                                            onchange="console.log(this.selected.value)" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <label class="form-label">Meta Tag Keywords</label>
-                                        <select class="form-select mb-2" name="meta_keyword" data-control="select2"
-                                            data-placeholder="Select an option" data-allow-clear="true"
-                                            multiple="multiple">
-                                            <option></option>
-                                            <option value="Computers">Computers</option>
-                                            <option value="Watches">Watches</option>
-                                            <option value="Headphones">Headphones</option>
-                                            <option value="Footwear">Footwear</option>
-                                            <option value="Cameras">Cameras</option>
-                                            <option value="Shirts">Shirts</option>
-                                            <option value="Household">Household</option>
-                                            <option value="Handbags">Handbags</option>
-                                            <option value="Wines">Wines</option>
-                                            <option value="Sandals">Sandals</option>
-                                        </select>
-                                        <div class="text-muted fs-7">
-                                            Set a list of keywords that the product is related to.
-                                            Separate the keywords by adding a comma
-                                            <code>,</code> between each keyword.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="kt_ecommerce_add_product_advanced" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                {{-- Inventory --}}
+                                <div class="card card-flush py-4 mt-3">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Inventory</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0 row">
+                                        <div class="mb-10 fv-row col-6">
+                                            <x-metronic.label class="form-label">SKU Code</x-metronic.label>
+                                            <x-metronic.input type="text" name="sku_code"
+                                                class="form-control mb-2" placeholder="SKU Number"
+                                                :value="old('sku_code')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">Enter the product SKU.</div>
+                                        </div>
+                                        <div class="mb-10 fv-row col-6">
+                                            <x-metronic.label class="form-label">MF Code</x-metronic.label>
+                                            <x-metronic.input type="text" name="mf_code" class="form-control mb-2"
+                                                placeholder="MF Number" :value="old('mf_code')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">Enter the product MF.</div>
+                                        </div>
+
+                                        <div class="mb-10 fv-row col-12">
+                                            <x-metronic.label class="form-label">Barcode</x-metronic.label>
+                                            <x-metronic.input type="text" name="barcode_id"
+                                                class="form-control mb-2" placeholder="Barcode Number"
+                                                :value="old('barcode_id')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">
+                                                    Enter the product barcode number.
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="kt_ecommerce_add_product_price" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                {{-- Pricing --}}
+                                <div class="card card-flush py-4 mt-3">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Box Pricing</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0 row">
+                                        <div class="mb-5 fv-row col-4">
+                                            <x-metronic.label class="form-label">Box Contains</x-metronic.label>
+                                            <x-metronic.input type="number" name="box_contains" id="box_contains"
+                                                class="form-control mb-2" placeholder="how much in a box"
+                                                :value="old('box_contains')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much product in a box.</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-4">
+                                            <x-metronic.label class="form-label">Box Price</x-metronic.label>
+                                            <x-metronic.input type="number" name="box_price" id="box_price"
+                                                class="form-control mb-2" placeholder="how much the box price"
+                                                :value="old('box_price')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much box price.</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-4">
+                                            <x-metronic.label class="form-label">Box Discount Price</x-metronic.label>
+                                            <x-metronic.input type="number" name="box_discount_price"
+                                                id="box_discount_price" class="form-control mb-2"
+                                                placeholder="how much the box discount price"
+                                                :value="old('box_discount_price')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much box discount price.</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-4">
+                                            <x-metronic.label class="form-label">Unit Price</x-metronic.label>
+                                            <x-metronic.input type="number" name="unit_price" id="unit_price"
+                                                class="form-control mb-2" placeholder="how much the unit price"
+                                                :value="old('unit_price')" readonly></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much unit price.</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-4">
+                                            <x-metronic.label class="form-label">Unit Discount</x-metronic.label>
+                                            <x-metronic.input type="number" name="unit_discount_price"
+                                                id="unit_discount" class="form-control mb-2"
+                                                placeholder="how much the unit discount price" :value="old('unit_discount_price')"
+                                                readonly></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much unit discount price.</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-4">
+                                            <x-metronic.label class="form-label">Box Stock</x-metronic.label>
+                                            <x-metronic.input type="number" name="box_stock" id="box_stock"
+                                                class="form-control mb-2" placeholder="how much the box stock"
+                                                :value="old('box_stock')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much box stock. Eg: 50</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-6">
+                                            <x-metronic.label class="form-label">Vat</x-metronic.label>
+                                            <x-metronic.input type="number" name="vat" id="vat"
+                                                class="form-control mb-2" placeholder="how much the vat"
+                                                :value="old('vat')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much box vat. Eg: 5%</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-6">
+                                            <x-metronic.label class="form-label">Tax</x-metronic.label>
+                                            <x-metronic.input type="number" name="tax" id="tax"
+                                                class="form-control mb-2" placeholder="how much the tax "
+                                                :value="old('tax')"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much tax Eg: 5%</div>
+                                        </div>
+                                        <div class="fv-row col-4 mt-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="is_refurbished" type="checkbox"
+                                                    value="1" id="is_refurbished" />
+                                                <x-metronic.label class="form-check-label" for="is_refurbished">
+                                                    Is Refurbished
+                                                </x-metronic.label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="kt_ecommerce_add_product_package" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10 mt-10">
+                                {{-- Shipping Card Start --}}
+                                <div class="card card-flush py-4 mt-3">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Package Details</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="fv-row row">
+                                            <div class="col-lg-6">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <x-metronic.label class="form-label">Length
+                                                            (cm)</x-metronic.label>
+                                                        <x-metronic.input type="number" name="length"
+                                                            id="length" class="form-control mb-2" placeholder="15"
+                                                            :value="old('length')"></x-metronic.input>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <x-metronic.label class="form-label">Width
+                                                            (cm)</x-metronic.label>
+                                                        <x-metronic.input type="number" name="width"
+                                                            id="width" class="form-control mb-2" placeholder="10"
+                                                            :value="old('width')"></x-metronic.input>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <x-metronic.label class="form-label">Height
+                                                            (cm)</x-metronic.label>
+                                                        <x-metronic.input type="number" name="height"
+                                                            id="height" class="form-control mb-2" placeholder="9"
+                                                            :value="old('height')"></x-metronic.input>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <x-metronic.label class="form-label">Weight
+                                                            (kg)</x-metronic.label>
+                                                        <x-metronic.input type="number" name="weight"
+                                                            id="weight" class="form-control mb-2"
+                                                            placeholder="1.5" :value="old('weight')"></x-metronic.input>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="pt-10">
+                                                            <p id="dimensionPreview">Length X Width X Height X Weight
+                                                            </p>
+                                                            <hr>
+                                                            <p>Length(0 cm) X Width(0 cm) X Height(0 cm) Weight(0 kg)
+                                                            </p> <!-- Dimension preview -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div>
+                                                    <img class="img-fluid w-100"
+                                                        src="https://i.ibb.co/SsVWMpL/box-size.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                {{-- Shipping Card End --}}
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="kt_ecommerce_add_product_meta" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                {{-- Meta Options --}}
+                                <div class="card card-flush py-4 mt-3">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Meta Options</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="mb-10">
+                                            <div class="mb-5 fv-row">
+                                                <x-metronic.label class="form-label">Product Meta
+                                                    Title</x-metronic.label>
+                                                <input class="form-control" name="meta_title" type="text"
+                                                    placeholder="Meta tag name" id="meta_title"
+                                                    :value="old('meta_title')" />
+                                            </div>
+                                            <div class="text-muted fs-7">
+                                                Add Product Meta Title.
+                                            </div>
+                                        </div>
+                                        <div class="mb-10">
+                                            <div class="mb-5 fv-row">
+                                                <x-metronic.label class="form-label">Meta
+                                                    Description</x-metronic.label>
+                                                <textarea name="meta_description" class="ckeditor">{!! old('meta_description') !!}</textarea>
+                                                <div class="text-muted fs-7">
+                                                    Add Meta Meta details.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="mb-5 fv-row">
+                                                <x-metronic.label class="form-label">Meta Tag
+                                                    Keywords</x-metronic.label>
+                                                <input class="form-control" name="meta_keywords"
+                                                    placeholder="Meta tag keywords" id="meta_keywords"
+                                                    :value="old('meta_keywords')" />
+                                                <div class="text-muted fs-7">
+                                                    Add product Meta tag keywords.
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-end mt-10">
+                        <a href="{{ route('admin.product.index') }}" class="btn btn-danger me-5">
+                            Back To Product List
+                        </a>
+                        {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                            <span class="indicator-label"> Save Changes </span>
+                            <span class="indicator-progress">
+                                Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button> --}}
+                        <button type="submit" class="btn btn-primary">
+                            <span class="indicator-label"> Save Changes </span>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-danger me-5">
-                        Back To Product List
-                    </a>
-                    <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                        <span class="indicator-label"> Save Changes </span>
-                        <span class="indicator-progress">
-                            Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                        </span>
-                    </button>
+                <div class="gap-7 gap-lg-10 mb-7  col-3">
+                    {{-- Status Card Start --}}
+                    <div class="card card-flush py-4 mb-6">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Status</h2>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <x-metronic.select-option id="kt_ecommerce_add_product_status_select"
+                                class="form-select mb-2" data-control="select2" data-hide-search="true"
+                                name="status" data-placeholder="Select an option">
+                                <option></option>
+                                <option value="published" selected>Published</option>
+                                <option value="draft">Draft</option>
+                                <option value="inactive">Inactive</option>
+                            </x-metronic.select-option>
+                            <div class="text-muted fs-7">Set the product status.</div>
+                        </div>
+                    </div>
+                    {{-- Status Card End --}}
+                    {{-- Category Card Start --}}
+                    <div class="card card-flush py-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Category</h2>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="fv-row">
+                                <x-metronic.label for="brand_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Brand') }}</x-metronic.label>
+                                <x-metronic.select-option id="brand_id" class="form-select mb-2" name="brand_id"
+                                    data-control="select2" data-placeholder="Select an option"
+                                    data-allow-clear="true">
+                                    <option></option>
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->name }}
+                                        </option>
+                                    @endforeach
+                                </x-metronic.select-option>
+                            </div>
+                            <div class="fv-row">
+                                <x-metronic.label for="category_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Category') }}</x-metronic.label>
+                                <x-metronic.select-option id="category_id" class="form-control select mb-2"
+                                    name="category_id[]" multiple multiselect-search="true"
+                                    multiselect-select-all="true" data-control="select2"
+                                    data-placeholder="Select an option" data-allow-clear="true">
+                                    {!! $categoriesOptions !!}
+                                </x-metronic.select-option>
+                            </div>
+                            <div class="fv-row">
+                                <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Add Color') }}
+                                </x-metronic.label>
+                                <!-- Input element for Tagify -->
+                                <input class="form-control d-flex align-items-center" name="color"
+                                    :value="old('color')" id="kt_tagify_color" />
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category Card End --}}
                 </div>
             </div>
         </form>
     </div>
     @push('scripts')
         <script>
-            var myDropzone = new Dropzone("#productmulti_imag", {
-                url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-                paramName: "file", // The name that will be used to transfer the file
+            document.addEventListener('DOMContentLoaded', function() {
+                // The DOM elements you wish to replace with Tagify
+                var input1 = document.querySelector("#product_Tags");
+                var input2 = document.querySelector("#product_meta_tags");
+                var input3 = document.querySelector("#product_meta_keyword");
+
+                // Initialize Tagify components on the above inputs
+                new Tagify(input1);
+                new Tagify(input2);
+                new Tagify(input3);
+            });
+
+
+
+            // Product dimension box
+            document.addEventListener('DOMContentLoaded', function() {
+                const lengthInput = document.getElementById('length');
+                const widthInput = document.getElementById('width');
+                const heightInput = document.getElementById('height');
+                const weightInput = document.getElementById('weight');
+
+                const dimensionPreview = document.getElementById('dimensionPreview');
+
+                function updatePreview() {
+                    const length = lengthInput.value || 0;
+                    const width = widthInput.value || 0;
+                    const height = heightInput.value || 0;
+                    const weight = weightInput.value || 0;
+
+                    dimensionPreview.textContent =
+                        `${length} cm X ${width} cm X ${height} cm X ${weight} kg`;
+                }
+
+                // Attach the event listener to each input field
+                lengthInput.addEventListener('input', updatePreview);
+                widthInput.addEventListener('input', updatePreview);
+                heightInput.addEventListener('input', updatePreview);
+                weightInput.addEventListener('input', updatePreview);
+            });
+
+            // Define color mapping
+            var colorMapping = {
+                'Red': '#FF5733',
+                'Green': '#33FF57',
+                'Blue': '#3357FF',
+                'Yellow': '#FFFF33',
+                'Purple': '#A933FF',
+                'Orange': '#FF8C33',
+                'Pink': '#FF33B5',
+                'Brown': '#8C4C33',
+                'Gray': '#BEBEBE',
+                'Black': '#000000',
+                'White': '#FFFFFF',
+                'Cyan': '#00FFFF',
+                'Magenta': '#FF00FF',
+                'Lime': '#00FF00',
+                'Teal': '#008080',
+                'Olive': '#808000',
+                'Navy': '#000080',
+                'Maroon': '#800000',
+                'Silver': '#C0C0C0',
+                'Gold': '#FFD700',
+                'Coral': '#FF7F50',
+                'Indigo': '#4B0082',
+                'Turquoise': '#40E0D0',
+                'Salmon': '#FA8072'
+            };
+
+            // Convert colorMapping to an array of objects for Tagify dropdown
+            var colorArray = Object.keys(colorMapping).map(key => ({
+                value: key,
+                color: colorMapping[key]
+            }));
+
+            // Initialize Tagify on the input element
+            var tagify = new Tagify(document.querySelector('#kt_tagify_color'), {
+                delimiters: null,
+                templates: {
+                    tag: function(tagData) {
+                        const color = colorMapping[tagData.value] || '#cccccc'; // Default color if not found
+                        try {
+                            return `<tag title='${tagData.value}' contenteditable='false' spellcheck="false"
+                    class='tagify__tag ${tagData.class ? tagData.class : ""}' ${this.getAttributes(tagData)}
+                    style="background-color: ${color}; border: none; display: flex; align-items: center; padding: 0;">
+                        <x title='remove tag' class='tagify__tag__removeBtn'></x>
+                        <div class="d-flex align-items-center" style="width: 25px; height: 25px; background-color: ${color}; border-radius: 4px; margin-right: 8px;"></div>
+                        <span class='tagify__tag-text'>${tagData.value}</span>
+                    </tag>`;
+                        } catch (err) {
+                            console.error('Error in tag template:', err);
+                        }
+                    },
+
+                    dropdownItem: function(tagData) {
+                        const color = colorMapping[tagData.value] || '#cccccc'; // Default color if not found
+                        try {
+                            return `<div ${this.getAttributes(tagData)} class='tagify__dropdown__item ${tagData.class ? tagData.class : ""}'
+                    style="background-color: white; color: black; display: flex; align-items: center; padding: 4px 8px;">
+                        <div style="width: 25px; height: 25px; background-color: ${color}; border-radius: 4px; margin-right: 8px;"></div>
+                        <span>${tagData.value}</span>
+                    </div>`;
+                        } catch (err) {
+                            console.error('Error in dropdown item template:', err);
+                        }
+                    }
+                },
+                // Remove whitelist to allow all colors to be shown in dropdown
+                enforceWhitelist: false,
+                // Display dropdown items based on the colorMapping array
+                whitelist: colorArray,
+                dropdown: {
+                    enabled: 1, // Show the dropdown as the user types
+                    classname: 'extra-properties' // Custom class for the suggestions dropdown
+                }
+            });
+
+            // Show all color options when the input is clicked
+            var inputElement = document.querySelector('#kt_tagify_color');
+
+            inputElement.addEventListener('click', function() {
+                tagify.dropdown.show.call(tagify);
+            });
+
+            // Add the first 2 tags and make them readonly
+            // var tagsToAdd = tagify.settings.whitelist.slice(0, 2);
+            // tagify.addTags(tagsToAdd);
+
+
+
+            // Product Pricing
+            function calculatePrices() {
+                const boxContains = parseFloat(document.getElementById('box_contains').value) || 0;
+                const boxPrice = parseFloat(document.getElementById('box_price').value) || 0;
+                const boxDiscountPrice = parseFloat(document.getElementById('box_discount_price').value) || 0;
+
+                const unitPrice = boxContains ? (boxPrice / boxContains).toFixed(2) : 0;
+                const unitDiscount = boxContains ? (boxDiscountPrice / boxContains).toFixed(2) : 0;
+
+                document.getElementById('unit_price').value = unitPrice;
+                document.getElementById('unit_discount').value = unitDiscount;
+            }
+
+            document.getElementById('box_contains').addEventListener('input', calculatePrices);
+            document.getElementById('box_price').addEventListener('input', calculatePrices);
+            document.getElementById('box_discount_price').addEventListener('input', calculatePrices);
+
+            // Product Multiimage Submit
+            var uploadedDocumentMap = {}; // Assuming you have this variable defined somewhere
+
+            var myDropzone = new Dropzone("#product_multiimage", {
+                url: "{{ route('admin.product.store') }}",
+                paramName: "multi_image", // The name that will be used to transfer the file
+                uploadMultiple: true,
+                parallelUploads: 10,
                 maxFiles: 10,
                 maxFilesize: 10, // MB
                 addRemoveLinks: true,
                 accept: function(file, done) {
-                    if (file.name == "wow.jpg") {
-                        done("Naha, you don't.");
-                    } else {
-                        done();
-                    }
-                }
+                    console.log(file);
+                    $('#kt_ecommerce_add_product_form').append(
+                        '<input type="hidden" name="document[ value="{{ old('document') }}"]" value="' + file
+                        .file + '">');
+                    done();
+                },
+                method: "post",
             });
-        </script>
-        <script>
-            class QuillEditor {
-                constructor(elementId, endpoint) {
-                    this.elementId = elementId;
-                    this.endpoint = endpoint;
-                    this.initEditor();
+
+            document.getElementById('kt_ecommerce_add_product_form').addEventListener('submit', function(event) {
+                var formData = new FormData(this);
+                console.log(formData);
+            });
+            // textEditor
+            class CKEditorInitializer {
+                constructor(className) {
+                    this.className = className;
                 }
 
-                initEditor() {
-                    const Delta = Quill.import('delta');
-                    this.quill = new Quill(`#${this.elementId}`, {
-                        modules: {
-                            toolbar: true
-                        },
-                        placeholder: 'Type your text here...',
-                        theme: 'snow'
-                    });
-
-                    // Store accumulated changes
-                    this.change = new Delta();
-                    this.quill.on('text-change', (delta) => {
-                        this.change = this.change.compose(delta);
-                    });
-
-                    // Save periodically
-                    this.saveInterval = setInterval(() => {
-                        if (this.change.length() > 0) {
-                            console.log('Saving changes', this.change);
-                            // Send partial changes
-                            /*
-                            $.post(this.endpoint, {
-                                partial: JSON.stringify(this.change)
+                initialize() {
+                    const elements = document.querySelectorAll(this.className);
+                    elements.forEach(element => {
+                        ClassicEditor
+                            .create(element)
+                            .then(editor => {
+                                console.log('CKEditor initialized:', editor);
+                            })
+                            .catch(error => {
+                                console.error('CKEditor initialization error:', error);
                             });
-                            */
-                            // Send entire document
-                            /*
-                            $.post(this.endpoint, {
-                                doc: JSON.stringify(this.quill.getContents())
-                            });
-                            */
-                            this.change = new Delta();
-                        }
-                    }, 5 * 1000);
-
-                    // Check for unsaved data
-                    window.addEventListener('beforeunload', (e) => {
-                        if (this.change.length() > 0) {
-                            e.preventDefault();
-                            e.returnValue = 'There are unsaved changes. Are you sure you want to leave?';
-                        }
                     });
-                }
-
-                destroy() {
-                    clearInterval(this.saveInterval);
-                    window.removeEventListener('beforeunload', this.handleBeforeUnload);
                 }
             }
 
-            // Initialize multiple editors
-            const overviewEditor = new QuillEditor('overview_editor', '/save-overview');
-            const descriptionEditor = new QuillEditor('description_editor', '/save-description');
-            const specificationEditor = new QuillEditor('specification_editor', '/save-specification');
-            const metaEditor = new QuillEditor('meta_editor', '/meta-description');
+            // Example usage:
+            const ckEditorInitializer = new CKEditorInitializer('.ckeditor');
+            ckEditorInitializer.initialize();
         </script>
     @endpush
 </x-admin-app-layout>

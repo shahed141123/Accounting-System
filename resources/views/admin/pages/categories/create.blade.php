@@ -1,14 +1,9 @@
 <x-admin-app-layout :title="'Category Add'">
     <div class="card card-flash">
-        <!--begin::Card header-->
         <div class="card-header mt-6">
             <div class="card-title"></div>
-
-            <!--begin::Card toolbar-->
             <div class="card-toolbar">
-                <!--begin::Button-->
                 <a href="{{ route('admin.categories.index') }}" class="btn btn-light-info">
-                    <!--begin::Svg Icon | path: brands/duotune/general/gen035.svg-->
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -20,7 +15,7 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Back to the list
+                    Back to the list
                 </a>
             </div>
         </div>

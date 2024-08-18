@@ -1,8 +1,10 @@
 <x-admin-app-layout :title="'Privacy Policy'">
-    <div class="card card-flash">
-        <div class="card-header">
-            <div class="card-title"></div>
-            <div class="card-toolbar">
+    <div class="card">
+        <div class="card-header bg-info align-items-center d-flex justify-content-between">
+            <div>
+                <h1 class="mb-0 text-center w-100 text-white">Manage Your Privacy Policy</h1>
+            </div>
+            <div>
                 <a href="{{ route('admin.privacy-policy.create') }}" class="btn btn-light-primary">
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -19,23 +21,22 @@
                 </a>
             </div>
         </div>
-        <div class="card-body pt-0">
-            <table class="kt_datatable_example table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_datatable_example">
-                <thead>
-                    <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                        <th style="width: 40px;">SL</th>
-                        <th width="37%">Name</th>
-                        <th width="12%">Version</th>
-                        <th width="13%">Effective Date</th>
-                        <th width="13%">Expiration Date</th>
-                        <th width="12%">Status</th>
-                        <th width="10%">Action</th>
+        <div class="card-body py-0">
+            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
+                <thead class="bg-light-danger">
+                    <tr class="fw-semibold fs-6 text-gray-800">
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($policys as $key => $policy)
                         <tr class="fw-bold text-gray-400 text-center">
-                            <td>{{ $loop->iteration}}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $policy->title }}</td>
                             <td>{{ $policy->version }}</td>
                             <td>{{ Carbon\Carbon::parse($policy->effective_date)->format('D,d M Y') }}</td>
@@ -71,7 +72,6 @@
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
         </div>
     </div>

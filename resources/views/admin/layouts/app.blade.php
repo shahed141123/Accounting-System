@@ -28,6 +28,7 @@
     <link href="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
 
+
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <link href="{{ asset('admin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -105,11 +106,12 @@
     <script src="{{ asset('admin/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
 
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <script src="{{ asset('admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     {{-- <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> --}}
     <script src="{{ asset('admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+
 
 
 
@@ -125,8 +127,105 @@
     <script src="{{ asset('admin/js/custom.js') }}"></script>
     @include('toastr')
     @stack('scripts')
-
     <script>
+        document.querySelectorAll('.ckeditor').forEach(element => {
+            if (!element.classList.contains('ck-editor__editable_inline')) {
+                ClassicEditor
+                    .create(element)
+                    .then(editor => {
+                        console.log('CKEditor initialized:', editor);
+                    })
+                    .catch(error => {
+                        console.error('CKEditor initialization error:', error);
+                    });
+            }
+        });
+    </script>
+    <script>
+        //  DropZone Image
+        $(document).ready(function() {
+            var selectedFiles = [];
+
+            $(".dropzone-field").on("change", "#files", function(e) {
+                var files = e.target.files,
+                    filesLength = files.length;
+
+                $(".custom-file-upload").toggle(filesLength === 0 && selectedFiles.length === 0);
+
+                for (var i = 0; i < filesLength; i++) {
+                    var f = files[i];
+                    selectedFiles.push(f);
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function(file) {
+                        return function(e) {
+                            $("<div class=\"img-thumb-wrapper card shadow\">" +
+                                "<img class=\"img-thumb\" src=\"" + e.target.result +
+                                "\" title=\"" + file.name + "\"/>" +
+                                "<br/><span class=\"remove\">Remove</span>" +
+                                "</div>").insertAfter("#files");
+                        };
+                    })(f);
+                    fileReader.readAsDataURL(f);
+                }
+                // console.log(selectedFiles);
+                $(".existing-images").show();
+            });
+
+            // Use event delegation for the click event
+            $(".dropzone-field").on("click", ".remove", function() {
+                var wrapper = $(this).parent(".img-thumb-wrapper");
+                wrapper.remove();
+                var removedFile = wrapper.find('img').prop('title');
+                selectedFiles = selectedFiles.filter(function(file) {
+                    return file.name !== removedFile;
+                });
+                updateInputFiles();
+                $(".custom-file-upload").toggle(selectedFiles.length === 0);
+                // alert(selectedFiles.length);
+            });
+
+            function updateInputFiles() {
+                // Create a new set of files excluding the removed one
+                var newInputFiles = new DataTransfer();
+                selectedFiles.forEach(function(file) {
+                    newInputFiles.items.add(file);
+                });
+
+                // Clear the input
+                $("#files").val("");
+
+                // Assign the new set of files to the input
+                $("#files")[0].files = newInputFiles.files;
+            }
+        });
+        // checkbox And Select
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const $selectAllCheckbox = $('.metronic_select_all');
+            const $categoryCheckboxes = $('.bulkDelete-checkbox');
+            const $deleteButton = $('#bulkDelete');
+
+            function updateDeleteButtonVisibility() {
+                // Check if any checkbox is checked
+                const anyChecked = $categoryCheckboxes.is(':checked');
+                $deleteButton.toggle(anyChecked);
+            }
+
+            // Handle 'Select All' checkbox change
+            $selectAllCheckbox.on('change', function() {
+                $categoryCheckboxes.prop('checked', $(this).prop('checked'));
+                updateDeleteButtonVisibility();
+            });
+
+            // Handle individual checkbox changes
+            $categoryCheckboxes.on('change', function() {
+                updateDeleteButtonVisibility();
+            });
+
+            // Initial check to set the button visibility correctly
+            updateDeleteButtonVisibility();
+        });
+        // Data table
         class DataTableInitializer {
             constructor(selector) {
                 this.selector = selector;
@@ -159,9 +258,7 @@
         $(document).ready(function() {
             new DataTableInitializer('.my-datatable');
         });
-    </script>
-
-    <script>
+        // Modal js
         // Make the DIV element draggable:
         var element = document.querySelector('.modal');
         dragElement(element);
@@ -208,6 +305,7 @@
             }
         }
     </script>
+   
 
 </body>
 

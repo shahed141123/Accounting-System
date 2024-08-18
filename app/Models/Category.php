@@ -19,10 +19,6 @@ class Category extends Model
      */
     protected $guarded = [];
 
-    protected $casts = [
-        'status' => 'boolean',
-    ];
-
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
@@ -33,8 +29,14 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function products()
+    {
+        // return Product::whereJsonContains('category_id', (string) $this->id);
+        return Product::whereJsonContains('category_id', json_encode($this->id));
+    }
+
     public function scopeActive($query)
     {
-        return $query->where('status', 1);
+        return $query->where('status', 'active');
     }
 }

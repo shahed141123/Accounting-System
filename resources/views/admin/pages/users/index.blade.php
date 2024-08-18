@@ -1,38 +1,12 @@
 <x-admin-app-layout :title="'Users List'">
-    <!--begin::Card-->
     <div class="card">
-        <!--begin::Card header-->
-        <div class="card-header border-0 pt-6">
-            <!--begin::Card title-->
-            <div class="card-title">
-                <!--begin::Search-->
-                <div class="d-flex align-items-center position-relative my-1">
-                    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                    <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none">
-                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
-                                transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-                            <path
-                                d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                fill="currentColor" />
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                    <input type="text" data-kt-user-table-filter="search"
-                        class="form-control form-control-solid w-250px ps-14" placeholder="Search user" />
-                </div>
-                <!--end::Search-->
+        <div class="card-header border-0 pt-6 bg-primary">
+            <div>
+                <div class="card-title text-white">Manage Your Users</div>
             </div>
-            <!--begin::Card title-->
-            <!--begin::Card toolbar-->
             <div class="card-toolbar">
-                <!--begin::Toolbar-->
                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-
-                    <!--begin::Add user-->
                     <a href="{{ route('admin.user.create') }}" class="btn btn-primary rounded-1">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <span class="svg-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -42,95 +16,71 @@
                                     fill="currentColor" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->Add User
+                        Add User
                     </a>
-                    <!--end::Add user-->
                 </div>
-                <!--end::Toolbar-->
-                <!--begin::Group actions-->
-                <div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
-                    <div class="fw-bolder me-5">
-                        <span class="me-2" data-kt-user-table-select="selected_count"></span>Selected
-                    </div>
-                    <button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Delete
-                        Selected</button>
-                </div>
-                <!--end::Group actions-->
-
             </div>
-            <!--end::Card toolbar-->
         </div>
-        <!--end::Card header-->
-        <!--begin::Card body-->
         <div class="card-body py-4">
-            <!--begin::Table-->
-            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
-                <!--begin::Table head-->
+            <table class="table my-datatable align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                 <thead>
-                    <!--begin::Table row-->
                     <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-                        <th class="w-10px pe-2">
-                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                    data-kt-check-target="#kt_table_users .form-check-input" value="1" />
-                            </div>
-                        </th>
-                        <th class="min-w-125px">User</th>
-                        <th class="min-w-125px">Role</th>
-                        {{-- <th class="min-w-125px">Last login</th>
-                        <th class="min-w-125px">Two-step</th>
-                        <th class="min-w-125px">Joined Date</th> --}}
-                        <th class="text-end min-w-100px">Actions</th>
+                        <th class="ps-3">SL</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Show User</th>
+                        <th>Status</th>
+                        <th class="text-end min-w-100px pe-5">Actions</th>
                     </tr>
-                    <!--end::Table row-->
                 </thead>
-                <!--end::Table head-->
-                <!--begin::Table body-->
                 <tbody class="text-gray-600 fw-bold">
-                    <!--begin::Table row-->
                     @foreach ($users as $user)
                         <tr>
-                            <!--begin::Checkbox-->
                             <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </div>
+                                {{ $loop->iteration }}
                             </td>
-                            <!--end::Checkbox-->
-                            <!--begin::User=-->
                             <td class="d-flex align-items-center">
-                                <!--begin:: Avatar -->
                                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                     <a href="javascript:void(0)">
-                                        <div class="symbol-label">
-                                            <img src="assets/media/avatars/300-6.jpg" alt="{{ $user->name }}"
-                                                class="w-100" />
+                                        <div class="symbol-label"
+                                            style="background-color: {{ $user->profile_image ? 'transparent' : '#d3d3d3' }};">
+                                            @if ($user->profile_image)
+                                                <img src="{{ asset('storage/' . $user->profile_image) }}"
+                                                    alt="{{ $user->name }}" class="w-100" />
+                                            @else
+                                                <span class="text-gray-800 text-hover-primary mb-1">
+                                                    {{ strtoupper(substr($user->first_name, 0, 1)) }}{{ strtoupper(substr($user->last_name, 0, 1)) }}
+                                                </span>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>
-                                <!--end::Avatar-->
-                                <!--begin::User details-->
+                            </td>
+                            <td>
                                 <div class="d-flex flex-column">
                                     <a href="javascript:void(0)"
-                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
-                                    <span>{{ $user->email }}</span>
+                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->first_name }}
+                                        {{ $user->last_name }}</a>
                                 </div>
-                                <!--begin::User details-->
                             </td>
-                            <!--end::User=-->
                             <td>
-                                @forelse ($user->getRoleNames() as $role)
-                                    <div class="badge badge-light-success fw-bolder">{{ $role }}</div>
-
-                                @empty
-                                    <div class="badge badge-light-danger fw-bolder">No Role</div>
-                                @endforelse
+                                <span>{{ $user->email }}</span>
                             </td>
-                            <!--begin::Action=-->
+
+                            <td>
+                                <button class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i> Show</button>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch form-check-custom form-check-solid">
+                                    <input class="form-check-input status-toggle" type="checkbox"
+                                        id="status_toggle_{{ $user->id }}" @checked($user->status == 'active')
+                                        data-id="{{ $user->id }}" />
+                                </div>
+                            </td>
                             <td class="text-end">
                                 <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                     <span class="svg-icon svg-icon-5 m-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
@@ -139,40 +89,58 @@
                                                 fill="currentColor" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon--></a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                    data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="{{ route('admin.user.show', $user->id) }}" class="menu-link px-3">Show
-                                            Details</a>
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                        data-kt-menu="true">
+                                        <div class="menu-item px-3">
+                                            <a href="{{ route('admin.user.show', $user->id) }}"
+                                                class="menu-link px-3">Show
+                                                Details</a>
+                                        </div>
+                                        <div class="menu-item px-3">
+                                            <a href="{{ route('admin.user.edit', $user->id) }}"
+                                                class="menu-link px-3">Edit</a>
+                                        </div>
+                                        <div class="menu-item px-3">
+                                            <a href="{{ route('admin.user.destroy', $user->id) }}"
+                                                class="menu-link px-3 delete">Delete</a>
+                                        </div>
                                     </div>
-                                    <div class="menu-item px-3">
-                                        <a href="{{ route('admin.user.edit', $user->id) }}"
-                                            class="menu-link px-3">Edit</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="{{ route('admin.user.destroy', $user->id) }}"
-                                            class="menu-link px-3 delete">Delete</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                </div>
-                                <!--end::Menu-->
                             </td>
-                            <!--end::Action=-->
                         </tr>
                     @endforeach
-                    <!--end::Table row-->
 
                 </tbody>
-                <!--end::Table body-->
             </table>
-            <!--end::Table-->
         </div>
-        <!--end::Card body-->
     </div>
-    <!--end::Card-->
+    @push('scripts')
+        <script>
+            $(document).on('change', '.status-toggle', function() {
+                const id = $(this).data('id');
+                const route = "{{ route('admin.user.toggle-status', ':id') }}".replace(':id', id);
+                toggleStatus(route, id);
+            });
+
+            function toggleStatus(route, id) {
+                $.ajax({
+                    url: route,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Status updated successfully!');
+                            table.ajax.reload(null, false); // Reload the DataTable
+                        } else {
+                            alert('Failed to update status.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while updating the status.');
+                    }
+                });
+            }
+        </script>
+    @endpush
 </x-admin-app-layout>

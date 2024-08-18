@@ -1,14 +1,14 @@
 <x-admin-app-layout :title="'Category Edit'">
     <div class="card card-flash">
-        <!--begin::Card header-->
+
         <div class="card-header mt-6">
             <div class="card-title"></div>
 
-            <!--begin::Card toolbar-->
+
             <div class="card-toolbar">
-                <!--begin::Button-->
+
                 <a href="{{ route('admin.categories.index') }}" class="btn btn-light-info">
-                    <!--begin::Svg Icon | path: categorys/duotune/general/gen035.svg-->
+
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -75,14 +75,14 @@
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                            {{ __('Select a Status ') }}</x-metronic.label>
-                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
-                            data-placeholder="Select an option">
+                        <label for="status" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Status') }}
+                        </label>
+                        <select id="status" name="status" data-hide-search="true" data-placeholder="Select an option" class="form-select">
                             <option></option>
-                            <option value="active" @selected($category->status == 'active')>Active</option>
-                            <option value="inactive" @selected($category->status == 'inactive')>Inactive</option>
-                        </x-metronic.select-option>
+                            <option value="active" {{ old('status', $category->status) == 'active' ? 'selected' : '' }}>Active</option>
+                            <option value="inactive" {{ old('status', $category->status) == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                        </select>
                     </div>
                 </div>
                 <div class="text-center pt-15">

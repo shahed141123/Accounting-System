@@ -1,9 +1,9 @@
-h h<x-admin-app-layout :title="'Blog Category List'">
+<x-admin-app-layout :title="'Blog Category List'">
     <div class="card">
-        <div class="card-header bg-info d-flex justify-content-between align-items-center">
+        <div class="card-header bg-primary d-flex justify-content-between align-items-center">
             <h1 class="mb-0 text-white">Manage Your Blog Category</h1>
             <a href="javascript:void(0)" class="btn btn-light-primary rounded-2" data-bs-toggle="modal"
-                data-bs-target="#blogCategoryCreate">
+                data-bs-target="#AddModal">
                 <span class="svg-icon svg-icon-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none">
@@ -22,23 +22,35 @@ h h<x-admin-app-layout :title="'Blog Category List'">
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                 <thead class="">
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th>Sl No.</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th width="8%">SL No.</th>
+                        <th width="12%">Image</th>
+                        <th width="28%">Name</th>
+                        <th width="27%">Meta Title</th>
+                        <th width="15%">Status</th>
+                        <th width="12%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($blogCategories as $category)
+                    @foreach ($blogCategories as $blogcategory)
                         <tr>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->position }}</td>
-                            <td>{{ $category->office }}</td>
-                            <td>{{ $category->age }}</td>
-                            <td>{{ $category->start_date }}</td>
-                            <td>{{ $category->salary }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><img class="w-65px" src="{{ asset('storage/'.$blogcategory->image ) }}" alt=""></td>
+                            <td>{{ $blogcategory->name }}</td>
+                            <td>{{ $blogcategory->meta_title }}</td>
+                            <td>
+                                <span class="badge {{ $blogcategory->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                {{ $blogcategory->status == 'active' ? 'Active' : 'InActive' }}</span>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                    data-bs-toggle="modal" data-bs-target="#EditModal-{{ $blogcategory->id }}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="{{ route('admin.blog-category.destroy', $blogcategory->id) }}"
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete">
+                                    <i class="fa-solid fa-trash-alt"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -46,11 +58,11 @@ h h<x-admin-app-layout :title="'Blog Category List'">
         </div>
     </div>
     {{-- Blog Category Create Modal --}}
-    <div class="modal fade" tabindex="-1" id="blogCategoryCreate">
+    <div class="modal fade" tabindex="-1" id="AddModal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header py-3 bg-light-primary">
-                    <h3 class="modal-title">Create Blog Category</h3>
+                <div class="modal-header py-3 bg-primary">
+                    <h3 class="modal-title text-white">Create Blog Category</h3>
                     <button type="button" class="btn btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
                         aria-label="Close">
                         <i class="fa-solid fa-xmark fs-1"></i>
@@ -58,13 +70,12 @@ h h<x-admin-app-layout :title="'Blog Category List'">
                 </div>
                 <div class="modal-body">
                     <form id="kt_docs_formvalidation_text" class="form"
-                        action="{{ route('admin.blog-category.store') }}" method="post">
+                        action="{{ route('admin.blog-category.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="fv-row mb-5">
-                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Category
-                                Title</x-metronic.label>
+                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Category Name</x-metronic.label>
                             <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
-                                placeholder="Set Blog Category Title" :valu="old('name')" />
+                                placeholder="Set Blog Category Name" :valu="old('name')" />
                         </div>
                         <div class="fv-row mb-5">
                             <x-metronic.label class="fw-semibold fs-6 mb-2">Blog Meta Title</x-metronic.label>
@@ -72,7 +83,7 @@ h h<x-admin-app-layout :title="'Blog Category List'">
                                 placeholder="Set Blog Meta Title" :valu="old('meta_title')" />
                         </div>
                         <div class="fv-row mb-5">
-                            <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Image') }}
+                            <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Category Image/icon') }}
                             </x-metronic.label>
                             <x-metronic.file-input id="image" name="image" class="form-control mb-3 mb-lg-0"
                                 :value="old('image')"></x-metronic.file-input>
@@ -94,10 +105,13 @@ h h<x-admin-app-layout :title="'Blog Category List'">
                                 :valu="old('description')"></x-metronic.textarea>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button id="kt_docs_formvalidation_text_submit" type="submit" class="btn btn-primary">
+                            {{-- <button id="kt_docs_formvalidation_text_submit" type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Create Category</span>
                                 <span class="indicator-progress">Please wait... <span
                                         class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button> --}}
+                            <button type="submit" class="btn btn-primary">
+                                Submit
                             </button>
                         </div>
                     </form>
@@ -105,6 +119,66 @@ h h<x-admin-app-layout :title="'Blog Category List'">
             </div>
         </div>
     </div>
+
+    @foreach ($blogCategories as $category)
+        <div class="modal fade" tabindex="-1" id="EditModal-{{ $category->id }}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header py-3 bg-light-primary">
+                        <h3 class="modal-title">Update Blog Category</h3>
+                        <button type="button" class="btn btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="kt_docs_formvalidation_text" class="form"
+                            action="{{ route('admin.blog-category.update',$category->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="fv-row mb-5">
+                                <x-metronic.label class="required fw-semibold fs-6 mb-2">Title</x-metronic.label>
+                                <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
+                                    placeholder="Set Title" :valu="old('name',$category->name)" />
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label class="fw-semibold fs-6 mb-2">Meta Title</x-metronic.label>
+                                <x-metronic.input type="text" name="meta_title" class="form-control mb-3 mb-lg-0"
+                                    placeholder="Set Meta Title" :valu="old('meta_title',$category->meta_title)" />
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Image') }}
+                                </x-metronic.label>
+                                <x-metronic.file-input id="image" name="image" class="form-control mb-3 mb-lg-0"
+                                    :value="old('image')" :source="asset('storage/'.$category->image)"></x-metronic.file-input>
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select a Status ') }}</x-metronic.label>
+                                <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                                    data-placeholder="Select an option">
+                                    <option></option>
+                                    <option value="active" @selected($category->status == "active") >Active</option>
+                                    <option value="inactive" @selected($category->status == "inactive") >Inactive</option>
+                                </x-metronic.select-option>
+                            </div>
+                            <div class="fv-row mb-5">
+                                <x-metronic.label class="fw-semibold fs-6 mb-2">Description</x-metronic.label>
+                                <x-metronic.textarea class="form-control" placeholder="Set The Description"
+                                    name="description" id="floatingTextarea2" style="height: 100px"
+                                    :valu="old('description')">{!! $category->description !!}</x-metronic.textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
     {{-- Blog Category Create Modal End --}}
     @push('scripts')
         <script>

@@ -15,44 +15,131 @@
                             <p class="ps-contact__text">
                                 We are at your disposal 7 days a week!
                             </p>
-                            <h3 class="ps-contact__fax">0020 500 – MYMEDI – 000</h3>
+                            <h3 class="ps-contact__fax">{{ $setting->contact_email }}</h3>
+                            @php
+                                // Fetch the work hours data
+                                $workHours = DB::table('settings')->first();
+
+                                // Initialize arrays to group days by their time ranges
+                                $hoursRanges = [];
+
+                                $days = [
+                                    'monday' => 'Monday',
+                                    'tuesday' => 'Tuesday',
+                                    'wednesday' => 'Wednesday',
+                                    'thursday' => 'Thursday',
+                                    'friday' => 'Friday',
+                                    'saturday' => 'Saturday',
+                                    'sunday' => 'Sunday',
+                                ];
+
+                                // Populate the array with day names and time ranges
+                                foreach ($days as $key => $day) {
+                                    $startTime = $workHours->{'start_time_' . $key};
+                                    $endTime = $workHours->{'end_time_' . $key};
+                                    $description = $workHours->{$key};
+
+                                    if ($startTime && $endTime) {
+                                        $range = "$startTime – $endTime";
+                                        if (!isset($hoursRanges[$range])) {
+                                            $hoursRanges[$range] = [];
+                                        }
+                                        $hoursRanges[$range][] = $day;
+                                    } elseif ($description) {
+                                        $hoursRanges[$description] = [$day];
+                                    }
+                                }
+
+                                // Build the formatted text
+                                $workHoursText = '';
+                                foreach ($hoursRanges as $range => $daysList) {
+                                    $daysText = implode(', ', $daysList);
+                                    $workHoursText .= "$daysText: $range<br />";
+                                }
+                            @endphp
+
                             <div class="ps-contact__work">
-                                Monday – Friday: 9:00-20:00<br />Saturday: 11:00 – 15:00
-                            </div>
-                            <div class="ps-contact__email">
-                                {{-- <a
-                                    href="http://nouthemes.net/cdn-cgi/l/email-protection#dbb8b4b5afbab8af9bbea3bab6abb7bef5b8b4b6"><span
-                                        class="__cf_email__"
-                                        data-cfemail="43202c2d3722203703263b222e332f266d202c2e">[email&#160;protected]</span></a> --}}
+                                {!! $workHoursText !!}
                             </div>
                             <ul class="ps-social">
-                                <li>
-                                    <a class="ps-social__link facebook" href="#"><i class="fa fa-facebook">
-                                        </i><span class="ps-tooltip">Facebook</span></a>
-                                </li>
-                                <li>
-                                    <a class="ps-social__link instagram" href="#"><i
-                                            class="fa fa-instagram"></i><span class="ps-tooltip">Instagram</span></a>
-                                </li>
-                                <li>
-                                    <a class="ps-social__link youtube" href="#"><i
-                                            class="fa fa-youtube-play"></i><span class="ps-tooltip">Youtube</span></a>
-                                </li>
-                                <li>
-                                    <a class="ps-social__link pinterest" href="#"><i
-                                            class="fa fa-pinterest-p"></i><span class="ps-tooltip">Pinterest</span></a>
-                                </li>
-                                <li>
-                                    <a class="ps-social__link linkedin" href="#"><i
-                                            class="fa fa-linkedin"></i><span class="ps-tooltip">Linkedin</span></a>
-                                </li>
+                                @if ($setting->facebook_url)
+                                    <li>
+                                        <a class="ps-social__link facebook" href="{{ $setting->facebook_url }}"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <i class="fa fa-facebook"></i>
+                                            <span class="ps-tooltip">Facebook</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($setting->instagram_url)
+                                    <li>
+                                        <a class="ps-social__link instagram" href="{{ $setting->instagram_url }}"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <i class="fa fa-instagram"></i>
+                                            <span class="ps-tooltip">Instagram</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($setting->youtube_url)
+                                    <li>
+                                        <a class="ps-social__link youtube" href="{{ $setting->youtube_url }}"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <i class="fa fa-youtube-play"></i>
+                                            <span class="ps-tooltip">YouTube</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($setting->pinterest_url)
+                                    <li>
+                                        <a class="ps-social__link pinterest" href="{{ $setting->pinterest_url }}"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <i class="fa fa-pinterest-p"></i>
+                                            <span class="ps-tooltip">Pinterest</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($setting->linkedin_url)
+                                    <li>
+                                        <a class="ps-social__link linkedin" href="{{ $setting->linkedin_url }}"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <i class="fa fa-linkedin"></i>
+                                            <span class="ps-tooltip">LinkedIn</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                <!-- Add additional social media links similarly -->
+
+                                @if ($setting->twitter_url)
+                                    <li>
+                                        <a class="ps-social__link twitter" href="{{ $setting->twitter_url }}"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <i class="fa fa-twitter"></i>
+                                            <span class="ps-tooltip">Twitter</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($setting->whatsapp_url)
+                                    <li>
+                                        <a class="ps-social__link whatsapp" href="{{ $setting->whatsapp_url }}"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <i class="fa fa-whatsapp"></i>
+                                            <span class="ps-tooltip">WhatsApp</span>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
                     <div class="col-12 col-lg-8">
                         <div class="ps-contact__map">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3354.822845645748!2d-97.1301607845029!3d32.770434891627616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7dcf27b929d9%3A0xc63407d6f47753b9!2s1487%20Rocky%20Canyon%20Rd%2C%20Arlington%2C%20TX%2076012%2C%20USA!5e0!3m2!1sen!2s!4v1616124426616!5m2!1sen!2s"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.862612991394!2d0.07784621197950896!3d51.55241820729635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a66365fab4ff%3A0x930454119641ab95!2s144%20Hampton%20Rd%2C%20Ilford%20IG1%201PR%2C%20UK!5e0!3m2!1sen!2sbd!4v1723443590326!5m2!1sen!2sbd"
                                 width="600" height="450" style="border: 0" allowfullscreen=""
                                 loading="lazy"></iframe>
                         </div>
@@ -74,12 +161,14 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-form__group">
-                                <input class="form-control ps-form__input" type="email" name="email" placeholder="Your E-mail" />
+                                <input class="form-control ps-form__input" type="email" name="email"
+                                    placeholder="Your E-mail" />
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="ps-form__group">
-                                <input class="form-control ps-form__input" type="text" name="phone" placeholder="Phone" />
+                                <input class="form-control ps-form__input" type="text" name="phone"
+                                    placeholder="Phone" />
                             </div>
                         </div>
                         <div class="col-12">
@@ -89,11 +178,11 @@
                         </div>
                     </div>
                     <div class="ps-form__submit">
-                        <button type="submit" class="ps-btn ps-btn--warning">Send message</button>
+                        <button type="submit" class="ps-btn ps-btn--warning rounded-pill">Send message</button>
                     </div>
                 </div>
             </form>
-            <section class="ps-section--instagram">
+            {{-- <section class="ps-section--instagram">
                 <h3 class="ps-section__title">
                     Follow <strong>@PiqPaq </strong>on instagram
                 </h3>
@@ -101,37 +190,37 @@
                     <div class="row m-0">
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7FC7pwae/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram1.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram1.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7D5zJqwo/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram2.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram2.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7BnapGmv/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram3.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram3.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf7Af8JWDj/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram4.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram4.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf6_QEpWYv/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram5.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram5.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                         <div class="col-6 col-md-4 col-lg-2">
                             <a class="ps-image--transition" href="https://www.instagram.com/p/CDf69FupFee/">
-                                <img src="{{ asset('frontend') }}/img/instagram/instagram6.jpg" alt /><span class="ps-image__overlay"><i
-                                        class="fa fa-instagram"></i></span></a>
+                                <img src="{{ asset('frontend') }}/img/instagram/instagram6.jpg" alt /><span
+                                    class="ps-image__overlay"><i class="fa fa-instagram"></i></span></a>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
         </div>
     </div>
 </x-frontend-app-layout>
