@@ -23,29 +23,30 @@
                         style="text-align:left; margin: 0 20px; padding: 40px; background-color:#ffffff; border-radius: 6px">
                         <!--begin:Email content-->
                         <div style="padding-bottom: 30px; font-size: 17px;">
-                            <strong>Hi {{ $data }}</strong>
+                            <strong>Hi {{ $data['name'] }}</strong>
                         </div>
-                        <div style="padding-bottom: 30px">Welcome to Piqpaq! We're thrilled to have you on board.</div>
+                        <div style="padding-bottom: 30px">Good news! Your email has been successfully verified by our
+                            admin team.</div>
                         <div style="padding-bottom: 30px">
-                            Your account has been successfully created. You can now access your personalized dashboard
-                            packed with features to enhance your experience.
+                            Your account is now fully activated. You can now access your personalized dashboard and
+                            explore all the features available to you.
                         </div>
                         <div style="padding-bottom: 40px; text-align:center;">
-                            <a href="{{ route('login') }}" rel="noopener"
+                            <a href="{{ route('dashboard') }}" rel="noopener"
                                 style="text-decoration:none;display:inline-block;text-align:center;padding:0.75575rem 1.3rem;font-size:0.925rem;line-height:1.5;border-radius:0.35rem;color:#ffffff;background-color:#009EF7;border:0px;margin-right:0.75rem!important;font-weight:600!important;outline:none!important;vertical-align:middle"
                                 target="_blank">
-                                Login To Your Dashboard
+                                Go to Your Dashboard
                             </a>
                         </div>
                         <div style="padding-bottom: 30px">Need Help?</div>
                         <div style="padding-bottom: 30px">
-                            Our friendly support team is always happy to assist you. You can find answers to most
-                            questions and contact us through
+                            Our support team is here to help if you have any questions or need assistance. Feel free to
+                            reach out through
                             <a href="{{ route('contact') }}" rel="noopener" target="_blank"
                                 style="text-decoration:none;color: #009EF7">Piqpaq Contact</a>.
                         </div>
                         <!--end:Email content-->
-                        <div style="padding-bottom: 10px">Sincerely,<br>The Piqpaq Team.</div>
+                        <div style="padding-bottom: 10px">Best regards,<br>The Piqpaq Team.</div>
                     </div>
                 </td>
             </tr>
