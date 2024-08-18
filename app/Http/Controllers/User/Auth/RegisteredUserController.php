@@ -6,9 +6,11 @@ use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use App\Mail\UserRegistrationMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
@@ -98,7 +100,7 @@ class RegisteredUserController extends Controller
         // ]);
 
         event(new Registered($user));
-
+        Mail::to($user->email)->send(new UserRegistrationMail($user->name));
         Auth::login($user);
         Session::flash('success', "You have registered Successfully");
         return redirect(RouteServiceProvider::HOME);
