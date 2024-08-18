@@ -33,56 +33,68 @@
         <div class="ps-section__overlay">
             <div class="ps-section__loading"></div>
         </div>
-        <div class="custom-carousel owl-loaded owl-drag">
-            @if ($sliders && count($sliders) > 0)
-                @foreach ($sliders as $slider)
-                    <div class="owl-item">
-                        <div class="ps-banner" style="background:#F0F2F5;">
-                            <div class="container container-initial">
-                                <div class="ps-banner__block">
-                                    <div class="ps-banner__content">
-                                        <h2 class="ps-banner__title">{{ $slider->title }}</h2>
-                                        <div class="ps-banner__desc">{{ $slider->subtitle }}</div>
-                                        <div class="ps-banner__btn-group">
-                                            <div class="ps-banner__btn">
-                                                {{ $slider->badge }}
-                                            </div>
+        <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true" data-owl-speed="15000"
+            data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1"
+            data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000"
+            data-owl-mousedrag="on">
+            <div class="owl-stage-outer">
+                <div class="owl-stage">
+                    @foreach ($sliders as $slider)
+                        <div class="owl-item">
+                            <div class="ps-banner" style="background:#F0F2F5;">
+                                <div class="container container-initial">
+                                    <div class="ps-banner__block">
+                                        <div class="ps-banner__content">
+                                            <h2 class="ps-banner__title">{{ $slider->title }}</h2>
+                                            <div class="ps-banner__desc">{{ $slider->subtitle }}</div>
+                                            <div class="ps-banner__btn-group">
+                                                <div class="ps-banner__btn">{{ $slider->badge }}</div>
+                                            </div><a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">{{ $slider->button_name }}</a>
+                                            <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div>
                                         </div>
-                                        <a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">
-                                            {{ $slider->button_name }}
-                                        </a>
-                                    </div>
-                                    <div class="ps-banner__thumnail">
-                                        <img class="ps-banner__round" src="{{ asset('frontend/img/round5.png') }}"
-                                            alt="alt">
-                                        <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}"
-                                            onerror="this.onerror=null; this.src='{{ asset('frontend/img/noBnnnerImg.png') }}';"
-                                            alt="alt">
+                                        <div class="ps-banner__thumnail"><img class="ps-banner__round"
+                                                src="{{ asset('frontend/img/round5.png') }}" alt="alt"><img class="ps-banner__image"
+                                                src="{{ asset('storage/' . $slider->image) }}" alt="alt">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            @else
-                {{-- Show the default image if there is no slider data --}}
-                <div class="">
-                    <img class="w-100" style="height: 550px; object-fit: cover;"
-                        src="{{ asset('frontend/img/noBnnnerImg.png') }}" alt="alt">
+                    @endforeach
                 </div>
-            @endif
-            {{-- <div class="owl-nav">
+            </div>
+            <div class="owl-nav">
                 <button type="button" role="presentation" class="owl-prev">
                     <i class="fa fa-chevron-left"></i>
                 </button>
                 <button type="button" role="presentation" class="owl-next">
                     <i class="fa fa-chevron-right"></i>
                 </button>
-            </div> --}}
+            </div>
         </div>
-
-
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="ps-home ps-home--14">
         <div class="ps-home__content">
             <div class="container">
@@ -173,11 +185,13 @@
                                         @endphp
                                         <img src="{{ $logoSrc }}" alt="{{ $category->name }}"></a>
                                     </a>
-                                    <a class="ps-categories__name" href="{{ route('category.products', $category->slug) }}">{{ $category->name }}</a>
+                                    <a class="ps-categories__name"
+                                        href="{{ route('category.products', $category->slug) }}">{{ $category->name }}</a>
                                 </div>
                             @endforeach
                         </div>
-                        <div class="text-center"> <a class="ps-categories__show" href="{{ route('allproducts') }}">Show all</a>
+                        <div class="text-center"> <a class="ps-categories__show"
+                                href="{{ route('allproducts') }}">Show all</a>
                         </div>
                     </div>
                 </div>

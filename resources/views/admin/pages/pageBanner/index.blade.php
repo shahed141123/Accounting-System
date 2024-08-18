@@ -24,12 +24,14 @@
         <div class="card-body py-0">
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                 <thead class="bg-light-danger">
-                    <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                    <tr class=" text-white fw-bolder fs-7 text-uppercase gs-0">
                         <th width="5%">Sl</th>
-                        <th width="40%">Image</th>
-                        <th width="25%">Page Name</th>
-                        <th width="18%">Status</th>
-                        <th width="12%">Action</th>
+                        <th width="15%" class="text-center">Thumbnail Image</th>
+                        <th width="15%" class="text-center">Background Image</th>
+                        <th width="20%">Page Name</th>
+                        <th width="15%">Creacted At</th>
+                        <th width="10%">Status</th>
+                        <th width="20%" class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,18 +41,25 @@
                                 <td>
                                     {{ $loop->iteration }}
                                 </td>
-                                <td>
-                                    <img class="w-450px h-50px" src="{{ asset('storage/' . $banner->image) }}"
+                                <td class="text-center">
+                                    <img class="w-50px h-50px" src="{{ asset('storage/' . $banner->image) }}"
                                         alt="{{ $banner->page_name }}">
                                 </td>
+                                <td class="text-center">
+                                    <img class="w-50px h-50px" src="{{ asset('storage/' . $banner->image) }}"
+                                        alt="{{ $banner->page_name }}">
+                                </td>
+                                <td class="text-info">
+                                    {{ ucwords(str_replace(['_', '-', ',', '.', ';'], ' ', $banner->page_name)) }}
+                                </td>
                                 <td>
-                                    {{ ucfirst($banner->page_name) }}
+                                    {{ $banner->created_at->format('d F Y') }}
                                 </td>
                                 <td>
                                     <span class="badge {{ $banner->status == 'active' ? 'bg-success' : 'bg-danger' }}">
                                         {{ $banner->status == 'active' ? 'Active' : 'InActive' }}</span>
                                 </td>
-                                <td class="d-flex justify-content-between align-items-center">
+                                <td class="text-end">
                                     <a href="#"
                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                         data-bs-toggle="modal" data-bs-target="#faqViewModal_{{ $banner->id }}">
