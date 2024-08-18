@@ -15,9 +15,9 @@
             </div>
             <div class="ps-product__info">
                 {{-- <a class="ps-product__branch"
-                                                href="{{ route('category.products', $product->category->slug) }}">
-                                                {{ $product->category->name }}
-                                            </a> --}}
+                        href="{{ route('category.products', $product->category->slug) }}">
+                        {{ $product->category->name }}
+                    </a> --}}
                 <h5 class="ps-product__title shop_product-title">
                     <a href="{{ route('product.details', $product->slug) }}">
                         {{ $product->name }}

@@ -4,14 +4,14 @@
             <div class="card card-flush shadow-sm">
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-light-info">
+                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-brand text-white fa-product-hunt fs-3" aria-hidden="true"></i></span>
+                                        class="fa-brand fa-product-hunt fs-3 text-white" aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
+                                <a href="#" class="text-white fs-5 fw-bold lh-0">Total Order
+                                    <span class="text-white fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -28,15 +28,15 @@
             <div class="card card-flush shadow-sm">
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-light-info">
+                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-product text-white fa-product-hunt fs-3"
+                                        class="fa-product fa-product-hunt fs-3 text-white"
                                         aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Pending
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
+                                <a href="#" class="text-white fs-5 fw-bold lh-0">Total Order Pending
+                                    <span class="text-white fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -54,15 +54,15 @@
             <div class="card card-flush shadow-sm">
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between">
-                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-light-info">
+                        <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
                                         class="fa-product text-white fa-product-hunt fs-3"
                                         aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
-                                <a href="#" class="text-black fs-5 fw-bold lh-0">Total Order Delivered
-                                    <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
+                                <a href="#" class="fs-5 fw-bold lh-0 text-white">Total Order Delivered
+                                    <span class="text-white fw-semibold d-block fs-6 pt-4">{{ date('d M Y') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -77,20 +77,17 @@
             </div>
         </div>
     </div>
-    <div class="card card-flush mt-10">
-        <div class="card-header bg-light-info align-items-center">
-            <h3 class="card-title">Mange Your Orders</h3>
+    <div class="card mt-8">
+        <div class="card-header bg-dark align-items-center d-flex justify-content-between">
             <div>
-                <a type="button" href="{{ route('admin.product.create') }}" class="btn btn-primary btn btn-sm">
-                    <i class="fa-solid fa-plus"></i> Create
-                </a>
+                <h1 class="mb-0 text-center w-100 text-white">Manage Your Orders</h1>
             </div>
         </div>
-
         <div class="card-body table-responsive">
-            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
+            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7 border rounded">
                 <thead>
                     <tr class="fw-semibold fs-6 text-gray-800 text-center">
+                        <th>Sl</th>
                         <th>Order Number</th>
                         <th>Customer</th>
                         <th>Created At</th>
@@ -100,10 +97,12 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-
-                <tbody class="fw-bold text-gray-600">
+                <tbody>
                     @foreach ($orders as $order)
                         <tr class="text-center">
+                            <td>
+                                {{ $loop->iteration }}
+                            </td>
                             <td>
                                 <a href="">
                                     {{ $order->order_number }}
@@ -114,17 +113,17 @@
                             <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}</td>
                             <td>{{ $order->quantity }}</td>
                             <td>
-                                @if ($order->status == "pending")
+                                @if ($order->status == 'pending')
                                     <span class="badge py-3 px-4 fs-7 badge-light-primary">Pending</span>
-                                @elseif ($order->status == "processing")
+                                @elseif ($order->status == 'processing')
                                     <span class="badge py-3 px-4 fs-7 badge-light-warning">Processing</span>
-                                @elseif ($order->status == "shipped")
+                                @elseif ($order->status == 'shipped')
                                     <span class="badge py-3 px-4 fs-7 badge-light-success">Shipped</span>
-                                @elseif ($order->status == "delivered")
+                                @elseif ($order->status == 'delivered')
                                     <span class="badge py-3 px-4 fs-7 badge-light-success">Delivered</span>
-                                @elseif ($order->status == "cancelled")
+                                @elseif ($order->status == 'cancelled')
                                     <span class="badge py-3 px-4 fs-7 badge-light-dangered">Cancelled</span>
-                                @elseif ($order->status == "returned")
+                                @elseif ($order->status == 'returned')
                                     <span class="badge py-3 px-4 fs-7 badge-light-dangered">Returned</span>
                                 @endif
                             </td>
@@ -160,14 +159,16 @@
                             <tr data-kt-docs-datatable-subtable="subtable_template" class="d-none bg-light">
                                 <td colspan="3">
                                     <div class="d-flex align-items-center gap-3">
-                                        <a href="#" class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
+                                        <a href="#"
+                                            class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
                                             <img src="{{ asset('storage/' . $item->product->thumbnail) }}"
                                                 alt="" data-kt-docs-datatable-subtable="template_image" />
                                         </a>
                                         <div class="d-flex flex-column text-muted">
                                             <a href="#" class="text-gray-900 text-hover-primary fw-bold"
                                                 data-kt-docs-datatable-subtable="template_name">Product name</a>
-                                            <div class="fs-7" data-kt-docs-datatable-subtable="template_description">
+                                            <div class="fs-7"
+                                                data-kt-docs-datatable-subtable="template_description">
                                                 {{ $item->product->name }}</div>
                                         </div>
                                     </div>
@@ -192,7 +193,6 @@
                             </tr>
                         @endforeach
                     @endforeach
-
                 </tbody>
             </table>
         </div>
@@ -217,20 +217,5 @@
             });
         </script>
         <!-- Your existing HTML content here -->
-
-        <script>
-            function printInvoice(orderId) {
-                var printContents = document.getElementById('invoiceContent' + orderId).innerHTML;
-                var printWindow = window.open('', '', 'height=800,width=600');
-                printWindow.document.write('<html><head><title>Invoice</title>');
-                printWindow.document.write('<style>/* Add your print styles here */</style>');
-                printWindow.document.write('</head><body >');
-                printWindow.document.write(printContents);
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
-                printWindow.focus();
-                printWindow.print();
-            }
-        </script>
     @endpush
 </x-admin-app-layout>
