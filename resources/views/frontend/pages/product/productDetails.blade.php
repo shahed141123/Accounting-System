@@ -186,12 +186,12 @@
                                     Specification
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews-content"
                                     role="tab" aria-controls="reviews-content" aria-selected="false">
                                     Reviews (5)
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="tab-content" id="productContent">
                             <div class="tab-pane fade show active" id="description-content" role="tabpanel"
@@ -224,10 +224,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="reviews-content" role="tabpanel"
+                            {{-- <div class="tab-pane fade" id="reviews-content" role="tabpanel"
                                 aria-labelledby="reviews-tab">
                                 <div class="ps-product__tabreview">
-                                    {{-- <div class="ps-review--product">
+                                    <div class="ps-review--product">
                                         <div class="ps-review__row">
                                             <div class="ps-review__avatar"><img src="img/avatar/avatar-review.html"
                                                     alt="alt" /></div>
@@ -248,7 +248,7 @@
                                                 <p>Everything is perfect. I would recommend!</p>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <div class="ps-form--review">
                                     <div class="ps-form__title">Write a review</div>
@@ -286,7 +286,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <section class="ps-section--also" data-background="img/related-bg.jpg">
