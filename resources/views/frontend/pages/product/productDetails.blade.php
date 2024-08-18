@@ -63,7 +63,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">BRAND </th>
-                                                    <td>{{ $product->brand->name }}</td>
+                                                    <td>{{ optional($product->brand)->name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">NO. OF CARTONS </th>
@@ -508,7 +508,7 @@
                                                     class="ps-badge ps-badge--instock">{{ $related_product->box_stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}</span>
                                             </div>
                                             <div class="ps-product__branch">
-                                                <a href="#">{{ $related_product->brand->name }}</a>
+                                                <a href="#">{{ optional($related_product->brand)->name }}</a>
                                             </div>
                                             <h5 class="ps-product__title">
                                                 <a href="{{ route('product.details', $related_product->slug) }}">

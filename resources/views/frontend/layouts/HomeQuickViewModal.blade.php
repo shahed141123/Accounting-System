@@ -77,7 +77,7 @@
                                                 class="ps-badge ps-badge--instock">{{ $latest_product->box_stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}</span>
                                         </div>
                                         <div class="ps-product__branch">
-                                            <a href="#">{{ $latest_product->brand->name }}</a>
+                                            <a href="#">{{ optional($latest_product->brand)->name }}</a>
                                         </div>
                                         <h5 class="ps-product__title">
                                             <a href="{{ route('product.details', $latest_product->slug) }}">
@@ -234,7 +234,7 @@
                                                 class="ps-badge ps-badge--instock">{{ $deal_product->box_stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}</span>
                                         </div>
                                         <div class="ps-product__branch">
-                                            <a href="#">{{ $deal_product->brand->name }}</a>
+                                            <a href="#">{{ optional($deal_product->brand)->name }}</a>
                                         </div>
                                         <h5 class="ps-product__title">
                                             <a href="{{ route('product.details', $deal_product->slug) }}">

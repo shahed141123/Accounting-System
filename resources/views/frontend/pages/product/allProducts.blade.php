@@ -375,7 +375,7 @@
                                                     class="ps-badge ps-badge--instock">{{ $product->box_stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}</span>
                                             </div>
                                             <div class="ps-product__branch">
-                                                <a href="#">{{ $product->brand->name }}</a>
+                                                <a href="#">{{ optional($product->brand)->name }}</a>
                                             </div>
                                             <h5 class="ps-product__title">
                                                 <a href="{{ route('product.details', $product->slug) }}">
