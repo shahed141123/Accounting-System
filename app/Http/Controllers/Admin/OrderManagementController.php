@@ -14,6 +14,9 @@ class OrderManagementController extends Controller
     public function index()
     {
         $data = [
+
+            'pendingOrdersCount' => Order::where('status','pending')->count(),
+            'deliveredOrdersCount' => Order::where('status','delivered')->count(),
             'orders' => Order::with('orderItems')->latest('created_at')->get(),
         ];
         return view('admin.pages.orderManagement.index', $data);
