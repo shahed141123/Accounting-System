@@ -64,10 +64,18 @@ class PageBannerController extends Controller
                 return redirect()->back()->with('error', $uploadedFiles['image']['error_message']);
             }
         }
+        if ($request->hasFile('bg_image')) {
+            $uploadedFiles['bg_image'] = customUpload($request->file('bg_image'), $filePath);
+
+            if ($uploadedFiles['bg_image']['status'] === 0) {
+                return redirect()->back()->with('error', $uploadedFiles['bg_image']['error_message']);
+            }
+        }
 
         PageBanner::create([
             'page_name'   => $request->page_name,
             'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+            'bg_image'    => $uploadedFiles['bg_image']['status'] == 1 ? $uploadedFiles['bg_image']['file_path'] : null,
             'badge'       => $request->badge,
             'button_name' => $request->button_name,
             'button_link' => $request->button_link,
@@ -141,10 +149,23 @@ class PageBannerController extends Controller
                 return redirect()->back()->with('error', $uploadedFiles['image']['error_message']);
             }
         }
+        if ($request->hasFile('bg_image')) {
+            $oldFile = $banner->bg_image ?? null;
+
+            if ($oldFile) {
+                Storage::delete("public/" . $oldFile);
+            }
+            $uploadedFiles['bg_image'] = customUpload($request->file('bg_image'), $filePath);
+
+            if ($uploadedFiles['bg_image']['status'] === 0) {
+                return redirect()->back()->with('error', $uploadedFiles['bg_image']['error_message']);
+            }
+        }
 
         $banner->update([
             'page_name'   => $request->page_name,
             'image'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : $banner->image,
+            'bg_image'    => $uploadedFiles['bg_image']['status'] == 1 ? $uploadedFiles['bg_image']['file_path'] : $banner->bg_image,
             'badge'       => $request->badge,
             'button_name' => $request->button_name,
             'button_link' => $request->button_link,
@@ -164,7 +185,8 @@ class PageBannerController extends Controller
     {
         $banner = PageBanner::findOrFail($id);
         $files = [
-            'image' => $banner->image,
+            'image'    => $banner->image,
+            'bg_image' => $banner->bg_image,
         ];
         foreach ($files as $key => $file) {
             if (!empty($file)) {

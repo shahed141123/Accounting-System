@@ -10,7 +10,7 @@
                     <div class="ps-product__actions">
                         <div class="ps-product__item" data-toggle="tooltip" data-placement="left" title=""
                             data-original-title="Quick view"><a href="#" data-toggle="modal"
-                                data-target="#popupQuickview"><i class="fa fa-search"></i></a></div>
+                                data-target="#popupQuickview{{ $product->id }}"><i class="fa fa-search"></i></a></div>
                     </div>
                     <div class="ps-product__badge">
                     </div>
@@ -23,7 +23,6 @@
                     <h5 class="ps-product__title shop_product-title">
                         <a href="{{ route('product.details', $product->slug) }}">
                             {{ $product->name }}
-
                         </a>
                     </h5>
                     <div class="ps-product__desc">

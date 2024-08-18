@@ -26,10 +26,10 @@
                         <p class="ps-blog__text">{!! $blog->long_description !!}</p>
 
                         <p class="ps-blog__text">{!! $blog->footer !!}</p>
-                        <div class="ps-comment--post">
+                        {{-- <div class="ps-comment--post">
                             <h2 class="ps-comment__title">Comments (0)</h2>
                             <ul class="ps-comment__list">
-                                {{-- <li>
+                                <li>
                                     <div class="ps-review--product">
                                         <div class="ps-review__row">
                                             <div class="ps-review__avatar"><img src="img/avatar/avatar-review3.html" alt="alt" /></div>
@@ -42,7 +42,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li> --}}
+                                </li>
 
                             </ul>
                         </div>
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="ps-widget ps-widget--blog">

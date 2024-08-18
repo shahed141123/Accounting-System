@@ -63,7 +63,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">BRAND </th>
-                                                    <td>{{ $product->brand->name }}</td>
+                                                    <td>{{ optional($product->brand)->name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="ps-table__th">NO. OF CARTONS </th>
@@ -186,12 +186,12 @@
                                     Specification
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews-content"
                                     role="tab" aria-controls="reviews-content" aria-selected="false">
                                     Reviews (5)
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="tab-content" id="productContent">
                             <div class="tab-pane fade show active" id="description-content" role="tabpanel"
@@ -224,10 +224,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="reviews-content" role="tabpanel"
+                            {{-- <div class="tab-pane fade" id="reviews-content" role="tabpanel"
                                 aria-labelledby="reviews-tab">
                                 <div class="ps-product__tabreview">
-                                    {{-- <div class="ps-review--product">
+                                    <div class="ps-review--product">
                                         <div class="ps-review__row">
                                             <div class="ps-review__avatar"><img src="img/avatar/avatar-review.html"
                                                     alt="alt" /></div>
@@ -248,7 +248,7 @@
                                                 <p>Everything is perfect. I would recommend!</p>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <div class="ps-form--review">
                                     <div class="ps-form__title">Write a review</div>
@@ -286,7 +286,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <section class="ps-section--also" data-background="img/related-bg.jpg">
@@ -428,4 +428,165 @@
             </div>
         </div>
     </div>
+
+    @foreach ($related_products as $related_product)
+        <div class="modal fade" id="popupQuickview{{ $related_product->id }}" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered ps-quickview">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="wrap-modal-slider container-fluid ps-quickview__body">
+                            <button class="close ps-quickview__close" type="button" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <div class="ps-product--detail">
+                                <div class="row">
+                                    <div class="col-12 col-xl-6">
+                                        <div class="ps-product--gallery">
+                                            <div class="ps-product__thumbnail">
+                                                @if ($related_product->multiImages->isNotEmpty())
+                                                    @foreach ($related_product->multiImages->slice(0, 5) as $image)
+                                                        @php
+                                                            $imagePath = 'storage/' . $image->photo;
+                                                            $imageSrc = file_exists(public_path($imagePath))
+                                                                ? asset($imagePath)
+                                                                : asset('frontend/img/no-product.jpg');
+                                                        @endphp
+                                                        <div class="slide">
+                                                            <img src="{{ $imageSrc }}"
+                                                                alt="{{ $related_product->name }}" />
+                                                        </div>
+                                                    @endforeach
+                                                @else
+                                                    @php
+                                                        $thumbnailPath = 'storage/' . $related_product->thumbnail;
+                                                        $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                            ? asset($thumbnailPath)
+                                                            : asset('frontend/img/no-product.jpg');
+                                                    @endphp
+                                                    <div class="slide">
+                                                        <img src="{{ $thumbnailSrc }}" alt="{{ $related_product->name }}" />
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="ps-gallery--image">
+                                                @if ($related_product->multiImages->isNotEmpty())
+                                                    @foreach ($related_product->multiImages->slice(0, 5) as $image)
+                                                        @php
+                                                            $imagePath = 'storage/' . $image->photo;
+                                                            $imageSrc = file_exists(public_path($imagePath))
+                                                                ? asset($imagePath)
+                                                                : asset('frontend/img/no-product.jpg');
+                                                        @endphp
+                                                        <div class="slide">
+                                                            <div class="ps-gallery__item">
+                                                                <img src="{{ $imageSrc }}"
+                                                                    alt="{{ $related_product->name }}" />
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @else
+                                                    @php
+                                                        $thumbnailPath = 'storage/' . $related_product->thumbnail;
+                                                        $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                            ? asset($thumbnailPath)
+                                                            : asset('frontend/img/no-product.jpg');
+                                                    @endphp
+                                                    <div class="slide">
+                                                        <div class="ps-gallery__item">
+                                                            <img src="{{ $thumbnailSrc }}"
+                                                                alt="{{ $related_product->name }}" />
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6">
+                                        <div class="ps-product__info">
+                                            <div class="ps-product__badge">
+                                                <span
+                                                    class="ps-badge ps-badge--instock">{{ $related_product->box_stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}</span>
+                                            </div>
+                                            <div class="ps-product__branch">
+                                                <a href="#">{{ optional($related_product->brand)->name }}</a>
+                                            </div>
+                                            <h5 class="ps-product__title">
+                                                <a href="{{ route('product.details', $related_product->slug) }}">
+                                                    {{ $related_product->name }}
+                                                </a>
+                                            </h5>
+                                            <div class="ps-product__desc">
+                                                <p>{!! $related_product->short_description !!}</p>
+                                            </div>
+                                            @if (Auth::check() && Auth::user()->status == 'active')
+                                                @if (!empty($related_product->box_discount_price))
+                                                    <div class="ps-product__meta">
+                                                        <span
+                                                            class="ps-product__price sale">£{{ $related_product->box_discount_price }}</span>
+                                                        <span
+                                                            class="ps-product__del">£{{ $related_product->box_price }}</span>
+                                                    </div>
+                                                @else
+                                                    <div class="ps-product__meta">
+                                                        <span
+                                                            class="ps-product__price sale">£{{ $related_product->box_price }}</span>
+                                                    </div>
+                                                @endif
+
+                                                <div class="ps-product__quantity">
+                                                    <h6>Quantity</h6>
+                                                    <div class="def-number-input number-input safari_only">
+                                                        <button class="minus"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
+                                                                class="icon-minus"></i></button>
+                                                        <input class="quantity" min="1" name="quantity"
+                                                            value="1" type="number"
+                                                            data-product_id="{{ $related_product->id }}" />
+                                                        <button class="plus"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
+                                                                class="icon-plus"></i></button>
+                                                    </div>
+                                                </div>
+
+                                                <a class="ps-btn ps-btn--warning add_to_cart_btn_product_single"
+                                                    data-product_id="{{ $related_product->id }}" href="#">Add to
+                                                    cart</a>
+                                            @else
+                                                <div class="ps-product__meta">
+                                                    <a href="{{ route('login') }}"
+                                                        class="btn btn-info btn-block">Login to
+                                                        view
+                                                        price</a>
+                                                </div>
+                                            @endif
+                                            <div class="ps-product__type">
+                                                <ul class="ps-product__list">
+                                                    @if ($related_product->tags)
+                                                        <li>
+                                                            <span class="ps-list__title">Tags: </span>
+                                                            @foreach (json_decode($related_product->tags) as $tag)
+                                                                <a class="ps-list__text"
+                                                                    href="#">{{ $tag }}</a>
+                                                                @if (!$loop->last)
+                                                                    ,
+                                                                @endif
+                                                            @endforeach
+                                                        </li>
+                                                    @endif
+                                                    <li><span class="ps-list__title">SKU-Code: </span><a
+                                                            class="ps-list__text"
+                                                            href="#">{{ $related_product->sku_code }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 </x-frontend-app-layout>

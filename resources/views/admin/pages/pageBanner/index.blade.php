@@ -46,7 +46,7 @@
                                         alt="{{ $banner->page_name }}">
                                 </td>
                                 <td class="text-center">
-                                    <img class="w-50px h-50px" src="{{ asset('storage/' . $banner->image) }}"
+                                    <img class="w-50px h-50px" src="{{ asset('storage/' . $banner->bg_image) }}"
                                         alt="{{ $banner->page_name }}">
                                 </td>
                                 <td class="text-info">
