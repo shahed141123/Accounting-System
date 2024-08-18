@@ -114,17 +114,17 @@
                             <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}</td>
                             <td>{{ $order->quantity }}</td>
                             <td>
-                                @if ($order->pending())
+                                @if ($order->status == "pending")
                                     <span class="badge py-3 px-4 fs-7 badge-light-primary">Pending</span>
-                                @elseif ($order->processing())
+                                @elseif ($order->status == "processing")
                                     <span class="badge py-3 px-4 fs-7 badge-light-warning">Processing</span>
-                                @elseif ($order->shipped())
+                                @elseif ($order->status == "shipped")
                                     <span class="badge py-3 px-4 fs-7 badge-light-success">Shipped</span>
-                                @elseif ($order->delivered())
+                                @elseif ($order->status == "delivered")
                                     <span class="badge py-3 px-4 fs-7 badge-light-success">Delivered</span>
-                                @elseif ($order->cancelled())
+                                @elseif ($order->status == "cancelled")
                                     <span class="badge py-3 px-4 fs-7 badge-light-dangered">Cancelled</span>
-                                @elseif ($order->returned())
+                                @elseif ($order->status == "returned")
                                     <span class="badge py-3 px-4 fs-7 badge-light-dangered">Returned</span>
                                 @endif
                             </td>

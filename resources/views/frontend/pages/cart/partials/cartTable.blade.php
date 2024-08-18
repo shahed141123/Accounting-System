@@ -133,15 +133,15 @@
                 <div class="ps-shopping__label">Subtotal</div>
                 <div class="ps-shopping__price">£{{ Cart::subtotal() }}</div>
             </div>
-           
+
 
             <div class="ps-shopping__row">
                 <div class="ps-shopping__label">Total</div>
                 <div class="ps-shopping__price">£{{ Cart::subtotal() }}</div>
             </div>
             <div class="ps-shopping__checkout">
-                <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Proceed to checkout</a><a
-                    class="ps-shopping__link" href="{{ route('allproducts') }}">Continue To Shopping</a>
+                    <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Proceed to checkout</a>
+                <a class="ps-shopping__link" href="{{ route('allproducts') }}">Continue To Shopping</a>
             </div>
         </div>
     </div>

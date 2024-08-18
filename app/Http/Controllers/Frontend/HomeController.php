@@ -133,24 +133,29 @@ class HomeController extends Controller
         $formattedSubtotal = Cart::instance('cart')->subtotal();
         $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
         $subTotal = (float)$cleanSubtotal;
-        $data = [
-            'shippingmethods' => ShippingMethod::active()->get(),
-            'cartItems'       => Cart::instance('cart')->content(),
-            'total'           => Cart::instance('cart')->total(),
-            'cartCount'       => Cart::instance('cart')->count(),
-            'user'            => Auth::user(),
-            'subTotal'        => $subTotal,
-            // 'subTotal'        => Cart::instance('cart')->subtotal(),
-        ];
-        // dd(Cart::instance('cart'));
-        return view('frontend.pages.cart.checkout', $data);
+        if ($subTotal > 500) {
+
+            $data = [
+                'shippingmethods' => ShippingMethod::active()->get(),
+                'cartItems'       => Cart::instance('cart')->content(),
+                'total'           => Cart::instance('cart')->total(),
+                'cartCount'       => Cart::instance('cart')->count(),
+                'user'            => Auth::user(),
+                'subTotal'        => $subTotal,
+                // 'subTotal'        => Cart::instance('cart')->subtotal(),
+            ];
+            // dd(Cart::instance('cart'));
+            return view('frontend.pages.cart.checkout', $data);
+        } else {
+            return redirect()->back()->with('error', 'The added product price must be greater than 500£ to proceed to check out.');
+        }
     }
 
     public function checkoutSuccess($id)
     {
 
         $data = [
-            'order'           => Order::with('orderItems')->where('order_number',$id)->first(),
+            'order'           => Order::with('orderItems')->where('order_number', $id)->first(),
             'user'            => Auth::user(),
         ];
         // dd(Cart::instance('cart'));
@@ -165,11 +170,11 @@ class HomeController extends Controller
             ->where('products.status', 'published')
             ->where('brands.status', 'active')
             ->limit(10)
-            ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.box_price', 'products.box_discount_price','products.box_stock','products.short_description']);
+            ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.box_price', 'products.box_discount_price', 'products.box_stock', 'products.short_description']);
 
         $data['categorys'] = Category::where('name', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'name', 'slug']);
-       $data['brands'] = Brand::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
-        $data['blogs'] = BlogPost::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title','slug']);
+        $data['brands'] = Brand::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
+        $data['blogs'] = BlogPost::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
 
         return response()->json(view('frontend.layouts.search', $data)->render());
     } // end method

@@ -292,7 +292,7 @@
                     <section class="ps-section--also" data-background="img/related-bg.jpg">
                         <div class="container">
                             <h3 class="ps-section__title">Customer also bought</h3>
-                            <div class="ps-section__carousel">
+                            <div class="dealCarousel owl-carousel">
                                 @foreach ($related_products as $related_product)
                                     <div class="ps-section__product">
                                         <div class="ps-product ps-product--standard">
