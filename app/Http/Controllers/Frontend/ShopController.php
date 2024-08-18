@@ -24,54 +24,59 @@ class ShopController extends Controller
         return view('frontend.pages.product.allProducts', $data);
     }
 
-    public function filter(Request $request)
+
+    public function filterProducts(Request $request)
     {
         $query = Product::query();
 
-        // Apply filters
-        if ($request->has('categories')) {
-            $query->whereIn('category_id', $request->categories);
+        if ($request->has('categories') && !empty($request->categories)) {
+            $categories = $request->categories;
+            $query->whereJsonContains('category_id', $categories);
         }
 
-        if ($request->has('subcategories')) {
-            $query->whereIn('subcategory_id', $request->subcategories);
+        if ($request->has('subcategories') && !empty($request->subcategories)) {
+            $subcategories = $request->subcategories;
+            $query->whereJsonContains('category_id', $subcategories);
         }
 
+        // Filter by Brand
         if ($request->has('brands')) {
             $query->whereIn('brand_id', $request->brands);
         }
 
+        // Filter by Price Range
         if ($request->has('price_min') && $request->has('price_max')) {
-            $query->whereBetween('price', [$request->price_min, $request->price_max]);
+            $query->whereBetween('box_price', [$request->price_min, $request->price_max]);
         }
 
-        // Apply sorting
-        switch ($request->sort_by) {
-            case 'popularity':
-                $query->orderBy('popularity', 'desc');
-                break;
-            case 'rating':
-                $query->orderBy('rating', 'desc');
-                break;
-            case 'price-asc':
-                $query->orderBy('price', 'asc');
-                break;
-            case 'price-desc':
-                $query->orderBy('price', 'desc');
-                break;
-            default:
-                $query->orderBy('created_at', 'desc');
-                break;
+        // Sort products
+        if ($request->has('sort_by')) {
+            switch ($request->sort_by) {
+                case 'latest':
+                    $query->orderBy('id', 'desc');
+                    break;
+                case 'oldest':
+                    $query->orderBy('id', 'asc');
+                    break;
+                case 'name-asc':
+                    $query->orderBy('name', 'asc');
+                    break;
+                case 'name-desc':
+                    $query->orderBy('name', 'desc');
+                    break;
+                case 'price-asc':
+                    $query->orderBy('box_price', 'asc'); // Corrected from 'desc' to 'asc'
+                    break;
+                case 'price-desc':
+                    $query->orderBy('box_price', 'desc');
+                    break;
+            }
         }
+        $perPage = $request->has('showPage') ? (int)$request->showPage : 10;
+        $products = $query->active()->paginate($perPage);
 
-        // Apply pagination
-        $perPage = $request->get('show_per_page', 12);
-        $products = $query->paginate($perPage);
 
-        // Return a view with products and pagination
-        return response()->json([
-            'products' => view('frontend.pages.product.partial.getProduct', compact('products'))->render(),
-            'pagination' => $products->links()->render()
-        ]);
+        // Return the filtered products
+        return view('frontend.pages.product.partial.getProduct', compact('products'))->render();
     }
 }

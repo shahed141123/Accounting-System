@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Order;
 use App\Models\ShippingMethod;
 use Illuminate\Support\Facades\Cache;
@@ -157,4 +158,21 @@ class HomeController extends Controller
         // dd(Cart::instance('cart'));
         return view('frontend.pages.cart.checkoutSuccess', $data);
     }
+
+    public function globalSearch(Request $request)
+    {
+        $query = $request->get('term', '');
+        $data['products'] = Product::join('brands', 'products.brand_id', '=', 'brands.id')
+            ->where('products.name', 'LIKE', '%' . $query . '%')
+            ->where('products.status', 'published')
+            ->where('brands.status', 'active')
+            ->limit(10)
+            ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.box_price', 'products.box_discount_price','products.box_stock','products.short_description']);
+
+        $data['categorys'] = Category::where('name', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'name', 'slug']);
+       $data['brands'] = Brand::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
+        $data['blogs'] = BlogPost::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title','slug']);
+
+        return response()->json(view('frontend.layouts.search', $data)->render());
+    } // end method
 }

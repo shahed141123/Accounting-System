@@ -14368,8 +14368,8 @@ textarea.form-control {
     padding: 50px;
     width: 100%;
     transition: all 0.4s ease;
-    opacity: 0;
-    visibility: hidden;
+    /* opacity: 0;
+    visibility: hidden; */
 }
 
 .ps-search--result .ps-result__content {

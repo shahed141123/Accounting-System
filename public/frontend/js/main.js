@@ -457,27 +457,27 @@
         })
     }
 
-    function slidePriceWidget() {
-        var rangeSlider = document.getElementById('slide-price');
-        if (rangeSlider) {
-            var input0 = document.getElementById('slide-price-min');
-            var input1 = document.getElementById('slide-price-max');
-            var inputs = [input0, input1];
-            noUiSlider.create(rangeSlider, {
-                start: [0, 820],
-                connect: true,
-                step: 1,
-                range: {
-                    min: [1],
-                    max: [1000]
-                }
-            });
+    // function slidePriceWidget() {
+    //     var rangeSlider = document.getElementById('slide-price');
+    //     if (rangeSlider) {
+    //         var input0 = document.getElementById('slide-price-min');
+    //         var input1 = document.getElementById('slide-price-max');
+    //         var inputs = [input0, input1];
+    //         noUiSlider.create(rangeSlider, {
+    //             start: [0, 820],
+    //             connect: true,
+    //             step: 1,
+    //             range: {
+    //                 min: [1],
+    //                 max: [1000]
+    //             }
+    //         });
 
-            rangeSlider.noUiSlider.on("update", function(values, handle) {
-                inputs[handle].textContent  = '$' + values[handle];
-            });
-        }
-    }
+    //         rangeSlider.noUiSlider.on("update", function(values, handle) {
+    //             inputs[handle].textContent  = '$' + values[handle];
+    //         });
+    //     }
+    // }
 
     function lightgalleryVideos() {
         $('#ps-video-gallery').lightGallery();

@@ -16,8 +16,9 @@
                                     <span>Sort by</span>
                                     <select id="sort-by" class="form-select">
                                         <option value="latest">Latest</option>
-                                        <option value="popularity">Popularity</option>
-                                        <option value="rating">Average rating</option>
+                                        <option value="oldest">Latest</option>
+                                        <option value="name-asc">Product Name Ascending(A to Z)</option>
+                                        <option value="name-desc">Product Name Descendind(Z to A)</option>
                                         <option value="price-asc">Price: low to high</option>
                                         <option value="price-desc">Price: high to low</option>
                                     </select>
@@ -27,10 +28,10 @@
                                 <form>
                                     <span>Show</span>
                                     <select id="show-per-page" class="form-select w-auto">
-                                        <option value="12" selected>12</option>
-                                        <option value="24">24</option>
-                                        <option value="36">36</option>
-                                        <option value="48">48</option>
+                                        <option value="10" selected>10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
                                     </select>
                                 </form>
                             </div>
@@ -43,7 +44,6 @@
                             {{ $products->links() }}
                         </div>
                         <div class="ps-delivery"
-                            data-background="{{ asset('frontend/img/promotion/banner-delivery-2.jpg') }}"
                             style="background-image: url({{ asset('frontend/promotion/banner-delivery-2.jpg') }});">
                             <div class="ps-delivery__content">
                                 <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100%
@@ -124,18 +124,19 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-                // Initialize price slider
+                // Initialize noUiSlider
                 var priceSlider = document.getElementById('slide-price');
                 noUiSlider.create(priceSlider, {
-                    start: [1, 10000],
+                    start: [1, 10000], // Default values
                     connect: true,
                     range: {
-                        'min': 1,
-                        'max': 10000
+                        'min': [0],
+                        'max': [10000]
                     },
+                    step: 1,
                     format: {
                         to: function(value) {
-                            return '£' + Math.round(value);
+                            return '£' + value.toFixed(2);
                         },
                         from: function(value) {
                             return Number(value.replace('£', ''));
@@ -143,54 +144,65 @@
                     }
                 });
 
+                // Update hidden inputs and displayed values, and trigger filtering
                 priceSlider.noUiSlider.on('update', function(values, handle) {
+                    $('#slide-price-min').text(values[0]);
+                    $('#slide-price-max').text(values[1]);
                     $('#price-min').val(values[0].replace('£', ''));
                     $('#price-max').val(values[1].replace('£', ''));
+
+                    // Trigger filtering when slider values change
+                    filterProducts();
                 });
 
-                // Function to get products
+                function filterProducts() {
+                    let categories = [];
+                    let subcategories = [];
+                    let brands = [];
+                    let priceMin = $('#price-min').val();
+                    let priceMax = $('#price-max').val();
+                    let sortBy = $('#sort-by').val();
+                    let showPage = $('#show-per-page').val();
 
+                    $('.category-filter:checked').each(function() {
+                        categories.push($(this).data('id'));
+                    });
 
-                // Apply filters, sorting, and pagination
-                $('.category-filter, .subcategory-filter, .brand-filter').on('change', getProducts);
-                $('#price-filter').on('click', getProducts);
-                $('#sort-by').on('change', getProducts);
-                $('#show-per-page').on('change', getProducts);
+                    $('.subcategory-filter:checked').each(function() {
+                        subcategories.push($(this).data('id'));
+                    });
+
+                    $('.brand-filter:checked').each(function() {
+                        brands.push($(this).data('id'));
+                    });
+
+                    $.ajax({
+                        url: '{{ route('products.filter') }}',
+                        method: 'GET',
+                        data: {
+                            categories: categories,
+                            subcategories: subcategories,
+                            brands: brands,
+                            price_min: priceMin,
+                            price_max: priceMax,
+                            sort_by: sortBy,
+                            showPage: showPage,
+                        },
+                        success: function(response) {
+                            $('.ps-categogy--list').html(response);
+                        }
+                    });
+                }
+
+                // Trigger filtering on change
+                $('.category-filter, .subcategory-filter, .brand-filter, #sort-by, #price-filter, #show-per-page').on('change',
+                    function() {
+                        filterProducts();
+                    });
+
+                // Initial filtering
+                filterProducts();
             });
-
-            function getProducts() {
-                var categories = $('.category-filter:checked').map(function() {
-                    return $(this).data('id');
-                }).get();
-                var subcategories = $('.subcategory-filter:checked').map(function() {
-                    return $(this).data('id');
-                }).get();
-                var brands = $('.brand-filter:checked').map(function() {
-                    return $(this).data('id');
-                }).get();
-                var priceMin = $('#price-min').val();
-                var priceMax = $('#price-max').val();
-                var sortBy = $('#sort-by').val();
-                var showPerPage = $('#show-per-page').val();
-
-                $.ajax({
-                    url: '{{ route('products.filter') }}',
-                    method: 'GET',
-                    data: {
-                        categories: categories,
-                        subcategories: subcategories,
-                        brands: brands,
-                        price_min: priceMin,
-                        price_max: priceMax,
-                        sort_by: sortBy,
-                        show_per_page: showPerPage
-                    },
-                    success: function(response) {
-                        $('.ps-categogy--list').html(response.products);
-                        $('.ps-pagination').html(response.pagination);
-                    }
-                });
-            }
         </script>
     @endpush
 </x-frontend-app-layout>

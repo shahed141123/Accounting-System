@@ -419,7 +419,7 @@
                     </section>
                 </div>
             </div>
-            <div class="ps-delivery" data-background="img/promotion/banner-delivery-2.jpg">
+            <div class="ps-delivery" data-background="{{ asset('frontend/promotion/banner-delivery-2.jpg') }}">
                 <div class="ps-delivery__content">
                     <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
                                 delivery </strong>without contacting the courier</span></div><a

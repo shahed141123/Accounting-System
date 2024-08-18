@@ -236,8 +236,8 @@
                     </a>
                 </div>
                 <div class="col-12 col-md-6 text-right">
-                    <img src="img/payment.png" alt>
-                    <img class="payment-light" src="img/payment-light.png" alt>
+                    <img src="{{ asset('frontend/img/payment.png') }}" alt>
+                    <img class="payment-light" src="{{ asset('frontend/img/payment-light.png') }}" alt>
                 </div>
             </div>
         </div>
