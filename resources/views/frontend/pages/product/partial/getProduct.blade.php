@@ -3,7 +3,8 @@
         <div class="ps-product ps-product--list align-items-center">
             <div class="ps-product__content">
                 <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                        <figure><img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}">
+                        <figure>
+                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}" onerror="this.onerror=null; this.src='{{ asset('frontend/img/no-product.jpg') }}';">
                         </figure>
                     </a>
                     <div class="ps-product__actions">
