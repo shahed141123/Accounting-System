@@ -1,5 +1,5 @@
 @foreach ($products as $product)
-    <div class="ps-product ps-product--list">
+    <div class="ps-product ps-product--list align-items-center">
         <div class="ps-product__content">
             <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
                     <figure><img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}">
@@ -65,7 +65,7 @@
                 </div>
             @endif
 
-            <div class="ps-product__variations"><a class="ps-product__link add_to_wishlist"
+            <div class="ps-product__variations text-center"><a class="ps-product__link add_to_wishlist"
                     href="{{ route('wishlist.store', $product->id) }}">Add to wishlist</a>
             </div>
         </div>
