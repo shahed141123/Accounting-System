@@ -6,32 +6,6 @@
             background-color: #17a2b8;
             border-color: 0px;
         }
-
-        .ps-rating-stars {
-            display: inline-block;
-            font-size: 1.5em;
-        }
-
-        .ps-rating-stars .star {
-            color: #d3d3d3;
-            /* Gray color for empty stars */
-            cursor: default;
-            /* No need to change cursor */
-        }
-
-        .ps-rating-stars .star.filled {
-            color: #ffd700;
-            /* Gold color for filled stars */
-        }
-
-        .ps-header.ps-header--sticky {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: top 0.3s;
-            background-color: #fff;
-            /* Ensure a background color if needed */
-        }
     </style>
 
     <div class="ps-categogy ps-categogy--dark">
