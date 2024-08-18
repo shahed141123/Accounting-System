@@ -64,6 +64,10 @@
                     <div class="col-12 col-md-9">
                         <div class="tab-content" id="myTabContent">
                             @foreach ($categories as $allcategory)
+                                @php
+                                    $catProducts = $allcategory->products()->paginate(12);
+                                    dd($catProducts);
+                                @endphp
                                 <div class="tab-pane fade {{ $allcategory->id == $category->id ? 'show active' : '' }}"
                                     id="home{{ $allcategory->id }}" role="tabpanel"
                                     aria-labelledby="home-tab{{ $allcategory->id }}"
@@ -75,9 +79,7 @@
                                     <!-- Products Grid -->
                                     <div class="ps-categogy--grid">
                                         <div class="row m-0">
-                                            @php
-                                                $catProducts = $allcategory->products()->paginate(12);
-                                            @endphp
+
                                             @forelse ($catProducts as $category_product)
                                                 <div class="col-6 col-lg-4 col-xl-3 p-0">
                                                     <div class="ps-product ps-product--standard">
@@ -89,9 +91,13 @@
                                                                         @foreach ($category_product->multiImages->slice(0, 2) as $image)
                                                                             @php
                                                                                 $imagePath = 'storage/' . $image->photo;
-                                                                                $imageSrc = file_exists(public_path($imagePath))
+                                                                                $imageSrc = file_exists(
+                                                                                    public_path($imagePath),
+                                                                                )
                                                                                     ? asset($imagePath)
-                                                                                    : asset('frontend/img/no-product.jpg');
+                                                                                    : asset(
+                                                                                        'frontend/img/no-product.jpg',
+                                                                                    );
                                                                             @endphp
                                                                             <img src="{{ $imageSrc }}"
                                                                                 alt="{{ $category_product->meta_title }}"
@@ -101,8 +107,11 @@
                                                                     @else
                                                                         @php
                                                                             $thumbnailPath =
-                                                                                'storage/' . $category_product->thumbnail;
-                                                                            $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                                                'storage/' .
+                                                                                $category_product->thumbnail;
+                                                                            $thumbnailSrc = file_exists(
+                                                                                public_path($thumbnailPath),
+                                                                            )
                                                                                 ? asset($thumbnailPath)
                                                                                 : asset('frontend/img/no-product.jpg');
                                                                         @endphp
@@ -122,8 +131,8 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="ps-product__item" data-toggle="tooltip"
-                                                                    data-placement="left" title="Quick view"><a href="#"
-                                                                        data-toggle="modal"
+                                                                    data-placement="left" title="Quick view"><a
+                                                                        href="#" data-toggle="modal"
                                                                         data-target="#popupQuickview{{ $category_product->id }}"><i
                                                                             class="fa fa-search"></i></a></div>
 
@@ -136,7 +145,8 @@
                                                         </div>
                                                         <div class="ps-product__content">
                                                             <h5 class="ps-product__title">
-                                                                <a href="{{ route('product.details', $category_product->slug) }}">
+                                                                <a
+                                                                    href="{{ route('product.details', $category_product->slug) }}">
                                                                     {{ $category_product->name }}
                                                                 </a>
                                                             </h5>
@@ -168,12 +178,14 @@
                                                             @endif
                                                             <div class="ps-product__actions ps-product__group-mobile">
                                                                 <div class="ps-product__quantity">
-                                                                    <div class="def-number-input number-input safari_only">
+                                                                    <div
+                                                                        class="def-number-input number-input safari_only">
                                                                         <button class="minus"
                                                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
                                                                                 class="icon-minus"></i></button>
-                                                                        <input class="quantity" min="0" name="quantity"
-                                                                            value="1" type="number" />
+                                                                        <input class="quantity" min="0"
+                                                                            name="quantity" value="1"
+                                                                            type="number" />
                                                                         <button class="plus"
                                                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
                                                                                 class="icon-plus"></i></button>
@@ -181,7 +193,8 @@
                                                                 </div>
                                                                 <div class="ps-product__item cart" data-toggle="tooltip"
                                                                     data-placement="left" title="Add to cart"><a
-                                                                        href="#"><i class="fa fa-shopping-basket"></i></a>
+                                                                        href="#"><i
+                                                                            class="fa fa-shopping-basket"></i></a>
                                                                 </div>
                                                                 <div class="ps-product__item" data-toggle="tooltip"
                                                                     data-placement="left" title="Wishlist">
@@ -190,9 +203,10 @@
                                                                         <i class="fa fa-heart-o"></i>
                                                                     </a>
                                                                 </div>
-                                                                <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                                    data-placement="left" title="Add to compare"><a
-                                                                        href="compare.html"><i class="fa fa-align-left"></i></a>
+                                                                <div class="ps-product__item rotate"
+                                                                    data-toggle="tooltip" data-placement="left"
+                                                                    title="Add to compare"><a href="compare.html"><i
+                                                                            class="fa fa-align-left"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>

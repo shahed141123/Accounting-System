@@ -104,10 +104,8 @@ class HomeController extends Controller
     public function categoryProducts($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
-
         $data = [
             'category'                => $category,
-            'category_products '      => $category->products()->paginate(12),
             'categories'              => Category::orderBy('name', 'ASC')->active()->get(),
         ];
         return view('frontend.pages.categoryDetails', $data);

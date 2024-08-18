@@ -55,12 +55,12 @@
                                 </a>
                             </div>
                             <div class="ps-product__content">
-                                <h4 class="ps-product__title">
+                                <h4 class="ps-product__title" style="height: auto; min-height:auto">
                                     <a href="{{ route('product.details', $search_product->slug) }}">
                                         {{ $search_product->name }}
                                     </a>
                                 </h4>
-                                <p class="ps-product__desc">{!! $search_product->short_description !!}</p>
+                                <p class="ps-product__desc" style="display: block">{!! $search_product->short_description !!}</p>
                                 @if (Auth::check() && Auth::user()->status == 'active')
                                     @if (!empty($search_product->box_discount_price))
                                         <div class="ps-product__meta">

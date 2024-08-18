@@ -3507,7 +3507,7 @@ textarea.form-control {
 }
 
 .ps-product__desc {
-    display: none;
+    /* display: none; */
     margin-bottom: 6px;
 }
 
