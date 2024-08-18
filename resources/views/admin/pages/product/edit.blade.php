@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Product Add'">
+<x-admin-app-layout :title="'Product Edit'">
     <style>
         .image-input-empty {
             background-image: url({{ asset('admin/assets/media/svg/files/blank-image.svg') }});
