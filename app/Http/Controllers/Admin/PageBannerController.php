@@ -156,7 +156,7 @@ class PageBannerController extends Controller
             foreach ($files as $key => $file) {
                 if (!empty($file)) {
                     $filePath = 'pagebanner/' . $key;
-                    $oldFile = $brand->$key ?? null;
+                    $oldFile = $banner->$key ?? null;
 
                     if ($oldFile) {
                         Storage::delete("public/" . $oldFile);
