@@ -406,7 +406,8 @@
                 style="background-image: url('{{ asset('frontend/img/newsletter-bg.jpg') }}')">
                 <h3 class="ps-section__title">Join our newsletter and get <br>$20 discount for your first order</h3>
                 <div class="ps-section__content">
-                    <form action="#" method="post">
+                    <form action="{{ route('subscription.add') }}" method="post">
+                        @csrf
                         <div class="ps-form--subscribe">
                             <div class="ps-form__control">
                                 <input class="form-control ps-input" type="email"

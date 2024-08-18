@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('page_name', 100)->nullable();
             $table->string('slug', 150)->nullable();
             $table->string('image', 255)->nullable();
+            $table->string('bg_image', 255)->nullable();
             $table->string('badge', 191)->nullable();
             $table->string('button_name', 200)->nullable();
             $table->text('button_link')->nullable();
