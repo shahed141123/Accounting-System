@@ -129,7 +129,7 @@
                                     <span>Sort by</span>
                                     <select id="sort-by" class="form-select">
                                         <option value="latest">Latest</option>
-                                        <option value="oldest">Latest</option>
+                                        <option value="oldest">Oldest</option>
                                         <option value="name-asc">Product Name Ascending(A to Z)</option>
                                         <option value="name-desc">Product Name Descendind(Z to A)</option>
                                         <option value="price-asc">Price: low to high</option>
@@ -149,15 +149,11 @@
                                 </form>
                             </div>
                         </div>
-
-                        <div class="ps-categogy--list">
+                        <div id="productContainer">
                             @include('frontend.pages.product.partial.getProduct')
                         </div>
-                        <div class="ps-pagination">
-                            {{ $products->links() }}
-                        </div>
                         <div class="ps-delivery"
-                            style="background-image: url({{ asset('frontend/promotion/banner-delivery-2.jpg') }});">
+                            style="background-image: url({{ asset('frontend/img/promotion/banner-delivery-2.jpg') }});">
                             <div class="ps-delivery__content">
                                 <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100%
                                             Secure delivery </strong>without contacting the courier</span></div>
@@ -174,7 +170,6 @@
                                     <ul class="">
                                         @foreach ($categories as $category)
                                             <li>
-
                                                 <div class="checkbox-shop">
                                                     <input type="checkbox" class="category-filter inp-cbx"
                                                         data-id="{{ $category->id }}"
@@ -258,9 +253,7 @@
                                         class="fa fa-angle-down"></i></a>
                                 <div class="ps-widget__content">
                                     @foreach ($brands as $brand)
-                                        <div class="ps-widget__item">
-
-
+                                        <div class="ps-widget__item p-0">
                                             <div class="checkbox-shop">
                                                 <input type="checkbox" class="brand-filter inp-cbx"
                                                     data-id="{{ $brand->id }}"
@@ -362,7 +355,7 @@
                             showPage: showPage,
                         },
                         success: function(response) {
-                            $('.ps-categogy--list').html(response);
+                            $('#productContainer').html(response);
                         }
                     });
                 }

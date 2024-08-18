@@ -1,27 +1,28 @@
-<x-admin-app-layout :title="'Order Management'">
+<x-admin-app-layout :title="'Order Details'">
     <div class="d-flex flex-column flex-column-fluid mt-5">
         <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
             <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex flex-stack ">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                     <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                        Order Details ($)
+                        Order Details (#{{ $order->order_number }})
                     </h1>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="https://preview.keenthemes.com/metronic8/demo1/index.html"
-                                class="text-muted text-hover-primary">
-                                Home </a>
+                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
+                                Dashboard </a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-500 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            eCommerce </li>
+                            <a href="{{ route('admin.order-management.index') }}" class="text-muted text-hover-primary">
+                                Order List </a>
+                        </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-500 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            Sales </li>
+                            Order Details (#{{ $order->order_number }}) </li>
 
                     </ul>
                 </div>
@@ -38,7 +39,7 @@
 
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>Order Details (#14534)</h2>
+                                    <h2>Order Details (#{{ $order->order_number }})</h2>
                                 </div>
                             </div>
 
@@ -52,24 +53,28 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-calendar fs-2 me-2"><span
+                                                        <i class="fa-solid fa-calendar fs-2 me-2"><span
                                                                 class="path1"></span><span class="path2"></span></i>
-                                                        Date Added
+                                                        Date Created
                                                     </div>
                                                 </td>
-                                                <td class="fw-bold text-end">14/08/2024</td>
+                                                <td class="fw-bold text-end">{{ $order->created_at->format('d M , Y') }}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-wallet fs-2 me-2"><span
-                                                                class="path1"></span><span class="path2"></span><span
-                                                                class="path3"></span><span class="path4"></span></i>
+                                                        <i class="fa-solid fa-wallet fs-2 me-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                            <span class="path4"></span>
+                                                        </i>
                                                         Payment Method
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end">
-                                                    Online
+                                                    {{ ucfirst($order->payment_method) }}
                                                     <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/card-logos/visa.svg"
                                                         class="w-50px ms-2">
                                                 </td>
@@ -77,14 +82,16 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-truck fs-2 me-2"><span
+                                                        <i class="fa-solid fa-truck fs-2 me-2"><span
                                                                 class="path1"></span><span class="path2"></span><span
                                                                 class="path3"></span><span class="path4"></span><span
                                                                 class="path5"></span></i>
                                                         Shipping Method
                                                     </div>
                                                 </td>
-                                                <td class="fw-bold text-end">Flat Shipping Rate</td>
+                                                <td class="fw-bold text-end">
+                                                    {{ $order->shippingCharge->title }}({{ $order->shippingCharge->price }})
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -114,9 +121,11 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-profile-circle fs-2 me-2"><span
-                                                                class="path1"></span><span class="path2"></span><span
-                                                                class="path3"></span></i>
+                                                        <i class="fa-solid fa-profile-circle fs-2 me-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
                                                         Customer
                                                     </div>
                                                 </td>
@@ -124,7 +133,7 @@
                                                 <td class="fw-bold text-end">
                                                     <div class="d-flex align-items-center justify-content-end">
 
-                                                        <div
+                                                        {{-- <div
                                                             class="symbol symbol-circle symbol-25px overflow-hidden me-3">
                                                             <a
                                                                 href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/customers/details.html">
@@ -133,13 +142,14 @@
                                                                         alt="Dan Wilson" class="w-100">
                                                                 </div>
                                                             </a>
-                                                        </div>
+                                                        </div> --}}
 
 
 
-                                                        <a href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/customers/details.html"
-                                                            class="text-gray-600 text-hover-primary">
-                                                            Dan Wilson </a>
+                                                        <a href="#" class="text-gray-600 text-hover-primary">
+                                                            {{ $order->user->first_name }}
+                                                            {{ $order->user->last_name }}
+                                                        </a>
 
                                                     </div>
                                                 </td>
@@ -147,33 +157,33 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-sms fs-2 me-2"><span
-                                                                class="path1"></span><span class="path2"></span></i>
+                                                        <i class="fa-solid fa-sms fs-2 me-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                        </i>
                                                         Email
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end">
-                                                    <a href="https://preview.keenthemes.com/metronic8/demo1/apps/user-management/users/view.html"
+                                                    <a href="mailto:{{ $order->user->email }}"
                                                         class="text-gray-600 text-hover-primary">
-                                                        dam@consilting.com </a>
+                                                        {{ $order->user->email }} </a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-phone fs-2 me-2"><span
+                                                        <i class="fa-solid fa-phone fs-2 me-2"><span
                                                                 class="path1"></span><span class="path2"></span></i>
                                                         Phone
                                                     </div>
                                                 </td>
-                                                <td class="fw-bold text-end">+6141 234 567</td>
+                                                <td class="fw-bold text-end">{{ $order->user->phone }} </td>
                                             </tr>
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
-
                         </div>
 
 
@@ -195,9 +205,8 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-devices fs-2 me-2"><span
-                                                                class="path1"></span><span
-                                                                class="path2"></span><span
+                                                        <i class="fa-solid fa-devices fs-2 me-2"><span
+                                                                class="path1"></span><span class="path2"></span><span
                                                                 class="path3"></span><span
                                                                 class="path4"></span><span class="path5"></span></i>
                                                         Invoice
@@ -207,7 +216,7 @@
                                                             aria-label="View the invoice generated by this order."
                                                             data-bs-original-title="View the invoice generated by this order."
                                                             data-kt-initialized="1">
-                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6"><span
+                                                            <i class="fa-solid fa-information-5 text-gray-500 fs-6"><span
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
                                                                     class="path3"></span></i></span>
@@ -215,51 +224,33 @@
                                                 </td>
                                                 <td class="fw-bold text-end"><a
                                                         href="https://preview.keenthemes.com/metronic8/demo1/apps/invoices/view/invoice-3.html"
-                                                        class="text-gray-600 text-hover-primary">#INV-000414</a></td>
+                                                        class="text-gray-600 text-hover-primary">#{{ $order->order_number }}</a>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-truck fs-2 me-2"><span
+                                                        <i class="fa-solid fa-truck fs-2 me-2"><span
                                                                 class="path1"></span><span
                                                                 class="path2"></span><span
-                                                                class="path3"></span><span
-                                                                class="path4"></span><span class="path5"></span></i>
-                                                        Shipping
+                                                                class="path3"></span><span class="path4"></span>
+                                                            <span class="path5"></span>
+                                                        </i>
+                                                        Shipping Address
 
 
                                                         <span class="ms-1" data-bs-toggle="tooltip"
                                                             aria-label="View the shipping manifest generated by this order."
                                                             data-bs-original-title="View the shipping manifest generated by this order."
                                                             data-kt-initialized="1">
-                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i></span>
+                                                            <i
+                                                                class="fa-solid fa-information-5 text-gray-500 fs-6"></i>
+                                                        </span>
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end"><a href="#"
-                                                        class="text-gray-600 text-hover-primary">#SHP-0025410</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-muted">
-                                                    <div class="d-flex align-items-center">
-                                                        <i class="ki-duotone ki-discount fs-2 me-2"><span
-                                                                class="path1"></span><span class="path2"></span></i>
-                                                        Reward Points
-
-
-                                                        <span class="ms-1" data-bs-toggle="tooltip"
-                                                            aria-label="Reward value earned by customer when purchasing this order"
-                                                            data-bs-original-title="Reward value earned by customer when purchasing this order"
-                                                            data-kt-initialized="1">
-                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i></span>
-                                                    </div>
+                                                        class="text-gray-600 text-hover-primary">{{ $order->shipping_address }}</a>
                                                 </td>
-                                                <td class="fw-bold text-end">600</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -284,10 +275,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
-                                    Unit 1/23 Hastings Road,<br>
-                                    Melbourne 3000,<br>
-                                    Victoria,<br>
-                                    Australia.
+                                    {{ $order->billing_address }}
                                 </div>
                             </div>
                             <div class="card card-flush py-4 flex-row-fluid position-relative">
@@ -303,17 +291,14 @@
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
-                                    Unit 1/23 Hastings Road,<br>
-                                    Melbourne 3000,<br>
-                                    Victoria,<br>
-                                    Australia.
+                                    {{ $order->shipping_address }}
                                 </div>
                             </div>
                         </div>
                         <div class="card card-flush py-4 flex-row-fluid overflow-hidden">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>Order #14534</h2>
+                                    <h2>Order #{{ $order->order_number }}</h2>
                                 </div>
                                 <div class="card-title">
                                     <a href="javascript:void(0)" class="btn btn-sm fw-bold btn-primary"
@@ -327,6 +312,7 @@
                                         <thead>
                                             <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                                 <th class="min-w-175px ps-5">Product</th>
+                                                <th class="min-w-175px ps-5">Product Description</th>
                                                 <th class="min-w-100px text-end">SKU</th>
                                                 <th class="min-w-70px text-end">Qty</th>
                                                 <th class="min-w-100px text-end">Unit Price</th>
@@ -334,68 +320,37 @@
                                             </tr>
                                         </thead>
                                         <tbody class="fw-semibold text-gray-600">
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
 
-                                                        <a href="" class="symbol symbol-50px">
-                                                            <span class="symbol-label"
-                                                                style="background-image:url('https://preview.keenthemes.com/metronic8/demo1/assets/media/stock/ecommerce/210.png');"></span>
-                                                        </a>
+                                            @foreach ($order->orderItems as $item)
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <img width="50px" height="50px"
+                                                                style="border-radius: 5px;"
+                                                                src="{{ asset('storage/' . optional($item->product)->thumbnail) }}"
+                                                                alt="">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ Str::limit(optional($item->product)->name, 30) }}</span>
+                                                    </td>
 
-
-
-                                                        <div class="ms-5">
-                                                            <a href=""
-                                                                class="fw-bold text-gray-600 text-hover-primary">Product
-                                                                1</a>
-                                                            <div class="fs-7 text-muted">Delivery Date:
-                                                                14/08/2024</div>
-                                                        </div>
-
-                                                    </div>
-                                                </td>
-                                                <td class="text-end">
-                                                    03662006 </td>
-                                                <td class="text-end">
-                                                    2
-                                                </td>
-                                                <td class="text-end">
-                                                    $120.00
-                                                </td>
-                                                <td class="text-end">
-                                                    $240.00
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-
-                                                        <a href="" class="symbol symbol-50px">
-                                                            <span class="symbol-label"
-                                                                style="background-image:url(https://preview.keenthemes.com/metronic8/demo1/assets/media//stock/ecommerce/100.png);"></span>
-                                                        </a>
-                                                        <div class="ms-5">
-                                                            <a href=""
-                                                                class="fw-bold text-gray-600 text-hover-primary">Footwear</a>
-                                                            <div class="fs-7 text-muted">Delivery Date:
-                                                                14/08/2024</div>
-                                                        </div>
-
-                                                    </div>
-                                                </td>
-                                                <td class="text-end">
-                                                    03261009 </td>
-                                                <td class="text-end">
-                                                    1
-                                                </td>
-                                                <td class="text-end">
-                                                    $24.00
-                                                </td>
-                                                <td class="text-end">
-                                                    $24.00
-                                                </td>
-                                            </tr>
+                                                    <td class="text-right">
+                                                        <span>{{ optional($item->product)->sku_code }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span>{{ optional($item)->quantity }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span><span
+                                                                class="text-info">(£)</span>{{ optional($item)->price }}</span>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span><span
+                                                                class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                             <tr>
                                                 <td colspan="4" class="text-end">
                                                     Subtotal
@@ -440,7 +395,7 @@
     </div>
     {{-- Print Invoice Modal  --}}
     <!-- Modal -->
-@include('admin.pages.orderManagement.partial.invoice')
+    {{-- @include('admin.pages.orderManagement.partial.invoice') --}}
     {{-- Print Invoice Modal End --}}
     {{-- view order Modal  --}}
     <!-- Modal -->

@@ -19,10 +19,14 @@
                                         </a>
 
                                         <div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
-                                            <div>{{ $setting->address_line_one }} , {{ $setting->address_line_one }}
+                                            <div>
+                                                {{ $setting->address_line_one }}
+                                                @if ($setting->address_line_two)
+                                                    , {{ $setting->address_line_two }}
+                                                @endif
                                             </div>
 
-                                            <div>{{ $setting->primary_phone }},</div>
+                                            <div>{{ $setting->primary_phone }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +152,8 @@
 
                                 <div class="d-flex flex-stack flex-wrap mt-lg-10 pt-05">
                                     <div class="my-1 me-5">
-                                        <button type="button" class="btn btn-success my-1 me-5" onclick="printInvoice({{ $order->id }})">
+                                        <button type="button" class="btn btn-success my-1 me-5"
+                                            onclick="printInvoice({{ $order->id }})">
                                             Print Invoice
                                         </button>
 
@@ -164,5 +169,3 @@
         </div>
     </div>
 @endforeach
-
-

@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Page Banner Create'">
+<x-admin-app-layout :title="'Page Banner Edit'">
     <div class="card card-flash">
         <div class="card-header mt-6">
             <div class="card-title"></div>

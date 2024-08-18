@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header bg-dark align-items-center d-flex justify-content-between">
             <div>
-                <h1 class="mb-0 text-center w-100 text-white">Manage Your Blog Category</h1>
+                <h1 class="mb-0 text-center w-100 text-white">Manage Your Page Banner</h1>
             </div>
             <div>
                 <a href="{{ route('admin.banner.create') }}" class="btn btn-white rounded-2">
