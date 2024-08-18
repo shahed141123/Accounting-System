@@ -5,7 +5,7 @@
                 <h1 class="mb-0 text-center w-100 text-white">Manage Your Blog Category</h1>
             </div>
             <div>
-                <a href="#" class="btn btn-white rounded-2">
+                <a href="{{ route('admin.banner.create') }}" class="btn btn-white rounded-2">
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">

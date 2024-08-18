@@ -84,11 +84,11 @@
                                     <div class="ps-delivery__item"><i class="icon-truck"></i>Free delivery for order
                                         over £500</div>
                                 </div>
-                                <div class="ps-product__payment"> <img src="img/payment-product.png" alt></div>
+                                <div class="ps-product__payment"> <img src="{{ asset('frontend/img/payment-product.png') }}" alt></div>
                                 <div class="ps-product__gif">
                                     <div class="ps-gif__text"><i class="icon-shield-check"></i><strong>100% Secure
                                             delivery </strong>without contacting the courier</div><img
-                                        class="ps-gif__thumbnail" src="img/blue-white-ribbon-on-pink-box.jpg" alt>
+                                        class="ps-gif__thumbnail" src="{{ asset('frontend/img/blue-white-ribbon-on-pink-box.jpg') }}" alt>
                                 </div>
                             </div>
                         </div>

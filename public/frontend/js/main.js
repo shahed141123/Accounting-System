@@ -503,7 +503,7 @@
         owlCarouselConfig();
         subMenuToggle();
         slickCarousel();
-        slidePriceWidget();
+        // slidePriceWidget();
         lightgalleryVideos();
         smoothScrollingTo(location.hash);
         backgroundImage();
