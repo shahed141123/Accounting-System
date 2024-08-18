@@ -66,7 +66,7 @@
                             @foreach ($categories as $allcategory)
                                 @php
                                     $catProducts = $allcategory->products()->paginate(12);
-                                    dd($catProducts);
+                                    // dd($catProducts);
                                 @endphp
                                 <div class="tab-pane fade {{ $allcategory->id == $category->id ? 'show active' : '' }}"
                                     id="home{{ $allcategory->id }}" role="tabpanel"
