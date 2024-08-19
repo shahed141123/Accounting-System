@@ -153,9 +153,6 @@
                                     </div>
                                 @endif
 
-
-
-
                                 <ul class="ps-product__bundle">
                                     <li><i class="icon-wallet"></i>100% Money back</li>
                                     <li><i class="icon-bag2"></i>Non-contact shipping</li>
@@ -561,7 +558,7 @@
                                             @endif
                                             <div class="ps-product__type">
                                                 <ul class="ps-product__list">
-                                                    
+
                                                     @if (!empty($related_product->tags))
                                                         @php
                                                             $tags = json_decode($related_product->tags);

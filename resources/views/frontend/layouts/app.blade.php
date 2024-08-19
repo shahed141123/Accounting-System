@@ -112,7 +112,6 @@
         class Dashboard {
             constructor() {
                 this.initDataTables();
-                // this.initDateRangePicker();
             }
 
             initDataTables() {
@@ -133,20 +132,25 @@
                             }
                         }
                     });
+                    $('.quick_order_table').DataTable({
+                        "paging": true,
+                        "lengthChange": true,
+                        "searching": true,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false,
+                        "responsive": true,
+                        "language": {
+                            "paginate": {
+                                "previous": "<i class='fa fa-chevron-left pagination-icon'></i>",
+                                "next": "<i class='fa fa-chevron-right pagination-icon'></i>"
+                            }
+                        }
+                    });
                 });
             }
 
-            // initDateRangePicker() {
-                // $(document).ready(() => {
-                //     // Initialize Date Range Picker
-                //     $('#kt_daterangepicker_1').daterangepicker({
-                //         opens: 'left',
-                //         locale: {
-                //             format: 'MM/DD/YYYY'
-                //         }
-                //     });
-                // });
-            // }
+
         }
 
         // Create an instance of the Dashboard class

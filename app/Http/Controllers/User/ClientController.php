@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,11 +16,11 @@ class ClientController extends Controller
     {
         $data = [
 
-            'pendingOrdersCount' => Order::where('status','pending')->count(),
-            'deliveredOrdersCount' => Order::where('status','delivered')->count(),
-            'orders' => Order::with('orderItems')->where('user_id' , Auth::user()->id)->latest('created_at')->get(),
+            'pendingOrdersCount' => Order::where('status', 'pending')->count(),
+            'deliveredOrdersCount' => Order::where('status', 'delivered')->count(),
+            'orders' => Order::with('orderItems')->where('user_id', Auth::user()->id)->latest('created_at')->get(),
         ];
-        return view('user.pages.orderHistory',$data);
+        return view('user.pages.orderHistory', $data);
     }
     public function accountDetails()
     {
@@ -26,18 +28,25 @@ class ClientController extends Controller
     }
     public function quickOrder()
     {
-        return view('user.pages.quickOrder');
+        $data = [
+            'products' => Product::inRandomOrder()->active()->get(),
+            'related_products' => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->where('status', 'published')->inRandomOrder()->limit(12)->get(),
+        ];
+        return view('user.pages.quickOrder', $data);
     }
     public function stockHistory()
     {
-        return view('user.pages.stockHistory');
+        $data = [
+            'categories' => Category::orderBy('name', 'ASC')->active()->get(),
+        ];
+        return view('user.pages.stockHistory', $data);
     }
     public function wishlist()
     {
         $data = [
-            'wishlists' => Wishlist::with('product')->where('user_id' , Auth::user()->id)->latest('id')->get(),
+            'wishlists' => Wishlist::with('product')->where('user_id', Auth::user()->id)->latest('id')->get(),
         ];
-        return view('user.pages.wishlist',$data);
+        return view('user.pages.wishlist', $data);
     }
     public function productData()
     {

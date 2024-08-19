@@ -39,6 +39,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StockManagementController;
 use App\Http\Controllers\Admin\TermsAndConditionController;
 use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\DealBannerController;
 
 // Route::get('/', function () {
 //     return redirect()->route('admin.dashboard');
@@ -112,6 +113,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             'email-settings'  => EmailSettingController::class,
             'terms-condition' => TermsAndConditionController::class,
             'privacy-policy'  => PrivacyPolicyController::class,
+            'deal-banner'     => DealBannerController::class,
             'blog-post'       => BlogPostController::class,
         ],
         ['except' => ['show']]
@@ -153,6 +155,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
     Route::post('categories/toggle-status/{id}', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
     Route::post('banner/toggle-status/{id}', [PageBannerController::class, 'toggleStatus'])->name('banner.toggle-status');
+    Route::post('deal-banner/toggle-status/{id}', [DealBannerController::class, 'toggleStatus'])->name('deal-banner.toggle-status');
     Route::post('product/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('product.toggle-status');
     Route::post('user/toggle-status/{id}', [UserController::class, 'toggleStatus'])->name('user.toggle-status');
     // Route::post('services/toggle-status/{id}', [ServiceController::class, 'toggleStatus'])->name('services.toggle-status');

@@ -369,7 +369,7 @@
                                                 <a class="ps-btn ps-btn--warning add_to_cart_btn_product_single"
                                                     data-product_id="{{ $category_product->id }}" href="#">Add
                                                     to
-                                                    cart</a>
+                                                    cart</a> 
                                             @else
                                                 <div class="ps-product__meta">
                                                     <a href="{{ route('login') }}"

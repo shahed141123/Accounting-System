@@ -38,256 +38,71 @@
                                     <p class="pt-2 pl-3">Product Category</p>
                                     <nav>
                                         <div class="nav nav-tabs flex-column border-0" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="homewares-tab" data-toggle="tab"
-                                                href="#homewares" role="tab" aria-controls="homewares"
-                                                aria-selected="true">Homewares</a>
-                                            <a class="nav-item nav-link" id="pestControl-tab" data-toggle="tab"
-                                                href="#pestControl" role="tab" aria-controls="pestControl"
-                                                aria-selected="false">Pest Control</a>
-                                            <a class="nav-item nav-link" id="catering-tab" data-toggle="tab"
-                                                href="#catering" role="tab" aria-controls="catering"
-                                                aria-selected="false">Catering</a>
-                                            <a class="nav-item nav-link" id="gardenLighting" data-toggle="tab"
-                                                href="#gardenLighting" role="tab" aria-controls="gardenLighting"
-                                                aria-selected="false">Garden Lighting</a>
-                                            <a class="nav-item nav-link" id="games-tab" data-toggle="tab" href="#games"
-                                                role="tab" aria-controls="games" aria-selected="false">Games</a>
-                                            <a class="nav-item nav-link" id="BBQ-tab" data-toggle="tab" href="#BBQ"
-                                                role="tab" aria-controls="BBQ" aria-selected="false">BBQ</a>
+                                            @foreach ($categories as $category)
+                                                <a class="nav-item nav-link {{ $loop->first ? 'active' : '' }}"
+                                                    id="homewares-{{ $category->id }}-tab" data-toggle="tab"
+                                                    href="#homewares-{{ $category->id }}" role="tab"
+                                                    aria-controls="homewares-{{ $category->id }}"
+                                                    aria-selected="{{ $loop->first ? 'true' : 'false' }}">{{ $category->name }}
+                                                </a>
+                                            @endforeach
                                         </div>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-lg-9 pl-0">
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="homewares" role="tabpanel"
-                                        aria-labelledby="nav-home-tab">
-                                        <!-- Order History Table -->
-                                        <h4>Homewares Category Product Stocks</h4>
-                                        <table class="table table-striped order-history-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Status</th>
-                                                    <th>Total QTY</th>
-                                                    <th>In Stock</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- Example Row -->
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="#" class="" width="50px"
-                                                                height="50px" alt="">
-                                                        </div>
-                                                    </td>
-                                                    <td>Thie Shoup Spoon</td>
-                                                    <td>#sku354</td>
-                                                    <td>
-                                                        <span class="badge bg-info text-white">Available</span>
-                                                    </td>
-                                                    <td>555</td>
-                                                    <td>105</td>
-                                                </tr>
-                                                <!-- Additional rows go here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="pestControl" role="tabpanel"
-                                        aria-labelledby="nav-profile-tab">
-                                        <!-- Order History Table -->
-                                        <h4>Pest Control Category Product Stocks</h4>
-                                        <table class="table table-striped order-history-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Status</th>
-                                                    <th>Total QTY</th>
-                                                    <th>In Stock</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- Example Row -->
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="#" class="" width="50px"
-                                                                height="50px" alt="">
-                                                        </div>
-                                                    </td>
-                                                    <td>Thie Shoup Spoon</td>
-                                                    <td>#sku354</td>
-                                                    <td>
-                                                        <span class="badge bg-info text-white">Available</span>
-                                                    </td>
-                                                    <td>555</td>
-                                                    <td>105</td>
-                                                </tr>
-                                                <!-- Additional rows go here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="catering" role="tabpanel"
-                                        aria-labelledby="nav-contact-tab">
-                                        <!-- Order History Table -->
-                                        <h4>Catering Category Product Stocks</h4>
-                                        <table class="table table-striped order-history-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Status</th>
-                                                    <th>Total QTY</th>
-                                                    <th>In Stock</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- Example Row -->
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="#" class="" width="50px"
-                                                                height="50px" alt="">
-                                                        </div>
-                                                    </td>
-                                                    <td>Thie Shoup Spoon</td>
-                                                    <td>#sku354</td>
-                                                    <td>
-                                                        <span class="badge bg-info text-white">Available</span>
-                                                    </td>
-                                                    <td>555</td>
-                                                    <td>105</td>
-                                                </tr>
-                                                <!-- Additional rows go here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="gardenLighting" role="tabpanel"
-                                        aria-labelledby="nav-contact-tab">
-                                        <!-- Order History Table -->
-                                        <h4>Garden Lighting Category Product Stocks</h4>
-                                        <table class="table table-striped order-history-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Status</th>
-                                                    <th>Total QTY</th>
-                                                    <th>In Stock</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- Example Row -->
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="#" class="" width="50px"
-                                                                height="50px" alt="">
-                                                        </div>
-                                                    </td>
-                                                    <td>Thie Shoup Spoon</td>
-                                                    <td>#sku354</td>
-                                                    <td>
-                                                        <span class="badge bg-info text-white">Available</span>
-                                                    </td>
-                                                    <td>555</td>
-                                                    <td>105</td>
-                                                </tr>
-                                                <!-- Additional rows go here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="games" role="tabpanel"
-                                        aria-labelledby="nav-contact-tab">
-                                        <!-- Order History Table -->
-                                        <h4>Games Category Product Stocks</h4>
-                                        <table class="table table-striped order-history-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Status</th>
-                                                    <th>Total QTY</th>
-                                                    <th>In Stock</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- Example Row -->
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="#" class="" width="50px"
-                                                                height="50px" alt="">
-                                                        </div>
-                                                    </td>
-                                                    <td>Thie Shoup Spoon</td>
-                                                    <td>#sku354</td>
-                                                    <td>
-                                                        <span class="badge bg-info text-white">Available</span>
-                                                    </td>
-                                                    <td>555</td>
-                                                    <td>105</td>
-                                                </tr>
-                                                <!-- Additional rows go here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="BBQ" role="tabpanel"
-                                        aria-labelledby="nav-contact-tab">
-                                        <!-- Order History Table -->
-                                        <h4>BBQ Category Product Stocks</h4>
-                                        <table class="table table-striped order-history-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Status</th>
-                                                    <th>Total QTY</th>
-                                                    <th>In Stock</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- Example Row -->
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="#" class="" width="50px"
-                                                                height="50px" alt="">
-                                                        </div>
-                                                    </td>
-                                                    <td>Thie Shoup Spoon</td>
-                                                    <td>#sku354</td>
-                                                    <td>
-                                                        <span class="badge bg-info text-white">Available</span>
-                                                    </td>
-                                                    <td>555</td>
-                                                    <td>105</td>
-                                                </tr>
-                                                <!-- Additional rows go here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    @foreach ($categories as $category)
+                                        @php
+                                            $catProducts = $category->products()->get();
+                                        @endphp
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="homewares-{{ $category->id }}" role="tabpanel"
+                                            aria-labelledby="nav-home-tab">
+                                            <!-- Order History Table -->
+                                            <h4>{{ $category->name }} Category Product Stocks</h4>
+                                            <table class="table table-striped order-history-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">SL</th>
+                                                        <th width="15%">Image</th>
+                                                        <th width="49%">Name</th>
+                                                        <th width="20%">Status</th>
+                                                        <th width="8%">Total QTY</th>
+                                                        {{-- <th>In Stock</th> --}}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Example Row -->
+                                                    @foreach ($catProducts as $catProduct)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>
+                                                                <div>
+                                                                    <img src="{{ asset('storage/' . $catProduct->thumbnail) }}"
+                                                                        class="" width="50px" height="50px"
+                                                                        alt="">
+                                                                </div>
+                                                            </td>
+                                                            <td>{{ $catProduct->name }}</td>
+                                                            <td>
+                                                                @if (!empty($catProduct->box_stock) && $catProduct->box_stock > 0)
+                                                                    <span class="ps-badge bg-success">
+                                                                        {{ $catProduct->box_stock }} In Stock</span>
+                                                                @else
+                                                                    <span class="ps-badge ps-badge--outstock">Out Of
+                                                                        Stock</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $catProduct->box_stock }}</td>
+                                                            {{-- <td>105</td> --}}
+                                                        </tr>
+                                                    @endforeach
+                                                    <!-- Additional rows go here -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
