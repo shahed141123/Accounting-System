@@ -247,8 +247,8 @@
     </div>
 
     @foreach ($catProducts as $category_product)
-        <div class="modal fade" id="popupQuickview{{ $category_product->id }}" data-backdrop="static" data-keyboard="false"
-            tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="popupQuickview{{ $category_product->id }}" data-backdrop="static"
+            data-keyboard="false" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered ps-quickview">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -281,7 +281,8 @@
                                                             : asset('frontend/img/no-product.jpg');
                                                     @endphp
                                                     <div class="slide">
-                                                        <img src="{{ $thumbnailSrc }}" alt="{{ $category_product->name }}" />
+                                                        <img src="{{ $thumbnailSrc }}"
+                                                            alt="{{ $category_product->name }}" />
                                                     </div>
                                                 @endif
                                             </div>
@@ -366,7 +367,8 @@
                                                 </div>
 
                                                 <a class="ps-btn ps-btn--warning add_to_cart_btn_product_single"
-                                                    data-product_id="{{ $category_product->id }}" href="#">Add to
+                                                    data-product_id="{{ $category_product->id }}" href="#">Add
+                                                    to
                                                     cart</a>
                                             @else
                                                 <div class="ps-product__meta">
@@ -378,17 +380,24 @@
                                             @endif
                                             <div class="ps-product__type">
                                                 <ul class="ps-product__list">
-                                                    @if ($category_product->tags)
-                                                        <li>
-                                                            <span class="ps-list__title">Tags: </span>
-                                                            @foreach (json_decode($category_product->tags) as $tag)
-                                                                <a class="ps-list__text"
-                                                                    href="#">{{ $tag }}</a>
-                                                                @if (!$loop->last)
-                                                                    ,
-                                                                @endif
-                                                            @endforeach
-                                                        </li>
+
+                                                    @if (!empty($category_product->tags))
+                                                        @php
+                                                            $tags = json_decode($category_product->tags);
+                                                        @endphp
+
+                                                        @if (is_array($tags))
+                                                            <li>
+                                                                <span class="ps-list__title">Tags: </span>
+                                                                @foreach ($tags as $tag)
+                                                                    <a class="ps-list__text"
+                                                                        href="#">{{ $tag }}</a>
+                                                                    @if (!$loop->last)
+                                                                        ,
+                                                                    @endif
+                                                                @endforeach
+                                                            </li>
+                                                        @endif
                                                     @endif
                                                     <li><span class="ps-list__title">SKU-Code: </span><a
                                                             class="ps-list__text"

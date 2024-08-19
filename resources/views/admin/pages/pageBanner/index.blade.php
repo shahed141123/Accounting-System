@@ -42,11 +42,13 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="text-center">
-                                    <img class="w-50px h-50px" src="{{ asset('storage/' . $banner->image) }}"
+                                    <img class="w-50px h-50px"
+                                        src="{{ !empty(optional($banner)->image) ? asset('storage/' . optional($banner)->image) : asset('images/no_image.jpg') }}"
                                         alt="{{ $banner->page_name }}">
                                 </td>
                                 <td class="text-center">
-                                    <img class="w-50px h-50px" src="{{ asset('storage/' . $banner->bg_image) }}"
+                                    <img class="w-50px h-50px"
+                                        src="{{ !empty(optional($banner)->bg_image) ? asset('storage/' . optional($banner)->bg_image) : asset('images/no_image.jpg') }}"
                                         alt="{{ $banner->page_name }}">
                                 </td>
                                 <td class="text-info">
