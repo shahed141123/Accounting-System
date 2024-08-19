@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class StockManagementController extends Controller
 {
@@ -12,7 +13,10 @@ class StockManagementController extends Controller
      */
     public function index()
     {
-       return view('admin.pages.stockManagement.index');
+        $data = [
+            'products'     => DB::table('products')->where('status', 'published')->latest('id')->get(),
+        ];
+       return view('admin.pages.stockManagement.index',$data);
     }
 
     /**

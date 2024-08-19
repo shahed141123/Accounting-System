@@ -28,7 +28,7 @@
                 <tbody>
                     @foreach ($shipping_methods as $method)
                         <tr>
-                            <td>{{ $method->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $method->title }}</td>
                             <td>{{ $method->location }}</td>
                             <td>{{ $method->duration }}</td>

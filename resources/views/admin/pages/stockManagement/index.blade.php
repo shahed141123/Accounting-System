@@ -26,129 +26,131 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>
-                            <div class="symbol symbol-50px me-3">
-                                <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-9.jpg"
-                                    class="" alt="">
-                            </div>
-                        </td>
-                        <td>Melton Coat Navy</td>
-                        <td>Jacket</td>
-                        <td>Arrong</td>
-                        <td>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#stockMethodsEdit">
-                                <i class="fa-solid fa-pencil"></i> View & Edit
-                            </button>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <div class="symbol symbol-50px me-3">
+                                    <img src="{{ asset('storage/'.$product->thumbnail) }}"
+                                        class="" alt="">
+                                </div>
+                            </td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td>{{ $product->brand->name }}</td>
+                            <td>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#stockMethodsEdit">
+                                    <i class="fa-solid fa-pencil"></i> View & Edit
+                                </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="stockMethodsEdit" tabindex="-1"
-                                aria-labelledby="stockMethodsEditLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary">
-                                            <h5 class="modal-title text-white" id="stockMethodsEditLabel">Stock Methods
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="kt_docs_formvalidation_text" class="form" action="#" autocomplete="off">
-                                                <div class="fv-row mb-10 text-center">
-                                                    <div class="">
-                                                        <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-                                                            data-kt-image-input="true">
-                                                            <div class="image-input-wrapper w-150px h-150px"></div>
-                                                            <label
-                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                                title="Change avatar">
-                                                                <i class="fa-solid fa-pencil fs-7">
-                                                                    <span class="path1"></span>
-                                                                    <span class="path2"></span>
-                                                                </i>
-                                                                <input type="file" name="thumbnail"
-                                                                    accept=".png, .jpg, .jpeg" />
-                                                                <input type="hidden" name="thumbnail_remove" />
-                                                            </label>
+                                 <!-- Modal -->
+                                <div class="modal fade" id="stockMethodsEdit" tabindex="-1"
+                                    aria-labelledby="stockMethodsEditLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-primary">
+                                                <h5 class="modal-title text-white" id="stockMethodsEditLabel">Stock Methods
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="kt_docs_formvalidation_text" class="form" action="#" autocomplete="off">
+                                                    <div class="fv-row mb-10 text-center">
+                                                        <div class="">
+                                                            <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
+                                                                data-kt-image-input="true">
+                                                                <div class="image-input-wrapper w-150px h-150px"></div>
+                                                                <label
+                                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                                    title="Change avatar">
+                                                                    <i class="fa-solid fa-pencil fs-7">
+                                                                        <span class="path1"></span>
+                                                                        <span class="path2"></span>
+                                                                    </i>
+                                                                    <input type="file" name="thumbnail"
+                                                                        accept=".png, .jpg, .jpeg" />
+                                                                    <input type="hidden" name="thumbnail_remove" />
+                                                                </label>
+                                                            </div>
+                                                            <div class="text-muted fs-7">
+                                                                Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image
+                                                                files are accepted
+                                                            </div>
                                                         </div>
-                                                        <div class="text-muted fs-7">
-                                                            Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image
-                                                            files are accepted
+                                                    </div>
+                                                    <div class="fv-row mb-10">
+                                                        <label class="fw-semibold fs-6 mb-2">Product Name</label>
+
+                                                        <input type="text" name="zone"
+                                                            class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
+                                                            value="Marlone Navy Coat" />
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="fv-row mb-10 col-xl-6">
+                                                            <label class="fw-semibold fs-6 mb-2">Category</label>
+                                                            <select class="form-select form-select" name="status" data-control="select2"
+                                                                data-placeholder="Select an option">
+                                                                <option></option>
+                                                                <option value="1">Active</option>
+                                                                <option value="2">Deactive</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="fv-row mb-10 col-xl-6">
+                                                            <label class="fw-semibold fs-6 mb-2">Brands</label>
+                                                            <select class="form-select form-select" name="status" data-control="select2"
+                                                                data-placeholder="Select an option">
+                                                                <option></option>
+                                                                <option value="1">Active</option>
+                                                                <option value="2">Deactive</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="fv-row mb-10 col-xl-6">
+                                                            <label class="fw-semibold fs-6 mb-2">QTY</label>
+                                                            <input type="number" name="zone"
+                                                                class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
+                                                                value="$5661" />
+                                                        </div>
+                                                        <div class="fv-row mb-10 col-xl-6">
+                                                            <label class="fw-semibold fs-6 mb-2">Price</label>
+                                                            <input type="number" name="zone"
+                                                                class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
+                                                                value="$5661" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="fv-row mb-10">
-                                                    <label class="fw-semibold fs-6 mb-2">Product Name</label>
 
-                                                    <input type="text" name="zone"
-                                                        class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                                        value="Marlone Navy Coat" />
-                                                </div>
-                                                <div class="row">
-                                                    <div class="fv-row mb-10 col-xl-6">
-                                                        <label class="fw-semibold fs-6 mb-2">Category</label>
-                                                        <select class="form-select form-select" name="status" data-control="select2"
-                                                            data-placeholder="Select an option">
-                                                            <option></option>
-                                                            <option value="1">Active</option>
-                                                            <option value="2">Deactive</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="fv-row mb-10 col-xl-6">
-                                                        <label class="fw-semibold fs-6 mb-2">Brands</label>
-                                                        <select class="form-select form-select" name="status" data-control="select2"
-                                                            data-placeholder="Select an option">
-                                                            <option></option>
-                                                            <option value="1">Active</option>
-                                                            <option value="2">Deactive</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="fv-row mb-10 col-xl-6">
-                                                        <label class="fw-semibold fs-6 mb-2">QTY</label>
-                                                        <input type="number" name="zone"
-                                                            class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                                            value="$5661" />
-                                                    </div>
-                                                    <div class="fv-row mb-10 col-xl-6">
-                                                        <label class="fw-semibold fs-6 mb-2">Price</label>
-                                                        <input type="number" name="zone"
-                                                            class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                                            value="$5661" />
-                                                    </div>
-                                                </div>
-
-                                                <button id="kt_docs_formvalidation_text_submit" type="submit"
-                                                    class="btn btn-primary">
-                                                    <span class="indicator-label">
-                                                        Validation Form
-                                                    </span>
-                                                    <span class="indicator-progress">
-                                                        Please wait... <span
-                                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                                    </span>
-                                                </button>
-                                            </form>
+                                                    <button id="kt_docs_formvalidation_text_submit" type="submit"
+                                                        class="btn btn-primary">
+                                                        <span class="indicator-label">
+                                                            Validation Form
+                                                        </span>
+                                                        <span class="indicator-progress">
+                                                            Please wait... <span
+                                                                class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                        </span>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="text-start">
-                            56
-                        </td>
-                        <td>$5661</td>
-                        <td>25 Aug 2024</td>
-                        <td class="text-center">
-                            <a href="#" class="btn btn-sm btn-primary">
-                                <i class="fa-solid fa-trash"></i>
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
+                            </td>
+                            <td class="text-start">
+                                56
+                            </td>
+                            <td>$5661</td>
+                            <td>25 Aug 2024</td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-primary">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
