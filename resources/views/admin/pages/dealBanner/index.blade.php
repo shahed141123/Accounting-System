@@ -1,11 +1,11 @@
-<x-admin-app-layout :title="'Page Banner List'">
+<x-admin-app-layout :title="'Deal Banner List'">
     <div class="card">
         <div class="card-header bg-dark align-items-center d-flex justify-content-between">
             <div>
-                <h1 class="mb-0 text-center w-100 text-white">Manage Your Page Banner</h1>
+                <h1 class="mb-0 text-center w-100 text-white">Manage Your Deal Banner</h1>
             </div>
             <div>
-                <a href="{{ route('admin.banner.create') }}" class="btn btn-white rounded-2">
+                <a href="{{ route('admin.deal-banner.create') }}" class="btn btn-white rounded-2">
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -17,7 +17,7 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-                    Add Banner
+                    Add Deal Banner
                 </a>
             </div>
         </div>
@@ -67,11 +67,11 @@
                                         data-bs-toggle="modal" data-bs-target="#faqViewModal_{{ $banner->id }}">
                                         <i class="fa-solid fa-expand"></i>
                                     </a>
-                                    <a href="{{ route('admin.banner.edit', $banner->id) }}"
+                                    <a href="{{ route('admin.deal-banner.edit', $banner->id) }}"
                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="fa-solid fa-pen"></i>
                                     </a>
-                                    <a href="{{ route('admin.banner.destroy', $banner->id) }}"
+                                    <a href="{{ route('admin.deal-banner.destroy', $banner->id) }}"
                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
                                         data-kt-docs-table-filter="delete_row">
                                         <i class="fa-solid fa-trash-can-arrow-up"></i>
@@ -87,11 +87,9 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-
-
                 $(document).on('change', '.status-toggle', function() {
                     const id = $(this).data('id');
-                    const route = "{{ route('admin.banner.toggle-status', ':id') }}".replace(':id', id);
+                    const route = "{{ route('admin.deal-banner.toggle-status', ':id') }}".replace(':id', id);
                     toggleStatus(route, id);
                 });
             });

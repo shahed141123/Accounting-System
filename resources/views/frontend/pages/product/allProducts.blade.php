@@ -296,8 +296,8 @@
     </div>
 
     @foreach ($products as $product)
-        <div class="modal fade" id="popupQuickview{{ $product->id }}" data-backdrop="static"
-            data-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="popupQuickview{{ $product->id }}" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered ps-quickview">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -330,8 +330,7 @@
                                                             : asset('frontend/img/no-product.jpg');
                                                     @endphp
                                                     <div class="slide">
-                                                        <img src="{{ $thumbnailSrc }}"
-                                                            alt="{{ $product->name }}" />
+                                                        <img src="{{ $thumbnailSrc }}" alt="{{ $product->name }}" />
                                                     </div>
                                                 @endif
                                             </div>
@@ -428,17 +427,23 @@
                                             @endif
                                             <div class="ps-product__type">
                                                 <ul class="ps-product__list">
-                                                    @if ($product->tags)
-                                                        <li>
-                                                            <span class="ps-list__title">Tags: </span>
-                                                            @foreach (json_decode($product->tags) as $tag)
-                                                                <a class="ps-list__text"
-                                                                    href="#">{{ $tag }}</a>
-                                                                @if (!$loop->last)
-                                                                    ,
-                                                                @endif
-                                                            @endforeach
-                                                        </li>
+                                                    @if (!empty($product->tags))
+                                                        @php
+                                                            $tags = json_decode($product->tags);
+                                                        @endphp
+
+                                                        @if (is_array($tags))
+                                                            <li>
+                                                                <span class="ps-list__title">Tags: </span>
+                                                                @foreach ($tags as $tag)
+                                                                    <a class="ps-list__text"
+                                                                        href="#">{{ $tag }}</a>
+                                                                    @if (!$loop->last)
+                                                                        ,
+                                                                    @endif
+                                                                @endforeach
+                                                            </li>
+                                                        @endif
                                                     @endif
                                                     <li><span class="ps-list__title">SKU-Code: </span><a
                                                             class="ps-list__text"

@@ -45,7 +45,7 @@
                                         </div>
                                         <div class="row g-0 option-wrap">
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="user-order-history.html" data-class="orders" class="tab-box">
+                                                <a href="{{ route('user.order.history') }}" data-class="orders" class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/1.svg') }}"
                                                         alt="shopping bag">
                                                     <h5>Order History</h5>
@@ -53,7 +53,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="user-account-details.html" data-class="wishlist"
+                                                <a href="{{ route('user.account.details') }}" data-class="wishlist"
                                                     class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/2.svg') }}" alt="wishlist">
                                                     <h5>Account Details</h5>
@@ -61,7 +61,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="user-quickorder.html" data-class="savedAddress"
+                                                <a href="{{ route('user.quick.order') }}" data-class="savedAddress"
                                                     class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/3.svg') }}" alt="address">
                                                     <h5>Quick order</h5>
@@ -69,21 +69,21 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="user-stock-history.html" data-class="payment" class="tab-box">
+                                                <a href="{{ route('user.stock.history') }}" data-class="payment" class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/4.svg') }}" alt="payment">
                                                     <h5>Stock Availability</h5>
                                                     <p>Easily Check Stock Availability with Our User-Friendly Page.</p>
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="javascript:void(0)" data-class="profile" class="tab-box">
+                                                <a href="{{ route('user.product.data') }}" data-class="profile" class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/5.svg') }}" alt="profile">
                                                     <h5>Product Data Download</h5>
                                                     <p>Search and Download Product Data or Images with Ease.</p>
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="javascript:void(0)" data-class="security" class="tab-box">
+                                                <a href="{{ route('user.view.catalouge') }}" data-class="security" class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/6.svg') }}" alt="security">
                                                     <h5>View Catalogue</h5>
                                                     <p>Download Our Next Year's Full PDF Catalog Here!</p>

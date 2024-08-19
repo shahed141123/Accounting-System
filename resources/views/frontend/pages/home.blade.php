@@ -58,8 +58,10 @@
                                             {{-- <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div> --}}
                                         </div>
                                         <div class="ps-banner__thumnail">
-                                            <img class="ps-banner__round" src="{{ asset('storage/' . $slider->bg_image) }}" alt="alt">
-                                                <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}" alt="alt">
+                                            <img class="ps-banner__round"
+                                                src="{{ asset('storage/' . $slider->bg_image) }}" alt="alt">
+                                            <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}"
+                                                alt="alt">
                                         </div>
                                     </div>
                                 </div>
@@ -251,10 +253,12 @@
                                                                 class="fa fa-heart-o"></i></a>
                                                     </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
-                                                        data-placement="left" title="Quick view"><a href="#"
-                                                            data-toggle="modal"
-                                                            data-target="#popupQuickview{{ $latest_product->id }}"><i
-                                                                class="fa fa-search"></i></a></div>
+                                                        data-placement="left" title="Quick view">
+                                                        <a href="#" data-toggle="modal"
+                                                            data-target="#popupQuickview{{ $latest_product->id }}">
+                                                            <i class="fa fa-search"></i>
+                                                        </a>
+                                                    </div>
 
                                                 </div>
                                                 @if (!empty($latest_product->box_discount_price))
@@ -540,21 +544,16 @@
                                             </div>
                                         @endif
                                         <div class="ps-product__actions ps-product__group-mobile">
-                                            <div class="ps-product__quantity">
-                                                <div class="def-number-input number-input safari_only">
-                                                    <button class="minus"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                            class="icon-minus"></i></button>
-                                                    <input class="quantity" min="0" name="quantity"
-                                                        value="1" type="number" />
-                                                    <button class="plus"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                            class="icon-plus"></i></button>
-                                                </div>
-                                            </div>
+
                                             <div class="ps-product__item cart" data-toggle="tooltip"
-                                                data-placement="left" title="Add to cart"><a href="#"><i
-                                                        class="fa fa-shopping-basket"></i></a></div>
+                                                data-placement="left" title="Add to cart">
+                                                <a class="add_to_cart"
+                                                    href="{{ route('cart.store', $deal_product->id) }}"
+                                                    data-product_id="{{ $deal_product->id }}"
+                                                    data-product_qty="1">
+                                                    <i class="fa fa-shopping-basket"></i>
+                                                </a>
+                                            </div>
                                             <div class="ps-product__item" data-toggle="tooltip"
                                                 data-placement="left" title="Wishlist">
                                                 <a class="add_to_wishlist"
@@ -580,7 +579,7 @@
             <div class="ps-section__carousel">
                 <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true"
                     data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
-                    data-owl-item="5" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="2"
+                    data-owl-item="4" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="2"
                     data-owl-item-lg="3" data-owl-item-xl="3" data-owl-duration="1000" data-owl-mousedrag="on">
 
                     @foreach ($blog_posts as $blog_post)

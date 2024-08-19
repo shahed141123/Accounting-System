@@ -153,9 +153,6 @@
                                     </div>
                                 @endif
 
-
-
-
                                 <ul class="ps-product__bundle">
                                     <li><i class="icon-wallet"></i>100% Money back</li>
                                     <li><i class="icon-bag2"></i>Non-contact shipping</li>
@@ -561,17 +558,24 @@
                                             @endif
                                             <div class="ps-product__type">
                                                 <ul class="ps-product__list">
-                                                    @if ($related_product->tags)
-                                                        <li>
-                                                            <span class="ps-list__title">Tags: </span>
-                                                            @foreach (json_decode($related_product->tags) as $tag)
-                                                                <a class="ps-list__text"
-                                                                    href="#">{{ $tag }}</a>
-                                                                @if (!$loop->last)
-                                                                    ,
-                                                                @endif
-                                                            @endforeach
-                                                        </li>
+
+                                                    @if (!empty($related_product->tags))
+                                                        @php
+                                                            $tags = json_decode($related_product->tags);
+                                                        @endphp
+
+                                                        @if (is_array($tags))
+                                                            <li>
+                                                                <span class="ps-list__title">Tags: </span>
+                                                                @foreach ($tags as $tag)
+                                                                    <a class="ps-list__text"
+                                                                        href="#">{{ $tag }}</a>
+                                                                    @if (!$loop->last)
+                                                                        ,
+                                                                    @endif
+                                                                @endforeach
+                                                            </li>
+                                                        @endif
                                                     @endif
                                                     <li><span class="ps-list__title">SKU-Code: </span><a
                                                             class="ps-list__text"

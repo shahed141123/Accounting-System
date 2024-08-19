@@ -88,16 +88,17 @@
                                             <p>{!! $latest_product->short_description !!}</p>
                                         </div>
                                         @if (Auth::check() && Auth::user()->status == 'active')
-                                            @if (!empty($product->box_discount_price))
+                                            @if (!empty($latest_product->box_discount_price))
                                                 <div class="ps-product__meta">
                                                     <span
-                                                        class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
-                                                    <span class="ps-product__del">£{{ $product->box_price }}</span>
+                                                        class="ps-product__price sale">£{{ $latest_product->box_discount_price }}</span>
+                                                    <span
+                                                        class="ps-product__del">£{{ $latest_product->box_price }}</span>
                                                 </div>
                                             @else
                                                 <div class="ps-product__meta">
                                                     <span
-                                                        class="ps-product__price sale">£{{ $product->box_price }}</span>
+                                                        class="ps-product__price sale">£{{ $latest_product->box_price }}</span>
                                                 </div>
                                             @endif
 
@@ -109,7 +110,7 @@
                                                             class="icon-minus"></i></button>
                                                     <input class="quantity" min="1" name="quantity"
                                                         value="1" type="number"
-                                                        data-product_id="{{ $product->id }}" />
+                                                        data-product_id="{{ $latest_product->id }}" />
                                                     <button class="plus"
                                                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
                                                             class="icon-plus"></i></button>
@@ -117,27 +118,33 @@
                                             </div>
 
                                             <a class="ps-btn ps-btn--warning add_to_cart_btn_product_single"
-                                                data-product_id="{{ $product->id }}" href="#">Add to cart</a>
+                                                data-product_id="{{ $latest_product->id }}" href="#">Add to
+                                                cart</a>
                                         @else
                                             <div class="ps-product__meta">
                                                 <a href="{{ route('login') }}" class="btn btn-info btn-block">Login to
-                                                    view
-                                                    price</a>
+                                                    view price</a>
                                             </div>
                                         @endif
                                         <div class="ps-product__type">
                                             <ul class="ps-product__list">
-                                                @if ($latest_product->tags)
-                                                    <li>
-                                                        <span class="ps-list__title">Tags: </span>
-                                                        @foreach (json_decode($latest_product->tags) as $tag)
-                                                            <a class="ps-list__text"
-                                                                href="#">{{ $tag }}</a>
-                                                            @if (!$loop->last)
-                                                                ,
-                                                            @endif
-                                                        @endforeach
-                                                    </li>
+                                                @if (!empty($latest_product->tags))
+                                                    @php
+                                                        $tags = json_decode($latest_product->tags);
+                                                    @endphp
+
+                                                    @if (is_array($tags))
+                                                        <li>
+                                                            <span class="ps-list__title">Tags: </span>
+                                                            @foreach ($tags as $tag)
+                                                                <a class="ps-list__text"
+                                                                    href="#">{{ $tag }}</a>
+                                                                @if (!$loop->last)
+                                                                    ,
+                                                                @endif
+                                                            @endforeach
+                                                        </li>
+                                                    @endif
                                                 @endif
                                                 <li><span class="ps-list__title">SKU-Code: </span><a
                                                         class="ps-list__text"
@@ -190,7 +197,8 @@
                                                         : asset('frontend/img/no-product.jpg');
                                                 @endphp
                                                 <div class="slide">
-                                                    <img src="{{ $thumbnailSrc }}" alt="{{ $deal_product->name }}" />
+                                                    <img src="{{ $thumbnailSrc }}"
+                                                        alt="{{ $deal_product->name }}" />
                                                 </div>
                                             @endif
                                         </div>
@@ -245,16 +253,17 @@
                                             <p>{!! $deal_product->short_description !!}</p>
                                         </div>
                                         @if (Auth::check() && Auth::user()->status == 'active')
-                                            @if (!empty($product->box_discount_price))
+                                            @if (!empty($deal_product->box_discount_price))
                                                 <div class="ps-product__meta">
                                                     <span
-                                                        class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
-                                                    <span class="ps-product__del">£{{ $product->box_price }}</span>
+                                                        class="ps-product__price sale">£{{ $deal_product->box_discount_price }}</span>
+                                                    <span
+                                                        class="ps-product__del">£{{ $deal_product->box_price }}</span>
                                                 </div>
                                             @else
                                                 <div class="ps-product__meta">
                                                     <span
-                                                        class="ps-product__price sale">£{{ $product->box_price }}</span>
+                                                        class="ps-product__price sale">£{{ $deal_product->box_price }}</span>
                                                 </div>
                                             @endif
 
@@ -266,7 +275,7 @@
                                                             class="icon-minus"></i></button>
                                                     <input class="quantity" min="1" name="quantity"
                                                         value="1" type="number"
-                                                        data-product_id="{{ $product->id }}" />
+                                                        data-product_id="{{ $deal_product->id }}" />
                                                     <button class="plus"
                                                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
                                                             class="icon-plus"></i></button>
@@ -274,27 +283,36 @@
                                             </div>
 
                                             <a class="ps-btn ps-btn--warning add_to_cart_btn_product_single"
-                                                data-product_id="{{ $product->id }}" href="#">Add to cart</a>
+                                                data-product_id="{{ $deal_product->id }}" href="#">Add to
+                                                cart</a>
                                         @else
                                             <div class="ps-product__meta">
-                                                <a href="{{ route('login') }}" class="btn btn-info btn-block">Login to
+                                                <a href="{{ route('login') }}" class="btn btn-info btn-block">Login
+                                                    to
                                                     view
                                                     price</a>
                                             </div>
                                         @endif
                                         <div class="ps-product__type">
                                             <ul class="ps-product__list">
-                                                @if ($deal_product->tags)
-                                                    <li>
-                                                        <span class="ps-list__title">Tags: </span>
-                                                        @foreach (json_decode($deal_product->tags) as $tag)
-                                                            <a class="ps-list__text"
-                                                                href="#">{{ $tag }}</a>
-                                                            @if (!$loop->last)
-                                                                ,
-                                                            @endif
-                                                        @endforeach
-                                                    </li>
+                                                
+                                                @if (!empty($deal_product->tags))
+                                                    @php
+                                                        $tags = json_decode($deal_product->tags);
+                                                    @endphp
+
+                                                    @if (is_array($tags))
+                                                        <li>
+                                                            <span class="ps-list__title">Tags: </span>
+                                                            @foreach ($tags as $tag)
+                                                                <a class="ps-list__text"
+                                                                    href="#">{{ $tag }}</a>
+                                                                @if (!$loop->last)
+                                                                    ,
+                                                                @endif
+                                                            @endforeach
+                                                        </li>
+                                                    @endif
                                                 @endif
                                                 <li><span class="ps-list__title">SKU-Code: </span><a
                                                         class="ps-list__text"

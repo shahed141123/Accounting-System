@@ -145,7 +145,12 @@
                         [
                             'title' => 'Orders',
                             'icon' => 'fa-solid fa-cart-shopping text-warning fs-3',
-                            'routes' => ['admin.order-management.index', 'admin.order-management.create', 'admin.order-management.edit','admin.orderReport'],
+                            'routes' => [
+                                'admin.order-management.index',
+                                'admin.order-management.create',
+                                'admin.order-management.edit',
+                                'admin.orderReport',
+                            ],
                             'subMenu' => [
                                 [
                                     'title' => 'Order Report',
@@ -192,53 +197,53 @@
                             ],
                         ],
                         // [
-                            //     'title' => 'Staffs',
-                            //     'icon' => 'icons/duotune/general/gen051.svg fs-3',
-                            //     'routes' => [
-                            //         'admin.staff.index',
-                            //         'admin.staff.create',
-                            //         'admin.staff.edit',
-                            //         'admin.role.index',
-                            //         'admin.role.create',
-                            //         'admin.role.edit',
-                            //         'admin.permission.index',
-                            //         'admin.permission.create',
-                            //         'admin.permission.edit',
-                            //     ],
-                            //     'subMenu' => [
-                            //         [
-                            //             'title' => 'Staff List',
-                            //             'routes' => ['admin.staff.index', 'admin.staff.create', 'admin.staff.edit'],
-                            //             'route' => 'admin.staff.index',
-                            //         ],
-                            //         [
-                            //             'title' => 'Role & Permissions',
-                            //             'routes' => [
-                            //                 'admin.role.index',
-                            //                 'admin.role.create',
-                            //                 'admin.role.edit',
-                            //                 'admin.permission.index',
-                            //                 'admin.permission.create',
-                            //                 'admin.permission.edit',
-                            //             ],
-                            //             'subMenu' => [
-                            //                 [
-                            //                     'title' => 'Roles List',
-                            //                     'routes' => ['admin.role.index', 'admin.role.create', 'admin.role.edit'],
-                            //                     'route' => 'admin.role.index',
-                            //                 ],
-                            //                 [
-                            //                     'title' => 'Permissions List',
-                            //                     'routes' => [
-                            //                         'admin.permission.index',
-                            //                         'admin.permission.create',
-                            //                         'admin.permission.edit',
-                            //                     ],
-                            //                     'route' => 'admin.permission.index',
-                            //                 ],
-                            //             ],
-                            //         ],
-                            //     ],
+                        //     'title' => 'Staffs',
+                        //     'icon' => 'icons/duotune/general/gen051.svg fs-3',
+                        //     'routes' => [
+                        //         'admin.staff.index',
+                        //         'admin.staff.create',
+                        //         'admin.staff.edit',
+                        //         'admin.role.index',
+                        //         'admin.role.create',
+                        //         'admin.role.edit',
+                        //         'admin.permission.index',
+                        //         'admin.permission.create',
+                        //         'admin.permission.edit',
+                        //     ],
+                        //     'subMenu' => [
+                        //         [
+                        //             'title' => 'Staff List',
+                        //             'routes' => ['admin.staff.index', 'admin.staff.create', 'admin.staff.edit'],
+                        //             'route' => 'admin.staff.index',
+                        //         ],
+                        //         [
+                        //             'title' => 'Role & Permissions',
+                        //             'routes' => [
+                        //                 'admin.role.index',
+                        //                 'admin.role.create',
+                        //                 'admin.role.edit',
+                        //                 'admin.permission.index',
+                        //                 'admin.permission.create',
+                        //                 'admin.permission.edit',
+                        //             ],
+                        //             'subMenu' => [
+                        //                 [
+                        //                     'title' => 'Roles List',
+                        //                     'routes' => ['admin.role.index', 'admin.role.create', 'admin.role.edit'],
+                        //                     'route' => 'admin.role.index',
+                        //                 ],
+                        //                 [
+                        //                     'title' => 'Permissions List',
+                        //                     'routes' => [
+                        //                         'admin.permission.index',
+                        //                         'admin.permission.create',
+                        //                         'admin.permission.edit',
+                        //                     ],
+                        //                     'route' => 'admin.permission.index',
+                        //                 ],
+                        //             ],
+                        //         ],
+                        //     ],
                         // ],
                         [
                             'title' => 'Customer Support',
@@ -278,6 +283,9 @@
                                 'admin.banner.index',
                                 'admin.banner.create',
                                 'admin.banner.edit',
+                                'admin.deal-banner.index',
+                                'admin.deal-banner.create',
+                                'admin.deal-banner.edit',
                                 'admin.privacy-policy.index',
                                 'admin.privacy-policy.create',
                                 'admin.privacy-policy.edit',
@@ -285,12 +293,17 @@
                             'subMenu' => [
                                 [
                                     'title' => 'Banners',
-                                    'routes' => [
-                                        'admin.banner.index',
-                                        'admin.banner.create',
-                                        'admin.banner.edit',
-                                    ],
+                                    'routes' => ['admin.banner.index', 'admin.banner.create', 'admin.banner.edit'],
                                     'route' => 'admin.banner.index',
+                                ],
+                                [
+                                    'title' => 'Deal Banners',
+                                    'routes' => [
+                                        'admin.deal-banner.index',
+                                        'admin.deal-banner.create',
+                                        'admin.deal-banner.edit',
+                                    ],
+                                    'route' => 'admin.deal-banner.index',
                                 ],
                                 [
                                     'title' => 'Terms & Condition',
