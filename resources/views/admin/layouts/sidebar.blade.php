@@ -105,7 +105,6 @@
                                 'admin.categories.edit',
                                 'admin.stock-management.index',
                                 'admin.shipping-management.index',
-                                'admin.order-management.index',
                                 'admin.product.index',
                                 'admin.product.create',
                                 'admin.product.edit',
@@ -150,10 +149,16 @@
                                 'admin.order-management.create',
                                 'admin.order-management.edit',
                                 'admin.orderReport',
+                                'admin.orderDetails',
                             ],
                             'subMenu' => [
                                 [
                                     'title' => 'Order Report',
+                                    'routes' => ['admin.orderReport'],
+                                    'route' => 'admin.orderReport',
+                                ],
+                                [
+                                    'title' => 'Order List',
                                     'routes' => ['admin.order-management.index'],
                                     'route' => 'admin.order-management.index',
                                 ],

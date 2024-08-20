@@ -141,7 +141,7 @@
                                     data-bs-toggle="modal" data-bs-target="#printInovice{{ $order->id }}">
                                     <i class="fa-solid fa-print"></i>
                                 </button>
-                                <a href="{{ route('admin.orderReport', $order->id) }}"
+                                <a href="{{ route('admin.orderDetails', $order->id) }}"
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
                                     <i class="fa-solid fa-eye" title="Order Details"></i>
                                 </a>

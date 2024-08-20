@@ -22,6 +22,14 @@ class OrderManagementController extends Controller
         return view('admin.pages.orderManagement.index', $data);
     }
 
+    public function orderDetails()
+    {
+
+        $data = [
+            'order' => Order::with('orderItems')->first(),
+        ];
+        return view('admin.pages.orderManagement.orderDetails', $data);
+    }
     public function orderReport()
     {
 

@@ -60,7 +60,7 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td>Role</td>
                         <td>
                             <div class="badge badge-lg badge-light-primary d-inline">Role</div>
@@ -83,7 +83,7 @@
 
                             </button>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
 
             </table>
