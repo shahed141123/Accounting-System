@@ -56,10 +56,6 @@
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
                                                         <i class="fa-solid fa-wallet fs-2 me-2">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                            <span class="path4"></span>
                                                         </i>
                                                         Payment Method
                                                     </div>
@@ -73,10 +69,7 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="fa-solid fa-truck fs-2 me-2"><span
-                                                                class="path1"></span><span class="path2"></span><span
-                                                                class="path3"></span><span class="path4"></span><span
-                                                                class="path5"></span></i>
+                                                        <i class="fa-solid fa-truck fs-2 me-2"></i>
                                                         Shipping Method
                                                     </div>
                                                 </td>
@@ -107,9 +100,6 @@
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
                                                         <i class="fa-solid fa-profile-circle fs-2 me-2">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
                                                         </i>
                                                         Customer
                                                     </div>
@@ -117,20 +107,6 @@
 
                                                 <td class="fw-bold text-end">
                                                     <div class="d-flex align-items-center justify-content-end">
-
-                                                        {{-- <div
-                                                            class="symbol symbol-circle symbol-25px overflow-hidden me-3">
-                                                            <a
-                                                                href="https://preview.keenthemes.com/metronic8/demo1/apps/ecommerce/customers/details.html">
-                                                                <div class="symbol-label">
-                                                                    <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-23.jpg"
-                                                                        alt="Dan Wilson" class="w-100">
-                                                                </div>
-                                                            </a>
-                                                        </div> --}}
-
-
-
                                                         <a href="#" class="text-gray-600 text-hover-primary">
                                                             {{ optional($order->user)->first_name }}
                                                             {{ optional($order->user)->last_name }}
@@ -143,8 +119,6 @@
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
                                                         <i class="fa-solid fa-sms fs-2 me-2">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
                                                         </i>
                                                         Email
                                                     </div>
@@ -185,22 +159,14 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="fa-solid fa-devices fs-2 me-2"><span
-                                                                class="path1"></span><span
-                                                                class="path2"></span><span
-                                                                class="path3"></span><span
-                                                                class="path4"></span><span class="path5"></span></i>
+                                                        <i class="fa-solid fa-devices fs-2 me-2"></i>
                                                         Invoice
-
-
                                                         <span class="ms-1" data-bs-toggle="tooltip"
                                                             aria-label="View the invoice generated by this order."
                                                             data-bs-original-title="View the invoice generated by this order."
                                                             data-kt-initialized="1">
-                                                            <i class="fa-solid fa-information-5 text-gray-500 fs-6"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i></span>
+                                                            <i class="fa-solid fa-information-5 text-gray-500 fs-6"></i>
+                                                        </span>
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end"><a
@@ -211,15 +177,8 @@
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
-                                                        <i class="fa-solid fa-truck fs-2 me-2"><span
-                                                                class="path1"></span><span
-                                                                class="path2"></span><span
-                                                                class="path3"></span><span class="path4"></span>
-                                                            <span class="path5"></span>
-                                                        </i>
+                                                        <i class="fa-solid fa-truck fs-2 me-2"></i>
                                                         Shipping Address
-
-
                                                         <span class="ms-1" data-bs-toggle="tooltip"
                                                             aria-label="View the shipping manifest generated by this order."
                                                             data-bs-original-title="View the shipping manifest generated by this order."
@@ -290,18 +249,19 @@
                                     <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                         <thead>
                                             <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                                <th class="">Product</th>
-                                                <th class="">Product Description</th>
-                                                <th class="">SKU</th>
-                                                <th class="">Qty</th>
-                                                <th class="">Unit Price</th>
-                                                <th class="text-end pe-5">Total</th>
+                                                <th width="5%" class="ps-5">Sl</th>
+                                                <th width="10" class="">Image</th>
+                                                <th width="45" class="">Product Description</th>
+                                                <th width="10%" class="">SKU</th>
+                                                <th width="10%" class="">Qty</th>
+                                                <th width="10%" class="text-end">Unit Price</th>
+                                                <th width="10%" class="text-end pe-5">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody class="fw-semibold text-gray-600">
-
                                             @foreach ($order->orderItems as $item)
                                                 <tr>
+                                                    <td class="ps-5">1</td>
                                                     <td>
                                                         <span>
                                                             <img width="50px" height="50px"
@@ -314,51 +274,49 @@
                                                         <span>{{ Str::limit(optional($item->product)->name, 30) }}</span>
                                                     </td>
 
-                                                    <td class="text-right">
+                                                    <td>
                                                         <span>{{ optional($item->product)->sku_code }}</span>
                                                     </td>
-                                                    <td class="text-center">
+                                                    <td>
                                                         <span>{{ optional($item)->quantity }}</span>
                                                     </td>
-                                                    <td>
-                                                        <span><span
-                                                                class="text-info">(£)</span>{{ optional($item)->price }}</span>
+                                                    <td class="text-end">
+                                                        <span class="text-info">(£)</span>{{ optional($item)->price }}
                                                     </td>
-                                                    <td class="text-right">
-                                                        <span><span
-                                                                class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
+                                                    <td class="text-end pe-5">
+                                                        <span class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                            <tr>
-                                                <td colspan="4" class="text-end">
+                                            <tr style="background-color: #eeeeee94;">
+                                                <td colspan="6" class="text-end">
                                                     Subtotal
                                                 </td>
-                                                <td class="text-end">
+                                                <td class="text-end pe-5">
                                                     (£){{ $order->sub_total }}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="4" class="text-end">
+                                            <tr style="background-color: #eeeeeead;">
+                                                <td colspan="6" class="text-end">
                                                     VAT (0%)
                                                 </td>
-                                                <td class="text-end">
+                                                <td class="text-end pe-5">
                                                     $0.00
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="4" class="text-end">
+                                            <tr style="background-color: #eeeeeed8;">
+                                                <td colspan="6" class="text-end">
                                                     Shipping Rate
                                                 </td>
-                                                <td class="text-end">
+                                                <td class="text-end pe-5">
                                                     (£){{ $order->shipping_charge }}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="4" class="fs-3 text-gray-900 text-end">
+                                            <tr style="background-color: #eee;">
+                                                <td colspan="6" class="fs-3 text-gray-900 text-end">
                                                     Grand Total
                                                 </td>
-                                                <td class="text-gray-900 fs-3 fw-bolder text-end">
+                                                <td class="text-gray-900 fs-3 fw-bolder text-end pe-5">
                                                     (£){{ $order->total_amount }}
                                                 </td>
                                             </tr>
