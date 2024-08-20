@@ -49,15 +49,37 @@ class UserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['nullable', 'string', 'max:255'],
+            'last_name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'first_name'                  => $request->first_name,
+            'last_name'                   => $request->last_name,
+            'email'                       => $request->email,
+            'phone'                       => $request->phone,
+            'address_one'                 => $request->address_one,
+            'address_two'                 => $request->address_two,
+            'zipcode'                     => $request->zipcode,
+            'state'                       => $request->state,
+            'country'                     => $request->country,
+            'company_name'                => $request->company_name,
+            'company_registration_number' => $request->company_registration_number,
+            'company_vat_number'          => $request->company_vat_number,
+            'selling_platforms'           => $request->selling_platforms,
+            'customer_type'               => $request->customer_type,
+            'referral_source'             => $request->referral_source,
+            'buying_group_membership'     => $request->buying_group_membership,
+            'website_address'             => $request->website_address,
+            'buying_group_name'           => $request->buying_group_name,
+            'current_suppliers'           => $request->current_suppliers,
+            'annual_spend'                => $request->annual_spend,
+            'newsletter_preference'       => $request->newsletter_preference,
+            'terms_condition'             => $request->terms_condition,
+            'status'                      => 'active',
+            'password'                    => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
@@ -71,8 +93,15 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
+        $user = User::find($id);
+        $deliveredOrders = $user->order()->delivered()->get();
+        $cancelledOrders = $user->order()->cancelled()->get();
+        $totalPurchaseAmount = $deliveredOrders->sum('total_amount');
         return view('admin.pages.users.show', [
-            'user' => User::find($id),
+            'user'                => $user,
+            'deliveredOrders'     => $deliveredOrders,
+            'totalPurchaseAmount' => $totalPurchaseAmount,
+            'cancelledOrders'     => $cancelledOrders,
         ]);
     }
 
@@ -99,30 +128,30 @@ class UserController extends Controller
         ]);
 
         $user->update([
-            'first_name'     => $request->first_name ? $request->first_name  : $user->first_name,
-            'last_name'     => $request->last_name ? $request->last_name  : $user->last_name,
-            'email'                       => $request->email ? $request->email: $user->email,
-            'phone'                       => $request->phone ? $request->email: $user->email,
-            'address_one'                 => $request->address_one ? $request->email: $user->email,
-            'address_two'                 => $request->address_two ? $request->email: $user->email,
-            'zipcode'                     => $request->zipcode ? $request->email: $user->email,
-            'state'                       => $request->state ? $request->email: $user->email,
-            'country'                     => $request->country ? $request->email: $user->email,
-            'company_name'                => $request->company_name ? $request->email: $user->email,
-            'company_registration_number' => $request->company_registration_number ? $request->email: $user->email,
-            'company_vat_number'          => $request->company_vat_number ? $request->email: $user->email,
-            'selling_platforms'           => $request->selling_platforms ? $request->email: $user->email,
-            'customer_type'               => $request->customer_type ? $request->email: $user->email,
-            'referral_source'             => $request->referral_source ? $request->email: $user->email,
-            'buying_group_membership'     => $request->buying_group_membership ? $request->email: $user->email,
-            'website_address'             => $request->website_address ? $request->email: $user->email,
-            'buying_group_name'           => $request->buying_group_name ? $request->email: $user->email,
-            'current_suppliers'           => $request->current_suppliers ? $request->email: $user->email,
-            'annual_spend'                => $request->annual_spend ? $request->email: $user->email,
-            'newsletter_preference'       => $request->newsletter_preference ? $request->email: $user->email,
-            'terms_condition'             => $request->terms_condition ? $request->email: $user->email,
-            'status'                      => $request->status ? $request->email: $user->email,
-            'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'first_name'                  => $request->first_name ? $request->first_name                                  : $user->first_name,
+            'last_name'                   => $request->last_name ? $request->last_name                                    : $user->last_name,
+            'email'                       => $request->email ? $request->email                                            : $user->email,
+            'phone'                       => $request->phone ? $request->phone                                            : $user->phone,
+            'address_one'                 => $request->address_one ? $request->address_one                                : $user->address_one,
+            'address_two'                 => $request->address_two ? $request->address_two                                : $user->address_two,
+            'zipcode'                     => $request->zipcode ? $request->zipcode                                        : $user->zipcode,
+            'state'                       => $request->state ? $request->state                                            : $user->state,
+            'country'                     => $request->country ? $request->country                                        : $user->country,
+            'company_name'                => $request->company_name ? $request->company_name                              : $user->company_name,
+            'company_registration_number' => $request->company_registration_number ? $request->company_registration_number : $user->company_registration_number,
+            'company_vat_number'          => $request->company_vat_number ? $request->company_vat_number                  : $user->company_vat_number,
+            'selling_platforms'           => $request->selling_platforms ? $request->selling_platforms                    : $user->selling_platforms,
+            'customer_type'               => $request->customer_type ? $request->customer_type                            : $user->customer_type,
+            'referral_source'             => $request->referral_source ? $request->referral_source                        : $user->referral_source,
+            'buying_group_membership'     => $request->buying_group_membership ? $request->buying_group_membership        : $user->buying_group_membership,
+            'website_address'             => $request->website_address ? $request->website_address                        : $user->website_address,
+            'buying_group_name'           => $request->buying_group_name ? $request->buying_group_name                    : $user->buying_group_name,
+            'current_suppliers'           => $request->current_suppliers ? $request->current_suppliers                    : $user->current_suppliers,
+            'annual_spend'                => $request->annual_spend ? $request->annual_spend                              : $user->annual_spend,
+            'newsletter_preference'       => $request->newsletter_preference ? $request->newsletter_preference            : $user->newsletter_preference,
+            'terms_condition'             => $request->terms_condition ? $request->terms_condition                        : $user->terms_condition,
+            'status'                      => $request->status ? $request->status                                          : $user->status,
+            'password'                    => $request->password ? Hash::make($request->password) : $user->password,
         ]);
 
         event(new ActivityLogged('User updated', $user));

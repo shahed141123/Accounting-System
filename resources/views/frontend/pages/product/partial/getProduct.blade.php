@@ -67,7 +67,8 @@
                     </div>
                 @endif
 
-                <div class="ps-product__variations text-center"><a class="ps-product__link add_to_wishlist"
+                <div class="ps-product__variations text-center">
+                    <a class="ps-product__link add_to_wishlist" data-product_id="{{ $product->id }}"
                         href="{{ route('wishlist.store', $product->id) }}">Add to wishlist</a>
                 </div>
             </div>

@@ -175,7 +175,15 @@
                     <li>
                         <a class="ps-header__item" href="{{ route('user.wishlist') }}">
                             <i class="fa fa-heart-o"></i>
-                            <span class="badge wishlistCount">0</span>
+                            @php
+                                $wishlistCount = 0; // Default value in case user is not authenticated
+                                if (Auth::check()) {
+                                    $userId = Auth::id();
+                                    $wishlistCount = App\Models\Wishlist::where('user_id', $userId)->count();
+                                }
+                            @endphp
+                            <span class="badge wishlistCount">{{ $wishlistCount }}</span>
+
                         </a>
                     </li>
                     <li>
@@ -191,14 +199,16 @@
                     <form action="do_action" method="post">
                         <div class="ps-search-table">
                             <div class="input-group rounded-pill">
-                                <input id="search_text" class="form-control ps-input" type="text" placeholder="Search for products">
+                                <input id="search_text" class="form-control ps-input" type="text"
+                                    placeholder="Search for products">
                                 <div class="input-group-append">
                                     <a href="#"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <div id="search_container" class="ps-search--result d-none" style="height: 60vh;overflow-y: auto;">
+                    <div id="search_container" class="ps-search--result d-none"
+                        style="height: 60vh;overflow-y: auto;">
                         <!-- Search results will be injected here -->
                     </div>
                 </div>
@@ -222,7 +232,7 @@
                                 </li>
                             @endforeach
                             <li class="">
-                                <a href="{{ route('allproducts')}}"> Shop
+                                <a href="{{ route('allproducts') }}"> Shop
                                 </a>
                             </li>
                         </ul>

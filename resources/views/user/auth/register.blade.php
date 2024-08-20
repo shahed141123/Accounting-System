@@ -399,7 +399,7 @@
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
                                     </div>
-                                    <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                 </div>
                                 <div class="col-12">
                                     <p>Company & My Details</p>

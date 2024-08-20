@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header align-items-center">
         <h3 class="fw-bold my-2">
-            My Current Status
+            User({{ $user->first_name }} {{ $user->last_name }}) Current Status
         </h3>
         <div class="d-flex align-items-center my-2">
             <div class="w-100px me-5">
@@ -46,7 +46,7 @@
                                 Total Order </a>
                         </div>
 
-                        <div class="card-toolbar m-0">
+                        {{-- <div class="card-toolbar m-0">
                             <button type="button"
                                 class="btn btn-clean btn-sm btn-icon btn-icon-primary btn-active-light-primary me-n3"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -137,14 +137,13 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="card-body d-flex flex-column px-9 pt-10 pb-10">
                         <div class="fs-2tx fw-bold mb-3">
-                            <span class="text-info">80</span> P
+                            <span class="text-info">{{ $user->order->count() }}</span>
                         </div>
-                        <span class="text-gray-500">Current Info</span>
                     </div>
                 </div>
             </div>
@@ -155,9 +154,9 @@
                         <div class="card-title m-0">
                             <div class="symbol symbol-45px w-45px me-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0"
-                                    y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512"
-                                    xml:space="preserve" class="">
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0"
+                                    viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                    class="">
                                     <g>
                                         <g data-name="Layer 7">
                                             <path
@@ -174,7 +173,7 @@
                                 Product Recived </a>
                         </div>
 
-                        <div class="card-toolbar m-0">
+                        {{-- <div class="card-toolbar m-0">
                             <button type="button"
                                 class="btn btn-clean btn-sm btn-icon btn-icon-primary btn-active-light-primary me-n3"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -265,14 +264,18 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="card-body d-flex flex-column px-9 pt-10 pb-10">
                         <div class="fs-2tx fw-bold mb-3">
-                            <span class="text-info">80</span> P
+                            <span class="text-info">
+                                {{ $deliveredOrders->sum(function ($order) {
+                                    return $order->orderItems->count();
+                                }) }}
+                            </span>
                         </div>
-                        <span class="text-gray-500">Current Info</span>
+
                     </div>
                 </div>
             </div>
@@ -283,9 +286,9 @@
                         <div class="card-title m-0">
                             <div class="symbol symbol-45px w-45px me-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0"
-                                    y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
-                                    xml:space="preserve" class="">
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0"
+                                    viewBox="0 0 128 128" style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                    class="">
                                     <g>
                                         <path
                                             d="m87.4 85.1-14.1 4.6c-.7-2.4-2.5-4.3-4.8-5.3L52 77.6c-6.8-2.8-14.7-.8-19.3 4.9h-4.6v-1.7c0-1-.8-1.8-1.8-1.8H12.8c-1 0-1.8.8-1.8 1.8v29.5c0 1 .8 1.7 1.7 1.8h13.5c1 0 1.7-.8 1.8-1.7v-1.7h5.2l20 6.5c3.8 1.2 7.9 1.1 11.6-.3l29.1-11.1c5.1-1.9 7.8-7.6 5.8-12.8-1.6-5-7.2-7.7-12.3-5.9zm-62.8 23.5h-10v-26h10zm7.2-3.4h-3.7V86h3.7zm61-4.7-29.1 11.1c-3 1.1-6.3 1.2-9.3.2l-19.1-6.2V84.8c3.7-4.6 9.9-6.2 15.4-4l16.5 6.8c2.5 1.1 3.7 3.9 2.6 6.4-1 2.5-3.9 3.7-6.3 2.7l-14.6-5.9c-.9-.4-1.9 0-2.3.9s0 2 1 2.4l14.6 5.9c4.3 1.7 9.2-.3 11-4.7.3-.7.5-1.4.5-2.1l14.9-4.9c3.4-1.1 7 .7 8.1 4.1 1 3.4-.7 6.9-3.9 8.1zM115 14.9h-13.5c-1 0-1.7.8-1.8 1.8v1.7h-5.2l-20-6.5c-3.8-1.2-7.9-1.1-11.6.3l-13.5 5.1-5.8-5.8c-.7-.7-1.8-.7-2.5 0L28.6 24.1l-6.1 6.1c-1.2 1.2 0 2.6 0 2.5l40.4 40.4c.7.7 1.8.7 2.5 0L84 54.5c.7-.7.7-1.8 0-2.5l-1.3-1.3c4.8-.2 9.3-2.4 12.4-6.1h4.6v1.7c0 1 .8 1.7 1.7 1.8H115c1 0 1.7-.8 1.8-1.8V16.7c-.1-1-.9-1.8-1.8-1.8zm-72.7.4 3.5 3.5c-2.2 1.3-4.8 1.3-7 0zM29.7 35l-3.5-3.5 3.5-3.5c1.2 2.1 1.2 4.8 0 7zm34.4 34.4-3.5-3.5c2.2-1.3 4.9-1.3 7 0zm6.1-6c-3.6-2.6-8.5-2.6-12.1 0L32.2 37.5c2.6-3.6 2.6-8.5 0-12.1l4.1-4.1c3.9 2.8 9.3 2.3 12.1 0l7.9 7.8c-.8.9-1.4 1.9-1.8 2.9s-.6 2.2-.5 3.3c-3.9-.5-7.5 2.4-7.9 6.3-.5 4.2 2.8 8 7.1 8 3.7 0 6.7-2.8 7.1-6.4l13.1 5.4c-1.8 3.5-1.5 7.6.8 10.8zM55.8 45c-1.4 1.4-3.7 1.4-5.2 0-1.4-1.4-1.4-3.7 0-5.2 1.3-1.3 3.5-1.4 4.9-.2 1.8 1.5 1.7 3.9.3 5.4zm21 11.8c-1.3-2.1-1.3-4.8 0-7h.1l3.4 3.4zm15.6-14.6c-3.4 4.2-9 6-14.1 4.4 0 0-11.6-4.7-17.8-7.3-2.3-.9-3.7-3.6-2.8-6.2s3.9-3.9 6.5-2.9l14.6 5.9c.9.4 1.9-.1 2.3-1s-.1-1.9-1-2.3L65.6 27c-2.1-.8-4.4-.8-6.5.1l-7.1-7 12-4.6c3-1.1 6.3-1.2 9.3-.3l19.1 6.2zm7.3-1.1H96V21.9h3.7zm13.5 3.4h-10v-26h10z"
@@ -301,9 +304,9 @@
 
                     <div class="card-body d-flex flex-column px-9 pt-10 pb-10">
                         <div class="fs-2tx fw-bold mb-3">
-                            <span class="text-info">5055</span> (£)
+                            <span class="text-info">{{ $totalPurchaseAmount }}</span> (£)
                         </div>
-                        <span class="text-gray-500">Current Info</span>
+
                     </div>
                 </div>
             </div>
@@ -332,9 +335,9 @@
 
                     <div class="card-body d-flex flex-column px-9 pt-20 pb-20">
                         <div class="fs-2tx fw-bold mb-3">
-                            <span class="text-info">80</span> P
+                            <span class="text-info">{{ $cancelledOrders->count() }}</span>
                         </div>
-                        <span class="text-gray-500">Current Info</span>
+
                     </div>
                 </div>
             </div>
@@ -360,15 +363,19 @@
                             </div>
 
                             <a href="#" class="fs-4 fw-semibold text-hover-primary text-gray-600 m-0">
-                                Seller Status </a>
+                                User Status </a>
                         </div>
                     </div>
 
                     <div class="card-body d-flex flex-column px-9 pt-6 pb-8">
                         <div class="text-center">
-                            <img class="img-fluid" width="150px"
-                                src="https://static.vecteezy.com/system/resources/previews/012/528/256/original/verified-icon-illustration-guaranteed-stamp-or-verified-badge-trendy-design-vector.jpg"
-                                alt="">
+                            @if ($user->status == 'active')
+                                <img class="img-fluid" width="150px" src="{{ asset('images/verified.jpeg') }}"
+                                    alt="">
+                            @else
+                                <img class="img-fluid" width="150px" src="{{ asset('images/unverified.jpeg') }}"
+                                    alt="">
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -403,7 +410,7 @@
                         <div class="fs-1 fw-bold mb-3">
                             <span class="text-info">{{ $user->created_at->format('d F Y') }}</span>
                         </div>
-                        <span class="text-gray-500">Current Info</span>
+
                     </div>
                 </div>
             </div>

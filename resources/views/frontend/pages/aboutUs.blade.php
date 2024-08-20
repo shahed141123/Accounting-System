@@ -410,7 +410,7 @@
                         @csrf
                         <div class="ps-form--subscribe">
                             <div class="ps-form__control">
-                                <input class="form-control ps-input" type="email"
+                                <input class="form-control ps-input" type="email" name="email"
                                     placeholder="Enter your email address">
                                 <button class="ps-btn ps-btn--warning">Subscribe</button>
                             </div>
