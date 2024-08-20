@@ -90,7 +90,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end">
-                                                    {{ $order->shippingCharge->title }}({{ $order->shippingCharge->price }})
+                                                    {{ optional($order->shippingCharge)->title }}({{ optional($order->shippingCharge)->price }})
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -147,8 +147,8 @@
 
 
                                                         <a href="#" class="text-gray-600 text-hover-primary">
-                                                            {{ $order->user->first_name }}
-                                                            {{ $order->user->last_name }}
+                                                            {{ optional($order->user)->first_name }}
+                                                            {{ optional($order->user)->last_name }}
                                                         </a>
 
                                                     </div>
@@ -165,9 +165,9 @@
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end">
-                                                    <a href="mailto:{{ $order->user->email }}"
+                                                    <a href="mailto:{{ optional($order->user)->email }}"
                                                         class="text-gray-600 text-hover-primary">
-                                                        {{ $order->user->email }} </a>
+                                                        {{ optional($order->user)->email }} </a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -178,7 +178,7 @@
                                                         Phone
                                                     </div>
                                                 </td>
-                                                <td class="fw-bold text-end">{{ $order->user->phone }} </td>
+                                                <td class="fw-bold text-end">{{ optional($order->user)->phone }} </td>
                                             </tr>
                                         </tbody>
                                     </table>

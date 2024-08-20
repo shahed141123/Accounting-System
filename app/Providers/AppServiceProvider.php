@@ -29,19 +29,12 @@ class AppServiceProvider extends ServiceProvider
     {
         // Set default values
         View::share('setting', null);
-        View::share('wishlistCount', 0);
         View::share('categories', null);
 
         try {
             // Check for table existence and set actual values
             if (Schema::hasTable('settings')) {
                 View::share('setting', Setting::first());
-            }
-
-            if (Schema::hasTable('wishlists') && Auth::check()) {
-                $userId = Auth::user()->id;
-                $wishlistCount = Wishlist::where('user_id', $userId)->count();
-                View::share('wishlistCount', $wishlistCount);
             }
 
             if (Schema::hasTable('categories')) {
