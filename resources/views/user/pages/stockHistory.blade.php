@@ -61,46 +61,49 @@
                                             aria-labelledby="nav-home-tab">
                                             <!-- Order History Table -->
                                             <h4>{{ $category->name }} Category Product Stocks</h4>
-                                            <table class="table table-striped order-history-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="8%">SL</th>
-                                                        <th width="15%">Image</th>
-                                                        <th width="49%">Name</th>
-                                                        <th width="20%">Status</th>
-                                                        <th width="8%">Total QTY</th>
-                                                        {{-- <th>In Stock</th> --}}
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Example Row -->
-                                                    @foreach ($catProducts as $catProduct)
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped order-history-table">
+                                                    <thead>
                                                         <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>
-                                                                <div>
-                                                                    <img src="{{ asset('storage/' . $catProduct->thumbnail) }}"
-                                                                        class="" width="50px" height="50px"
-                                                                        alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>{{ $catProduct->name }}</td>
-                                                            <td>
-                                                                @if (!empty($catProduct->box_stock) && $catProduct->box_stock > 0)
-                                                                    <span class="ps-badge bg-success">
-                                                                        {{ $catProduct->box_stock }} In Stock</span>
-                                                                @else
-                                                                    <span class="ps-badge ps-badge--outstock">Out Of
-                                                                        Stock</span>
-                                                                @endif
-                                                            </td>
-                                                            <td>{{ $catProduct->box_stock }}</td>
-                                                            {{-- <td>105</td> --}}
+                                                            <th width="5%">SL</th>
+                                                            <th width="15%">Image</th>
+                                                            <th width="40%">Name</th>
+                                                            <th width="20%">Status</th>
+                                                            <th width="20%">Total QTY</th>
                                                         </tr>
-                                                    @endforeach
-                                                    <!-- Additional rows go here -->
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Example Row -->
+                                                        @foreach ($catProducts as $catProduct)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>
+                                                                    <div>
+                                                                        <img src="{{ asset('storage/' . $catProduct->thumbnail) }}"
+                                                                            class="" width="50px" height="50px"
+                                                                            alt="">
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $catProduct->name }}</td>
+                                                                <td>
+                                                                    @if (!empty($catProduct->box_stock) && $catProduct->box_stock > 0)
+                                                                        <span class="ps-badge bg-success">
+                                                                            {{ $catProduct->box_stock }} In
+                                                                            Stock</span>
+                                                                    @else
+                                                                        <span class="ps-badge ps-badge--outstock">Out Of
+                                                                            Stock</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>{{ $catProduct->box_stock }}</td>
+                                                                {{-- <td>105</td> --}}
+                                                            </tr>
+                                                        @endforeach
+                                                        <!-- Additional rows go here -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>

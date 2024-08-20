@@ -182,7 +182,7 @@
                                                                 <div class="input-group mb-3">
                                                                     <input id="password-field" type="password"
                                                                         class="form-control" name="password"
-                                                                        value="{{ old('password', Auth::user()->password) }}">
+                                                                        value="*****">
                                                                     <div class="input-group-append">
                                                                         <button id="toggle-password"
                                                                             class="btn btn-info" type="button">
@@ -193,7 +193,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mt-4">
-                                                                <input type="submit" value="Submit For Registration"
+                                                                <input type="submit" value="Save Changes"
                                                                     class="updatebutton btn btn-block btn-lg btn-success">
                                                             </div>
                                                         </div>

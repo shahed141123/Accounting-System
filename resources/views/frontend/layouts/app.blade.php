@@ -113,7 +113,6 @@
             constructor() {
                 this.initDataTables();
             }
-
             initDataTables() {
                 $(document).ready(() => {
                     // Initialize DataTable for elements with class 'order-history-table'
@@ -132,27 +131,9 @@
                             }
                         }
                     });
-                    $('.quick_order_table').DataTable({
-                        "paging": true,
-                        "lengthChange": true,
-                        "searching": true,
-                        "ordering": true,
-                        "info": true,
-                        "autoWidth": false,
-                        "responsive": true,
-                        "language": {
-                            "paginate": {
-                                "previous": "<i class='fa fa-chevron-left pagination-icon'></i>",
-                                "next": "<i class='fa fa-chevron-right pagination-icon'></i>"
-                            }
-                        }
-                    });
                 });
             }
-
-
         }
-
         // Create an instance of the Dashboard class
         $(document).ready(() => {
             new Dashboard();
