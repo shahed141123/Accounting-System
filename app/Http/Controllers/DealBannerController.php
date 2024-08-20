@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\DealBanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,14 @@ class DealBannerController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.dealBanner.create');
+        $categories = $this->buildCategories(Category::active()->get());
+        $categoriesOptions = $this->buildCategoriesOptions($categories);
+        $data = [
+            'products'          => DB::table('products')->select('id', 'name')->latest('id')->get(),
+            'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
+            'categoriesOptions' => $categoriesOptions,
+        ];
+        return view('admin.pages.dealBanner.create',$data);
     }
 
     /**
@@ -95,7 +103,7 @@ class DealBannerController extends Controller
 
             DB::commit();
 
-            return redirect()->route('admin.banner.index')->with('success', 'Banner created successfully');
+            return redirect()->route('admin.deal-banner.index')->with('success', 'Banner created successfully');
         } catch (\Exception $e) {
             // Rollback the database transaction in case of an error
             DB::rollback();
@@ -118,7 +126,12 @@ class DealBannerController extends Controller
      */
     public function edit(string $id)
     {
-        $data['banner'] = DealBanner::findOrFail($id);
+        $data = [
+            'banner'     => DealBanner::findOrFail($id),
+            'products'   => DB::table('products')->select('id', 'name')->latest('id')->get(),
+            'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
+            'categories' => DB::table('categories')->select('id', 'name')->latest('id')->get(),
+        ];
         return view('admin.pages.dealBanner.edit', $data);
     }
 
@@ -195,7 +208,7 @@ class DealBannerController extends Controller
 
             DB::commit();
 
-            return redirect()->route('admin.banner.index')->with('success', 'Banner updated successfully');
+            return redirect()->route('admin.deal-banner.index')->with('success', 'Banner updated successfully');
         } catch (\Exception $e) {
             // Rollback the database transaction in case of an error
             DB::rollback();
@@ -224,5 +237,38 @@ class DealBannerController extends Controller
             }
         }
         $banner->delete();
+    }
+
+    private function buildCategories($categories, $parentId = null)
+    {
+        $result = [];
+
+        foreach ($categories as $category) {
+            if ($category->parent_id == $parentId) {
+                $children = $this->buildCategories($categories, $category->id);
+
+                if ($children) {
+                    $category->children = $children;
+                }
+
+                $result[] = $category;
+            }
+        }
+
+        return $result;
+    }
+
+    private function buildCategoriesOptions($selectedId = null, $excludeId = null, $parentId = null, $prefix = '')
+    {
+        $categories = Category::active()->where('parent_id', $parentId)->where('id', '!=', $excludeId)->get();
+        $options = '';
+
+        foreach ($categories as $category) {
+            $selected = $category->id == $selectedId ? 'selected' : '';
+            $options .= '<option value="' . $category->id . '" ' . $selected . '>' . $prefix . $category->name . '</option>';
+            $options .= $this->buildCategoriesOptions($selectedId, $excludeId, $category->id, $prefix . '--');
+        }
+
+        return $options;
     }
 }

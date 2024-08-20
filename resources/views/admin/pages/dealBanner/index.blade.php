@@ -26,12 +26,12 @@
                 <thead class="bg-light-danger">
                     <tr class=" text-white fw-bolder fs-7 text-uppercase gs-0">
                         <th width="5%">Sl</th>
-                        <th width="15%" class="text-center">Thumbnail Image</th>
-                        <th width="15%" class="text-center">Background Image</th>
-                        <th width="20%">Page Name</th>
-                        <th width="15%">Creacted At</th>
-                        <th width="10%">Status</th>
-                        <th width="20%" class="text-end">Action</th>
+                        <th width="10%" class="text-center">Thumbnail Image</th>
+                        <th width="10%" class="text-center">Background Image</th>
+                        <th width="45%">Product Name</th>
+                        <th width="10%">Price</th>
+                        <th width="10%">Offer Preice</th>
+                        <th width="10%" class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,22 +51,17 @@
                                         src="{{ !empty(optional($banner)->bg_image) ? asset('storage/' . optional($banner)->bg_image) : asset('images/no_image.jpg') }}"
                                         alt="{{ $banner->page_name }}">
                                 </td>
-                                <td class="text-info">
-                                    {{ ucwords(str_replace(['_', '-', ',', '.', ';'], ' ', $banner->page_name)) }}
+                                <td class="text-center">
+                                    {{ $banner->product->name }}
                                 </td>
                                 <td>
-                                    {{ $banner->created_at->format('d F Y') }}
+                                    {{ $banner->price }}
                                 </td>
                                 <td>
-                                    <span class="badge {{ $banner->status == 'active' ? 'bg-success' : 'bg-danger' }}">
-                                        {{ $banner->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                    {{ $banner->offer_price }}
                                 </td>
                                 <td class="text-end">
-                                    <a href="#"
-                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                        data-bs-toggle="modal" data-bs-target="#faqViewModal_{{ $banner->id }}">
-                                        <i class="fa-solid fa-expand"></i>
-                                    </a>
+
                                     <a href="{{ route('admin.deal-banner.edit', $banner->id) }}"
                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="fa-solid fa-pen"></i>

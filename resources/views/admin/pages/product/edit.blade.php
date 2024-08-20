@@ -149,7 +149,7 @@
                                 </x-metronic.label>
                                 <!-- Input element for Tagify -->
                                 <input class="form-control d-flex align-items-center" name="color"
-                                    :value="old('color', $product - > color)" id="kt_tagify_color" />
+                                    :value="old('color', $product->color)" id="kt_tagify_color" />
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
                                             <input class="form-control" name="tags" id="product_Tags"
-                                                :value="old('tags')" />
+                                            value="{{ old('tags',$product->tags) }}" />
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Short Description</x-metronic.label>
@@ -490,14 +490,15 @@
                                             <h2>Meta Options</h2>
                                         </div>
                                     </div>
+                                    {{-- @dd($product->meta_title) --}}
                                     <div class="card-body pt-0">
                                         <div class="mb-10">
                                             <div class="mb-5 fv-row">
                                                 <x-metronic.label class="form-label">Product Meta
                                                     Title</x-metronic.label>
-                                                <input class="form-control" name="meta_title" type="text"
-                                                    placeholder="Meta tag name" id="meta_title"
-                                                    :value="old('meta_title', $product->meta_title)" />
+                                                <x-metronic.input class="form-control" type="text" name="meta_title"
+                                                    placeholder="Meta Title"
+                                                    :value="old('meta_title', $product->meta_title)"></x-metronic.input>
                                             </div>
                                             <div class="text-muted fs-7">
                                                 Add Product Meta Title.
@@ -519,7 +520,7 @@
                                                     Keywords</x-metronic.label>
                                                 <input class="form-control" name="meta_keywords"
                                                     placeholder="Meta tag keywords" id="product_meta_keyword"
-                                                    :value="old('meta_keywords')" />
+                                                    value="{{ old('meta_keywords',$product->meta_keywords) }}" />
                                                 <div class="text-muted fs-7">
                                                     Add product Meta tag keywords.
                                                 </div>

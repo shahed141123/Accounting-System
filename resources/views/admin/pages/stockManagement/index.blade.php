@@ -12,17 +12,15 @@
         <div class="card-body table-responsive">
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7 border rounded">
                 <thead>
-                    <tr class="fw-bold fs-6 text-gray-800 px-7">
-                        <th width="%">ID</th>
-                        <th width="%">Image</th>
+                    <tr class="fw-bold fs-6 text-center text-gray-800 px-7">
+                        <th width="5%">ID</th>
+                        <th width="8%">Image</th>
                         <th width="%">Product Name</th>
-                        <th width="%">Category</th>
-                        <th width="%">Brand</th>
-                        <th width="%">View</th>
-                        <th width="%">QTY</th>
-                        <th width="%">Price</th>
-                        <th width="%">Created</th>
-                        <th width="%" class="text-center">Action</th>
+                        <th width="10%">View</th>
+                        <th width="10%">QTY</th>
+                        <th width="12%">Price</th>
+                        <th width="12%">Created</th>
+                        <th width="10%" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,33 +29,33 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="symbol symbol-50px me-3">
-                                    <img src="{{ asset('storage/'.$product->thumbnail) }}"
-                                        class="" alt="">
+                                    <img src="{{ asset('storage/' . $product->thumbnail) }}" class=""
+                                        alt="">
                                 </div>
                             </td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->category->name }}</td>
-                            <td>{{ $product->brand->name }}</td>
                             <td>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#stockMethodsEdit">
-                                    <i class="fa-solid fa-pencil"></i> View & Edit
+                                    <i class="fa-solid fa-eye"></i>
                                 </button>
 
-                                 <!-- Modal -->
+                                <!-- Modal -->
                                 <div class="modal fade" id="stockMethodsEdit" tabindex="-1"
                                     aria-labelledby="stockMethodsEditLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header bg-primary">
-                                                <h5 class="modal-title text-white" id="stockMethodsEditLabel">Stock Methods
+                                                <h5 class="modal-title text-white" id="stockMethodsEditLabel">Stock
+                                                    Methods
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form id="kt_docs_formvalidation_text" class="form" action="#" autocomplete="off">
+                                                <form id="kt_docs_formvalidation_text" class="form" action="#"
+                                                    autocomplete="off">
                                                     <div class="fv-row mb-10 text-center">
                                                         <div class="">
                                                             <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
@@ -65,8 +63,8 @@
                                                                 <div class="image-input-wrapper w-150px h-150px"></div>
                                                                 <label
                                                                     class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                                    title="Change avatar">
+                                                                    data-kt-image-input-action="change"
+                                                                    data-bs-toggle="tooltip" title="Change avatar">
                                                                     <i class="fa-solid fa-pencil fs-7">
                                                                         <span class="path1"></span>
                                                                         <span class="path2"></span>
@@ -77,7 +75,8 @@
                                                                 </label>
                                                             </div>
                                                             <div class="text-muted fs-7">
-                                                                Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image
+                                                                Set the product thumbnail image. Only *.png, *.jpg and
+                                                                *.jpeg image
                                                                 files are accepted
                                                             </div>
                                                         </div>
@@ -86,13 +85,14 @@
                                                         <label class="fw-semibold fs-6 mb-2">Product Name</label>
 
                                                         <input type="text" name="zone"
-                                                            class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                                            value="Marlone Navy Coat" />
+                                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                                            placeholder="" value="Marlone Navy Coat" />
                                                     </div>
                                                     <div class="row">
                                                         <div class="fv-row mb-10 col-xl-6">
                                                             <label class="fw-semibold fs-6 mb-2">Category</label>
-                                                            <select class="form-select form-select" name="status" data-control="select2"
+                                                            <select class="form-select form-select" name="status"
+                                                                data-control="select2"
                                                                 data-placeholder="Select an option">
                                                                 <option></option>
                                                                 <option value="1">Active</option>
@@ -101,7 +101,8 @@
                                                         </div>
                                                         <div class="fv-row mb-10 col-xl-6">
                                                             <label class="fw-semibold fs-6 mb-2">Brands</label>
-                                                            <select class="form-select form-select" name="status" data-control="select2"
+                                                            <select class="form-select form-select" name="status"
+                                                                data-control="select2"
                                                                 data-placeholder="Select an option">
                                                                 <option></option>
                                                                 <option value="1">Active</option>
@@ -111,14 +112,14 @@
                                                         <div class="fv-row mb-10 col-xl-6">
                                                             <label class="fw-semibold fs-6 mb-2">QTY</label>
                                                             <input type="number" name="zone"
-                                                                class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                                                value="$5661" />
+                                                                class="form-control form-control-solid mb-3 mb-lg-0"
+                                                                placeholder="" value="$5661" />
                                                         </div>
                                                         <div class="fv-row mb-10 col-xl-6">
                                                             <label class="fw-semibold fs-6 mb-2">Price</label>
                                                             <input type="number" name="zone"
-                                                                class="form-control form-control-solid mb-3 mb-lg-0" placeholder=""
-                                                                value="$5661" />
+                                                                class="form-control form-control-solid mb-3 mb-lg-0"
+                                                                placeholder="" value="$5661" />
                                                         </div>
                                                     </div>
 
@@ -138,15 +139,31 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-start">
-                                56
+                            <td class="text-center">
+                                @if (!empty($product->box_stock) && $product->box_stock > 0)
+                                    <span class="badge bg-success">
+                                        {{ $product->box_stock }} In Stock</span>
+                                @else
+                                    <span class="badge bg-danger">Out Of
+                                        Stock</span>
+                                @endif
                             </td>
-                            <td>$5661</td>
-                            <td>25 Aug 2024</td>
+                            <td>
+                                @if (!empty($product->box_discount_price))
+                                    <div class="">
+                                        <span class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
+                                        <span class="ps-product__del">£{{ $product->box_price }}</span>
+                                    </div>
+                                @else
+                                    <div class="">
+                                        <span class="ps-product__price sale">£{{ $product->box_price }}</span>
+                                    </div>
+                                @endif
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d M, Y') }}</td>
                             <td class="text-center">
                                 <a href="#" class="btn btn-sm btn-primary">
-                                    <i class="fa-solid fa-trash"></i>
-                                    Delete
+                                    <i class="fa-solid fa-pen"></i>
                                 </a>
                             </td>
                         </tr>
