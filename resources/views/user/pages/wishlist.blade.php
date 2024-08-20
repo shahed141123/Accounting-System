@@ -78,92 +78,83 @@
                                                         data-product_id="{{ $wishlist->product->id }}"
                                                         data-product_qty="1">Add To Cart</a>
                                                 </div>
-                                                {{-- <div class="ps-product__row ps-product__quantity">
-                                                    <div class="ps-product__label">Quantity:</div>
-                                                    <div class="ps-product__value">1</div>
-                                                </div> --}}
-                                                {{-- <div class="ps-product__row ps-product__subtotal">
-                                                    <div class="ps-product__label">Subtotal:</div>
-                                                    <div class="ps-product__value">$77.65</div>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </li>
                                 @endforeach
                             </ul>
                             <div class="ps-wishlist__table">
-                                <table class="table ps-table ps-table--product mb-0">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th width="5%">Sl</th>
-                                            <th width="15%">Image</th>
-                                            <th width="25%">Product Name</th>
-                                            <th width="20%">Unit price</th>
-                                            <th width="15%">Stock status</th>
-                                            <th width="15%">Add Cart</th>
-                                            <th width="5%">
-                                                <i class="fa fa-trash" title="delete quick order"></i>
-                                            </th>
-                                        </tr>
-                                        <table class="table ps-table ps-table--product mb-0">
-                                            <tbody>
-                                                @foreach ($wishlists as $wishlist)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td width="15%">
-                                                            <a class="ps-product__image"
-                                                                href="{{ route('product.details', $wishlist->product->slug) }}">
-                                                                <figure>
-                                                                    <img src="{{ asset('storage/' . $wishlist->product->thumbnail) }}"
-                                                                        alt="alt">
-                                                                </figure>
-                                                            </a>
-                                                        </td>
-                                                        <td class="">
-                                                            <a
-                                                                href="{{ route('product.details', $wishlist->product->slug) }}">
-                                                                {{ $wishlist->product->name }}
-                                                            </a>
-                                                        </td>
-                                                        <td class="">
-                                                            @if (!empty($wishlist->product->box_discount_price))
-                                                                <div class="ps-product__row">
-                                                                    <div class="ps-product__value">
-                                                                        <span
-                                                                            class="ps-product__price sale">£{{ $wishlist->product->box_discount_price }}</span>
-                                                                        <span
-                                                                            class="ps-product__del">£{{ $wishlist->product->box_price }}</span>
-                                                                    </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped order-history-table">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th width="5%">Sl</th>
+                                                <th width="10%">Image</th>
+                                                <th width="30%">Product Name</th>
+                                                <th width="20%">Unit price</th>
+                                                <th width="15%">Stock</th>
+                                                <th width="15%">Add Cart</th>
+                                                <th width="5%">
+                                                    <i class="fa fa-trash" title="Delete quick order"></i>
+                                                </th>
+                                            </tr>
+                                        <tbody>
+                                            @foreach ($wishlists as $wishlist)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>
+                                                        <a class="ps-product__image"
+                                                            href="{{ route('product.details', $wishlist->product->slug) }}">
+                                                            <img src="{{ asset('storage/' . $wishlist->product->thumbnail) }}"
+                                                                alt="alt">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a
+                                                            href="{{ route('product.details', $wishlist->product->slug) }}">
+                                                            {{ $wishlist->product->name }}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($wishlist->product->box_discount_price))
+                                                            <div class="ps-product__row">
+                                                                <div class="ps-product__value">
+                                                                    <span
+                                                                        class="ps-product__price sale">£{{ $wishlist->product->box_discount_price }}</span>
+                                                                    <span
+                                                                        class="ps-product__del">£{{ $wishlist->product->box_price }}</span>
                                                                 </div>
-                                                            @else
-                                                                <div class="ps-product__row">
-                                                                    <div class="ps-product__value">
-                                                                        <span
-                                                                            class="ps-product__price sale">£{{ $wishlist->product->box_price }}
-                                                                    </div>
+                                                            </div>
+                                                        @else
+                                                            <div class="ps-product__row">
+                                                                <div class="ps-product__value">
+                                                                    <span
+                                                                        class="ps-product__price sale">£{{ $wishlist->product->box_price }}
                                                                 </div>
-                                                            @endif
-                                                            {{-- <span
+                                                            </div>
+                                                        @endif
+                                                        {{-- <span
                                                                 class="ps-product__price">{{ $wishlist->product->box_price }}</span> --}}
-                                                        </td>
-                                                        <td class="ps-product__status"> <span>In Stock</span>
-                                                        </td>
-                                                        <td class="ps-product__cart">
-                                                            <a href="{{ route('cart.store', $wishlist->product->id) }}"
-                                                                class="btn ps-btn--warning add_to_cart"
-                                                                data-product_id="{{ $wishlist->product->id }}"
-                                                                data-product_qty="1">Add To Cart</a>
-                                                        </td>
-                                                        <td class="">
+                                                    </td>
+                                                    <td class="ps-product__status"> <span>In Stock</span>
+                                                    </td>
+                                                    <td class="ps-product__cart">
+                                                        <a href="{{ route('cart.store', $wishlist->product->id) }}"
+                                                            class="btn ps-btn--warning add_to_cart"
+                                                            data-product_id="{{ $wishlist->product->id }}"
+                                                            data-product_qty="1">Add To Cart</a>
+                                                    </td>
+                                                    <td>
 
-                                                            <a href="#"><i class="icon-cross"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                        <a href="#"><i class="icon-cross"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="ps-wishlist__share">
+                            {{-- <div class="ps-wishlist__share">
                                 <label>Share on:</label>
                                 <ul class="ps-social ps-social--color">
                                     <li><a class="ps-social__link facebook" href="#"><i class="fa fa-facebook">
@@ -187,7 +178,7 @@
                                             href="#"><i class="fa fa-whatsapp"></i><span
                                                 class="ps-tooltip">WhatsApp</span></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
