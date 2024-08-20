@@ -47,6 +47,42 @@
                             <option value="privacy" @selected($banner->page_name == 'privacy')>Privacy Policy</option>
                         </x-metronic.select-option>
                     </div> --}}
+                    <div class="col-lg-6 mb-7">
+                        <x-metronic.label for="product_id" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select Product (Optional)') }}</x-metronic.label>
+                        <x-metronic.select-option id="product_id" class="form-select mb-2" name="product_id"
+                            data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+                            <option></option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}" @selected($product->id == $banner->product_id)>{{ $product->name }}
+                                </option>
+                            @endforeach
+                        </x-metronic.select-option>
+                    </div>
+                    <div class="col-lg-3 mb-7">
+                        <x-metronic.label for="brand_id" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select Brand (Optional)') }}</x-metronic.label>
+                        <x-metronic.select-option id="brand_id" class="form-select mb-2" name="brand_id"
+                            data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+                            <option></option>
+                            @foreach ($brands as $brand)
+                                <option value="{{ $brand->id }}" @selected($brand->id == $banner->brand_id)>{{ $brand->name }}
+                                </option>
+                            @endforeach
+                        </x-metronic.select-option>
+                    </div>
+                    <div class="col-lg-3 mb-7">
+                        <x-metronic.label for="category_id" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select Category (Optional)') }}</x-metronic.label>
+                        <x-metronic.select-option id="category_id" class="form-select mb-2" name="category_id"
+                            data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @selected($category->id == $banner->category_id)>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </x-metronic.select-option>
+                    </div>
                     <div class="col-lg-4 mb-7">
                         <x-metronic.label for="image"
                             class="col-form-label fw-bold fs-6 required">{{ __('Image') }}
@@ -54,7 +90,7 @@
                         <x-metronic.file-input id="image" type="file" name="image"
                             :source="asset('storage/' . $banner->image)"></x-metronic.file-input>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mb-7">
                         <x-metronic.label for="bg_image"
                             class="col-form-label fw-bold fs-6 required">{{ __('Background Image') }}
                         </x-metronic.label>
@@ -75,24 +111,25 @@
                         <x-metronic.input id="subtitle" type="text" name="subtitle" placeholder="Enter the Subtitle"
                             :value="old('subtitle', $banner->subtitle)"></x-metronic.input>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mb-7">
                         <x-metronic.label for="price"
                             class="col-form-label fw-bold fs-6 ">{{ __('Deal Banner Price') }}
                         </x-metronic.label>
 
                         <x-metronic.input id="price" type="number" name="price" placeholder="Enter the price"
-                            :value="old('price')"></x-metronic.input>
+                            :value="old('price', $banner->price)"></x-metronic.input>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mb-7">
                         <x-metronic.label for="offer_price"
                             class="col-form-label fw-bold fs-6 ">{{ __('Deal Banner Offer Price') }}
                         </x-metronic.label>
 
                         <x-metronic.input id="offer_price" type="number" name="offer_price"
-                            placeholder="Enter the Deal Banner Offer Price" :value="old('offer_price')"></x-metronic.input>
+                            placeholder="Enter the Deal Banner Offer Price" :value="old('offer_price', $banner->offer_price)"></x-metronic.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="banner_link" class="col-form-label fw-bold fs-6 ">{{ __('Banner Link') }}
+                        <x-metronic.label for="banner_link"
+                            class="col-form-label fw-bold fs-6 ">{{ __('Banner Link') }}
                         </x-metronic.label>
 
                         <x-metronic.input id="banner_link" type="text" name="banner_link"

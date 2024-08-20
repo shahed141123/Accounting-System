@@ -45,4 +45,8 @@ class Product extends Model
     {
         return $query->where('status', 'published');
     }
+    public function deals()
+    {
+        return $this->hasMany(DealBanner::class, 'brand_id');
+    }
 }

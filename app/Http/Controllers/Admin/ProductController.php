@@ -35,7 +35,7 @@ class ProductController extends Controller
         $categories = $this->buildCategories(Category::active()->get());
         $categoriesOptions = $this->buildCategoriesOptions($categories);
         $data = [
-            'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
+            'brands'            => DB::table('brands')->select('id', 'name')->latest('id')->get(),
             'categoriesOptions' => $categoriesOptions,
         ];
         return view('admin.pages.product.create', $data);

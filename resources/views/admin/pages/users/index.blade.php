@@ -29,7 +29,6 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Show User</th>
                         <th>Status</th>
                         <th class="text-end min-w-100px pe-5">Actions</th>
                     </tr>
@@ -66,10 +65,6 @@
                             </td>
                             <td>
                                 <span>{{ $user->email }}</span>
-                            </td>
-
-                            <td>
-                                <button class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i> Show</button>
                             </td>
                             <td>
                                 <div class="form-check form-switch form-check-custom form-check-solid">
