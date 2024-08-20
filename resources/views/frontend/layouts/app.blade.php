@@ -73,17 +73,11 @@
     <script src="{{ asset('frontend/plugins/bootstrap4/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
-
     <script src="{{ asset('frontend/plugins/jquery-bar-rating/dist/jquery.barrating.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/lightGallery/dist/js/lightgallery-all.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/slick/slick/slick.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/noUiSlider/nouislider.min.js') }}"></script>
-
-    <!-- jQuery (required for DataTables and Date Range Picker) -->
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    <!-- Date Range Picker JS -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
-    <!-- DataTables JS -->
+    <script src="https://kit.fontawesome.com/69b7156a94.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>

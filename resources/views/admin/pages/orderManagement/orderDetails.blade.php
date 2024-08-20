@@ -3,9 +3,9 @@
         <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
             <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex flex-stack ">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
-                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
+                    <h5 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
                         Order Details (#{{ $order->order_number }})
-                    </h1>
+                    </h5>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
                             <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
@@ -23,31 +23,22 @@
                         </li>
                         <li class="breadcrumb-item text-muted">
                             Order Details (#{{ $order->order_number }}) </li>
-
                     </ul>
                 </div>
             </div>
         </div>
         <div id="kt_app_content" class="app-content  flex-column-fluid ">
-            <div id="kt_app_content_container" class="app-container  container-xxl ">
-
-                <div class="d-flex flex-column gap-7 gap-lg-10">
-
-                    <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
-
+            <div id="kt_app_content_container" class="app-container container-fluid">
+                <div class="row mb-10">
+                    <div class="col-xl-4">
                         <div class="card card-flush py-4 flex-row-fluid">
-
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>Order Details (#{{ $order->order_number }})</h2>
+                                    <h4>Order Details (#{{ $order->order_number }})</h4>
                                 </div>
                             </div>
-
-
-
                             <div class="card-body pt-0">
                                 <div class="table-responsive">
-
                                     <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
                                         <tbody class="fw-semibold text-gray-600">
                                             <tr>
@@ -98,21 +89,15 @@
 
                                 </div>
                             </div>
-
                         </div>
-
-
-
+                    </div>
+                    <div class="col-xl-4">
                         <div class="card card-flush py-4  flex-row-fluid">
-
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>Customer Details</h2>
+                                    <h4>Customer Details</h4>
                                 </div>
                             </div>
-
-
-
                             <div class="card-body pt-0">
                                 <div class="table-responsive">
 
@@ -185,28 +170,24 @@
                                 </div>
                             </div>
                         </div>
-
-
+                    </div>
+                    <div class="col-xl-4">
                         <div class="card card-flush py-4  flex-row-fluid">
-
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>Documents</h2>
+                                    <h4>Shipping Address</h4>
                                 </div>
                             </div>
-
-
-
                             <div class="card-body pt-0">
                                 <div class="table-responsive">
-
-                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                    <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5">
                                         <tbody class="fw-semibold text-gray-600">
                                             <tr>
                                                 <td class="text-muted">
                                                     <div class="d-flex align-items-center">
                                                         <i class="fa-solid fa-devices fs-2 me-2"><span
-                                                                class="path1"></span><span class="path2"></span><span
+                                                                class="path1"></span><span
+                                                                class="path2"></span><span
                                                                 class="path3"></span><span
                                                                 class="path4"></span><span class="path5"></span></i>
                                                         Invoice
@@ -257,10 +238,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                </div>
+                <div class="d-flex flex-column gap-7 gap-lg-10">
                     <div class="d-flex flex-column gap-7 gap-lg-10">
-                        <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
+                        {{-- <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
                             <div class="card card-flush py-4 flex-row-fluid position-relative">
                                 <div
                                     class="position-absolute top-0 end-0 bottom-0 opacity-10 d-flex align-items-center me-5">
@@ -277,7 +259,6 @@
                                 </div>
                             </div>
                             <div class="card card-flush py-4 flex-row-fluid position-relative">
-
                                 <div
                                     class="position-absolute top-0 end-0 bottom-0 opacity-10 d-flex align-items-center me-5">
                                     <i class="ki-solid ki-delivery" style="font-size: 13em">
@@ -292,7 +273,7 @@
                                     {{ $order->shipping_address }}
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="card card-flush py-4 flex-row-fluid overflow-hidden">
                             <div class="card-header">
                                 <div class="card-title">
@@ -309,12 +290,12 @@
                                     <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                         <thead>
                                             <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                                <th class="min-w-175px ps-5">Product</th>
-                                                <th class="min-w-175px ps-5">Product Description</th>
-                                                <th class="min-w-100px text-end">SKU</th>
-                                                <th class="min-w-70px text-end">Qty</th>
-                                                <th class="min-w-100px text-end">Unit Price</th>
-                                                <th class="min-w-100px text-end pe-5">Total</th>
+                                                <th class="">Product</th>
+                                                <th class="">Product Description</th>
+                                                <th class="">SKU</th>
+                                                <th class="">Qty</th>
+                                                <th class="">Unit Price</th>
+                                                <th class="text-end pe-5">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody class="fw-semibold text-gray-600">

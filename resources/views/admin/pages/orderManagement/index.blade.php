@@ -7,7 +7,7 @@
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-brand fa-product-hunt fs-3 text-white" aria-hidden="true"></i></span>
+                                        class="fa-brands fa-product-hunt fs-3 text-white" aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
                                 <a href="#" class="text-white fs-5 fw-bold lh-0">Total Order
@@ -31,7 +31,7 @@
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-product fa-product-hunt fs-3 text-white"
+                                        class="fa-solid fa-clock-rotate-left fs-3 text-white"
                                         aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
@@ -57,7 +57,7 @@
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-product text-white fa-product-hunt fs-3"
+                                        class="fa-solid fa-truck text-white fs-3"
                                         aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
