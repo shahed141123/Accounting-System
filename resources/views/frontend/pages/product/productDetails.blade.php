@@ -36,8 +36,8 @@
                                 </div>
                                 <div class="col-12 col-xl-6">
                                     <div class="ps-product__info">
-                                        <div class="ps-product__title text-22">
-                                            <a href="javascript:void(0)">{{ $product->name }}</a>
+                                        <div class="ps-product__title text-22" style="height: auto;">
+                                            {{ $product->name }}
                                         </div>
                                         <table class="table ps-table ps-table--oriented m-0">
                                             <tbody>
@@ -427,8 +427,8 @@
     </div>
 
     @foreach ($related_products as $related_product)
-        <div class="modal fade" id="popupQuickview{{ $related_product->id }}" data-backdrop="static" data-keyboard="false"
-            tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="popupQuickview{{ $related_product->id }}" data-backdrop="static"
+            data-keyboard="false" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered ps-quickview">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -461,7 +461,8 @@
                                                             : asset('frontend/img/no-product.jpg');
                                                     @endphp
                                                     <div class="slide">
-                                                        <img src="{{ $thumbnailSrc }}" alt="{{ $related_product->name }}" />
+                                                        <img src="{{ $thumbnailSrc }}"
+                                                            alt="{{ $related_product->name }}" />
                                                     </div>
                                                 @endif
                                             </div>
@@ -546,7 +547,8 @@
                                                 </div>
 
                                                 <a class="ps-btn ps-btn--warning add_to_cart_btn_product_single"
-                                                    data-product_id="{{ $related_product->id }}" href="#">Add to
+                                                    data-product_id="{{ $related_product->id }}" href="#">Add
+                                                    to
                                                     cart</a>
                                             @else
                                                 <div class="ps-product__meta">

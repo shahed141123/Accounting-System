@@ -81,7 +81,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end">
-                                                    {{ $order->shippingCharge->title }}({{ $order->shippingCharge->price }})
+                                                    {{ optional($order->shippingCharge)->title }}({{ optional($order->shippingCharge)->price }})
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -132,8 +132,8 @@
 
 
                                                         <a href="#" class="text-gray-600 text-hover-primary">
-                                                            {{ $order->user->first_name }}
-                                                            {{ $order->user->last_name }}
+                                                            {{ optional($order->user)->first_name }}
+                                                            {{ optional($order->user)->last_name }}
                                                         </a>
 
                                                     </div>
@@ -150,9 +150,9 @@
                                                     </div>
                                                 </td>
                                                 <td class="fw-bold text-end">
-                                                    <a href="mailto:{{ $order->user->email }}"
+                                                    <a href="mailto:{{ optional($order->user)->email }}"
                                                         class="text-gray-600 text-hover-primary">
-                                                        {{ $order->user->email }} </a>
+                                                        {{ optional($order->user)->email }} </a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -163,7 +163,7 @@
                                                         Phone
                                                     </div>
                                                 </td>
-                                                <td class="fw-bold text-end">{{ $order->user->phone }} </td>
+                                                <td class="fw-bold text-end">{{ optional($order->user)->phone }} </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -335,7 +335,7 @@
                                                     Subtotal
                                                 </td>
                                                 <td class="text-end">
-                                                    $264.00
+                                                    (£){{ $order->sub_total }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -351,7 +351,7 @@
                                                     Shipping Rate
                                                 </td>
                                                 <td class="text-end">
-                                                    $5.00
+                                                    (£){{ $order->shipping_charge }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -359,7 +359,7 @@
                                                     Grand Total
                                                 </td>
                                                 <td class="text-gray-900 fs-3 fw-bolder text-end">
-                                                    $269.00
+                                                    (£){{ $order->total_amount }}
                                                 </td>
                                             </tr>
                                         </tbody>
