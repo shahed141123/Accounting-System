@@ -338,96 +338,87 @@
             </div>
         </section>
         <div class="container">
-            <h3 class="ps-section__title text-center" style="font-size: 30px;">This week deals</h3>
-            <div class="ps-promo ps-promo--home">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="ps-promo__item"><img class="ps-promo__banner"
-                                src="{{ asset('frontend/img/promotion/bg-banner20.jpg') }}" alt="alt" />
-                            <div class="ps-promo__content"><span class="ps-promo__badge">New</span>
-                                <h4 class="text-white ps-promo__name">FaceWash <br />up to -20%</h4>
-                                <div class="ps-promo__image"><img
-                                        src="{{ asset('frontend/img/icon/icon19.png') }}" alt="" />
-                                </div><a class="btn-green ps-promo__btn" href="category-grid.html">More</a>
+            @if ($deals->count() > 0)
+                <h3 class="ps-section__title text-center" style="font-size: 30px;">This week deals</h3>
+                <div class="ps-promo ps-promo--home">
+                    <!-- First Row: First Three Deals -->
+                    <div class="row">
+                        @foreach ($deals->slice(0, 3) as $deal)
+                            <div class="col-12 col-md-4">
+                                <div class="ps-promo__item">
+                                    @if ($deal->image)
+                                        <img class="ps-promo__banner"
+                                            src="{{ asset('storage/' . $deal->image) }}" alt="alt" />
+                                    @endif
+                                    <div class="ps-promo__content">
+                                        @if ($deal->badge)
+                                            <span
+                                                class="ps-promo__badge">{{ $deal->badge ?? round(100 - ($deal->offer_price / $deal->price) * 100) . '%' }}</span>
+                                        @endif
+                                        <h4 class="text-white ps-promo__name">
+                                            {{ $deal->title }}
+                                        </h4>
+                                        @if ($deal->subtitle)
+                                            <p>{{ $deal->subtitle }}</p>
+                                        @endif
+                                        @if ($deal->offer_price && $deal->price)
+                                            <div class="ps-promo__meta">
+                                                <p class="ps-promo__price text-warning">£{{ $deal->offer_price }}
+                                                </p>
+                                                <p class="ps-promo__del text-white">£{{ $deal->price }}</p>
+                                            </div>
+                                        @endif
+                                        @if (!empty($deal->button_link))
+                                            <a class="btn-green ps-promo__btn"
+                                                href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
+                                        @elseif (!empty($deal->product_id))
+                                            <a class="btn-green ps-promo__btn"
+                                                href="{{ route('product.details', $deal->product->slug) }}">Buy
+                                                now</a>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-                    <div class="col-12 col-md-4">
-                        <div class="ps-promo__item"><img class="ps-promo__banner"
-                                src="{{ asset('frontend/img/promotion/bg-banner21.jpg') }}" alt="alt" />
-                            <div class="ps-promo__content">
-                                <h4 class="text-white ps-promo__name">PREHCU <br />Workout</h4>
-                                <div class="ps-promo__meta">
-                                    <p class="ps-promo__price text-warning">$6.99</p>
-                                    <p class="ps-promo__del text-white">$19.99</p>
-                                </div><a class="btn-green ps-promo__btn" href="category-grid.html">Buy now</a>
+
+                    <!-- Second Row: Next Four Deals -->
+                    <div class="row ps-promo--horizontal">
+                        @foreach ($deals->slice(3, 4) as $deal)
+                            <div class="col-12 col-md-3">
+                                <div class="ps-promo__item">
+                                    @if ($deal->image)
+                                        <img class="ps-promo__banner"
+                                            src="{{ asset('storage/' . $deal->image) }}" alt="alt" />
+                                    @endif
+                                    <div class="ps-promo__content">
+                                        <h4 class="text-dark ps-promo__name">
+                                            {{ $deal->title }}
+                                        </h4>
+                                        @if ($deal->offer_price && $deal->price)
+                                            <div class="ps-promo__meta">
+                                                <p class="ps-promo__price text-warning">
+                                                    £ {{ number_format($deal->offer_price, 2) }}</p>
+                                                <p class="ps-promo__del text-dark">
+                                                    £ {{ number_format($deal->price, 2) }}</p>
+                                            </div>
+                                        @endif
+                                        @if (!empty($deal->button_link))
+                                            <a class="btn-green ps-promo__btn"
+                                                href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
+                                        @elseif (!empty($deal->product_id))
+                                            <a class="btn-green ps-promo__btn"
+                                                href="{{ route('product.details', $deal->product->slug) }}">Buy
+                                                now</a>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="ps-promo__item"><img class="ps-promo__banner"
-                                src="{{ asset('frontend/img/promotion/bg-banner22.jpg') }}" alt="alt" />
-                            <div class="ps-promo__content">
-                                <h4 class="text-dark ps-promo__name">Neauthy <br />creams</h4>
-                                <div class="ps-promo__meta">
-                                    <p class="ps-promo__price text-warning">$12.99</p>
-                                    <p class="ps-promo__del text-dark">$19.99</p>
-                                </div><a class="btn-green ps-promo__btn" href="category-grid.html">Buy now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row ps-promo--horizontal">
-                    <div class="col-12 col-md-3">
-                        <div class="ps-promo__item"><img class="ps-promo__banner"
-                                src="{{ asset('frontend/img/promotion/bg-banner23.jpg') }}" alt="alt" />
-                            <div class="ps-promo__content">
-                                <h4 class="text-dark ps-promo__name">PowerUp <br />Lemon</h4>
-                                <div class="ps-promo__meta">
-                                    <p class="ps-promo__price text-warning">$38.24</p>
-                                    <p class="ps-promo__del text-dark">$48.24</p>
-                                </div><a class="btn-green ps-promo__btn" href="category-grid.html">Buy now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="ps-promo__item"><img class="ps-promo__banner"
-                                src="{{ asset('frontend/img/promotion/bg-banner24.jpg') }}" alt="alt" />
-                            <div class="ps-promo__content">
-                                <h4 class="text-dark ps-promo__name">TwoEXP+ <br />Areozol</h4>
-                                <div class="ps-promo__meta">
-                                    <p class="ps-promo__price text-warning">$8.24</p>
-                                    <p class="ps-promo__del text-dark">$12.24</p>
-                                </div><a class="btn-green ps-promo__btn" href="category-grid.html">Buy now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="ps-promo__item"><img class="ps-promo__banner"
-                                src="{{ asset('frontend/img/promotion/bg-banner25.jpg') }}" alt="alt" />
-                            <div class="ps-promo__content">
-                                <h4 class="text-dark ps-promo__name">Cranberry <br />Brand</h4>
-                                <div class="ps-promo__meta">
-                                    <p class="ps-promo__price text-warning">$13.24</p>
-                                    <p class="ps-promo__del text-dark">$18.24</p>
-                                </div><a class="btn-green ps-promo__btn" href="category-grid.html">Buy now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="ps-promo__item"><img class="ps-promo__banner"
-                                src="{{ asset('frontend/img/promotion/bg-banner26.jpg') }}" alt="alt" />
-                            <div class="ps-promo__content">
-                                <h4 class="text-dark ps-promo__name">Recoup <br />Recovery</h4>
-                                <div class="ps-promo__meta">
-                                    <p class="ps-promo__price text-warning">$8.24</p>
-                                    <p class="ps-promo__del text-dark">$12.24</p>
-                                </div><a class="btn-green ps-promo__btn" href="category-grid.html">Buy now</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
+            @endif
+
             <section class="ps-section--deals">
                 <div class="ps-section__header">
                     <h3 class="ps-section__title" style="font-size: 30px;">Best Deals of the week!</h3>

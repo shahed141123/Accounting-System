@@ -71,7 +71,7 @@
                 <div class="ps-product__variations text-center">
                     {{-- <a class="ps-product__link add_to_wishlist" href="{{ route('wishlist.store', $product->id) }}"
                         data-product-id="{{ $product->id }}">Add to wishlist</a> --}}
-                    <a class="ps-product__link" href="{{ route('wishlist.store', $product->id) }}"
+                    <a class="ps-product__link" href="javascript:void(0)"
                         onclick="addToWishlist(event, '{{ route('wishlist.store', $product->id) }}')">Add to
                         wishlist</a>
                 </div>

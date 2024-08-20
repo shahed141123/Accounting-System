@@ -29,14 +29,24 @@ class ShopController extends Controller
     {
         $query = Product::query();
 
+        // Filter by Categories
         if ($request->has('categories') && !empty($request->categories)) {
             $categories = $request->categories;
-            $query->whereJsonContains('category_id', $categories);
+            $query->where(function ($query) use ($categories) {
+                foreach ($categories as $category) {
+                    $query->orWhereJsonContains('category_id', $category);
+                }
+            });
         }
 
+        // Filter by Subcategories
         if ($request->has('subcategories') && !empty($request->subcategories)) {
             $subcategories = $request->subcategories;
-            $query->whereJsonContains('category_id', $subcategories);
+            $query->where(function ($query) use ($subcategories) {
+                foreach ($subcategories as $subcategory) {
+                    $query->orWhereJsonContains('category_id', $subcategory);
+                }
+            });
         }
 
         // Filter by Brand
@@ -65,7 +75,7 @@ class ShopController extends Controller
                     $query->orderBy('name', 'desc');
                     break;
                 case 'price-asc':
-                    $query->orderBy('box_price', 'asc'); // Corrected from 'desc' to 'asc'
+                    $query->orderBy('box_price', 'asc');
                     break;
                 case 'price-desc':
                     $query->orderBy('box_price', 'desc');

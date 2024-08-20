@@ -90,13 +90,13 @@
                         <x-metronic.file-input id="image" type="file" name="image"
                             :source="asset('storage/' . $banner->image)"></x-metronic.file-input>
                     </div>
-                    <div class="col-lg-4 mb-7">
+                    {{-- <div class="col-lg-4 mb-7">
                         <x-metronic.label for="bg_image"
                             class="col-form-label fw-bold fs-6 required">{{ __('Background Image') }}
                         </x-metronic.label>
                         <x-metronic.file-input id="bg_image" type="file" name="bg_image"
                             :source="asset('storage/' . $banner->bg_image)"></x-metronic.file-input>
-                    </div>
+                    </div> --}}
                     <div class="col-lg-4 mb-7">
                         <x-metronic.label for="title" class="col-form-label fw-bold fs-6 ">{{ __('Title') }}
                         </x-metronic.label>

@@ -27,7 +27,7 @@
                     <tr class=" text-white fw-bolder fs-7 text-uppercase gs-0">
                         <th width="5%">Sl</th>
                         <th width="10%" class="text-center">Thumbnail Image</th>
-                        <th width="10%" class="text-center">Background Image</th>
+                        {{-- <th width="10%" class="text-center">Background Image</th> --}}
                         <th width="45%">Product Name</th>
                         <th width="10%">Price</th>
                         <th width="10%">Offer Preice</th>
@@ -46,11 +46,11 @@
                                         src="{{ !empty(optional($banner)->image) ? asset('storage/' . optional($banner)->image) : asset('images/no_image.jpg') }}"
                                         alt="{{ $banner->page_name }}">
                                 </td>
-                                <td class="text-center">
+                                {{-- <td class="text-center">
                                     <img class="w-50px h-50px"
                                         src="{{ !empty(optional($banner)->bg_image) ? asset('storage/' . optional($banner)->bg_image) : asset('images/no_image.jpg') }}"
                                         alt="{{ $banner->page_name }}">
-                                </td>
+                                </td> --}}
                                 <td class="text-center">
                                     {{ $banner->product->name }}
                                 </td>

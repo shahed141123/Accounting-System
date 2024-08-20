@@ -449,123 +449,72 @@
         <script>
             function addToWishlist(event, url) {
                 event.preventDefault(); // Prevent the default action of the link
+                var button = $(this);
+                var product_id = button.data('product_id');
+                var user_id = button.data('product_id');
+                var wishlistUrl = url;
+                // var wishlistUrl = $(this).attr('href');
+                var wishlistCount = $('.wishlistCount');
+                // Check if quantity is valid
 
-                var formData = new FormData();
-                formData.append('_token', "{{ csrf_token() }}"); // Add CSRF token
-
-                fetch(url, {
-                        method: 'POST',
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                        },
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest', // Optional but recommended for AJAX requests
-                            'Content-Type': 'application/x-www-form-urlencoded', // Adjust if necessary
-                        },
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    url: wishlistUrl,
+                    dataType: 'json',
+                    success: function(data) {
                         const Toast = Swal.mixin({
                             showConfirmButton: false,
                             timer: 3000
                         });
+                        Toast.fire({
+                            icon: 'success',
+                            title: data.success
+                        });
 
-                        if (data.success) {
+                        if ($.isEmptyObject(data.error)) {
                             Toast.fire({
                                 icon: 'success',
                                 title: data.success
                             });
-
-                            // Disable the button or update the UI as needed
-                            document.querySelector('.add_to_wishlist').disabled = true;
-                            document.querySelector('.wishlistCount').innerHTML = data.wishlistCount;
-                        } else if (data.error) {
+                            button.prop('disabled', true); // Disable the button
+                            button.text('Already added'); // Change button text
+                            wishlistCount.html(data.wishlistCount);
+                        } else {
                             Toast.fire({
                                 icon: 'error',
                                 title: data.error
                             });
                         }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
+                    },
+                    error: function(xhr) {
+                        let errorMessage = 'Something went wrong!'; // Default message
+
+                        // Check if the response is JSON and contains an error message
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        } else if (xhr.responseText) {
+                            try {
+                                let response = JSON.parse(xhr.responseText);
+                                if (response.message) {
+                                    errorMessage = response.message;
+                                }
+                            } catch (e) {
+                                // If responseText is not JSON, use default message
+                                console.error('Error parsing response text:', e);
+                            }
+                        }
 
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Something went wrong!'
+                            text: errorMessage
                         });
-                    });
-            }
-            $(document).ready(function() {
-                $('.add_to_wishlist').click(function(e) {
-                    e.preventDefault(); // Prevent the default action of the link
-                    var button = $(this);
-                    var product_id = button.data('product_id');
-                    var user_id = button.data('product_id');
-                    var wishlistUrl = $(this).attr('href');
-                    var wishlistCount = $('.wishlistCount');
-                    // Check if quantity is valid
-
-                    $.ajax({
-                        type: "POST",
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                        },
-                        url: wishlistUrl,
-                        dataType: 'json',
-                        success: function(data) {
-                            const Toast = Swal.mixin({
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                            Toast.fire({
-                                icon: 'success',
-                                title: data.success
-                            });
-
-                            if ($.isEmptyObject(data.error)) {
-                                Toast.fire({
-                                    icon: 'success',
-                                    title: data.success
-                                });
-                                button.prop('disabled', true); // Disable the button
-                                // button.text('Already added'); // Change button text
-                                wishlistCount.html(data.wishlistCount);
-                            } else {
-                                Toast.fire({
-                                    icon: 'error',
-                                    title: data.error
-                                });
-                            }
-                        },
-                        error: function(xhr) {
-                            let errorMessage = 'Something went wrong!'; // Default message
-
-                            // Check if the response is JSON and contains an error message
-                            if (xhr.responseJSON && xhr.responseJSON.message) {
-                                errorMessage = xhr.responseJSON.message;
-                            } else if (xhr.responseText) {
-                                try {
-                                    let response = JSON.parse(xhr.responseText);
-                                    if (response.message) {
-                                        errorMessage = response.message;
-                                    }
-                                } catch (e) {
-                                    // If responseText is not JSON, use default message
-                                    console.error('Error parsing response text:', e);
-                                }
-                            }
-
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: errorMessage
-                            });
-                        }
-                    });
+                    }
                 });
-            });
+            }
         </script>
         <script>
             $(document).ready(function() {

@@ -14,6 +14,7 @@ use App\Models\PrivacyPolicy;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\DealBanner;
 use App\Models\Order;
 use App\Models\ShippingMethod;
 use Illuminate\Support\Facades\Cache;
@@ -33,6 +34,7 @@ class HomeController extends Controller
             'home_slider_bottom_second' => PageBanner::active()->where('page_name', 'home_slider_bottom_second')->latest('id')->first(),
             'home_slider_bottom_third'  => PageBanner::active()->where('page_name', 'home_slider_bottom_third')->latest('id')->first(),
             'blog_posts'                => BlogPost::active()->inRandomOrder()->get(),
+            'deals'                     => DealBanner::active()->inRandomOrder()->limit(7)->get(),
             'blog'                      => BlogPost::inRandomOrder()->active()->first(),
             'categorys'                 => Category::orderBy('name', 'ASC')->active()->get(),
             'latest_products'           => Product::with('multiImages')->latest('id')->where('status', 'published')->limit(10)->get(),
