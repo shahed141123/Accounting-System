@@ -4,7 +4,8 @@
             <div class="ps-product__content">
                 <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
                         <figure>
-                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}" onerror="this.onerror=null; this.src='{{ asset('frontend/img/no-product.jpg') }}';">
+                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}"
+                                onerror="this.onerror=null; this.src='{{ asset('frontend/img/no-product.jpg') }}';">
                         </figure>
                     </a>
                     <div class="ps-product__actions">
@@ -68,8 +69,11 @@
                 @endif
 
                 <div class="ps-product__variations text-center">
-                    <a class="ps-product__link add_to_wishlist" data-product_id="{{ $product->id }}"
-                        href="{{ route('wishlist.store', $product->id) }}">Add to wishlist</a>
+                    {{-- <a class="ps-product__link add_to_wishlist" href="{{ route('wishlist.store', $product->id) }}"
+                        data-product-id="{{ $product->id }}">Add to wishlist</a> --}}
+                    <a class="ps-product__link" href="{{ route('wishlist.store', $product->id) }}"
+                        onclick="addToWishlist(event, '{{ route('wishlist.store', $product->id) }}')">Add to
+                        wishlist</a>
                 </div>
             </div>
         </div>

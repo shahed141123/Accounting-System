@@ -354,7 +354,7 @@
                                                     Subtotal
                                                 </td>
                                                 <td class="text-end">
-                                                    $264.00
+                                                    (£){{ $order->sub_total }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -370,7 +370,7 @@
                                                     Shipping Rate
                                                 </td>
                                                 <td class="text-end">
-                                                    $5.00
+                                                    (£){{ $order->shipping_charge }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -378,7 +378,7 @@
                                                     Grand Total
                                                 </td>
                                                 <td class="text-gray-900 fs-3 fw-bolder text-end">
-                                                    $269.00
+                                                    (£){{ $order->total_amount }}
                                                 </td>
                                             </tr>
                                         </tbody>

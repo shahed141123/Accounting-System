@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CatalogueController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqController;
@@ -101,6 +102,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
         [
             'blog-category'       => BlogCategoryController::class, //done
             'blog-tags'           => BlogTagController::class, //done
+            'catalogue'           => CatalogueController::class, //done
             'shipping-management' => ShippingManagementController::class, //done
         ],
         ['except' => ['show', 'create', 'edit']]
