@@ -115,20 +115,20 @@
     <div class="ps-categogy">
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-md-3">
                     <ul class="ps-breadcrumb">
                         <li class="ps-breadcrumb__item"><a href="/">Home</a></li>
                         <li class="ps-breadcrumb__item">Shop</li>
                     </ul>
                     <h1 class="ps-categogy__name">Shop<sup>({{ $products->count() }})</sup></h1>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-9 d-flex align-items-center">
                     <div>
-                        <img class="img-fluid" src="{{ asset('frontend/img/no-product.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/christmas-banner-bg.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
-            <div class="ps-categogy__content">
+            <div class="ps-categogy__content pt-4">
                 <div class="row row-reverse">
                     <div class="col-12 col-md-9">
                         <div class="ps-categogy__wrapper d-flex justify-content-center">
@@ -286,7 +286,34 @@
                             </div>
 
                             <div class="ps-widget__promo">
-                                <img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}" alt="">
+                                {{-- <img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}" alt=""> --}}
+                                <div class="ps-promo__item">
+                                    @if ($deal->image)
+                                        <img class="ps-promo__banner" src="{{ asset('storage/' . $deal->image) }}"
+                                            alt="alt" />
+                                    @endif
+                                    <div class="ps-promo__content">
+                                        <h4 class="text-dark ps-promo__name">
+                                            {{ $deal->title }}
+                                        </h4>
+                                        @if ($deal->offer_price && $deal->price)
+                                            <div class="ps-promo__meta">
+                                                <p class="ps-promo__price text-warning">
+                                                    £ {{ number_format($deal->offer_price, 2) }}</p>
+                                                <p class="ps-promo__del text-dark">
+                                                    £ {{ number_format($deal->price, 2) }}</p>
+                                            </div>
+                                        @endif
+                                        @if (!empty($deal->button_link))
+                                            <a class="btn-green ps-promo__btn"
+                                                href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
+                                        @elseif (!empty($deal->product_id))
+                                            <a class="btn-green ps-promo__btn"
+                                                href="{{ route('product.details', $deal->product->slug) }}">Buy
+                                                now</a>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

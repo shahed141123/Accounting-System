@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\DealBanner;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ShopController extends Controller
 {
@@ -19,6 +20,7 @@ class ShopController extends Controller
             'categories'   => Category::orderBy('name', 'ASC')->active()->get(),
             'brands'       => Brand::orderBy('name', 'ASC')->active()->get(),
             'products'     => Product::latest('id')->active()->paginate(10),
+            'deal'        => DealBanner::active()->inRandomOrder()->first(),
             // 'productCount' => Product::active()->count(),
         ];
         return view('frontend.pages.product.allProducts', $data);
