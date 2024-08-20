@@ -427,24 +427,7 @@
                                             @endif
                                             <div class="ps-product__type">
                                                 <ul class="ps-product__list">
-                                                    @if (!empty($product->tags))
-                                                        @php
-                                                            $tags = json_decode($product->tags);
-                                                        @endphp
-
-                                                        @if (is_array($tags))
-                                                            <li>
-                                                                <span class="ps-list__title">Tags: </span>
-                                                                @foreach ($tags as $tag)
-                                                                    <a class="ps-list__text"
-                                                                        href="#">{{ $tag }}</a>
-                                                                    @if (!$loop->last)
-                                                                        ,
-                                                                    @endif
-                                                                @endforeach
-                                                            </li>
-                                                        @endif
-                                                    @endif
+                                                    
                                                     <li><span class="ps-list__title">SKU-Code: </span><a
                                                             class="ps-list__text"
                                                             href="#">{{ $product->sku_code }}</a>

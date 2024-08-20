@@ -92,14 +92,36 @@ class UserController extends Controller
     public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate([
-            'name' => ['nullable', 'string', 'max:255'],
+            'first_name' => ['nullable', 'string', 'max:255'],
+            'last_name' => ['nullable', 'string', 'max:255'],
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:' . User::class . ',email,' . $user->id],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user->update([
-            'name'     => $request->name ? $request->name  : $user->name,
-            'email'    => $request->email ? $request->email : $user->email,
+            'first_name'     => $request->first_name ? $request->first_name  : $user->first_name,
+            'last_name'     => $request->last_name ? $request->last_name  : $user->last_name,
+            'email'                       => $request->email ? $request->email: $user->email,
+            'phone'                       => $request->phone ? $request->email: $user->email,
+            'address_one'                 => $request->address_one ? $request->email: $user->email,
+            'address_two'                 => $request->address_two ? $request->email: $user->email,
+            'zipcode'                     => $request->zipcode ? $request->email: $user->email,
+            'state'                       => $request->state ? $request->email: $user->email,
+            'country'                     => $request->country ? $request->email: $user->email,
+            'company_name'                => $request->company_name ? $request->email: $user->email,
+            'company_registration_number' => $request->company_registration_number ? $request->email: $user->email,
+            'company_vat_number'          => $request->company_vat_number ? $request->email: $user->email,
+            'selling_platforms'           => $request->selling_platforms ? $request->email: $user->email,
+            'customer_type'               => $request->customer_type ? $request->email: $user->email,
+            'referral_source'             => $request->referral_source ? $request->email: $user->email,
+            'buying_group_membership'     => $request->buying_group_membership ? $request->email: $user->email,
+            'website_address'             => $request->website_address ? $request->email: $user->email,
+            'buying_group_name'           => $request->buying_group_name ? $request->email: $user->email,
+            'current_suppliers'           => $request->current_suppliers ? $request->email: $user->email,
+            'annual_spend'                => $request->annual_spend ? $request->email: $user->email,
+            'newsletter_preference'       => $request->newsletter_preference ? $request->email: $user->email,
+            'terms_condition'             => $request->terms_condition ? $request->email: $user->email,
+            'status'                      => $request->status ? $request->email: $user->email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
         ]);
 
