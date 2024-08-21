@@ -41,14 +41,22 @@
                 <div class="owl-stage">
                     @foreach ($sliders as $slider)
                         <div class="owl-item">
-                            <div class="ps-banner" style="background:#F0F2F5;">
+                            <div class="ps-banner hero-banner"
+                                style="
+                            background-image: url('{{ asset('storage/' . $slider->bg_image) }}');
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            background-position: center center;
+                            height: 600px;
+                            width: 100%;
+                        ">
                                 <div class="container container-initial">
                                     <div class="ps-banner__block">
                                         <div class="ps-banner__content">
-                                            <h2 class="ps-banner__title">{{ $slider->title }}</h2>
-                                            <div class="ps-banner__desc">{{ $slider->subtitle }}</div>
+                                            <h2 class="ps-banner__title text-white">{{ $slider->title }}</h2>
+                                            <div class="ps-banner__desc text-white">{{ $slider->subtitle }}</div>
                                             <div class="ps-banner__btn-group">
-                                                <div class="ps-banner__btn">{{ $slider->badge }}</div>
+                                                <div class="ps-banner__btn text-white">{{ $slider->badge }}</div>
                                             </div>
                                             @if (!empty($slider->button_link) || !empty($slider->button_name))
                                                 <a class="bg-warning ps-banner__shop" href="{{ $slider->button_link }}">
@@ -58,8 +66,8 @@
                                             {{-- <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$25</div> --}}
                                         </div>
                                         <div class="ps-banner__thumnail">
-                                            <img class="ps-banner__round"
-                                                src="{{ asset('storage/' . $slider->bg_image) }}" alt="alt">
+                                            {{-- <img class="ps-banner__round"
+                                                src="{{ asset('storage/' . $slider->bg_image) }}" alt="alt"> --}}
                                             <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}"
                                                 alt="alt">
                                         </div>
@@ -197,8 +205,8 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="text-center"> <a class="ps-categories__show"
-                                href="{{ route('allproducts') }}">Show all</a>
+                        <div class="text-center"> <a class="ps-categories__show" href="{{ route('allproducts') }}">Show
+                                all</a>
                         </div>
                     </div>
                 </div>
@@ -346,37 +354,40 @@
                         @foreach ($deals->slice(0, 3) as $deal)
                             <div class="col-12 col-md-4">
                                 <div class="ps-promo__item">
-                                    @if ($deal->image)
-                                        <img class="ps-promo__banner"
-                                            src="{{ asset('storage/' . $deal->image) }}" alt="alt" />
-                                    @endif
-                                    <div class="ps-promo__content">
-                                        @if ($deal->badge)
-                                            <span
-                                                class="ps-promo__badge">{{ $deal->badge ?? round(100 - ($deal->offer_price / $deal->price) * 100) . '%' }}</span>
+                                    <a href="{{ route('product.details', $deal->product->slug) }}">
+                                        @if ($deal->image)
+                                            <img class="ps-promo__banner"
+                                                src="{{ asset('storage/' . $deal->image) }}" alt="alt" />
                                         @endif
-                                        <h4 class="text-white ps-promo__name">
-                                            {{ $deal->title }}
-                                        </h4>
-                                        @if ($deal->subtitle)
-                                            <p>{{ $deal->subtitle }}</p>
-                                        @endif
-                                        @if ($deal->offer_price && $deal->price)
-                                            <div class="ps-promo__meta">
-                                                <p class="ps-promo__price text-warning">£{{ $deal->offer_price }}
-                                                </p>
-                                                <p class="ps-promo__del text-white">£{{ $deal->price }}</p>
-                                            </div>
-                                        @endif
-                                        @if (!empty($deal->button_link))
-                                            <a class="btn-green ps-promo__btn"
-                                                href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
-                                        @elseif (!empty($deal->product_id))
-                                            <a class="btn-green ps-promo__btn"
-                                                href="{{ route('product.details', $deal->product->slug) }}">Buy
-                                                now</a>
-                                        @endif
-                                    </div>
+                                        <div class="ps-promo__content">
+                                            @if ($deal->badge)
+                                                <span
+                                                    class="ps-promo__badge">{{ $deal->badge ?? round(100 - ($deal->offer_price / $deal->price) * 100) . '%' }}</span>
+                                            @endif
+                                            <h4 class="text-white ps-promo__name">
+                                                {{ $deal->title }}
+                                            </h4>
+                                            @if ($deal->subtitle)
+                                                <p>{{ $deal->subtitle }}</p>
+                                            @endif
+                                            @if ($deal->offer_price && $deal->price)
+                                                <div class="ps-promo__meta">
+                                                    <p class="ps-promo__price text-warning">
+                                                        £{{ $deal->offer_price }}
+                                                    </p>
+                                                    <p class="ps-promo__del text-white">£{{ $deal->price }}</p>
+                                                </div>
+                                            @endif
+                                            @if (!empty($deal->button_link))
+                                                <a class="btn-green ps-promo__btn"
+                                                    href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
+                                            @elseif (!empty($deal->product_id))
+                                                <a class="btn-green ps-promo__btn"
+                                                    href="{{ route('product.details', $deal->product->slug) }}">Buy
+                                                    now</a>
+                                            @endif
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach

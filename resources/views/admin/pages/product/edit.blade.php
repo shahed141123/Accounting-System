@@ -442,6 +442,13 @@
                                             <div class="col-lg-6">
                                                 <div class="row">
                                                     <div class="col-lg-12">
+                                                        <x-metronic.label class="form-label">Weight
+                                                            (gm)</x-metronic.label>
+                                                        <x-metronic.input type="number" name="weight"
+                                                            id="weight" class="form-control mb-2"
+                                                            placeholder="1.5" :value="old('weight', $product->weight)"></x-metronic.input>
+                                                    </div>
+                                                    <div class="col-lg-12">
                                                         <x-metronic.label class="form-label">Length
                                                             (cm)</x-metronic.label>
                                                         <x-metronic.input type="number" name="length"

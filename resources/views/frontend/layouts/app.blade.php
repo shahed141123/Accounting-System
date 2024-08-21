@@ -45,6 +45,25 @@
             padding: 1.5rem;
         }
 
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Optionally hide the preloader after it has been hidden */
+        #main-content {
+            display: block;
+        }
+
         .swal2-confirm {
             margin-right: 1rem;
         }
@@ -56,25 +75,22 @@
 </head>
 
 <body>
-    <!-- Preloader -->
-    {{-- <div id="preloader">
-        <div class="preloader-inner">
-            <div class="spinner"></div>
-            <div class="loading-percentage" id="loadingPercentage">0%</div>
+    <!-- Preloader HTML -->
+    <div id="preloader">
+        <img width="100px" src="https://i.ibb.co/BgRh9tT/carrello-800600.gif" alt="Loading...">
+    </div>
+    <div id="main-content" style="display: none;">
+        <div class="ps-page">
+            {{-- Header --}}
+            @include('frontend.layouts.header')
+            {{-- Header --}}
+            {{ $slot }}
+            {{-- Footer --}}
+            @include('frontend.layouts.footer')
+            {{-- Footer --}}
         </div>
-    </div> --}}
-
-    <div class="ps-page">
-        {{-- Header --}}
-        @include('frontend.layouts.header')
-        {{-- Header --}}
-        {{ $slot }}
-        {{-- Footer --}}
-        @include('frontend.layouts.footer')
-        {{-- Footer --}}
     </div>
     @include('frontend.layouts.extra')
-
     <script src="{{ asset('frontend/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/popper.min.js') }}"></script>
@@ -90,26 +106,21 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
-
     @stack('scripts')
-    <!-- custom code-->
+    {{-- Preloader --}}
     <script>
-        $(window).on('load', function() {
-            $('#preloader').fadeOut('slow');
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set a timeout for 2 seconds
+            setTimeout(function() {
+                // Hide the preloader
+                document.getElementById('preloader').style.display = 'none';
+                // Show the main content
+                document.getElementById('main-content').style.display = 'block';
+            }, 2000); // 2000 milliseconds = 2 seconds
         });
-
-        // Simulate loading progress
-        let percentage = 0;
-
-        function updateLoadingProgress() {
-            percentage += 1;
-            $('#loadingPercentage').text(percentage + '%');
-            if (percentage < 100) {
-                setTimeout(updateLoadingProgress, 100); // Update every 100ms
-            }
-        }
-        updateLoadingProgress();
     </script>
+    {{-- Preloader End --}}
+    <!-- custom code-->
     <script>
         class Dashboard {
             constructor() {
@@ -141,7 +152,6 @@
             new Dashboard();
         });
     </script>
-
     {{-- add_to_cart_btn_product_single --}}
     <script>
         $(document).ready(function() {
@@ -225,8 +235,6 @@
             });
         });
     </script>
-
-
     <script>
         $(document).ready(function() {
             $('.add_to_cart').click(function(e) {
@@ -429,9 +437,7 @@
             });
         });
     </script>
-
     {{-- MiNiCart  --}}
-
     <script>
         function miniCart() {
 
@@ -498,7 +504,6 @@
 
         miniCart();
     </script>
-
     {{-- //MiNiCart Remove  --}}
 
     {{-- Search Script --}}

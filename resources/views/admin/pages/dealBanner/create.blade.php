@@ -1,6 +1,6 @@
 <x-admin-app-layout :title="'Deal Banner Create'">
     <div class="card card-flash">
-        <div class="card-header mt-6 bg-dark">
+        <div class="card-header mt-6">
             <div class="card-title">
                 <h1 class="text-white">Deal Banner Create</h1>
             </div>

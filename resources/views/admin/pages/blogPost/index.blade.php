@@ -21,8 +21,9 @@
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                 <thead class="">
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th width="5%">Sl No.</th>
-                        <th width="45%">Title</th>
+                        <th width="5%">Sl</th>
+                        <th width="10%" class="text-center">Image</th>
+                        <th width="35%">Title</th>
                         <th width="15%">Author</th>
                         <th width="10%">Create date</th>
                         <th width="12%">Status</th>
@@ -33,6 +34,11 @@
                     @foreach ($blogPosts as $post)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td class="text-center">
+                                <img class="w-50px h-50px"
+                                    src="{{ !empty(optional($post)->image) ? asset('storage/' . optional($post)->image) : asset('images/no_image.jpg') }}"
+                                    alt="{{ $post->page_name }}">
+                            </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->author }}</td>
                             <td>{{ $post->created_at->format('d-M-Y') }}</td>
