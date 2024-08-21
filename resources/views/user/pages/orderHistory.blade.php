@@ -36,12 +36,13 @@
                                             <th>Total Amount</th>
                                             <th>Payment Status</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- Example Row -->
                                         @foreach ($orders as $order)
-                                            <tr>
+                                            <tr class="text-start">
                                                 <td>{{ $order->order_number }}</td>
                                                 <td>{{ $order->created_at->format('d M, Y') }}</td>
                                                 <td>{{ $order->quantity }}</td>
@@ -75,6 +76,9 @@
                                                         <span
                                                             class="badge p-3 fs-7 badge-dangered">Returned</span>
                                                     @endif
+                                                </td>
+                                                <td class="text-center">
+
                                                 </td>
                                             </tr>
                                         @endforeach

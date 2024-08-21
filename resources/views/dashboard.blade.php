@@ -45,7 +45,8 @@
                                         </div>
                                         <div class="row g-0 option-wrap">
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="{{ route('user.order.history') }}" data-class="orders" class="tab-box">
+                                                <a href="{{ route('user.order.history') }}" data-class="orders"
+                                                    class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/1.svg') }}"
                                                         alt="shopping bag">
                                                     <h5>Order History</h5>
@@ -69,21 +70,24 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="{{ route('user.stock.history') }}" data-class="payment" class="tab-box">
+                                                <a href="{{ route('user.stock.history') }}" data-class="payment"
+                                                    class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/4.svg') }}" alt="payment">
                                                     <h5>Stock Availability</h5>
                                                     <p>Easily Check Stock Availability with Our User-Friendly Page.</p>
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="{{ route('user.product.data') }}" data-class="profile" class="tab-box">
+                                                <a href="{{ route('user.product.data') }}" data-class="profile"
+                                                    class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/5.svg') }}" alt="profile">
                                                     <h5>Product Data Download</h5>
                                                     <p>Search and Download Product Data or Images with Ease.</p>
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 col-xl-4">
-                                                <a href="{{ route('user.view.catalouge') }}" data-class="security" class="tab-box">
+                                                <a href="{{ route('user.view.catalouge') }}" data-class="security"
+                                                    class="tab-box">
                                                     <img src="{{ asset('frontend/img/icon/6.svg') }}" alt="security">
                                                     <h5>View Catalogue</h5>
                                                     <p>Download Our Next Year's Full PDF Catalog Here!</p>
@@ -1170,11 +1174,13 @@
         <section class="user-dashboard py-8">
             <div class="container">
                 <div>
-                    <h6 class="text-warning display-4 text-center">Please wait for Admin Varication. <br> You will get
-                        verified soon.
+                    <h6 class="text-warning display-4 text-center">Thank you for registering. <br> Our team is
+                        reviewing your information. You'll receive a confirmation email once your account is active.
                     </h6>
                     <div class="d-flex justify-content-center">
-                        <img class="img-fluid" src="https://cdni.iconscout.com/illustration/premium/thumb/wait-a-minute-6771645-5639826.png?f=webp" alt="">
+                        <img class="img-fluid" style="width: 100px;"
+                            src="https://cdni.iconscout.com/illustration/premium/thumb/wait-a-minute-6771645-5639826.png?f=webp"
+                            alt="">
                     </div>
                     <div class="w-25 mx-auto">
                         <a href="{{ route('home') }}" class="ps-btn ps-btn--warning">Back To Home</a>

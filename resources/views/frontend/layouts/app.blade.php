@@ -44,6 +44,14 @@
             font-size: 1.3rem !important;
             padding: 1.5rem;
         }
+
+        .swal2-confirm {
+            margin-right: 1rem;
+        }
+
+        .swal2-actions {
+            margin-bottom: 1.25rem;
+        }
     </style>
 </head>
 
@@ -191,19 +199,18 @@
                         }
                     },
                     error: function(xhr) {
-                        let errorMessage = 'Something went wrong!'; // Default message
+                        let errorMessage = 'An unexpected error occurred.';
 
                         // Check if the response is JSON and contains an error message
-                        if (xhr.responseJSON && xhr.responseJSON.message) {
-                            errorMessage = xhr.responseJSON.message;
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMessage = xhr.responseJSON.error;
                         } else if (xhr.responseText) {
                             try {
                                 let response = JSON.parse(xhr.responseText);
-                                if (response.message) {
-                                    errorMessage = response.message;
+                                if (response.error) {
+                                    errorMessage = response.error;
                                 }
                             } catch (e) {
-                                // If responseText is not JSON, use default message
                                 console.error('Error parsing response text:', e);
                             }
                         }
@@ -229,6 +236,7 @@
                 var qty = button.data('product_qty'); // Get the quantity value
                 var cartUrl = $(this).attr('href');
                 var cartHeader = $('.miniCart');
+
                 // Check if quantity is valid
                 if (qty <= 0) {
                     Swal.fire({
@@ -252,12 +260,8 @@
                             showConfirmButton: false,
                             timer: 3000
                         });
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success
-                        });
 
-                        if ($.isEmptyObject(data.error)) {
+                        if (data.success) {
                             Toast.fire({
                                 icon: 'success',
                                 title: data.success
@@ -266,7 +270,7 @@
                             button.text('Already added'); // Change button text
                             $(".cartCount").html(data.cartCount);
                             cartHeader.html(data.cartHeader);
-                        } else {
+                        } else if (data.error) {
                             Toast.fire({
                                 icon: 'error',
                                 title: data.error
@@ -274,19 +278,18 @@
                         }
                     },
                     error: function(xhr) {
-                        let errorMessage = 'Something went wrong!'; // Default message
+                        let errorMessage = 'An unexpected error occurred.';
 
                         // Check if the response is JSON and contains an error message
-                        if (xhr.responseJSON && xhr.responseJSON.message) {
-                            errorMessage = xhr.responseJSON.message;
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMessage = xhr.responseJSON.error;
                         } else if (xhr.responseText) {
                             try {
                                 let response = JSON.parse(xhr.responseText);
-                                if (response.message) {
-                                    errorMessage = response.message;
+                                if (response.error) {
+                                    errorMessage = response.error;
                                 }
                             } catch (e) {
-                                // If responseText is not JSON, use default message
                                 console.error('Error parsing response text:', e);
                             }
                         }
@@ -301,6 +304,59 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.add_to_cartPage').click(function(e) {
+                e.preventDefault(); // Prevent the default action of the link
+                var button = $(this);
+                var product_id = button.data('product_id');
+                var qty = button.data('product_qty'); // Get the quantity value
+                var cartUrl = $(this).attr('href');
+                var cartHeader = $('.miniCart');
+
+                // Check if quantity is valid
+                if (qty <= 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Invalid Quantity',
+                        text: 'Please select a valid quantity.'
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}", // Include CSRF token for security
+                        quantity: qty
+                    },
+                    url: cartUrl,
+                    dataType: 'json',
+                    success: function(data) {
+                        Swal.fire(
+                            'Added To Cart!',
+                            data.success,
+                            'success'
+                        ).then(function() {
+                            location.reload(); // Reload the page to reflect changes
+                        });
+                    },
+                    error: function(xhr) {
+                        console.log('AJAX Error Response:', xhr
+                            .responseText); // Log full response for debugging
+                        let errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr
+                            .responseJSON.error : 'An unexpected error occurred.';
+                        Swal.fire(
+                            'Oops...',
+                            errorMessage,
+                            'error'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             $('.add_to_wishlist').click(function(e) {
@@ -346,7 +402,7 @@
                         }
                     },
                     error: function(xhr) {
-                        let errorMessage = 'Something went wrong!'; // Default message
+                        let errorMessage = xhr.responseJSON.message; // Default message
 
                         // Check if the response is JSON and contains an error message
                         if (xhr.responseJSON && xhr.responseJSON.message) {
@@ -444,53 +500,7 @@
     </script>
 
     {{-- //MiNiCart Remove  --}}
-    <script>
-        function miniCartRemove(rowId) {
 
-            $.ajax({
-
-                type: 'GET',
-                url: '/minicart/product/remove/' + rowId,
-                dataType: 'json',
-                success: function(data) {
-
-                    miniCart();
-
-                    // Start Message
-
-                    const Toast = Swal.mixin({
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                    Toast.fire({
-                        icon: 'success',
-                        title: data.success
-                    });
-
-                    if ($.isEmptyObject(data.error)) {
-
-                        Toast.fire({
-                            type: 'success',
-                            title: data.success,
-                        })
-
-                    } else {
-
-                        Toast.fire({
-                            type: 'error',
-                            title: data.error,
-                        })
-                    }
-
-                    // End Message
-
-                }
-
-
-
-            })
-        }
-    </script>
     {{-- Search Script --}}
     <script>
         $(document).ready(function() {
@@ -542,6 +552,113 @@
         });
     </script>
 
+    <script>
+        $(document).on('click', '.delete', function(e) {
+            e.preventDefault();
+
+            var deleteUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn btn-danger',
+                    cancelButton: 'btn btn-success'
+                }
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: deleteUrl,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(data) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            ).then(function() {
+                                location.reload();
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire(
+                                'Error Occurred!',
+                                error,
+                                'error'
+                            );
+                        }
+                    });
+                } else if (result.dismiss === swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    );
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#update-cart').click(function() {
+                var cartItems = [];
+
+                // Collect all quantities and row IDs
+                $('.quantity').each(function() {
+                    var rowId = $(this).data(
+                        'row_id'); // Use data-row_id as specified in your Blade file
+                    var qty = $(this).val();
+
+                    // Ensure rowId and qty are valid
+                    if (rowId && !isNaN(qty) && qty >= 0) {
+                        cartItems.push({
+                            rowId: rowId,
+                            qty: parseInt(qty, 10) // Ensure qty is an integer
+                        });
+                    }
+                });
+
+                // Send the updated quantities to the server
+                $.ajax({
+                    url: "{{ route('cart.update') }}",
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        items: cartItems
+                    },
+                    success: function(data) {
+                        Swal.fire(
+                            'Updated!',
+                            data.success,
+                            'success'
+                        ).then(function() {
+                            location.reload(); // Reload the page to reflect changes
+                        });
+                    },
+                    error: function(xhr) {
+                        console.log('AJAX Error Response:', xhr
+                            .responseText); // Log full response for debugging
+                        let errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr
+                            .responseJSON.error : 'An unexpected error occurred.';
+                        Swal.fire(
+                            'Oops...',
+                            errorMessage,
+                            'error'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
     {{-- add_to_cart_btn_product_single --}}
 </body>
 

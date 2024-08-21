@@ -35,6 +35,11 @@ Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('ca
 Route::get('allproducts', [ShopController::class, 'allproducts'])->name('allproducts');
 Route::get('/products/filter', [ShopController::class, 'filterProducts'])->name('products.filter');
 Route::post('global-search', [HomeController::class, 'globalSearch'])->name('global.search');
+
+Route::delete('wishlist/delete/{id}', [CartController::class, 'wishlistDestroy'])->name('wishlist.destroy');
+Route::delete('cart/delete/{rowId}', [CartController::class, 'cartDestroy'])->name('cart.destroy');
+Route::delete('cart/clear', [CartController::class, 'cartClear'])->name('cart.clear');
+Route::post('cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 // Route::get('/filter-products', [filterProducts::class, 'filterProducts'])->name('filterProducts');
 
 

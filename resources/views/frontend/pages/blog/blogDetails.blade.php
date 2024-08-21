@@ -77,7 +77,7 @@
                         <div class="ps-widget ps-widget--blog">
                             <div class="ps-product--extension">
                                 <div class="ps-product__delivery">
-                                    <div class="ps-delivery__item"><i class="icon-wallet"></i>100% Money back</div>
+                                    <div class="ps-delivery__item"><i class="icon-wallet"></i>100% Money back Guaranteed</div>
                                     <div class="ps-delivery__item"><i class="icon-bag2"></i>Non-contact shipping</div>
                                     <div class="ps-delivery__item"><i class="icon-refresh"></i>Minimum Order Quantity
                                         Over £500</div>

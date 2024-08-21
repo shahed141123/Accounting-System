@@ -59,7 +59,7 @@
             <div class="row m-0">
                 <div class="col-12 col-sm-4 p-0">
                     <p class="text-center"><a class="ps-footer__link" href="#"><i class="icon-wallet"></i>100% Money
-                            back</a></p>
+                            back Guaranteed</a></p>
                 </div>
                 <div class="col-12 col-sm-4 p-0">
                     <p class="text-center"><a class="ps-footer__link" href="#"><i

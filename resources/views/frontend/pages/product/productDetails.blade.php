@@ -41,38 +41,60 @@
                                         </div>
                                         <table class="table ps-table ps-table--oriented m-0">
                                             <tbody>
-                                                <tr>
-                                                    <th class="ps-table__th">CODE</th>
-                                                    <td>{{ $product->sku_code }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">BARCODE </th>
-                                                    <td>{{ $product->barcode_id }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">Length </th>
-                                                    <td>{{ $product->length }} cm</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">Width </th>
-                                                    <td>{{ $product->width }} cm</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">Height </th>
-                                                    <td>{{ $product->height }} cm</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">BRAND </th>
-                                                    <td>{{ optional($product->brand)->name }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">NO. OF CARTONS </th>
-                                                    <td>{{ $product->box_stock }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="ps-table__th">PALLET QUANTITY </th>
-                                                    <td>{{ $product->box_stock * $product->box_contains }}</td>
-                                                </tr>
+                                                @if (!empty($product->sku_code ))
+                                                    <tr>
+                                                        <th class="ps-table__th">CODE</th>
+                                                        <td>{{ $product->sku_code }}</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty($product->barcode_id ))
+                                                    <tr>
+                                                        <th class="ps-table__th">BARCODE </th>
+                                                        <td>{{ $product->barcode_id }}</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty($product->weight))
+                                                    <tr>
+                                                        <th class="ps-table__th">Weight </th>
+                                                        <td>{{ $product->weight }} gm</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty($product->length))
+                                                    <tr>
+                                                        <th class="ps-table__th">Length </th>
+                                                        <td>{{ $product->length }} cm</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty($product->width))
+                                                    <tr>
+                                                        <th class="ps-table__th">Width </th>
+                                                        <td>{{ $product->width }} cm</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty($product->height))
+                                                    <tr>
+                                                        <th class="ps-table__th">Height </th>
+                                                        <td>{{ $product->height }} cm</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty(optional($product->brand)->name))
+                                                    <tr>
+                                                        <th class="ps-table__th">BRAND </th>
+                                                        <td>{{ optional($product->brand)->name }}</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty($product->box_stock))
+                                                    <tr>
+                                                        <th class="ps-table__th">NO. OF CARTONS </th>
+                                                        <td>{{ $product->box_stock }}</td>
+                                                    </tr>
+                                                @endif
+                                                @if (!empty($product->box_stock) && !empty($product->box_contains))
+                                                    <tr>
+                                                        <th class="ps-table__th">PALLET QUANTITY </th>
+                                                        <td>{{ $product->box_stock * $product->box_contains }}</td>
+                                                    </tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                         <div class="ps-product__group mt-20">
@@ -154,7 +176,7 @@
                                 @endif
 
                                 <ul class="ps-product__bundle">
-                                    <li><i class="icon-wallet"></i>100% Money back</li>
+                                    <li><i class="icon-wallet"></i>100% Money back Guaranteed</li>
                                     <li><i class="icon-bag2"></i>Non-contact shipping</li>
                                     <li><i class="icon-truck"></i>Free delivery order over £500</li>
                                 </ul>

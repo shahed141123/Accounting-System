@@ -5,7 +5,7 @@
                 <li>
                     <div class="ps-product ps-product--wishlist">
                         <div class="ps-product__remove">
-                            <a href="javascript:void(0)" class="remove-from-cart" data-cart-item-id="{{ $item->rowId }}">
+                            <a href="{{ route('cart.destroy', $item->rowId) }}" class="remove-from-cart delete">
                                 <i class="icon-cross"></i>
                             </a>
                         </div>
@@ -57,7 +57,6 @@
             @endforeach
         </ul>
 
-
         <div class="ps-shopping__table">
             <table class="table ps-table ps-table--product">
                 <thead>
@@ -74,8 +73,7 @@
                     @foreach ($cartItems as $item)
                         <tr>
                             <td class="ps-product__remove">
-                                <a href="javascript:void(0)" class="remove-from-cart"
-                                    data-cart-item-id="{{ $item->rowId }}">
+                                <a href="{{ route('cart.destroy', $item->rowId) }}" class="remove-from-cart delete">
                                     <i class="icon-cross"></i>
                                 </a>
                             </td>
@@ -100,29 +98,23 @@
                                         <i class="icon-minus"></i>
                                     </button>
                                     <input class="quantity" min="0" name="quantity" value="{{ $item->qty }}"
-                                        type="number" />
+                                        type="number" data-row_id="{{ $item->rowId }}" />
                                     <button class="plus"
                                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                         <i class="icon-plus"></i>
                                     </button>
                                 </div>
                             </td>
-                            <td class="ps-product__subtotal">£{{ $item->price * $item->qty }}
-                            </td>
+                            <td class="ps-product__subtotal">£{{ $item->price * $item->qty }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
         <div class="ps-shopping__footer">
-
             <div class="ps-shopping__button">
-                <button class="ps-btn ps-btn--primary" type="button">
-                    Clear All
-                </button>
-                <button class="ps-btn ps-btn--primary" type="button">
-                    Update cart
-                </button>
+                <a href="{{ route('cart.clear') }}" class="ps-btn ps-btn--primary delete">Clear All</a>
+                <button class="ps-btn ps-btn--primary" type="button" id="update-cart">Update cart</button>
             </div>
         </div>
     </div>
@@ -140,7 +132,7 @@
                 <div class="ps-shopping__price">£{{ Cart::subtotal() }}</div>
             </div>
             <div class="ps-shopping__checkout">
-                    <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Proceed to checkout</a>
+                <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Proceed to checkout</a>
                 <a class="ps-shopping__link" href="{{ route('allproducts') }}">Continue To Shopping</a>
             </div>
         </div>

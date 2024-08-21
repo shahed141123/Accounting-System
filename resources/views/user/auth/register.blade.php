@@ -120,8 +120,7 @@
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="zipcode" class="form-control ps-form__input" type="text"
-                                            :value="old('zipcode')" name="zipcode" autocomplete="zipcode"
-                                            pattern="\d{5}(-\d{4})?" required />
+                                            :value="old('zipcode')" name="zipcode" autocomplete="zipcode" required />
                                     </div>
                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
                                 </div>

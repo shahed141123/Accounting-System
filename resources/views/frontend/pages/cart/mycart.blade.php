@@ -91,7 +91,7 @@
                                                         </div>
                                                     @endif
                                                     <a href="{{ route('cart.store', $related_product->id) }}"
-                                                        class="btn ps-btn--warning my-3 btn-block add_to_cart"
+                                                        class="btn ps-btn--warning my-3 btn-block add_to_cartPage"
                                                         data-product_id="{{ $related_product->id }}"
                                                         data-product_qty="1">Add To
                                                         Cart</a>

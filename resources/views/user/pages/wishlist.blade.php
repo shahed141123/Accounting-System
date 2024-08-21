@@ -145,8 +145,9 @@
                                                             data-product_qty="1">Add To Cart</a>
                                                     </td>
                                                     <td>
-
-                                                        <a href="#"><i class="icon-cross"></i></a>
+                                                        <a class="delete" href="{{ route('wishlist.destroy',$wishlist->id) }}">
+                                                            <i class="icon-cross"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach

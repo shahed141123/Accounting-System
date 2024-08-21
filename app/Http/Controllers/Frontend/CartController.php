@@ -27,32 +27,33 @@ class CartController extends Controller
             $product = Product::findOrFail($id);
             $quantity = $request->input('quantity', 1); // Default to 1 if no quantity is provided
 
-            // Add the product to the cart
+            if (!empty($product->box_price) || !empty($product->box_discount_price)) {
+                Cart::instance('cart')->add([
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'qty' => $quantity,
+                    'price' => !empty($product->box_discount_price) ? $product->box_discount_price : $product->box_price,
+                ])->associate('App\Models\Product');
 
-            Cart::instance('cart')->add([
-                'id' => $product->id,
-                'name' => $product->name,
-                'qty' => $quantity,
-                'price' => $product->box_price
-            ])->associate('App\Models\Product');
+                // Get the updated cart content
+                $data = [
+                    'cartItems' => Cart::instance('cart')->content(),
+                    'total'     => Cart::instance('cart')->total(),
+                    'cartCount' => Cart::instance('cart')->count(),
+                    'subTotal'  => Cart::instance('cart')->subtotal(),
+                ];
 
-            // Get the updated cart content
-
-            $data = [
-                'cartItems' => Cart::instance('cart')->content(),
-                'total'     => Cart::instance('cart')->total(),
-                'cartCount' => Cart::instance('cart')->count(),
-                'subTotal'  => Cart::instance('cart')->subtotal(),
-            ];
-
-
-
-            // Return the JSON response with cart data
-            return response()->json([
-                'success' => 'Successfully added to your cart.',
-                'cartCount' => $data['cartCount'],
-                'cartHeader' => view('frontend.pages.cart.partials.minicart', $data)->render(),
-            ]);
+                // Return the JSON response with cart data
+                return response()->json([
+                    'success' => 'Successfully added to your cart.',
+                    'cartCount' => $data['cartCount'],
+                    'cartHeader' => view('frontend.pages.cart.partials.minicart', $data)->render(),
+                ]);
+            } else {
+                return response()->json([
+                    'error' => 'Failed to add this product to your cart. Contact our support team.'
+                ], 500);
+            }
         } catch (\Exception $e) {
             // Return an error response if something goes wrong
             return response()->json([
@@ -60,6 +61,9 @@ class CartController extends Controller
             ], 500);
         }
     }
+
+
+
     public function wishListStore(Request $request, $id)
     {
         try {
@@ -290,8 +294,51 @@ class CartController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
 
-                    Session::flash('error', $e->getMessage());
+            Session::flash('error', $e->getMessage());
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+        }
+    }
+
+    public function wishlistDestroy(string $id)
+    {
+        Wishlist::findOrFail($id)->delete();
+    }
+
+    public function cartDestroy(string $rowId)
+    {
+        Cart::instance('cart')->remove($rowId);
+    }
+
+    public function cartClear()
+    {
+        Cart::instance('cart')->destroy();
+    }
+
+    public function updateCart(Request $request)
+    {
+        try {
+            $items = $request->input('items');
+            if (!is_array($items)) {
+                throw new \Exception('Invalid data format');
+            }
+
+            foreach ($items as $item) {
+                $rowId = $item['rowId'];
+                $quantity = $item['qty'];
+                if (empty($rowId) || !is_numeric($quantity)) {
+                    throw new \Exception('Invalid item data');
+                }
+                Cart::instance('cart')->update($rowId, $quantity);
+            }
+
+            return response()->json([
+                'success' => 'Cart updated successfully.',
+            ], 200);
+        } catch (\Exception $e) {
+            // \Log::error('Cart update error: ' . $e->getMessage());
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
 }

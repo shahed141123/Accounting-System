@@ -17,7 +17,7 @@
                             <span class="ps-product__price">£{{ $item->price }}</span>
                         </p>
                     </div>
-                    <a class="ps-product__remove" href="javascript: void(0)">
+                    <a class="ps-product__remove delete" href="{{ route('cart.destroy',$item->rowId ) }}">
                         <i class="icon-cross"></i>
                     </a>
                 </div>
