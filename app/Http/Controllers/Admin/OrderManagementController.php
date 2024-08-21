@@ -22,11 +22,11 @@ class OrderManagementController extends Controller
         return view('admin.pages.orderManagement.index', $data);
     }
 
-    public function orderDetails()
+    public function orderDetails($id)
     {
 
         $data = [
-            'order' => Order::with('orderItems')->first(),
+            'order' => Order::with('orderItems','user')->where('id',$id)->first(),
         ];
         return view('admin.pages.orderManagement.orderDetails', $data);
     }
