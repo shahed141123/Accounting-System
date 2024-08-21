@@ -10,7 +10,7 @@
                     @foreach ($blog_posts as $blog_post)
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail">
+                                <div class="ps-blog__thumbnail blogs-all">
                                     <a href="{{ route('blog.details', $blog_post->slug) }}">
                                         <img src="{{ asset('storage/' . $blog_post->image) }}" alt="alt" />
                                     </a>

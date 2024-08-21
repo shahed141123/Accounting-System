@@ -26,11 +26,12 @@
                 <thead class="bg-light-danger">
                     <tr class=" text-white fw-bolder fs-7 text-uppercase gs-0">
                         <th width="5%">Sl</th>
-                        <th width="10%" class="text-center">Thumbnail Image</th>
+                        <th width="10%" class="text-center">Deal Image</th>
                         {{-- <th width="10%" class="text-center">Background Image</th> --}}
                         <th width="45%">Product Name</th>
                         <th width="10%">Price</th>
                         <th width="10%">Offer Preice</th>
+                        <th width="10%">Status</th>
                         <th width="10%" class="text-end">Action</th>
                     </tr>
                 </thead>
@@ -51,7 +52,7 @@
                                         src="{{ !empty(optional($banner)->bg_image) ? asset('storage/' . optional($banner)->bg_image) : asset('images/no_image.jpg') }}"
                                         alt="{{ $banner->page_name }}">
                                 </td> --}}
-                                <td class="text-center">
+                                <td>
                                     {{ $banner->product->name }}
                                 </td>
                                 <td>
@@ -59,6 +60,9 @@
                                 </td>
                                 <td>
                                     {{ $banner->offer_price }}
+                                </td>
+                                <td>
+                                    <span class="text-capitalize">{{ $banner->status }}</span>
                                 </td>
                                 <td class="text-end">
 

@@ -7499,6 +7499,11 @@ textarea.form-control {
     transform: scale(1.1, 1.1);
 }
 
+.blogs-all img{
+    height: 285px;
+    object-fit: cover;
+    width: 100%;
+}
 .ps-blog--latset .ps-blog__content {
     padding: 20px 0;
     color: #5b6c8f;
