@@ -1,5 +1,5 @@
 <x-frontend-app-layout :title="'User Dashboard'">
-    <div class="breadcrumb-wrap">
+    {{-- <div class="breadcrumb-wrap">
         <div class="banner b-top bg-size bread-img">
             <img class="bg-img bg-top" src="img/banner-p.jpg" alt="banner" style="display: none;">
             <div class="container-lg">
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     @if (Auth::user()->status == 'active')
         <div class="ps-account">
             <section class="user-dashboard py-8">
@@ -31,7 +31,12 @@
                                     aria-labelledby="dashboard-tab">
                                     <div class="dashboard-tab">
                                         <div class="title-box3">
-                                            <h3>Welcome Back {{ Auth::user()->name }}</h3>
+                                            <div class="title-box3 text-center">
+                                                <h1>
+                                                    <span class="text-info">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
+                                                    <br>Welcome To Your Dashboard
+                                                </h1>
+                                            </div>
                                             <p>
                                                 Welcome to your account page, where you can manage your Trade Account
                                                 effortlessly. Here, you can view your order history, update your
