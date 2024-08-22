@@ -138,6 +138,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
     Route::controller(StockManagementController::class)->group(function () {
         Route::get('/stock-management', 'index')->name('stock-management.index');
+        Route::put('/stock/update/{id}', 'stockUpdate')->name('stock.update');
     });
     // Route::controller(ShippingManagementController::class)->group(function () {
     //     Route::get('/shipping-management', 'index')->name('shipping-management.index');

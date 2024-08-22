@@ -73,14 +73,14 @@
                         action="{{ route('admin.blog-category.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="fv-row mb-5">
-                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Blog Category Name</x-metronic.label>
+                            <x-metronic.label class="required fw-semibold fs-6 mb-2">Name</x-metronic.label>
                             <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
-                                placeholder="Set Blog Category Name" :valu="old('name')" />
+                                placeholder="Set Blog Category Name" :value="old('name')" />
                         </div>
                         <div class="fv-row mb-5">
-                            <x-metronic.label class="fw-semibold fs-6 mb-2">Blog Meta Title</x-metronic.label>
+                            <x-metronic.label class="fw-semibold fs-6 mb-2">Meta Title</x-metronic.label>
                             <x-metronic.input type="text" name="meta_title" class="form-control mb-3 mb-lg-0"
-                                placeholder="Set Blog Meta Title" :valu="old('meta_title')" />
+                                placeholder="Set Blog Meta Title" :value="old('meta_title')" />
                         </div>
                         <div class="fv-row mb-5">
                             <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Category Image/icon') }}
@@ -102,7 +102,7 @@
                             <x-metronic.label class="fw-semibold fs-6 mb-2">Description</x-metronic.label>
                             <x-metronic.textarea class="form-control" placeholder="Set The Description"
                                 name="description" id="floatingTextarea2" style="height: 100px"
-                                :valu="old('description')"></x-metronic.textarea>
+                                :value="old('description')"></x-metronic.textarea>
                         </div>
                         <div class="d-flex justify-content-end">
                             {{-- <button id="kt_docs_formvalidation_text_submit" type="submit" class="btn btn-primary">
@@ -137,14 +137,14 @@
                             @csrf
                             @method('PUT')
                             <div class="fv-row mb-5">
-                                <x-metronic.label class="required fw-semibold fs-6 mb-2">Title</x-metronic.label>
+                                <x-metronic.label class="required fw-semibold fs-6 mb-2">Name</x-metronic.label>
                                 <x-metronic.input type="text" name="name" class="form-control mb-3 mb-lg-0"
-                                    placeholder="Set Title" :valu="old('name',$category->name)" />
+                                    placeholder="Set Name" :value="old('name',$category->name)" />
                             </div>
                             <div class="fv-row mb-5">
                                 <x-metronic.label class="fw-semibold fs-6 mb-2">Meta Title</x-metronic.label>
                                 <x-metronic.input type="text" name="meta_title" class="form-control mb-3 mb-lg-0"
-                                    placeholder="Set Meta Title" :valu="old('meta_title',$category->meta_title)" />
+                                    placeholder="Set Meta Title" :value="old('meta_title',$category->meta_title)" />
                             </div>
                             <div class="fv-row mb-5">
                                 <x-metronic.label for="image" class="col-form-label fw-bold fs-6 ">{{ __('Blog Image') }}
@@ -166,7 +166,7 @@
                                 <x-metronic.label class="fw-semibold fs-6 mb-2">Description</x-metronic.label>
                                 <x-metronic.textarea class="form-control" placeholder="Set The Description"
                                     name="description" id="floatingTextarea2" style="height: 100px"
-                                    :valu="old('description')">{!! $category->description !!}</x-metronic.textarea>
+                                    :value="old('description')">{!! $category->description !!}</x-metronic.textarea>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">

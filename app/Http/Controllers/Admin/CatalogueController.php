@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class CatalogueController extends Controller
 {
@@ -12,6 +13,12 @@ class CatalogueController extends Controller
      */
     public function index()
     {
+        $data = [
+            'catalogues' => DB::table('catalogues')->select('id', 'name')->latest('id')->get(),
+            'products'   => DB::table('products')->select('id', 'name')->latest('id')->get(),
+            'brands'     => DB::table('brands')->select('id', 'name')->latest('id')->get(),
+            'categories' => DB::table('categories')->select('id', 'name')->latest('id')->get(),
+        ];
         return view('admin.pages.catalogue.index');
     }
 

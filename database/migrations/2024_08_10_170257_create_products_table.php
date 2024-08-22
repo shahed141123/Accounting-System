@@ -31,10 +31,10 @@ return new class extends Migration
             $table->string('warranty')->nullable();
             $table->string('thumbnail', 255)->nullable();
             $table->integer('box_contains')->nullable();
-            $table->decimal('box_price', 8, 2)->nullable();
-            $table->decimal('box_discount_price', 8, 2)->nullable();
-            $table->decimal('unit_price', 8, 2)->nullable();
-            $table->decimal('unit_discount_price', 8, 2)->nullable();
+            $table->double('box_price')->nullable();
+            $table->double('box_discount_price')->nullable();
+            $table->double('unit_price')->nullable();
+            $table->double('unit_discount_price')->nullable();
             $table->string('product_type')->nullable();
             $table->integer('box_stock')->nullable();
             $table->integer('stock')->nullable();

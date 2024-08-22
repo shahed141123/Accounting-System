@@ -216,11 +216,11 @@ class ProductController extends Controller
                 'width'                     => $request->input('width'),
                 'height'                    => $request->input('height'),
                 'brand_id'                  => $request->input('brand_id'),
-                'create_date'               => Carbon::now(),
+                'create_date'               => $product->create_date,
                 'meta_title'                => $request->input('meta_title'),
                 'meta_description'          => $request->input('meta_description'),
                 'meta_keywords'             => $request->input('meta_keywords'),
-                'added_by'                  => Auth::guard('admin')->user()->id,
+                // 'added_by'                  => Auth::guard('admin')->user()->id,
                 'status'                    => $request->input('status'),
             ]);
 

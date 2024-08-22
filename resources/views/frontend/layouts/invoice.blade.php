@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-5 pt-5">
+        <div class="row mt-3 pt-3">
             <div class="col-lg-12">
                 <p class="text-center">
                     <i class="fa-solid fa-file"></i> <strong>NOTE:</strong> This is a
@@ -180,10 +180,7 @@
         const originalContents = document.body.innerHTML;
 
         const printWindow = window.open('', '', 'height=800,width=600');
-        printWindow.document.write('<html><head><title>Print Invoice</title>');
-        printWindow.document.write('</head><body >');
         printWindow.document.write(printContents);
-        printWindow.document.write('</body></html>');
         printWindow.document.close();
         printWindow.focus();
         printWindow.print();

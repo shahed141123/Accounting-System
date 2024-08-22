@@ -57,7 +57,7 @@ class CartController extends Controller
         } catch (\Exception $e) {
             // Return an error response if something goes wrong
             return response()->json([
-                'error' => 'Failed to add to your cart. Please try again later.'
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

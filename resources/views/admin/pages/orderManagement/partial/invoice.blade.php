@@ -6,7 +6,7 @@
 
                 <div class="modal-body">
                     <div class="card" id="invoiceContent{{ $order->id }}">
-                        <div class="card-body">
+                        <div class="card-body card-print">
                             <div class="mx-auto w-100">
                                 <div class="d-flex justify-content-between flex-column flex-sm-row mb-19">
                                     <h4 class="fw-bolder text-gray-800 fs-2qx pe-5 pb-7">INVOICE</h4>
@@ -152,12 +152,12 @@
 
                                 <div class="d-flex flex-stack flex-wrap mt-lg-10 pt-05">
                                     <div class="my-1 me-5">
-                                        <button type="button" class="btn btn-success my-1 me-5"
-                                            onclick="printInvoice({{ $order->id }})">
-                                            Print Invoice
+                                        <button class="btn btn-info print p-3" onclick="printInvoice()">
+                                            <i class="fa-solid fa-print"></i> Print Invoice
                                         </button>
-
-                                        <button type="button" class="btn btn-light-success my-1">Download</button>
+                                        <button class="btn btn-info ml-3 p-3" onclick="downloadInvoice()">
+                                            <i class="fa-solid fa-file-download"></i> Download Invoice
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -169,3 +169,42 @@
         </div>
     </div>
 @endforeach
+
+
+{{-- <script>
+    function downloadInvoice() {
+        const invoice = document.querySelector('.card-print'); // Select the invoice element
+        html2pdf(invoice, {
+            margin: 10,
+            filename: `Invoice-${Date.now()}.pdf`,
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'mm',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        });
+    }
+</script>
+<script>
+    function printInvoice() {
+        const printContents = document.querySelector('.card-print').innerHTML;
+        const originalContents = document.body.innerHTML;
+
+        const printWindow = window.open('', '', 'height=800,width=600');
+        printWindow.document.write('<html><head><title>Print Invoice</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(printContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    }
+</script> --}}

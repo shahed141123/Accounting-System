@@ -83,7 +83,7 @@
                                     <i class="fa-solid fa-pen" title="User Edit"></i>
                                 </a>
                                 <a href="{{ route('admin.user.destroy', $user->id) }}"
-                                    class="btn btn-sm btn-icon btn-danger btn-active-light-danger toggle h-30px w-30px">
+                                    class="btn btn-sm btn-icon btn-danger btn-active-light-danger toggle h-30px w-30px delete">
                                     <i class="fa-solid fa-trash-alt" title="User Delete"></i>
                                 </a>
 

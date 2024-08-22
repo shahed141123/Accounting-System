@@ -37,7 +37,8 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="p-5">
-                        <div class="card bg-white p-0">
+                        @include('frontend.layouts.invoice')
+                        {{-- <div class="card bg-white p-0">
                             <div class="card-header bg-white border-0 p-5">
                                 <div class="row mt-5">
                                     <div class="col-lg-6">
@@ -58,7 +59,6 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-8">
-                                        {{-- <p class="mb-0 p-3 text-right">Date: {{ $order->created_at->format('d/m/Y') }}</p> --}}
                                         <p class="mb-0 p-3 text-right">Date: {{ $order->created_at->format('d M, Y') }}</p>
                                     </div>
                                 </div>
@@ -189,7 +189,7 @@
                             <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
                                 © Piqpaq, LTD 2024.
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

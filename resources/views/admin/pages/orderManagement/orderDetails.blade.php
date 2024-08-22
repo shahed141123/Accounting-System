@@ -238,11 +238,11 @@
                                 <div class="card-title">
                                     <h2>Order #{{ $order->order_number }}</h2>
                                 </div>
-                                <div class="card-title">
+                                {{-- <div class="card-title">
                                     <a href="javascript:void(0)" class="btn btn-sm fw-bold btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#printInovice"> <i
                                             class="fa-solid fa-print"></i> Print Or Download </a>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="card-body pt-0">
                                 <div class="table-responsive">

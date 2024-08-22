@@ -145,12 +145,12 @@
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
                                     <i class="fa-solid fa-eye" title="Order Details"></i>
                                 </a>
-                                <a href="javascript:void(0)">
+                                {{-- <a href="javascript:void(0)">
                                     <button
                                         class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
                                         <i class="fa-solid fa-file-download"></i>
                                     </button>
-                                </a>
+                                </a> --}}
                                 <button type="button"
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                     data-kt-docs-datatable-subtable="expand_row">

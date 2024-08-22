@@ -542,6 +542,78 @@
                     }
                 });
             }
+
+            function addToCartShop(event, product_id) {
+                event.preventDefault(); // Prevent the default action of the link
+
+                var $quantityInput = $(event.target).closest('.ps-product').find('.quantity');
+                var qty = $quantityInput.val();
+                var cartHeader = $('.miniCart');
+                // Check if quantity is valid
+                if (qty <= 0 || isNaN(qty)) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Invalid Quantity',
+                        text: 'Please select a valid quantity.'
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/cart/store/' + product_id,
+                    data: {
+                        _token: "{{ csrf_token() }}", // Include CSRF token for security
+                        quantity: qty
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        const Toast = Swal.mixin({
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            });
+
+                            // Update mini cart
+                            cartHeader.html(data.cartHeader);
+                            $(".cartCount").html(data.cartCount);
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        let errorMessage = 'An unexpected error occurred.';
+
+                        // Check if the response is JSON and contains an error message
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMessage = xhr.responseJSON.error;
+                        } else if (xhr.responseText) {
+                            try {
+                                let response = JSON.parse(xhr.responseText);
+                                if (response.error) {
+                                    errorMessage = response.error;
+                                }
+                            } catch (e) {
+                                console.error('Error parsing response text:', e);
+                            }
+                        }
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: errorMessage
+                        });
+                    }
+                });
+            }
         </script>
         <script>
             $(document).ready(function() {
