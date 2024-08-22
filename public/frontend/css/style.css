@@ -7490,6 +7490,7 @@ textarea.form-control {
 }
 
 .ps-blog--latset .ps-blog__thumbnail img {
+    height: 250px;
     border-radius: 4px;
     width: 100%;
     transition: 500ms ease;
@@ -18036,7 +18037,4 @@ table.dataTable tbody td:last-child {
     height: 100%;
     border: 2px solid #eee;
     padding: 0;
-}
-td{
-    vertical-align: middle !important;
 }
