@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header align-items-center">
         <h3 class="fw-bold my-2">
-            User({{ $user->first_name }} {{ $user->last_name }}) Overview
+            User(<span class="text-info">{{ $user->first_name }} {{ $user->last_name }}</span>) Overview
         </h3>
     </div>
     <div class="card-body">

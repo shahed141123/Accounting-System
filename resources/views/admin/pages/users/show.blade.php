@@ -14,10 +14,10 @@
                         {{-- <div class="mb-9">
                             <div class="badge badge-lg badge-light-primary d-inline">Roles</div>
                         </div> --}}
-                        <div class="fw-bolder mb-3">{{ $user->first_name }} {{ $user->last_name }}
+                        <div class="fw-bolder mb-3 fs-3">{{ $user->first_name }} {{ $user->last_name }}
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
                                 data-bs-trigger="hover" data-bs-html="true"
-                                data-bs-content="Number of support tickets assigned, closed and pending this week."></i>
+                                data-bs-content="Your Profile Name"></i>
                         </div>
                     </div>
                     <div class="separator"></div>
@@ -47,13 +47,13 @@
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold align-items-center"
                         role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-active-primary px-4 py-3 active" data-kt-countup-tabs="true"
+                            <a class="nav-link text-active-primary px-4 py-3 active rounded-3" data-kt-countup-tabs="true"
                                 data-bs-toggle="tab" href="#kt_user_view_overview_tab" aria-selected="true"
                                 role="tab" tabindex="-1">Overview</a>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-active-primary px-4 py-3" data-bs-toggle="tab"
+                            <a class="nav-link text-active-primary px-4 py-3 rounded-3 ms-0" data-bs-toggle="tab"
                                 href="#kt_user_view_overview_details" aria-selected="false" role="tab"
                                 tabindex="-1">Details</a>
                         </li>
