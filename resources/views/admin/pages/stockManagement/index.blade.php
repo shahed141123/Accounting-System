@@ -15,8 +15,7 @@
                     <tr class="fw-bold fs-6 text-center text-gray-800 px-7">
                         <th width="5%">ID</th>
                         <th width="8%">Image</th>
-                        <th width="%">Product Name</th>
-                        <th width="10%">View</th>
+                        <th width="43%">Product Name</th>
                         <th width="10%">QTY</th>
                         <th width="12%">Price</th>
                         <th width="12%">Created</th>
@@ -25,7 +24,7 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
-                        <tr>
+                        <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="symbol symbol-50px me-3">
@@ -33,16 +32,36 @@
                                         alt="">
                                 </div>
                             </td>
-                            <td>{{ $product->name }}</td>
-                            <td>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#stockMethodsEdit">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
+                            <td class="text-start">{{ $product->name }}</td>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="stockMethodsEdit" tabindex="-1"
+                            <td class="text-center">
+                                @if (!empty($product->box_stock) && $product->box_stock > 0)
+                                    <span class="badge bg-success">
+                                        {{ $product->box_stock }} In Stock</span>
+                                @else
+                                    <span class="badge bg-danger">Out Of
+                                        Stock</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if (!empty($product->box_discount_price))
+                                    <div class="">
+                                        <span class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
+                                        <span class="ps-product__del">£{{ $product->box_price }}</span>
+                                    </div>
+                                @else
+                                    <div class="">
+                                        <span class="ps-product__price sale">£{{ $product->box_price }}</span>
+                                    </div>
+                                @endif
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d M, Y') }}</td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#stockMethodsEdit-{{ $product->id }}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <div class="modal fade" id="stockMethodsEdit-{{ $product->id }}" tabindex="-1"
                                     aria-labelledby="stockMethodsEditLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -54,13 +73,12 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form id="kt_docs_formvalidation_text" class="form" action="#"
-                                                    autocomplete="off">
+                                                <form class="form" action="#" autocomplete="off" >
                                                     <div class="fv-row mb-10 text-center">
                                                         <div class="">
                                                             <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                                                 data-kt-image-input="true">
-                                                                <div class="image-input-wrapper w-150px h-150px"></div>
+                                                                <div class="image-input-wrapper w-100px h-100px"></div>
                                                                 <label
                                                                     class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                                                     data-kt-image-input-action="change"
@@ -138,33 +156,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                            <td class="text-center">
-                                @if (!empty($product->box_stock) && $product->box_stock > 0)
-                                    <span class="badge bg-success">
-                                        {{ $product->box_stock }} In Stock</span>
-                                @else
-                                    <span class="badge bg-danger">Out Of
-                                        Stock</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if (!empty($product->box_discount_price))
-                                    <div class="">
-                                        <span class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
-                                        <span class="ps-product__del">£{{ $product->box_price }}</span>
-                                    </div>
-                                @else
-                                    <div class="">
-                                        <span class="ps-product__price sale">£{{ $product->box_price }}</span>
-                                    </div>
-                                @endif
-                            </td>
-                            <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d M, Y') }}</td>
-                            <td class="text-center">
-                                <a href="#" class="btn btn-sm btn-primary">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
                             </td>
                         </tr>
                     @endforeach

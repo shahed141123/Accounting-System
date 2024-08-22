@@ -102,16 +102,25 @@
                     data: {
                         _token: '{{ csrf_token() }}'
                     },
-                    success: function(response) {
-                        if (response.success) {
-                            alert('Status updated successfully!');
-                            table.ajax.reload(null, false); // Reload the DataTable
-                        } else {
-                            alert('Failed to update status.');
-                        }
+                    success: function(data) {
+                        Swal.fire(
+                            'User Status updated successfully!',
+                            data.success,
+                            'success'
+                        ).then(function() {
+                            location.reload(); // Reload the page to reflect changes
+                        });
                     },
-                    error: function() {
-                        alert('An error occurred while updating the status.');
+                    error: function(xhr) {
+                        console.log('AJAX Error Response:', xhr
+                            .responseText); // Log full response for debugging
+                        let errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr
+                            .responseJSON.error : 'An unexpected error occurred.';
+                        Swal.fire(
+                            'Oops...',
+                            errorMessage,
+                            'error'
+                        );
                     }
                 });
             }
