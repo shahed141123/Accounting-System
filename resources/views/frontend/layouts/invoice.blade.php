@@ -1,11 +1,12 @@
 <div class="card bg-white p-0 card-print">
     <div class="card-header bg-white border-0 p-5">
-        <div class="row mt-5">
+        <div class="row">
             <div class="col-lg-6">
                 <div class="pb-5">
                     <img class="text-right" width="150px"
                         src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
-                        alt="">
+                        alt=""
+                        onerror="this.onerror=null;this.src='https://piqpaq.flixzaglobal.com/storage/webSetting/site_logo_black/fJq03Mo7ks1724056630.png';">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -48,7 +49,7 @@
             <div class="col-lg-12">
                 <h4>Order Information:</h4>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr style="background-color: #e1ecff;">
                                 <th width="5%">Sl.</th>
@@ -56,7 +57,6 @@
                                 <th width="35%">Product Description</th>
                                 <th width="15%">Price</th>
                                 <th width="10%" class="text-center">Qty</th>
-                                <th width="10%" class="text-right">SKU Code</th>
                                 <th width="15%" class="text-right">Amount</th>
                             </tr>
                         </thead>
@@ -70,7 +70,8 @@
                                         <span>
                                             <img width="50px" height="50px" style="border-radius: 5px;"
                                                 src="{{ asset('storage/' . optional($item->product)->thumbnail) }}"
-                                                alt="">
+                                                alt=""
+                                                onerror="this.onerror=null;this.src='{{ asset('frontend/img/no-product.jpg') }}';">
                                         </span>
                                     </td>
                                     <td>
@@ -84,16 +85,15 @@
                                         <span>{{ optional($item)->quantity }}</span>
                                     </td>
                                     <td class="text-right">
-                                        <span>{{ optional($item->product)->sku_code }}</span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span><span
-                                                class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
+                                        <span>
+                                            <span class="text-info">(£)</span>
+                                            {{ optional($item)->quantity * optional($item)->price }}
+                                        </span>
                                     </td>
                                 </tr>
                             @endforeach
                             <tr class="">
-                                <td colspan="6" class="text-right">
+                                <td colspan="5" class="text-right">
                                     <span>Subtotal</span>
                                 </td>
                                 <td class="text-right">
@@ -101,7 +101,7 @@
                                 </td>
                             </tr>
                             <tr class="">
-                                <td colspan="6" class="text-right">
+                                <td colspan="5" class="text-right">
                                     <span>VAT (0%)</span>
                                 </td>
                                 <td class="text-right">
@@ -109,7 +109,7 @@
                                 </td>
                             </tr>
                             <tr class="">
-                                <td colspan="6" class="text-right">
+                                <td colspan="5" class="text-right">
                                     <span>Shipping Charge</span>
                                 </td>
                                 <td class="text-right">
@@ -117,10 +117,10 @@
                                 </td>
                             </tr>
                             <tr class="invoice_table">
-                                <td colspan="6" class="text-right">
-                                    <span>Grand Total</span>
+                                <td colspan="5" class="text-right">
+                                    <span class="font-weight-bold">Grand Total</span>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-right font-weight-bold">
                                     <span><span
                                             class="text-info">(£)</span>{{ number_format($order->total_amount, 2) }}</span>
                                 </td>
@@ -132,12 +132,10 @@
         </div>
         <div class="row mt-5 pt-5">
             <div class="col-lg-12">
-                <hr>
                 <p class="text-center">
                     <i class="fa-solid fa-file"></i> <strong>NOTE:</strong> This is a
                     computer-generated receipt and does not require a physical signature.
                 </p>
-                <hr>
             </div>
         </div>
     </div>
@@ -178,11 +176,17 @@
 </script>
 <script>
     function printInvoice() {
-    var printContents = document.querySelector('.card-print').innerHTML;
-    var originalContents = document.body.innerHTML;
+        const printContents = document.querySelector('.card-print').innerHTML;
+        const originalContents = document.body.innerHTML;
 
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-}
+        const printWindow = window.open('', '', 'height=800,width=600');
+        printWindow.document.write('<html><head><title>Print Invoice</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(printContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    }
 </script>
