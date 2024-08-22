@@ -1,6 +1,6 @@
 <x-admin-app-layout :title="'Users List'">
     <div class="card">
-        <div class="card-header border-0 pt-6 bg-primary">
+        <div class="card-header border-0 align-items-center bg-dark">
             <div>
                 <div class="card-title text-white">Manage Your Users</div>
             </div>

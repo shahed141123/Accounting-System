@@ -1,20 +1,8 @@
 <div class="card">
     <div class="card-header align-items-center">
         <h3 class="fw-bold my-2">
-            User({{ $user->first_name }} {{ $user->last_name }}) Current Status
+            User({{ $user->first_name }} {{ $user->last_name }}) Overview
         </h3>
-        <div class="d-flex align-items-center my-2">
-            <div class="w-100px me-5">
-                <select name="status" data-control="select2" data-hide-search="true"
-                    class="form-select form-select-sm form-select-solid select2-hidden-accessible"
-                    data-select2-id="select2-data-9-6fit" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                    <option value="1" selected="" data-select2-id="select2-data-11-wq7m">30 Days</option>
-                    <option value="2">90 Days</option>
-                    <option value="3">6 Months</option>
-                    <option value="4">1 Year</option>
-                </select>
-            </div>
-        </div>
     </div>
     <div class="card-body">
         <div class="row g-6 g-xl-9">

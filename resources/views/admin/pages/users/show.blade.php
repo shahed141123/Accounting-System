@@ -27,10 +27,11 @@
                             <div class="text-gray-600">ID-45453423</div> --}}
                             <div class="fw-bolder mt-5">Email</div>
                             <div class="text-gray-600">
-                                <a href="#" class="text-gray-600 text-hover-primary">{{ $user->email ?? "Not Available" }}</a>
+                                <a href="#"
+                                    class="text-gray-600 text-hover-primary">{{ $user->email ?? 'Not Available' }}</a>
                             </div>
                             <div class="fw-bolder mt-5">Address</div>
-                            <div class="text-gray-600">{{ $user->address ?? "Not Available" }}</div>
+                            <div class="text-gray-600">{{ $user->address ?? 'Not Available' }}</div>
                             <div class="fw-bolder mt-5">Language</div>
                             <div class="text-gray-600">English</div>
                             <div class="fw-bolder mt-5">Account Created At</div>
@@ -40,13 +41,82 @@
                 </div>
             </div>
         </div>
-        <div class="flex-lg-row-fluid ms-lg-15">
-            @include('admin.pages.users.partials.overview')
+        <div class="flex-lg-row-fluid ms-lg-8">
+            <div class="card mb-lg-10 mb-5">
+                <div class="card-body py-4">
+                    <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold align-items-center"
+                        role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-active-primary px-4 py-3 active" data-kt-countup-tabs="true"
+                                data-bs-toggle="tab" href="#kt_user_view_overview_tab" aria-selected="true"
+                                role="tab" tabindex="-1">Overview</a>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-active-primary px-4 py-3" data-bs-toggle="tab"
+                                href="#kt_user_view_overview_details" aria-selected="false" role="tab"
+                                tabindex="-1">Details</a>
+                        </li>
+                        <li class="nav-item ms-auto">
+                            <div class="form-check form-switch form-check-custom form-check-solid">
+                                <span class="text-info fw-bolder">User Status Update : &nbsp;&nbsp;</span>
+                                <input class="form-check-input status-toggle" type="checkbox"
+                                    id="status_toggle_{{ $user->id }}" @checked($user->status == 'active')
+                                    data-id="{{ $user->id }}" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+                    @include('admin.pages.users.partials.overview')
+                </div>
+
+                <div class="tab-pane fade" id="kt_user_view_overview_details" role="tabpanel">
+                    @include('admin.pages.users.partials.details')
+                </div>
+
+            </div>
+
         </div>
     </div>
 
 
+    @push('scripts')
+        <script>
+            $(document).on('change', '.status-toggle', function() {
+                const id = $(this).data('id');
+                const route = "{{ route('admin.user.toggle-status', ':id') }}".replace(':id', id);
+                toggleStatus(route, id);
+            });
 
+            function toggleStatus(route, id) {
+                $.ajax({
+                    url: route,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Status updated successfully!');
+                            table.ajax.reload(null, false); // Reload the DataTable
+                        } else {
+                            alert('Failed to update status.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while updating the status.');
+                    }
+                });
+            }
+        </script>
+    @endpush
 
 
 

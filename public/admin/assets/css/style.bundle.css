@@ -31865,12 +31865,12 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #1f212a !important;
+    background-color: #007bff !important;
     --bg-color: 0, 158, 247 !important;
 }
 
 .bg-primary.hoverable:hover {
-    background-color: #1f212a !important;
+    background-color: #007bff !important;
 }
 
 .bg-hover-light-primary {
@@ -41285,7 +41285,7 @@ a:hover {
 .show > .btn.btn-primary {
     color: #fff;
     border-color: #1f212a;
-    background-color: #1f212a !important;
+    background-color: #007bff !important;
 }
 
 .btn-check:active + .btn.btn-primary .svg-icon,
