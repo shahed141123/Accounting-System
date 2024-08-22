@@ -63,7 +63,7 @@
                                 </a>
                                 <div class="modal fade" id="stockMethodsEdit-{{ $product->id }}" tabindex="-1"
                                     aria-labelledby="stockMethodsEditLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header bg-primary">
                                                 <h5 class="modal-title text-white" id="stockMethodsEditLabel">Stock
