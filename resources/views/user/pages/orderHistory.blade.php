@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h4>Order History List</h4>
-                                <table class="table table-striped order-history-table text-center">
+                                <table class="table table-striped order-history-table">
                                     <thead>
                                         <tr>
                                             <th>Order #</th>
@@ -36,7 +36,7 @@
                                             <th>Total Amount</th>
                                             <th>Payment Status</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,35 +50,40 @@
                                                 </td>
                                                 <td>
                                                     @if ($order->payment_status == 'unpaid')
-                                                        <span class="badge p-3 fs-7 badge-danger">Unpaid</span>
-                                                    @elseif ($order->payment_status == 'paid')
                                                         <span
-                                                            class="badge p-3 fs-7 badge-success">Paid</span>
+                                                            class="badge p-2 rounded-3 fs-7 badge-danger">Unpaid</span>
+                                                    @elseif ($order->payment_status == 'paid')
+                                                        <span class="badge p-2 rounded-3 fs-7 badge-success">Paid</span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     @if ($order->status == 'pending')
                                                         <span
-                                                            class="badge p-3 fs-7 badge-primary">Pending</span>
+                                                            class="badge p-2 rounded-3 fs-7 badge-primary">Pending</span>
                                                     @elseif ($order->status == 'processing')
                                                         <span
-                                                            class="badge p-3 fs-7 badge-warning">Processing</span>
+                                                            class="badge p-2 rounded-3 fs-7 badge-warning">Processing</span>
                                                     @elseif ($order->status == 'shipped')
                                                         <span
-                                                            class="badge p-3 fs-7 badge-success">Shipped</span>
+                                                            class="badge p-2 rounded-3 fs-7 badge-success">Shipped</span>
                                                     @elseif ($order->status == 'delivered')
                                                         <span
-                                                            class="badge p-3 fs-7 badge-success">Delivered</span>
+                                                            class="badge p-2 rounded-3 fs-7 badge-success">Delivered</span>
                                                     @elseif ($order->status == 'cancelled')
                                                         <span
-                                                            class="badge p-3 fs-7 badge-dangered">Cancelled</span>
+                                                            class="badge p-2 rounded-3 fs-7 badge-dangered">Cancelled</span>
                                                     @elseif ($order->status == 'returned')
                                                         <span
-                                                            class="badge p-3 fs-7 badge-dangered">Returned</span>
+                                                            class="badge p-2 rounded-3 fs-7 badge-dangered">Returned</span>
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-
+                                                    <a href="javascript:void(0)" class="pr-3" data-toggle="modal" data-target="#showInvoice">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#orderInvoice">
+                                                        <i class="fa-solid fa-print"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -87,10 +92,52 @@
                                 </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="showInvoice" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="showInvoiceLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showInvoiceLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('frontend.')
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="orderInvoice" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="orderInvoiceInvoiceLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderInvoiceLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
     </div>
 </x-frontend-app-layout>

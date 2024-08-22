@@ -16,7 +16,7 @@
     </div> --}}
     @if (Auth::user()->status == 'active')
         <div class="ps-account">
-            <section class="user-dashboard py-8">
+            <section class="user-dashboard py-5">
                 <div class="container">
                     <div class="row g-3 g-xl-4 tab-wrap">
                         <div class="col-lg-4 col-xl-3 sticky">
@@ -38,14 +38,11 @@
                                                 </h1>
                                             </div>
                                             <p>
-                                                Welcome to your account page, where you can manage your Trade Account
+                                                Welcome to your account page, where you can manage your trade account
                                                 effortlessly. Here, you can view your order history, update your
-                                                details,
-                                                and place quick orders. Additionally, you can subscribe to our daily
-                                                stock
-                                                feed, check stock availability, download product images and data, view
-                                                your
-                                                saved shopping lists, and download a PDF product catalog.
+                                                details, and place quick orders. Additionally, you can subscribe to our daily
+                                                stock feed, check stock availability, download product images and data, view
+                                                your saved shopping lists, and download a PDF product catalog.
                                             </p>
                                         </div>
                                         <div class="row g-0 option-wrap">
