@@ -78,10 +78,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="javascript:void(0)" class="pr-3" data-toggle="modal" data-target="#showInvoice">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#orderInvoice">
+                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#showInvoice">
                                                         <i class="fa-solid fa-print"></i>
                                                     </a>
                                                 </td>
@@ -101,41 +98,16 @@
     <!-- Modal -->
     <div class="modal fade" id="showInvoice" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="showInvoiceLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="showInvoiceLabel">Modal title</h5>
+                    <h5 class="modal-title" id="showInvoiceLabel">Order Invoice</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    @include('frontend.')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="orderInvoice" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="orderInvoiceInvoiceLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="orderInvoiceLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                <div class="modal-body p-0">
+                    @include('frontend.layouts.invoice')
                 </div>
             </div>
         </div>

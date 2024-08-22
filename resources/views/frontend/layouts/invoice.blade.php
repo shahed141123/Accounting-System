@@ -1,4 +1,4 @@
-<div class="card bg-white p-0">
+<div class="card bg-white p-0 card-print">
     <div class="card-header bg-white border-0 p-5">
         <div class="row mt-5">
             <div class="col-lg-6">
@@ -68,8 +68,7 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <img width="50px" height="50px"
-                                                style="border-radius: 5px;"
+                                            <img width="50px" height="50px" style="border-radius: 5px;"
                                                 src="{{ asset('storage/' . optional($item->product)->thumbnail) }}"
                                                 alt="">
                                         </span>
@@ -78,7 +77,8 @@
                                         <span>{{ Str::limit(optional($item->product)->name, 30) }}</span>
                                     </td>
                                     <td>
-                                        <span><span class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
+                                        <span><span
+                                                class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
                                     </td>
                                     <td class="text-center">
                                         <span>{{ optional($item)->quantity }}</span>
@@ -87,7 +87,8 @@
                                         <span>{{ optional($item->product)->sku_code }}</span>
                                     </td>
                                     <td class="text-right">
-                                        <span><span class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
+                                        <span><span
+                                                class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
                                     </td>
                                 </tr>
                             @endforeach
@@ -120,7 +121,8 @@
                                     <span>Grand Total</span>
                                 </td>
                                 <td class="text-right">
-                                    <span><span class="text-info">(£)</span>{{ number_format($order->total_amount, 2) }}</span>
+                                    <span><span
+                                            class="text-info">(£)</span>{{ number_format($order->total_amount, 2) }}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -137,17 +139,50 @@
                 </p>
                 <hr>
             </div>
-            <div class="col-lg-12">
-                <div class="d-flex justify-content-center align-items-center py-5 my-5">
-                    <button class="btn btn-info print p-3"><i class="fa-solid fa-print"></i> Print
-                        Invoice</button>
-                    <button class="btn btn-info ml-3 p-3" onclick="downloadInvoice()"><i
-                            class="fa-solid fa-file-download"></i> Download Invoice</button>
-                </div>
-            </div>
         </div>
     </div>
     <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
         © Piqpaq, LTD 2024.
     </div>
 </div>
+<div class="card border-0">
+    <div class="card-body border-0 d-flex justify-content-center align-items-center">
+        <button class="btn btn-info print p-3" onclick="printInvoice()">
+            <i class="fa-solid fa-print"></i> Print Invoice
+        </button>
+        <button class="btn btn-info ml-3 p-3" onclick="downloadInvoice()">
+            <i class="fa-solid fa-file-download"></i> Download Invoice
+        </button>
+    </div>
+</div>
+<script>
+    function downloadInvoice() {
+        const invoice = document.querySelector('.card-print'); // Select the invoice element
+        html2pdf(invoice, {
+            margin: 10,
+            filename: `Invoice-${Date.now()}.pdf`,
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'mm',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        });
+    }
+</script>
+<script>
+    function printInvoice() {
+    var printContents = document.querySelector('.card-print').innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+</script>
