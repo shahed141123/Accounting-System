@@ -84,7 +84,7 @@
                                                                 <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                                                     data-kt-image-input="true">
                                                                     <div class="image-input-wrapper w-100px h-100px">
-                                                                        <img src="{{ asset('storage/' . $product->thumbnail) }}"
+                                                                        <img class="w-100px h-100px" src="{{ asset('storage/' . $product->thumbnail) }}"
                                                                             alt="">
                                                                     </div>
                                                                     <label

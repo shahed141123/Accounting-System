@@ -34,7 +34,10 @@ class OrderManagementController extends Controller
     {
 
         $data = [
-            'order' => Order::with('orderItems')->first(),
+
+            'pendingOrdersCount' => Order::where('status', 'pending')->count(),
+            'deliveredOrdersCount' => Order::where('status', 'delivered')->count(),
+            'orders' => Order::with('orderItems')->latest('created_at')->get(),
         ];
         return view('admin.pages.orderManagement.orderReport', $data);
     }
