@@ -14,11 +14,16 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <title>Welcome PiqPaq | Go Green, Live Clean!</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-    <link href="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/global/plugins.bundle.css"
-        rel="stylesheet" type="text/css" />
-    <link href="https://preview.keenthemes.com/metronic8/demo1/assets/css/style.bundle.css" rel="stylesheet"
-        type="text/css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Jost:400,500,600,700&amp;display=swap&amp;ver=1607580870">
+    <link rel="stylesheet" href="{{ asset('frontend/plugins/bootstrap4/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/home-14.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
     <style>
         html,
         body {
@@ -55,206 +60,161 @@
 </head>
 
 <body id="kt_body" class="app-blank">
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe>
-    </noscript>
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
-        <div class="center-wrapper">
-            <div class="center-content">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" height="auto"
-                    style="border-collapse: collapse; margin: 0 auto">
-                    <tbody>
-                        <tr>
-                            <td align="center" valign="top" style="text-align: center; padding-bottom: 10px">
-                                <div style="text-align: center; margin: 0 15px 34px 15px">
-                                    <div style="margin-bottom: 10px">
-                                        <a href="#" rel="noopener" target="_blank">
-                                            <img alt="Logo"
-                                                src="https://piqpaq.flixzaglobal.com/frontend/img/logo.png"
-                                                style="height: 35px" />
-                                        </a>
-                                    </div>
-                                    <div style="margin-bottom: 15px">
-                                        <img alt="Logo"
-                                            src="https://preview.keenthemes.com/metronic8/demo1/assets/media/email/icon-positive-vote-1.svg" />
-                                    </div>
-                                    <div
-                                        style="
-                        font-size: 14px;
-                        font-weight: 500;
-                        margin-bottom: 27px;
-                        font-family: Arial, Helvetica, sans-serif;
-                      ">
-                                        <p
-                                            style="
-                          margin-bottom: 9px;
-                          color: #181c32;
-                          font-size: 22px;
-                          font-weight: 700;
-                        ">
-                                            Hey Shahed, thanks for signing up!
-                                        </p>
-                                        <p style="margin-bottom: 2px; color: #7e8299">
-                                            Welcome aboard! We’re excited to have you with us. <br> Feel free to explore
-                                            and let us know if you have any questions.
-                                        </p>
-                                    </div>
-                                    <a href="#" target="_blank"
-                                        style="
-                        background-color: #50cd89;
-                        border-radius: 6px;
-                        display: inline-block;
-                        padding: 11px 19px;
-                        color: #ffffff;
-                        font-size: 14px;
-                        font-weight: 500;
-                        text-decoration: none;
-                      ">
-                                        Activate Account
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center" valign="top" style="padding-bottom: 10px">
-                                <p
-                                    style="
-                      color: #181c32;
-                      font-size: 18px;
-                      font-weight: 600;
-                      margin-bottom: 13px;
-                    ">
-                                    What’s next?
-                                </p>
-                                <div
-                                    style="
-                      background: #f9f9f9;
-                      border-radius: 12px;
-                      padding: 35px 30px;
-                      text-align: left;
-                      margin: 0 auto;
-                      width: 90%;
-                    ">
-                                    <div
-                                        style="
-                        display: flex;
-                        align-items: center;
-                        margin-bottom: 15px;
-                      ">
-                                        <div
-                                            style="
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                          width: 40px;
-                          height: 40px;
-                          margin-right: 13px;
-                          position: relative;
-                        ">
-                                            <img alt="Logo"
-                                                src="https://preview.keenthemes.com/metronic8/demo1/assets/media/email/icon-polygon.svg" />
-                                            <span
-                                                style="
-                            position: absolute;
-                            color: #50cd89;
-                            font-size: 16px;
-                            font-weight: 600;
-                          ">
-                                                1
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <div
-                                                style="
-                            display: flex;
-                            align-items: center;
-                            margin-bottom: 5px;
-                          ">
-                                                <a href="#" target="_blank"
-                                                    style="
-                              text-decoration: none;
-                              color: #181c32;
-                              font-size: 16px;
-                              font-weight: 600;
-                            ">
-                                                    Set up your profile
-                                                </a>
-                                            </div>
-                                            <span style="color: #7e8299">
-                                                We’ve collected our best tips for getting started
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; align-items: center">
-                                        <div
-                                            style="
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                          width: 40px;
-                          height: 40px;
-                          margin-right: 13px;
-                          position: relative;
-                        ">
-                                            <img alt="Logo"
-                                                src="https://preview.keenthemes.com/metronic8/demo1/assets/media/email/icon-polygon.svg" />
-                                            <span
-                                                style="
-                            position: absolute;
-                            color: #50cd89;
-                            font-size: 16px;
-                            font-weight: 600;
-                          ">
-                                                2
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <div
-                                                style="
-                            display: flex;
-                            align-items: center;
-                            margin-bottom: 5px;
-                          ">
-                                                <a href="#" target="_blank"
-                                                    style="
-                              text-decoration: none;
-                              color: #181c32;
-                              font-size: 16px;
-                              font-weight: 600;
-                            ">
-                                                    Invite your friends
-                                                </a>
-                                            </div>
-                                            <span style="color: #7e8299">
-                                                Get started by inviting your friends & family
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center" valign="top" style="padding-bottom: 10px; text-align: center">
-                                <div style="font-size: 13px">
-                                    <p style="color: #7e8299; margin-bottom: 8px">
-                                        If you have any questions, feel free to reach out
-                                    </p>
-                                    <p style="color: #7e8299; margin-bottom: 8px">
-                                        <a href="mailto:support@piqpaq.com"
-                                            style="color: #009ef7; text-decoration: none">support@piqpaq.com</a>
-                                    </p>
-                                    <p style="color: #7e8299; margin-bottom: 10px">
-                                        &copy; 2024 piqpaq. All rights reserved.
-                                    </p>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="row justify-content-center align-items-center">
+        <div class="card bg-white p-0 card-print">
+            <div class="card-header bg-white border-0 p-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="pb-5">
+                            <img class="text-right" width="150px"
+                                src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
+                                alt=""
+                                onerror="this.onerror=null;this.src='https://piqpaq.flixzaglobal.com/storage/webSetting/site_logo_black/fJq03Mo7ks1724056630.png';">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="text-right mb-0">Invoice</h1>
+                    </div>
+                    <div class="col-lg-4">
+                        <div
+                            style="background-color: #e1ecff; clip-path: polygon(90% 0, 100% 50%, 90% 99%, 0% 100%, 0 53%, 0% 0%);">
+                            <p class="mb-0 p-3"><span class="text-dark">Invoice No:</span>
+                                #{{ $order->order_number }}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        {{-- <p class="mb-0 p-3 text-right">Date: {{ $order->created_at->format('d/m/Y') }}</p> --}}
+                        <p class="mb-0 p-3 text-right">Date: {{ $order->created_at->format('d M, Y') }}</p>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-6">
+                        <div>
+                            <span class="font-weight-bold">Invoice To:</span>
+                            <p class="mb-0">{{ optional($order->user)->first_name }}</p>
+                            <p class="mb-0">{{ optional($order->user)->phone }}</p>
+                            <p class="mb-0">{{ optional($order->user)->email }}</p>
+                            <p class="mb-0">{{ $order->billing_address }}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="text-right">
+                            <span class="font-weight-bold">Shipping From:</span>
+                            <p class="mb-0">PIQPAQ</p>
+                            <p class="mb-0">{{ $setting->primary_phone }}</p>
+                            <p class="mb-0">{{ $setting->contact_email }}</p>
+                            <p class="mb-0">{{ $setting->address_line_one }}</p>
+                            <p class="mb-0">{{ $setting->address_line_two }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5 pt-5">
+                    <div class="col-lg-12">
+                        <h4>Order Information:</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr style="background-color: #e1ecff;">
+                                        <th width="5%">Sl.</th>
+                                        <th width="10%">Img</th>
+                                        <th width="35%">Product Description</th>
+                                        <th width="15%">Price</th>
+                                        <th width="10%" class="text-center">Qty</th>
+                                        <th width="15%" class="text-right">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($order->orderItems as $item)
+                                        <tr>
+                                            <td>
+                                                <span>{{ $loop->iteration }}</span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <img width="50px" height="50px" style="border-radius: 5px;"
+                                                        src="{{ asset('storage/' . optional($item->product)->thumbnail) }}"
+                                                        alt=""
+                                                        onerror="this.onerror=null;this.src='{{ asset('frontend/img/no-product.jpg') }}';">
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>{{ Str::limit(optional($item->product)->name, 30) }}</span>
+                                            </td>
+                                            <td>
+                                                <span><span
+                                                        class="text-info">(£)</span>{{ optional($item)->quantity * optional($item)->price }}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span>{{ optional($item)->quantity }}</span>
+                                            </td>
+                                            <td class="text-right">
+                                                <span>
+                                                    <span class="text-info">(£)</span>
+                                                    {{ optional($item)->quantity * optional($item)->price }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    <tr class="">
+                                        <td colspan="5" class="text-right">
+                                            <span>Subtotal</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span><span class="text-info">(£)</span>{{ $order->sub_total }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td colspan="5" class="text-right">
+                                            <span>VAT (0%)</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span><span class="text-info">(£)</span>0.00</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td colspan="5" class="text-right">
+                                            <span>Shipping Charge</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span><span
+                                                    class="text-info">(£)</span>{{ $order->shippingCharge->price }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="invoice_table">
+                                        <td colspan="5" class="text-right">
+                                            <span class="font-weight-bold">Grand Total</span>
+                                        </td>
+                                        <td class="text-right font-weight-bold">
+                                            <span><span
+                                                    class="text-info">(£)</span>{{ number_format($order->total_amount, 2) }}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3 pt-3">
+                    <div class="col-lg-12">
+                        <p class="text-center">
+                            <i class="fa-solid fa-file"></i> <strong>NOTE:</strong> This is a
+                            computer-generated receipt and does not require a physical signature.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
+                © Piqpaq, LTD 2024.
             </div>
         </div>
     </div>
+    <script src="{{ asset('frontend/plugins/jquery.min.js') }}"></script>
+    <script src="{{ asset('frontend/plugins/popper.min.js') }}"></script>
+    <script src="{{ asset('frontend/plugins/bootstrap4/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
+    <script src="{{ asset('admin/js/custom.js') }}"></script>
 </body>
 
 </html>

@@ -510,15 +510,13 @@
                                                 <div class="ps-checkout__group">
                                                     <label class="ps-checkout__label">Street address *</label>
                                                     <input class="ps-input mb-3" type="text"
-                                                        name="shipping_address_1"
+                                                        name="shipping_address"
                                                         placeholder="House number and street name" />
-                                                    <input class="ps-input" type="text" name="shipping_address_2"
-                                                        placeholder="Apartment, suite, unit, etc. (optional)" />
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="ps-checkout__group">
-                                                    <label class="ps-checkout__label">Town / City *</label>
+                                                    <label class="ps-checkout__label">State *</label>
                                                     <input class="ps-input" type="text" name="shipping_state" />
                                                 </div>
                                             </div>

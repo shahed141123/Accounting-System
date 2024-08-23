@@ -137,7 +137,6 @@ class HomeController extends Controller
         $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
         $subTotal = (float)$cleanSubtotal;
         if ($subTotal > 500) {
-
             $data = [
                 'shippingmethods' => ShippingMethod::active()->get(),
                 'cartItems'       => Cart::instance('cart')->content(),
@@ -150,7 +149,9 @@ class HomeController extends Controller
             // dd(Cart::instance('cart'));
             return view('frontend.pages.cart.checkout', $data);
         } else {
-            return redirect()->back()->with('error', 'The added product price must be greater than 500£ to proceed to check out.');
+
+            flash()->error('The added product price must be greater than 500£ to proceed to check out.');
+            return redirect()->back()->withInput();
         }
     }
 

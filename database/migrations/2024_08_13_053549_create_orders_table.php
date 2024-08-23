@@ -50,6 +50,7 @@ return new class extends Migration
             $table->string('transaction_id')->nullable();
             $table->string('external_order_id')->nullable();
             $table->text('customer_request')->nullable();
+            $table->string('invoice')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('SET NULL');
             $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('SET NULL');
             $table->timestamp('fulfilled_at')->nullable();

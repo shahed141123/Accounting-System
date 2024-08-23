@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Frontend;
 
 use Log;
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Wishlist;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Models\ShippingMethod;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
@@ -231,6 +233,11 @@ class CartController extends Controller
             // Construct the new code
             $code = $typePrefix . '-' . $year . $newNumber;
             // Create the order
+
+            $billingAddress = $request->input('billing_address_1') . ', ' . $request->input('billing_address_2');
+            $shippingAddress = !empty($request->input('shipping_address')) ? $request->input('shipping_address') : $billingAddress;
+
+
             $order = Order::create([
                 'order_number'                 => $code, // Generate a unique order number
                 'user_id'                      => auth()->id(), // Assuming user is logged in
@@ -249,7 +256,7 @@ class CartController extends Controller
                 'billing_last_name'            => $request->input('billing_last_name'),
                 'billing_email'                => $request->input('billing_email'),
                 'billing_phone'                => $request->input('billing_phone'),
-                'billing_address'              => $request->input('billing_address_1') . ', ' . $request->input('billing_address_2'),
+                'billing_address'              => $billingAddress,
                 'billing_zipcode'              => $request->input('billing_postcode'),
                 'billing_state'                => $request->input('billing_state'),
                 'billing_country'              => $request->input('billing_country', 'UK'),
@@ -257,7 +264,7 @@ class CartController extends Controller
                 'shipping_last_name'           => $request->input('shipping_last_name', $request->input('billing_last_name')),
                 'shipping_email'               => $request->input('shipping_email', $request->input('billing_email')),
                 'shipping_phone'               => $request->input('shipping_phone', $request->input('billing_phone')),
-                'shipping_address'             => $request->input('shipping_address_1', $request->input('billing_address_1')) . ', ' . $request->input('shipping_address_2', $request->input('billing_address_2')),
+                'shipping_address'             => $shippingAddress,
                 'shipping_zipcode'             => $request->input('shipping_postcode', $request->input('billing_postcode')),
                 'shipping_state'               => $request->input('shipping_state', $request->input('billing_state')),
                 'shipping_country'             => $request->input('shipping_country', $request->input('billing_country')),
@@ -288,7 +295,31 @@ class CartController extends Controller
 
             // Clear the cart after successful order
             Cart::instance('cart')->destroy();
+            $data = [
+                'order' => Order::with('orderItems')->where('id', $order->id)->first(),
+                'user'  => Auth::user(),
+            ];
+            // dd($data['order']);
+            // return view('pdf.invoice', $data);
+            // Generate and save PDF
+            $pdf = Pdf::loadView('pdf.invoice', $data);
+            $pdfPath = storage_path('app/public/order/' . $order->order_number . '_invoice.pdf');
 
+            // Ensure the directory exists
+            $directory = dirname($pdfPath);
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0755, true);
+            }
+
+            try {
+                $pdf->save($pdfPath);
+                $order->update([
+                    'invoice' => 'order/' . $order->order_number . '_invoice.pdf',
+                ]);
+            } catch (\Exception $e) {
+                // Handle PDF save exception
+                Session::flash('error', 'Failed to generate PDF: ' . $e->getMessage());
+            }
             // Redirect to a confirmation page or thank you page
             return redirect()->route('checkout.success', $order->order_number)->with('success', 'Order placed successfully!');
         } catch (\Exception $e) {

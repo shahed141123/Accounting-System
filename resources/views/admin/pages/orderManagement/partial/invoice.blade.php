@@ -152,9 +152,9 @@
 
                                 <div class="d-flex flex-stack flex-wrap mt-lg-10 pt-05">
                                     <div class="my-1 me-5">
-                                        <button class="btn btn-info print p-3" onclick="printInvoice()">
+                                        {{-- <a href="{{ asset('storage/'.$order->invoice) }}" class="btn btn-info print p-3">
                                             <i class="fa-solid fa-print"></i> Print Invoice
-                                        </button>
+                                        </a> --}}
                                         <button class="btn btn-info ml-3 p-3" onclick="downloadInvoice()">
                                             <i class="fa-solid fa-file-download"></i> Download Invoice
                                         </button>
@@ -171,7 +171,7 @@
 @endforeach
 
 
-{{-- <script>
+<script>
     function downloadInvoice() {
         const invoice = document.querySelector('.card-print'); // Select the invoice element
         html2pdf(invoice, {
@@ -192,7 +192,7 @@
         });
     }
 </script>
-<script>
+{{-- <script>
     function printInvoice() {
         const printContents = document.querySelector('.card-print').innerHTML;
         const originalContents = document.body.innerHTML;
