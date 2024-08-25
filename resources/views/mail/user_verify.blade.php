@@ -25,11 +25,11 @@
                         <div style="padding-bottom: 30px; font-size: 17px;">
                             <strong>Hi {{ $data['name'] }}</strong>
                         </div>
-                        <div style="padding-bottom: 30px">Good news! Your email has been successfully verified by our
-                            admin team.</div>
                         <div style="padding-bottom: 30px">
-                            Your account is now fully activated. You can now access your personalized dashboard and
-                            explore all the features available to you.
+                            Dear {{ $data['name'] }},
+                        </div>
+                        <div style="padding-bottom: 30px">
+                            We are excited to inform you that your PiqPaq account has been approved! You can now log in and start exploring our range of products.
                         </div>
                         <div style="padding-bottom: 40px; text-align:center;">
                             <a href="{{ route('dashboard') }}" rel="noopener"
@@ -37,6 +37,9 @@
                                 target="_blank">
                                 Go to Your Dashboard
                             </a>
+                        </div>
+                        <div style="padding-bottom: 30px">
+                            Thank you for choosing PiqPaq. We look forward to serving your business needs.
                         </div>
                         <div style="padding-bottom: 30px">Need Help?</div>
                         <div style="padding-bottom: 30px">
@@ -46,7 +49,7 @@
                                 style="text-decoration:none;color: #009EF7">Piqpaq Contact</a>.
                         </div>
                         <!--end:Email content-->
-                        <div style="padding-bottom: 10px">Best regards,<br>The Piqpaq Team.</div>
+                        <div style="padding-bottom: 10px">Best regards,<br>The PiqPaq Team.</div>
                     </div>
                 </td>
             </tr>
