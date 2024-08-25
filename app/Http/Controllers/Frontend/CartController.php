@@ -321,7 +321,15 @@ class CartController extends Controller
                 Session::flash('error', 'Failed to generate PDF: ' . $e->getMessage());
             }
             // Redirect to a confirmation page or thank you page
-            return redirect()->route('checkout.success', $order->order_number)->with('success', 'Order placed successfully!');
+            if ($order->payment_method == "stripe") {
+                flash()->success('Order placed successfully!');
+                return view('frontend.pages.cart.stripe',$data);
+            } else if ($order->payment_method == "paypal") {
+                return view('frontend.pages.cart.paypal',$data);
+            } else {
+                return redirect()->route('checkout.success', $order->order_number)->with('success', 'Order placed successfully!');
+            }
+
         } catch (\Exception $e) {
             DB::rollback();
 
