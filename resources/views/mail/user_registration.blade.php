@@ -37,7 +37,22 @@
                                 Login To Your Dashboard
                             </a>
                         </div>
-                        <div style="padding-bottom: 30px">Need Help?</div>
+                        <div style="padding-bottom: 30px">
+                            Hi,
+                        </div>
+                        <div style="padding-bottom: 30px">
+                            Thank you for registering with PiqPaq! Your account is currently pending approval. We will review your information and notify you as soon as your account is activated.
+                        </div>
+                        <div style="padding-bottom: 40px; text-align:center;">
+                            <a href="{{ route('contact') }}" rel="noopener"
+                                style="text-decoration:none;display:inline-block;text-align:center;padding:0.75575rem 1.3rem;font-size:0.925rem;line-height:1.5;border-radius:0.35rem;color:#ffffff;background-color:#009EF7;border:0px;margin-right:0.75rem!important;font-weight:600!important;outline:none!important;vertical-align:middle"
+                                target="_blank">
+                                Contact Us
+                            </a>
+                        </div>
+                        <div style="padding-bottom: 30px">
+                            Need Help?
+                        </div>
                         <div style="padding-bottom: 30px">
                             Our friendly support team is always happy to assist you. You can find answers to most
                             questions and contact us through
