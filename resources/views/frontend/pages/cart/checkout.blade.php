@@ -847,8 +847,7 @@
                                                 <input class="form-check-input" name="shipping_id" type="radio"
                                                     id="shipping-{{ $shippingmethod->id }}"
                                                     data-shipping_price="{{ $shippingmethod->price }}"
-                                                    value="{{ $shippingmethod->id }}"
-                                                    @if ($index === 0) checked @endif />
+                                                    value="{{ $shippingmethod->id }}"/>
                                                 <label class="form-check-label"
                                                     for="shipping-{{ $shippingmethod->id }}">{{ $shippingmethod->title }}
                                                     <span>(£{{ number_format($shippingmethod->price, 2) }})</span></label>

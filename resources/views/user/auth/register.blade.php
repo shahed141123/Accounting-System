@@ -104,7 +104,7 @@
                                 </div>
                                 <!-- House/Block/Road -->
                                 <div class="ps-form__group col-8">
-                                    <label class="ps-form__label" for="House/Block/Road">House/Block/Road<span
+                                    <label class="ps-form__label" for="House/Block/Road">Apartment,Suite<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="address_one" class="form-control ps-form__input" type="text"
@@ -126,14 +126,14 @@
                                 </div>
 
                                 <!-- State -->
-                                <div class="ps-form__group col-4">
+                                {{-- <div class="ps-form__group col-4">
                                     <x-input-label class="ps-form__label" for="state" :value="__('State')" />
                                     <div class="input-group">
                                         <input id="state" class="form-control ps-form__input" type="text"
                                             name="state" :value="old('state')" autocomplete="state" />
                                     </div>
                                     <x-input-error :messages="$errors->get('state')" class="mt-2" />
-                                </div>
+                                </div> --}}
 
                                 <!-- City/Country -->
                                 <div class="ps-form__group col-8">
