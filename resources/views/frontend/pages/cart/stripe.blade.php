@@ -25,7 +25,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5>Order Date</h5>
-                                <h5>{{ $order->order_created_at->format('d M, Y') }}</h5>
+                                <h5>{{ $order->created_at->format('d M, Y')  }}</h5>
                             </div>
                         </div>
                     </div>
