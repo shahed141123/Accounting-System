@@ -29,12 +29,7 @@ class StripeController extends Controller
     public function stripePost(Request $request): RedirectResponse
     {
         // Validate request
-        $request->validate([
-            'amount' => 'required|numeric',
-            'stripeToken' => 'required|string',
-            'order_number' => 'required|string'
-        ]);
-
+       
         try {
             // Set Stripe API key
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
