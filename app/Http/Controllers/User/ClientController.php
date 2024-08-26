@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Catalogue;
 use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
@@ -54,6 +55,9 @@ class ClientController extends Controller
     }
     public function viewCatalouge()
     {
+        $data = [
+            'catalogues' => Catalogue::latest('id')->active()->get(),
+        ];
         return view('user.pages.viewCatalouge');
     }
 }
