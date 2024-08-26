@@ -26,20 +26,35 @@ class OrderManagementController extends Controller
     {
 
         $data = [
-            'order' => Order::with('orderItems','user')->where('id',$id)->first(),
+            'order' => Order::with('orderItems', 'user')->where('id', $id)->first(),
         ];
         return view('admin.pages.orderManagement.orderDetails', $data);
     }
-    public function orderReport()
+    public function orderReport(Request $request)
     {
+        $query = Order::query();
 
+        if ($request->has('start_date') && $request->has('end_date')) {
+            $startDate = $request->input('start_date');
+            $endDate = $request->input('end_date');
+            $query->whereBetween('order_created_at', [$startDate, $endDate]);
+        }
+        $total_sale           = $query->sum('total_amount');
+        $orders               = $query->with('orderItems')->latest('order_created_at')->get();
+        $pendingOrdersCount   = $query->where('status', 'pending')->count();
+        $deliveredOrdersCount = $query->where('status', 'delivered')->count();
         $data = [
-
-            'pendingOrdersCount' => Order::where('status', 'pending')->count(),
-            'deliveredOrdersCount' => Order::where('status', 'delivered')->count(),
-            'orders' => Order::with('orderItems')->latest('created_at')->get(),
+            'total_sale'           => $total_sale,
+            'pendingOrdersCount'   => $pendingOrdersCount,
+            'deliveredOrdersCount' => $deliveredOrdersCount,
+            'orders'               => $orders,
         ];
-        return view('admin.pages.orderManagement.orderReport', $data);
+        if ($request->ajax()) {
+            return view('admin.pages.orderManagement.partial.orderReportTable', $data)->render();
+        }else{
+            return view('admin.pages.orderManagement.orderReport', $data);
+        }
+
     }
 
     /**
