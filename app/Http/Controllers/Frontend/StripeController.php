@@ -29,7 +29,7 @@ class StripeController extends Controller
     public function stripePost(Request $request): RedirectResponse
     {
         // Validate request
-       
+
         try {
             // Set Stripe API key
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -57,28 +57,28 @@ class StripeController extends Controller
                 flash()->error('Order not found!');
                 return view('frontend.pages.cart.checkoutFailure');
             }
-        } catch (\Stripe\Exception\CardException $e) {
-            // Handle card errors (e.g., declined card)
-            $errorMessage = $e->getError()->message;
-            flash()->error('Payment failed: ' . $errorMessage);
-            return view('frontend.pages.cart.checkoutFailure');
-        } catch (\Stripe\Exception\RateLimitException $e) {
-            // Handle rate limit errors
-            flash()->error('Payment failed due to rate limit exceeded.');
-            return view('frontend.pages.cart.checkoutFailure');
-        } catch (\Stripe\Exception\InvalidRequestException $e) {
-            // Handle invalid requests
-            flash()->error('Invalid request: ' . $e->getMessage());
-            return view('frontend.pages.cart.checkoutFailure');
-        } catch (\Stripe\Exception\AuthenticationException $e) {
-            // Handle authentication errors
-            flash()->error('Authentication error: ' . $e->getMessage());
-            return view('frontend.pages.cart.checkoutFailure');
-        } catch (\Stripe\Exception\ApiConnectionException $e) {
-            // Handle network communication errors
-            flash()->error('Network communication error: ' . $e->getMessage());
-            return view('frontend.pages.cart.checkoutFailure');
-        }  catch (\Exception $e) {
+            // } catch (\Stripe\Exception\CardException $e) {
+            //     // Handle card errors (e.g., declined card)
+            //     $errorMessage = $e->getError()->message;
+            //     flash()->error('Payment failed: ' . $errorMessage);
+            //     return view('frontend.pages.cart.checkoutFailure');
+            // } catch (\Stripe\Exception\RateLimitException $e) {
+            //     // Handle rate limit errors
+            //     flash()->error('Payment failed due to rate limit exceeded.');
+            //     return view('frontend.pages.cart.checkoutFailure');
+            // } catch (\Stripe\Exception\InvalidRequestException $e) {
+            //     // Handle invalid requests
+            //     flash()->error('Invalid request: ' . $e->getMessage());
+            //     return view('frontend.pages.cart.checkoutFailure');
+            // } catch (\Stripe\Exception\AuthenticationException $e) {
+            //     // Handle authentication errors
+            //     flash()->error('Authentication error: ' . $e->getMessage());
+            //     return view('frontend.pages.cart.checkoutFailure');
+            // } catch (\Stripe\Exception\ApiConnectionException $e) {
+            //     // Handle network communication errors
+            //     flash()->error('Network communication error: ' . $e->getMessage());
+            //     return view('frontend.pages.cart.checkoutFailure');
+        } catch (\Exception $e) {
             // Handle general errors
             flash()->error('An unexpected error occurred: ' . $e->getMessage());
             return view('frontend.pages.cart.checkoutFailure');
