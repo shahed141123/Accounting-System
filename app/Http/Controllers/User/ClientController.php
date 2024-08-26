@@ -58,6 +58,6 @@ class ClientController extends Controller
         $data = [
             'catalogues' => Catalogue::latest('id')->active()->get(),
         ];
-        return view('user.pages.viewCatalouge');
+        return view('user.pages.viewCatalouge',$data);
     }
 }
