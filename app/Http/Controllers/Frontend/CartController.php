@@ -325,7 +325,7 @@ class CartController extends Controller
             // Redirect to a confirmation page or thank you page
             if ($order->payment_method == "stripe") {
                 flash()->success('Order placed successfully!');
-                return view('frontend.pages.cart.stripe',$data);
+                return redirect()->route('stripe.payment', $order->order_number);
             } else if ($order->payment_method == "paypal") {
                 return view('frontend.pages.cart.paypal',$data);
             } else {

@@ -25,7 +25,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5>Order Date</h5>
-                                <h5>{{ $order->created_at->format('d M, Y')  }}</h5>
+                                <h5>{{ $order->created_at->format('d M, Y') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -38,10 +38,7 @@
                                     <input type='hidden' name='ammount' value='{{ $order->total_amount }}'>
                                     <input type='hidden' name='order_number' value='{{ $order->order_number }}'>
                                     <br>
-                                    <div class="mb-3 col-12">
-                                        <div id="card-element" class="form-control"></div>
-                                    </div>
-
+                                    <div id="card-element" class="form-control"></div>
                                     <div class="mt-5 col-12">
                                         <button id='pay-btn' class="btn btn-warning w-100 p-4 text-white"
                                             onclick="createToken()">Pay € {{ $order->total_amount }}</button>

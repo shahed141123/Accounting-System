@@ -32,6 +32,7 @@ Route::post('/cart/store/{id}', [CartController::class, 'addToCart'])->name('car
 Route::post('/comparelist/store/{id}', [CartController::class, 'compareList'])->name('compare.store');
 Route::post('/wishlist/store/{id}', [CartController::class, 'wishListStore'])->name('wishlist.store');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/{id}/stripe/payment', [StripeController::class, 'stripePayment'])->name('stripe.payment');
 Route::post('/stripe/pay', [StripeController::class, 'stripePost'])->name('stripe.pay');
 
 

@@ -17,6 +17,15 @@ class StripeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function stripePayment($id)
+    {
+        $data = [
+            'order'           => Order::with('orderItems')->where('order_number', $id)->first(),
+            'user'            => Auth::user(),
+        ];
+        // dd(Cart::instance('cart'));
+        return view('frontend.pages.cart.stripe', $data);
+    }
     public function stripePost(Request $request): RedirectResponse
     {
         // Validate request
