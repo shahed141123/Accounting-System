@@ -81,7 +81,8 @@ class StripeController extends Controller
         } catch (\Exception $e) {
             // Handle general errors
             flash()->error('An unexpected error occurred: ' . $e->getMessage());
-            return view('frontend.pages.cart.checkoutFailure');
+            return redirect()->back();
+            // return view('frontend.pages.cart.checkoutFailure');
         }
     }
 }
