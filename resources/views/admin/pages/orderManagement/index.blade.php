@@ -56,8 +56,7 @@
                     <div class="d-flex flex-stack justify-content-between">
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
                             <a href="">
-                                <span class="bg-black rounded-3 p-3 me-3"><i
-                                        class="fa-solid fa-truck text-white fs-3"
+                                <span class="bg-black rounded-3 p-3 me-3"><i class="fa-solid fa-truck text-white fs-3"
                                         aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
@@ -136,11 +135,11 @@
                                 @endif
                             </td>
                             <td>
-                                {{-- <button
+                                <button
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                     data-bs-toggle="modal" data-bs-target="#printInovice{{ $order->id }}">
                                     <i class="fa-solid fa-print"></i>
-                                </button> --}}
+                                </button>
                                 <a href="{{ route('admin.orderDetails', $order->id) }}"
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
                                     <i class="fa-solid fa-eye" title="Order Details"></i>
@@ -167,16 +166,14 @@
                             <tr data-kt-docs-datatable-subtable="subtable_template" class="d-none bg-light">
                                 <td colspan="3">
                                     <div class="d-flex align-items-center gap-3">
-                                        <a href="#"
-                                            class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
+                                        <a href="#" class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
                                             <img src="{{ asset('storage/' . $item->product->thumbnail) }}"
                                                 alt="" data-kt-docs-datatable-subtable="template_image" />
                                         </a>
                                         <div class="d-flex flex-column text-muted">
                                             <a href="#" class="text-gray-900 text-hover-primary fw-bold"
                                                 data-kt-docs-datatable-subtable="template_name">Product name</a>
-                                            <div class="fs-7"
-                                                data-kt-docs-datatable-subtable="template_description">
+                                            <div class="fs-7" data-kt-docs-datatable-subtable="template_description">
                                                 {{ $item->product->name }}</div>
                                         </div>
                                     </div>

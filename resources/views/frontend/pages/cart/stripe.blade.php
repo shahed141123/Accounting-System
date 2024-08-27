@@ -38,7 +38,9 @@
                                     <input type='hidden' name='ammount' value='{{ $order->total_amount }}'>
                                     <input type='hidden' name='order_number' value='{{ $order->order_number }}'>
                                     <br>
-                                    <div id="card-element" class="form-control"></div>
+                                    <div class="col-12">
+                                        <div id="card-element" class="form-control w-100"></div>
+                                    </div>
                                     <div class="mt-5 col-12">
                                         <button id='pay-btn' class="btn btn-warning w-100 p-4 text-white"
                                             onclick="createToken()">Pay € {{ $order->total_amount }}</button>
