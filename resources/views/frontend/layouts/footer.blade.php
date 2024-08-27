@@ -48,10 +48,6 @@
     .ps-social__link:hover {
         color: #ff0;
     }
-
-    .ps-footer--bottom img {
-        filter: brightness(0) invert(1);
-    }
 </style>
 <footer class="ps-footer ps-footer--13 ps-footer--14">
     <div class="ps-footer--top">

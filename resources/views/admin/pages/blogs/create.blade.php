@@ -1,14 +1,12 @@
 <x-admin-app-layout :title="'Blog Add'">
     <div class="card card-flash">
-        <!--begin::Card header-->
+
         <div class="card-header mt-6">
             <div class="card-title"></div>
 
-            <!--begin::Card toolbar-->
+
             <div class="card-toolbar">
-                <!--begin::Button-->
                 <a href="{{ route('admin.blogs.index') }}" class="btn btn-light-info rounded-2">
-                    <!--begin::Svg Blog | path: blogs/duotune/general/gen035.svg-->
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -20,15 +18,15 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-                    <!--end::Svg Blog-->Back to the list
+
+                    Back to the list
                 </a>
             </div>
         </div>
         <div class="card-body pt-0">
-            <!--begin::Form-->
             <form class="form" action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <!--begin::Input group-->
+
                 <div class="row">
                     <div class="col-lg-4">
                         <x-metronic.label for="admin_id"
@@ -142,9 +140,9 @@
                         {{ __('Submit') }}
                     </x-metronic.button>
                 </div>
-                <!--end::Actions-->
+
             </form>
-            <!--end::Form-->
+
         </div>
     </div>
     @push('scripts')

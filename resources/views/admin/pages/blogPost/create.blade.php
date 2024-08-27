@@ -81,10 +81,10 @@
                         <div class="fv-row">
                             <div class="mb-10 mt-5">
                                 <div class="form-check">
-                                    <x-metronic.input class="form-check-input" type="checkbox" name="featured"
-                                        value="1" id="flexCheckDefault" :value="old('featured')"></x-metronic.input>
-                                    <x-metronic.label class="form-check-label" for="flexCheckDefault">
-                                        {{ __('Is Feature') }}
+                                    <input class="form-check-input" type="checkbox" name="featured" value="1"
+                                        id="featured">
+                                    <x-metronic.label class="form-check-label" for="featured">
+                                        {{ __('Is Featured') }}
                                     </x-metronic.label>
                                 </div>
                             </div>

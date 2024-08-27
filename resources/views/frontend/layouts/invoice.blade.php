@@ -108,14 +108,16 @@
                                     <span><span class="text-info">(£)</span>0.00</span>
                                 </td>
                             </tr>
-                            <tr class="">
-                                <td colspan="5" class="text-right">
-                                    <span>Shipping Charge</span>
-                                </td>
-                                <td class="text-right">
-                                    <span><span class="text-info">(£)</span>{{ $order->shippingCharge->price }}</span>
-                                </td>
-                            </tr>
+                            @if (optional($order->shippingCharge))
+                                <tr class="">
+                                    <td colspan="5" class="text-right">
+                                        <span>Shipping Charge</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <span><span class="text-info">(£)</span>{{ optional($order->shippingCharge)->price }}</span>
+                                    </td>
+                                </tr>
+                            @endif
                             <tr class="invoice_table">
                                 <td colspan="5" class="text-right">
                                     <span class="font-weight-bold">Grand Total</span>
