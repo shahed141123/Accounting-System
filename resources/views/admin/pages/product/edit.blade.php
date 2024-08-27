@@ -149,7 +149,7 @@
                                 </x-metronic.label>
                                 <!-- Input element for Tagify -->
                                 <input class="form-control d-flex align-items-center" name="color"
-                                    :value="old('color', $product->color)" id="kt_tagify_color" />
+                                    :value="old('color', $product - > color)" id="kt_tagify_color" />
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Tags</x-metronic.label>
                                             <input class="form-control" name="tags" id="product_Tags"
-                                            value="{{ old('tags',$product->tags) }}" />
+                                                value="{{ old('tags', $product->tags) }}" />
                                         </div>
                                         <div class="mb-5 fv-row">
                                             <x-metronic.label class="form-label">Short Description</x-metronic.label>
@@ -424,6 +424,20 @@
                                                 </x-metronic.label>
                                             </div>
                                         </div>
+                                        <div>
+                                            <x-metronic.label class="form-label">Vat</x-metronic.label>
+                                            <x-metronic.input type="number" name="vat" id="vat"
+                                                class="form-control mb-2" placeholder="how much the vat"
+                                                :value="old('vat',$product->vat)"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much box vat. Eg: 5%</div>
+                                        </div>
+                                        <div class="mb-5 fv-row col-6">
+                                            <x-metronic.label class="form-label">Tax</x-metronic.label>
+                                            <x-metronic.input type="number" name="tax" id="tax"
+                                                class="form-control mb-2" placeholder="how much the tax "
+                                                :value="old('tax',$product->tax)"></x-metronic.file-input>
+                                                <div class="text-muted fs-7">How much tax Eg: 5%</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -503,8 +517,8 @@
                                             <div class="mb-5 fv-row">
                                                 <x-metronic.label class="form-label">Product Meta
                                                     Title</x-metronic.label>
-                                                <x-metronic.input class="form-control" type="text" name="meta_title"
-                                                    placeholder="Meta Title"
+                                                <x-metronic.input class="form-control" type="text"
+                                                    name="meta_title" placeholder="Meta Title"
                                                     :value="old('meta_title', $product->meta_title)"></x-metronic.input>
                                             </div>
                                             <div class="text-muted fs-7">
@@ -527,7 +541,7 @@
                                                     Keywords</x-metronic.label>
                                                 <input class="form-control" name="meta_keywords"
                                                     placeholder="Meta tag keywords" id="product_meta_keyword"
-                                                    value="{{ old('meta_keywords',$product->meta_keywords) }}" />
+                                                    value="{{ old('meta_keywords', $product->meta_keywords) }}" />
                                                 <div class="text-muted fs-7">
                                                     Add product Meta tag keywords.
                                                 </div>

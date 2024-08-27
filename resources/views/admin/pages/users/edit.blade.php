@@ -16,9 +16,9 @@
                             <x-metronic.select-option id="title" name="title" data-hide-search="true"
                                 data-placeholder="Select an option">
                                 <option></option>
-                                <option value="Mr">Mr</option>
-                                <option value="Mrs">Mrs</option>
-                                <option value="Ms">Ms</option>
+                                <option value="Mr" @selected($user->title == "Mr")>Mr</option>
+                                <option value="Mrs" @selected($user->title == "Mrs")>Mrs</option>
+                                <option value="Ms" @selected($user->title == "Ms")>Ms</option>
                             </x-metronic.select-option>
                         </div>
                         <div class="col-lg-5 mb-7">
@@ -324,7 +324,7 @@
                             <x-metronic.label for="password"
                                 class="fw-bold fs-6 mb-2">{{ __('Password') }}</x-metronic.label>
                             <x-metronic.input id="password" type="password" class="form-control-solid mb-3 mb-lg-0"
-                                name="password" :value="old('password',$user->password)" placeholder="Enter Password"></x-metronic.input>
+                                name="password" :value="old('password')" placeholder="Enter Password"></x-metronic.input>
                         </div>
                         <div class="col-lg-6 mb-7">
                             <x-metronic.label for="password_confirmation"
