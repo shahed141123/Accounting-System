@@ -20,9 +20,13 @@ if (!function_exists('customUpload')) {
 
             // Ensure directory exists
             if (!Storage::exists($fullUploadPath)) {
-                if (!Storage::makeDirectory($fullUploadPath, 0777, true)) {
+                // Create directory
+                $localPath = storage_path("app/$fullUploadPath");
+                if (!mkdir($localPath, 0755, true)) {
                     abort(404, "Failed to create the directory: $fullUploadPath");
                 }
+                // Ensure directory permissions are set correctly
+                chmod($localPath, 0755);
             }
 
             // Store the file
