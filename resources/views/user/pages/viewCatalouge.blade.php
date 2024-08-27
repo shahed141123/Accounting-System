@@ -227,18 +227,20 @@
                                     <div class="col-lg-4">
                                         @php
                                             $thumbnailPath = 'storage/' . $catalogue->image;
-                                            $thumbnailSrc = file_exists(public_path($thumbnailPath))
-                                                ? asset($thumbnailPath)
-                                                : asset('images/no_image.jpg');
+                                            $thumbnailSrc = !empty($catalogue->image) && file_exists(public_path($thumbnailPath))
+                                                    ? asset($thumbnailPath)
+                                                    : asset('images/no_image.jpg');
+
                                         @endphp
                                         <figure class="catalouge-box">
-                                            <img src="{{ $thumbnailSrc }}"
-                                                alt="img02" />
+                                            <img src="{{ $thumbnailSrc }}" alt="img02" />
                                             <figcaption>
                                                 <h3 class="p-4">{{ $catalogue->title }}</h3>
-                                                @if (file_exists(public_path('storage/'.$catalogue->attachment)))
+                                                @if (!empty($catalogue->attachment) && file_exists(public_path('storage/' . $catalogue->attachment)))
                                                     <p>
-                                                        <a href="{{ asset('storage/'.$catalogue->attachment) }}">Download</a>
+                                                        <a href="{{ asset('storage/' . $catalogue->attachment) }}">
+                                                            Download
+                                                        </a>
                                                     </p>
                                                 @endif
                                             </figcaption>
