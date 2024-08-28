@@ -34,13 +34,15 @@ class StripeController extends Controller
         try {
             // Set Stripe API key
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-            // Create a charge
-            Stripe\Charge::create([
-                'amount' => $request->amount * 100, // Amount in cents
-                'currency' => 'eur', // Currency code
-                'source' => $request->stripeToken, // Stripe token
-                'description' => 'Payment Successful for your Order'
+            $amount = intval($request->amount * 100);
+           
+            $token = $_POST['stripeToken'];
+            $charge = \Stripe\Charge::create([
+                'amount' => $amount,
+                'currency' => 'usd',
+                'description' => 'Payment Successful for Order '.$request->order_number,
+                'source' => $token,
+                'metadata' => ['order_id' => uniqid()],
             ]);
 
             // Find the order
