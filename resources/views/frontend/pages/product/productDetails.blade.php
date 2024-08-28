@@ -1,9 +1,9 @@
 <x-frontend-app-layout :title="'Product Details'">
-    <style>
+    {{-- <style>
         .slick-track .slick-active{
             width: 400px !important;
         }
-    </style>
+    </style> --}}
     <div class="ps-page--product3">
         <div class="container">
             <ul class="ps-breadcrumb">
