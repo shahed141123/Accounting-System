@@ -87,6 +87,7 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="ps-result__viewall"><a href="{{ route('allproducts') }}">View all</a></div>
                 @else
                     <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
                         <h4 class="text-danger text-center">No Product Found. Search again.</h4>
@@ -94,7 +95,7 @@
                 @endif
             </div>
         </div>
-        <div class="ps-result__viewall"><a href="{{ route('allproducts') }}">View all</a></div>
+
     </div>
 @else
     <div class="ps-result__content">

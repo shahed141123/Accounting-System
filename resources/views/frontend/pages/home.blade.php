@@ -430,150 +430,154 @@
                 </div>
             @endif
 
-            <section class="ps-section--deals">
-                <div class="ps-section__header">
-                    <h3 class="ps-section__title" style="font-size: 30px;">Best Deals of the week!</h3>
-                    <div class="ps-countdown">
-                        <div class="ps-countdown__content">
-                            <div class="ps-countdown__block ps-countdown__days">
-                                <div class="ps-countdown__number"><span class="first-1st">0</span><span
-                                        class="first">0</span><span class="last">0</span></div>
-                                <div class="ps-countdown__ref">Days</div>
+            @if ($deal_products)
+                <section class="ps-section--deals">
+                    <div class="ps-section__header">
+                        <h3 class="ps-section__title" style="font-size: 30px;">Best Deals of the week!</h3>
+                        {{-- <div class="ps-countdown">
+                            <div class="ps-countdown__content">
+                                <div class="ps-countdown__block ps-countdown__days">
+                                    <div class="ps-countdown__number"><span class="first-1st">0</span><span
+                                            class="first">0</span><span class="last">0</span></div>
+                                    <div class="ps-countdown__ref">Days</div>
+                                </div>
+                                <div class="ps-countdown__block ps-countdown__hours">
+                                    <div class="ps-countdown__number"><span class="first">0</span><span
+                                            class="last">0</span></div>
+                                    <div class="ps-countdown__ref">Hours</div>
+                                </div>
+                                <div class="ps-countdown__block ps-countdown__minutes">
+                                    <div class="ps-countdown__number"><span class="first">0</span><span
+                                            class="last">0</span></div>
+                                    <div class="ps-countdown__ref">Mins</div>
+                                </div>
+                                <div class="ps-countdown__block ps-countdown__seconds">
+                                    <div class="ps-countdown__number"><span class="first">0</span><span
+                                            class="last">0</span></div>
+                                    <div class="ps-countdown__ref">Secs</div>
+                                </div>
                             </div>
-                            <div class="ps-countdown__block ps-countdown__hours">
-                                <div class="ps-countdown__number"><span class="first">0</span><span
-                                        class="last">0</span></div>
-                                <div class="ps-countdown__ref">Hours</div>
-                            </div>
-                            <div class="ps-countdown__block ps-countdown__minutes">
-                                <div class="ps-countdown__number"><span class="first">0</span><span
-                                        class="last">0</span></div>
-                                <div class="ps-countdown__ref">Mins</div>
-                            </div>
-                            <div class="ps-countdown__block ps-countdown__seconds">
-                                <div class="ps-countdown__number"><span class="first">0</span><span
-                                        class="last">0</span></div>
-                                <div class="ps-countdown__ref">Secs</div>
-                            </div>
-                        </div>
+                        </div> --}}
                     </div>
-                </div>
-                <div class="ps-section__carousel">
-                    <div class="dealCarousel owl-carousel">
-                        @foreach ($deal_products as $deal_product)
-                            <div class="ps-section__product">
-                                <div class="ps-product ps-product--standard">
-                                    <div class="ps-product__thumbnail">
-                                        <a class="ps-product__image"
-                                            href="{{ route('product.details', $deal_product->slug) }}">
-                                            <figure>
-                                                @if (count($deal_product->multiImages) > 0)
-                                                    @foreach ($deal_product->multiImages->slice(0, 2) as $image)
+                    <div class="ps-section__carousel">
+                        <div class="dealCarousel owl-carousel">
+                            @foreach ($deal_products as $deal_product)
+                                <div class="ps-section__product">
+                                    <div class="ps-product ps-product--standard">
+                                        <div class="ps-product__thumbnail">
+                                            <a class="ps-product__image"
+                                                href="{{ route('product.details', $deal_product->slug) }}">
+                                                <figure>
+                                                    @if (count($deal_product->multiImages) > 0)
+                                                        @foreach ($deal_product->multiImages->slice(0, 2) as $image)
+                                                            @php
+                                                                $imagePath = 'storage/' . $image->photo;
+                                                                $imageSrc = file_exists(public_path($imagePath))
+                                                                    ? asset($imagePath)
+                                                                    : asset('frontend/img/no-product.jpg');
+                                                            @endphp
+                                                            <img src="{{ $imageSrc }}"
+                                                                alt="{{ $deal_product->meta_title }}"
+                                                                width="210" height="210"
+                                                                style="object-fit: cover;" />
+                                                        @endforeach
+                                                    @else
                                                         @php
-                                                            $imagePath = 'storage/' . $image->photo;
-                                                            $imageSrc = file_exists(public_path($imagePath))
-                                                                ? asset($imagePath)
+                                                            $thumbnailPath = 'storage/' . $deal_product->thumbnail;
+                                                            $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                                ? asset($thumbnailPath)
                                                                 : asset('frontend/img/no-product.jpg');
                                                         @endphp
-                                                        <img src="{{ $imageSrc }}"
+                                                        <img src="{{ $thumbnailSrc }}"
                                                             alt="{{ $deal_product->meta_title }}" width="210"
                                                             height="210" style="object-fit: cover;" />
-                                                    @endforeach
-                                                @else
-                                                    @php
-                                                        $thumbnailPath = 'storage/' . $deal_product->thumbnail;
-                                                        $thumbnailSrc = file_exists(public_path($thumbnailPath))
-                                                            ? asset($thumbnailPath)
-                                                            : asset('frontend/img/no-product.jpg');
-                                                    @endphp
-                                                    <img src="{{ $thumbnailSrc }}"
-                                                        alt="{{ $deal_product->meta_title }}" width="210"
-                                                        height="210" style="object-fit: cover;" />
-                                                @endif
-                                            </figure>
-                                        </a>
-                                        <div class="ps-product__actions">
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist">
-                                                <a class="add_to_wishlist"
-                                                    href="{{ route('wishlist.store', $deal_product->id) }}">
-                                                    <i class="fa fa-heart-o"></i>
-                                                </a>
-                                            </div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Quick view"><a href="#"
-                                                    data-toggle="modal"
-                                                    data-target="#popupQuickview{{ $deal_product->id }}"><i
-                                                        class="fa fa-search"></i></a></div>
-
-                                        </div>
-                                        @if (!empty($deal_product->box_discount_price))
-                                            <div class="ps-product__badge">
-                                                <div class="ps-badge ps-badge--sale">Offer</div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="ps-product__content">
-                                        <h5 class="ps-product__title">
-                                            <a href="{{ route('product.details', $deal_product->slug) }}">
-                                                {{ $deal_product->name }}
+                                                    @endif
+                                                </figure>
                                             </a>
-                                        </h5>
-                                        @if (Auth::check() && Auth::user()->status == 'active')
-                                            @if (!empty($deal_product->box_discount_price))
-                                                <div class="ps-product__meta">
-                                                    <span
-                                                        class="ps-product__price sale">£{{ $deal_product->box_discount_price }}</span>
-                                                    <span
-                                                        class="ps-product__del">£{{ $deal_product->box_price }}</span>
+                                            <div class="ps-product__actions">
+                                                <div class="ps-product__item" data-toggle="tooltip"
+                                                    data-placement="left" title="Wishlist">
+                                                    <a class="add_to_wishlist"
+                                                        href="{{ route('wishlist.store', $deal_product->id) }}">
+                                                        <i class="fa fa-heart-o"></i>
+                                                    </a>
                                                 </div>
-                                            @else
-                                                <div class="ps-product__meta">
-                                                    <span
-                                                        class="ps-product__price sale">£{{ $deal_product->box_price }}</span>
+                                                <div class="ps-product__item" data-toggle="tooltip"
+                                                    data-placement="left" title="Quick view"><a href="#"
+                                                        data-toggle="modal"
+                                                        data-target="#popupQuickview{{ $deal_product->id }}"><i
+                                                            class="fa fa-search"></i></a></div>
+
+                                            </div>
+                                            @if (!empty($deal_product->box_discount_price))
+                                                <div class="ps-product__badge">
+                                                    <div class="ps-badge ps-badge--sale">Offer</div>
                                                 </div>
                                             @endif
-                                            <a href="{{ route('cart.store', $deal_product->id) }}"
-                                                class="btn ps-btn--warning my-3 btn-block add_to_cart"
-                                                data-product_id="{{ $deal_product->id }}"
-                                                data-product_qty="1">Add To
-                                                Cart</a>
-                                        @else
-                                            <div class="ps-product__meta">
-                                                <a href="{{ route('login') }}"
-                                                    class="btn btn-info btn-block">Login
-                                                    to view price</a>
-                                            </div>
-                                        @endif
-                                        <div class="ps-product__actions ps-product__group-mobile">
-
-                                            <div class="ps-product__item cart" data-toggle="tooltip"
-                                                data-placement="left" title="Add to cart">
-                                                <a class="add_to_cart"
-                                                    href="{{ route('cart.store', $deal_product->id) }}"
+                                        </div>
+                                        <div class="ps-product__content">
+                                            <h5 class="ps-product__title">
+                                                <a href="{{ route('product.details', $deal_product->slug) }}">
+                                                    {{ $deal_product->name }}
+                                                </a>
+                                            </h5>
+                                            @if (Auth::check() && Auth::user()->status == 'active')
+                                                @if (!empty($deal_product->box_discount_price))
+                                                    <div class="ps-product__meta">
+                                                        <span
+                                                            class="ps-product__price sale">£{{ $deal_product->box_discount_price }}</span>
+                                                        <span
+                                                            class="ps-product__del">£{{ $deal_product->box_price }}</span>
+                                                    </div>
+                                                @else
+                                                    <div class="ps-product__meta">
+                                                        <span
+                                                            class="ps-product__price sale">£{{ $deal_product->box_price }}</span>
+                                                    </div>
+                                                @endif
+                                                <a href="{{ route('cart.store', $deal_product->id) }}"
+                                                    class="btn ps-btn--warning my-3 btn-block add_to_cart"
                                                     data-product_id="{{ $deal_product->id }}"
-                                                    data-product_qty="1">
-                                                    <i class="fa fa-shopping-basket"></i>
-                                                </a>
+                                                    data-product_qty="1">Add To
+                                                    Cart</a>
+                                            @else
+                                                <div class="ps-product__meta">
+                                                    <a href="{{ route('login') }}"
+                                                        class="btn btn-info btn-block">Login
+                                                        to view price</a>
+                                                </div>
+                                            @endif
+                                            <div class="ps-product__actions ps-product__group-mobile">
+
+                                                <div class="ps-product__item cart" data-toggle="tooltip"
+                                                    data-placement="left" title="Add to cart">
+                                                    <a class="add_to_cart"
+                                                        href="{{ route('cart.store', $deal_product->id) }}"
+                                                        data-product_id="{{ $deal_product->id }}"
+                                                        data-product_qty="1">
+                                                        <i class="fa fa-shopping-basket"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="ps-product__item" data-toggle="tooltip"
+                                                    data-placement="left" title="Wishlist">
+                                                    <a class="add_to_wishlist"
+                                                        href="{{ route('wishlist.store', $deal_product->id) }}">
+                                                        <i class="fa fa-heart-o"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                    data-placement="left" title="Add to compare"><a
+                                                        href="compare.html"><i class="fa fa-align-left"></i></a>
+                                                </div>
                                             </div>
-                                            <div class="ps-product__item" data-toggle="tooltip"
-                                                data-placement="left" title="Wishlist">
-                                                <a class="add_to_wishlist"
-                                                    href="{{ route('wishlist.store', $deal_product->id) }}">
-                                                    <i class="fa fa-heart-o"></i>
-                                                </a>
-                                            </div>
-                                            <div class="ps-product__item rotate" data-toggle="tooltip"
-                                                data-placement="left" title="Add to compare"><a
-                                                    href="compare.html"><i class="fa fa-align-left"></i></a></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            @endif
 
         </div>
         <section class="ps-section--blog container mb-5">

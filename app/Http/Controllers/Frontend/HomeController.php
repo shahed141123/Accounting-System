@@ -50,7 +50,10 @@ class HomeController extends Controller
     }
     public function aboutUs()
     {
-        return view('frontend.pages.aboutUs');
+        $data = [
+            'blog_posts'     => BlogPost::latest('id')->where('status', 'publish')->get(),
+        ];
+        return view('frontend.pages.aboutUs',$data);
     }
     public function returnPolicy()
     {
