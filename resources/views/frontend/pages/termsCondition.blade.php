@@ -18,6 +18,6 @@
             <li class="ps-breadcrumb__item"><a href="/">Home</a></li>
             <li class="ps-breadcrumb__item active" aria-current="page">Terms</li>
         </ul>
-        <p>{!! $terms->content !!}</p>
+        <p>{!! optional($terms)->content !!}</p>
     </div>
 </x-frontend-app-layout>

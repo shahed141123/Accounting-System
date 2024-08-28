@@ -5,16 +5,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @props(['title'])
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="apple-touch-icon-precomposed">
-    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="shortcut icon" type="image/png">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <title>PiqPaq | Go Green, Live Clean!</title>
+    <link href="{{ asset('frontend/img/favicon.png') }}" rel="apple-touch-icon-precomposed">
+    <link href="{{ asset('frontend/img/favicon.png') }}" rel="shortcut icon" type="image/png">
+    <meta name="title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
+    <meta name="description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ optional($setting)->site_url ?: config('app.url') }}" />
+    <meta property="og:title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
+    <meta property="og:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
+    <meta property="og:image"
+        content="{{ optional($setting)->site_logo && file_exists(public_path('storage/' . $setting->site_logo)) ? asset('storage/' . $setting->site_logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="{{ optional($setting)->site_url ?: config('app.url') }}" />
+    <meta property="twitter:title"
+        content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
+    <meta property="twitter:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
+    <meta property="twitter:image"
+        content="{{ optional($setting)->site_logo && file_exists(public_path('storage/' . $setting->site_logo)) ? asset('storage/' . $setting->site_logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+
+    <title>{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}</title>
+
     <link rel="stylesheet" href="{{ asset('frontend/plugins/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/fonts/Linearicons/Font/demo-files/demo.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -77,7 +94,7 @@
 <body>
     <!-- Preloader HTML -->
     <div id="preloader">
-        <img width="100px" src="https://i.ibb.co/BgRh9tT/carrello-800600.gif" alt="Loading...">
+        <img width="100px" src="{{ asset('frontend/img/loader.gif') }}" alt="Loading...">
     </div>
     <div id="main-content" style="display: none;">
         <div class="ps-page">

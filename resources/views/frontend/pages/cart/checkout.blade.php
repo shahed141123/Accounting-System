@@ -847,8 +847,7 @@
                                                 <input class="form-check-input" name="shipping_id" type="radio"
                                                     id="shipping-{{ $shippingmethod->id }}"
                                                     data-shipping_price="{{ $shippingmethod->price }}"
-                                                    value="{{ $shippingmethod->id }}"
-                                                    @if ($index === 0) checked @endif />
+                                                    value="{{ $shippingmethod->id }}"/>
                                                 <label class="form-check-label"
                                                     for="shipping-{{ $shippingmethod->id }}">{{ $shippingmethod->title }}
                                                     <span>(£{{ number_format($shippingmethod->price, 2) }})</span></label>
@@ -877,14 +876,14 @@
                                             </div> --}}
                                             <div class="form-check">
                                                 <input class="form-check-input" name="payment_method" type="radio"
-                                                    id="stripe" value="stripe" />
+                                                    id="stripe" value="stripe" checked/>
                                                 <label class="form-check-label" for="stripe">Stripe</label>
                                             </div>
-                                            <div class="form-check">
+                                            {{-- <div class="form-check">
                                                 <input class="form-check-input" name="payment_method" type="radio"
                                                     id="paypal" value="paypal" />
                                                 <label class="form-check-label" for="paypal">PayPal</label>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="check-faq">

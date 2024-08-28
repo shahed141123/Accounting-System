@@ -44,11 +44,11 @@
                             <option value="privacy" @selected($banner->page_name == 'privacy')>Privacy Policy</option>
                         </x-metronic.select-option>
                     </div>
-                    <div class="col-lg-4 mb-7">
+                    {{-- <div class="col-lg-4 mb-7">
                         <x-metronic.label for="image" class="col-form-label fw-bold fs-6 required">{{ __('Image') }}
                         </x-metronic.label>
                         <x-metronic.file-input id="image" type="file" name="image" :source="asset('storage/'.$banner->image)"></x-metronic.file-input>
-                    </div>
+                    </div> --}}
                     <div class="col-lg-4">
                         <x-metronic.label for="bg_image" class="col-form-label fw-bold fs-6 required">{{ __('Background Image') }}
                         </x-metronic.label>

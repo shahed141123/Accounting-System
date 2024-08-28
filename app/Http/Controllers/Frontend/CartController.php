@@ -210,7 +210,8 @@ class CartController extends Controller
 
         if ($validator->fails()) {
             foreach ($validator->messages()->all() as $message) {
-                Session::flash('error', $message);
+                // Session::flash('error', $message);
+                flash()->error($message);
             }
             return redirect()->back()->withInput();
         }
@@ -318,16 +319,18 @@ class CartController extends Controller
                 ]);
             } catch (\Exception $e) {
                 // Handle PDF save exception
-                Session::flash('error', 'Failed to generate PDF: ' . $e->getMessage());
+                flash()->error('Failed to generate PDF: ' . $e->getMessage());
+                // Session::flash('error', 'Failed to generate PDF: ' . $e->getMessage());
             }
             // Redirect to a confirmation page or thank you page
             if ($order->payment_method == "stripe") {
                 flash()->success('Order placed successfully!');
-                return view('frontend.pages.cart.stripe',$data);
+                return redirect()->route('stripe.payment', $order->order_number);
             } else if ($order->payment_method == "paypal") {
                 return view('frontend.pages.cart.paypal',$data);
             } else {
-                return redirect()->route('checkout.success', $order->order_number)->with('success', 'Order placed successfully!');
+                flash()->success('Order placed successfully!');
+                return redirect()->route('checkout.success', $order->order_number);
             }
 
         } catch (\Exception $e) {

@@ -223,72 +223,31 @@
                         <div class="content">
                             <h4>Please View / Download our latest catalogues by clicking on a catalogue below.</h4>
                             <div class="catalouge-container row">
-                                <div class="col-lg-4">
-                                    <figure class="catalouge-box">
-                                        <img src="https://bonningtons.com/Content/13/images/CatalogueImage/22ae56fabb7345bb8547c47ab6e3ddb8.jpg"
-                                            alt="img02" />
-                                        <figcaption>
-                                            <h3 class="p-4">Bonn<span>ingtons</span></h3>
-                                            <p><a href="#">Download</a> </p>
-                                        </figcaption>
-                                    </figure>
-                                    <p class="fw-bold">Bonningtons Catalogue 2023</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <figure class="catalouge-box">
-                                        <img src="https://bonningtons.com/Content/13/images/CatalogueImage/2c4d91b1dfb749b19e758164740bf9f2.jpg"
-                                            alt="img02" />
-                                        <figcaption>
-                                            <h3 class="p-4">Bonn<span>ingtons</span></h3>
-                                            <p><a href="#">Download</a> </p>
-                                        </figcaption>
-                                    </figure>
-                                    <p class="fw-bold">Bonningtons Catalogue 2023</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <figure class="catalouge-box">
-                                        <img src="https://bonningtons.com/Content/13/images/CatalogueImage/22ae56fabb7345bb8547c47ab6e3ddb8.jpg"
-                                            alt="img02" />
-                                        <figcaption>
-                                            <h3 class="p-4">Bonn<span>ingtons</span></h3>
-                                            <p><a href="#">Download</a> </p>
-                                        </figcaption>
-                                    </figure>
-                                    <p class="fw-bold">Bonningtons Catalogue 2023</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <figure class="catalouge-box">
-                                        <img src="https://bonningtons.com/Content/13/images/CatalogueImage/2c4d91b1dfb749b19e758164740bf9f2.jpg"
-                                            alt="img02" />
-                                        <figcaption>
-                                            <h3 class="p-4">Bonn<span>ingtons</span></h3>
-                                            <p><a href="#">Download</a> </p>
-                                        </figcaption>
-                                    </figure>
-                                    <p class="fw-bold">Bonningtons Catalogue 2023</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <figure class="catalouge-box">
-                                        <img src="https://bonningtons.com/Content/13/images/CatalogueImage/22ae56fabb7345bb8547c47ab6e3ddb8.jpg"
-                                            alt="img02" />
-                                        <figcaption>
-                                            <h3 class="p-4">Bonn<span>ingtons</span></h3>
-                                            <p><a href="#">Download</a> </p>
-                                        </figcaption>
-                                    </figure>
-                                    <p class="fw-bold">Bonningtons Catalogue 2023</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <figure class="catalouge-box">
-                                        <img src="https://bonningtons.com/Content/13/images/CatalogueImage/2c4d91b1dfb749b19e758164740bf9f2.jpg"
-                                            alt="img02" />
-                                        <figcaption>
-                                            <h3 class="p-4">Bonn<span>ingtons</span></h3>
-                                            <p><a href="#">Download</a> </p>
-                                        </figcaption>
-                                    </figure>
-                                    <p class="fw-bold">Bonningtons Catalogue 2023</p>
-                                </div>
+                                @foreach ($catalogues as $catalogue)
+                                    <div class="col-lg-4">
+                                        @php
+                                            $thumbnailPath = 'storage/' . $catalogue->image;
+                                            $thumbnailSrc = !empty($catalogue->image) && file_exists(public_path($thumbnailPath))
+                                                    ? asset($thumbnailPath)
+                                                    : asset('images/no_image.jpg');
+
+                                        @endphp
+                                        <figure class="catalouge-box">
+                                            <img src="{{ $thumbnailSrc }}" alt="img02" />
+                                            <figcaption>
+                                                <h3 class="p-4">{{ $catalogue->title }}</h3>
+                                                @if (!empty($catalogue->attachment) && file_exists(public_path('storage/' . $catalogue->attachment)))
+                                                    <p>
+                                                        <a href="{{ asset('storage/' . $catalogue->attachment) }}">
+                                                            Download
+                                                        </a>
+                                                    </p>
+                                                @endif
+                                            </figcaption>
+                                        </figure>
+                                        <p class="fw-bold">{{ $catalogue->title }}</p>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

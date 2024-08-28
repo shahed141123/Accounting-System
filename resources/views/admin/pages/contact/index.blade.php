@@ -45,7 +45,11 @@
                                             <span class="fw-bolder"> {{ $contact->message }}</span>
                                         </td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                                            <a href="{{ route('admin.contacts.destroy', $contact->id) }}"
+                                                class="menu-link px-3 delete">
+                                                <i class="fa-solid fa-trash-can-arrow-up"></i>
+                                            </a>
+                                            {{-- <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                                 <span class="svg-icon svg-icon-5 m-0">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -57,10 +61,10 @@
                                                 </span>
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                     data-kt-menu="true">
-                                                    {{-- <div class="menu-item px-3">
+                                                    <div class="menu-item px-3">
                                                     <a href="{{ route('admin.contact.show', $contact->id) }}"
                                                         class="menu-link px-3">Show</a>
-                                                </div> --}}
+                                                </div>
                                                     <div class="menu-item px-3">
                                                         <a href="{{ route('admin.contacts.edit', $contact->id) }}"
                                                             class="menu-link px-3">
@@ -74,6 +78,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
+                                            </a> --}}
                                         </td>
                                     </tr>
 

@@ -18,7 +18,7 @@
             <li class="ps-breadcrumb__item"><a href="/">Home</a></li>
             <li class="ps-breadcrumb__item active" aria-current="page">Privacy</li>
         </ul>
-        <p>{!! $privacy->content !!}</p>
+        <p>{!! optional($privacy)->content !!}</p>
 
     </div>
 </x-frontend-app-layout>

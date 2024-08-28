@@ -325,14 +325,14 @@
                                                 :value="old('box_stock')"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box stock. Eg: 50</div>
                                         </div>
-                                        <div class="mb-5 fv-row col-6">
+                                        <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Vat</x-metronic.label>
                                             <x-metronic.input type="number" name="vat" id="vat"
                                                 class="form-control mb-2" placeholder="how much the vat"
                                                 :value="old('vat')"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box vat. Eg: 5%</div>
                                         </div>
-                                        <div class="mb-5 fv-row col-6">
+                                        <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Tax</x-metronic.label>
                                             <x-metronic.input type="number" name="tax" id="tax"
                                                 class="form-control mb-2" placeholder="how much the tax "
@@ -398,7 +398,7 @@
                                                             <p id="dimensionPreview">Length X Width X Height X Weight
                                                             </p>
                                                             <hr>
-                                                            <p>Length(0 cm) X Width(0 cm) X Height(0 cm) Weight(0 kg)
+                                                            <p>Length(0 cm) X Width(0 cm) X Height(0 cm) Weight(0 gm)
                                                             </p> <!-- Dimension preview -->
                                                         </div>
                                                     </div>
@@ -407,7 +407,7 @@
                                             <div class="col-lg-6">
                                                 <div>
                                                     <img class="img-fluid w-100"
-                                                        src="https://i.ibb.co/SsVWMpL/box-size.png" alt="">
+                                                        src="{{ asset('frontend/img/box_size.png') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -582,7 +582,7 @@
                     const weight = weightInput.value || 0;
 
                     dimensionPreview.textContent =
-                        `${length} cm X ${width} cm X ${height} cm X ${weight} kg`;
+                        `${length} cm X ${width} cm X ${height} cm X ${weight} gm`;
                 }
 
                 // Attach the event listener to each input field

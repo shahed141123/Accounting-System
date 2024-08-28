@@ -285,36 +285,38 @@
                                 </div>
                             </div>
 
-                            <div class="ps-widget__promo">
-                                {{-- <img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}" alt=""> --}}
-                                <div class="ps-promo__item">
-                                    @if ($deal->image)
-                                        <img class="ps-promo__banner" src="{{ asset('storage/' . $deal->image) }}"
-                                            alt="alt" />
-                                    @endif
-                                    <div class="ps-promo__content">
-                                        <h4 class="text-dark ps-promo__name">
-                                            {{ $deal->title }}
-                                        </h4>
-                                        @if ($deal->offer_price && $deal->price)
-                                            <div class="ps-promo__meta">
-                                                <p class="ps-promo__price text-warning">
-                                                    £ {{ number_format($deal->offer_price, 2) }}</p>
-                                                <p class="ps-promo__del text-dark">
-                                                    £ {{ number_format($deal->price, 2) }}</p>
-                                            </div>
+                            @if ($deal)
+                                <div class="ps-widget__promo">
+                                    {{-- <img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}" alt=""> --}}
+                                    <div class="ps-promo__item">
+                                        @if (optional($deal)->image)
+                                            <img class="ps-promo__banner" src="{{ asset('storage/' . optional($deal)->image) }}"
+                                                alt="alt" />
                                         @endif
-                                        @if (!empty($deal->button_link))
-                                            <a class="btn-green ps-promo__btn"
-                                                href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
-                                        @elseif (!empty($deal->product_id))
-                                            <a class="btn-green ps-promo__btn"
-                                                href="{{ route('product.details', $deal->product->slug) }}">Buy
-                                                now</a>
-                                        @endif
+                                        <div class="ps-promo__content">
+                                            <h4 class="text-dark ps-promo__name">
+                                                {{ optional($deal)->title }}
+                                            </h4>
+                                            @if (optional($deal)->offer_price && optional($deal)->price)
+                                                <div class="ps-promo__meta">
+                                                    <p class="ps-promo__price text-warning">
+                                                        £ {{ number_format(optional($deal)->offer_price, 2) }}</p>
+                                                    <p class="ps-promo__del text-dark">
+                                                        £ {{ number_format(optional($deal)->price, 2) }}</p>
+                                                </div>
+                                            @endif
+                                            @if (!empty(optional($deal)->button_link))
+                                                <a class="btn-green ps-promo__btn"
+                                                    href="{{ optional($deal)->button_link }}">{{ optional($deal)->button_name }}</a>
+                                            @elseif (!empty(optional($deal)->product_id))
+                                                <a class="btn-green ps-promo__btn"
+                                                    href="{{ route('product.details', optional($deal)->product->slug) }}">Buy
+                                                    now</a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

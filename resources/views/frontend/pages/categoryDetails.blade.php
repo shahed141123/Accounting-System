@@ -3,7 +3,7 @@
         .nav-tabs .nav-item.show .nav-link,
         .nav-tabs .nav-link.active {
             color: #ffffff;
-            background-color: #17a2b8;
+            background-color: #8cbf44;
             border-color: 0px;
         }
     </style>
@@ -18,7 +18,7 @@
                         <li class="ps-breadcrumb__item active" aria-current="page">{{ $category->name }}</li>
                     </ul>
                     <!-- Category Title -->
-                    <h1 class="ps-categogy__name text-info" style="font-size: 25px">
+                    <h1 class="ps-categogy__name" style="font-size: 25px">
                         {{ $category->name }}<sup>({{ $category->products()->count() }})</sup>
                     </h1>
                 </div>
@@ -176,11 +176,11 @@
                                                                         <i class="fa fa-heart-o"></i>
                                                                     </a>
                                                                 </div>
-                                                                <div class="ps-product__item rotate"
+                                                                {{-- <div class="ps-product__item rotate"
                                                                     data-toggle="tooltip" data-placement="left"
                                                                     title="Add to compare"><a href="compare.html"><i
                                                                             class="fa fa-align-left"></i></a>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                         </div>
                                                     </div>

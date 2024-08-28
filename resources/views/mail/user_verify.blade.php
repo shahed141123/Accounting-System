@@ -29,7 +29,7 @@
                             Dear {{ $data['name'] }},
                         </div>
                         <div style="padding-bottom: 30px">
-                            We are excited to inform you that your PiqPaq account has been approved! You can now log in and start exploring our range of products.
+                            We are excited to inform you that your NeezPackages account has been approved! You can now log in and start exploring our range of products.
                         </div>
                         <div style="padding-bottom: 40px; text-align:center;">
                             <a href="{{ route('dashboard') }}" rel="noopener"
@@ -39,24 +39,24 @@
                             </a>
                         </div>
                         <div style="padding-bottom: 30px">
-                            Thank you for choosing PiqPaq. We look forward to serving your business needs.
+                            Thank you for choosing NeezPackages. We look forward to serving your business needs.
                         </div>
                         <div style="padding-bottom: 30px">Need Help?</div>
                         <div style="padding-bottom: 30px">
                             Our support team is here to help if you have any questions or need assistance. Feel free to
                             reach out through
                             <a href="{{ route('contact') }}" rel="noopener" target="_blank"
-                                style="text-decoration:none;color: #009EF7">Piqpaq Contact</a>.
+                                style="text-decoration:none;color: #009EF7">NeezPackages Contact</a>.
                         </div>
                         <!--end:Email content-->
-                        <div style="padding-bottom: 10px">Best regards,<br>The PiqPaq Team.</div>
+                        <div style="padding-bottom: 10px">Best regards,<br>The NeezPackages Team.</div>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td align="center" valign="center"
                     style="font-size: 13px; text-align:center;padding: 20px; color: #6d6e7c;">
-                    <p>Copyright © <a href="{{ route('home') }}" rel="noopener" target="_blank">Piqpaq</a>.</p>
+                    <p>Copyright © <a href="{{ route('home') }}" rel="noopener" target="_blank">NeezPackages</a>.</p>
                 </td>
             </tr>
         </tbody>

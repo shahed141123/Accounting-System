@@ -2,14 +2,14 @@
     <div class="ps-about">
         <div class="container">
             <ul class="ps-breadcrumb">
-                <li class="ps-breadcrumb__item"><a href="/">Home</a></li>
+                <li class="ps-breadcrumb__item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="ps-breadcrumb__item active" aria-current="page">About us</li>
             </ul>
             <section class="ps-banner--round">
                 <div class="ps-banner">
                     <div class="ps-banner__block">
                         <div class="ps-banner__content">
-                            <div class="ps-logo"><a href="index.html"> <img src="{{ asset('frontend/img/logo.png') }}"
+                            <div class="ps-logo"><a href="{{ route('home') }}"> <img src="{{ asset('frontend/img/logo.png') }}"
                                         alt></a></div>
                             <h2 class="ps-banner__title">Your Ultimate Destination <br> for Wholesale Wonders!</h2>
                             <div class="ps-banner__btn-group">
@@ -71,13 +71,13 @@
                     <div class="ps-banner">
                         <h2 class="ps-banner__title">Hundreds of thousands of products at Best prices</h2>
                         <div class="ps-banner__desc">Completely the needs of home medicine chest and professional
-                            offices</div><a class="ps-banner__shop" href="product-category.html">Shop now</a>
+                            offices</div><a class="ps-banner__shop" href="{{ route('allproducts') }}">Shop now</a>
                     </div>
                 </div>
             </section>
             <section class="ps-about__project">
                 <div class="container">
-                    <h2 class="ps-about__title">Welcome to PiqPaq, your premier destination for wholesale solutions.
+                    <h2 class="ps-about__title">Welcome to NeezPackages, your premier destination for wholesale solutions.
                     </h2>
                     <section class="ps-section--block-grid">
                         <div class="ps-section__thumbnail"> <a class="ps-section__image" href="#"><img
@@ -86,7 +86,7 @@
                             <h3 class="ps-section__title">Top quality products and proven suppliers with quality
                                 certificates!</h3>
                             <div class="ps-section__subtitle">They have CEE 2020 certificate.</div>
-                            <div class="ps-section__desc">At PiqPaq, we pride ourselves on delivering top-quality
+                            <div class="ps-section__desc">At NeezPackages, we pride ourselves on delivering top-quality
                                 products and exceptional service to businesses of all sizes. With our extensive range of
                                 products and commitment to customer satisfaction, we strive to be your trusted partner
                                 in meeting your wholesale needs.</div>
@@ -103,7 +103,7 @@
                         <div class="ps-section__content">
                             <h3 class="ps-section__title">Empowering Your Business Success</h3>
                             <div class="ps-section__subtitle">Your Trusted Partner in Wholesale Solutions</div>
-                            <div class="ps-section__desc">At PiqPaq, we are dedicated to empowering your business
+                            <div class="ps-section__desc">At NeezPackages, we are dedicated to empowering your business
                                 success through our comprehensive range of wholesale solutions. With a commitment to
                                 excellence and a focus on customer satisfaction, we strive to be the go-to choice for
                                 businesses seeking reliable and cost-effective wholesale options.</div>
@@ -121,7 +121,7 @@
                         <div class="ps-section__content">
                             <h3 class="ps-section__title">Driving Wholesale Excellence</h3>
                             <div class="ps-section__subtitle">Your Gateway to Premium Wholesale Solutions</div>
-                            <div class="ps-section__desc">At PiqPaq, we're committed to driving wholesale excellence by
+                            <div class="ps-section__desc">At NeezPackages, we're committed to driving wholesale excellence by
                                 offering a comprehensive range of premium solutions tailored to meet your business
                                 needs. With a focus on quality, reliability, and customer satisfaction, we aim to
                                 elevate your wholesale experience and help you achieve your goals.</div>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
             </section>
-            <section class="ps-section--reviews"
+            {{-- <section class="ps-section--reviews"
                 style="background-image: url('{{ asset('frontend/img/roundbg.png') }}')">
                 <h3 class="ps-section__title"> <img src="{{ asset('frontend/img/quote-icon.png') }}" alt>Latest
                     reviews</h3>
@@ -207,198 +207,45 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="ps-review">
-                                <div class="ps-review__text">I ordered on Friday evening and on Monday at 12:30 the
-                                    package was with me. I have never encountered such a fast order processing.</div>
-                                <div class="ps-review__name">Albert Flores</div>
-                                <div class="ps-review__review">
-                                    <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating"
-                                            data-read-only="true" style="display: none;">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4" selected="selected">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                        <div class="br-widget br-readonly"><a href="#" data-rating-value="1"
-                                                data-rating-text="1" class="br-selected"></a><a href="#"
-                                                data-rating-value="2" data-rating-text="2" class="br-selected"></a><a
-                                                href="#" data-rating-value="3" data-rating-text="3"
-                                                class="br-selected"></a><a href="#" data-rating-value="4"
-                                                data-rating-text="4" class="br-selected br-current"></a><a
-                                                href="#" data-rating-value="5" data-rating-text="5"></a>
-                                            <div class="br-current-rating">4</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ps-review">
-                                <div class="ps-review__text">I ordered on Friday evening and on Monday at 12:30 the
-                                    package was with me. I have never encountered such a fast order processing.</div>
-                                <div class="ps-review__name">Dianne Russell</div>
-                                <div class="ps-review__review">
-                                    <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating"
-                                            data-read-only="true" style="display: none;">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4" selected="selected">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                        <div class="br-widget br-readonly"><a href="#" data-rating-value="1"
-                                                data-rating-text="1" class="br-selected"></a><a href="#"
-                                                data-rating-value="2" data-rating-text="2" class="br-selected"></a><a
-                                                href="#" data-rating-value="3" data-rating-text="3"
-                                                class="br-selected"></a><a href="#" data-rating-value="4"
-                                                data-rating-text="4" class="br-selected br-current"></a><a
-                                                href="#" data-rating-value="5" data-rating-text="5"></a>
-                                            <div class="br-current-rating">4</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ps-review">
-                                <div class="ps-review__text">I ordered on Friday evening and on Monday at 12:30 the
-                                    package was with me. I have never encountered such a fast order processing.</div>
-                                <div class="ps-review__name">Dianne Russell</div>
-                                <div class="ps-review__review">
-                                    <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating"
-                                            data-read-only="true" style="display: none;">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4" selected="selected">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                        <div class="br-widget br-readonly"><a href="#" data-rating-value="1"
-                                                data-rating-text="1" class="br-selected"></a><a href="#"
-                                                data-rating-value="2" data-rating-text="2" class="br-selected"></a><a
-                                                href="#" data-rating-value="3" data-rating-text="3"
-                                                class="br-selected"></a><a href="#" data-rating-value="4"
-                                                data-rating-text="4" class="br-selected br-current"></a><a
-                                                href="#" data-rating-value="5" data-rating-text="5"></a>
-                                            <div class="br-current-rating">4</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ps-review">
-                                <div class="ps-review__text">There was a small mistake in the order. In return, I got
-                                    the correct order and I could keep the wrong one for myself.</div>
-                                <div class="ps-review__name">Brooklyn Simmons</div>
-                                <div class="ps-review__review">
-                                    <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating"
-                                            data-read-only="true" style="display: none;">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4" selected="selected">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                        <div class="br-widget br-readonly"><a href="#" data-rating-value="1"
-                                                data-rating-text="1" class="br-selected"></a><a href="#"
-                                                data-rating-value="2" data-rating-text="2" class="br-selected"></a><a
-                                                href="#" data-rating-value="3" data-rating-text="3"
-                                                class="br-selected"></a><a href="#" data-rating-value="4"
-                                                data-rating-text="4" class="br-selected br-current"></a><a
-                                                href="#" data-rating-value="5" data-rating-text="5"></a>
-                                            <div class="br-current-rating">4</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
         </div>
         <div class="container">
             <section class="ps-section--blog">
                 <h3 class="ps-section__title">From the blog</h3>
                 <div class="ps-section__carousel">
                     <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="13000"
-                        data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="3"
-                        data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="2" data-owl-item-lg="3"
-                        data-owl-item-xl="3" data-owl-duration="1000" data-owl-mousedrag="on">
-                        <div class="ps-section__item">
-                            <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a href="blog-details.html"><img
-                                            src="{{ asset('frontend/img/blog/blog2-496x262.jpg') }}"
-                                            alt="alt" /></a>
-                                    <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span
-                                            class="ps-badge__item">PHARMACY</span><span
-                                            class="ps-badge__item">SALE</span>
+                        data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="3" data-owl-item-xs="1"
+                        data-owl-item-sm="1" data-owl-item-md="2" data-owl-item-lg="3" data-owl-item-xl="3"
+                        data-owl-duration="1000" data-owl-mousedrag="on">
+                        @foreach ($blog_posts as $blog_post)
+                            <div class="ps-section__item">
+                                <div class="ps-blog--latset">
+                                    <div class="ps-blog__thumbnail">
+                                        <a href="{{ route('blog.details', $blog_post->slug) }}">
+                                            <img src="{{ asset('storage/' . $blog_post->image) }}" alt="alt" />
+                                        </a>
+                                        <div class="ps-blog__badge">
+                                            <span class="ps-badge__item">{{ $blog_post->badge }}</span>
+                                            {{-- @foreach ($blog_post->blogTag as $tag)
+                                                <span class="ps-badge__item">{{ $tag->name }}</span>
+                                            @endforeach --}}
+
+                                        </div>
+                                    </div>
+                                    <div class="ps-blog__content">
+                                        <div class="ps-blog__meta"> <span
+                                                class="ps-blog__date">{{ $blog_post->created_at->format('M d Y') }}</span>
+                                            <a class="ps-blog__author" href="#">{{ $blog_post->author }}</a>
+                                        </div>
+                                        <a class="ps-blog__title"
+                                            href="{{ route('blog.details', $blog_post->slug) }}">{{ $blog_post->title }}</a>
+                                        <p class="ps-blog__desc">{{ $blog_post->header }}</p>
                                     </div>
                                 </div>
-                                <div class="ps-blog__content">
-                                    <div class="ps-blog__meta"> <span class="ps-blog__date">May 18, 2021</span><a
-                                            class="ps-blog__author" href="#">Alfredo Austin</a></div><a
-                                        class="ps-blog__title" href="blog-details.html">[PDF REPORT] – Impact of
-                                        wearing masks on social behavior</a>
-                                </div>
                             </div>
-                        </div>
-                        <div class="ps-section__item">
-                            <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a href="blog-details.html"><img
-                                            src="{{ asset('frontend/img/blog/blog11-496x262.jpg') }}"
-                                            alt="alt" /></a>
-                                    <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span
-                                            class="ps-badge__item">PHARMACY</span><span
-                                            class="ps-badge__item">SALE</span>
-                                    </div>
-                                </div>
-                                <div class="ps-blog__content">
-                                    <div class="ps-blog__meta"> <span class="ps-blog__date">May 18, 2021</span><a
-                                            class="ps-blog__author" href="#">Alfredo Austin</a></div><a
-                                        class="ps-blog__title" href="blog-details.html">The latest tests of popular
-                                        masks in accordance with CV2s standards</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-section__item">
-                            <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a href="blog-details.html"><img
-                                            src="{{ asset('frontend/img/blog/blog13-496x262.jpg') }}"
-                                            alt="alt" /></a>
-                                    <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span
-                                            class="ps-badge__item">PHARMACY</span><span
-                                            class="ps-badge__item">SALE</span>
-                                    </div>
-                                </div>
-                                <div class="ps-blog__content">
-                                    <div class="ps-blog__meta"> <span class="ps-blog__date">May 18, 2021</span><a
-                                            class="ps-blog__author" href="#">Alfredo Austin</a></div><a
-                                        class="ps-blog__title" href="blog-details.html">The latest tests of popular
-                                        masks in accordance with CV2s standards</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-section__item">
-                            <div class="ps-blog--latset">
-                                <div class="ps-blog__thumbnail"><a href="blog-details.html"><img
-                                            src="{{ asset('frontend/img/blog/blog12-496x262.jpg') }}"
-                                            alt="alt" /></a>
-                                    <div class="ps-blog__badge"><span class="ps-badge__item">MEDIC</span><span
-                                            class="ps-badge__item">PHARMACY</span><span
-                                            class="ps-badge__item">SALE</span>
-                                    </div>
-                                </div>
-                                <div class="ps-blog__content">
-                                    <div class="ps-blog__meta"> <span class="ps-blog__date">May 18, 2021</span><a
-                                            class="ps-blog__author" href="#">Alfredo Austin</a></div><a
-                                        class="ps-blog__title" href="blog-details.html">New special offer for
-                                        customers who have been with us for 10 years</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </section>

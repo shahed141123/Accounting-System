@@ -258,7 +258,7 @@
                 // Define colors
                 var t = "#6c757d"; // Gray color
                 var a = "#e9ecef"; // Light gray
-                var o = "#17a2b8"; // Info color
+                var o = "#8cbf44"; // Info color
                 var s = "#d1ecf1"; // Light info color
 
                 // Get data from Blade

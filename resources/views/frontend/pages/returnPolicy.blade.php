@@ -20,10 +20,10 @@
         </ul>
         <div class="row align-items-center">
             <div class="col-lg-12">
-                <h1 class="text-start mb-5 display-4">PiqPaq</h1>
+                <h1 class="text-start mb-5 display-4">NeezPackages</h1>
                 <p class="lead">Last updated: August 11, 2024</p>
-                <p class="mb-5">Thank you for choosing PiqPaq for your shopping needs!
-                    At PiqPaq, we are committed to ensuring that each of our customers has a positive and satisfying
+                <p class="mb-5">Thank you for choosing NeezPackages for your shopping needs!
+                    At NeezPackages, we are committed to ensuring that each of our customers has a positive and satisfying
                     shopping experience. Your satisfaction is our top priority. We understand that sometimes things
                     might not turn out as expected, and we're here to assist you if that happens.
 
@@ -80,7 +80,7 @@
                 <div class="mt-5 pb-5">
                     <h1 class="text-start mb-5 display-4">Contact Us</h1>
                     <p class="mb-5">If you have any questions on how to return your item to us, contact us at <a
-                            href="mailto:support@piqpaq.com">support@piqpaq.com</a>.</p>
+                            href="mailto:support@neezpackages.com">support@neezpackages.com</a>.</p>
                 </div>
             </div>
         </div>

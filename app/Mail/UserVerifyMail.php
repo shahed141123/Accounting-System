@@ -9,14 +9,14 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class UserRegistrationMail extends Mailable
+class UserVerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $data;
 
     /**
-     * Create a new notification instance.
+     * Create a new message instance.
      */
     public function __construct($data)
     {
@@ -25,15 +25,12 @@ class UserRegistrationMail extends Mailable
 
     /**
      * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
      */
-
     public function build()
     {
         return $this->from('support@neezpackages.com', 'NeezPackages')
-            ->subject('Welcome to NeezPackages!')
-            ->view('mail.user_registration', [
+            ->subject('NeezPackages Acccount Verified!')
+            ->view('mail.user_verify', [
                 'data' => $this->data,
             ]);
     }
@@ -41,16 +38,14 @@ class UserRegistrationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Welcome to NeezPackages!',
+            subject: 'NeezPackages Acccount Verified!',
         );
     }
 
     /**
      * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
+    public function content(): Content
     {
         return new Content(
             // view: 'view.name',
@@ -60,9 +55,9 @@ class UserRegistrationMail extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments()
+    public function attachments(): array
     {
         return [];
     }

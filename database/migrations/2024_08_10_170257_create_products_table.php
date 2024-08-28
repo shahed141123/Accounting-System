@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('warranty')->nullable();
             $table->string('thumbnail', 255)->nullable();
             $table->integer('box_contains')->nullable();
+            $table->double('vat')->nullable();
+            $table->double('tax')->nullable();
             $table->double('box_price')->nullable();
             $table->double('box_discount_price')->nullable();
             $table->double('unit_price')->nullable();

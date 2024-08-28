@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ShopController;
+use App\Http\Controllers\Frontend\StripeController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');
@@ -31,6 +32,10 @@ Route::post('/cart/store/{id}', [CartController::class, 'addToCart'])->name('car
 Route::post('/comparelist/store/{id}', [CartController::class, 'compareList'])->name('compare.store');
 Route::post('/wishlist/store/{id}', [CartController::class, 'wishListStore'])->name('wishlist.store');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/{id}/stripe/payment', [StripeController::class, 'stripePayment'])->name('stripe.payment');
+Route::post('/stripe/pay', [StripeController::class, 'stripePost'])->name('stripe.pay');
+
+
 // Shop
 Route::get('allproducts', [ShopController::class, 'allproducts'])->name('allproducts');
 Route::get('/products/filter', [ShopController::class, 'filterProducts'])->name('products.filter');
