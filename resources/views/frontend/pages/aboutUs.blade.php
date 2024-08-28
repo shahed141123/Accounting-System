@@ -2,7 +2,7 @@
     <div class="ps-about">
         <div class="container">
             <ul class="ps-breadcrumb">
-                <li class="ps-breadcrumb__item"><a href="/">Home</a></li>
+                <li class="ps-breadcrumb__item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="ps-breadcrumb__item active" aria-current="page">About us</li>
             </ul>
             <section class="ps-banner--round">
@@ -71,7 +71,7 @@
                     <div class="ps-banner">
                         <h2 class="ps-banner__title">Hundreds of thousands of products at Best prices</h2>
                         <div class="ps-banner__desc">Completely the needs of home medicine chest and professional
-                            offices</div><a class="ps-banner__shop" href="product-category.html">Shop now</a>
+                            offices</div><a class="ps-banner__shop" href="{{ route('allproducts') }}">Shop now</a>
                     </div>
                 </div>
             </section>

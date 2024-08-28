@@ -68,8 +68,8 @@
                                         <div class="ps-banner__thumnail">
                                             {{-- <img class="ps-banner__round"
                                                 src="{{ asset('storage/' . $slider->bg_image) }}" alt="alt"> --}}
-                                            <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}"
-                                                alt="alt">
+                                            {{-- <img class="ps-banner__image" src="{{ asset('storage/' . $slider->image) }}"
+                                                alt="alt"> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -88,24 +88,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -330,11 +312,11 @@
                                                             href="{{ route('wishlist.store', $latest_product->id) }}"><i
                                                                 class="fa fa-heart-o"></i></a>
                                                     </div>
-                                                    <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                    {{-- <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
                                                             href="compare.html"><i
                                                                 class="fa fa-align-left"></i></a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                         </div>
                                     </div>
@@ -565,10 +547,10 @@
                                                         <i class="fa fa-heart-o"></i>
                                                     </a>
                                                 </div>
-                                                <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                {{-- <div class="ps-product__item rotate" data-toggle="tooltip"
                                                     data-placement="left" title="Add to compare"><a
                                                         href="compare.html"><i class="fa fa-align-left"></i></a>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>

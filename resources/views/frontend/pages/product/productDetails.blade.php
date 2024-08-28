@@ -424,10 +424,10 @@
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
                                                     </div>
-                                                    <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                    {{-- <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
                                                             href="compare.html"><i class="fa fa-align-left"></i></a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>

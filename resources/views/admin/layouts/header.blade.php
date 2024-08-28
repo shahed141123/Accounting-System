@@ -51,7 +51,7 @@
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
             <div class="d-flex align-items-stretch" id="kt_header_nav"> </div>
             <div class="d-flex align-items-stretch flex-shrink-0">
-                <div class="d-flex align-items-center ms-1 ms-lg-3">
+                {{-- <div class="d-flex align-items-center ms-1 ms-lg-3">
 
                     <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
@@ -168,7 +168,7 @@
                     </div>
 
 
-                </div>
+                </div> --}}
 
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click"
@@ -204,37 +204,8 @@
                                 Profile</a>
                         </div>
                         <div class="separator my-2"></div>
-                        <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
-                            {{-- <a href="#" class="menu-link px-5">
-                                <span class="menu-title position-relative">Language
-                                    <span
-                                        class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                        <img class="w-15px h-15px rounded-1 ms-2"
-                                            src="{{ asset('admin/assets/media/flags/united-states.svg') }}"
-                                            alt="" />
-                                    </span>
-                                </span>
-                            </a> --}}
-
-                            {{-- <div class="menu-sub menu-sub-dropdown w-175px py-4">
-
-                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                    <div class="menu-item px-3">
-                                        <a rel="alternate" hreflang="{{ $localeCode }}"
-                                            href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
-                                            class="menu-link d-flex px-5">
-                                            <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1"
-                                                    src="{{ asset('admin/assets/media/flags/' . $localeCode . '.svg') }}"
-                                                    alt="" />
-                                            </span>{{ $properties['native'] }}
-                                        </a>
-                                    </div>
-                                @endforeach
-
-                            </div> --}}
-
-                        </div>
+                        {{-- <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
+                        </div> --}}
                         <div class="menu-item px-5">
                             <form method="POST" action="{{ route('admin.logout') }}">
                                 @csrf
