@@ -5,9 +5,9 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <a href="{{ route('dashboard') }}">
             <img alt="Logo"
-                src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : 'https://i.ibb.co/0cJBJJ8/logo-white.png' }}"
+                src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('frontend/img/logo.png') }}"
                 class="h-50px logo w-150px">
-            {{-- <img alt="Logo" src="https://i.ibb.co/MfYCzZB/logo.png" class="h-50px logo w-150px"> --}}
+            {{-- <img alt="Logo" src="{{ asset('frontend/img/logo.png') }}" class="h-50px logo w-150px"> --}}
         </a>
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-dark aside-toggle active"
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"

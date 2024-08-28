@@ -75,7 +75,7 @@
                                     <div class="col-lg-6">
                                         <div class="text-right">
                                             <span class="font-weight-bold">Shipping From:</span>
-                                            <p class="mb-0">PIQPAQ</p>
+                                            <p class="mb-0">NeezPackages</p>
                                             <p class="mb-0">{{ $setting->primary_phone }}</p>
                                             <p class="mb-0">{{ $setting->contact_email }}</p>
                                             <p class="mb-0">{{ $setting->address_line_one }}</p>
@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
-                                © Piqpaq, LTD 2024.
+                                © NeezPackages, LTD 2024.
                             </div>
                         </div> --}}
                     </div>

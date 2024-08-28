@@ -9,7 +9,7 @@
                 <div class="ps-banner">
                     <div class="ps-banner__block">
                         <div class="ps-banner__content">
-                            <div class="ps-logo"><a href="index.html"> <img src="{{ asset('frontend/img/logo.png') }}"
+                            <div class="ps-logo"><a href="{{ route('home') }}"> <img src="{{ asset('frontend/img/logo.png') }}"
                                         alt></a></div>
                             <h2 class="ps-banner__title">Your Ultimate Destination <br> for Wholesale Wonders!</h2>
                             <div class="ps-banner__btn-group">
@@ -77,7 +77,7 @@
             </section>
             <section class="ps-about__project">
                 <div class="container">
-                    <h2 class="ps-about__title">Welcome to PiqPaq, your premier destination for wholesale solutions.
+                    <h2 class="ps-about__title">Welcome to NeezPackages, your premier destination for wholesale solutions.
                     </h2>
                     <section class="ps-section--block-grid">
                         <div class="ps-section__thumbnail"> <a class="ps-section__image" href="#"><img
@@ -86,7 +86,7 @@
                             <h3 class="ps-section__title">Top quality products and proven suppliers with quality
                                 certificates!</h3>
                             <div class="ps-section__subtitle">They have CEE 2020 certificate.</div>
-                            <div class="ps-section__desc">At PiqPaq, we pride ourselves on delivering top-quality
+                            <div class="ps-section__desc">At NeezPackages, we pride ourselves on delivering top-quality
                                 products and exceptional service to businesses of all sizes. With our extensive range of
                                 products and commitment to customer satisfaction, we strive to be your trusted partner
                                 in meeting your wholesale needs.</div>
@@ -103,7 +103,7 @@
                         <div class="ps-section__content">
                             <h3 class="ps-section__title">Empowering Your Business Success</h3>
                             <div class="ps-section__subtitle">Your Trusted Partner in Wholesale Solutions</div>
-                            <div class="ps-section__desc">At PiqPaq, we are dedicated to empowering your business
+                            <div class="ps-section__desc">At NeezPackages, we are dedicated to empowering your business
                                 success through our comprehensive range of wholesale solutions. With a commitment to
                                 excellence and a focus on customer satisfaction, we strive to be the go-to choice for
                                 businesses seeking reliable and cost-effective wholesale options.</div>
@@ -121,7 +121,7 @@
                         <div class="ps-section__content">
                             <h3 class="ps-section__title">Driving Wholesale Excellence</h3>
                             <div class="ps-section__subtitle">Your Gateway to Premium Wholesale Solutions</div>
-                            <div class="ps-section__desc">At PiqPaq, we're committed to driving wholesale excellence by
+                            <div class="ps-section__desc">At NeezPackages, we're committed to driving wholesale excellence by
                                 offering a comprehensive range of premium solutions tailored to meet your business
                                 needs. With a focus on quality, reliability, and customer satisfaction, we aim to
                                 elevate your wholesale experience and help you achieve your goals.</div>

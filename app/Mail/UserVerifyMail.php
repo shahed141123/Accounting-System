@@ -28,8 +28,8 @@ class UserVerifyMail extends Mailable
      */
     public function build()
     {
-        return $this->from('support@piqpaq.com', 'Piqpaq')
-            ->subject('Piqpaq Acccount Verified!')
+        return $this->from('support@neezpackages.com', 'NeezPackages')
+            ->subject('NeezPackages Acccount Verified!')
             ->view('mail.user_verify', [
                 'data' => $this->data,
             ]);
@@ -38,7 +38,7 @@ class UserVerifyMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Piqpaq Acccount Verified!',
+            subject: 'NeezPackages Acccount Verified!',
         );
     }
 

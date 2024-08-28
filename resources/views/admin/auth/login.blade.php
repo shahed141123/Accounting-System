@@ -12,7 +12,7 @@
 
                             <div class="card-body">
                                 <div class="py-20">
-                                    <img width="200px" class="img-fluid" src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : 'https://i.ibb.co/MfYCzZB/logo.png' }}"
+                                    <img width="200px" class="img-fluid" src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('frontend/img/logo.png') }}"
                                         alt="">
                                 </div>
                                 <div class="text-start mb-10">

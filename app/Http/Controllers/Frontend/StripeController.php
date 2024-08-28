@@ -39,7 +39,7 @@ class StripeController extends Controller
                 'amount' => $request->amount * 100, // Amount in cents
                 'currency' => 'eur', // Currency code
                 'source' => $request->stripeToken, // Stripe token
-                'description' => 'Payment Successful for your Order in Piqpaq'
+                'description' => 'Payment Successful for your Order'
             ]);
 
             // Find the order

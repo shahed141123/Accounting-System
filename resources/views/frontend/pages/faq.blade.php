@@ -48,8 +48,8 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div>
-                    <h1 class="text-start mb-5 display-4"><span class="display-3 fw-bold">Piqpaq</span> <br> Frequently Asked Questions (FAQ)</h1>
-                    <p>Find answers to all your questions about shopping at Piqpaq. Our FAQ section covers everything
+                    <h1 class="text-start mb-5 display-4"><span class="display-3 fw-bold">NeezPackages</span> <br> Frequently Asked Questions (FAQ)</h1>
+                    <p>Find answers to all your questions about shopping at NeezPackages. Our FAQ section covers everything
                         from ordering and shipping to returns and refunds, ensuring a smooth and satisfying shopping
                         experience.</p>
                 </div>

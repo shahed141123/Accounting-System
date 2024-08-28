@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail; 
+namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,8 +31,8 @@ class UserRegistrationMail extends Mailable
 
     public function build()
     {
-        return $this->from('support@piqpaq.com', 'Piqpaq')
-            ->subject('Welcome to Piqpaq!')
+        return $this->from('support@neezpackages.com', 'NeezPackages')
+            ->subject('Welcome to NeezPackages!')
             ->view('mail.user_registration', [
                 'data' => $this->data,
             ]);
@@ -41,7 +41,7 @@ class UserRegistrationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Welcome to Piqpaq!',
+            subject: 'Welcome to NeezPackages!',
         );
     }
 

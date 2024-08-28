@@ -407,7 +407,7 @@
                                             <div class="col-lg-6">
                                                 <div>
                                                     <img class="img-fluid w-100"
-                                                        src="https://i.ibb.co/SsVWMpL/box-size.png" alt="">
+                                                        src="{{ asset('frontend/img/box_size.png') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>

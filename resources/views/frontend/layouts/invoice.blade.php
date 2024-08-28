@@ -6,7 +6,7 @@
                     <img class="text-right" width="150px"
                         src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                         alt=""
-                        onerror="this.onerror=null;this.src='https://piqpaq.flixzaglobal.com/storage/webSetting/site_logo_black/fJq03Mo7ks1724056630.png';">
+                        onerror="this.onerror=null;this.src='https://neezpackages.com/frontend/img/logo.png';">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -37,7 +37,7 @@
             <div class="col-lg-6">
                 <div class="text-right">
                     <span class="font-weight-bold">Shipping From:</span>
-                    <p class="mb-0">PIQPAQ</p>
+                    <p class="mb-0">NeezPackages</p>
                     <p class="mb-0">{{ $setting->primary_phone }}</p>
                     <p class="mb-0">{{ $setting->contact_email }}</p>
                     <p class="mb-0">{{ $setting->address_line_one }}</p>
@@ -142,7 +142,7 @@
         </div>
     </div>
     <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
-        © Piqpaq, LTD 2024.
+        © NeezPackages, LTD 2024.
     </div>
 </div>
 <div class="card border-0">

@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="apple-touch-icon-precomposed" />
-    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="shortcut icon" type="image/png" />
+    <link href="{{ asset('frontend/img/favicon.png') }}" rel="apple-touch-icon-precomposed" />
+    <link href="{{ asset('frontend/img/favicon.png') }}" rel="shortcut icon" type="image/png" />
     <meta name="author" content="" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <title>Welcome PiqPaq | Go Green, Live Clean!</title>
+    <title>NeezPackages</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Jost:400,500,600,700&amp;display=swap&amp;ver=1607580870">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/bootstrap4/css/bootstrap.min.css') }}">
@@ -69,7 +69,7 @@
                             <img class="text-right" width="150px"
                                 src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                                 alt=""
-                                onerror="this.onerror=null;this.src='https://piqpaq.flixzaglobal.com/storage/webSetting/site_logo_black/fJq03Mo7ks1724056630.png';">
+                                onerror="this.onerror=null;this.src='https://neezpackages.com/frontend/img/logo.png';">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -100,7 +100,7 @@
                     <div class="col-lg-6">
                         <div class="text-right">
                             <span class="font-weight-bold">Shipping From:</span>
-                            <p class="mb-0">PIQPAQ</p>
+                            <p class="mb-0">NeezPackages</p>
                             <p class="mb-0">{{ $setting->primary_phone }}</p>
                             <p class="mb-0">{{ $setting->contact_email }}</p>
                             <p class="mb-0">{{ $setting->address_line_one }}</p>
@@ -204,7 +204,7 @@
                 </div>
             </div>
             <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
-                © Piqpaq, LTD 2024.
+                © NeezPackages, LTD 2024.
             </div>
         </div>
     </div>
