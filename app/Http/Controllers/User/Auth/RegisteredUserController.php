@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Auth;
 
+
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -37,15 +38,15 @@ class RegisteredUserController extends Controller
         // Define validation rules
         $validator = Validator::make($request->all(), [
             'title'                         => 'nullable|in:Mr,Mrs,Ms',
-            'first_name'                    => 'required|string|max:255',
-            'last_name'                     => 'required|string|max:255',
+            'first_name'                    => 'nullable|string|max:100',
+            'last_name'                     => 'nullable|string|max:100',
             'email'                         => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password'                      => ['required', 'string', 'min:8', 'confirmed'],
-            'phone'                         => 'nullable|string|max:15',
-            'address_one'                   => 'required|string|max:255',
+            'phone'                         => 'nullable|max:20',
+            'address_one'                   => 'nullable|string|max:255',
             'address_two'                   => 'nullable|string|max:255',
-            'zipcode'                       => 'required|string|max:10',
-            'state'                         => 'required|string|max:100',
+            'zipcode'                       => 'nullable|string|max:10',
+            'state'                         => 'nullable|string|max:100',
             'company_name'                  => 'nullable|string|max:255',
             'company_registration_number'   => 'nullable|string|max:255',
             'company_vat_number'            => 'nullable|string|max:255',
@@ -115,13 +116,11 @@ class RegisteredUserController extends Controller
             return redirect(RouteServiceProvider::HOME);
         } catch (\Illuminate\Database\QueryException $e) {
             // Handle database errors
-            \Log::error('Database error: ' . $e->getMessage());
-            Session::flash('error', 'An error occurred while processing your registration. Please try again later.');
+            Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();
         } catch (\Exception $e) {
             // Handle general errors
-            \Log::error('General error: ' . $e->getMessage());
-            Session::flash('error', 'An unexpected error occurred. Please try again later.');
+            Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();
         }
     }
