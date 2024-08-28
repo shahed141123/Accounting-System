@@ -711,14 +711,14 @@ body {
 }
 
 .ps-btn--warning {
-    border: 1px solid #8cbf44 !important;
-    background-color: #8cbf44 !important;
+    border: 1px solid #fd8d27 !important;
+    background-color: #fd8d27 !important;
     color: white !important;
 }
 
 .ps-btn--warning:hover {
     background-color: white !important;
-    color: #e31d19 !important;
+    color: #fd8d27 !important;
 }
 
 .ps-btn--primary {
@@ -9439,7 +9439,7 @@ textarea.form-control {
 }
 
 .ps-categogy--dark .ps-product--standard .ps-product__price.sale {
-    color: #e31d19;
+    color: #fd8d27;
 }
 
 .ps-categogy--dark .ps-widget--product .ps-widget__title {
@@ -12696,12 +12696,12 @@ textarea.form-control {
 }
 
 .ps-noti {
-    background-color: #8cbf44;
+    background-color: #103178;
     position: relative;
 }
 
 .ps-noti p {
-    color: #fff;
+    color: #ffc800;
     font-size: 15px;
     line-height: 20px;
     padding: 8px 35px 8px 0;
