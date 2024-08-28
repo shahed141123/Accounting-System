@@ -62,6 +62,7 @@ class HomeController extends Controller
     public function privacyPolicy()
     {
         $data = [
+            'banner'  => PageBanner::active()->where('page_name', 'privacy')->latest('id')->first(),
             'privacy' => PrivacyPolicy::latest('id')->where('status', 'active')->first(),
         ];
         return view('frontend.pages.privacyPolicy', $data);
@@ -69,14 +70,16 @@ class HomeController extends Controller
     public function termsCondition()
     {
         $data = [
-            'terms' => TermsAndCondition::latest('id')->where('status', 'active')->first(),
+            'banner'  => PageBanner::active()->where('page_name', 'terms')->latest('id')->first(),
+            'terms'   => TermsAndCondition::latest('id')->where('status', 'active')->first(),
         ];
         return view('frontend.pages.termsCondition', $data);
     }
     public function faq()
     {
         $data = [
-            'faqs' => Faq::orderBy('order', 'asc')->where('status', 'active')->get(),
+            'banner'  => PageBanner::active()->where('page_name', 'faq')->latest('id')->first(),
+            'faqs'    => Faq::orderBy('order', 'asc')->where('status', 'active')->get(),
         ];
         return view('frontend.pages.faq', $data);
     }
