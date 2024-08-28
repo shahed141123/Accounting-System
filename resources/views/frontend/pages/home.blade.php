@@ -573,7 +573,7 @@
                 <div class="ps-section__carousel">
                     <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true"
                         data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
-                        data-owl-item="4" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="2"
+                        data-owl-item="3" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="2"
                         data-owl-item-lg="3" data-owl-item-xl="3" data-owl-duration="1000" data-owl-mousedrag="on">
 
                         @foreach ($blog_posts as $blog_post)
