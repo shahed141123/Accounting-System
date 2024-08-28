@@ -9,6 +9,7 @@ use Stripe\Exception\ApiException;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 
 class StripeController extends Controller
 {
@@ -80,6 +81,7 @@ class StripeController extends Controller
             //     return view('frontend.pages.cart.checkoutFailure');
         } catch (\Exception $e) {
             // Handle general errors
+            Session::flash('error', $e->getMessage());
             flash()->error('An unexpected error occurred: ' . $e->getMessage());
             return redirect()->back();
             // return view('frontend.pages.cart.checkoutFailure');

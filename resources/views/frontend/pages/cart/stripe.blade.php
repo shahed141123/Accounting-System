@@ -33,13 +33,13 @@
                         <div class="card-body p-5">
                             <h3>Payment Methods (Stripe)</h3>
                             <div class="row pt-5">
-                                <form id='checkout-form' method='post' action="{{ route('stripe.pay') }}">
+                                <form id='checkout-form' method='post' action="{{ route('stripe.pay') }}" style="width: 100%;">
                                     @csrf
                                     <input type='hidden' name='ammount' value='{{ $order->total_amount }}'>
                                     <input type='hidden' name='order_number' value='{{ $order->order_number }}'>
                                     <br>
                                     <div class="col-12">
-                                        <div id="card-element" class="form-control w-100"></div>
+                                        <div id="card-element" class="border p-4 w-100"></div>
                                     </div>
                                     <div class="mt-5 col-12">
                                         <button id='pay-btn' class="btn btn-warning w-100 p-4 text-white"

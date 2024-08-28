@@ -405,7 +405,7 @@
             $(this).parent().removeClass('active');
             $('.ps-header--mobile').removeClass('slidebar-active');
         });
-    }
+    } 
 
     function slickCarousel() {
         if ($('.ps-product--gallery .ps-product__thumbnail').length) {

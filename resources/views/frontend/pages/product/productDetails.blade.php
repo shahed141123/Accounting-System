@@ -1,4 +1,9 @@
 <x-frontend-app-layout :title="'Product Details'">
+    <style>
+        .slick-track .slick-active{
+            width: 400px !important;
+        }
+    </style>
     <div class="ps-page--product3">
         <div class="container">
             <ul class="ps-breadcrumb">
@@ -41,13 +46,13 @@
                                         </div>
                                         <table class="table ps-table ps-table--oriented m-0">
                                             <tbody>
-                                                @if (!empty($product->sku_code ))
+                                                @if (!empty($product->sku_code))
                                                     <tr>
                                                         <th class="ps-table__th">CODE</th>
                                                         <td>{{ $product->sku_code }}</td>
                                                     </tr>
                                                 @endif
-                                                @if (!empty($product->barcode_id ))
+                                                @if (!empty($product->barcode_id))
                                                     <tr>
                                                         <th class="ps-table__th">BARCODE </th>
                                                         <td>{{ $product->barcode_id }}</td>
@@ -599,4 +604,65 @@
             </div>
         </div>
     @endforeach
+
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                slickCarousel();
+            });
+
+            function slickCarousel() {
+                if ($('.ps-product--gallery .ps-product__thumbnail').length) {
+                    $('.ps-product--gallery .ps-product__thumbnail')
+                        .slick({
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false,
+                            dots: false,
+                            lazyLoad: 'ondemand',
+                            asNavFor: '.ps-gallery--image'
+                        })
+                        .on('init', function() {
+                            $(this).fadeIn(1000);
+                        });
+
+                    $('.ps-gallery--image')
+                        .slick({
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
+                            lazyLoad: 'ondemand',
+                            asNavFor: '.ps-product--gallery .ps-product__thumbnail',
+                            dots: false,
+                            arrows: false,
+                            focusOnSelect: true
+                        })
+                        .on('init', function() {
+                            $(this).fadeIn(1000);
+                        });
+
+                    // Remove and set active classes
+                    $('.ps-gallery--image .slick-slide').removeClass('slick-active');
+                    $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
+
+                    $('.ps-product--gallery .ps-product__thumbnail').on('beforeChange', function(event, slick, currentSlide,
+                        nextSlide) {
+                        $('.ps-gallery--image .slick-slide').removeClass('slick-active');
+                        $('.ps-gallery--image .slick-slide').eq(nextSlide).addClass('slick-active');
+                    });
+                }
+
+                $('.modal').on('shown.bs.modal', function() {
+                    setTimeout(function() {
+                        $('.ps-product--gallery .ps-product__thumbnail').slick('setPosition');
+                        $('.ps-gallery--image').slick('setPosition');
+                    }, 100);
+                });
+
+                $(window).on('resize', function() {
+                    $('.ps-product--gallery .ps-product__thumbnail').slick('setPosition');
+                    $('.ps-gallery--image').slick('setPosition');
+                });
+            }
+        </script>
+    @endpush
 </x-frontend-app-layout>
