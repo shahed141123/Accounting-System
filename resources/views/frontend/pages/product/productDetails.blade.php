@@ -1,9 +1,13 @@
 <x-frontend-app-layout :title="'Product Details'">
-    {{-- <style>
-        .slick-track .slick-active{
-            width: 400px !important;
+    <style>
+        .ps-product__thumbnail img,
+        .ps-gallery--image img {
+            width: 100%;
+            /* Or a fixed width like 427px */
+            height: auto;
+            /* Ensure proper aspect ratio */
         }
-    </style> --}}
+    </style>
     <div class="ps-page--product3">
         <div class="container">
             <ul class="ps-breadcrumb">
@@ -19,7 +23,6 @@
                                 <div class="col-12 col-xl-6">
                                     <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
-                                            {{-- <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->meta_title }}"> --}}
                                             @foreach ($product->multiImages as $image)
                                                 <div class="slide">
                                                     <img src="{{ asset('storage/' . $image->photo) }}"
