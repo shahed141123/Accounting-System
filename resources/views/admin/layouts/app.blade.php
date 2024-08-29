@@ -48,7 +48,7 @@
 
     <link href="{{ asset('admin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
 </head>
 
 <body id="kt_body"
@@ -139,6 +139,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @include('toastr')
     @stack('scripts')
     <script>
@@ -319,7 +320,44 @@
             }
         }
     </script>
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
 
+                    toastr.options.timeOut = 10000;
+                    toastr.info("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+                    break;
+                case 'success':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.success("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'warning':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.warning("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'error':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.error("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+            }
+        @endif
+    </script>
 
 </body>
 

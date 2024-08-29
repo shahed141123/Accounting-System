@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
     <link href="{{ asset('frontend/css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/69b7156a94.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -124,6 +125,7 @@
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @stack('scripts')
     {{-- Preloader --}}
     <script>
@@ -681,6 +683,44 @@
                 });
             });
         });
+    </script>
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.info("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+                    break;
+                case 'success':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.success("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'warning':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.warning("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'error':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.error("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+            }
+        @endif
     </script>
     {{-- add_to_cart_btn_product_single --}}
 </body>
