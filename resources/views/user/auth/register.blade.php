@@ -103,8 +103,8 @@
                                     <p>Billing Address Details</p>
                                 </div>
                                 <!-- House/Block/Road -->
-                                <div class="ps-form__group col-8">
-                                    <label class="ps-form__label" for="House/Block/Road">Apartment,Suite<span
+                                <div class="ps-form__group col-12">
+                                    <label class="ps-form__label" for="House/Block/Road">House No / Road Name<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="address_one" class="form-control ps-form__input" type="text"
@@ -112,17 +112,6 @@
                                             required />
                                     </div>
                                     <x-input-error :messages="$errors->get('address_one')" class="mt-2" />
-                                </div>
-
-                                <!-- Zip Code -->
-                                <div class="ps-form__group col-4">
-                                    <label class="ps-form__label" for="Zip Code">Zip Code<span
-                                            class="text-danger">*</span></label>
-                                    <div class="input-group">
-                                        <input id="zipcode" class="form-control ps-form__input" type="text"
-                                            :value="old('zipcode')" name="zipcode" autocomplete="zipcode" required />
-                                    </div>
-                                    <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
                                 </div>
 
                                 <!-- State -->
@@ -136,7 +125,7 @@
                                 </div> --}}
 
                                 <!-- City/Country -->
-                                <div class="ps-form__group col-8">
+                                <div class="ps-form__group col-4">
                                     <label class="ps-form__label" for="City">City<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -146,7 +135,17 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
                                 </div>
-                                <div class="ps-form__group col-8">
+                                <!-- Zip Code -->
+                                <div class="ps-form__group col-4">
+                                    <label class="ps-form__label" for="Zip Code">Post Code<span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input id="zipcode" class="form-control ps-form__input" type="text"
+                                            :value="old('zipcode')" name="zipcode" autocomplete="zipcode" required />
+                                    </div>
+                                    <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
+                                </div>
+                                <div class="ps-form__group col-4">
                                     <label class="ps-form__label" for="Country">Country<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -403,7 +402,7 @@
                                 <div class="col-12">
                                     <p>Company & My Details</p>
                                 </div>
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-4">
                                     <x-input-label class="ps-form__label" for="company_name" :value="__('Company Name')" />
                                     <div class="input-group">
                                         <input id="company_name" class="form-control ps-form__input" type="text"
@@ -412,9 +411,9 @@
                                     <x-input-error :messages="$errors->get('company_name')" class="mt-2" />
                                 </div>
 
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-4">
                                     <x-input-label class="ps-form__label" for="company_registration_number"
-                                        :value="__('Company Reg Number (if available)')" />
+                                        :value="__('Company Reg Number')" />
                                     <div class="input-group">
                                         <input id="company_registration_number" class="form-control ps-form__input"
                                             type="text" name="company_registration_number"
@@ -423,9 +422,9 @@
                                     <x-input-error :messages="$errors->get('company_registration_number')" class="mt-2" />
                                 </div>
 
-                                <div class="ps-form__group col-12">
+                                <div class="ps-form__group col-4">
                                     <x-input-label class="ps-form__label" for="company_vat_number"
-                                        :value="__('Company VAT Number (if available)')" />
+                                        :value="__('Company VAT Number')" />
                                     <div class="input-group">
                                         <input id="company_vat_number" class="form-control ps-form__input"
                                             type="text" name="company_vat_number"
@@ -434,7 +433,7 @@
                                     <x-input-error :messages="$errors->get('company_vat_number')" class="mt-2" />
                                 </div>
 
-                                <div class="ps-form__group col-12">
+                                {{-- <div class="ps-form__group col-12">
                                     <x-input-label class="ps-form__label" for="selling_platforms"
                                         :value="__(
                                             'Internet Retailers - Which Selling Platforms Do You Use? (Select all that apply)',
@@ -451,9 +450,9 @@
                                         </select>
                                     </div>
                                     <x-input-error :messages="$errors->get('selling_platforms')" class="mt-2" />
-                                </div>
+                                </div> --}}
 
-                                <div class="ps-form__group col-6">
+                                {{-- <div class="ps-form__group col-6">
                                     <x-input-label class="ps-form__label" for="customer_type" :value="__('Customer Type')" />
                                     <div class="input-group">
                                         <select name="customer_type" class="form-select ps-form__input"
@@ -491,7 +490,7 @@
                                         </select>
                                     </div>
                                     <x-input-error :messages="$errors->get('customer_type')" class="mt-2" />
-                                </div>
+                                </div> --}}
 
                                 <div class="ps-form__group col-6">
                                     <x-input-label class="ps-form__label" for="referral_source" :value="__('How Did You Find Out About Us?')" />
@@ -513,7 +512,7 @@
                                     <x-input-error :messages="$errors->get('referral_source')" class="mt-2" />
                                 </div>
 
-                                <div class="ps-form__group col-6">
+                                {{-- <div class="ps-form__group col-6">
                                     <x-input-label class="ps-form__label fs-6" for="buying_group_membership"
                                         :value="__('Member of a Buying Group?')" />
                                     <div class="input-group">
@@ -524,7 +523,7 @@
                                         </select>
                                     </div>
                                     <x-input-error :messages="$errors->get('buying_group_membership')" class="mt-2" />
-                                </div>
+                                </div> --}}
 
                                 <div class="ps-form__group col-6">
                                     <x-input-label class="ps-form__label" for="website_address" :value="__('Website Address')" />
@@ -535,7 +534,7 @@
                                     <x-input-error :messages="$errors->get('website_address')" class="mt-2" />
                                 </div>
 
-                                <div class="ps-form__group col-12">
+                                {{-- <div class="ps-form__group col-12">
                                     <x-input-label class="ps-form__label" for="buying_group_name"
                                         :value="__('Name of Your Buying Group (If applicable)')" />
                                     <div class="input-group">
@@ -543,9 +542,9 @@
                                             autocomplete="buying_group_name"></textarea>
                                     </div>
                                     <x-input-error :messages="$errors->get('buying_group_name')" class="mt-2" />
-                                </div>
+                                </div> --}}
 
-                                <div class="ps-form__group col-12">
+                                {{-- <div class="ps-form__group col-12">
                                     <x-input-label class="ps-form__label" for="current_suppliers"
                                         :value="__('Who Are Your Current Suppliers?')" />
                                     <div class="input-group">
@@ -553,7 +552,7 @@
                                             autocomplete="current_suppliers"></textarea>
                                     </div>
                                     <x-input-error :messages="$errors->get('current_suppliers')" class="mt-2" />
-                                </div>
+                                </div> --}}
 
                                 <div class="ps-form__group col-12">
                                     <x-input-label class="ps-form__label" for="annual_spend" :value="__('How Much Do You Expect to Spend With Us Per Annum?')" />

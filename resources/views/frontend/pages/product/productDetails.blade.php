@@ -36,7 +36,7 @@
             margin-right: 0;
         }
 
-        .main_product_img img{
+        .main_product_img img {
             width: 530px;
             height: 430px;
             object-fit: cover;
@@ -159,7 +159,7 @@
                                         <div class="ps-product__group mt-20">
                                             <table class="table ps-table ps-table--oriented m-0">
                                                 <tr>
-                                                    <th>Case Qty.</th>
+                                                    <th>Carton / Box</th>
                                                     <th>Unit Price</th>
                                                     <th>Stock</th>
                                                 </tr>
@@ -237,27 +237,27 @@
                                 <ul class="ps-product__bundle">
                                     <li><i class="icon-wallet"></i>100% Money back Guaranteed</li>
                                     <li><i class="icon-bag2"></i>Non-contact shipping</li>
-                                    <li><i class="icon-truck"></i>Free delivery order over £500</li>
+                                    <li><i class="icon-truck"></i>Free Delivery All Over UK Mainland (2-3 Days)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="ps-product__content">
-                        <ul class="nav nav-tabs ps-tab-list" id="productContentTabs" role="tablist">
-                            <li class="nav-item" role="presentation">
+                        <ul class="nav nav-tabs ps-tab-list bg-white p-3" id="productContentTabs" role="tablist">
+                            <li class="nav-item ml-3" role="presentation">
                                 <a class="nav-link active" id="description-tab" data-toggle="tab"
                                     href="#description-content" role="tab" aria-controls="description-content"
                                     aria-selected="true">
                                     Overview
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item ml-3" role="presentation">
                                 <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
                                     role="tab" aria-controls="information-content" aria-selected="false">
                                     Description
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item ml-3" role="presentation">
                                 <a class="nav-link" id="specification-tab" data-toggle="tab"
                                     href="#specification-content" role="tab"
                                     aria-controls="specification-content" aria-selected="false">
@@ -271,7 +271,7 @@
                                 </a>
                             </li> --}}
                         </ul>
-                        <div class="tab-content" id="productContent">
+                        <div class="tab-content bg-white p-5" id="productContent">
                             <div class="tab-pane fade show active" id="description-content" role="tabpanel"
                                 aria-labelledby="description-tab">
                                 <div class="ps-document">
@@ -370,7 +370,7 @@
                     <section class="ps-section--also" data-background="img/related-bg.jpg">
                         <div class="container">
                             <h3 class="ps-section__title">Customer also bought</h3>
-                            <div class="dealCarousel owl-carousel">
+                            <div class="owl-carousel">
                                 @foreach ($related_products as $related_product)
                                     <div class="ps-section__product">
                                         <div class="ps-product ps-product--standard">
@@ -497,7 +497,8 @@
                     </section>
                 </div>
             </div>
-            <div class="ps-delivery" data-background="{{ asset('frontend/promotion/banner-delivery-2.jpg') }}">
+            <div class="ps-delivery"
+                style="background-image: url('{{ asset('frontend/promotion/banner-delivery-2.jpg') }}')">
                 <div class="ps-delivery__content">
                     <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
                                 delivery </strong>without contacting the courier</span></div><a
@@ -675,7 +676,8 @@
                 slidesToShow: 4,
                 slidesToScroll: 1,
                 asNavFor: '.videos-slider-2',
-                dots: true,
+                dots: false,
+                arrows: false,
                 focusOnSelect: true,
                 variableWidth: true
             });
@@ -691,6 +693,27 @@
                 var mySlideNumber = nextSlide;
                 $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
                 $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(".owl-carousel").owlCarousel({
+                    items: 4, // Change this to 4
+                    loop: true,
+                    nav: true,
+                    dots: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 4 // Change this to 4 as well
+                        }
+                    }
+                });
             });
         </script>
     @endpush

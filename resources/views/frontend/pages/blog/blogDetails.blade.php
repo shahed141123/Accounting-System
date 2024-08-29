@@ -81,8 +81,7 @@
                                     <div class="ps-delivery__item"><i class="icon-bag2"></i>Non-contact shipping</div>
                                     <div class="ps-delivery__item"><i class="icon-refresh"></i>Minimum Order Quantity
                                         Over £500</div>
-                                    <div class="ps-delivery__item"><i class="icon-truck"></i>Free delivery for order
-                                        over £500</div>
+                                    <div class="ps-delivery__item"><i class="icon-truck"></i>Free Delivery All Over UK Mainland (2-3 Days)</div>
                                 </div>
                                 <div class="ps-product__payment"> <img src="{{ asset('frontend/img/payment-product.png') }}" alt></div>
                                 <div class="ps-product__gif">
