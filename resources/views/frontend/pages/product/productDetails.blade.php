@@ -1,11 +1,45 @@
 <x-frontend-app-layout :title="'Product Details'">
     <style>
-        .ps-product__thumbnail img,
-        .ps-gallery--image img {
-            width: 100%;
-            /* Or a fixed width like 427px */
-            height: auto;
-            /* Ensure proper aspect ratio */
+        .slider-nav-thumbnails {
+            margin-top: 10px;
+        }
+
+        .slider-nav-thumbnails .slick-slide {
+            cursor: pointer;
+            outline: none;
+        }
+
+        .slider-nav-thumbnails .slick-slide.slick-current.slick-active {
+            opacity: 1;
+        }
+
+        .slider-nav-thumbnails .slick-slide img {
+            padding: 5px;
+            background: transparent;
+        }
+
+        .slider-nav-thumbnails .slick-slide.slick-current.slick-active img {
+            background: #8cbf44;
+        }
+
+        .slider-nav-thumbnails img {
+            width: 100px;
+            object-fit: cover;
+            margin: 0 5px;
+        }
+
+        .slider-nav-thumbnails .slick-slide:first-child img {
+            margin-left: 0;
+        }
+
+        .slider-nav-thumbnails .slick-slide:last-child img {
+            margin-right: 0;
+        }
+
+        .main_product_img img{
+            width: 530px;
+            height: 430px;
+            object-fit: cover;
         }
     </style>
     <div class="ps-page--product3">
@@ -21,7 +55,24 @@
                         <div class="col-12 col-md-9">
                             <div class="row">
                                 <div class="col-12 col-xl-6">
-                                    <div class="ps-product--gallery">
+
+                                    <div class="videos-slider-2">
+                                        @foreach ($product->multiImages as $image)
+                                            <div class="main_product_img">
+                                                <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
+                                                    alt="{{ $product->meta_title }}" />
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="slider-nav-thumbnails">
+                                        @foreach ($product->multiImages as $image)
+                                            <div>
+                                                <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
+                                                    alt="{{ $product->meta_title }}">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    {{-- <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
                                             @foreach ($product->multiImages as $image)
                                                 <div class="slide">
@@ -40,7 +91,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-12 col-xl-6">
                                     <div class="ps-product__info">
@@ -610,62 +661,37 @@
 
     @push('scripts')
         <script>
-            $(document).ready(function() {
-                slickCarousel();
+            $('.videos-slider-2').slick({
+                autoplay: true,
+                slidesToScroll: 1,
+                slidesToShow: 1,
+                arrows: false,
+                dots: false,
+                asNavFor: '.slider-nav-thumbnails',
             });
 
-            function slickCarousel() {
-                if ($('.ps-product--gallery .ps-product__thumbnail').length) {
-                    $('.ps-product--gallery .ps-product__thumbnail')
-                        .slick({
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            arrows: false,
-                            dots: false,
-                            lazyLoad: 'ondemand',
-                            asNavFor: '.ps-gallery--image'
-                        })
-                        .on('init', function() {
-                            $(this).fadeIn(1000);
-                        });
+            $('.slider-nav-thumbnails').slick({
+                autoplay: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                asNavFor: '.videos-slider-2',
+                dots: true,
+                focusOnSelect: true,
+                variableWidth: true
+            });
 
-                    $('.ps-gallery--image')
-                        .slick({
-                            slidesToShow: 5,
-                            slidesToScroll: 1,
-                            lazyLoad: 'ondemand',
-                            asNavFor: '.ps-product--gallery .ps-product__thumbnail',
-                            dots: false,
-                            arrows: false,
-                            focusOnSelect: true
-                        })
-                        .on('init', function() {
-                            $(this).fadeIn(1000);
-                        });
+            // Remove active class from all thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
 
-                    // Remove and set active classes
-                    $('.ps-gallery--image .slick-slide').removeClass('slick-active');
-                    $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
+            // Set active class to first thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
 
-                    $('.ps-product--gallery .ps-product__thumbnail').on('beforeChange', function(event, slick, currentSlide,
-                        nextSlide) {
-                        $('.ps-gallery--image .slick-slide').removeClass('slick-active');
-                        $('.ps-gallery--image .slick-slide').eq(nextSlide).addClass('slick-active');
-                    });
-                }
-
-                $('.modal').on('shown.bs.modal', function() {
-                    setTimeout(function() {
-                        $('.ps-product--gallery .ps-product__thumbnail').slick('setPosition');
-                        $('.ps-gallery--image').slick('setPosition');
-                    }, 100);
-                });
-
-                $(window).on('resize', function() {
-                    $('.ps-product--gallery .ps-product__thumbnail').slick('setPosition');
-                    $('.ps-gallery--image').slick('setPosition');
-                });
-            }
+            // On before slide change match active thumbnail to current slide
+            $('.videos-slider-2').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+                var mySlideNumber = nextSlide;
+                $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+                $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+            });
         </script>
     @endpush
 </x-frontend-app-layout>
