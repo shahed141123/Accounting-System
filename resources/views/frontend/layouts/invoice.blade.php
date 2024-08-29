@@ -16,12 +16,12 @@
                 <div
                     style="background-color: #e1ecff; clip-path: polygon(90% 0, 100% 50%, 90% 99%, 0% 100%, 0 53%, 0% 0%);">
                     <p class="mb-0 p-3"><span class="text-dark">Invoice No:</span>
-                        #{{ $order->order_number }}</p>
+                        #{{ optional($order)->order_number }}</p>
                 </div>
             </div>
             <div class="col-lg-8">
-                {{-- <p class="mb-0 p-3 text-right">Date: {{ $order->created_at->format('d/m/Y') }}</p> --}}
-                <p class="mb-0 p-3 text-right">Date: {{ $order->created_at->format('d M, Y') }}</p>
+                {{-- <p class="mb-0 p-3 text-right">Date: {{ optional($order)->created_at->format('d/m/Y') }}</p> --}}
+                <p class="mb-0 p-3 text-right">Date: {{ optional($order)->created_at->format('d M, Y') }}</p>
             </div>
         </div>
         <div class="row mt-5">
@@ -31,17 +31,17 @@
                     <p class="mb-0">{{ optional($order->user)->first_name }}</p>
                     <p class="mb-0">{{ optional($order->user)->phone }}</p>
                     <p class="mb-0">{{ optional($order->user)->email }}</p>
-                    <p class="mb-0">{{ $order->billing_address }}</p>
+                    <p class="mb-0">{{ optional($order)->billing_address }}</p>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="text-right">
                     <span class="font-weight-bold">Shipping From:</span>
                     <p class="mb-0">NeezPackages</p>
-                    <p class="mb-0">{{ $setting->primary_phone }}</p>
-                    <p class="mb-0">{{ $setting->contact_email }}</p>
-                    <p class="mb-0">{{ $setting->address_line_one }}</p>
-                    <p class="mb-0">{{ $setting->address_line_two }}</p>
+                    <p class="mb-0">{{ optional($setting)->primary_phone }}</p>
+                    <p class="mb-0">{{ optional($setting)->contact_email }}</p>
+                    <p class="mb-0">{{ optional($setting)->address_line_one }}</p>
+                    <p class="mb-0">{{ optional($setting)->address_line_two }}</p>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($order->orderItems as $item)
+                            @foreach (optional($order)->orderItems as $item)
                                 <tr>
                                     <td>
                                         <span>{{ $loop->iteration }}</span>
@@ -108,7 +108,7 @@
                                     <span><span class="text-info">(£)</span>0.00</span>
                                 </td>
                             </tr>
-                            @if (optional($order->shippingCharge))
+                            @if (optional($order)->shippingCharge)
                                 <tr class="">
                                     <td colspan="5" class="text-right">
                                         <span>Shipping Charge</span>
@@ -124,7 +124,7 @@
                                 </td>
                                 <td class="text-right font-weight-bold">
                                     <span><span
-                                            class="text-info">(£)</span>{{ number_format($order->total_amount, 2) }}</span>
+                                            class="text-info">(£)</span>{{ number_format(optional($order)->total_amount, 2) }}</span>
                                 </td>
                             </tr>
                         </tbody>

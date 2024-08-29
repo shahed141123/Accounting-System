@@ -462,9 +462,13 @@
 
             //remove active class from all thumbnail slides
             $(".ps-gallery--image .slick-slide").removeClass("slick-active");
+    //         //remove active class from all thumbnail slides
+    //         $('.ps-gallery--image .slick-slide').removeClass('slick-active');
 
             //set active class to first thumbnail slides
             $(".ps-gallery--image .slick-slide").eq(0).addClass("slick-active");
+    //         //set active class to first thumbnail slides
+    //         $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
 
             // On before slide change match active thumbnail to current slide
             $(".ps-product--gallery .ps-product__thumbnail").on(
@@ -489,6 +493,130 @@
             $(".wrap-modal-slider").addClass("open");
         });
     }
+
+    // function slickCarousel() {
+    //     if ($('.ps-product--gallery .ps-product__thumbnail').length) {
+    //         $('.ps-product--gallery .ps-product__thumbnail')
+    //         .on('init', function (slick) {
+    //             $('.ps-product--gallery .ps-product__thumbnail').fadeIn(1000);
+    //         })
+    //         .slick({
+    //             slidesToShow: 1,
+    //             slidesToScroll: 1,
+    //             arrows: false,
+    //             dots: false,
+    //             lazyLoad: 'ondemand',
+    //             asNavFor: '.ps-gallery--image'
+    //         });
+
+    //         $('.ps-gallery--image')
+    //         .on('init', function (slick) {
+    //             $('.ps-gallery--image').fadeIn(1000);
+    //         })
+    //         .slick({
+    //             slidesToShow: 5,
+    //             slidesToScroll: 1,
+    //             lazyLoad: 'ondemand',
+    //             asNavFor: '.ps-product--gallery .ps-product__thumbnail',
+    //             dots: false,
+    //             arrows: false,
+    //             focusOnSelect: true
+    //         });
+
+    //         //remove active class from all thumbnail slides
+    //         $('.ps-gallery--image .slick-slide').removeClass('slick-active');
+
+    //         //set active class to first thumbnail slides
+    //         $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
+
+    //         // On before slide change match active thumbnail to current slide
+    //         $('.ps-product--gallery .ps-product__thumbnail').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+    //             var mySlideNumber = nextSlide;
+    //             $('.ps-gallery--image .slick-slide').removeClass('slick-active');
+    //             $('.ps-gallery--image .slick-slide').eq(mySlideNumber).addClass('slick-active');
+    //         });
+    //     }
+
+    //     $('.modal').on('shown.bs.modal', function (e) {
+    //         $('.ps-product--gallery .ps-product__thumbnail').slick('setPosition');
+    //         $('.ps-gallery--image').slick('setPosition');
+    //         $('.wrap-modal-slider').addClass('open');
+    //     })
+    // }
+
+    // function slickCarousel() {
+    //     if ($(".ps-product--gallery .ps-product__thumbnail").length) {
+    //         setTimeout(function () {
+    //             $(".ps-product--gallery .ps-product__thumbnail")
+    //                 .on("init", function (event, slick) {
+    //                     $(".ps-product--gallery .ps-product__thumbnail").fadeIn(
+    //                         1000
+    //                     );
+    //                 })
+    //                 .slick({
+    //                     slidesToShow: 1,
+    //                     slidesToScroll: 1,
+    //                     arrows: false,
+    //                     dots: false,
+    //                     lazyLoad: "ondemand",
+    //                     asNavFor: ".ps-gallery--image",
+    //                 });
+
+    //             $(".ps-gallery--image")
+    //                 .on("init", function (event, slick) {
+    //                     $(".ps-gallery--image").fadeIn(1000);
+    //                 })
+    //                 .slick({
+    //                     slidesToShow: 5,
+    //                     slidesToScroll: 1,
+    //                     lazyLoad: "ondemand",
+    //                     asNavFor: ".ps-product--gallery .ps-product__thumbnail",
+    //                     dots: false,
+    //                     arrows: false,
+    //                     focusOnSelect: true,
+    //                 });
+
+    //             // Ensure the first slide is active on initialization
+    //             $(".ps-gallery--image .slick-slide")
+    //                 .eq(0)
+    //                 .addClass("slick-active");
+
+    //             // On slide change, match active thumbnail with the current slide
+    //             $(".ps-product--gallery .ps-product__thumbnail").on(
+    //                 "beforeChange",
+    //                 function (event, slick, currentSlide, nextSlide) {
+    //                     $(".ps-gallery--image .slick-slide").removeClass(
+    //                         "slick-active"
+    //                     );
+    //                     $(".ps-gallery--image .slick-slide")
+    //                         .eq(nextSlide)
+    //                         .addClass("slick-active");
+    //                 }
+    //             );
+    //         }, 100); // Add a slight delay before initializing
+    //     }
+
+    //     // Recalculate slider dimensions when the modal is shown
+    //     $(".modal").on("shown.bs.modal", function (e) {
+    //         $(".ps-product--gallery .ps-product__thumbnail").slick(
+    //             "setPosition"
+    //         );
+    //         $(".ps-gallery--image").slick("setPosition");
+    //         $(".wrap-modal-slider").addClass("open");
+    //     });
+    // }
+
+    // // Call the function after document is fully loaded
+    // $(window).on("load", function () {
+    //     slickCarousel();
+    //     $(window).on("resize", function () {
+    //         $(".ps-product--gallery .ps-product__thumbnail").slick(
+    //             "setPosition"
+    //         );
+    //         $(".ps-gallery--image").slick("setPosition");
+    //     });
+    //     $(window).trigger("resize"); // Trigger resize on load
+    // });
 
     // function slidePriceWidget() {
     //     var rangeSlider = document.getElementById('slide-price');

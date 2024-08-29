@@ -1,56 +1,45 @@
 <x-frontend-app-layout :title="'Product Details'">
-    {{-- <style>
-        .slick-track .slick-active{
-            width: 400px !important;
-        }
-    </style> --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.4/swiper-bundle.min.css">
     <style>
-        .gallery {
-            width: 100%;
-            max-width: 620px;
-            margin: 40px auto;
+        .slider-nav-thumbnails {
+            margin-top: 10px;
         }
 
-        .gallery-slider {
-            width: 100%;
-            height: auto;
-            margin: 0 0 10px 0;
+        .slider-nav-thumbnails .slick-slide {
+            cursor: pointer;
+            outline: none;
         }
 
-        .gallery-slider .swiper-slide {
-            width: auto;
-            height: 400px;
-        }
-
-        .gallery-slider .swiper-slide img {
-            display: block;
-            width: auto;
-            height: 100%;
-            margin: 0 auto;
-        }
-
-        .gallery-thumbs {
-            width: 100%;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .gallery-thumbs .swiper-slide {
-            width: 100px;
-            height: 100px;
-            text-align: center;
-            overflow: hidden;
-            opacity: .1;
-        }
-
-        .gallery-thumbs .swiper-slide-active {
+        .slider-nav-thumbnails .slick-slide.slick-current.slick-active {
             opacity: 1;
         }
 
-        .gallery-thumbs .swiper-slide img {
-            width: auto;
-            height: 100%;
+        .slider-nav-thumbnails .slick-slide img {
+            padding: 5px;
+            background: transparent;
+        }
+
+        .slider-nav-thumbnails .slick-slide.slick-current.slick-active img {
+            background: #8cbf44;
+        }
+
+        .slider-nav-thumbnails img {
+            width: 100px;
+            object-fit: cover;
+            margin: 0 5px;
+        }
+
+        .slider-nav-thumbnails .slick-slide:first-child img {
+            margin-left: 0;
+        }
+
+        .slider-nav-thumbnails .slick-slide:last-child img {
+            margin-right: 0;
+        }
+
+        .main_product_img img {
+            width: 530px;
+            height: 430px;
+            object-fit: cover;
         }
     </style>
     <div class="ps-page--product3">
@@ -65,55 +54,23 @@
                     <div class="row">
                         <div class="col-12 col-md-9">
                             <div class="row">
-                                <div class="col-12 col-xl-7">
-                                    <div class="gallery">
-                                        <div class="swiper-container gallery-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample010.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample005.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample012.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample007.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample008.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample009.jpg"
-                                                        alt=""></div>
-                                            </div>
-                                            <div class="swiper-button-prev"></div>
-                                            <div class="swiper-button-next"></div>
-                                        </div>
+                                <div class="col-12 col-xl-6">
 
-                                        <div class="swiper-container gallery-thumbs">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample010.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample005.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample012.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample007.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample008.jpg"
-                                                        alt=""></div>
-                                                <div class="swiper-slide"><img
-                                                        src="https://into-the-program.com/demo/images/sample009.jpg"
-                                                        alt=""></div>
+                                    <div class="videos-slider-2">
+                                        @foreach ($product->multiImages as $image)
+                                            <div class="main_product_img">
+                                                <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
+                                                    alt="{{ $product->meta_title }}" />
                                             </div>
-                                        </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="slider-nav-thumbnails">
+                                        @foreach ($product->multiImages as $image)
+                                            <div>
+                                                <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
+                                                    alt="{{ $product->meta_title }}">
+                                            </div>
+                                        @endforeach
                                     </div>
                                     {{-- <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
@@ -202,7 +159,7 @@
                                         <div class="ps-product__group mt-20">
                                             <table class="table ps-table ps-table--oriented m-0">
                                                 <tr>
-                                                    <th>Case Qty.</th>
+                                                    <th>Carton / Box</th>
                                                     <th>Unit Price</th>
                                                     <th>Stock</th>
                                                 </tr>
@@ -280,28 +237,27 @@
                                 <ul class="ps-product__bundle">
                                     <li><i class="icon-wallet"></i>100% Money back Guaranteed</li>
                                     <li><i class="icon-bag2"></i>Non-contact shipping</li>
-                                    <li><i class="icon-truck"></i>Free delivery order over £500</li>
+                                    <li><i class="icon-truck"></i>Free Delivery All Over UK Mainland (2-3 Days)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="ps-product__content">
-                        <ul class="nav nav-tabs ps-tab-list" id="productContentTabs" role="tablist">
-                            <li class="nav-item" role="presentation">
+                        <ul class="nav nav-tabs ps-tab-list bg-white p-3" id="productContentTabs" role="tablist">
+                            <li class="nav-item ml-3" role="presentation">
                                 <a class="nav-link active" id="description-tab" data-toggle="tab"
                                     href="#description-content" role="tab" aria-controls="description-content"
                                     aria-selected="true">
                                     Overview
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="information-tab" data-toggle="tab"
-                                    href="#information-content" role="tab" aria-controls="information-content"
-                                    aria-selected="false">
+                            <li class="nav-item ml-3" role="presentation">
+                                <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
+                                    role="tab" aria-controls="information-content" aria-selected="false">
                                     Description
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item ml-3" role="presentation">
                                 <a class="nav-link" id="specification-tab" data-toggle="tab"
                                     href="#specification-content" role="tab"
                                     aria-controls="specification-content" aria-selected="false">
@@ -315,7 +271,7 @@
                                 </a>
                             </li> --}}
                         </ul>
-                        <div class="tab-content" id="productContent">
+                        <div class="tab-content bg-white p-5" id="productContent">
                             <div class="tab-pane fade show active" id="description-content" role="tabpanel"
                                 aria-labelledby="description-tab">
                                 <div class="ps-document">
@@ -414,7 +370,7 @@
                     <section class="ps-section--also" data-background="img/related-bg.jpg">
                         <div class="container">
                             <h3 class="ps-section__title">Customer also bought</h3>
-                            <div class="dealCarousel owl-carousel">
+                            <div class="owl-carousel">
                                 @foreach ($related_products as $related_product)
                                     <div class="ps-section__product">
                                         <div class="ps-product ps-product--standard">
@@ -541,7 +497,8 @@
                     </section>
                 </div>
             </div>
-            <div class="ps-delivery" data-background="{{ asset('frontend/promotion/banner-delivery-2.jpg') }}">
+            <div class="ps-delivery"
+                style="background-image: url('{{ asset('frontend/promotion/banner-delivery-2.jpg') }}')">
                 <div class="ps-delivery__content">
                     <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
                                 delivery </strong>without contacting the courier</span></div><a
@@ -736,62 +693,59 @@
             thumbs.controller.control = slider;
         </script>
         <script>
-            $(document).ready(function() {
-                slickCarousel();
+            $('.videos-slider-2').slick({
+                autoplay: true,
+                slidesToScroll: 1,
+                slidesToShow: 1,
+                arrows: false,
+                dots: false,
+                asNavFor: '.slider-nav-thumbnails',
             });
 
-            function slickCarousel() {
-                if ($('.ps-product--gallery .ps-product__thumbnail').length) {
-                    $('.ps-product--gallery .ps-product__thumbnail')
-                        .slick({
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            arrows: false,
-                            dots: false,
-                            lazyLoad: 'ondemand',
-                            asNavFor: '.ps-gallery--image'
-                        })
-                        .on('init', function() {
-                            $(this).fadeIn(1000);
-                        });
+            $('.slider-nav-thumbnails').slick({
+                autoplay: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                asNavFor: '.videos-slider-2',
+                dots: false,
+                arrows: false,
+                focusOnSelect: true,
+                variableWidth: true
+            });
 
-                    $('.ps-gallery--image')
-                        .slick({
-                            slidesToShow: 5,
-                            slidesToScroll: 1,
-                            lazyLoad: 'ondemand',
-                            asNavFor: '.ps-product--gallery .ps-product__thumbnail',
-                            dots: false,
-                            arrows: false,
-                            focusOnSelect: true
-                        })
-                        .on('init', function() {
-                            $(this).fadeIn(1000);
-                        });
+            // Remove active class from all thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
 
-                    // Remove and set active classes
-                    $('.ps-gallery--image .slick-slide').removeClass('slick-active');
-                    $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
+            // Set active class to first thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
 
-                    $('.ps-product--gallery .ps-product__thumbnail').on('beforeChange', function(event, slick, currentSlide,
-                        nextSlide) {
-                        $('.ps-gallery--image .slick-slide').removeClass('slick-active');
-                        $('.ps-gallery--image .slick-slide').eq(nextSlide).addClass('slick-active');
-                    });
-                }
-
-                $('.modal').on('shown.bs.modal', function() {
-                    setTimeout(function() {
-                        $('.ps-product--gallery .ps-product__thumbnail').slick('setPosition');
-                        $('.ps-gallery--image').slick('setPosition');
-                    }, 100);
+            // On before slide change match active thumbnail to current slide
+            $('.videos-slider-2').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+                var mySlideNumber = nextSlide;
+                $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+                $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(".owl-carousel").owlCarousel({
+                    items: 4, // Change this to 4
+                    loop: true,
+                    nav: true,
+                    dots: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 4 // Change this to 4 as well
+                        }
+                    }
                 });
-
-                $(window).on('resize', function() {
-                    $('.ps-product--gallery .ps-product__thumbnail').slick('setPosition');
-                    $('.ps-gallery--image').slick('setPosition');
-                });
-            }
+            });
         </script>
     @endpush
 </x-frontend-app-layout>
