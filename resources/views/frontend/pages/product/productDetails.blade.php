@@ -4,6 +4,55 @@
             width: 400px !important;
         }
     </style> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.4/swiper-bundle.min.css">
+    <style>
+        .gallery {
+            width: 100%;
+            max-width: 620px;
+            margin: 40px auto;
+        }
+
+        .gallery-slider {
+            width: 100%;
+            height: auto;
+            margin: 0 0 10px 0;
+        }
+
+        .gallery-slider .swiper-slide {
+            width: auto;
+            height: 400px;
+        }
+
+        .gallery-slider .swiper-slide img {
+            display: block;
+            width: auto;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .gallery-thumbs {
+            width: 100%;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .gallery-thumbs .swiper-slide {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            overflow: hidden;
+            opacity: .1;
+        }
+
+        .gallery-thumbs .swiper-slide-active {
+            opacity: 1;
+        }
+
+        .gallery-thumbs .swiper-slide img {
+            width: auto;
+            height: 100%;
+        }
+    </style>
     <div class="ps-page--product3">
         <div class="container">
             <ul class="ps-breadcrumb">
@@ -16,10 +65,58 @@
                     <div class="row">
                         <div class="col-12 col-md-9">
                             <div class="row">
-                                <div class="col-12 col-xl-6">
-                                    <div class="ps-product--gallery">
+                                <div class="col-12 col-xl-7">
+                                    <div class="gallery">
+                                        <div class="swiper-container gallery-slider">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample010.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample005.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample012.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample007.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample008.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample009.jpg"
+                                                        alt=""></div>
+                                            </div>
+                                            <div class="swiper-button-prev"></div>
+                                            <div class="swiper-button-next"></div>
+                                        </div>
+
+                                        <div class="swiper-container gallery-thumbs">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample010.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample005.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample012.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample007.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample008.jpg"
+                                                        alt=""></div>
+                                                <div class="swiper-slide"><img
+                                                        src="https://into-the-program.com/demo/images/sample009.jpg"
+                                                        alt=""></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
-                                            {{-- <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->meta_title }}"> --}}
                                             @foreach ($product->multiImages as $image)
                                                 <div class="slide">
                                                     <img src="{{ asset('storage/' . $image->photo) }}"
@@ -37,9 +134,9 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
-                                <div class="col-12 col-xl-6">
+                                <div class="col-12 col-xl-5">
                                     <div class="ps-product__info">
                                         <div class="ps-product__title text-22" style="height: auto;">
                                             {{ $product->name }}
@@ -198,8 +295,9 @@
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
-                                    role="tab" aria-controls="information-content" aria-selected="false">
+                                <a class="nav-link" id="information-tab" data-toggle="tab"
+                                    href="#information-content" role="tab" aria-controls="information-content"
+                                    aria-selected="false">
                                     Description
                                 </a>
                             </li>
@@ -606,6 +704,37 @@
     @endforeach
 
     @push('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.4/swiper-bundle.min.js"></script>
+        <script>
+            //メインスライド
+            var slider = new Swiper('.gallery-slider', {
+                slidesPerView: 1,
+                centeredSlides: true,
+                loop: true,
+                loopedSlides: 6, //スライドの枚数と同じ値を指定
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            //サムネイルスライド
+            var thumbs = new Swiper('.gallery-thumbs', {
+                slidesPerView: 'auto',
+                spaceBetween: 10,
+                centeredSlides: true,
+                loop: true,
+                slideToClickedSlide: true,
+            });
+
+            //3系
+            //slider.params.control = thumbs;
+            //thumbs.params.control = slider;
+
+            //4系～
+            slider.controller.control = thumbs;
+            thumbs.controller.control = slider;
+        </script>
         <script>
             $(document).ready(function() {
                 slickCarousel();
