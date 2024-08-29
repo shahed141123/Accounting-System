@@ -53,7 +53,7 @@ class HomeController extends Controller
         $data = [
             'blog_posts'     => BlogPost::latest('id')->where('status', 'publish')->get(),
         ];
-        return view('frontend.pages.aboutUs',$data);
+        return view('frontend.pages.aboutUs', $data);
     }
     public function returnPolicy()
     {
@@ -142,6 +142,7 @@ class HomeController extends Controller
         $formattedSubtotal = Cart::instance('cart')->subtotal();
         $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
         $subTotal = (float)$cleanSubtotal;
+
         if ($subTotal > 500) {
             $data = [
                 'shippingmethods' => ShippingMethod::active()->get(),
@@ -150,16 +151,14 @@ class HomeController extends Controller
                 'cartCount'       => Cart::instance('cart')->count(),
                 'user'            => Auth::user(),
                 'subTotal'        => $subTotal,
-                // 'subTotal'        => Cart::instance('cart')->subtotal(),
             ];
-            // dd(Cart::instance('cart'));
             return view('frontend.pages.cart.checkout', $data);
         } else {
-
-            flash()->error('The added product price must be greater than 500£ to proceed to check out.');
-            return redirect()->back()->withInput();
+            // Redirect back with error message
+            return redirect()->back()->with('error', 'The added product price must be greater than 500£ to proceed to check out.');
         }
     }
+
 
     public function checkoutSuccess($id)
     {

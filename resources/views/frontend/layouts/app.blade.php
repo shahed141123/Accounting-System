@@ -128,6 +128,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @stack('scripts')
     {{-- Preloader --}}
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}'
+            });
+        </script>
+    @endif
+    @if(session('errors'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                @foreach(session('errors') as $error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: '{{ $error }}'
+                    });
+                @endforeach
+            });
+        </script>
+    @endif
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Set a timeout for 2 seconds

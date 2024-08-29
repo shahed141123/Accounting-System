@@ -64,13 +64,12 @@ class RegisteredUserController extends Controller
 
         // Validate request
         if ($validator->fails()) {
-            foreach ($validator->messages()->all() as $message) {
-                // Session::flash('error', $message);
-                flash()->error($message);
-            }
-            return redirect()->back()->withInput();
-        }
+            // Retrieve all validation error messages
+            $errors = $validator->messages()->all();
 
+            // Redirect back with errors and old input
+            return redirect()->back()->withInput()->with('errors', $errors);
+        }
         try {
             // Create a new customer record
             $user = User::create([
@@ -117,11 +116,11 @@ class RegisteredUserController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             // Handle database errors
             Session::flash('error', $e->getMessage());
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('error',$e->getMessage());
         } catch (\Exception $e) {
             // Handle general errors
             Session::flash('error', $e->getMessage());
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('error',$e->getMessage());
         }
     }
 }
