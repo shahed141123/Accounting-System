@@ -123,7 +123,7 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
-    <script src="{{ asset('admin/js/custom.js') }}"></script>
+    <script src="{{ asset('frontend/js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @stack('scripts')
@@ -458,7 +458,7 @@
         });
     </script>
     {{-- MiNiCart  --}}
-    <script>
+    {{-- <script>
         function miniCart() {
 
             $.ajax({
@@ -523,7 +523,7 @@
         }
 
         miniCart();
-    </script>
+    </script> --}}
     {{-- //MiNiCart Remove  --}}
 
     {{-- Search Script --}}
