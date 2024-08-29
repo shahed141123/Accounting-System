@@ -43,11 +43,11 @@
                     </ul>
                 </div>
                 <ul class="menu-top">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Register</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('allBlog') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('privacyPolicy') }}">Policy</a></li>
                 </ul>
                 @if (!empty(optional($setting)->primary_phone))
                     <div class="ps-header__text">Need help? <strong>{{ optional($setting)->primary_phone }}</strong>

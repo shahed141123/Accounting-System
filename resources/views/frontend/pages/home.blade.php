@@ -168,7 +168,7 @@
             </section> --}}
             @if ($categorys->count() > 0)
                 <section class="ps-section--categories">
-                    <h3 class="ps-section__title">Popular categories</h3>
+                    <h3 class="ps-section__title" style="font-size: 30px;">Popular categories</h3>
                     <div class="container">
                         <div class="ps-section__content pt-5">
                             <div class="ps-categories__list row my-5">
@@ -188,9 +188,9 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="text-center"> <a class="ps-categories__show" href="{{ route('allproducts') }}">Show
+                            {{-- <div class="text-center"> <a class="ps-categories__show" href="{{ route('allproducts') }}">Show
                                     all</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </section>

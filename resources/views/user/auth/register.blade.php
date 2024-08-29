@@ -125,7 +125,7 @@
                                 </div> --}}
 
                                 <!-- City/Country -->
-                                <div class="ps-form__group col-4">
+                                <div class="ps-form__group col-3">
                                     <label class="ps-form__label" for="City">City<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -136,7 +136,7 @@
                                     <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
                                 </div>
                                 <!-- Zip Code -->
-                                <div class="ps-form__group col-4">
+                                <div class="ps-form__group col-3">
                                     <label class="ps-form__label" for="Zip Code">Post Code<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -145,7 +145,7 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
                                 </div>
-                                <div class="ps-form__group col-4">
+                                <div class="ps-form__group col-3">
                                     <label class="ps-form__label" for="Country">Country<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -398,6 +398,14 @@
                                         </select>
                                     </div>
                                     <x-input-error :messages="$errors->get('country')" class="mt-2" />
+                                </div>
+                                <div class="ps-form__group col-3">
+                                    <label class="ps-form__label" for="county">County</label>
+                                    <div class="input-group">
+                                        <input id="county" class="form-control ps-form__input" type="text"
+                                            :value="old('county')" name="county" autocomplete="county" required />
+                                    </div>
+                                    <x-input-error :messages="$errors->get('county')" class="mt-2" />
                                 </div>
                                 <div class="col-12">
                                     <p>Company & My Details</p>
