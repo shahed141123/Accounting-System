@@ -400,12 +400,12 @@
                                     <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                 </div>
                                 <div class="ps-form__group col-3">
-                                    <label class="ps-form__label" for="county">County</label>
+                                    <label class="ps-form__label" for="state">County</label>
                                     <div class="input-group">
-                                        <input id="county" class="form-control ps-form__input" type="text"
-                                            :value="old('county')" name="county" autocomplete="county" required />
+                                        <input id="state" class="form-control ps-form__input" type="text"
+                                            :value="old('state')" name="state" autocomplete="state"/>
                                     </div>
-                                    <x-input-error :messages="$errors->get('county')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                 </div>
                                 <div class="col-12">
                                     <p>Company & My Details</p>
