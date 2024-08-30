@@ -73,7 +73,7 @@
                                                                         <img src="{{ $thumbnailSrc }}"
                                                                             alt="{{ $category_product->meta_title }}"
                                                                             width="210" height="210"
-                                                                            style="object-fit: cover;" />
+                                                                            />
                                                                     @else
                                                                         @foreach ($category_product->multiImages->slice(0, 2) as $image)
                                                                             @php
@@ -90,7 +90,7 @@
                                                                             <img src="{{ $imageSrc }}"
                                                                                 alt="{{ $category_product->meta_title }}"
                                                                                 width="210" height="210"
-                                                                                style="object-fit: cover;" />
+                                                                                />
                                                                         @endforeach
                                                                     @endif
                                                                 </figure>
