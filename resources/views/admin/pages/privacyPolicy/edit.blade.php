@@ -87,8 +87,7 @@
                 <div class="row">
                     <x-metronic.label for="content" class="col-form-label required fw-bold fs-6">
                         {{ __('Content') }}</x-metronic.label>
-                    <textarea name="content" rows="3" cols="3"
-                        class="tinymce_metronic form-control @error('content') is-invalid @enderror">{!! $policy->content !!}</textarea>
+                    <textarea name="content" rows="3" cols="3" class="ckeditor @error('content') is-invalid @enderror">{!! $policy->content !!}</textarea>
                     @error('content')
                         <span class="text-danger"> {{ $message }} </span>
                     @enderror
