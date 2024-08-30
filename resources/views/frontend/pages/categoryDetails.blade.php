@@ -60,28 +60,10 @@
                                                             <a class="ps-product__image"
                                                                 href="{{ route('product.details', $category_product->slug) }}">
                                                                 <figure>
-                                                                    @if (count($category_product->multiImages) > 0)
-                                                                        @foreach ($category_product->multiImages->slice(0, 2) as $image)
-                                                                            @php
-                                                                                $imagePath = 'storage/' . $image->photo;
-                                                                                $imageSrc = file_exists(
-                                                                                    public_path($imagePath),
-                                                                                )
-                                                                                    ? asset($imagePath)
-                                                                                    : asset(
-                                                                                        'frontend/img/no-product.jpg',
-                                                                                    );
-                                                                            @endphp
-                                                                            <img src="{{ $imageSrc }}"
-                                                                                alt="{{ $category_product->meta_title }}"
-                                                                                width="210" height="210"
-                                                                                style="object-fit: cover;" />
-                                                                        @endforeach
-                                                                    @else
+                                                                    @if (!empty($category_product->thumbnail))
                                                                         @php
                                                                             $thumbnailPath =
-                                                                                'storage/' .
-                                                                                $category_product->thumbnail;
+                                                                                'storage/' . $category_product->thumbnail;
                                                                             $thumbnailSrc = file_exists(
                                                                                 public_path($thumbnailPath),
                                                                             )
@@ -92,6 +74,24 @@
                                                                             alt="{{ $category_product->meta_title }}"
                                                                             width="210" height="210"
                                                                             style="object-fit: cover;" />
+                                                                    @else
+                                                                        @foreach ($category_product->multiImages->slice(0, 2) as $image)
+                                                                            @php
+                                                                                $imagePath = 'storage/' . $image->photo;
+                                                                                $imageSrc = file_exists(
+                                                                                    public_path($imagePath),
+                                                                                )
+                                                                                    ? asset($imagePath)
+                                                                                    : // : asset('frontend/img/no-product.jpg');
+                                                                                    asset(
+                                                                                        'frontend/img/no-product.jpg',
+                                                                                    );
+                                                                            @endphp
+                                                                            <img src="{{ $imageSrc }}"
+                                                                                alt="{{ $category_product->meta_title }}"
+                                                                                width="210" height="210"
+                                                                                style="object-fit: cover;" />
+                                                                        @endforeach
                                                                     @endif
                                                                 </figure>
                                                             </a>

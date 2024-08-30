@@ -24,28 +24,32 @@
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $related_product->slug) }}">
                                                     <figure>
-                                                        @if (count($related_product->multiImages) > 0)
-                                                            @foreach ($related_product->multiImages->slice(0, 2) as $image)
-                                                                @php
-                                                                    $imagePath = 'storage/' . $image->photo;
-                                                                    $imageSrc = file_exists(public_path($imagePath))
-                                                                        ? asset($imagePath)
-                                                                        : asset('frontend/img/no-product.jpg');
-                                                                @endphp
-                                                                <img src="{{ $imageSrc }}"
-                                                                    alt="{{ $related_product->meta_title }}" width="210"
-                                                                    height="210" style="object-fit: cover;" />
-                                                            @endforeach
-                                                        @else
+                                                        @if (!empty($related_product->thumbnail))
                                                             @php
-                                                                $thumbnailPath = 'storage/' . $related_product->thumbnail;
+                                                                $thumbnailPath =
+                                                                    'storage/' . $related_product->thumbnail;
                                                                 $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                     ? asset($thumbnailPath)
                                                                     : asset('frontend/img/no-product.jpg');
                                                             @endphp
                                                             <img src="{{ $thumbnailSrc }}"
-                                                                alt="{{ $related_product->meta_title }}" width="210"
-                                                                height="210" style="object-fit: cover;" />
+                                                                alt="{{ $related_product->meta_title }}"
+                                                                width="210" height="210"
+                                                                style="object-fit: cover;" />
+                                                        @else
+                                                            @foreach ($related_product->multiImages->slice(0, 2) as $image)
+                                                                @php
+                                                                    $imagePath = 'storage/' . $image->photo;
+                                                                    $imageSrc = file_exists(public_path($imagePath))
+                                                                        ? asset($imagePath)
+                                                                        : // : asset('frontend/img/no-product.jpg');
+                                                                        asset('frontend/img/no-product.jpg');
+                                                                @endphp
+                                                                <img src="{{ $imageSrc }}"
+                                                                    alt="{{ $related_product->meta_title }}"
+                                                                    width="210" height="210"
+                                                                    style="object-fit: cover;" />
+                                                            @endforeach
                                                         @endif
                                                     </figure>
                                                 </a>

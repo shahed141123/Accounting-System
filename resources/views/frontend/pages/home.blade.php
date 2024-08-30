@@ -209,7 +209,21 @@
                                                     <a class="ps-product__image"
                                                         href="{{ route('product.details', $latest_product->slug) }}">
                                                         <figure>
-                                                            @if (count($latest_product->multiImages) > 0)
+                                                            @if (!empty($latest_product->thumbnail))
+                                                                @php
+                                                                    $thumbnailPath =
+                                                                        'storage/' . $latest_product->thumbnail;
+                                                                    $thumbnailSrc = file_exists(
+                                                                        public_path($thumbnailPath),
+                                                                    )
+                                                                        ? asset($thumbnailPath)
+                                                                        : asset('frontend/img/no-product.jpg');
+                                                                @endphp
+                                                                <img src="{{ $thumbnailSrc }}"
+                                                                    alt="{{ $latest_product->meta_title }}"
+                                                                    width="210" height="210"
+                                                                    style="object-fit: cover;" />
+                                                            @else
                                                                 @foreach ($latest_product->multiImages->slice(0, 2) as $image)
                                                                     @php
                                                                         $imagePath = 'storage/' . $image->photo;
@@ -223,18 +237,6 @@
                                                                         width="210" height="210"
                                                                         style="object-fit: cover;" />
                                                                 @endforeach
-                                                            @else
-                                                                @php
-                                                                    $thumbnailPath =
-                                                                        'storage/' . $latest_product->thumbnail;
-                                                                    $thumbnailSrc = file_exists(public_path($thumbnailPath))
-                                                                        ? asset($thumbnailPath)
-                                                                        : asset('frontend/img/no-product.jpg');
-                                                                @endphp
-                                                                <img src="{{ $thumbnailSrc }}"
-                                                                    alt="{{ $latest_product->meta_title }}"
-                                                                    width="210" height="210"
-                                                                    style="object-fit: cover;" />
                                                             @endif
                                                         </figure>
                                                     </a>
@@ -262,7 +264,8 @@
                                                 </div>
                                                 <div class="ps-product__content">
                                                     <h5 class="ps-product__title">
-                                                        <a href="{{ route('product.details', $latest_product->slug) }}">
+                                                        <a
+                                                            href="{{ route('product.details', $latest_product->slug) }}">
                                                             {{ $latest_product->name }}
                                                         </a>
                                                     </h5>
@@ -297,7 +300,8 @@
                                                                     onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
                                                                         class="icon-minus"></i></button>
                                                                 <input class="quantity" min="0"
-                                                                    name="quantity" value="1" type="number" />
+                                                                    name="quantity" value="1"
+                                                                    type="number" />
                                                                 <button class="plus"
                                                                     onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
                                                                         class="icon-plus"></i></button>
@@ -329,7 +333,7 @@
                         </div>
                     </div>
                 </div>
-            @endif
+        @endif
         </section>
         @if ($deals->count() > 0 || $deal_products->count() > 0)
             <div class="container">
@@ -344,7 +348,8 @@
                                         <a href="{{ route('product.details', $deal->product->slug) }}">
                                             @if ($deal->image)
                                                 <img class="ps-promo__banner"
-                                                    src="{{ asset('storage/' . $deal->image) }}" alt="alt" />
+                                                    src="{{ asset('storage/' . $deal->image) }}"
+                                                    alt="alt" />
                                             @endif
                                             <div class="ps-promo__content">
                                                 @if ($deal->badge)
@@ -362,7 +367,8 @@
                                                         <p class="ps-promo__price text-warning">
                                                             £{{ $deal->offer_price }}
                                                         </p>
-                                                        <p class="ps-promo__del text-white">£{{ $deal->price }}</p>
+                                                        <p class="ps-promo__del text-white">£{{ $deal->price }}
+                                                        </p>
                                                     </div>
                                                 @endif
                                                 @if (!empty($deal->button_link))
@@ -455,29 +461,32 @@
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $deal_product->slug) }}">
                                                     <figure>
-                                                        @if (count($deal_product->multiImages) > 0)
+                                                        @if (!empty($deal_product->thumbnail))
+                                                            @php
+                                                                $thumbnailPath =
+                                                                    'storage/' . $deal_product->thumbnail;
+                                                                $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                                    ? asset($thumbnailPath)
+                                                                    : asset('frontend/img/no-product.jpg');
+                                                            @endphp
+                                                            <img src="{{ $thumbnailSrc }}"
+                                                                alt="{{ $deal_product->meta_title }}"
+                                                                width="210" height="210"
+                                                                style="object-fit: cover;" />
+                                                        @else
                                                             @foreach ($deal_product->multiImages->slice(0, 2) as $image)
                                                                 @php
                                                                     $imagePath = 'storage/' . $image->photo;
                                                                     $imageSrc = file_exists(public_path($imagePath))
                                                                         ? asset($imagePath)
-                                                                        : asset('frontend/img/no-product.jpg');
+                                                                        : // : asset('frontend/img/no-product.jpg');
+                                                                        asset('frontend/img/no-product.jpg');
                                                                 @endphp
                                                                 <img src="{{ $imageSrc }}"
                                                                     alt="{{ $deal_product->meta_title }}"
                                                                     width="210" height="210"
                                                                     style="object-fit: cover;" />
                                                             @endforeach
-                                                        @else
-                                                            @php
-                                                                $thumbnailPath = 'storage/' . $deal_product->thumbnail;
-                                                                $thumbnailSrc = file_exists(public_path($thumbnailPath))
-                                                                    ? asset($thumbnailPath)
-                                                                    : asset('frontend/img/no-product.jpg');
-                                                            @endphp
-                                                            <img src="{{ $thumbnailSrc }}"
-                                                                alt="{{ $deal_product->meta_title }}" width="210"
-                                                                height="210" style="object-fit: cover;" />
                                                         @endif
                                                     </figure>
                                                 </a>
@@ -490,8 +499,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
-                                                        data-placement="left" title="Quick view"><a href="#"
-                                                            data-toggle="modal"
+                                                        data-placement="left" title="Quick view"><a
+                                                            href="#" data-toggle="modal"
                                                             data-target="#popupQuickview{{ $deal_product->id }}"><i
                                                                 class="fa fa-search"></i></a></div>
 
@@ -574,7 +583,8 @@
                     <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true"
                         data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
                         data-owl-item="3" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="2"
-                        data-owl-item-lg="3" data-owl-item-xl="3" data-owl-duration="1000" data-owl-mousedrag="on">
+                        data-owl-item-lg="3" data-owl-item-xl="3" data-owl-duration="1000"
+                        data-owl-mousedrag="on">
 
                         @foreach ($blog_posts as $blog_post)
                             <div class="ps-section__item">
@@ -595,7 +605,8 @@
                                         <div class="ps-blog__meta">
                                             <span
                                                 class="ps-blog__date">{{ $blog_post->created_at->format('M d Y') }}</span>
-                                            <a class="ps-blog__author" href="#">{{ $blog_post->author }}</a>
+                                            <a class="ps-blog__author"
+                                                href="#">{{ $blog_post->author }}</a>
                                         </div>
                                         <a class="ps-blog__title" style="font-size: 18px;"
                                             href="{{ route('blog.details', $blog_post->slug) }}">{{ $blog_post->title }}</a>
