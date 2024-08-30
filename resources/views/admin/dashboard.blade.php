@@ -227,7 +227,7 @@
                                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
                                                     <i class="fa-solid fa-eye" title="Order Details"></i>
                                                 </a>
-                                                <button type="button"
+                                                {{-- <button type="button"
                                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                                     data-kt-docs-datatable-subtable="expand_row">
                                                     <span class="svg-icon fs-3 m-0 toggle-off">
@@ -236,7 +236,7 @@
                                                     <span class="svg-icon fs-3 m-0 toggle-on">
                                                         <i class="fa-solid fa-minus"></i>
                                                     </span>
-                                                </button>
+                                                </button> --}}
                                             </td>
                                         </tr>
                                     @endforeach

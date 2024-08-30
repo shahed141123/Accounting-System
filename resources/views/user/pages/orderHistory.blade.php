@@ -78,7 +78,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#showInvoice">
+                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#showInvoice-{{ $order->id }}">
                                                         <i class="fa-solid fa-print"></i>
                                                     </a>
                                                 </td>
@@ -96,20 +96,22 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="showInvoice" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="showInvoiceLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="showInvoiceLabel">Order Invoice</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body p-0">
-                    @include('frontend.layouts.invoice')
+    @foreach ($orders as $order)
+        <div class="modal fade" id="showInvoice-{{ $order->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="showInvoiceLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="showInvoiceLabel">Order Invoice</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        @include('frontend.layouts.invoice')
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
 </x-frontend-app-layout>

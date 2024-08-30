@@ -21,7 +21,7 @@
         </div>
         <div class="card-body pt-0">
 
-            <form class="form" action="{{ route('admin.terms-condition.update',$term->id) }}" method="POST"
+            <form class="form" action="{{ route('admin.terms-condition.update', $term->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -42,8 +42,9 @@
                         </x-metronic.label>
 
                         <input type="date" name="effective_date"
-                            class="form-control @error('effective_date') is-invalid @enderror" placeholder="Effective Date"
-                            min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ $term->effective_date }}">
+                            class="form-control @error('effective_date') is-invalid @enderror"
+                            placeholder="Effective Date" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                            value="{{ $term->effective_date }}">
 
                         @error('effective_date')
                             <span class="text-danger"> {{ $message }} </span>
@@ -55,8 +56,9 @@
                         </x-metronic.label>
 
                         <input type="date" name="expiration_date"
-                            class="form-control @error('expiration_date') is-invalid @enderror" placeholder="Expiration Date"
-                            min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ $term->expiration_date }}">
+                            class="form-control @error('expiration_date') is-invalid @enderror"
+                            placeholder="Expiration Date" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                            value="{{ $term->expiration_date }}">
 
                         @error('expiration_date')
                             <span class="text-danger"> {{ $message }} </span>
@@ -64,8 +66,7 @@
                     </div>
 
                     <div class="col-lg-3 mb-lg-7 mb-3">
-                        <x-metronic.label for="version"
-                            class="col-form-label fw-bold fs-6">{{ __('Version') }}
+                        <x-metronic.label for="version" class="col-form-label fw-bold fs-6">{{ __('Version') }}
                         </x-metronic.label>
 
                         <x-metronic.input id="version" type="text" name="version" :value="old('version', $term->version)"
@@ -86,8 +87,7 @@
                 <div class="row">
                     <x-metronic.label for="content" class="col-form-label required fw-bold fs-6">
                         {{ __('Content') }}</x-metronic.label>
-                    <textarea name="content" rows="3" cols="3"
-                        class="tinymce_metronic form-control @error('content') is-invalid @enderror">{!! $term->content !!}</textarea>
+                    <textarea rows="3" cols="3" name="content" class="ckeditor w-100 @error('content') is-invalid @enderror">{!! $term->content !!}</textarea>
                     @error('content')
                         <span class="text-danger"> {{ $message }} </span>
                     @enderror
