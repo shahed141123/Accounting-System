@@ -202,7 +202,7 @@
                         <div class="ps-section__content">
                             <div class="row m-0">
                                 @foreach ($latest_products as $latest_product)
-                                    <div class="col-6 col-md-4 col-lg-3 dot4 p-0">
+                                    <div class="col-12 col-md-4 col-lg-3 dot4 p-0">
                                         <div class="ps-section__product">
                                             <div class="ps-product ps-product--standard">
                                                 <div class="ps-product__thumbnail">
