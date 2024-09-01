@@ -3,23 +3,24 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Faq;
+use App\Models\Brand;
+use App\Models\Order;
 use App\Models\BlogTag;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\BlogPost;
 use App\Models\Category;
+use App\Models\DealBanner;
 use App\Models\PageBanner;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
+use App\Models\ShippingMethod;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\DealBanner;
-use App\Models\Order;
-use App\Models\ShippingMethod;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -139,11 +140,14 @@ class HomeController extends Controller
     }
     public function checkout()
     {
+        $setting = Setting::first();
+        $minimumOrderAmount = $setting->minimum_order_amount ?? 0;
+
         $formattedSubtotal = Cart::instance('cart')->subtotal();
         $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
         $subTotal = (float)$cleanSubtotal;
 
-        if ($subTotal > 500) {
+        if ($subTotal > $minimumOrderAmount ) {
             $data = [
                 'shippingmethods' => ShippingMethod::active()->get(),
                 'cartItems'       => Cart::instance('cart')->content(),

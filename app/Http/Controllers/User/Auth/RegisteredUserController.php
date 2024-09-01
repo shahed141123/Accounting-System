@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Auth;
 
 
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
@@ -35,6 +36,9 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $setting = Setting::first();
+        $userVerification = $setting->user_verification ?? '0'; // Default to '0' if null
+        $status = $userVerification === '1' ? 'inactive' : 'active';
         // Define validation rules
         $validator = Validator::make($request->all(), [
             'title'                         => 'nullable|in:Mr,Mrs,Ms',
@@ -71,6 +75,7 @@ class RegisteredUserController extends Controller
             return redirect()->back()->withInput();
         }
 
+
         try {
             // Create a new customer record
             $user = User::create([
@@ -97,7 +102,7 @@ class RegisteredUserController extends Controller
                 'annual_spend'                  => $request->annual_spend,
                 'newsletter_preference'         => $request->newsletter_preference,
                 'terms_condition'               => $request->terms_condition,
-                'status'                        => "inactive",
+                'status'                        => $status,
             ]);
 
             // Trigger registration event

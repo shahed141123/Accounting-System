@@ -13,8 +13,6 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-
-
                     <div class="card-body">
                         <div class="tab-content bg-white p-5" id="myTabContent">
                             <div class="tab-pane fade active show" id="generalInfo" role="tabpanel">
