@@ -89,6 +89,12 @@
             </a>
         </li>
         <li class="nav-item" role="presentation">
+            <a href="{{ route('user.order.tracking') }}"
+                class="nav-link {{ Route::is('user.order.tracking') ? 'active' : '' }}">
+                Track Order
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
             <a href="{{ route('user.stock.history') }}"
                 class="nav-link {{ Route::is('user.stock.history') ? 'active' : '' }}">
                 Stock Availability

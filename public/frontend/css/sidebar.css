@@ -198,7 +198,7 @@
 .nav-tabs2 li .nav-link:hover,
 .nav-tabs5 li .nav-link:hover {
     color: #fff;
-    background-color: #00a198;
+    background-color: var(--site-green);
 }
 .nav-tabs2 li .nav-link.active span svg,
 .nav-tabs5 li .nav-link.active span svg,

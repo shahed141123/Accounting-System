@@ -4,7 +4,7 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="">
+                        <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3">
                                 <i class="fa-solid fa-money-bill fs-3 text-white" aria-hidden="true"></i>
                             </span>
@@ -29,7 +29,7 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="">
+                        <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3"><i
                                     class="fa-brands fa-product-hunt fs-3 text-white" aria-hidden="true"></i></span>
                         </a>
@@ -53,7 +53,7 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="">
+                        <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3"><i
                                     class="fa-solid fa-clock-rotate-left fs-3 text-white" aria-hidden="true"></i></span>
                         </a>
@@ -77,7 +77,7 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="">
+                        <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3">
                                 <i class="fa-solid fa-truck text-white fs-3" aria-hidden="true"></i>
                             </span>
@@ -118,7 +118,7 @@
                 @foreach ($orders as $order)
                     <tr class="text-center">
                         <td>{{ $loop->iteration }}</td>
-                        <td><a href="">{{ $order->order_number }}</a></td>
+                        <td><a href="javascript:void(0)">{{ $order->order_number }}</a></td>
                         <td>{{ $order->user->first_name }} {{ $order->user->last_name }}</td>
                         <td>{{ $order->created_at->format('Y-m-d') }}</td>
                         <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}</td>

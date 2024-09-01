@@ -4,7 +4,7 @@
             style="background-image:linear-gradient(45deg,#0a1d5b,#051225)">
             <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
                 <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
-                    <a href="" class="py-9 mb-5">
+                    <a href="javascript:void(0)" class="py-9 mb-5">
                         <img alt="Logo" src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}" class="h-60px">
                     </a>
                     <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #ffffff;">Welcome to Metronic</h1>

@@ -1,5 +1,4 @@
 <x-admin-app-layout :title="'Website Setting'">
-
     <div class="row g-2" id="columns-container">
         <div class="row py-10 pt-0">
             <div class="col-lg-2">
@@ -135,7 +134,7 @@
                             <div class="tab-pane fade" id="advance" role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-12 advance_container">
-                                        {{-- @include('admin.pages.setting.partials.advance') --}}
+                                        @include('admin.pages.setting.partials.advance')
                                     </div>
                                 </div>
                             </div>

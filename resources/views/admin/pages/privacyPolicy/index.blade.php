@@ -51,11 +51,11 @@
                             <td>
 
                                 {{-- @if ($policy->status == 1)
-                                    <a href="" title="Inactive">
+                                    <a href="javascript:void(0)" title="Inactive">
                                         <i class="bi bi-hand-thumbs-down text-danger fs-3"></i>
                                     </a>
                                 @else
-                                    <a href="" title="Active">
+                                    <a href="javascript:void(0)" title="Active">
                                         <i class="bi bi-hand-thumbs-up text-success fs-3"></i>
                                     </a>
                                 @endif --}}

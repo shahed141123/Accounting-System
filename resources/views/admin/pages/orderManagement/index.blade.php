@@ -5,7 +5,7 @@
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between">
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
-                            <a href="">
+                            <a href="javascript:void(0)">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
                                         class="fa-brands fa-product-hunt fs-3 text-white" aria-hidden="true"></i></span>
                             </a>
@@ -29,7 +29,7 @@
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between">
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
-                            <a href="">
+                            <a href="javascript:void(0)">
                                 <span class="bg-black rounded-3 p-3 me-3"><i
                                         class="fa-solid fa-clock-rotate-left fs-3 text-white"
                                         aria-hidden="true"></i></span>
@@ -55,7 +55,7 @@
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between">
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-dark">
-                            <a href="">
+                            <a href="javascript:void(0)">
                                 <span class="bg-black rounded-3 p-3 me-3"><i class="fa-solid fa-truck text-white fs-3"
                                         aria-hidden="true"></i></span>
                             </a>
@@ -104,7 +104,7 @@
                                 {{ $loop->iteration }}
                             </td>
                             <td>
-                                <a href="">
+                                <a href="javascript:void(0)">
                                     {{ $order->order_number }}
                                 </a>
                             </td>

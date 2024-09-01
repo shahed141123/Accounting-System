@@ -27,6 +27,10 @@ class ClientController extends Controller
     {
         return view('user.pages.accountDetails');
     }
+    public function orderTracking()
+    {
+        return view('user.pages.orderTracking');
+    }
     public function quickOrder()
     {
         $data = [

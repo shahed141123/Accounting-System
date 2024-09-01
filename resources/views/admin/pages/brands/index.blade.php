@@ -5,12 +5,12 @@
                 <div class="card-body p-0">
                     <div class="d-flex flex-stack justify-content-between ">
                         <div class="d-flex align-items-center me-3 p-8 rounded-3 bg-success">
-                            <a href="">
+                            <a href="javascript:void(0)">
                                 <span class="bg-black rounded-3 p-3 me-3"><i class="fa-solid text-white fa-copyright fs-3"
                                         aria-hidden="true"></i></span>
                             </a>
                             <div class="flex-grow-1">
-                                <a href="">
+                                <a href="javascript:void(0)">
                                 </a>
                                 <a href="#" class="text-black fs-5 fw-bold lh-0">Total Brand
                                     <span class="text-black fw-semibold d-block fs-6 pt-4">{{ date('d-M-Y') }}</span>

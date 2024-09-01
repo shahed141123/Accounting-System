@@ -510,7 +510,7 @@
                                     </div>
 
                                     <div class="media-body">
-                                        <a href="">${value.name}</a>
+                                        <a href="javascript:void(0)">${value.name}</a>
 
                                         <span class="price">
                                             <span class="amount">
