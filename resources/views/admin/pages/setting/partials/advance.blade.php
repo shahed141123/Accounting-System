@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xl-12">
-        <h1>Change Order Quantity</h1>
+        <h1>Advanced Setting</h1>
     </div>
     <div class="col-xl-12">
         <div class="row mt-10 px-5 align-items-center w-75 rounded-3">
