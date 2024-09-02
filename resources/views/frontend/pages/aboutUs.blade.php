@@ -231,7 +231,6 @@
                                             {{-- @foreach ($blog_post->blogTag as $tag)
                                                 <span class="ps-badge__item">{{ $tag->name }}</span>
                                             @endforeach --}}
-
                                         </div>
                                     </div>
                                     <div class="ps-blog__content">
@@ -251,7 +250,7 @@
             </section>
             <section class="ps-section--newsletter"
                 style="background-image: url('{{ asset('frontend/img/newsletter-bg.jpg') }}')">
-                <h3 class="ps-section__title">Join our newsletter and get <br>$20 discount for your first order</h3>
+                <h3 class="ps-section__title pt-5">Join our newsletter and get <br> $20 discount for your first order</h3>
                 <div class="ps-section__content">
                     <form action="{{ route('subscription.add') }}" method="post">
                         @csrf
@@ -275,7 +274,7 @@
                 // Owl Carousel
                 var owl = $(".owl-carousel");
                 owl.owlCarousel({
-                    items: 3,
+                    items: 1,
                     margin: 10,
                     loop: true,
                     nav: true,
@@ -288,16 +287,16 @@
                             items: 1
                         },
                         768: {
-                            items: 2
+                            items: 1
                         },
                         992: {
-                            items: 3
+                            items: 1
                         },
                         1200: {
                             items: 4
                         },
                         1680: {
-                            items: 5
+                            items: 4
                         }
                     }
                 });

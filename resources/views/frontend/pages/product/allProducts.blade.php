@@ -124,7 +124,8 @@
                 </div>
                 <div class="col-12 col-md-9 d-flex align-items-center">
                     <div>
-                        <img class="img-fluid" src="{{ asset('frontend/img/christmas-banner-bg.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/christmas-banner-bg.jpg') }}" alt=""
+                            style="height: 100px;object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -290,7 +291,8 @@
                                     {{-- <img src="{{ asset('frontend/img/banner-sidebar1.jpg') }}" alt=""> --}}
                                     <div class="ps-promo__item">
                                         @if (optional($deal)->image)
-                                            <img class="ps-promo__banner" src="{{ asset('storage/' . optional($deal)->image) }}"
+                                            <img class="ps-promo__banner"
+                                                src="{{ asset('storage/' . optional($deal)->image) }}"
                                                 alt="alt" />
                                         @endif
                                         <div class="ps-promo__content">

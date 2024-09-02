@@ -4328,7 +4328,7 @@ textarea.form-control {
     .ps-product--detail .ps-product__feature {
         margin-top: 0;
     }
-    .ps-post .ps-section--blog{
+    .ps-post .ps-section--blog {
         padding: 0 !important;
     }
 }
@@ -10752,6 +10752,44 @@ textarea.form-control {
     line-height: 30px;
 }
 
+@media (max-width: 768px) {
+    .ps-section--newsletter .ps-section__title {
+        margin-bottom: 10px;
+        color: #103178;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: center;
+        font-weight: 600;
+    }
+    .ps-form--subscribe .ps-input {
+        border-radius: 40px;
+        width: 75%;
+        margin: auto;
+        height: 44px;
+        background-color: #f0f2f5;
+        color: #8cbf4491;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .ps-product--list .ps-product__content {
+        display: flex;
+        border-bottom: 1px solid #f0f2f5;
+        flex-direction: column;
+    }
+    .ps-footer__middle {
+        text-align: center;
+    }
+    .ps-widget--product {
+        padding: 0px 14px 65px;
+    }
+    .ps-product__content {
+        padding: 10px 0px 0px;
+    }
+    .ps-product--list .ps-product__desc {
+        display: block;
+        text-align: justify;
+    }
+}
 @media (min-width: 1024px) {
     .ps-section--newsletter .ps-section__title {
         font-size: 40px;
