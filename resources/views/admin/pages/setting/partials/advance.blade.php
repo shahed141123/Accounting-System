@@ -3,7 +3,7 @@
         <h1>Change Order Quantity</h1>
     </div>
     <div class="col-xl-12">
-        <div class="row mt-10 px-5 align-items-center bg-light w-75 rounded-3">
+        <div class="row mt-10 px-5 align-items-center w-75 rounded-3">
             <div class="col-xl-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1" name="user_verification"
