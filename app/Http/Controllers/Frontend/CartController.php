@@ -280,14 +280,20 @@ class CartController extends Controller
                 OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item->id,
-                    'user_id' => auth()->id(), // Assuming user is logged in
+                    'user_id' => auth()->id(),
                     'product_name' => $item->name,
                     'product_color' => $item->model->color ?? null,
                     'product_sku' => $item->model->sku ?? null,
                     'price' => $item->price,
-                    'tax' => $item->tax ?? 0, // Default tax to 0 if not provided
+                    'tax' => $item->tax ?? 0,
                     'quantity' => $item->qty,
-                    'subtotal' => $item->qty * $item->price, // Ensure subtotal is a float
+                    'subtotal' => $item->qty * $item->price,
+                ]);
+
+                // Update product stock
+                $product = Product::find($item->id);
+                $product->update([
+                    'box_stock' => $product->box_stock - $item->qty,
                 ]);
             }
 
@@ -327,12 +333,11 @@ class CartController extends Controller
                 flash()->success('Order placed successfully!');
                 return redirect()->route('stripe.payment', $order->order_number);
             } else if ($order->payment_method == "paypal") {
-                return view('frontend.pages.cart.paypal',$data);
+                return view('frontend.pages.cart.paypal', $data);
             } else {
                 flash()->success('Order placed successfully!');
                 return redirect()->route('checkout.success', $order->order_number);
             }
-
         } catch (\Exception $e) {
             DB::rollback();
 

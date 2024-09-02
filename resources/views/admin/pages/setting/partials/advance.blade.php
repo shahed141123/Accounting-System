@@ -18,7 +18,8 @@
                     <x-metronic.label class="form-label">Minimum Order Amount(Min: 0)</x-metronic.label>
                     <x-metronic.input type="number" name="minimum_order_amount" id="minimum_order_amount"
                         min="0" class="form-control mb-2" placeholder="User Minimum Order Amount"
-                        :value="old('minimum_order_amount', optional($setting)->minimum_order_amount)"></x-metronic.file-input>
+                        :value="old('minimum_order_amount', optional($setting)->minimum_order_amount)">
+                    </x-metronic.file-input>
                 </div>
             </div>
         </div>

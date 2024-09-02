@@ -78,7 +78,6 @@
                                 </div>
                             </div>
 
-
                             <div class="tab-pane fade" id="testimonials" role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-12 testimonial_container">
@@ -86,6 +85,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="tab-pane fade" id="seo" role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-12 seo_container">
@@ -101,6 +101,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="tab-pane fade" id="privacy" role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-12 privacy_container">
@@ -108,6 +109,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="tab-pane fade" id="terms" role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-12 terms_container">
@@ -115,6 +117,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="tab-pane fade" id="fonts" role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-12 fonts_container">
@@ -128,7 +131,7 @@
                                             @include('admin.pages.setting.partials.terms')
                                         </div>
                                     </div>
-                                </div> --}}
+                            </div> --}}
                             <div class="tab-pane fade" id="advance" role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-12 advance_container">
@@ -144,7 +147,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-end">
@@ -152,7 +154,6 @@
                                 {{ __('Submit') }}
                             </x-metronic.button>
                         </div>
-
                     </div>
                 </form>
             </div>
