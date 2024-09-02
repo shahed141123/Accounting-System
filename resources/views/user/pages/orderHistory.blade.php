@@ -30,10 +30,11 @@
                                 <table class="table table-striped order-history-table">
                                     <thead>
                                         <tr>
-                                            <th>Order #</th>
+                                            <th>Order</th>
                                             <th>Date</th>
                                             <th>Items</th>
-                                            <th>Total Amount</th>
+                                            <th>Amount</th>
+                                            <th>Track</th>
                                             <th>Payment Status</th>
                                             <th>Status</th>
                                             <th class="text-center">Action</th>
@@ -47,6 +48,10 @@
                                                 <td>{{ $order->created_at->format('d M, Y') }}</td>
                                                 <td>{{ $order->quantity }}</td>
                                                 <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}
+                                                </td>
+                                                <td>
+                                                    <a href="https://www.royalmail.com/track-your-item#/tracking-results/JW117343458GB"
+                                                        class="btn btn-sm btn-warning">Track</a>
                                                 </td>
                                                 <td>
                                                     @if ($order->payment_status == 'unpaid')
@@ -78,7 +83,8 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#showInvoice-{{ $order->id }}">
+                                                    <a href="javascript:void(0)" data-toggle="modal"
+                                                        data-target="#showInvoice-{{ $order->id }}">
                                                         <i class="fa-solid fa-print"></i>
                                                     </a>
                                                 </td>
@@ -97,8 +103,8 @@
 
     <!-- Modal -->
     @foreach ($orders as $order)
-        <div class="modal fade" id="showInvoice-{{ $order->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="showInvoiceLabel" aria-hidden="true">
+        <div class="modal fade" id="showInvoice-{{ $order->id }}" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="showInvoiceLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">

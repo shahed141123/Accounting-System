@@ -22,7 +22,7 @@
                         @csrf
                         <div class="bg-light p-5">
                             <div class="ps-form--review row mb-5">
-                                <div class="ps-form__group col-2">
+                                <div class="ps-form__group col-12 col-xl-2">
                                     <x-input-label class="ps-form__label" for="title" :value="__('Title')" />
                                     <div class="input-group">
                                         <select name="title" class="form-select ps-form__input" id="title">
@@ -34,7 +34,7 @@
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
                                 <!-- First Name -->
-                                <div class="ps-form__group col-5">
+                                <div class="ps-form__group col-12 col-xl-5">
                                     <x-input-label class="ps-form__label" for="first_name">First Name <span
                                             class="text-danger">*</span></x-input-label>
                                     <input id="first_name" class="form-control ps-form__input" type="text"
@@ -44,7 +44,7 @@
                                 </div>
 
                                 <!-- Last Name -->
-                                <div class="ps-form__group col-5">
+                                <div class="ps-form__group col-12 col-xl-5">
                                     <x-input-label class="ps-form__label" for="last_name" :value="__('Last Name')" />
                                     <input id="last_name" class="form-control ps-form__input" type="text"
                                         name="last_name" :value="old('last_name')" autofocus autocomplete="last_name" />
@@ -52,7 +52,7 @@
                                 </div>
 
                                 <!-- Email -->
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-12 col-xl-6">
                                     <label class="ps-form__label" for="email">Email<span
                                             class="text-danger">*</span></label>
                                     <input id="email" class="form-control ps-form__input" type="email"
@@ -62,7 +62,7 @@
 
                                 <!-- Confirm Email -->
                                 <!-- Phone -->
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-12 col-xl-6">
                                     <x-input-label class="ps-form__label" for="phone" :value="__('Phone')" />
                                     <div class="input-group">
                                         <input id="phone" class="form-control ps-form__input" type="tel"
@@ -72,7 +72,7 @@
                                 </div>
                                 <!-- Password -->
 
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-12 col-xl-6">
                                     <x-input-label class="ps-form__label" for="password" :value="__('Password')" />
                                     <div class="input-group">
                                         <input id="password" class="form-control ps-form__input" type="password"
@@ -85,7 +85,7 @@
                                 </div>
 
                                 <!-- Confirm Password -->
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-12 col-xl-6">
                                     <x-input-label class="ps-form__label" for="password_confirmation"
                                         :value="__('Confirm Password')" />
                                     <div class="input-group">
@@ -99,11 +99,11 @@
                                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                 </div>
                                 <!-- Title -->
-                                <div class="col-12">
+                                <div class="col-12 col-xl-12">
                                     <p>Billing Address Details</p>
                                 </div>
                                 <!-- House/Block/Road -->
-                                <div class="ps-form__group col-12">
+                                <div class="ps-form__group col-12 col-xl-12">
                                     <label class="ps-form__label" for="House/Block/Road">House No / Road Name<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -125,7 +125,7 @@
                                 </div> --}}
 
                                 <!-- City/Country -->
-                                <div class="ps-form__group col-3">
+                                <div class="ps-form__group col-12 col-xl-3">
                                     <label class="ps-form__label" for="City">City<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -136,7 +136,7 @@
                                     <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
                                 </div>
                                 <!-- Zip Code -->
-                                <div class="ps-form__group col-3">
+                                <div class="ps-form__group col-12 col-xl-3">
                                     <label class="ps-form__label" for="Zip Code">Post Code<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -145,7 +145,7 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
                                 </div>
-                                <div class="ps-form__group col-3">
+                                <div class="ps-form__group col-12 col-xl-3">
                                     <label class="ps-form__label" for="Country">Country<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -181,7 +181,8 @@
                                             <option value="Botswana">Botswana</option>
                                             <option value="Bouvet Island">Bouvet Island</option>
                                             <option value="Brazil">Brazil</option>
-                                            <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                            <option value="British Indian Ocean Territory">British Indian Ocean
+                                                Territory</option>
                                             <option value="British Virgin Islands">British Virgin Islands</option>
                                             <option value="Brunei">Brunei</option>
                                             <option value="Bulgaria">Bulgaria</option>
@@ -227,7 +228,8 @@
                                             <option value="France">France</option>
                                             <option value="French Guiana">French Guiana</option>
                                             <option value="French Polynesia">French Polynesia</option>
-                                            <option value="French Southern Territories">French Southern Territories</option>
+                                            <option value="French Southern Territories">French Southern Territories
+                                            </option>
                                             <option value="Gabon">Gabon</option>
                                             <option value="Gambia">Gambia</option>
                                             <option value="Georgia">Georgia</option>
@@ -245,7 +247,8 @@
                                             <option value="Guinea-Bissau">Guinea-Bissau</option>
                                             <option value="Guyana">Guyana</option>
                                             <option value="Haiti">Haiti</option>
-                                            <option value="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option>
+                                            <option value="Heard Island and McDonald Islands">Heard Island and McDonald
+                                                Islands</option>
                                             <option value="Honduras">Honduras</option>
                                             <option value="Hong Kong SAR China">Hong Kong SAR China</option>
                                             <option value="Hungary">Hungary</option>
@@ -337,8 +340,10 @@
                                             <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
                                             <option value="Saint Lucia">Saint Lucia</option>
                                             <option value="Saint Martin">Saint Martin</option>
-                                            <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-                                            <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                                            <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon
+                                            </option>
+                                            <option value="Saint Vincent and the Grenadines">Saint Vincent and the
+                                                Grenadines</option>
                                             <option value="Samoa">Samoa</option>
                                             <option value="San Marino">San Marino</option>
                                             <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
@@ -383,7 +388,8 @@
                                             <option value="United Arab Emirates">United Arab Emirates</option>
                                             <option value="United Kingdom">United Kingdom</option>
                                             <option value="Uruguay">Uruguay</option>
-                                            <option value="U.S. Minor Outlying Islands">U.S. Minor Outlying Islands</option>
+                                            <option value="U.S. Minor Outlying Islands">U.S. Minor Outlying Islands
+                                            </option>
                                             <option value="U.S. Virgin Islands">U.S. Virgin Islands</option>
                                             <option value="Uzbekistan">Uzbekistan</option>
                                             <option value="Vanuatu">Vanuatu</option>
@@ -399,18 +405,18 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                 </div>
-                                <div class="ps-form__group col-3">
+                                <div class="ps-form__group col-12 col-xl-3">
                                     <label class="ps-form__label" for="state">County</label>
                                     <div class="input-group">
                                         <input id="state" class="form-control ps-form__input" type="text"
-                                            :value="old('state')" name="state" autocomplete="state"/>
+                                            :value="old('state')" name="state" autocomplete="state" />
                                     </div>
                                     <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-xl-12">
                                     <p>Company & My Details</p>
                                 </div>
-                                <div class="ps-form__group col-4">
+                                <div class="ps-form__group col-12 col-xl-4">
                                     <x-input-label class="ps-form__label" for="company_name" :value="__('Company Name')" />
                                     <div class="input-group">
                                         <input id="company_name" class="form-control ps-form__input" type="text"
@@ -419,7 +425,7 @@
                                     <x-input-error :messages="$errors->get('company_name')" class="mt-2" />
                                 </div>
 
-                                <div class="ps-form__group col-4">
+                                <div class="ps-form__group col-12 col-xl-4">
                                     <x-input-label class="ps-form__label" for="company_registration_number"
                                         :value="__('Company Reg Number')" />
                                     <div class="input-group">
@@ -430,7 +436,7 @@
                                     <x-input-error :messages="$errors->get('company_registration_number')" class="mt-2" />
                                 </div>
 
-                                <div class="ps-form__group col-4">
+                                <div class="ps-form__group col-12 col-xl-4">
                                     <x-input-label class="ps-form__label" for="company_vat_number"
                                         :value="__('Company VAT Number')" />
                                     <div class="input-group">
@@ -500,7 +506,7 @@
                                     <x-input-error :messages="$errors->get('customer_type')" class="mt-2" />
                                 </div> --}}
 
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-12 col-xl-6">
                                     <x-input-label class="ps-form__label" for="referral_source" :value="__('How Did You Find Out About Us?')" />
                                     <div class="input-group">
                                         <select name="referral_source" class="form-select ps-form__input"
@@ -533,7 +539,7 @@
                                     <x-input-error :messages="$errors->get('buying_group_membership')" class="mt-2" />
                                 </div> --}}
 
-                                <div class="ps-form__group col-6">
+                                <div class="ps-form__group col-12 col-xl-6">
                                     <x-input-label class="ps-form__label" for="website_address" :value="__('Website Address')" />
                                     <div class="input-group">
                                         <input id="website_address" class="form-control ps-form__input"
@@ -562,7 +568,7 @@
                                     <x-input-error :messages="$errors->get('current_suppliers')" class="mt-2" />
                                 </div> --}}
 
-                                <div class="ps-form__group col-12">
+                                <div class="ps-form__group col-12 col-xl-12">
                                     <x-input-label class="ps-form__label" for="annual_spend" :value="__('How Much Do You Expect to Spend With Us Per Annum?')" />
                                     <div class="input-group">
                                         <select name="annual_spend" class="form-select ps-form__input"
@@ -583,10 +589,10 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('annual_spend')" class="mt-2" />
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-xl-12">
                                     <p class="pt-3">Newsletter Preferences</p>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-xl-12">
                                     <div class="form-check ml-0">
                                         <input type="radio" class="form-check-input" id="newsletterYes"
                                             name="newsletter_preference" value="yes">
@@ -602,10 +608,10 @@
                                             don't send me email newsletters</label>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-xl-12">
                                     <p class="pt-3">Terms & Conditions <span class="text-danger">*</span></p>
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-12 col-xl-12">
                                     <div class="form-check ml-0">
                                         <input type="checkbox" class="form-check-input" id="terms_condition"
                                             name="terms_condition" value="yes" required>
@@ -615,7 +621,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 my-3">
+                            <div class="col-12 col-xl-12 my-3">
                                 <h6 class="">
                                     <span class="fs-bold">{{ __('Already have an accounts?') }}</span>
                                     <a href="{{ route('login') }}"
