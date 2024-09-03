@@ -26,7 +26,12 @@
                     <div class="col-lg-8 col-xl-9">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h4>Order History List</h4>
+                                <div class="mb-4">
+                                    <h4>Order History & Track Order</h4>
+                                    <p class="mb-5">
+                                        Click the 'Track' button to check the status of your order delivery.
+                                    </p>
+                                </div>
                                 <table class="table table-striped order-history-table">
                                     <thead>
                                         <tr>
@@ -50,8 +55,8 @@
                                                 <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}
                                                 </td>
                                                 <td>
-                                                    <a href="https://www.royalmail.com/track-your-item#/tracking-results/JW117343458GB"
-                                                        class="btn btn-sm btn-warning">Track</a>
+                                                    <a href="https://www.royalmail.com/track-your-item#/tracking-results/{{ Delivery_ID }}"
+                                                        class="btn btn-sm btn-warning" target="_blank">Track</a>
                                                 </td>
                                                 <td>
                                                     @if ($order->payment_status == 'unpaid')

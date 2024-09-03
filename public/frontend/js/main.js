@@ -327,23 +327,41 @@
     }
 
     function stickyMenu() {
-        $(window).scroll(function (event) {
-            var scroll = $(window).scrollTop();
-            var innerWidth = $(window).innerWidth();
-            if (scroll > 200 && innerWidth > 760) {
-                $(".ps-header").addClass("ps-header--sticky");
-            } else if (scroll > 700 && innerWidth < 760) {
-                $(".ps-header").addClass("ps-header--sticky");
-                $(".ps-search--result").removeClass("active");
-            } else {
-                $(".ps-header").removeClass("ps-header--sticky");
-            }
+        let timeout;
 
-            if (scroll > 100) {
-                $(".scroll-top").show();
-            } else {
-                $(".scroll-top").hide();
-            }
+        $(window).scroll(function () {
+            clearTimeout(timeout);
+            timeout = setTimeout(function () {
+                var scroll = $(window).scrollTop();
+                var innerWidth = $(window).innerWidth();
+
+                if (scroll > 200 && innerWidth > 760) {
+                    if (!$(".ps-header").hasClass("ps-header--sticky")) {
+                        $(".ps-header")
+                            .addClass("ps-header--sticky")
+                            .hide()
+                            .fadeIn(300);
+                    }
+                } else if (scroll > 700 && innerWidth < 760) {
+                    if (!$(".ps-header").hasClass("ps-header--sticky")) {
+                        $(".ps-header")
+                            .addClass("ps-header--sticky")
+                            .hide()
+                            .fadeIn(300);
+                    }
+                    $(".ps-search--result").removeClass("active");
+                } else {
+                    $(".ps-header").fadeOut(300, function () {
+                        $(this).removeClass("ps-header--sticky").show(); // Maintain visibility state after removal
+                    });
+                }
+
+                if (scroll > 100) {
+                    $(".scroll-top").fadeIn(300);
+                } else {
+                    $(".scroll-top").fadeOut(300);
+                }
+            }, 100); // Adjust the debounce delay as needed
         });
 
         $(".ps-menu--sticky").on("click", function (event) {
@@ -462,13 +480,13 @@
 
             //remove active class from all thumbnail slides
             $(".ps-gallery--image .slick-slide").removeClass("slick-active");
-    //         //remove active class from all thumbnail slides
-    //         $('.ps-gallery--image .slick-slide').removeClass('slick-active');
+            //         //remove active class from all thumbnail slides
+            //         $('.ps-gallery--image .slick-slide').removeClass('slick-active');
 
             //set active class to first thumbnail slides
             $(".ps-gallery--image .slick-slide").eq(0).addClass("slick-active");
-    //         //set active class to first thumbnail slides
-    //         $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
+            //         //set active class to first thumbnail slides
+            //         $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
 
             // On before slide change match active thumbnail to current slide
             $(".ps-product--gallery .ps-product__thumbnail").on(

@@ -24,7 +24,7 @@
                         @include('user.layouts.sidebar')
                     </div>
                     <div class="col-lg-8 col-xl-9">
-                        <div class="dashboard-tab">
+                        <div class="dashboard-tab bg-white p-5">
                             <div class="title-box3">
                                 <h3>Your Accounts Details</h3>
                                 <p>
@@ -185,7 +185,7 @@
                                                                         value="*****">
                                                                     <div class="input-group-append">
                                                                         <button id="toggle-password"
-                                                                            class="btn btn-info" type="button">
+                                                                            class="bg-warning border-0 text-white" type="button">
                                                                             <i id="password-icon"
                                                                                 class="fa fa-eye"></i>
                                                                         </button>
@@ -194,7 +194,7 @@
                                                             </div>
                                                             <div class="col-12 mt-4">
                                                                 <input type="submit" value="Save Changes"
-                                                                    class="updatebutton btn btn-block btn-lg btn-success">
+                                                                    class="updatebutton btn btn-info w-100">
                                                             </div>
                                                         </div>
                                                     </div>

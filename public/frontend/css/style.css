@@ -12378,6 +12378,7 @@ textarea.form-control {
     padding: 15px 20px 20px;
     border-radius: 4px;
     margin-bottom: 50px;
+    background-color: #fff;
 }
 
 .ps-checkout .ps-checkout__order {
@@ -12385,6 +12386,7 @@ textarea.form-control {
     border-radius: 4px;
     padding: 25px 20px 30px;
     margin-bottom: 50px;
+    background-color: #fff;
 }
 
 .ps-checkout .ps-checkout__order .form-check label {
@@ -18100,4 +18102,19 @@ table.dataTable tbody td:last-child {
     background-color: var(--site-green);
     border-color: var(--site-green);
     padding: 10px;
+}
+.ps-header {
+    transition: all .5s;
+    opacity: 1; /* Initially hidden */
+    position: relative; /* Ensure non-sticky state is properly positioned */
+}
+
+.ps-header__middle {
+    transition: all .5s;
+    opacity: 1; /* Fully visible when sticky */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
