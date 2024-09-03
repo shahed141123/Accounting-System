@@ -18103,18 +18103,3 @@ table.dataTable tbody td:last-child {
     border-color: var(--site-green);
     padding: 10px;
 }
-.ps-header {
-    transition: all .5s;
-    opacity: 1; /* Initially hidden */
-    position: relative; /* Ensure non-sticky state is properly positioned */
-}
-
-.ps-header__middle {
-    transition: all .5s;
-    opacity: 1; /* Fully visible when sticky */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}

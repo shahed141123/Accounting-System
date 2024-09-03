@@ -327,41 +327,24 @@
     }
 
     function stickyMenu() {
-        let timeout;
+        $(window).scroll(function (event) {
+            var scroll = $(window).scrollTop();
+            var innerWidth = $(window).innerWidth();
 
-        $(window).scroll(function () {
-            clearTimeout(timeout);
-            timeout = setTimeout(function () {
-                var scroll = $(window).scrollTop();
-                var innerWidth = $(window).innerWidth();
+            if (scroll > 100 && innerWidth > 760) {
+                $(".ps-header").addClass("ps-header--sticky");
+            } else if (scroll > 600 && innerWidth < 660) {
+                $(".ps-header").addClass("ps-header--sticky");
+                $(".ps-search--result").removeClass("active");
+            } else {
+                $(".ps-header").removeClass("ps-header--sticky");
+            }
 
-                if (scroll > 200 && innerWidth > 760) {
-                    if (!$(".ps-header").hasClass("ps-header--sticky")) {
-                        $(".ps-header")
-                            .addClass("ps-header--sticky")
-                            .hide()
-                            .fadeIn(300);
-                    }
-                } else if (scroll > 700 && innerWidth < 760) {
-                    if (!$(".ps-header").hasClass("ps-header--sticky")) {
-                        $(".ps-header")
-                            .addClass("ps-header--sticky")
-                            .hide()
-                            .fadeIn(300);
-                    }
-                    $(".ps-search--result").removeClass("active");
-                } else {
-                    $(".ps-header").fadeOut(300, function () {
-                        $(this).removeClass("ps-header--sticky").show(); // Maintain visibility state after removal
-                    });
-                }
-
-                if (scroll > 100) {
-                    $(".scroll-top").fadeIn(300);
-                } else {
-                    $(".scroll-top").fadeOut(300);
-                }
-            }, 100); // Adjust the debounce delay as needed
+            if (scroll > 100) {
+                $(".scroll-top").fadeIn(1000); // Fade in with 300ms duration
+            } else {
+                $(".scroll-top").fadeOut(1000); // Fade out with 300ms duration
+            }
         });
 
         $(".ps-menu--sticky").on("click", function (event) {
