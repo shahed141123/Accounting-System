@@ -48,8 +48,6 @@
                                                             <div class="col-12">
                                                                 <h4>Account Information</h4>
                                                                 <hr>
-
-
                                                             </div>
                                                             <div class="col-4 col-md-4">
                                                                 <div class="form-group">
