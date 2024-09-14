@@ -3,8 +3,7 @@
         <a href="{{ route('admin.dashboard') }}" class="brand-link">
             <img src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('frontend/img/logo.png') }}"
                 alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
-            <span
-                class="brand-text fw-light">{{ optional($setting)->site_title ?: config('app.name', 'AWS "|" Dashboard') }}</span>
+            {{-- <span class="brand-text fw-light">{{ optional($setting)->site_title ?: config('app.name', 'AWS "|" Dashboard') }}</span> --}}
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -35,21 +34,25 @@
                             'subMenu' => [
                                 [
                                     'title' => 'Income Category',
-                                    'routes' => ['admin.income-category.index', 'admin.income-category.create', 'admin.income-category.edit'],
+                                    'routes' => [
+                                        'admin.income-category.index',
+                                        'admin.income-category.create',
+                                        'admin.income-category.edit',
+                                    ],
                                     'route' => 'admin.income-category.index',
                                 ],
                                 [
                                     'title' => 'Income Sub Category',
-                                    'routes' => ['admin.income-subcategory.index', 'admin.income-subcategory.create', 'admin.income-subcategory.edit'],
+                                    'routes' => [
+                                        'admin.income-subcategory.index',
+                                        'admin.income-subcategory.create',
+                                        'admin.income-subcategory.edit',
+                                    ],
                                     'route' => 'admin.income-subcategory.index',
                                 ],
                                 [
                                     'title' => 'Incomes List',
-                                    'routes' => [
-                                        'admin.income.index',
-                                        'admin.income.create',
-                                        'admin.income.edit',
-                                    ],
+                                    'routes' => ['admin.income.index', 'admin.income.create', 'admin.income.edit'],
                                     'route' => 'admin.income.index',
                                 ],
                             ],
@@ -71,21 +74,25 @@
                             'subMenu' => [
                                 [
                                     'title' => 'Expense Category',
-                                    'routes' => ['admin.expense-category.index', 'admin.expense-category.create', 'admin.expense-category.edit'],
+                                    'routes' => [
+                                        'admin.expense-category.index',
+                                        'admin.expense-category.create',
+                                        'admin.expense-category.edit',
+                                    ],
                                     'route' => 'admin.expense-category.index',
                                 ],
                                 [
                                     'title' => 'Expense Sub Category',
-                                    'routes' => ['admin.expense-subcategory.index', 'admin.expense-subcategory.create', 'admin.expense-subcategory.edit'],
+                                    'routes' => [
+                                        'admin.expense-subcategory.index',
+                                        'admin.expense-subcategory.create',
+                                        'admin.expense-subcategory.edit',
+                                    ],
                                     'route' => 'admin.expense-subcategory.index',
                                 ],
                                 [
                                     'title' => 'Expenses List',
-                                    'routes' => [
-                                        'admin.expense.index',
-                                        'admin.expense.create',
-                                        'admin.expense.edit',
-                                    ],
+                                    'routes' => ['admin.expense.index', 'admin.expense.create', 'admin.expense.edit'],
                                     'route' => 'admin.expense.index',
                                 ],
                             ],
@@ -105,10 +112,7 @@
                         [
                             'title' => 'Customer Support',
                             'icon' => 'fa-solid fa-headset text-info',
-                            'routes' => [
-                                'admin.contacts.index',
-                                'admin.newsletters.index',
-                            ],
+                            'routes' => ['admin.contacts.index', 'admin.newsletters.index'],
                             'subMenu' => [
                                 [
                                     'title' => 'Contact Messages',
