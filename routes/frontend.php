@@ -8,7 +8,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\StripeController;
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+// Route::get('/', [HomeController::class, 'home'])->name('home'); 
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('privacy/policy', [HomeController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('terms-condition', [HomeController::class, 'termsCondition'])->name('termsCondition');

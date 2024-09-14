@@ -21,9 +21,6 @@ use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\BlogCategoryController;
-use App\Http\Controllers\Admin\BlogPostController;
-use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CatalogueController;
 use App\Http\Controllers\Admin\ContactController;
@@ -41,10 +38,16 @@ use App\Http\Controllers\Admin\StockManagementController;
 use App\Http\Controllers\Admin\TermsAndConditionController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\DealBannerController;
+use App\Http\Controllers\Admin\ExpenseCategoryController;
+use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\ExpenseSubCategoryController;
+use App\Http\Controllers\Admin\IncomeCategoryController;
+use App\Http\Controllers\Admin\IncomeController;
+use App\Http\Controllers\Admin\IncomeSubCategoryController;
 
-// Route::get('/', function () {
-//     return redirect()->route('admin.dashboard');
-// });
+Route::get('/', function () {
+    return redirect()->route('admin.login');
+})->name('home');
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
 
@@ -100,8 +103,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     );
     Route::resources(
         [
-            'blog-category'       => BlogCategoryController::class, //done
-            'blog-tags'           => BlogTagController::class, //done
             'catalogue'           => CatalogueController::class, //done
             'shipping-management' => ShippingManagementController::class, //done
         ],
@@ -109,14 +110,19 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     );
     Route::resources(
         [
-            'faq'             => FaqController::class,
-            'role'            => RoleController::class,
-            'permission'      => PermissionController::class,
-            'email-settings'  => EmailSettingController::class,
-            'terms-condition' => TermsAndConditionController::class,
-            'privacy-policy'  => PrivacyPolicyController::class,
-            'deal-banner'     => DealBannerController::class,
-            'blog-post'       => BlogPostController::class,
+            'faq'                 => FaqController::class,
+            'role'                => RoleController::class,
+            'permission'          => PermissionController::class,
+            'email-settings'      => EmailSettingController::class,
+            'terms-condition'     => TermsAndConditionController::class,
+            'privacy-policy'      => PrivacyPolicyController::class,
+            'deal-banner'         => DealBannerController::class,
+            'income'              => IncomeController::class,
+            'income-category'     => IncomeCategoryController::class,
+            'income-subcategory'  => IncomeSubCategoryController::class,
+            'expense'             => ExpenseController::class,
+            'expense-category'    => ExpenseCategoryController::class,
+            'expense-subcategory' => ExpenseSubCategoryController::class,
         ],
         ['except' => ['show']]
     );

@@ -1,504 +1,402 @@
 <x-admin-app-layout>
-    <div id="kt_app_content" class="app-content flex-column-fluid">
-        <div id="kt_app_content_container" class="app-container container-fluid">
-            <div class="row gx-5 gx-xl-10 mb-xl-10">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="row">
-                        <div class="col-lg-6 col-12">
-                            <div class="card card-flush mb-5 mb-xl-10">
-                                <div class="card-header pt-5">
-                                    <div class="card-title d-flex flex-column">
-                                        <div class="d-flex align-items-center">
-                                            <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start">£</span>
-                                            <span
-                                                class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ number_format($earningsCurrentMonth, 2) }}</span>
-                                            <span class="badge badge-light-success fs-base">
-                                                <i class="fa-solid fa-arrow-up fs-5 text-success ms-n1"></i>
-                                                {{ number_format($earningsChange, 2) }}%
-                                            </span>
-                                        </div>
-                                        <span class="text-gray-500 pt-1 fw-semibold fs-6">Current Month Earnings</span>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-2 pb-4 d-flex align-items-center">
-                                    <div class="d-flex flex-center me-5 pt-2">
-                                        <div id="kt_card_widget_4_chart" style="min-width: 70px; min-height: 70px"
-                                            data-kt-size="70" data-kt-line="11"><span></span><canvas height="70"
-                                                width="70"></canvas></div>
-                                    </div>
-
-                                    <div class="d-flex flex-column content-justify-center w-100">
-                                        @foreach ($categoryWiseSales as $categoryWiseSale)
-                                            <div class="d-flex fs-6 fw-semibold align-items-center">
-                                                <div class="bullet w-8px h-6px rounded-2 bg-danger me-3"></div>
-
-                                                <div class="text-gray-500 flex-grow-1 me-4">{{ $categoryWiseSale->name }}
-                                                </div>
-
-                                                <div class="fw-bolder text-gray-700 text-xxl-end">
-                                                    £{{ number_format($categoryWiseSale->total_sales, 2) }}</div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-12">
-                            <div class="card card-flush mb-xl-10">
-
-                                <div class="card-header pt-5">
-                                    <div class="card-title d-flex flex-column">
-                                        <span
-                                            class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ number_format($newCustomersCurrentMonth) }}</span>
-                                        <span class="text-gray-500 pt-1 fw-semibold fs-6">New Customers This Month</span>
-                                    </div>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="d-flex align-items-center">
-                                        <span
-                                            class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ number_format($ordersCurrentMonth) }}</span>
-                                        <span class="badge badge-light-danger fs-base">
-                                            <i class="fa-solid fa-arrow-down fs-5 text-danger ms-n1"></i>
-                                            {{ number_format($ordersChange, 2) }}%
-                                        </span>
-                                    </div>
-                                    <span class="text-gray-500 pt-1 fw-semibold fs-6">Orders This Month</span>
-                                    <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                        <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                            <span
-                                                class="fw-bolder fs-6 text-gray-900">{{ number_format($ordersCurrentMonth - $ordersLastMonth) }}
-                                                to Goal</span>
-                                            <span
-                                                class="fw-bold fs-6 text-gray-500">{{ number_format($ordersChange, 2) }}%</span>
-                                        </div>
-                                        <div class="h-8px mx-3 w-100 bg-light-success rounded">
-                                            <div class="bg-success rounded h-8px" role="progressbar"
-                                                style="width: {{ min($ordersChange, 100) }}%" aria-valuenow="50"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="card card-flush mb-5 mb-xl-10">
-                            <div class="card-header pt-5">
-                                <div class="card-title d-flex flex-column">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start">£</span>
-                                        <span
-                                            class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ number_format($averageDailySales, 2) }}</span>
-                                        <span class="badge badge-light-success fs-base">
-                                            <i class="fa-solid fa-arrow-up fs-5 text-success ms-n1"></i>
-                                            {{ number_format(($averageDailySales / ($earningsCurrentMonth > 0 ? $earningsCurrentMonth : 1)) * 100, 2) }}%
-                                        </span>
-                                    </div>
-                                    <span class="text-gray-500 pt-1 fw-semibold fs-6">Average Daily Sales</span>
-                                </div>
-                            </div>
-                            <div class="card-body d-flex align-items-end px-0 pb-0">
-                                <div id="dailySalesChart" class="w-100" style="height: 80px"></div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="app-content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="mb-0">Dashboard</h3>
                 </div>
-
-
-                <!-- Sales This Month Chart -->
-                <div class="col-lg-12 col-xl-12 col-xxl-6 mb-5 mb-xl-0">
-                    <div class="card card-flush overflow-hidden h-md-100">
-                        <div class="card-header py-5">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold text-gray-900">Sales This Month</span>
-                                <span class="text-gray-500 mt-1 fw-semibold fs-6">Users from all channels</span>
-                            </h3>
-                            <div class="card-toolbar">
-                                <button
-                                    class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
-                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
-                                    data-kt-menu-overflow="true">
-                                    <i class="fa-solid fa-dots-square fs-1"></i>
-                                </button>
-
-                            </div>
-                        </div>
-                        <div class="card-body d-flex justify-content-between flex-column pb-1 px-0">
-                            <div class="px-9 mb-5">
-                                <div class="d-flex mb-2">
-                                    <span class="fs-4 fw-semibold text-gray-500 me-1">£</span>
-                                    <span
-                                        class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">{{ number_format($earningsCurrentMonth, 2) }}</span>
-                                </div>
-                                {{-- <span class="fs-6 fw-semibold text-gray-500">Another
-                                    {{ number_format($totalGoal - $earningsCurrentMonth, 2) }} to Goal</span> --}}
-                            </div>
-                            <div id="monthlySalesChart" class="ps-4 pe-6" style="height: 300px"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="row gy-5 g-xl-10">
-                <div class="col-xl-12">
-                    <div class="card card-flush h-xl-100">
-                        <div class="card-header pt-7">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold text-gray-900">Manage Orders</span>
-                                <span class="text-gray-500 mt-1 fw-semibold fs-6">All Recent Order You
-                                    Found Here.</span>
-                            </h3>
-
-                            <div class="card-toolbar">
-                                <a href="{{ route('admin.order-management.index') }}"
-                                    class="btn btn-sm btn-light">Order Details</a>
-                            </div>
-                        </div>
-                        <div class="card-body py-0">
-                            <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
-                                <thead class="bg-light-dark">
-                                    <tr class="fw-semibold fs-6 text-gray-800">
-                                        <th width="5%">SL</th>
-                                        <th width="10%">Order ID</th>
-                                        <th width="15%">Customer</th>
-                                        <th width="15%">Created</th>
-                                        <th width="15%">Total Price</th>
-                                        <th width="10%">Qty</th>
-                                        <th width="10%">Payment Status</th>
-                                        <th width="10%">Status</th>
-                                        <th width="10%" class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($orders as $order)
-                                        <tr class="text-center">
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('admin.orderDetails', $order->id) }}">
-                                                    {{ $order->order_number }}
-                                                </a>
-                                            </td>
-                                            <td>{{ $order->user->first_name }}
-                                                {{ $order->user->last_name }}</td>
-                                            <td>{{ $order->created_at->format('d M, Y') }}</td>
-                                            <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}
-                                            </td>
-                                            <td>{{ $order->quantity }}</td>
-                                            <td>
-                                                @if ($order->payment_status == 'unpaid')
-                                                    <span class="badge py-3 px-4 fs-7 badge-danger">Unpaid</span>
-                                                @elseif ($order->payment_status == 'paid')
-                                                    <span class="badge py-3 px-4 fs-7 badge-light-success">Paid</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($order->status == 'pending')
-                                                    <span
-                                                        class="badge py-3 px-4 fs-7 badge-light-primary">Pending</span>
-                                                @elseif ($order->status == 'processing')
-                                                    <span
-                                                        class="badge py-3 px-4 fs-7 badge-light-warning">Processing</span>
-                                                @elseif ($order->status == 'shipped')
-                                                    <span
-                                                        class="badge py-3 px-4 fs-7 badge-light-success">Shipped</span>
-                                                @elseif ($order->status == 'delivered')
-                                                    <span
-                                                        class="badge py-3 px-4 fs-7 badge-light-success">Delivered</span>
-                                                @elseif ($order->status == 'cancelled')
-                                                    <span
-                                                        class="badge py-3 px-4 fs-7 badge-light-dangered">Cancelled</span>
-                                                @elseif ($order->status == 'returned')
-                                                    <span
-                                                        class="badge py-3 px-4 fs-7 badge-light-dangered">Returned</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <button
-                                                    class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#printInovice{{ $order->id }}">
-                                                    <i class="fa-solid fa-print"></i>
-                                                </button>
-                                                <a href="{{ route('admin.orderDetails', $order->id) }}"
-                                                    class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
-                                                    <i class="fa-solid fa-eye" title="Order Details"></i>
-                                                </a>
-                                                {{-- <button type="button"
-                                                    class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
-                                                    data-kt-docs-datatable-subtable="expand_row">
-                                                    <span class="svg-icon fs-3 m-0 toggle-off">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </span>
-                                                    <span class="svg-icon fs-3 m-0 toggle-on">
-                                                        <i class="fa-solid fa-minus"></i>
-                                                    </span>
-                                                </button> --}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Dashboard
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
+    <div class="app-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box text-bg-primary">
+                        <div class="inner">
+                            <h3>150</h3>
+                            <p>New Orders</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path
+                                d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box text-bg-success">
+                        <div class="inner">
+                            <h3>53<sup class="fs-5">%</sup></h3>
+                            <p>Bounce Rate</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path
+                                d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box text-bg-warning">
+                        <div class="inner">
+                            <h3>44</h3>
+                            <p>User Registrations</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path
+                                d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box text-bg-danger">
+                        <div class="inner">
+                            <h3>65</h3>
+                            <p>Unique Visitors</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z">
+                            </path>
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Start col -->
+                <div class="col-lg-7 connectedSortable">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title">Sales Value</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="revenue-chart"></div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                    <!-- DIRECT CHAT -->
+                    <div class="card direct-chat direct-chat-primary mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title">Direct Chat</h3>
+                            <div class="card-tools">
+                                <span title="3 New Messages" class="badge text-bg-primary">
+                                    3
+                                </span>
+                                <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" title="Contacts"
+                                    data-lte-toggle="chat-pane">
+                                    <i class="bi bi-chat-text-fill"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages">
+                                <!-- Message. Default to the start -->
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-start">
+                                            Alexander Pierce
+                                        </span>
+                                        <span class="direct-chat-timestamp float-end">
+                                            23 Jan 2:00 pm
+                                        </span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img" src="./assets/img/user1-128x128.jpg"
+                                        alt="message user image" />
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">
+                                        Is this template really for free? That's unbelievable!
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+                                <!-- Message to the end -->
+                                <div class="direct-chat-msg end">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-end">
+                                            Sarah Bullock
+                                        </span>
+                                        <span class="direct-chat-timestamp float-start">
+                                            23 Jan 2:05 pm
+                                        </span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img" src="./assets/img/user3-128x128.jpg"
+                                        alt="message user image" />
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">
+                                        You better believe it!
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+                                <!-- Message. Default to the start -->
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-start">
+                                            Alexander Pierce
+                                        </span>
+                                        <span class="direct-chat-timestamp float-end">
+                                            23 Jan 5:37 pm
+                                        </span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img" src="./assets/img/user1-128x128.jpg"
+                                        alt="message user image" />
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">
+                                        Working withAMS on a great new app! Wanna join?
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+                                <!-- Message to the end -->
+                                <div class="direct-chat-msg end">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-end">
+                                            Sarah Bullock
+                                        </span>
+                                        <span class="direct-chat-timestamp float-start">
+                                            23 Jan 6:10 pm
+                                        </span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img" src="./assets/img/user3-128x128.jpg"
+                                        alt="message user image" />
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">I would love to.</div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+                            </div>
+                            <!-- /.direct-chat-messages-->
+                            <!-- Contacts are loaded here -->
+                            <div class="direct-chat-contacts">
+                                <ul class="contacts-list">
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="./assets/img/user1-128x128.jpg"
+                                                alt="User Avatar" />
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    Count Dracula
+                                                    <small class="contacts-list-date float-end">
+                                                        2/28/2023
+                                                    </small>
+                                                </span>
+                                                <span class="contacts-list-msg">
+                                                    How have you been? I was...
+                                                </span>
+                                            </div>
+                                            <!-- /.contacts-list-info -->
+                                        </a>
+                                    </li>
+                                    <!-- End Contact Item -->
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="./assets/img/user7-128x128.jpg"
+                                                alt="User Avatar" />
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    Sarah Doe
+                                                    <small class="contacts-list-date float-end">
+                                                        2/23/2023
+                                                    </small>
+                                                </span>
+                                                <span class="contacts-list-msg">
+                                                    I will be waiting for...
+                                                </span>
+                                            </div>
+                                            <!-- /.contacts-list-info -->
+                                        </a>
+                                    </li>
+                                    <!-- End Contact Item -->
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="./assets/img/user3-128x128.jpg"
+                                                alt="User Avatar" />
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    Nadia Jolie
+                                                    <small class="contacts-list-date float-end">
+                                                        2/20/2023
+                                                    </small>
+                                                </span>
+                                                <span class="contacts-list-msg">
+                                                    I'll call you back at...
+                                                </span>
+                                            </div>
+                                            <!-- /.contacts-list-info -->
+                                        </a>
+                                    </li>
+                                    <!-- End Contact Item -->
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="./assets/img/user5-128x128.jpg"
+                                                alt="User Avatar" />
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    Nora S. Vans
+                                                    <small class="contacts-list-date float-end">
+                                                        2/10/2023
+                                                    </small>
+                                                </span>
+                                                <span class="contacts-list-msg">
+                                                    Where is your new...
+                                                </span>
+                                            </div>
+                                            <!-- /.contacts-list-info -->
+                                        </a>
+                                    </li>
+                                    <!-- End Contact Item -->
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="./assets/img/user6-128x128.jpg"
+                                                alt="User Avatar" />
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    John K.
+                                                    <small class="contacts-list-date float-end">
+                                                        1/27/2023
+                                                    </small>
+                                                </span>
+                                                <span class="contacts-list-msg">
+                                                    Can I take a look at...
+                                                </span>
+                                            </div>
+                                            <!-- /.contacts-list-info -->
+                                        </a>
+                                    </li>
+                                    <!-- End Contact Item -->
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="./assets/img/user8-128x128.jpg"
+                                                alt="User Avatar" />
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    Kenneth M.
+                                                    <small class="contacts-list-date float-end">
+                                                        1/4/2023
+                                                    </small>
+                                                </span>
+                                                <span class="contacts-list-msg">
+                                                    Never mind I found...
+                                                </span>
+                                            </div>
+                                            <!-- /.contacts-list-info -->
+                                        </a>
+                                    </li>
+                                    <!-- End Contact Item -->
+                                </ul>
+                                <!-- /.contacts-list -->
+                            </div>
+                            <!-- /.direct-chat-pane -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <form action="#" method="post">
+                                <div class="input-group">
+                                    <input type="text" name="message" placeholder="Type Message ..."
+                                        class="form-control" />
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary">
+                                            Send
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card-footer-->
+                    </div>
+                    <!-- /.direct-chat -->
+                </div>
+                <!-- /.Start col -->
+                <!-- Start col -->
+                <div class="col-lg-5 connectedSortable">
+                    <div class="card text-white bg-primary bg-gradient border-primary mb-4">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Sales Value</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-primary btn-sm"
+                                    data-lte-toggle="card-collapse">
+                                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="world-map" style="height: 220px"></div>
+                        </div>
+                        <div class="card-footer border-0">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <div id="sparkline-1" class="text-dark"></div>
+                                    <div class="text-white">Visitors</div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div id="sparkline-2" class="text-dark"></div>
+                                    <div class="text-white">Online</div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div id="sparkline-3" class="text-dark"></div>
+                                    <div class="text-white">Sales</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.Start col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div>
+    </div>
+
+
+
+    
 
     @push('scripts')
-        {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
-        <script>
-            (function() {
-                var e = document.getElementById("monthlySalesChart");
-
-                // Define colors
-                var t = "#6c757d"; // Gray color
-                var a = "#e9ecef"; // Light gray
-                var o = "#8cbf44"; // Info color
-                var s = "#d1ecf1"; // Light info color
-
-                // Get data from Blade
-                var months = @json($months);
-                var sales = @json($sales);
-
-                if (e) {
-                    new ApexCharts(e, {
-                        series: [{
-                            name: "Sales",
-                            data: sales
-                        }],
-                        chart: {
-                            fontFamily: "inherit",
-                            type: "area",
-                            height: 350,
-                            toolbar: {
-                                show: false
-                            },
-                        },
-                        plotOptions: {},
-                        legend: {
-                            show: false
-                        },
-                        dataLabels: {
-                            enabled: false
-                        },
-                        fill: {
-                            type: "solid",
-                            opacity: 1
-                        },
-                        stroke: {
-                            curve: "smooth",
-                            width: 3,
-                            colors: [o]
-                        },
-                        xaxis: {
-                            categories: months,
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            },
-                            labels: {
-                                style: {
-                                    colors: t,
-                                    fontSize: "12px"
-                                }
-                            },
-                            crosshairs: {
-                                position: "front",
-                                stroke: {
-                                    color: o,
-                                    width: 1,
-                                    dashArray: 3
-                                },
-                            },
-                            tooltip: {
-                                enabled: true,
-                                formatter: undefined,
-                                offsetY: 0,
-                                style: {
-                                    fontSize: "12px"
-                                },
-                            },
-                        },
-                        yaxis: {
-                            labels: {
-                                style: {
-                                    colors: t,
-                                    fontSize: "12px"
-                                }
-                            }
-                        },
-                        states: {
-                            normal: {
-                                filter: {
-                                    type: "none",
-                                    value: 0
-                                }
-                            },
-                            hover: {
-                                filter: {
-                                    type: "none",
-                                    value: 0
-                                }
-                            },
-                            active: {
-                                allowMultipleDataPointsSelection: false,
-                                filter: {
-                                    type: "none",
-                                    value: 0
-                                },
-                            },
-                        },
-                        tooltip: {
-                            style: {
-                                fontSize: "12px"
-                            },
-                            y: {
-                                formatter: function(e) {
-                                    return "$" + e;
-                                },
-                            },
-                        },
-                        colors: [s],
-                        grid: {
-                            borderColor: a,
-                            strokeDashArray: 4,
-                            yaxis: {
-                                lines: {
-                                    show: true
-                                }
-                            },
-                        },
-                        markers: {
-                            strokeColor: o,
-                            strokeWidth: 3
-                        },
-                    }).render();
-                }
-            })();
-
-
-            (function() {
-                var salesData = @json($salesData);
-                var dates = @json($dates);
-                var e = document.getElementById("dailySalesChart"),
-                    t =
-                    (parseInt(KTUtil.css(e, "height")),
-                        KTUtil.getCssVariableValue("--bs-gray-500")),
-                    a = KTUtil.getCssVariableValue("--bs-gray-200"),
-                    o = KTUtil.getCssVariableValue("--bs-primary"),
-                    s = KTUtil.getCssVariableValue("--bs-info");
-                e &&
-                    new ApexCharts(e, {
-                        series: [{
-                            name: "Net Profit",
-                            data: salesData,
-                        }, ],
-                        chart: {
-                            fontFamily: "inherit",
-                            type: "bar",
-                            stacked: !0,
-                            height: 250,
-                            toolbar: {
-                                show: !1
-                            },
-                        },
-                        plotOptions: {
-                            bar: {
-                                horizontal: !1,
-                                columnWidth: ["12%"],
-                                borderRadius: [6, 6],
-                            },
-                        },
-                        legend: {
-                            show: !1
-                        },
-                        // dataLabels: {
-                        //     enabled: !1
-                        // },
-                        stroke: {
-                            show: !0,
-                            width: 2,
-                            colors: ["transparent"]
-                        },
-                        xaxis: {
-                            categories: dates,
-                            axisBorder: {
-                                show: !1
-                            },
-                            axisTicks: {
-                                show: !1
-                            },
-                            labels: {
-                                style: {
-                                    colors: t,
-                                    fontSize: "8px"
-                                }
-                            },
-                        },
-                        yaxis: {
-                            min: -80,
-                            max: 80,
-                            labels: {
-                                style: {
-                                    display: "none",
-                                    colors: t,
-                                    fontSize: "12px"
-                                }
-                            },
-                        },
-                        fill: {
-                            opacity: 1
-                        },
-                        states: {
-                            normal: {
-                                filter: {
-                                    type: "none",
-                                    value: 0
-                                }
-                            },
-                            hover: {
-                                filter: {
-                                    type: "none",
-                                    value: 0
-                                }
-                            },
-                            active: {
-                                allowMultipleDataPointsSelection: !1,
-                                filter: {
-                                    type: "none",
-                                    value: 0
-                                },
-                            },
-                        },
-                        tooltip: {
-                            style: {
-                                fontSize: "8px"
-                            },
-                            // y: {
-                            //     formatter: function(e) {
-                            //         return "$" + e + " thousands";
-                            //     },
-                            // },
-                        },
-                        colors: [o, s],
-                        grid: {
-                            borderColor: a,
-                            strokeDashArray: 4,
-                            yaxis: {
-                                lines: {
-                                    show: !0
-                                }
-                            },
-                        },
-                    }).render();
-            })();
-        </script>
     @endpush
 </x-admin-app-layout>

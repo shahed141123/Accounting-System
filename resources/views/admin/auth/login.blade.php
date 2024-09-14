@@ -1,5 +1,71 @@
 <x-admin-guest-layout>
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
+    <div class="login-box">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center justify-content-center align-items-center">
+                <a href="{{ route('home') }}"
+                    class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover">
+                    <img width="120px"
+                        src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('images/no_image.png') }}"
+                        alt="">
+                </a>
+            </div>
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                <form action="{{ route('admin.login') }}" method="POST" id="kt_sign_in_form">
+                    @csrf
+                        <div class="input-group mb-4">
+                            <div class="form-floating">
+                                <x-metronic.input type="email" name="email" class="form-control form-control-solid"
+                                    placeholder="Enter your email address" value="{{ old('email') }}"
+                                    autocomplete="off"></x-metronic.input>
+                                <x-metronic.label for="loginEmail"
+                                    class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
+                            </div>
+                            <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="form-floating">
+
+                                <x-metronic.input type="password" name="password" id="passwordField"
+                                    class="form-control form-control-lg form-control-solid"
+                                    placeholder="Enter your password" autocomplete="off">
+                                </x-metronic.input>
+                                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-2"
+                                    style="@error('password')top: 34% !important; @enderror"
+                                    data-kt-password-meter-control="visibility" onclick="togglePasswordVisibility()">
+                                    <i id="eyeIcon" class="bi bi-eye-slash fs-2"></i>
+                                    <i class="bi bi-eye fs-2 d-none"></i>
+                                </span>
+                                <x-metronic.label for="passwordField"
+                                    class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</x-metronic.label>
+                            </div>
+                            <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 d-inline-flex align-items-center">
+                                <div class="form-check">
+                                    <input id="remember_me" type="checkbox" value="1" class="form-check-input me-3"
+                                        name="remember">
+                                    <x-metronic.label for="remember_me"
+                                        class="form-check-label">{{ __('Remember me') }}</x-metronic.label>
+
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-grid gap-2">
+                                    <x-metronic.button type="submit" class="btn btn-primary me-2">
+                                        <span class="indicator-label"> {{ __('Sign In') }}</span>
+                                    </x-metronic.button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    {{-- <p class="mb-1"> <a href="forgot-password.html">I forgot my password</a> </p> --}}
+            </div>
+        </div>
+    </div>
+    {{-- <div class="d-flex flex-column flex-root" id="kt_app_root">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
 
             <div class="d-flex flex-column flex-column-fluid flex-center w-lg-50 p-10">
@@ -12,7 +78,8 @@
 
                             <div class="card-body">
                                 <div class="py-20">
-                                    <img width="200px" class="img-fluid" src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('frontend/img/logo.png') }}"
+                                    <img width="200px" class="img-fluid"
+                                        src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('frontend/img/logo.png') }}"
                                         alt="">
                                 </div>
                                 <div class="text-start mb-10">
@@ -40,14 +107,7 @@
                                             class="form-control form-control-lg form-control-solid"
                                             placeholder="Enter your password" autocomplete="off">
                                         </x-metronic.input>
-                                        <span
-                                            class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-2"
-                                            style="@error('password')top: 34% !important; @enderror"
-                                            data-kt-password-meter-control="visibility"
-                                            onclick="togglePasswordVisibility()">
-                                            <i id="eyeIcon" class="bi bi-eye-slash fs-2"></i>
-                                            <i class="bi bi-eye fs-2 d-none"></i>
-                                        </span>
+
                                     </div>
                                 </div>
                                 <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-10">
@@ -57,13 +117,15 @@
                                             {{ __('Forgot password ?') }}</a>
                                     @endif
                                     <div class="fv-row mb-0">
-                                        <input id="remember_me" type="checkbox" class="form-check-input me-3" name="remember">
+                                        <input id="remember_me" type="checkbox" class="form-check-input me-3"
+                                            name="remember">
                                         <x-metronic.label for="remember_me"
                                             class="form-check-label">{{ __('Remember me') }}</x-metronic.label>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-stack">
-                                    <x-metronic.button type="submit" class="btn btn-primary me-2 flex-shrink-0 w-100">
+                                    <x-metronic.button type="submit"
+                                        class="btn btn-primary me-2 flex-shrink-0 w-100">
                                         <span class="indicator-label"> {{ __('Sign In Now') }}</span>
                                     </x-metronic.button>
                                 </div>
@@ -76,7 +138,7 @@
                 style="background-image: url({{ asset('admin/assets/images/adminImage.png') }})">
             </div>
         </div>
-    </div>
+    </div> --}}
     @push('scripts')
         <script>
             function togglePasswordVisibility() {
