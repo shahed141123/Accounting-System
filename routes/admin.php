@@ -128,7 +128,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
             'expense-category'    => ExpenseCategoryController::class,
             'expense-subcategory' => ExpenseSubCategoryController::class,
             'account'             => AccountController::class,
-            'balance-adjustment'             => BalanceAdjustmentController::class,
+            'balance-adjustment'  => BalanceAdjustmentController::class,
             'balance-transfer'    => BalanceTransferController::class,
             'transaction-history' => TransactionHistoryController::class,
         ],

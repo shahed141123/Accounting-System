@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Account List'">
+<x-admin-app-layout :title="'Balance Transfer List'">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <div class="app-content">
         <div class="container-fluid mt-3">
@@ -8,11 +8,11 @@
                         <div class="card-header p-3 bg-dark text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Manage Your Accounts</h4>
+                                    <h4 class="mb-0">Manage Balance Transfers</h4>
                                 </div>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
-                                    Add New Account
+                                    Add New Transfer
                                 </button>
                             </div>
                         </div>
@@ -21,9 +21,9 @@
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Bank Name</th>
-                                        <th>Branch Name</th>
-                                        <th>Account Number</th>
+                                        <th>Reason</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
                                         <th>Note</th>
                                         <th>Status</th>
                                         <th class="text-end">Action</th>
@@ -31,10 +31,10 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Bank 01</td>
-                                        <td>Main Branch</td>
-                                        <td>123456789</td>
-                                        <td>Some notes</td>
+                                        <td>Sample Reason</td>
+                                        <td>$100.00</td>
+                                        <td>2024-09-15</td>
+                                        <td>Sample Note</td>
                                         <td>Active</td>
                                         <td class="text-end">
                                             <a href="javascript:void(0)" class="btn btn-sm btn-primary">
@@ -43,7 +43,7 @@
                                             <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            <a href="javascript:void(0)" type="submit" class="btn btn-sm btn-danger">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
                                         </td>
@@ -56,31 +56,27 @@
             </div>
         </div>
     </div>
-    <!-- Add New Account Modal -->
+
+    <!-- Add New Transfer Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addModalLabel">Add New Account</h5>
+                    <h5 class="modal-title" id="addModalLabel">Add New Balance Transfer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="bank_name" class="form-label">Bank Name</label>
-                            <input type="text" class="form-control form-control-solid" id="bank_name"
-                                name="bank_name" required>
+                            <label for="reason" class="form-label">Reason</label>
+                            <input type="text" class="form-control form-control-solid" id="reason" name="reason"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <label for="branch_name" class="form-label">Branch Name</label>
-                            <input type="text" class="form-control form-control-solid" id="branch_name"
-                                name="branch_name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="account_number" class="form-label">Account Number</label>
-                            <input type="text" class="form-control form-control-solid" id="account_number"
-                                name="account_number" required>
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
+                                name="amount" required>
                         </div>
                         <div class="mb-3">
                             <label for="date" class="form-label">Date</label>
@@ -97,7 +93,23 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Account</button>
+                        <div class="mb-3">
+                            <label for="debit_id" class="form-label">Debit Transaction</label>
+                            <select class="form-select form-select-solid" id="debit_id" name="debit_id">
+                                <option value="1">Transaction 1</option>
+                                <option value="2">Transaction 2</option>
+                                <!-- Add dynamic transaction options -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="credit_id" class="form-label">Credit Transaction</label>
+                            <select class="form-select form-select-solid" id="credit_id" name="credit_id">
+                                <option value="1">Transaction 1</option>
+                                <option value="2">Transaction 2</option>
+                                <!-- Add dynamic transaction options -->
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Transfer</button>
                     </form>
                 </div>
             </div>
