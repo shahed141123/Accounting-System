@@ -97,6 +97,59 @@
                                 ],
                             ],
                         ],
+                        [
+                            'title' => 'Cash book',
+                            'icon' => 'fa-solid fa-money text-danger',
+                            'routes' => [
+                                    'admin.account.index',
+                                    'admin.account.create',
+                                    'admin.account.edit',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Accounts',
+                                    'routes' => [
+                                        'admin.account.index',
+                                        'admin.account.create',
+                                        'admin.account.edit',
+                                        'admin.balance-adjustment.index',
+                                        'admin.balance-adjustment.create',
+                                        'admin.balance-adjustment.edit',
+                                        'admin.balance-transfer.index',
+                                        'admin.balance-transfer.create',
+                                        'admin.balance-transfer.edit',
+                                    ],
+                                    'route' => 'admin.account.index',
+                                ],
+                                [
+                                    'title' => 'Balance Adjustment',
+                                    'routes' => [
+                                        'admin.balance-adjustment.index',
+                                        'admin.balance-adjustment.create',
+                                        'admin.balance-adjustment.edit',
+                                    ],
+                                    'route' => 'admin.balance-adjustment.index',
+                                ],
+                                [
+                                    'title' => 'Balance Transfer',
+                                    'routes' => [
+                                        'admin.balance-transfer.index',
+                                        'admin.balance-transfer.create',
+                                        'admin.balance-transfer.edit',
+                                    ],
+                                    'route' => 'admin.balance-transfer.index',
+                                ],
+                                [
+                                    'title' => 'Transaction History',
+                                    'routes' => [
+                                        'admin.transaction-history.index',
+                                        'admin.transaction-history.create',
+                                        'admin.transaction-history.edit',
+                                    ],
+                                    'route' => 'admin.transaction-history.index',
+                                ],
+                            ],
+                        ],
 
                         [
                             'title' => 'Users',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutUsController;
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LogController;
@@ -21,6 +22,8 @@ use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Admin\BalanceAdjustmentController;
+use App\Http\Controllers\Admin\BalanceTransferController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CatalogueController;
 use App\Http\Controllers\Admin\ContactController;
@@ -44,6 +47,7 @@ use App\Http\Controllers\Admin\ExpenseSubCategoryController;
 use App\Http\Controllers\Admin\IncomeCategoryController;
 use App\Http\Controllers\Admin\IncomeController;
 use App\Http\Controllers\Admin\IncomeSubCategoryController;
+use App\Http\Controllers\Admin\TransactionHistoryController;
 
 Route::get('/', function () {
     return redirect()->route('admin.login');
@@ -123,6 +127,10 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
             'expense'             => ExpenseController::class,
             'expense-category'    => ExpenseCategoryController::class,
             'expense-subcategory' => ExpenseSubCategoryController::class,
+            'account'             => AccountController::class,
+            'balance-adjustment'             => BalanceAdjustmentController::class,
+            'balance-transfer'    => BalanceTransferController::class,
+            'transaction-history' => TransactionHistoryController::class,
         ],
         ['except' => ['show']]
     );
