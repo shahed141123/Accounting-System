@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-5">
-                                        <button class="btn btn-primary w-100 p-3 text-white display-4 rounded-3"
+                                        <button class="btn btn-info w-100 p-3 text-white display-4 rounded-3"
                                             type="submit">
                                             Reset Password
                                         </button>

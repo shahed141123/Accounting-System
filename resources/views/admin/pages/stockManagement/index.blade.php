@@ -183,7 +183,7 @@
                                                     </div>
 
                                                     <button id="kt_docs_formvalidation_text_submit" type="submit"
-                                                        class="btn btn-primary">
+                                                        class="btn btn-info">
                                                         <span class="indicator-label">
                                                             Update Stock
                                                         </span>
@@ -266,7 +266,7 @@
                                     buttonsStyling: false,
                                     confirmButtonText: "Ok, got it!",
                                     customClass: {
-                                        confirmButton: "btn btn-primary"
+                                        confirmButton: "btn btn-info"
                                     }
                                 });
 

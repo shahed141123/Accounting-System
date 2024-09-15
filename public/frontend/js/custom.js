@@ -202,7 +202,3 @@ function toggleStatus(route, id) {
         }
     });
 }
-
-
-
-

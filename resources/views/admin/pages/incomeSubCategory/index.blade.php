@@ -5,12 +5,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card border-0 shadow-none">
-                        <div class="card-header p-3 bg-dark text-white">
+                        <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h4 class="mb-0">Manage Your Income Sub Category</h4>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
                                     Add New Entry
                                 </button>
@@ -119,7 +119,7 @@
                                 <option value="Inactive">Inactive</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Entry</button>
+                        <button type="submit" class="btn btn-info">Add Entry</button>
                     </form>
                 </div>
             </div>

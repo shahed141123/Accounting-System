@@ -14,7 +14,7 @@
                         <p>
                             <strong>Reason:</strong> {{ session('error_message', 'An unknown error occurred.') }}
                         </p>
-                        <a href="{{ route('checkout') }}" class="btn btn-primary">
+                        <a href="{{ route('checkout') }}" class="btn btn-info">
                             Return to Checkout
                         </a>
                         <a href="{{ route('home') }}" class="btn btn-secondary">

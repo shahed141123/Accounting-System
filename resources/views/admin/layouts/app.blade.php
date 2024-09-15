@@ -541,6 +541,23 @@
             $('#addEntryForm')[0].reset();
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('sidebarToggler').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Toggle sidebar visibility
+        const sidebar = document.querySelector('#sidebar'); // Ensure you have this ID on your sidebar
+        if (sidebar) {
+            sidebar.classList.toggle('hidden'); // Add/remove the hidden class on sidebar
+        }
+
+        // Toggle arrow icons
+        document.getElementById('arrowLeft').classList.toggle('d-none');
+        document.getElementById('arrowRight').classList.toggle('d-none');
+    });
+});
+    </script>
 </body>
 
 </html>

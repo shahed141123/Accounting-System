@@ -1,19 +1,19 @@
-
-<nav class="app-header navbar navbar-expand bg-body">
+<nav class="app-header navbar navbar-expand bg-body border-0">
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                    <i class="bi bi-list"></i>
+                <a class="nav-link sidebar-toggler-btn" id="sidebarToggler" data-lte-toggle="sidebar" href="#" role="button">
+                    <i class="fa-solid fa-arrow-left" id="arrowLeft"></i>
+                    <i class="fa-solid fa-arrow-right d-none" id="arrowRight"></i>
                 </a>
             </li>
             <li class="nav-item d-none d-md-block">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
+                <a href="{{ route('admin.dashboard') }}" class="nav-link px-1">Home</a>
             </li>
             @if (isset($breadcrumbs))
                 @foreach ($breadcrumbs as $breadcrumb)
                     <li class="nav-item d-none d-md-block">
-                        <a href="{{ $breadcrumb['url'] }}" class="nav-link">/ {{ $breadcrumb['name'] }}</a>
+                        <a href="{{ $breadcrumb['url'] }}" class="nav-link px-1">- {{ $breadcrumb['name'] }}</a>
                     </li>
                 @endforeach
             @endif

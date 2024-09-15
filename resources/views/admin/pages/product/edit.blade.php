@@ -557,14 +557,14 @@
                         <a href="{{ route('admin.product.index') }}" class="btn btn-danger me-5">
                             Back To Product List
                         </a>
-                        {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                        {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-info">
                             <span class="indicator-label"> Save Changes </span>
                             <span class="indicator-progress">
                                 Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                             </span>
                         </button> --}}
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-info">
                             <span class="indicator-label"> Save Changes </span>
                             </span>
                         </button>

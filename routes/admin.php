@@ -23,9 +23,16 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\BalanceAdjustmentController;
+use App\Http\Controllers\Admin\BalanceSheetController;
 use App\Http\Controllers\Admin\BalanceTransferController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CatalogueController;
+use App\Http\Controllers\Admin\ClientInvoiceController;
+use App\Http\Controllers\Admin\ClientNonInvoiceController;
+use App\Http\Controllers\Admin\ClientPayableReportController;
+use App\Http\Controllers\Admin\ClientReceivableReportController;
+use App\Http\Controllers\Admin\ClientsController;
+use App\Http\Controllers\Admin\CollectionReportController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqController;
@@ -43,10 +50,15 @@ use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\DealBannerController;
 use App\Http\Controllers\Admin\ExpenseCategoryController;
 use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\ExpenseReportController;
 use App\Http\Controllers\Admin\ExpenseSubCategoryController;
 use App\Http\Controllers\Admin\IncomeCategoryController;
 use App\Http\Controllers\Admin\IncomeController;
 use App\Http\Controllers\Admin\IncomeSubCategoryController;
+use App\Http\Controllers\Admin\PayrollController;
+use App\Http\Controllers\Admin\SalesUserReportController;
+use App\Http\Controllers\Admin\SummaryReportController;
+use App\Http\Controllers\Admin\TodayReportController;
 use App\Http\Controllers\Admin\TransactionHistoryController;
 
 Route::get('/', function () {
@@ -131,6 +143,18 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
             'balance-adjustment'  => BalanceAdjustmentController::class,
             'balance-transfer'    => BalanceTransferController::class,
             'transaction-history' => TransactionHistoryController::class,
+            'balance-sheet'       => BalanceSheetController::class,
+            'clients'             => ClientsController::class,
+            'client-invoice'      => ClientInvoiceController::class,
+            'client-non-invoice'  => ClientNonInvoiceController::class,
+            'today-report'        => TodayReportController::class,
+            'summary-report'      => SummaryReportController::class,
+            'expense-report'      => ExpenseReportController::class,
+            'client-receivable'   => ClientReceivableReportController::class,
+            'client-payable'      => ClientPayableReportController::class,
+            'sales-user'          => SalesUserReportController::class,
+            'collection-report'   => CollectionReportController::class,
+            'payroll'             => PayrollController::class,
         ],
         ['except' => ['show']]
     );

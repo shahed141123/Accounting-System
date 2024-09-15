@@ -5,7 +5,8 @@
  *   Website:AMS.io <https://ams>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
  */
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+ /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'); */
+ @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
 
 :root,
 [data-bs-theme="light"] {
@@ -74,7 +75,7 @@
     --bs-dark-border-subtle: #adb5bd;
     --bs-white-rgb: 255, 255, 255;
     --bs-black-rgb: 0, 0, 0;
-    --bs-font-sans-serif: 'Poppins', sans-serif;
+    --bs-font-sans-serif: "Kumbh Sans", sans-serif;
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(
@@ -298,6 +299,7 @@ h6,
 p {
     margin-top: 0;
     margin-bottom: 1rem;
+    font-size: 15px;
 }
 
 abbr[title] {
@@ -4022,7 +4024,7 @@ fieldset:disabled .btn {
 }
 .nav-link:hover,
 .nav-link:focus {
-    color: var(--bs-nav-link-hover-color);
+    color: #ef542c;
 }
 .nav-link:focus-visible {
     outline: 0;
@@ -9285,7 +9287,7 @@ fieldset:disabled .btn {
 
 .text-info {
     --bs-text-opacity: 1;
-    color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;
+    color: #ef542c !important;
 }
 
 .text-warning {
@@ -9649,7 +9651,9 @@ fieldset:disabled .btn {
         var(--bs-bg-opacity)
     ) !important;
 }
-
+.bg-custom{
+    background-color: #ef542c !important;
+}
 .bg-info {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
@@ -13659,15 +13663,15 @@ fieldset:disabled .btn {
 }
 
 .sidebar-brand {
-    display: flex;
+    background-color: var(--bs-white);
     align-items: center;
     justify-content: center;
     height: 3.5rem;
-    padding: 0.8125rem 0.5rem;
+    padding: 0.8125rem 2rem;
     overflow: hidden;
     font-size: 1.25rem;
     white-space: nowrap;
-    border-bottom: 1px solid var(--bs-border-color);
+    border-bottom: 1px solid #eee;
     transition: width 0.3s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -13716,6 +13720,7 @@ fieldset:disabled .btn {
 }
 
 .sidebar-wrapper {
+    background-color: var(--bs-white);
     padding-top: 0.5rem;
     padding-right: 0.5rem;
     padding-bottom: 0.5rem;
@@ -13747,6 +13752,7 @@ fieldset:disabled .btn {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #3d3c3c;
 }
 .sidebar-wrapper .nav-icon {
     display: flex;
@@ -13772,7 +13778,7 @@ fieldset:disabled .btn {
 .sidebar-wrapper .sidebar-menu > .nav-item.menu-open > .nav-link,
 .sidebar-wrapper .sidebar-menu > .nav-item:hover > .nav-link,
 .sidebar-wrapper .sidebar-menu > .nav-item > .nav-link:focus {
-    color: var(--lte-sidebar-hover-color);
+    color: #ef542c;
     background-color: var(--lte-sidebar-hover-bg);
 }
 .sidebar-wrapper .sidebar-menu > .nav-item > .nav-treeview {
@@ -13790,12 +13796,12 @@ fieldset:disabled .btn {
 }
 .sidebar-wrapper .nav-treeview > .nav-item > .nav-link:hover,
 .sidebar-wrapper .nav-treeview > .nav-item > .nav-link:focus {
-    color: var(--lte-sidebar-submenu-hover-color);
+    color: #ef542c;
 }
 .sidebar-wrapper .nav-treeview > .nav-item > .nav-link.active,
 .sidebar-wrapper .nav-treeview > .nav-item > .nav-link.active:hover,
 .sidebar-wrapper .nav-treeview > .nav-item > .nav-link.active:focus {
-    color: var(--lte-sidebar-submenu-active-color);
+    color: #ef542c;
     background-color: var(--lte-sidebar-submenu-active-bg);
 }
 .sidebar-wrapper .nav-treeview > .nav-item > .nav-link:hover {
@@ -15923,7 +15929,15 @@ html.maximized-card {
     --bs-toast-border-color: #0dcaf0;
     --bs-toast-bg: var(--bs-info-bg-subtle);
 }
-
+.btn-info{
+    background-color: #ef542c;
+    border: 1px solid #ef542c;
+}
+.btn-info:hover{
+    color: #ef542c;
+    background-color: transparent;
+    border: 1px solid #ef542c;
+}
 .toast-warning {
     --bs-toast-header-color: #000;
     --bs-toast-header-bg: #ffc107;

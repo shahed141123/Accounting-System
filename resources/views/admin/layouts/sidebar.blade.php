@@ -1,65 +1,127 @@
-<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+<aside class="app-sidebar bg-body-secondary" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="{{ route('admin.dashboard') }}" class="brand-link">
-            <img src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('frontend/img/logo.png') }}"
-                alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
-            {{-- <span class="brand-text fw-light">{{ optional($setting)->site_title ?: config('app.name', 'AWS "|" Dashboard') }}</span> --}}
+            <img src="{{ asset('images/logo-color.png') }}" alt="AdminLTE Logo" class="brand-image" />
         </a>
     </div>
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper position-relative"> <!-- Added position-relative -->
         <nav class="mt-2">
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
                 @php
                     $menuItems = [
                         [
                             'title' => 'Dashboard',
-                            'icon' => 'fa-solid fa-home',
+                            'icon' => 'fa-solid fa-home text-info',
                             'route' => 'admin.dashboard',
                             'routes' => [],
                         ],
                         [
-                            'title' => 'Incomes',
-                            'icon' => 'fa-solid fa-money text-danger',
+                            'title' => 'Reports',
+                            'icon' => 'fa-solid fa-file text-info',
                             'routes' => [
-                                'admin.income.index',
-                                'admin.income.create',
-                                'admin.income.edit',
-                                'admin.income-category.index',
-                                'admin.income-category.create',
-                                'admin.income-category.edit',
-                                'admin.income-subcategory.index',
-                                'admin.income-subcategory.create',
-                                'admin.income-subcategory.edit',
+                                'admin.balance-sheet.index',
+                                'admin.balance-sheet.create',
+                                'admin.balance-sheet.edit',
+                                'admin.today-report.index',
+                                'admin.today-report.create',
+                                'admin.today-report.edit',
+                                'admin.summary-report.index',
+                                'admin.summary-report.create',
+                                'admin.summary-report.edit',
+                                'admin.expense-report.index',
+                                'admin.expense-report.create',
+                                'admin.expense-report.edit',
+                                'admin.client-receivable.index',
+                                'admin.client-receivable.create',
+                                'admin.client-receivable.edit',
+                                'admin.client-payable.index',
+                                'admin.client-payable.create',
+                                'admin.client-payable.edit',
+                                'admin.sales-user.index',
+                                'admin.sales-user.create',
+                                'admin.sales-user.edit',
+                                'admin.collection-report.index',
+                                'admin.collection-report.create',
+                                'admin.collection-report.edit',
                             ],
                             'subMenu' => [
                                 [
-                                    'title' => 'Income Category',
+                                    'title' => 'Balance Sheet',
                                     'routes' => [
-                                        'admin.income-category.index',
-                                        'admin.income-category.create',
-                                        'admin.income-category.edit',
+                                        'admin.balance-sheet.index',
+                                        'admin.balance-sheet.create',
+                                        'admin.balance-sheet.edit',
                                     ],
-                                    'route' => 'admin.income-category.index',
+                                    'route' => 'admin.balance-sheet.index',
                                 ],
                                 [
-                                    'title' => 'Income Sub Category',
+                                    'title' => 'Today Report',
                                     'routes' => [
-                                        'admin.income-subcategory.index',
-                                        'admin.income-subcategory.create',
-                                        'admin.income-subcategory.edit',
+                                        'admin.today-report.index',
+                                        'admin.today-report.create',
+                                        'admin.today-report.edit',
                                     ],
-                                    'route' => 'admin.income-subcategory.index',
+                                    'route' => 'admin.today-report.index',
                                 ],
                                 [
-                                    'title' => 'Incomes List',
-                                    'routes' => ['admin.income.index', 'admin.income.create', 'admin.income.edit'],
-                                    'route' => 'admin.income.index',
+                                    'title' => 'Summary Report',
+                                    'routes' => [
+                                        'admin.summary-report.index',
+                                        'admin.summary-report.create',
+                                        'admin.summary-report.edit',
+                                    ],
+                                    'route' => 'admin.summary-report.index',
+                                ],
+                                [
+                                    'title' => 'Expense Report',
+                                    'routes' => [
+                                        'admin.expense-report.index',
+                                        'admin.expense-report.create',
+                                        'admin.expense-report.edit',
+                                    ],
+                                    'route' => 'admin.expense-report.index',
+                                ],
+                                [
+                                    'title' => 'Client Receivable Report',
+                                    'routes' => [
+                                        'admin.client-receivable.index',
+                                        'admin.client-receivable.create',
+                                        'admin.client-receivable.edit',
+                                    ],
+                                    'route' => 'admin.client-receivable.index',
+                                ],
+                                [
+                                    'title' => 'Client Payable Report',
+                                    'routes' => [
+                                        'admin.client-payable.index',
+                                        'admin.client-payable.create',
+                                        'admin.client-payable.edit',
+                                    ],
+                                    'route' => 'admin.client-payable.index',
+                                ],
+                                [
+                                    'title' => 'Sales By User Report',
+                                    'routes' => [
+                                        'admin.sales-user.index',
+                                        'admin.sales-user.create',
+                                        'admin.sales-user.edit',
+                                    ],
+                                    'route' => 'admin.sales-user.index',
+                                ],
+                                [
+                                    'title' => 'Collection By User Report',
+                                    'routes' => [
+                                        'admin.collection-report.index',
+                                        'admin.collection-report.create',
+                                        'admin.collection-report.edit',
+                                    ],
+                                    'route' => 'admin.collection-report.index',
                                 ],
                             ],
                         ],
                         [
                             'title' => 'Expenses',
-                            'icon' => 'fa-solid fa-money text-danger',
+                            'icon' => 'fa-solid fa-calculator text-info',
                             'routes' => [
                                 'admin.expense.index',
                                 'admin.expense.create',
@@ -98,27 +160,66 @@
                             ],
                         ],
                         [
-                            'title' => 'Cash book',
-                            'icon' => 'fa-solid fa-money text-danger',
+                            'title' => 'Incomes',
+                            'icon' => 'fa-solid fa-wallet text-info',
                             'routes' => [
-                                    'admin.account.index',
-                                    'admin.account.create',
-                                    'admin.account.edit',
+                                'admin.income.index',
+                                'admin.income.create',
+                                'admin.income.edit',
+                                'admin.income-category.index',
+                                'admin.income-category.create',
+                                'admin.income-category.edit',
+                                'admin.income-subcategory.index',
+                                'admin.income-subcategory.create',
+                                'admin.income-subcategory.edit',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Income Category',
+                                    'routes' => [
+                                        'admin.income-category.index',
+                                        'admin.income-category.create',
+                                        'admin.income-category.edit',
+                                    ],
+                                    'route' => 'admin.income-category.index',
+                                ],
+                                [
+                                    'title' => 'Income Sub Category',
+                                    'routes' => [
+                                        'admin.income-subcategory.index',
+                                        'admin.income-subcategory.create',
+                                        'admin.income-subcategory.edit',
+                                    ],
+                                    'route' => 'admin.income-subcategory.index',
+                                ],
+                                [
+                                    'title' => 'Incomes List',
+                                    'routes' => ['admin.income.index', 'admin.income.create', 'admin.income.edit'],
+                                    'route' => 'admin.income.index',
+                                ],
+                            ],
+                        ],
+                        [
+                            'title' => 'Cash book',
+                            'icon' => 'fa-solid fa-book text-info',
+                            'routes' => [
+                                'admin.account.index',
+                                'admin.account.create',
+                                'admin.account.edit',
+                                'admin.balance-adjustment.index',
+                                'admin.balance-adjustment.create',
+                                'admin.balance-adjustment.edit',
+                                'admin.balance-transfer.index',
+                                'admin.balance-transfer.create',
+                                'admin.balance-transfer.edit',
+                                'admin.transaction-history.index',
+                                'admin.transaction-history.create',
+                                'admin.transaction-history.edit',
                             ],
                             'subMenu' => [
                                 [
                                     'title' => 'Accounts',
-                                    'routes' => [
-                                        'admin.account.index',
-                                        'admin.account.create',
-                                        'admin.account.edit',
-                                        'admin.balance-adjustment.index',
-                                        'admin.balance-adjustment.create',
-                                        'admin.balance-adjustment.edit',
-                                        'admin.balance-transfer.index',
-                                        'admin.balance-transfer.create',
-                                        'admin.balance-transfer.edit',
-                                    ],
+                                    'routes' => ['admin.account.index', 'admin.account.create', 'admin.account.edit'],
                                     'route' => 'admin.account.index',
                                 ],
                                 [
@@ -150,10 +251,60 @@
                                 ],
                             ],
                         ],
-
+                        [
+                            'title' => 'Payments',
+                            'icon' => 'fa-solid fa-receipt text-info',
+                            'routes' => [
+                                'admin.client-invoice.index',
+                                'admin.client-invoice.create',
+                                'admin.client-invoice.edit',
+                                'admin.client-non-invoice.index',
+                                'admin.client-non-invoice.create',
+                                'admin.client-non-invoice.edit',
+                                'admin.payroll.index',
+                                'admin.payroll.create',
+                                'admin.payroll.edit',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Client Invoice',
+                                    'routes' => [
+                                        'admin.client-invoice.index',
+                                        'admin.client-invoice.create',
+                                        'admin.client-invoice.edit',
+                                    ],
+                                    'route' => 'admin.client-invoice.index',
+                                ],
+                                [
+                                    'title' => 'Client Non Invoice',
+                                    'routes' => [
+                                        'admin.client-non-invoice.index',
+                                        'admin.client-non-invoice.create',
+                                        'admin.client-non-invoice.edit',
+                                    ],
+                                    'route' => 'admin.client-non-invoice.index',
+                                ],
+                                [
+                                    'title' => 'Payroll',
+                                    'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
+                                    'route' => 'admin.payroll.index',
+                                ],
+                            ],
+                        ],
+                        [
+                            'title' => 'Clients',
+                            'icon' => 'fa-solid fa-users text-info',
+                            'subMenu' => [
+                                [
+                                    'title' => 'clients List',
+                                    'routes' => ['admin.clients.index'],
+                                    'route' => 'admin.clients.index',
+                                ],
+                            ],
+                        ],
                         [
                             'title' => 'Users',
-                            'icon' => 'fa-solid fa-users text-primary',
+                            'icon' => 'fa-solid fa-users text-info',
                             'subMenu' => [
                                 [
                                     'title' => 'User List',
@@ -181,7 +332,7 @@
                         ],
                         [
                             'title' => 'Site Contents',
-                            'icon' => 'fa-solid fa-file-pen text-light',
+                            'icon' => 'fa-solid fa-file-pen text-info',
                             'routes' => [
                                 'admin.terms-condition.index',
                                 'admin.terms-condition.create',
@@ -212,9 +363,13 @@
                             ],
                         ],
                         [
-                            'title' => 'Settings',
-                            'icon' => 'fa-solid fa-gear text-secondary',
-                            'routes' => ['admin.settings.index', 'admin.email-settings.index'],
+                            'title' => 'Setup',
+                            'icon' => 'fa-solid fa-gear text-info',
+                            'routes' => [
+                                'admin.settings.index',
+                                'admin.email-settings.index',
+                                'admin.email-settings.index'
+                            ],
                             'subMenu' => [
                                 [
                                     'title' => 'Website Setting',
@@ -225,6 +380,11 @@
                                     'title' => 'Email Setting',
                                     'routes' => ['admin.email-settings.index'],
                                     'route' => 'admin.email-settings.index',
+                                ],
+                                [
+                                    'title' => 'Profile Setting',
+                                    // 'routes' => ['admin.email-settings.index'],
+                                    // 'route' => 'admin.email-settings.index',
                                 ],
                             ],
                         ],
@@ -280,5 +440,18 @@
                 @endforeach
             </ul>
         </nav>
+        <div class="logout-btn-wrapper">
+            <div class="logout-btn">
+                <button class="btn btn-info w-75">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2" class="h-6 w-6" width="25px" height="25px">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                    <span class="ps-3">Logout</span>
+                </button>
+            </div>
+        </div>
     </div>
 </aside>

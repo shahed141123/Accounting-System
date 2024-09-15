@@ -5,12 +5,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card border-0 shadow-none">
-                        <div class="card-header p-3 bg-dark text-white">
+                        <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h4 class="mb-0">Manage Your Expenses</h4>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
                                     Add New Expense
                                 </button>
@@ -30,33 +30,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($expenses as $expense)
-                                        <tr>
-                                            <td>{{ $expense->name }}</td>
-                                            <td>{{ $expense->reason }}</td>
-                                            <td>{{ $expense->date ? $expense->date->format('d M Y') : 'N/A' }}</td>
-                                            <td>{{ $expense->note }}</td>
-                                            <td>{{ ucfirst($expense->status) }}</td>
-                                            <td class="text-end">
-                                                <a href="{{ route('expenses.edit', $expense->id) }}"
-                                                    class="btn btn-sm btn-primary">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="{{ route('expenses.show', $expense->id) }}"
-                                                    class="btn btn-sm btn-warning text-white">
-                                                    <i class="fa-solid fa-eye"></i>
-                                                </a>
-                                                <form action="{{ route('expenses.destroy', $expense->id) }}"
-                                                    method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <td>asdasdasd</td>
+                                        <td>asdadasd</td>
+                                        <td>asdadasd</td>
+                                        <td>asdasdasd</td>
+                                        <td>asdasdasd</td>
+                                        <td class="text-end">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </a>
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -75,7 +66,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('expenses.store') }}" method="POST" enctype="multipart/form-data">
+                    <form method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -109,28 +100,28 @@
                         <div class="mb-3">
                             <label for="cat_id" class="form-label">Category</label>
                             <select class="form-select form-select-solid" id="cat_id" name="cat_id">
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
+                                <option value="">Choosen</option>
+                                <option value="">Choosen</option>
+                                <option value="">Choosen</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="sub_cat_id" class="form-label">Sub Category</label>
                             <select class="form-select form-select-solid" id="sub_cat_id" name="sub_cat_id">
-                                @foreach ($subCategories as $subCategory)
-                                    <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
-                                @endforeach
+                                <option value="">Choosen</option>
+                                <option value="">Choosen</option>
+                                <option value="">Choosen</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="transaction_id" class="form-label">Transaction</label>
                             <select class="form-select form-select-solid" id="transaction_id" name="transaction_id">
-                                @foreach ($transactions as $transaction)
-                                    <option value="{{ $transaction->id }}">{{ $transaction->reference }}</option>
-                                @endforeach
+                                <option value="">Choosen</option>
+                                <option value="">Choosen</option>
+                                <option value="">Choosen</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Expense</button>
+                        <button type="submit" class="btn btn-info">Add Expense</button>
                     </form>
                 </div>
             </div>

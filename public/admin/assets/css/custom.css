@@ -15,11 +15,6 @@ th {
     color: #6c757d !important;
 }
 
-thead {
-    background-color: #dceaf0;
-    font-weight: bold;
-}
-
 .table {
     border-color: #eee !important;
 }
@@ -46,4 +41,116 @@ label {
     font-weight: 500;
     line-height: 1.5;
     color: #3f4254;
+}
+
+.btn-white {
+    background-color: white !important;
+    color: #ef542c !important;
+}
+.sidebar-expand-lg.layout-fixed .app-sidebar {
+    border: 1px solid white;
+    border-right: 1px solid #eee;
+}
+.app-footer {
+    border: 1px solid white;
+    text-align: end;
+}
+.sidebar-toggler-btn {
+    border-radius: 5px;
+    background-color: #ef542c;
+    color: white;
+    margin-right: 30px;
+}
+.sidebar-toggler-btn:hover {
+    border-radius: 5px;
+    background-color: #ef542c;
+    color: white;
+    margin-right: 30px;
+}
+
+.sidebar-toggler-btn:hover,
+.sidebar-toggler-btn:focus {
+    border-radius: 5px;
+    background-color: #ef542c;
+    color: white;
+    margin-right: 30px;
+}
+.nav-link.active {
+    color: white !important;
+    background-color: #ef542c !important;
+}
+.nav-link.active p,
+.nav-link.active i {
+    color: white !important;
+}
+
+.app-sidebar {
+    position: relative;
+    height: 100vh; /* Ensure full height of the sidebar */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.logout-btn-wrapper {
+    position: absolute;
+    bottom: 0px; /* Adjust this value for spacing */
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+}
+
+.logout-btn {
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    width: 100%; /* Optional, if you want full-width inside the parent */
+    text-align: center; /* Optional */
+}
+.logout-btn button {
+    padding: 10px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+    padding: 8px 10px;
+    font-size: 14px;
+}
+table.dataTable thead th,
+table.dataTable thead td {
+    padding: 10px 18px;
+    color: #ef542c !important;
+    /* background-color: #f765418e !important; */
+    border-bottom: 1px solid #eee !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: white !important;
+    border: 0px solid #979797 !important;
+    background-color: white;
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, #ef542c),
+        color-stop(100%, #ef542c)
+    ) !important;
+    background: -webkit-linear-gradient(
+        top,
+        #ef542c 0%,
+        #ef542c 100%
+    ) !important;
+    background: -moz-linear-gradient(top, #ef542c 0%, #ef542c 100%) !important;
+    background: -ms-linear-gradient(top, #ef542c 0%, #ef542c 100%) !important;
+    background: -o-linear-gradient(top, #ef542c 0%, #ef542c 100%) !important;
+    background: linear-gradient(to bottom, #ef542c 0%, #ef542c 100%) !important;
 }
