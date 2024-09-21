@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\ExpenseCategory;
 use Illuminate\Http\Request;
 
 class ExpenseCategoryController extends Controller
@@ -11,6 +12,9 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
+        $data = [
+            'categorys' => ExpenseCategory::latest()->get(),
+        ];
         return view('admin.pages.expenseCategory.index');
     }
 
