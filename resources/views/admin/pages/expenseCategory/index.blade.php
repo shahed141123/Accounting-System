@@ -10,7 +10,7 @@
                                 <div>
                                     <h4 class="mb-0">Manage Expense Categories</h4>
                                 </div>
-                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#addCategoryModal">
                                     Add New Category
                                 </button>
@@ -68,13 +68,9 @@
                     <form method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">Category Name</label>
+                            <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control form-control-solid" id="name" name="name"
                                 required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="code" class="form-label">Category Code</label>
-                            <input type="number" class="form-control form-control-solid" id="code" name="code">
                         </div>
                         <div class="mb-3">
                             <label for="note" class="form-label">Note</label>
@@ -87,7 +83,7 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-info">Add Category</button>
+                        <button type="submit" class="btn btn-primary">Add Category</button>
                     </form>
                 </div>
             </div>

@@ -161,10 +161,10 @@
                 </div>
                 <div class="modal-footer">
                     <div class="">
-                        {{-- <a href="{{ asset('storage/'.$order->invoice) }}" class="btn btn-info print p-3">
+                        {{-- <a href="{{ asset('storage/'.$order->invoice) }}" class="btn btn-primary print p-3">
                             <i class="fa-solid fa-print"></i> Print Invoice
                         </a> --}}
-                        <button class="btn btn-info ml-3 p-3" onclick="downloadInvoice()">
+                        <button class="btn btn-primary ml-3 p-3" onclick="downloadInvoice()">
                             <i class="fa-solid fa-file-download"></i> Download Invoice
                         </button>
                         <button class="btn btn-danger ml-3 p-3" data-bs-dismiss="modal" aria-label="close"> Close

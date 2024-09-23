@@ -100,7 +100,7 @@
                                                 @else
                                                     <div class="ps-product__meta">
                                                         <a href="{{ route('login') }}"
-                                                            class="btn btn-info btn-block">Login
+                                                            class="btn btn-primary btn-block">Login
                                                             to view price</a>
                                                     </div>
                                                 @endif

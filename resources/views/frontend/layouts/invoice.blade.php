@@ -147,10 +147,10 @@
 </div>
 <div class="card border-0">
     <div class="card-body border-0 d-flex justify-content-center align-items-center">
-        {{-- <a class="btn btn-info print p-3" href="{{ asset('storage/'.$order->invoice) }}">
+        {{-- <a class="btn btn-primary print p-3" href="{{ asset('storage/'.$order->invoice) }}">
             <i class="fa-solid fa-print"></i> Print Invoice
         </a> --}}
-        <button class="btn btn-info ml-3 p-3" onclick="downloadInvoice()">
+        <button class="btn btn-primary ml-3 p-3" onclick="downloadInvoice()">
             <i class="fa-solid fa-file-download"></i> Download Invoice
         </button>
     </div>

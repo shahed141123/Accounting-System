@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\ExpenseCategory;
 use Illuminate\Http\Request;
+use Exception;
 
 class ExpenseCategoryController extends Controller
 {
@@ -31,7 +33,31 @@ class ExpenseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:50|unique:expense_categories',
+            'note' => 'nullable|string|max:255',
+        ]);
+
+        try {
+            // generate code
+            $code = 1;
+            $prevCode = ExpenseCategory::latest()->first();
+            if ($prevCode) {
+                $code = $prevCode->code + 1;
+            }
+
+            // save category
+            ExpenseCategory::create([
+                'name' => $request->name,
+                'code' => $code,
+                'note' => $request->note,
+                'status' => $request->status,
+            ]);
+
+            return $this->responseWithSuccess('Category added successfully');
+        } catch (Exception $e) {
+            return $this->responseWithError($e->getMessage());
+        }
     }
 
     /**

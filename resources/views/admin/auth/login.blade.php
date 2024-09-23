@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="d-grid gap-2">
-                                    <x-metronic.button type="submit" class="btn btn-info me-2">
+                                    <x-metronic.button type="submit" class="btn btn-primary me-2">
                                         <span class="indicator-label"> {{ __('Sign In') }}</span>
                                     </x-metronic.button>
                                 </div>
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="d-flex flex-stack">
                                     <x-metronic.button type="submit"
-                                        class="btn btn-info me-2 flex-shrink-0 w-100">
+                                        class="btn btn-primary me-2 flex-shrink-0 w-100">
                                         <span class="indicator-label"> {{ __('Sign In Now') }}</span>
                                     </x-metronic.button>
                                 </div>

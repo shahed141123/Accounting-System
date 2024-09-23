@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end py-3 px-9">
-            {{-- <button type="submit" class="btn btn-info fw-bold rounded-1">{{ __('Submit') }}</button> --}}
+            {{-- <button type="submit" class="btn btn-primary fw-bold rounded-1">{{ __('Submit') }}</button> --}}
             <x-metronic.button type="submit" class="primary">
                 {{ __('Submit') }}
             </x-metronic.button>

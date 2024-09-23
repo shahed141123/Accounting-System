@@ -295,7 +295,7 @@
                     <a href="{{ route('admin.blog-post.index') }}" class="btn btn-danger me-5">
                         Back To Blog List
                     </a>
-                    <button type="submit" class="btn btn-info">
+                    <button type="submit" class="btn btn-primary">
                         <span class="indicator-label"> Save Changes
                         </span>
                     </button>

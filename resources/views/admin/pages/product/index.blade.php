@@ -173,7 +173,7 @@
                                 buttonsStyling: false,
                                 confirmButtonText: "Ok, got it!",
                                 customClass: {
-                                    confirmButton: "btn btn-info"
+                                    confirmButton: "btn btn-primary"
                                 }
                             });
                         }, 2000);

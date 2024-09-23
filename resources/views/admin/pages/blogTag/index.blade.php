@@ -106,12 +106,12 @@
                                 :value="old('description')"></x-metronic.textarea>
                         </div>
                         <div class="d-flex justify-content-end">
-                            {{-- <button id="kt_docs_formvalidation_text_submit" type="submit" class="btn btn-info">
+                            {{-- <button id="kt_docs_formvalidation_text_submit" type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Create tag</span>
                                 <span class="indicator-progress">Please wait... <span
                                         class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button> --}}
-                            <button type="submit" class="btn btn-info">
+                            <button type="submit" class="btn btn-primary">
                                 Submit
                             </button>
                         </div>
@@ -169,7 +169,7 @@
                                     :value="old('description')">{!! $category->description !!}</x-metronic.textarea>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-info">
+                                <button type="submit" class="btn btn-primary">
                                     Submit
                                 </button>
                             </div>
@@ -244,7 +244,7 @@
                                                 buttonsStyling: false,
                                                 confirmButtonText: "Ok, got it!",
                                                 customClass: {
-                                                    confirmButton: "btn btn-info"
+                                                    confirmButton: "btn btn-primary"
                                                 }
                                             }).then(function() {
                                                 window.location.reload();
@@ -257,7 +257,7 @@
                                                 buttonsStyling: false,
                                                 confirmButtonText: "Ok, got it!",
                                                 customClass: {
-                                                    confirmButton: "btn btn-info"
+                                                    confirmButton: "btn btn-primary"
                                                 }
                                             });
                                         }
@@ -272,7 +272,7 @@
                                             buttonsStyling: false,
                                             confirmButtonText: "Ok, got it!",
                                             customClass: {
-                                                confirmButton: "btn btn-info"
+                                                confirmButton: "btn btn-primary"
                                             }
                                         });
                                     });

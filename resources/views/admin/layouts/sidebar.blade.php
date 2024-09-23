@@ -442,7 +442,7 @@
         </nav>
         <div class="logout-btn-wrapper">
             <div class="logout-btn">
-                <button class="btn btn-info w-75">
+                <button class="btn btn-primary w-75">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         stroke-width="2" class="h-6 w-6" width="25px" height="25px">
                         <path stroke-linecap="round" stroke-linejoin="round"

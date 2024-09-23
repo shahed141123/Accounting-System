@@ -234,11 +234,11 @@
                     <a href="{{ route('admin.blog-post.index') }}" class="btn btn-danger me-5">
                         Back To List
                     </a>
-                    <button type="submit" class="btn btn-info">
+                    <button type="submit" class="btn btn-primary">
                         <span class="indicator-label"> Save Changes
                         </span>
                     </button>
-                    {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-info">
+                    {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
                         <span class="indicator-label"> Save Changes </span>
                         <span class="indicator-progress">
                             Please wait...

@@ -178,9 +178,9 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="d-flex justify-content-center align-items-center py-5 my-5">
-                                            <button class="btn btn-info print p-3"><i class="fa-solid fa-print"></i> Print
+                                            <button class="btn btn-primary print p-3"><i class="fa-solid fa-print"></i> Print
                                                 Invoice</button>
-                                            <button class="btn btn-info ml-3 p-3" onclick="downloadInvoice()"><i
+                                            <button class="btn btn-primary ml-3 p-3" onclick="downloadInvoice()"><i
                                                     class="fa-solid fa-file-download"></i> Download Invoice</button>
                                         </div>
                                     </div>

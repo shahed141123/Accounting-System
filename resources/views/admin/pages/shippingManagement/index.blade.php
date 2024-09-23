@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-info" data-bs-dismiss="modal">Save</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
                     </div>
                 </form>
             </div>
@@ -270,7 +270,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-info" data-bs-dismiss="modal">Save</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
                         </div>
                     </form>
                 </div>
@@ -371,7 +371,7 @@
                                     buttonsStyling: false,
                                     confirmButtonText: "Ok, got it!",
                                     customClass: {
-                                        confirmButton: "btn btn-info"
+                                        confirmButton: "btn btn-primary"
                                     }
                                 });
                             }, 2000);

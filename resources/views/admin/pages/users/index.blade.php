@@ -6,7 +6,7 @@
             </div>
             <div class="card-toolbar">
                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                    <a href="{{ route('admin.user.create') }}" class="btn btn-info rounded-1">
+                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary rounded-1">
                         <span class="svg-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">

@@ -10,7 +10,7 @@
                                 <div>
                                     <h4 class="mb-0">Manage Expense Sub Categories</h4>
                                 </div>
-                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#addCategoryModal">
                                     Add New Category
                                 </button>
@@ -87,7 +87,7 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-info">Add Category</button>
+                        <button type="submit" class="btn btn-primary">Add Category</button>
                     </form>
                 </div>
             </div>

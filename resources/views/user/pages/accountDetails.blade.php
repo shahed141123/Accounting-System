@@ -194,7 +194,7 @@
                                                             </div>
                                                             <div class="col-12 mt-4">
                                                                 <input type="submit" value="Save Changes"
-                                                                    class="updatebutton btn btn-info w-100">
+                                                                    class="updatebutton btn btn-primary w-100">
                                                             </div>
                                                         </div>
                                                     </div>

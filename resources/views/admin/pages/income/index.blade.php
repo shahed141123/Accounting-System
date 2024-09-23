@@ -88,7 +88,7 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-info">Add Entry</button>
+                        <button type="submit" class="btn btn-primary">Add Entry</button>
                     </form>
                 </div>
             </div>

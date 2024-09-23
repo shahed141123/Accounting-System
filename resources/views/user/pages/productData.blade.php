@@ -143,7 +143,7 @@
                                                                         aria-label="Recipient's username"
                                                                         aria-describedby="basic-addon2">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-info"
+                                                                        <button class="btn btn-primary"
                                                                             type="button">
                                                                             <i class="fa fa-search"></i>
                                                                         </button>

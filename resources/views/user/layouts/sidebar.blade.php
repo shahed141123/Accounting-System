@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-info">Update Image</button>
+                        <button type="submit" class="btn btn-primary">Update Image</button>
                     </div>
                 </form>
             </div>

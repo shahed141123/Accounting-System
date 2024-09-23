@@ -190,7 +190,7 @@
 
                 <li class="nav-item ms-auto">
 
-                    <a href="#" class="btn btn-info ps-7" data-kt-menu-trigger="click"
+                    <a href="#" class="btn btn-primary ps-7" data-kt-menu-trigger="click"
                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">Actions
 
                         <span class="svg-icon svg-icon-2 me-0">
@@ -727,7 +727,7 @@
                         <div class="text-center pt-15">
                             <button type="reset" class="btn btn-light me-3"
                                 data-kt-users-modal-action="cancel">Cancel</button>
-                            <button type="submit" class="btn btn-info" data-kt-users-modal-action="submit">
+                            <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Submit</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
