@@ -154,3 +154,13 @@ table.dataTable thead td {
     background: -o-linear-gradient(top, #ef542c 0%, #ef542c 100%) !important;
     background: linear-gradient(to bottom, #ef542c 0%, #ef542c 100%) !important;
 }
+.btn-primary {
+    background-color: #ef542c !important;
+    border: 1px solid #ef542c;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: transparent !important;
+    border: 1px solid #ef542c;
+    color: #ef542c;
+}
