@@ -10,7 +10,7 @@
                                 <div>
                                     <h4 class="mb-0">Manage Account Transactions</h4>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
                                     data-bs-target="#addTransactionModal">
                                     Add New Transaction
                                 </button>
@@ -119,7 +119,7 @@
                                 <!-- Add dynamic account options -->
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
+                        <button type="submit" class="btn btn-white">Add Transaction</button>
                     </form>
                 </div>
             </div>

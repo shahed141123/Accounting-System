@@ -46,7 +46,14 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
 </head>
 
-<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary" onload="myFunction()">
+    <div class="spinner" id="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     <!-- App Wrapper -->
     <div class="app-wrapper">
         <!-- Include Header -->
@@ -90,6 +97,13 @@
     <script src="{{ asset('admin/assets/js/fontawesome6.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
     <script src="{{ asset('admin/assets/js/adminlte.js') }}"></script>
+    <script>
+        var preloader = document.getElementById('loading');
+
+        function myFunction() {
+            preloader.style.display = "none";
+        }
+    </script>
 
     @include('toastr')
     @stack('scripts')

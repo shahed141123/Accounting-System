@@ -32,7 +32,8 @@
             <h3 class="card-title">Brands List</h3>
             <div>
                 <a class="btn btn-sm btn-light-primary rounded-0" href="{{ route('admin.brands.create') }}">
-                    Add New
+                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
+                    Add
                 </a>
             </div>
         </div>

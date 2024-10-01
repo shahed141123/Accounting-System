@@ -10,9 +10,10 @@
                                 <div>
                                     <h4 class="mb-0">Manage Expense Categories</h4>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
                                     data-bs-target="#addCategoryModal">
-                                    Add New Category
+                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
+                                    Add
                                 </button>
                             </div>
                         </div>
@@ -98,7 +99,7 @@
                                                                         </x-admin.select-option>
                                                                     </div>
                                                                     <x-admin.button type="submit"
-                                                                        class="btn btn-primary">Edit
+                                                                        class="btn btn-white">Edit
                                                                         Category</x-admin.button>
                                                                 </form>
                                                             </div>
@@ -145,7 +146,7 @@
                                 <option value="inactive">Inactive</option>
                             </x-admin.select-option>
                         </div>
-                        <x-admin.button type="submit" class="btn btn-primary">Add Category</x-admin.button>
+                        <x-admin.button type="submit" class="btn btn-white">Add Category</x-admin.button>
                     </form>
                 </div>
             </div>

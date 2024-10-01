@@ -10,9 +10,10 @@
                                 <div>
                                     <h4 class="mb-0">Manage Your Accounts</h4>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
-                                    Add New Account
+                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
+                                    Add
                                 </button>
                             </div>
                         </div>
@@ -97,7 +98,7 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Account</button>
+                        <button type="submit" class="btn btn-white">Add Account</button>
                     </form>
                 </div>
             </div>

@@ -10,9 +10,10 @@
                                 <div>
                                     <h4 class="mb-0">Manage Balance Transfers</h4>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
-                                    Add New Transfer
+                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
+                                    Add
                                 </button>
                             </div>
                         </div>
@@ -109,7 +110,7 @@
                                 <!-- Add dynamic transaction options -->
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Transfer</button>
+                        <button type="submit" class="btn btn-white">Add Transfer</button>
                     </form>
                 </div>
             </div>

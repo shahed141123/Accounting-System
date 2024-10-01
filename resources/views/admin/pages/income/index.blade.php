@@ -12,7 +12,8 @@
                                 </div>
                                 <button type="button" class="btn btn-white" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
-                                    Add New Entry
+                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
+                                    Add
                                 </button>
                             </div>
                         </div>
@@ -88,7 +89,7 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Entry</button>
+                        <button type="submit" class="btn btn-white">Add Entry</button>
                     </form>
                 </div>
             </div>

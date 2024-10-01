@@ -119,7 +119,7 @@
                                 <!-- Add dynamic account options -->
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
+                        <button type="submit" class="btn btn-white">Add Transaction</button>
                     </form>
                 </div>
             </div>

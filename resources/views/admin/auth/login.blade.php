@@ -1,7 +1,7 @@
 <x-admin-guest-layout>
     <style>
         .login-btns {
-            background-color: #ef542c !important;
+            background-color: #2486d0 !important;
             border: 0;
             padding: 10px;
             color: white;
@@ -31,7 +31,7 @@
                     </a>
                     <div>
                         <p class="text-center pt-4 fw-bold fs-4">Your Admin Account</p>
-                        <p class="text-center " style="color: #ef542c">Login To Continue</p>
+                        <p class="text-center " style="color: #2486d0;">Login To Continue</p>
                     </div>
                     <div class="row mt-3 bg-white p-4 py-5 rounded-3">
                         <form action="{{ route('admin.login') }}" method="POST" id="kt_sign_in_form">
@@ -45,7 +45,7 @@
                                         class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
                                 </div>
                                 <div class="input-group-text"> <span class="bi bi-envelope"
-                                        style="color: #ef542c"></span> </div>
+                                        style="color: #2486d0;"></span> </div>
                             </div>
                             <div class="input-group mb-4">
                                 <div class="form-floating">
@@ -59,15 +59,15 @@
                                         style="@error('password')top: 34% !important; @enderror"
                                         data-kt-password-meter-control="visibility"
                                         onclick="togglePasswordVisibility()">
-                                        <i id="eyeIcon" class="bi bi-eye-slash fs-2" style="color: #ef542c;font-size: 25px !important;"></i>
+                                        <i id="eyeIcon" class="bi bi-eye-slash fs-2" style="color: #2486d0;font-size: 25px !important;"></i>
                                         <i class="bi bi-eye d-none"
-                                            style="color: #ef542c; font-size: 25px !important;"></i>
+                                            style="color: #2486d0; font-size: 25px !important;"></i>
                                     </span>
                                     <x-metronic.label for="passwordField"
                                         class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</x-metronic.label>
                                 </div>
                                 <div class="input-group-text"> <span class="bi bi-lock-fill"
-                                        style="color: #ef542c"></span> </div>
+                                        style="color: #2486d0;"></span> </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 d-inline-flex align-items-center">

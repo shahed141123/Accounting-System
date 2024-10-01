@@ -416,7 +416,7 @@
                     id="kt_users_email_notification_cancel">Cancel</button>
 
 
-                <button type="button" class="btn btn-primary" id="kt_users_email_notification_submit">
+                <button type="button" class="btn btn-white" id="kt_users_email_notification_submit">
                     <span class="indicator-label">Save</span>
                     <span class="indicator-progress">Please wait...
                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

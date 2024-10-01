@@ -43,7 +43,7 @@ label {
 
 .btn-white {
     background-color: white !important;
-    color: #ef542c !important;
+    color: #2486d0 !important;
 }
 .sidebar-expand-lg.layout-fixed .app-sidebar {
     border: 1px solid white;
@@ -55,13 +55,13 @@ label {
 }
 .sidebar-toggler-btn {
     border-radius: 5px;
-    background-color: #ef542c;
+    background-color: #2486d0;
     color: white;
     margin-right: 30px;
 }
 .sidebar-toggler-btn:hover {
     border-radius: 5px;
-    background-color: #ef542c;
+    background-color: #2486d0;
     color: white;
     margin-right: 30px;
 }
@@ -69,13 +69,13 @@ label {
 .sidebar-toggler-btn:hover,
 .sidebar-toggler-btn:focus {
     border-radius: 5px;
-    background-color: #ef542c;
+    background-color: #2486d0;
     color: white;
     margin-right: 30px;
 }
 .nav-link.active {
     color: white !important;
-    background-color: #ef542c !important;
+    background-color: #2486d0 !important;
 }
 .nav-link.active p,
 .nav-link.active i {
@@ -125,7 +125,7 @@ table.dataTable tbody td {
 table.dataTable thead th,
 table.dataTable thead td {
     padding: 10px 18px;
-    color: #ef542c !important;
+    color: #2486d0 !important;
     /* background-color: #f765418e !important; */
     border-bottom: 1px solid #eee !important;
 }
@@ -139,32 +139,36 @@ table.dataTable thead td {
         linear,
         left top,
         left bottom,
-        color-stop(0%, #ef542c),
-        color-stop(100%, #ef542c)
+        color-stop(0%, #2486d0),
+        color-stop(100%, #2486d0)
     ) !important;
     background: -webkit-linear-gradient(
         top,
-        #ef542c 0%,
-        #ef542c 100%
+        #2486d0 0%,
+        #2486d0 100%
     ) !important;
-    background: -moz-linear-gradient(top, #ef542c 0%, #ef542c 100%) !important;
-    background: -ms-linear-gradient(top, #ef542c 0%, #ef542c 100%) !important;
-    background: -o-linear-gradient(top, #ef542c 0%, #ef542c 100%) !important;
-    background: linear-gradient(to bottom, #ef542c 0%, #ef542c 100%) !important;
+    background: -moz-linear-gradient(top, #2486d0 0%, #2486d0 100%) !important;
+    background: -ms-linear-gradient(top, #2486d0 0%, #2486d0 100%) !important;
+    background: -o-linear-gradient(top, #2486d0 0%, #2486d0 100%) !important;
+    background: linear-gradient(to bottom, #2486d0 0%, #2486d0 100%) !important;
 }
 .btn-primary {
-    background-color: #ef542c !important;
-    border: 1px solid #ef542c !important;
+    background-color: #2486d0 !important;
+    border: 0px solid #2486d0 !important;
     color: white;
 }
 .btn-primary:hover {
     background-color: transparent !important;
-    border: 1px solid #ef542c;
-    color: #ef542c;
+    border: 1px solid #2486d0 !important;
+    color: #2486d0;
 }
 .modal-header {
-    background-color: #ef542c !important;
+    background-color: #2486d0 !important;
     color: white !important;
+    border: 0 !important;
+}
+.card-header {
+    border: 0 !important;
 }
 /* .form-select {
     border: 0;
@@ -202,4 +206,70 @@ table.dataTable thead td {
     border-color: none;
     outline: 0;
     box-shadow: none;
+}
+/* Ensure body takes full height */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Style the spinner container to cover the entire screen */
+.spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white; /* Set background to white */
+    z-index: 9999; /* Ensure it stays on top of other elements */
+}
+
+/* Spinner circle styles */
+.spinner div {
+    width: 15.7px;
+    height: 15.7px;
+    background-color: #2486d0;
+    border-radius: 50%;
+    animation: spinner-4t3wzl 1.25s infinite backwards;
+}
+
+.spinner div:nth-child(1) {
+    animation-delay: 0.15s;
+    background-color: rgba(36, 134, 208, 0.9);
+}
+
+.spinner div:nth-child(2) {
+    animation-delay: 0.3s;
+    background-color: rgba(36, 134, 208, 0.8);
+}
+
+.spinner div:nth-child(3) {
+    animation-delay: 0.45s;
+    background-color: rgba(36, 134, 208, 0.7);
+}
+
+.spinner div:nth-child(4) {
+    animation-delay: 0.6s;
+    background-color: rgba(36, 134, 208, 0.6);
+}
+
+.spinner div:nth-child(5) {
+    animation-delay: 0.75s;
+    background-color: rgba(36, 134, 208, 0.5);
+}
+
+/* Keyframes for the animation */
+@keyframes spinner-4t3wzl {
+    0% {
+        transform: rotate(0deg) translateY(-200%);
+    }
+
+    60%,
+    100% {
+        transform: rotate(360deg) translateY(-200%);
+    }
 }
