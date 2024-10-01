@@ -23,29 +23,91 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Code</th>
-                                        <th>Note</th>
                                         <th>Status</th>
-                                        <th class="text-end">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($categorys as $category)
                                         <tr>
-                                            <td>asdasdasd</td>
-                                            <td>asdadasd</td>
-                                            <td>asdadasd</td>
-                                            <td>asdasdasd</td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary">
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->code }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $category->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ $category->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCategoryModal{{ $category->id }}">
                                                     <i class="fa-solid fa-pen"></i>
                                                 </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCategoryModal{{ $category->id }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger">
+                                                <a href="{{ route('admin.expense-category.destroy',$category->id) }}" class="btn btn-sm btn-danger delete">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </a>
+                                                <div class="modal fade" id="editCategoryModal{{ $category->id }}"
+                                                    tabindex="-1" aria-labelledby="editCategoryModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-dark text-white">
+                                                                <h5 class="modal-title" id="editCategoryModalLabel">Edit
+                                                                    Category</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="POST" enctype="multipart/form-data"
+                                                                    action="{{ route('admin.expense-category.update', $category->id) }}">
+                                                                    @method('PUT')
+                                                                    @csrf
+                                                                    <div class="mb-3">
+                                                                        <label for="name"
+                                                                            class="form-label">Name</label>
+                                                                        <x-admin.input type="text"
+                                                                            class="form-control form-control-solid"
+                                                                            :value="old('name', $category->name)" id="name"
+                                                                            name="name" required></x-admin.input>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <x-admin.label for="note"
+                                                                            class="form-label">Note</x-admin.label>
+                                                                            {{-- <textarea class="form-control form-control-solid" id="note" name="note" rows="3">{{ old('note',$category->note) }}</textarea> --}}
+                                                                        <x-admin.textarea id="note" name="note"
+                                                                            :rows="2">{{ old('note',$category->note) }}</x-admin.textarea>
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <x-admin.label for="status"
+                                                                            class="form-label">Status</x-admin.label>
+                                                                        <x-admin.select-option
+                                                                            class="form-select form-select-solid"
+                                                                            id="status" name="status">
+                                                                            <option value="active"
+                                                                                @selected($category->status == 'active')>Active
+                                                                            </option>
+                                                                            <option value="inactive"
+                                                                                @selected($category->status == 'inactive')>Inactive
+                                                                            </option>
+                                                                        </x-admin.select-option>
+                                                                    </div>
+                                                                    <x-admin.button type="submit"
+                                                                        class="btn btn-primary">Edit
+                                                                        Category</x-admin.button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -68,9 +130,9 @@
                     <form method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control form-control-solid" id="name" name="name"
-                                required>
+                            <x-admin.label for="name" class="form-label">Name</x-admin.label>
+                            <x-admin.input type="text" class="form-control form-control-solid" :value="old('name')"
+                                id="name" name="name" required></x-admin.input>
                         </div>
                         <div class="mb-3">
                             <label for="note" class="form-label">Note</label>

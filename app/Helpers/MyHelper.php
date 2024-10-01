@@ -124,3 +124,19 @@ if (!function_exists('noImage')) {
         return 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg';
     }
 }
+
+if (!function_exists('generateCode')) {
+    function generateCode($model, $prefix)
+    {
+        // Get the latest record from the specified model
+        $lastRecord = $model::latest()->first();
+        $code = 1;
+        if ($lastRecord) {
+            // Extract numeric part from the last code and increment it
+            $lastNumericCode = intval(str_replace($prefix . '-', '', $lastRecord->code));
+            $code = $lastNumericCode + 1;
+        }
+        // Combine the prefix with the incremented code
+        return $prefix . '-' . $code;
+    }
+}

@@ -121,6 +121,10 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         [
             'catalogue'           => CatalogueController::class, //done
             'shipping-management' => ShippingManagementController::class, //done
+            'income-category'     => IncomeCategoryController::class,
+            'income-subcategory'  => IncomeSubCategoryController::class,
+            'expense-category'    => ExpenseCategoryController::class,
+            'expense-subcategory' => ExpenseSubCategoryController::class,
         ],
         ['except' => ['show', 'create', 'edit']]
     );
@@ -134,11 +138,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
             'privacy-policy'      => PrivacyPolicyController::class,
             'deal-banner'         => DealBannerController::class,
             'income'              => IncomeController::class,
-            'income-category'     => IncomeCategoryController::class,
-            'income-subcategory'  => IncomeSubCategoryController::class,
             'expense'             => ExpenseController::class,
-            'expense-category'    => ExpenseCategoryController::class,
-            'expense-subcategory' => ExpenseSubCategoryController::class,
             'account'             => AccountController::class,
             'balance-adjustment'  => BalanceAdjustmentController::class,
             'balance-transfer'    => BalanceTransferController::class,
