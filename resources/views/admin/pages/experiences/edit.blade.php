@@ -34,63 +34,63 @@
                 <div class="row">
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="quote"
+                        <x-admin.label for="quote"
                             class="col-form-label fw-bold fs-6 required">{{ __('Quote') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="quote" type="text" name="quote" :value="$experience->quote"
-                            placeholder="Enter the Quote"></x-metronic.input>
+                        <x-admin.input id="quote" type="text" name="quote" :value="$experience->quote"
+                            placeholder="Enter the Quote"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="starting_year"
+                        <x-admin.label for="starting_year"
                             class="col-form-label fw-bold fs-6 required">{{ __('Starting Year') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="starting_year" type="number" name="starting_year" :value="$experience->starting_year"
-                            placeholder="Enter the Starting Year"></x-metronic.input>
+                        <x-admin.input id="starting_year" type="number" name="starting_year" :value="$experience->starting_year"
+                            placeholder="Enter the Starting Year"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="end_year"
+                        <x-admin.label for="end_year"
                             class="col-form-label fw-bold fs-6 required">{{ __('End Year') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="end_year" type="number" name="end_year" :value="$experience->end_year"
-                            placeholder="Enter the End Year"></x-metronic.input>
+                        <x-admin.input id="end_year" type="number" name="end_year" :value="$experience->end_year"
+                            placeholder="Enter the End Year"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="role"
+                        <x-admin.label for="role"
                             class="col-form-label fw-bold fs-6 required">{{ __('Role') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="role" type="text" name="role" :value="$experience->role"
-                            placeholder="Enter the Role"></x-metronic.input>
+                        <x-admin.input id="role" type="text" name="role" :value="$experience->role"
+                            placeholder="Enter the Role"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="organization"
+                        <x-admin.label for="organization"
                             class="col-form-label fw-bold fs-6 required">{{ __('Organization') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="organization" type="text" name="organization" :value="$experience->organization"
-                            placeholder="Enter the Organization"></x-metronic.input>
+                        <x-admin.input id="organization" type="text" name="organization" :value="$experience->organization"
+                            placeholder="Enter the Organization"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="short_description"
+                        <x-admin.label for="short_description"
                             class="col-form-label fw-bold fs-6 required">{{ __('Short Description') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="short_description" type="text" name="short_description"
-                            :value="$experience->short_description" placeholder="Enter the Short Description"></x-metronic.input>
+                        <x-admin.input id="short_description" type="text" name="short_description"
+                            :value="$experience->short_description" placeholder="Enter the Short Description"></x-admin.input>
                     </div>
                 </div>
                 <div class="text-center pt-15">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Update') }}
-                    </x-metronic.button>
+                    </x-admin.button>
                 </div>
                 <!--end::Actions-->
             </form>

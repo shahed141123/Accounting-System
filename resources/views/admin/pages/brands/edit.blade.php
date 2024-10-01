@@ -34,67 +34,67 @@
                 <!--begin::Input group-->
                 <div class="row">
                     <div class="col-lg-6 mb-7">
-                        <x-metronic.label for="name"
+                        <x-admin.label for="name"
                             class="col-form-label fw-bold fs-6 required">{{ __('Name') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="name" type="text" name="name" :value="old('name', $brand->name)"
-                            placeholder="Enter the Name" required></x-metronic.input>
+                        <x-admin.input id="name" type="text" name="name" :value="old('name', $brand->name)"
+                            placeholder="Enter the Name" required></x-admin.input>
                     </div>
 
                     <div class="col-lg-6 mb-7">
-                        <x-metronic.label for="url"
+                        <x-admin.label for="url"
                             class="col-form-label fw-bold fs-6 required">{{ __('Url') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="url" type="url" name="url" :value="old('url', $brand->url)"
-                            placeholder="Enter the Url"></x-metronic.input>
+                        <x-admin.input id="url" type="url" name="url" :value="old('url', $brand->url)"
+                            placeholder="Enter the Url"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="logo" class="col-form-label fw-bold fs-6 ">{{ __('Logo') }}
-                        </x-metronic.label>
+                        <x-admin.label for="logo" class="col-form-label fw-bold fs-6 ">{{ __('Logo') }}
+                        </x-admin.label>
 
-                        <x-metronic.file-input id="logo" name="logo" :source="asset('storage/'.$brand->logo)" :value="old('logo', $brand->logo)"></x-metronic.file-input>
+                        <x-admin.file-input id="logo" name="logo" :source="asset('storage/'.$brand->logo)" :value="old('logo', $brand->logo)"></x-admin.file-input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="image"
+                        <x-admin.label for="image"
                             class="col-form-label fw-bold fs-6 required">{{ __('Thumbnail Image') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.file-input id="image" name="image" :source="asset('storage/'.$brand->image)" :value="old('image', $brand->image)"></x-metronic.file-input>
+                        <x-admin.file-input id="image" name="image" :source="asset('storage/'.$brand->image)" :value="old('image', $brand->image)"></x-admin.file-input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="banner_image"
+                        <x-admin.label for="banner_image"
                             class="col-form-label fw-bold fs-6 ">{{ __('Banner Image') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.file-input id="banner_image" :source="asset('storage/'.$brand->banner_image)" :value="old('banner_image', $brand->banner_image)" name="banner_image"></x-metronic.file-input>
+                        <x-admin.file-input id="banner_image" :source="asset('storage/'.$brand->banner_image)" :value="old('banner_image', $brand->banner_image)" name="banner_image"></x-admin.file-input>
                     </div>
                     <div class="col-lg-8 mb-7">
-                        <x-metronic.label for="description"
+                        <x-admin.label for="description"
                             class="col-form-label fw-bold fs-6 ">{{ __('Description') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.textarea id="description" name="description">{{ old('description', $brand->description) }}</x-metronic.textarea>
+                        <x-admin.textarea id="description" name="description">{{ old('description', $brand->description) }}</x-admin.textarea>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                            {{ __('Select a Status ') }}</x-metronic.label>
-                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                        <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Status ') }}</x-admin.label>
+                        <x-admin.select-option id="status" name="status" data-hide-search="true"
                             data-placeholder="Select an option">
                             <option></option>
                             <option value="active" @selected($brand->status == 'active')>Active</option>
                             <option value="inactive" @selected($brand->status == 'inactive')>Inactive</option>
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
 
 
                 </div>
                 <div class="text-center pt-15">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Submit') }}
-                    </x-metronic.button>
+                    </x-admin.button>
                 </div>
                 <!--end::Actions-->
             </form>

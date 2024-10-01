@@ -93,8 +93,8 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-4 mb-7">
-                                <x-metronic.label for="product_id"
-                                    class="col-form-label required fw-bold fs-6">{{ __('Select Product') }}</x-metronic.label>
+                                <x-admin.label for="product_id"
+                                    class="col-form-label required fw-bold fs-6">{{ __('Select Product') }}</x-admin.label>
                                 <select class="form-select form-select-solid" data-control="select2"
                                     data-close-on-select="false" data-placeholder="Select an option"
                                     data-allow-clear="true" multiple="multiple" id="product_id" name="product_id[]"
@@ -105,8 +105,8 @@
                                 </select>
                             </div>
                             <div class="col-lg-4 mb-7">
-                                <x-metronic.label for="category_id"
-                                    class="col-form-label required fw-bold fs-6">{{ __('Select Category') }}</x-metronic.label>
+                                <x-admin.label for="category_id"
+                                    class="col-form-label required fw-bold fs-6">{{ __('Select Category') }}</x-admin.label>
                                 <select class="form-select form-select-solid" data-control="select2"
                                     data-close-on-select="false" data-placeholder="Select an option"
                                     data-allow-clear="true" multiple="multiple" id="category_id" name="category_id[]"
@@ -117,8 +117,8 @@
                                 </select>
                             </div>
                             <div class="col-lg-4 mb-7">
-                                <x-metronic.label for="brand_id"
-                                    class="col-form-label required fw-bold fs-6">{{ __('Select Brand') }}</x-metronic.label>
+                                <x-admin.label for="brand_id"
+                                    class="col-form-label required fw-bold fs-6">{{ __('Select Brand') }}</x-admin.label>
                                 <select class="form-select form-select-solid" data-control="select2"
                                     data-close-on-select="false" data-placeholder="Select an option"
                                     data-allow-clear="true" multiple="multiple" id="brand_id" name="brand_id[]"
@@ -129,14 +129,14 @@
                                 </select>
                             </div>
                             <div class="col-lg-8 mb-7">
-                                <x-metronic.label for="title"
-                                    class="col-form-label required fw-bold fs-6">{{ __('Title') }}</x-metronic.label>
-                                <x-metronic.input id="title" type="text" name="title"
-                                    placeholder="Enter the title" :value="old('title')"></x-metronic.input>
+                                <x-admin.label for="title"
+                                    class="col-form-label required fw-bold fs-6">{{ __('Title') }}</x-admin.label>
+                                <x-admin.input id="title" type="text" name="title"
+                                    placeholder="Enter the title" :value="old('title')"></x-admin.input>
                             </div>
                             <div class="col-lg-4 mb-7">
-                                <x-metronic.label for="status"
-                                    class="col-form-label fw-bold fs-6">{{ __('Status') }}</x-metronic.label>
+                                <x-admin.label for="status"
+                                    class="col-form-label fw-bold fs-6">{{ __('Status') }}</x-admin.label>
                                 <select class="form-select" name="status" data-control="select2"
                                     data-placeholder="Select an option">
                                     <option></option>
@@ -145,29 +145,29 @@
                                 </select>
                             </div>
                             <div class="col-lg-4 mb-7">
-                                <x-metronic.label for="image"
-                                    class="col-form-label fw-bold fs-6">{{ __('Image') }}</x-metronic.label>
-                                <x-metronic.file-input id="image" name="image"
-                                    :value="old('image')"></x-metronic.file-input>
+                                <x-admin.label for="image"
+                                    class="col-form-label fw-bold fs-6">{{ __('Image') }}</x-admin.label>
+                                <x-admin.file-input id="image" name="image"
+                                    :value="old('image')"></x-admin.file-input>
                             </div>
                             <div class="col-lg-4 mb-7">
-                                <x-metronic.label for="attachment"
-                                    class="col-form-label fw-bold fs-6">{{ __('Attachment (PDF)') }}</x-metronic.label>
+                                <x-admin.label for="attachment"
+                                    class="col-form-label fw-bold fs-6">{{ __('Attachment (PDF)') }}</x-admin.label>
                                     <input class="form-control" type="file" name="attachment" id="attachment" value="{{ old('attachment') }}">
-                                {{-- <x-metronic.file-input id="attachment" name="attachment"
-                                    :value="old('attachment')"></x-metronic.file-input> --}}
+                                {{-- <x-admin.file-input id="attachment" name="attachment"
+                                    :value="old('attachment')"></x-admin.file-input> --}}
                             </div>
                             <div class="col-lg-4 mb-7">
-                                <x-metronic.label for="url"
-                                    class="col-form-label fw-bold fs-6">{{ __('URL') }}</x-metronic.label>
-                                <x-metronic.input id="url" type="url" name="url"
-                                    placeholder="Enter the URL" :value="old('url')"></x-metronic.input>
+                                <x-admin.label for="url"
+                                    class="col-form-label fw-bold fs-6">{{ __('URL') }}</x-admin.label>
+                                <x-admin.input id="url" type="url" name="url"
+                                    placeholder="Enter the URL" :value="old('url')"></x-admin.input>
                             </div>
                             <div class="col-xl-12">
                                 <div class="text-end">
-                                    <x-metronic.button type="submit" class="dark">
+                                    <x-admin.button type="submit" class="dark">
                                         {{ __('Submit') }}
-                                    </x-metronic.button>
+                                    </x-admin.button>
                                 </div>
                             </div>
                         </div>
@@ -194,8 +194,8 @@
                             @method('PUT')
                             <div class="row">
                                 <div class="col-lg-4 mb-7">
-                                    <x-metronic.label for="product_id{{ $catalogue->id }}"
-                                        class="col-form-label required fw-bold fs-6">{{ __('Select Product') }}</x-metronic.label>
+                                    <x-admin.label for="product_id{{ $catalogue->id }}"
+                                        class="col-form-label required fw-bold fs-6">{{ __('Select Product') }}</x-admin.label>
                                     <select class="form-select form-select-solid" data-control="select2"
                                         data-close-on-select="false" data-placeholder="Select an option"
                                         data-allow-clear="true" multiple="multiple" id="product_id{{ $catalogue->id }}" name="product_id[]"
@@ -208,8 +208,8 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-4 mb-7">
-                                    <x-metronic.label for="category_id{{ $catalogue->id }}"
-                                        class="col-form-label required fw-bold fs-6">{{ __('Select Category') }}</x-metronic.label>
+                                    <x-admin.label for="category_id{{ $catalogue->id }}"
+                                        class="col-form-label required fw-bold fs-6">{{ __('Select Category') }}</x-admin.label>
                                     <select class="form-select form-select-solid" data-control="select2"
                                         data-close-on-select="false" data-placeholder="Select an option"
                                         data-allow-clear="true" multiple="multiple" id="category_id{{ $catalogue->id }}" name="category_id[]"
@@ -222,8 +222,8 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-4 mb-7">
-                                    <x-metronic.label for="brand_id{{ $catalogue->id }}"
-                                        class="col-form-label required fw-bold fs-6">{{ __('Select Brand') }}</x-metronic.label>
+                                    <x-admin.label for="brand_id{{ $catalogue->id }}"
+                                        class="col-form-label required fw-bold fs-6">{{ __('Select Brand') }}</x-admin.label>
                                     <select class="form-select form-select-solid" data-control="select2"
                                         data-close-on-select="false" data-placeholder="Select an option"
                                         data-allow-clear="true" multiple="multiple" id="brand_id{{ $catalogue->id }}" name="brand_id[]"
@@ -236,14 +236,14 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-8 mb-7">
-                                    <x-metronic.label for="title{{ $catalogue->id }}"
-                                        class="col-form-label required fw-bold fs-6">{{ __('Title') }}</x-metronic.label>
-                                    <x-metronic.input id="title{{ $catalogue->id }}" type="text" name="title"
-                                        placeholder="Enter the title" :value="$catalogue->title"></x-metronic.input>
+                                    <x-admin.label for="title{{ $catalogue->id }}"
+                                        class="col-form-label required fw-bold fs-6">{{ __('Title') }}</x-admin.label>
+                                    <x-admin.input id="title{{ $catalogue->id }}" type="text" name="title"
+                                        placeholder="Enter the title" :value="$catalogue->title"></x-admin.input>
                                 </div>
                                 <div class="col-lg-4 mb-7">
-                                    <x-metronic.label for="status{{ $catalogue->id }}"
-                                        class="col-form-label fw-bold fs-6">{{ __('Status') }}</x-metronic.label>
+                                    <x-admin.label for="status{{ $catalogue->id }}"
+                                        class="col-form-label fw-bold fs-6">{{ __('Status') }}</x-admin.label>
                                     <select class="form-select" name="status" data-control="select2"
                                         data-placeholder="Select an option">
                                         <option value="active" {{ $catalogue->status == 'active' ? 'selected' : '' }}>active</option>
@@ -251,29 +251,29 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-4 mb-7">
-                                    <x-metronic.label for="image{{ $catalogue->id }}"
-                                        class="col-form-label fw-bold fs-6">{{ __('Image') }}</x-metronic.label>
-                                    <x-metronic.file-input id="image{{ $catalogue->id }}" name="image"
-                                        :value="$catalogue->image"></x-metronic.file-input>
+                                    <x-admin.label for="image{{ $catalogue->id }}"
+                                        class="col-form-label fw-bold fs-6">{{ __('Image') }}</x-admin.label>
+                                    <x-admin.file-input id="image{{ $catalogue->id }}" name="image"
+                                        :value="$catalogue->image"></x-admin.file-input>
                                 </div>
                                 <div class="col-lg-4 mb-7">
-                                    <x-metronic.label for="attachment{{ $catalogue->id }}"
-                                        class="col-form-label fw-bold fs-6">{{ __('Attachment (PDF)') }}</x-metronic.label>
+                                    <x-admin.label for="attachment{{ $catalogue->id }}"
+                                        class="col-form-label fw-bold fs-6">{{ __('Attachment (PDF)') }}</x-admin.label>
                                         <input class="form-control" type="file" name="attachment" id="attachment" value="{{ old('attachment',$catalogue->attachment) }}">
-                                    {{-- <x-metronic.file-input id="attachment{{ $catalogue->id }}" name="attachment"
-                                        :value="$catalogue->attachment"></x-metronic.file-input> --}}
+                                    {{-- <x-admin.file-input id="attachment{{ $catalogue->id }}" name="attachment"
+                                        :value="$catalogue->attachment"></x-admin.file-input> --}}
                                 </div>
                                 <div class="col-lg-4 mb-7">
-                                    <x-metronic.label for="url{{ $catalogue->id }}"
-                                        class="col-form-label fw-bold fs-6">{{ __('URL') }}</x-metronic.label>
-                                    <x-metronic.input id="url{{ $catalogue->id }}" type="url" name="url"
-                                        placeholder="Enter the URL" :value="$catalogue->url"></x-metronic.input>
+                                    <x-admin.label for="url{{ $catalogue->id }}"
+                                        class="col-form-label fw-bold fs-6">{{ __('URL') }}</x-admin.label>
+                                    <x-admin.input id="url{{ $catalogue->id }}" type="url" name="url"
+                                        placeholder="Enter the URL" :value="$catalogue->url"></x-admin.input>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="text-end">
-                                        <x-metronic.button type="submit" class="dark">
+                                        <x-admin.button type="submit" class="dark">
                                             {{ __('Update') }}
-                                        </x-metronic.button>
+                                        </x-admin.button>
                                     </div>
                                 </div>
                             </div>

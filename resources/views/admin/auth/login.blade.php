@@ -38,11 +38,11 @@
                             @csrf
                             <div class="input-group mb-4">
                                 <div class="form-floating">
-                                    <x-metronic.input type="email" name="email"
+                                    <x-admin.input type="email" name="email"
                                         class="form-control form-control-solid" placeholder="Enter your email address"
-                                        value="{{ old('email') }}" autocomplete="off"></x-metronic.input>
-                                    <x-metronic.label for="loginEmail"
-                                        class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
+                                        value="{{ old('email') }}" autocomplete="off"></x-admin.input>
+                                    <x-admin.label for="loginEmail"
+                                        class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-admin.label>
                                 </div>
                                 <div class="input-group-text"> <span class="bi bi-envelope"
                                         style="color: #ef542c"></span> </div>
@@ -50,10 +50,10 @@
                             <div class="input-group mb-4">
                                 <div class="form-floating">
 
-                                    <x-metronic.input type="password" name="password" id="passwordField"
+                                    <x-admin.input type="password" name="password" id="passwordField"
                                         class="form-control form-control-lg form-control-solid"
                                         placeholder="Enter your password" autocomplete="off">
-                                    </x-metronic.input>
+                                    </x-admin.input>
                                     <span
                                         class="btn btn-sm btn-icon border-0 bg-none shadow-none rounded-0 position-absolute translate-middle top-50 end-0 me-2 icons-eye"
                                         style="@error('password')top: 34% !important; @enderror"
@@ -63,8 +63,8 @@
                                         <i class="bi bi-eye d-none"
                                             style="color: #ef542c; font-size: 25px !important;"></i>
                                     </span>
-                                    <x-metronic.label for="passwordField"
-                                        class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</x-metronic.label>
+                                    <x-admin.label for="passwordField"
+                                        class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</x-admin.label>
                                 </div>
                                 <div class="input-group-text"> <span class="bi bi-lock-fill"
                                         style="color: #ef542c"></span> </div>
@@ -74,17 +74,17 @@
                                     <div class="form-check">
                                         <input id="remember_me" type="checkbox" value="1"
                                             class="form-check-input me-3" name="remember">
-                                        <x-metronic.label for="remember_me"
-                                            class="form-check-label">{{ __('Remember me') }}</x-metronic.label>
+                                        <x-admin.label for="remember_me"
+                                            class="form-check-label">{{ __('Remember me') }}</x-admin.label>
 
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="d-grid gap-2">
-                                        <x-metronic.button type="submit"
+                                        <x-admin.button type="submit"
                                             class="btn btn-primary me-2 rounded-1 border-0 py-2 mt-4">
                                             <span class="indicator-label fw-bold fs-5"> {{ __('Sign In') }}</span>
-                                        </x-metronic.button>
+                                        </x-admin.button>
                                     </div>
                                 </div>
                             </div>

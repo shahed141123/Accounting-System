@@ -224,7 +224,7 @@
                         <div class="card-body pt-0">
                             <div>
                                 <div class="text-muted fs-7">Change The Delivery Status</div>
-                                <x-metronic.select-option id="kt_ecommerce_add_product_status_select"
+                                <x-admin.select-option id="kt_ecommerce_add_product_status_select"
                                     class="form-select mb-2" data-control="select2" data-hide-search="true"
                                     name="delivery_status" data-placeholder="Select an option">
                                     <option></option>
@@ -232,13 +232,13 @@
                                     <option value="Shipped">Shipped</option>
                                     <option value="en_route">En Route</option>
                                     <option value="deliver">Deliver</option>
-                                </x-metronic.select-option>
+                                </x-admin.select-option>
                             </div>
                             <div class="mt-4">
-                                <x-metronic.label class="form-label">Delivery Tracking Id</x-metronic.label>
-                                <x-metronic.input type="text" name="delivery_id" class="form-control mb-2"
+                                <x-admin.label class="form-label">Delivery Tracking Id</x-admin.label>
+                                <x-admin.input type="text" name="delivery_id" class="form-control mb-2"
                                     placeholder="Add Product Delivery ID By Royel Mail">
-                                </x-metronic.input>
+                                </x-admin.input>
                             </div>
                         </div>
                     </form>

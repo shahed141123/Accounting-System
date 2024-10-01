@@ -145,7 +145,6 @@ if (!function_exists('redirectWithSuccess')) {
     function redirectWithSuccess(string $message)
     {
         Session::flash('success', $message);
-        return redirect()->back();
     }
 
 
@@ -155,6 +154,5 @@ if (!function_exists('redirectWithError')) {
     function redirectWithError(string $message)
     {
         Session::flash('error', $message);
-        return redirect()->back()->withInput();
     }
 }

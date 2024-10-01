@@ -9,64 +9,64 @@
                 <div class="d-flex flex-column scroll-y me-n7 pe-7">
                     <div class="row">
                         <div class="col-lg-2 mb-7">
-                            <x-metronic.label for="title" class="required fw-bold fs-6">
-                                {{ __('Select Title') }}</x-metronic.label>
-                            <x-metronic.select-option id="title" name="title" data-hide-search="true"
+                            <x-admin.label for="title" class="required fw-bold fs-6">
+                                {{ __('Select Title') }}</x-admin.label>
+                            <x-admin.select-option id="title" name="title" data-hide-search="true"
                                 data-placeholder="Select an option">
                                 <option></option>
                                 <option value="Mr">Mr</option>
                                 <option value="Mrs">Mrs</option>
                                 <option value="Ms">Ms</option>
-                            </x-metronic.select-option>
+                            </x-admin.select-option>
                         </div>
                         <div class="col-lg-5 mb-7">
-                            <x-metronic.label for="first_name"
-                                class="required fw-bold fs-6 mb-2">{{ __('First Name') }}</x-metronic.label>
-                            <x-metronic.input id="first_name" type="text" class="form-control-solid mb-3 mb-lg-0"
-                                name="first_name" :value="old('first_name')" placeholder="Enter First name"></x-metronic.input>
+                            <x-admin.label for="first_name"
+                                class="required fw-bold fs-6 mb-2">{{ __('First Name') }}</x-admin.label>
+                            <x-admin.input id="first_name" type="text" class="form-control-solid mb-3 mb-lg-0"
+                                name="first_name" :value="old('first_name')" placeholder="Enter First name"></x-admin.input>
                         </div>
                         <div class="col-lg-5 mb-7">
-                            <x-metronic.label for="last_name"
-                                class="required fw-bold fs-6 mb-2">{{ __('Last Name') }}</x-metronic.label>
-                            <x-metronic.input id="last_name" type="text" class="form-control-solid mb-3 mb-lg-0"
-                                name="last_name" :value="old('last_name')" placeholder="Enter Last name"></x-metronic.input>
+                            <x-admin.label for="last_name"
+                                class="required fw-bold fs-6 mb-2">{{ __('Last Name') }}</x-admin.label>
+                            <x-admin.input id="last_name" type="text" class="form-control-solid mb-3 mb-lg-0"
+                                name="last_name" :value="old('last_name')" placeholder="Enter Last name"></x-admin.input>
                         </div>
                         <div class="col-lg-4 mb-7">
-                            <x-metronic.label for="email"
-                                class="required fw-bold fs-6 mb-2">{{ __('Email') }}</x-metronic.label>
-                            <x-metronic.input id="email" type="email" class="form-control-solid mb-3 mb-lg-0"
-                                name="email" :value="old('email')" placeholder="example@domain.com"></x-metronic.input>
+                            <x-admin.label for="email"
+                                class="required fw-bold fs-6 mb-2">{{ __('Email') }}</x-admin.label>
+                            <x-admin.input id="email" type="email" class="form-control-solid mb-3 mb-lg-0"
+                                name="email" :value="old('email')" placeholder="example@domain.com"></x-admin.input>
                         </div>
                         <div class="col-lg-4 mb-7">
-                            <x-metronic.label for="phone"
-                                class="required fw-bold fs-6 mb-2">{{ __('Phone') }}</x-metronic.label>
-                            <x-metronic.input id="phone" type="phone" class="form-control-solid mb-3 mb-lg-0"
-                                name="phone" :value="old('phone')" placeholder="Eg:0145******"></x-metronic.input>
+                            <x-admin.label for="phone"
+                                class="required fw-bold fs-6 mb-2">{{ __('Phone') }}</x-admin.label>
+                            <x-admin.input id="phone" type="phone" class="form-control-solid mb-3 mb-lg-0"
+                                name="phone" :value="old('phone')" placeholder="Eg:0145******"></x-admin.input>
                         </div>
                         <div class="col-lg-4 mb-7">
-                            <x-metronic.label for="state"
-                                class="fw-bold fs-6 mb-2">{{ __('State') }}</x-metronic.label>
-                            <x-metronic.input id="state" type="state" class="form-control-solid mb-3 mb-lg-0"
-                                name="state" :value="old('state')" placeholder="Enter State"></x-metronic.input>
+                            <x-admin.label for="state"
+                                class="fw-bold fs-6 mb-2">{{ __('State') }}</x-admin.label>
+                            <x-admin.input id="state" type="state" class="form-control-solid mb-3 mb-lg-0"
+                                name="state" :value="old('state')" placeholder="Enter State"></x-admin.input>
                         </div>
                         <div class="col-lg-4 mb-7">
-                            <x-metronic.label for="address_one"
-                                class="fw-bold fs-6 mb-2">{{ __('House/Block/Road') }}</x-metronic.label>
-                            <x-metronic.input id="address_one" type="address_one"
+                            <x-admin.label for="address_one"
+                                class="fw-bold fs-6 mb-2">{{ __('House/Block/Road') }}</x-admin.label>
+                            <x-admin.input id="address_one" type="address_one"
                                 class="form-control-solid mb-3 mb-lg-0" name="address_one" :value="old('address_one')"
-                                placeholder="Enter House/Block/Road"></x-metronic.input>
+                                placeholder="Enter House/Block/Road"></x-admin.input>
                         </div>
                         <div class="col-lg-4 mb-7">
-                            <x-metronic.label for="address_two"
-                                class="fw-bold fs-6 mb-2">{{ __('City') }}</x-metronic.label>
-                            <x-metronic.input id="address_two" type="address_two"
+                            <x-admin.label for="address_two"
+                                class="fw-bold fs-6 mb-2">{{ __('City') }}</x-admin.label>
+                            <x-admin.input id="address_two" type="address_two"
                                 class="form-control-solid mb-3 mb-lg-0" name="address_two" :value="old('address_two')"
-                                placeholder="Enter City"></x-metronic.input>
+                                placeholder="Enter City"></x-admin.input>
                         </div>
                         <div class="col-lg-4 mb-7">
-                            <x-metronic.label for="country"
-                                class="fw-bold fs-6 mb-2">{{ __('Country') }}</x-metronic.label>
-                            <x-metronic.select-option id="country" name="country" data-control="select2"
+                            <x-admin.label for="country"
+                                class="fw-bold fs-6 mb-2">{{ __('Country') }}</x-admin.label>
+                            <x-admin.select-option id="country" name="country" data-control="select2"
                                 data-placeholder="Select an option" data-allow-clear="true">
                                 <option></option>
                                 <option value="Afghanistan">Afghanistan</option>
@@ -316,26 +316,26 @@
                                 <option value="Yemen">Yemen</option>
                                 <option value="Zambia">Zambia</option>
                                 <option value="Zimbabwe">Zimbabwe</option>
-                            </x-metronic.select-option>
+                            </x-admin.select-option>
                         </div>
                         <div class="col-lg-6 mb-7">
-                            <x-metronic.label for="password"
-                                class="required fw-bold fs-6 mb-2">{{ __('Password') }}</x-metronic.label>
-                            <x-metronic.input id="password" type="password" class="form-control-solid mb-3 mb-lg-0"
-                                name="password" :value="old('password')" placeholder="Enter Password"></x-metronic.input>
+                            <x-admin.label for="password"
+                                class="required fw-bold fs-6 mb-2">{{ __('Password') }}</x-admin.label>
+                            <x-admin.input id="password" type="password" class="form-control-solid mb-3 mb-lg-0"
+                                name="password" :value="old('password')" placeholder="Enter Password"></x-admin.input>
                         </div>
                         <div class="col-lg-6 mb-7">
-                            <x-metronic.label for="password_confirmation"
-                                class="required fw-bold fs-6 mb-2">{{ __('Confirm Password') }}</x-metronic.label>
-                            <x-metronic.input id="password_confirmation" type="password"
+                            <x-admin.label for="password_confirmation"
+                                class="required fw-bold fs-6 mb-2">{{ __('Confirm Password') }}</x-admin.label>
+                            <x-admin.input id="password_confirmation" type="password"
                                 class="form-control-solid mb-3 mb-lg-0" name="password_confirmation"
-                                placeholder="Confirm the password"></x-metronic.input>
+                                placeholder="Confirm the password"></x-admin.input>
                         </div>
                     </div>
                     <div class="text-center pt-15">
-                        <x-metronic.button type="submit" class="primary">
+                        <x-admin.button type="submit" class="primary">
                             {{ __('Save Changes') }}
-                        </x-metronic.button>
+                        </x-admin.button>
                     </div>
                 </div>
             </form>
