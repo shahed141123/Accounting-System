@@ -150,9 +150,9 @@
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-end">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Submit') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
                     </div>
                 </form>

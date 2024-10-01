@@ -342,9 +342,9 @@
 
 
                         <div class="text-center pt-15">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Save Changes') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
 
                     </form>
@@ -450,9 +450,9 @@
 
 
                         <div class="text-center pt-15">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Save Changes') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
 
                     </form>
@@ -542,11 +542,11 @@
 
                                     <div class="form-check form-check-custom form-check-solid">
 
-                                        <x-metronic.checkbox id="role-name-{{ $role->id }}" type="checkbox"
+                                        <x-admin.checkbox id="role-name-{{ $role->id }}" type="checkbox"
                                             name="roles[]" :value="$role->name" :checked="$user->roles->contains($role->id)" />
 
-                                        <x-metronic.label for="role-name-{{ $role->id }}"
-                                            class="form-check-label">{{ $role->name }}</x-metronic.label>
+                                        <x-admin.label for="role-name-{{ $role->id }}"
+                                            class="form-check-label">{{ $role->name }}</x-admin.label>
                                     </div>
 
                                 </div>
@@ -558,9 +558,9 @@
 
 
                         <div class="text-center pt-15">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Save Changes') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
 
                     </form>

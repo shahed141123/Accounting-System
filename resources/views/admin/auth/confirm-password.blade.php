@@ -26,13 +26,13 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <x-metronic.label
-                            class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</x-metronic.label>
+                        <x-admin.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</x-admin.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <x-metronic.input type="password" name="password" class="form-control form-control-lg"
+                        <x-admin.input type="password" name="password" class="form-control form-control-lg"
                             placeholder="Enter your password" required
-                            autocomplete="current-password"></x-metronic.input>
+                            autocomplete="current-password"></x-admin.input>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -40,9 +40,9 @@
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
-                        <x-metronic.button type="submit" class="primary w-100 mb-5">
+                        <x-admin.button type="submit" class="primary w-100 mb-5">
                             <span class="indicator-label"> {{ __('Confirm') }}</span>
-                        </x-metronic.button>
+                        </x-admin.button>
                         <!--end::Submit button-->
                     </div>
                     <!--end::Actions-->

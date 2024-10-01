@@ -28,8 +28,10 @@ class ExpenseCategoryController extends Controller
                 'status' => $request->status,
             ]);
             return $this->redirectWithSuccess('Expense Category Added Successfully');
+            return redirect()->back();
         } catch (\Exception $e) {
             return $this->redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
@@ -41,8 +43,10 @@ class ExpenseCategoryController extends Controller
         try {
             $category->update($request->only('name', 'note', 'status'));
             return $this->redirectWithSuccess('Expense Category Edited Successfully');
+            return redirect()->back();
         } catch (\Exception $e) {
             return $this->redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 

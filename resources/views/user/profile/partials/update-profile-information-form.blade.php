@@ -21,20 +21,20 @@
             <!--begin::Input group-->
             <div class="row fv-row">
                 <div class="mb-10 col-lg-6">
-                    <x-metronic.label for="name"
-                        class="form-label">{{ __('Name') }}</x-metronic.label>
-                    <x-metronic.input id="name" type="text" name="name" :value="old('name', $user->name)"
-                        placeholder="Enter Your name"></x-metronic.input>
+                    <x-admin.label for="name"
+                        class="form-label">{{ __('Name') }}</x-admin.label>
+                    <x-admin.input id="name" type="text" name="name" :value="old('name', $user->name)"
+                        placeholder="Enter Your name"></x-admin.input>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Input group-->
                 <div class="mb-10 col-lg-6">
-                    <x-metronic.label class="form-label">{{ __('Email') }}</x-metronic.label>
+                    <x-admin.label class="form-label">{{ __('Email') }}</x-admin.label>
                     <!--end::Label-->
                     <!--begin::Input-->
-                    <x-metronic.input type="email" name="email"
+                    <x-admin.input type="email" name="email"
                         class="form-control form-control-lg form-control-solid" placeholder="Enter your email address"
-                        value="{{ old('email',$user->email) }}" autocomplete="off"></x-metronic.input>
+                        value="{{ old('email',$user->email) }}" autocomplete="off"></x-admin.input>
 
                     @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                         <div>
@@ -63,9 +63,9 @@
         <!--end::Card body-->
         <!--begin::Card footer-->
         <div class="card-footer d-flex justify-content-end py-4 px-9">
-            <x-metronic.button type="submit" class="primary">
+            <x-admin.button type="submit" class="primary">
                 {{ __('Submit') }}
-            </x-metronic.button>
+            </x-admin.button>
             @if (session('status') === 'profile-updated')
                 <p
                     x-data="{ show: true }"

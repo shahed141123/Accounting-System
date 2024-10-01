@@ -27,10 +27,10 @@
             <div class="card-body d-flex flex-column scroll-y me-n7 pe-7">
                 <div class="row fv-row mb-10">
                     <div class="col-lg-8 offset-lg-2">
-                        <x-metronic.label for="role-name"
-                            class="col-form-label required fw-bold fs-6">{{ __('Role Name') }}</x-metronic.label>
-                        <x-metronic.input id="role-name" type="text" class="form-control form-control-solid"
-                            name="name" :value="old('name')" placeholder="Enter the Role name"></x-metronic.input>
+                        <x-admin.label for="role-name"
+                            class="col-form-label required fw-bold fs-6">{{ __('Role Name') }}</x-admin.label>
+                        <x-admin.input id="role-name" type="text" class="form-control form-control-solid"
+                            name="name" :value="old('name')" placeholder="Enter the Role name"></x-admin.input>
                     </div>
                 </div>
                 <div class="row fv-row">
@@ -83,9 +83,9 @@
             </div>
 
             <div class="card-footer text-end p-4 px-lg-12 py-lg-5">
-                <x-metronic.button type="submit" class="primary">
+                <x-admin.button type="submit" class="primary">
                     {{ __('Submit') }}
-                </x-metronic.button>
+                </x-admin.button>
             </div>
 
         </form>

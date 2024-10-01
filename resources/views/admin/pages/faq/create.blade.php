@@ -81,10 +81,10 @@
                                 @csrf
                                 <div class="row mb-5">
                                     <div class="col-lg-7 mb-7">
-                                        <x-metronic.label for="category_id"
+                                        <x-admin.label for="category_id"
                                             class="col-form-label fw-bold fs-6">
-                                            {{ __('FAQ category ') }}</x-metronic.label>
-                                        <x-metronic.select-option id="category_id" name="category_id"
+                                            {{ __('FAQ category ') }}</x-admin.label>
+                                        <x-admin.select-option id="category_id" name="category_id"
                                             data-hide-search="true" data-placeholder="Select an option">
                                             <option></option>
                                             @foreach ($faq_categories as $faq_category)
@@ -93,49 +93,49 @@
                                                     </option>
                                                 @endif
                                             @endforeach
-                                        </x-metronic.select-option>
+                                        </x-admin.select-option>
                                     </div>
                                     <div class="col-lg-5 mb-7">
-                                        <x-metronic.label for="order"
+                                        <x-admin.label for="order"
                                             class="col-form-label fw-bold fs-6 required">{{ __('Order') }}
-                                        </x-metronic.label>
+                                        </x-admin.label>
 
-                                        <x-metronic.input id="order" type="number" name="order" :value="old('order')"
-                                            placeholder="Eg: 1,2,3,4,5" required></x-metronic.input>
+                                        <x-admin.input id="order" type="number" name="order" :value="old('order')"
+                                            placeholder="Eg: 1,2,3,4,5" required></x-admin.input>
                                     </div>
                                     <div class="col-lg-12 mb-7">
-                                        <x-metronic.label for="question"
+                                        <x-admin.label for="question"
                                             class="col-form-label fw-bold fs-6 required">{{ __('Question') }}
-                                        </x-metronic.label>
+                                        </x-admin.label>
 
-                                        <x-metronic.textarea id="question" row="3" name="question"
+                                        <x-admin.textarea id="question" row="3" name="question"
                                             :value="old('question')" placeholder="Enter Question"
-                                            required>{{ old('question') }}</x-metronic.textarea>
+                                            required>{{ old('question') }}</x-admin.textarea>
                                     </div>
                                     <div class="col-lg-12 mb-7">
-                                        <x-metronic.label for="answer"
+                                        <x-admin.label for="answer"
                                             class="col-form-label fw-bold fs-6 required">{{ __('Answer') }}
-                                        </x-metronic.label>
+                                        </x-admin.label>
 
-                                        <x-metronic.textarea id="answer" row="5" name="answer"
+                                        <x-admin.textarea id="answer" row="5" name="answer"
                                             :value="old('answer')" placeholder="Enter answer"
-                                            required>{{ old('answer') }}</x-metronic.textarea>
+                                            required>{{ old('answer') }}</x-admin.textarea>
                                     </div>
                                     <div class="col-lg-4 mb-7">
-                                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                                            {{ __('Select a Status ') }}</x-metronic.label>
-                                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                                        <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                                            {{ __('Select a Status ') }}</x-admin.label>
+                                        <x-admin.select-option id="status" name="status" data-hide-search="true"
                                             data-placeholder="Select an option">
                                             <option></option>
                                             <option value="active">Active</option>
                                             <option value="inactive">Inactive</option>
-                                        </x-metronic.select-option>
+                                        </x-admin.select-option>
                                     </div>
                                 </div>
                                 <div class="text-end">
-                                    <x-metronic.button type="submit" class="primary">
+                                    <x-admin.button type="submit" class="primary">
                                         {{ __('Submit') }}
-                                    </x-metronic.button>
+                                    </x-admin.button>
                                 </div>
                             </form>
                         </div>
@@ -161,28 +161,28 @@
                     @csrf
                     <div class="modal-body">
                         <div class="col-lg-12 mb-7">
-                            <x-metronic.label for="name"
+                            <x-admin.label for="name"
                                 class="col-form-label fw-bold fs-6 required">{{ __('Category Name') }}
-                            </x-metronic.label>
+                            </x-admin.label>
 
-                            <x-metronic.input id="name" type="text" name="name" :value="old('name')"
-                                placeholder="Enter the Name" required></x-metronic.input>
+                            <x-admin.input id="name" type="text" name="name" :value="old('name')"
+                                placeholder="Enter the Name" required></x-admin.input>
                         </div>
                         <div class="col-lg-12 mb-7">
-                            <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                                {{ __('Select a Status ') }}</x-metronic.label>
-                            <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                            <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                                {{ __('Select a Status ') }}</x-admin.label>
+                            <x-admin.select-option id="status" name="status" data-hide-search="true"
                                 data-placeholder="Select an option">
                                 <option></option>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
-                            </x-metronic.select-option>
+                            </x-admin.select-option>
                         </div>
                     </div>
                     <div class="modal-footer p-2">
-                        <x-metronic.button type="submit" class="primary">
+                        <x-admin.button type="submit" class="primary">
                             {{ __('Submit') }}
-                        </x-metronic.button>
+                        </x-admin.button>
                     </div>
                 </form>
             </div>
@@ -206,28 +206,28 @@
                         @method('PUT')
                         <div class="modal-body">
                             <div class="col-lg-12 mb-7">
-                                <x-metronic.label for="name"
+                                <x-admin.label for="name"
                                     class="col-form-label fw-bold fs-6 required">{{ __('Name') }}
-                                </x-metronic.label>
+                                </x-admin.label>
 
-                                <x-metronic.input id="name" type="text" name="name" :value="old('name', $faq_category->name)"
-                                    placeholder="Enter the Name" required></x-metronic.input>
+                                <x-admin.input id="name" type="text" name="name" :value="old('name', $faq_category->name)"
+                                    placeholder="Enter the Name" required></x-admin.input>
                             </div>
                             <div class="col-lg-12 mb-7">
-                                <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Select a Status ') }}</x-metronic.label>
-                                <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                                <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select a Status ') }}</x-admin.label>
+                                <x-admin.select-option id="status" name="status" data-hide-search="true"
                                     data-placeholder="Select an option">
                                     <option></option>
                                     <option value="active" @selected($faq_category->status == 'active')>Active</option>
                                     <option value="inactive" @selected($faq_category->status == 'inactive')>Inactive</option>
-                                </x-metronic.select-option>
+                                </x-admin.select-option>
                             </div>
                         </div>
                         <div class="modal-footer p-2">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Submit') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
                     </form>
                 </div>

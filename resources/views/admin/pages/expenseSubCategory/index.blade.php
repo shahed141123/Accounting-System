@@ -51,7 +51,7 @@
                                                     data-bs-target="#editCategoryModal{{ $subcategory->id }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('admin.expense-category.destroy', $subcategory->id) }}"
+                                                <a href="{{ route('admin.expense-subcategory.destroy', $subcategory->id) }}"
                                                     class="btn btn-sm btn-danger delete">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </a>
@@ -68,12 +68,13 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form method="POST" enctype="multipart/form-data"
-                                                                    action="{{ route('admin.expense-category.update', $subcategory->id) }}">
+                                                                    action="{{ route('admin.expense-subcategory.update', $subcategory->id) }}">
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <div class="mb-3">
-                                                                        <x-admin.label for="cat_id" class="form-label">Status</x-admin.label>
+                                                                        <x-admin.label for="cat_id" class="form-label">Category Name</x-admin.label>
                                                                         <x-admin.select-option class="form-select form-select-solid" id="cat_id" name="cat_id">
+                                                                            <option></option>
                                                                             @foreach ($categorys as $category)
                                                                                 <option value="{{ $category->id }}" @selected($category->id == $subcategory->cat_id) >{{ $category->name }}</option>
                                                                             @endforeach
@@ -135,15 +136,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                    <h5 class="modal-title" id="addCategoryModalLabel">Add New Sub Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST">
+                    <form method="POST" action="{{ route('admin.expense-subcategory.store') }}">
                         @csrf
                         <div class="mb-3">
-                            <x-admin.label for="cat_id" class="form-label">Status</x-admin.label>
+                            <x-admin.label for="cat_id" class="form-label">Category Name</x-admin.label>
                             <x-admin.select-option class="form-select form-select-solid" id="cat_id" name="cat_id">
+                                <option></option>
                                 @foreach ($categorys as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach

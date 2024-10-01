@@ -17,17 +17,17 @@
         <div class="card-body border-top p-9">
             <div class="row fv-row">
                 <div class="col-lg-6 mb-7">
-                    <x-metronic.label for="name"
-                        class="required fw-bold fs-6 mb-2">{{ __('Full Name') }}</x-metronic.label>
-                    <x-metronic.input id="name" type="text" class="form-control-solid mb-3 mb-lg-0"
-                        name="name" :value="old('name', $user->name)" placeholder="Enter Full name"></x-metronic.input>
+                    <x-admin.label for="name"
+                        class="required fw-bold fs-6 mb-2">{{ __('Full Name') }}</x-admin.label>
+                    <x-admin.input id="name" type="text" class="form-control-solid mb-3 mb-lg-0"
+                        name="name" :value="old('name', $user->name)" placeholder="Enter Full name"></x-admin.input>
                 </div>
                 <div class="col-lg-6 mb-7">
-                    <x-metronic.label for="email"
-                        class="required fw-bold fs-6 mb-2">{{ __('Email') }}</x-metronic.label>
-                    <x-metronic.input type="email" name="email"
+                    <x-admin.label for="email"
+                        class="required fw-bold fs-6 mb-2">{{ __('Email') }}</x-admin.label>
+                    <x-admin.input type="email" name="email"
                         class="form-control form-control-lg form-control-solid" placeholder="Enter your email address"
-                        value="{{ old('email', $user->email) }}" autocomplete="off"></x-metronic.input>
+                        value="{{ old('email', $user->email) }}" autocomplete="off"></x-admin.input>
 
                     @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                         <div>
@@ -50,22 +50,22 @@
                     @endif
                 </div>
                 <div class="col-lg-4 mb-7">
-                    <x-metronic.label for="username" class="fw-bold fs-6 mb-2">{{ __('User Name') }}</x-metronic.label>
-                    <x-metronic.input id="username" type="text" class="form-control-solid mb-3 mb-lg-0"
-                        name="username" :value="old('username', $user->username)" placeholder="Enter User name"></x-metronic.input>
+                    <x-admin.label for="username" class="fw-bold fs-6 mb-2">{{ __('User Name') }}</x-admin.label>
+                    <x-admin.input id="username" type="text" class="form-control-solid mb-3 mb-lg-0"
+                        name="username" :value="old('username', $user->username)" placeholder="Enter User name"></x-admin.input>
                 </div>
 
                 <div class="col-lg-4 mb-7">
-                    <x-metronic.label for="designation"
-                        class="fw-bold fs-6 mb-2">{{ __('Designation') }}</x-metronic.label>
-                    <x-metronic.input id="designation" type="text" class="form-control-solid mb-3 mb-lg-0"
-                        name="designation" :value="old('designation', $user->designation)" placeholder="Designation"></x-metronic.input>
+                    <x-admin.label for="designation"
+                        class="fw-bold fs-6 mb-2">{{ __('Designation') }}</x-admin.label>
+                    <x-admin.input id="designation" type="text" class="form-control-solid mb-3 mb-lg-0"
+                        name="designation" :value="old('designation', $user->designation)" placeholder="Designation"></x-admin.input>
                 </div>
                 <div class="col-lg-4 mb-7">
-                    <x-metronic.label for="photo" class="fw-bold fs-6 mb-2">{{ __('Photo') }}</x-metronic.label>
-                    <x-metronic.file-input id="photo" type="file" class="form-control-solid mb-3 mb-lg-0"
+                    <x-admin.label for="photo" class="fw-bold fs-6 mb-2">{{ __('Photo') }}</x-admin.label>
+                    <x-admin.file-input id="photo" type="file" class="form-control-solid mb-3 mb-lg-0"
                         :source="asset('storage/' . $user->photo)" name="photo" :value="old('photo')"
-                        placeholder="example@domain.com"></x-metronic.file-input>
+                        placeholder="example@domain.com"></x-admin.file-input>
                 </div>
 
 
@@ -75,10 +75,10 @@
                     @foreach ($roles as $role)
                         <div class="d-flex fv-row">
                             <div class="form-check form-check-custom form-check-solid">
-                                <x-metronic.checkbox id="role-name-{{ $role->id }}" type="checkbox" name="roles[]"
-                                    :value="$role->name"></x-metronic.checkbox>
-                                <x-metronic.label for="role-name-{{ $role->id }}"
-                                    class="form-check-label">{{ $role->name }}</x-metronic.label>
+                                <x-admin.checkbox id="role-name-{{ $role->id }}" type="checkbox" name="roles[]"
+                                    :value="$role->name"></x-admin.checkbox>
+                                <x-admin.label for="role-name-{{ $role->id }}"
+                                    class="form-check-label">{{ $role->name }}</x-admin.label>
 
                             </div>
                         </div>
@@ -91,9 +91,9 @@
 
 
         <div class="card-footer d-flex justify-content-end py-4 px-9">
-            <x-metronic.button type="submit" class="primary">
+            <x-admin.button type="submit" class="primary">
                 {{ __('Submit') }}
-            </x-metronic.button>
+            </x-admin.button>
         </div>
 
     </form>

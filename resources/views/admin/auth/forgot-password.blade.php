@@ -39,20 +39,20 @@
                         </div>
 
                         <div class="fv-row mb-10">
-                            <x-metronic.label
-                                class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
+                            <x-admin.label
+                                class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-admin.label>
 
-                            <x-metronic.input type="email" name="email"
+                            <x-admin.input type="email" name="email"
                                 class="form-control form-control-lg form-control-solid"
                                 placeholder="Enter your email address" value="{{ old('email') }}"
-                                autocomplete="off"></x-metronic.input>
+                                autocomplete="off"></x-admin.input>
                         </div>
 
                         <div class="text-center">
 
-                            <x-metronic.button type="submit" class="primary btn-lg w-100 mb-5">
+                            <x-admin.button type="submit" class="primary btn-lg w-100 mb-5">
                                 <span class="indicator-label"> {{ __('Email Password Reset Link') }}</span>
-                            </x-metronic.button>
+                            </x-admin.button>
 
                         </div>
 

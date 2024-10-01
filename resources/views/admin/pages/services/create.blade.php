@@ -47,38 +47,38 @@
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="title"
+                        <x-admin.label for="title"
                             class="col-form-label fw-bold fs-6 required">{{ __('Title') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="title" type="title" name="title" :value="old('title')"
-                            placeholder="Enter the Title"></x-metronic.input>
+                        <x-admin.input id="title" type="title" name="title" :value="old('title')"
+                            placeholder="Enter the Title"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="short_description"
+                        <x-admin.label for="short_description"
                             class="col-form-label fw-bold fs-6 required">{{ __('Short Description') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="short_description" type="short_description" name="short_description"
-                            :value="old('short_description')" placeholder="Enter the Short Description"></x-metronic.input>
+                        <x-admin.input id="short_description" type="short_description" name="short_description"
+                            :value="old('short_description')" placeholder="Enter the Short Description"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                            {{ __('Select a Status ') }}</x-metronic.label>
-                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                        <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Status ') }}</x-admin.label>
+                        <x-admin.select-option id="status" name="status" data-hide-search="true"
                             data-placeholder="Select an option">
                             <option></option>
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
                 </div>
                 <div class="text-center pt-15">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Submit') }}
-                    </x-metronic.button>
+                    </x-admin.button>
                 </div>
                 <!--end::Actions-->
             </form>

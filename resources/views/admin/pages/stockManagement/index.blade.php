@@ -109,74 +109,74 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-8 mb-7">
-                                                            <x-metronic.label class="form-label">Product
-                                                                Name</x-metronic.label>
-                                                            <x-metronic.input type="text" name="name"
+                                                            <x-admin.label class="form-label">Product
+                                                                Name</x-admin.label>
+                                                            <x-admin.input type="text" name="name"
                                                                 class="form-control mb-2"
                                                                 placeholder="Product name recommended"
                                                                 :value="old('name', $product->name)">
-                                                            </x-metronic.input>
+                                                            </x-admin.input>
                                                         </div>
                                                         {{-- <div class="mb-7 col-4">
-                                                            <x-metronic.label class="form-label">Box
-                                                                Contains</x-metronic.label>
-                                                            <x-metronic.input type="number" name="box_contains"
+                                                            <x-admin.label class="form-label">Box
+                                                                Contains</x-admin.label>
+                                                            <x-admin.input type="number" name="box_contains"
                                                                 id="box_contains" class="form-control mb-2 box_contains"
                                                                 placeholder="how much in a box"
-                                                                :value="old('box_contains', $product->box_contains)"></x-metronic.file-input>
+                                                                :value="old('box_contains', $product->box_contains)"></x-admin.file-input>
                                                                 <div class="text-muted fs-7">How much product in a box.
                                                                 </div>
                                                         </div> --}}
                                                         {{-- <div class="mb-7 col-4">
-                                                            <x-metronic.label class="form-label">Box
-                                                                Price</x-metronic.label>
-                                                            <x-metronic.input type="number" name="box_price"
+                                                            <x-admin.label class="form-label">Box
+                                                                Price</x-admin.label>
+                                                            <x-admin.input type="number" name="box_price"
                                                                 id="box_price" class="form-control mb-2 box_price"
                                                                 placeholder="how much the box price"
-                                                                :value="old('box_price', $product->box_price)"></x-metronic.file-input>
+                                                                :value="old('box_price', $product->box_price)"></x-admin.file-input>
                                                                 <div class="text-muted fs-7">How much box price.</div>
                                                         </div>
                                                         <div class="mb-7 col-4">
-                                                            <x-metronic.label class="form-label">Box Discount
-                                                                Price</x-metronic.label>
-                                                            <x-metronic.input type="number" name="box_discount_price"
+                                                            <x-admin.label class="form-label">Box Discount
+                                                                Price</x-admin.label>
+                                                            <x-admin.input type="number" name="box_discount_price"
                                                                 id="box_discount_price" class="form-control mb-2 box_discount_price"
                                                                 placeholder="how much the box discount price"
                                                                 :value="old(
                                                                     'box_discount_price',
                                                                     $product->box_discount_price,
-                                                                )"></x-metronic.file-input>
+                                                                )"></x-admin.file-input>
                                                                 <div class="text-muted fs-7">How much box discount
                                                                     price.</div>
                                                         </div>
                                                         <div class="mb-7 col-4">
-                                                            <x-metronic.label class="form-label">Unit
-                                                                Price</x-metronic.label>
-                                                            <x-metronic.input type="number" name="unit_price"
+                                                            <x-admin.label class="form-label">Unit
+                                                                Price</x-admin.label>
+                                                            <x-admin.input type="number" name="unit_price"
                                                                 id="unit_price" class="form-control mb-2"
                                                                 placeholder="how much the unit price" :value="old('unit_price', $product->unit_price)"
-                                                                readonly></x-metronic.file-input>
+                                                                readonly></x-admin.file-input>
                                                                 <div class="text-muted fs-7">How much unit price.</div>
                                                         </div>
                                                         <div class="mb-7 col-4">
-                                                            <x-metronic.label class="form-label">Unit
-                                                                Discount</x-metronic.label>
-                                                            <x-metronic.input type="number"
+                                                            <x-admin.label class="form-label">Unit
+                                                                Discount</x-admin.label>
+                                                            <x-admin.input type="number"
                                                                 name="unit_discount_price" id="unit_discount"
                                                                 class="form-control mb-2"
                                                                 placeholder="how much the unit discount price"
                                                                 :value="old('unit_discount_price',
-                                                                    $product->unit_discount_price)" readonly></x-metronic.file-input>
+                                                                    $product->unit_discount_price)" readonly></x-admin.file-input>
                                                                 <div class="text-muted fs-7">How much unit discount
                                                                     price.</div>
                                                         </div> --}}
                                                         <div class="mb-7 mt-5 col-lg-6">
-                                                            <x-metronic.label class="form-label">Box
-                                                                Stock</x-metronic.label>
-                                                            <x-metronic.input type="number" name="box_stock"
+                                                            <x-admin.label class="form-label">Box
+                                                                Stock</x-admin.label>
+                                                            <x-admin.input type="number" name="box_stock"
                                                                 id="box_stock" class="form-control mb-2"
                                                                 placeholder="how much the box stock"
-                                                                :value="old('box_stock', $product->box_stock)"></x-metronic.file-input>
+                                                                :value="old('box_stock', $product->box_stock)"></x-admin.file-input>
                                                                 <div class="text-muted fs-7">How much box stock. Eg: 50
                                                                 </div>
                                                         </div>
