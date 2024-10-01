@@ -395,11 +395,11 @@
                     <li class="nav-item {{ Route::is(...$item['routes'] ?? []) ? 'menu-open' : '' }}">
                         <a href="{{ isset($item['route']) ? route($item['route']) : 'javascript:void(0)' }}"
                             class="nav-link {{ Route::is($item['route'] ?? '') ? 'active' : '' }}">
-                            <i class="nav-icon {{ $item['icon'] ?? 'bi bi-speedometer' }}"></i>
+                            <i class="nav-icon {{ $item['icon'] ?? 'fa-solid fa-gauge-simple-high' }}"></i>
                             <p>
                                 {{ $item['title'] }}
                                 @if (!empty($item['subMenu']))
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                    <i class="nav-arrow fa-solid fa-chevron-right"></i>
                                 @endif
                             </p>
                         </a>
@@ -411,11 +411,11 @@
                                         <a href="{{ isset($subItem['route']) ? route($subItem['route']) : 'javascript:void(0)' }}"
                                             class="nav-link {{ Route::is($subItem['route'] ?? '') ? 'active' : '' }}">
                                             <i
-                                                class="nav-icon {{ $subItem['icon'] ?? 'bi bi-box-arrow-in-right' }}"></i>
+                                                class="nav-icon {{ $subItem['icon'] ?? 'fa-solid fa-arrow-right-long' }}"></i>
                                             <p>
                                                 {{ $subItem['title'] }}
                                                 @if (!empty($subItem['subMenu']))
-                                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                                    <i class="nav-arrow fa-solid fa-chevron-right"></i>
                                                 @endif
                                             </p>
                                         </a>
@@ -425,7 +425,7 @@
                                                     <li class="nav-item">
                                                         <a href="{{ isset($subSubItem['route']) ? route($subSubItem['route']) : 'javascript:void(0)' }}"
                                                             class="nav-link">
-                                                            <i class="nav-icon bi bi-circle"></i>
+                                                            <i class="nav-icon fa-solid fa-circle"></i>
                                                             <p>{{ $subSubItem['title'] }}</p>
                                                         </a>
                                                     </li>
