@@ -23,29 +23,102 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Code</th>
-                                        <th>Note</th>
+                                        <th>Category Name</th>
                                         <th>Status</th>
-                                        <th class="text-end">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>asdasdad</td>
-                                        <td>asdasdasd</td>
-                                        <td>asdasdasd</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($subcategorys as $subcategory)
+                                        <tr>
+                                            <td>{{ $subcategory->name }}</td>
+                                            <td>{{ $subcategory->code }}</td>
+                                            <td>{{ $subcategory->expenseCategory->name }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $subcategory->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ $subcategory->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCategoryModal{{ $subcategory->id }}">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCategoryModal{{ $subcategory->id }}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <a href="{{ route('admin.expense-category.destroy', $subcategory->id) }}"
+                                                    class="btn btn-sm btn-danger delete">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                                <div class="modal fade" id="editCategoryModal{{ $subcategory->id }}"
+                                                    tabindex="-1" aria-labelledby="editCategoryModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-dark text-white">
+                                                                <h5 class="modal-title" id="editCategoryModalLabel">Edit
+                                                                    Category</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="POST" enctype="multipart/form-data"
+                                                                    action="{{ route('admin.expense-category.update', $subcategory->id) }}">
+                                                                    @method('PUT')
+                                                                    @csrf
+                                                                    <div class="mb-3">
+                                                                        <x-admin.label for="cat_id" class="form-label">Status</x-admin.label>
+                                                                        <x-admin.select-option class="form-select form-select-solid" id="cat_id" name="cat_id">
+                                                                            @foreach ($categorys as $category)
+                                                                                <option value="{{ $category->id }}" @selected($category->id == $subcategory->cat_id) >{{ $category->name }}</option>
+                                                                            @endforeach
+                                                                        </x-admin.select-option>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="name"
+                                                                            class="form-label">Name</label>
+                                                                        <x-admin.input type="text"
+                                                                            class="form-control form-control-solid"
+                                                                            :value="old('name', $subcategory->name)" id="name" name="name"
+                                                                            required></x-admin.input>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <x-admin.label for="note"
+                                                                            class="form-label">Note</x-admin.label>
+                                                                        {{-- <textarea class="form-control form-control-solid" id="note" name="note" rows="3">{{ old('note',$subcategory->note) }}</textarea> --}}
+                                                                        <x-admin.textarea id="note" name="note"
+                                                                            :rows="2">{{ old('note', $subcategory->note) }}</x-admin.textarea>
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <x-admin.label for="status"
+                                                                            class="form-label">Status</x-admin.label>
+                                                                        <x-admin.select-option
+                                                                            class="form-select form-select-solid"
+                                                                            id="status" name="status">
+                                                                            <option value="active"
+                                                                                @selected($subcategory->status == 'active')>Active
+                                                                            </option>
+                                                                            <option value="inactive"
+                                                                                @selected($subcategory->status == 'inactive')>Inactive
+                                                                            </option>
+                                                                        </x-admin.select-option>
+                                                                    </div>
+                                                                    <x-admin.button type="submit"
+                                                                        class="btn btn-primary">Edit
+                                                                        Category</x-admin.button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -61,33 +134,42 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addCategoryModalLabel">Add Sub Expence Category</h5>
+                    <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form  method="POST">
+                    <form method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">Category Name</label>
-                            <input type="text" class="form-control form-control-solid" id="name" name="name"
-                                required>
+                            <x-admin.label for="cat_id" class="form-label">Status</x-admin.label>
+                            <x-admin.select-option class="form-select form-select-solid" id="cat_id" name="cat_id">
+                                @foreach ($categorys as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </x-admin.select-option>
                         </div>
                         <div class="mb-3">
-                            <label for="code" class="form-label">Category Code</label>
-                            <input type="number" class="form-control form-control-solid" id="code" name="code">
+                            <x-admin.label for="name" class="form-label">Name</x-admin.label>
+                            <x-admin.input type="text" class="form-control form-control-solid" :value="old('name')"
+                                id="name" name="name" required></x-admin.input>
                         </div>
                         <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
+                            <x-admin.label for="name" class="form-label">Name</x-admin.label>
+                            <x-admin.input type="text" class="form-control form-control-solid" :value="old('name')"
+                                id="name" name="name" required></x-admin.input>
+                        </div>
+                        <div class="mb-3">
+                            <x-admin.label for="note" class="form-label">Note</x-admin.label>
                             <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
+                            <x-admin.label for="status" class="form-label">Status</x-admin.label>
+                            <x-admin.select-option class="form-select form-select-solid" id="status" name="status">
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
-                            </select>
+                            </x-admin.select-option>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Category</button>
+                        <x-admin.button type="submit" class="btn btn-primary">Add Sub Category</x-admin.button>
                     </form>
                 </div>
             </div>

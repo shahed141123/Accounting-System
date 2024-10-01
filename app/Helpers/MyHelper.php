@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -138,5 +139,22 @@ if (!function_exists('generateCode')) {
         }
         // Combine the prefix with the incremented code
         return $prefix . '-' . $code;
+    }
+}
+if (!function_exists('redirectWithSuccess')) {
+    function redirectWithSuccess(string $message)
+    {
+        Session::flash('success', $message);
+        return redirect()->back();
+    }
+
+
+}
+if (!function_exists('redirectWithError')) {
+
+    function redirectWithError(string $message)
+    {
+        Session::flash('error', $message);
+        return redirect()->back()->withInput();
     }
 }

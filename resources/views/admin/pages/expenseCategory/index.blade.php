@@ -140,12 +140,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
+                            <x-admin.select-option class="form-select form-select-solid" id="status" name="status">
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
-                            </select>
+                            </x-admin.select-option>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Category</button>
+                        <x-admin.button type="submit" class="btn btn-primary">Add Category</x-admin.button>
                     </form>
                 </div>
             </div>

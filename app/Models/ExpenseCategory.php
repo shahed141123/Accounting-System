@@ -16,4 +16,8 @@ class ExpenseCategory extends Model
      * @var array
      */
     protected $guarded = [];
+    public function cspenseSubCategory()
+    {
+        return $this->hasMany(ExpenseSubCategory::class, 'cat_id');
+    }
 }
