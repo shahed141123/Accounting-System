@@ -22,21 +22,27 @@
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>Sl</th>
                                         <th>Reason</th>
+                                        <th>From Account</th>
+                                        <th>To Account</th>
                                         <th>Amount</th>
                                         <th>Date</th>
-                                        <th>Note</th>
                                         <th>Status</th>
                                         <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Sample Reason</td>
-                                        <td>$100.00</td>
-                                        <td>2024-09-15</td>
-                                        <td>Sample Note</td>
-                                        <td>Active</td>
+                                        <td>01</td>
+                                        <td>Office Cash Transfer</td>
+                                        <td>Cash[CASH-0001]</td>
+                                        <td>Islami Bank Bangladesh Ltd[IBBL-0002]</td>
+                                        <td>$20000.00</td>
+                                        <td>2nd Oct, 2024</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
                                         <td class="text-end">
                                             <a href="javascript:void(0)" class="btn btn-sm btn-primary">
                                                 <i class="fa-solid fa-pen"></i>
@@ -69,46 +75,80 @@
                 <div class="modal-body">
                     <form method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
-                            <label for="reason" class="form-label">Reason</label>
-                            <input type="text" class="form-control form-control-solid" id="reason" name="reason"
-                                required>
+                        <div class="form-group">
+                            <x-admin.label for="transferReason">Transfer Reason *</x-admin.label>
+                            <x-admin.input type="text" class="form-control" id="transferReason"
+                                name="transfer_reason" placeholder="Enter a reason" required></x-admin.input>
                         </div>
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
-                                name="amount" required>
+
+                        <div class="form-group">
+                            <x-admin.label for="fromAccount">From Account *</x-admin.label>
+                            <x-admin.input type="text" class="form-control" id="fromAccount" name="from_account"
+                                placeholder="Cash[CASH-0001]" required></x-admin.input>
                         </div>
-                        <div class="mb-3">
-                            <label for="date" class="form-label">Date</label>
-                            <input type="date" class="form-control form-control-solid" id="date" name="date">
+
+                        <div class="form-group">
+                            <x-admin.label>Available Balance</x-admin.label>
+                            <x-admin.input type="text" class="form-control" id="availableBalance"
+                                name="available_balance" value="66646.5" readonly></x-admin.input>
                         </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
+
+                        <div class="form-group">
+                            <x-admin.label for="toAccount">To Account *</x-admin.label>
+                            <x-admin.select-option class="form-control" id="toAccount" name="to_account" required>
+                                <option value="">Select an account</option>
+                                <!-- Add options here -->
+                            </x-admin.select-option>
                         </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
+
+                        <div class="form-group">
+                            <x-admin.label for="amount">Amount *</x-admin.label>
+                            <x-admin.input type="number" class="form-control" id="amount" name="amount"
+                                placeholder="Enter an amount" required></x-admin.input>
                         </div>
-                        <div class="mb-3">
-                            <label for="debit_id" class="form-label">Debit Transaction</label>
-                            <select class="form-select form-select-solid" id="debit_id" name="debit_id">
-                                <option value="1">Transaction 1</option>
-                                <option value="2">Transaction 2</option>
-                                <!-- Add dynamic transaction options -->
-                            </select>
+
+                        <div class="form-group">
+                            <x-admin.label for="date">Date</x-admin.label>
+                            <x-admin.input type="date" class="form-control" id="date" name="date"
+                                value="2024-10-02"></x-admin.input>
                         </div>
-                        <div class="mb-3">
-                            <label for="credit_id" class="form-label">Credit Transaction</label>
-                            <select class="form-select form-select-solid" id="credit_id" name="credit_id">
-                                <option value="1">Transaction 1</option>
-                                <option value="2">Transaction 2</option>
-                                <!-- Add dynamic transaction options -->
-                            </select>
+
+                        <div class="form-group">
+                            <x-admin.label for="status">Status</x-admin.label>
+                            <x-admin.select-option class="form-control" id="status" name="status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </x-admin.select-option>
+                        </div>
+
+                        <div class="form-group">
+                            <x-admin.label for="note">Note</x-admin.label>
+                            <textarea class="form-control" id="note" name="note" rows="3" placeholder="Write your note here!"></textarea>
+                        </div>
+
+                        <!-- Image fields -->
+                        <div class="form-group">
+                            <x-admin.label for="bankName">Bank Name *</x-admin.label>
+                            <x-admin.input type="text" class="form-control" id="bankName" name="bank_name"
+                                placeholder="Enter a bank name" required></x-admin.input>
+                        </div>
+
+                        <div class="form-group">
+                            <x-admin.label for="branchName">Branch Name</x-admin.label>
+                            <x-admin.input type="text" class="form-control" id="branchName" name="branch_name"
+                                placeholder="Enter a branch name"></x-admin.input>
+                        </div>
+
+                        <div class="form-group">
+                            <x-admin.label for="accountNumber">Account Number *</x-admin.label>
+                            <x-admin.input type="text" class="form-control" id="accountNumber"
+                                name="account_number" placeholder="Enter an account number" required></x-admin.input>
+                        </div>
+
+                        <div class="form-group">
+                            <x-admin.label for="image">Image</x-admin.label>
+                            <x-admin.input type="file" class="form-control-file" id="image"
+                                name="image"></x-admin.input>
                         </div>
                         <button type="submit" class="btn btn-white">Add Transfer</button>
                     </form>

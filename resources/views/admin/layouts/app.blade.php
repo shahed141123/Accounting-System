@@ -372,6 +372,28 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all <select> elements with the data-allow-clear attribute
+            const selectElements = document.querySelectorAll('select[data-allow-clear="true"]');
+
+            selectElements.forEach(selectElement => {
+                selectElement.addEventListener('change', function() {
+                    // Check if clear is allowed
+                    const allowClear = selectElement.getAttribute('data-allow-clear') === 'true';
+
+                    if (allowClear && this.value === "") {
+                        // Logic to handle clearing the selection
+                        this.selectedIndex = 0; // Reset to the first option
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        // Example of potential draggable code
+        $(".modal").draggable(); // Remove or comment this line
+    </script>
 </body>
 
 </html>

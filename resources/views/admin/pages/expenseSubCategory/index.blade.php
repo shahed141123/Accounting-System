@@ -72,21 +72,27 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <div class="mb-3">
-                                                                        <x-admin.label for="cat_id" class="form-label">Category Name</x-admin.label>
-                                                                        <x-admin.select-option class="form-select form-select-solid" id="cat_id" name="cat_id">
-                                                                            <option></option>
+                                                                        <x-admin.label for="cat_id"
+                                                                            class="form-label">Category
+                                                                            Name</x-admin.label>
+                                                                        <x-admin.select-option
+                                                                            class="form-select form-select-solid" data-allow-clear="true"
+                                                                            id="cat_id" name="cat_id">
+                                                                            <option value="">-- Select Category 1 --</option> <!-- Default Option -->
                                                                             @foreach ($categorys as $category)
-                                                                                <option value="{{ $category->id }}" @selected($category->id == $subcategory->cat_id) >{{ $category->name }}</option>
+                                                                                <option value="{{ $category->id }}"
+                                                                                    @selected($category->id == $subcategory->cat_id)>
+                                                                                    {{ $category->name }}</option>
                                                                             @endforeach
                                                                         </x-admin.select-option>
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="name"
-                                                                            class="form-label">Name</label>
+                                                                        <x-admin.label for="name"
+                                                                            class="form-label">Name</x-admin.label>
                                                                         <x-admin.input type="text"
                                                                             class="form-control form-control-solid"
-                                                                            :value="old('name', $subcategory->name)" id="name" name="name"
-                                                                            required></x-admin.input>
+                                                                            :value="old('name', $subcategory->name)" id="name"
+                                                                            name="name" required></x-admin.input>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <x-admin.label for="note"
@@ -130,8 +136,7 @@
         </div>
     </div>
 
-    <!-- Add New Category Modal -->
-    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -144,17 +149,13 @@
                         @csrf
                         <div class="mb-3">
                             <x-admin.label for="cat_id" class="form-label">Category Name</x-admin.label>
-                            <x-admin.select-option class="form-select form-select-solid" id="cat_id" name="cat_id">
-                                <option></option>
+                            <x-admin.select-option class="form-select form-select-solid" id="cat_id"
+                                name="cat_id">
+                                <option value="">-- Select Category 1 --</option> <!-- Default Option -->
                                 @foreach ($categorys as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </x-admin.select-option>
-                        </div>
-                        <div class="mb-3">
-                            <x-admin.label for="name" class="form-label">Name</x-admin.label>
-                            <x-admin.input type="text" class="form-control form-control-solid" :value="old('name')"
-                                id="name" name="name" required></x-admin.input>
                         </div>
                         <div class="mb-3">
                             <x-admin.label for="name" class="form-label">Name</x-admin.label>
@@ -167,15 +168,17 @@
                         </div>
                         <div class="mb-3">
                             <x-admin.label for="status" class="form-label">Status</x-admin.label>
-                            <x-admin.select-option class="form-select form-select-solid" id="status" name="status">
+                            <x-admin.select-option class="form-select form-select-solid" id="status"
+                                name="status">
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
                             </x-admin.select-option>
                         </div>
-                        <x-admin.button type="submit" class="btn btn-white">Add Sub Category</x-admin.button>
+                        <x-admin.button type="submit" class="primary">Add Sub Category</x-admin.button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 </x-admin-app-layout>
