@@ -65,7 +65,7 @@ Route::get('/', function () {
     return redirect()->route('admin.login');
 })->name('home');
 
-Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('guest:admin')->name('admin.')->group(function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
