@@ -78,7 +78,7 @@
                                                                         <x-admin.select-option
                                                                             class="form-select form-select-solid" data-allow-clear="true"
                                                                             id="cat_id" name="cat_id">
-                                                                            <option value="">-- Select Category 1 --</option> <!-- Default Option -->
+                                                                            <option value="">-- Select Category --</option> <!-- Default Option -->
                                                                             @foreach ($categorys as $category)
                                                                                 <option value="{{ $category->id }}"
                                                                                     @selected($category->id == $subcategory->cat_id)>
@@ -151,7 +151,7 @@
                             <x-admin.label for="cat_id" class="form-label">Category Name</x-admin.label>
                             <x-admin.select-option class="form-select form-select-solid" id="cat_id"
                                 name="cat_id">
-                                <option value="">-- Select Category 1 --</option> <!-- Default Option -->
+                                <option value="">-- Select Category --</option> <!-- Default Option -->
                                 @foreach ($categorys as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach

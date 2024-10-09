@@ -16,7 +16,7 @@ class ExpenseSubCategoryController extends Controller
           'subcategorys' => ExpenseSubCategory::latest()->get(),
         ];
         return view('admin.pages.expenseSubCategory.index', $data);
-    }
+    } 
 
     public function store(Request $request)
     {
