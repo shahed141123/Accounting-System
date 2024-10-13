@@ -63,66 +63,57 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addTransactionLabel">Add New Account Transaction</h5>
+                    <h5 class="modal-title" id="addTransactionLabel">Balance Adjustment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="reason" class="form-label">Reason</label>
-                            <input type="text" class="form-control form-control-solid" id="reason" name="reason">
+                            <x-admin.label for="account" class="form-label">Account *</x-admin.label>
+                            <x-admin.select-option class="form-select form-select-solid" id="account" name="account" required>
+                                <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
+                                <!-- Add dynamic account options -->
+                            </x-admin.select-option>
                         </div>
                         <div class="mb-3">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
-                                name="amount" required>
+                            <x-admin.label for="available_balance" class="form-label">Available Balance</x-admin.label>
+                            <x-admin.input type="text" class="form-control form-control-solid" id="available_balance"
+                                name="available_balance" value="66646.5" readonly></x-admin.input>
                         </div>
                         <div class="mb-3">
-                            <label for="type" class="form-label">Transaction Type</label>
-                            <select class="form-select form-select-solid" id="type" name="type" required>
-                                <option value="0">Debit</option>
-                                <option value="1">Credit</option>
-                            </select>
+                            <x-admin.label for="transaction_date" class="form-label">Date *</x-admin.label>
+                            <x-admin.input type="date" class="form-control form-control-solid" id="transaction_date"
+                                name="transaction_date" required></x-admin.input>
                         </div>
                         <div class="mb-3">
-                            <label for="transaction_date" class="form-label">Transaction Date</label>
-                            <input type="datetime-local" class="form-control form-control-solid" id="transaction_date"
-                                name="transaction_date" required>
+                            <x-admin.label for="type" class="form-label">Type</x-admin.label>
+                            <x-admin.select-option class="form-select form-select-solid" id="type" name="type">
+                                <option value="add_balance">Add Balance</option>
+                                <!-- Add more types as needed -->
+                            </x-admin.select-option>
                         </div>
                         <div class="mb-3">
-                            <label for="cheque_no" class="form-label">Cheque No</label>
-                            <input type="text" class="form-control form-control-solid" id="cheque_no"
-                                name="cheque_no">
+                            <x-admin.label for="amount" class="form-label">Amount *</x-admin.label>
+                            <x-admin.input type="number" step="0.01" class="form-control form-control-solid" id="amount"
+                                name="amount" required></x-admin.input>
                         </div>
                         <div class="mb-3">
-                            <label for="receipt_no" class="form-label">Receipt No</label>
-                            <input type="text" class="form-control form-control-solid" id="receipt_no"
-                                name="receipt_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
+                            <x-admin.label for="status" class="form-label">Status</x-admin.label>
+                            <x-admin.select-option class="form-select form-select-solid" id="status" name="status">
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
-                            </select>
+                            </x-admin.select-option>
                         </div>
                         <div class="mb-3">
-                            <label for="account_id" class="form-label">Account</label>
-                            <select class="form-select form-select-solid" id="account_id" name="account_id">
-                                <option value="1">Account 1</option>
-                                <option value="2">Account 2</option>
-                                <!-- Add dynamic account options -->
-                            </select>
+                            <x-admin.label for="note" class="form-label">Note</x-admin.label>
+                            <textarea class="form-control form-control-solid" id="note" name="note" placeholder="Write your note here!"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-white">Add Transaction</button>
+                        <x-admin.button type="submit" class="primary">Add Adjustment</x-admin.button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 </x-admin-app-layout>

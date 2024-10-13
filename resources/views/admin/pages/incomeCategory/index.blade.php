@@ -11,7 +11,7 @@
                                     <h4 class="mb-0">Manage Your Income Category</h4>
                                 </div>
                                 <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#addModal">
+                                    data-bs-target="#addCategoryModal">
                                     <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
                                     Add
                                 </button>
@@ -19,69 +19,97 @@
                         </div>
                         <div class="card-body">
                             <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%" vertical>
+                            <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
                                         <th>Code</th>
-                                        <th>Note</th>
                                         <th>Status</th>
-                                        <th class="text-end">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>TNX001</td>
-                                        <td>Lead Architect</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>GWX004</td>
-                                        <td>Senior Developer</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>ACX008</td>
-                                        <td>Junior Developer</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <!-- Add more demo rows as needed -->
+                                    @foreach ($categorys as $category)
+                                        <tr>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->code }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $category->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ $category->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCategoryModal{{ $category->id }}">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCategoryModal{{ $category->id }}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <a href="{{ route('admin.income-category.destroy', $category->id) }}"
+                                                    class="btn btn-sm btn-danger delete">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                                <div class="modal fade" id="editCategoryModal{{ $category->id }}"
+                                                    tabindex="-1" aria-labelledby="editCategoryModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-dark text-white">
+                                                                <h5 class="modal-title" id="editCategoryModalLabel">Edit
+                                                                    Category</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="POST" enctype="multipart/form-data"
+                                                                    action="{{ route('admin.income-category.update', $category->id) }}">
+                                                                    @method('PUT')
+                                                                    @csrf
+                                                                    <div class="mb-3">
+                                                                        <label for="name"
+                                                                            class="form-label">Name</label>
+                                                                        <x-admin.input type="text"
+                                                                            class="form-control form-control-solid"
+                                                                            :value="old('name', $category->name)" id="name"
+                                                                            name="name" required></x-admin.input>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <x-admin.label for="note"
+                                                                            class="form-label">Note</x-admin.label>
+                                                                        {{-- <textarea class="form-control form-control-solid" id="note" name="note" rows="3">{{ old('note',$category->note) }}</textarea> --}}
+                                                                        <x-admin.textarea id="note" name="note"
+                                                                            :rows="2">{{ old('note', $category->note) }}</x-admin.textarea>
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <x-admin.label for="status"
+                                                                            class="form-label">Status</x-admin.label>
+                                                                        <x-admin.select-option
+                                                                            class="form-select form-select-solid"
+                                                                            id="status" name="status">
+                                                                            <option value="active"
+                                                                                @selected($category->status == 'active')>Active
+                                                                            </option>
+                                                                            <option value="inactive"
+                                                                                @selected($category->status == 'inactive')>Inactive
+                                                                            </option>
+                                                                        </x-admin.select-option>
+                                                                    </div>
+                                                                    <x-admin.button type="submit"
+                                                                        class="btn btn-white">Edit
+                                                                        Category</x-admin.button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -92,35 +120,36 @@
     </div>
 
     <!-- Add New Entry Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addModalLabel">Add New Entry</h5>
+                    <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST" action="{{ route('admin.income-category.store') }}"
+                        enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control form-control-solid" id="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="code" class="form-label">Code</label>
-                            <input type="text" class="form-control form-control-solid" id="code" required>
+                            <x-admin.label for="name" class="form-label">Name</x-admin.label>
+                            <x-admin.input type="text" class="form-control form-control-solid" :value="old('name')"
+                                id="name" name="name" required></x-admin.input>
                         </div>
                         <div class="mb-3">
                             <label for="note" class="form-label">Note</label>
-                            <input type="text" class="form-control form-control-solid" id="note" required>
+                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status">
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
+                            <x-admin.select-option class="form-select form-select-solid" id="status"
+                                name="status">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </x-admin.select-option>
                         </div>
-                        <button type="submit" class="btn btn-white">Add Entry</button>
+                        <x-admin.button type="submit" class="btn btn-white">Add Category</x-admin.button>
                     </form>
                 </div>
             </div>

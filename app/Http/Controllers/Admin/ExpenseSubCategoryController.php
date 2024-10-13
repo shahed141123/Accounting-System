@@ -12,8 +12,8 @@ class ExpenseSubCategoryController extends Controller
     public function index()
     {
         $data = [
-          'categorys'    => ExpenseCategory::latest()->get(['id','name']),
-          'subcategorys' => ExpenseSubCategory::latest()->get(),
+            'categorys'    => ExpenseCategory::latest()->get(['id', 'name']),
+            'subcategorys' => ExpenseSubCategory::latest()->get(),
         ];
         return view('admin.pages.expenseSubCategory.index', $data);
     }
@@ -31,8 +31,10 @@ class ExpenseSubCategoryController extends Controller
                 'status' => $request->status,
             ]);
             redirectWithSuccess('Expense Sub Category Added Successfully');
+            return redirect()->back();
         } catch (\Exception $e) {
             redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
@@ -44,8 +46,10 @@ class ExpenseSubCategoryController extends Controller
         try {
             $category->update($request->only('name', 'cat_id', 'note', 'status'));
             redirectWithSuccess('Expense Sub Category Edited Successfully');
+            return redirect()->back();
         } catch (\Exception $e) {
             redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
@@ -64,5 +68,4 @@ class ExpenseSubCategoryController extends Controller
             'note' => 'nullable|string|max:255',
         ]);
     }
-
 }

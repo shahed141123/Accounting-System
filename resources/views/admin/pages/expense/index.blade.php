@@ -10,11 +10,15 @@
                                 <div>
                                     <h4 class="mb-0">Manage Your Expenses</h4>
                                 </div>
-                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
+                                <a href="{{ route('admin.expense.create') }}" class="btn btn-white">
+                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
+                                    Add
+                                </a>
+                                {{-- <button type="button" class="btn btn-white" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
                                     <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
                                     Add
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                         <div class="card-body">
@@ -59,7 +63,7 @@
     </div>
 
     <!-- Add New Expense Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
@@ -127,5 +131,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </x-admin-app-layout>

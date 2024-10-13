@@ -154,7 +154,7 @@ table.dataTable thead td {
 }
 .btn-primary {
     background-color: #2486d0 !important;
-    border: 0px solid #2486d0 !important;
+    border: 1px solid #2486d0 !important;
     color: white;
 }
 .btn-primary:hover {
@@ -175,6 +175,23 @@ table.dataTable thead td {
     background: #eef3f7;
     box-shadow: none;
 } */
+.modal.fade.ui-draggable-dragging {
+    -moz-transition: none;
+    -o-transition: none;
+    -webkit-transition: none;
+    transition: none;
+}
+.no-preview-sm,
+.preview-sm {
+    width: 60px;
+    height: 60px;
+}
+.no-preview-sm {
+    padding: 20px 5px;
+    font-size: 75%;
+    font-weight: 400;
+    color: white;
+}
 .form-select {
     --bs-form-select-bg-img: url(
         data:image/svg + xml,

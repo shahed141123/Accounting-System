@@ -22,33 +22,52 @@
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>Sl</th>
+                                        <th>Image</th>
                                         <th>Bank Name</th>
                                         <th>Branch Name</th>
                                         <th>Account Number</th>
-                                        <th>Note</th>
+                                        <th>Available Balance</th>
+                                        <th>Date</th>
                                         <th>Status</th>
                                         <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Bank 01</td>
-                                        <td>Main Branch</td>
-                                        <td>123456789</td>
-                                        <td>Some notes</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($accounts as $account)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                <div class="position-relative">
+                                                    <img class="w-50 h-50"
+                                                         src="{{ asset('storage/' . $account->image) }}"
+                                                         alt="{{ $account->account_number }}"
+                                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                                    <div class="bg-secondary rounded no-preview-sm" style="display: none;">
+                                                        <p>No Preview</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ $account->image }}</td>
+                                            <td>{{ $account->image }}</td>
+                                            <td>{{ $account->image }}</td>
+                                            <td>{{ $account->image }}</td>
+                                            <td>{{ $account->image }}</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td class="text-end">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" type="submit"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -66,40 +85,58 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.account.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
-                            <label for="bank_name" class="form-label">Bank Name</label>
-                            <input type="text" class="form-control form-control-solid" id="bank_name"
-                                name="bank_name" required>
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-group mb-3">
+                                    <x-admin.label for="bankName">Bank Name *</x-admin.label>
+                                    <x-admin.input type="text" class="form-control" id="bankName" name="bank_name"
+                                        placeholder="Enter a bank name" required></x-admin.input>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <x-admin.label for="branchName">Branch Name</x-admin.label>
+                                    <x-admin.input type="text" class="form-control" id="branchName"
+                                        name="branch_name" placeholder="Enter a branch name"></x-admin.input>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <x-admin.label for="account_number">Account Number *</x-admin.label>
+                                    <x-admin.input type="text" class="form-control" id="account_number"
+                                        name="account_number" placeholder="Enter an account number"
+                                        required></x-admin.input>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <x-admin.label for="image">Image</x-admin.label>
+                                    <x-admin.file-input type="file" class="form-control-file" id="image"
+                                        name="image"></x-admin.file-input>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <x-admin.label for="date">Date</x-admin.label>
+                                    <x-admin.input type="date" class="form-control" id="date" name="date"
+                                        :value="now()->format('Y-m-d')"></x-admin.input>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <x-admin.label for="status">Status</x-admin.label>
+                                    <x-admin.select-option class="form-control" id="status" name="status">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </x-admin.select-option>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <x-admin.label for="note">Note</x-admin.label>
+                                    <textarea class="form-control" id="note" name="note" rows="3" placeholder="Write your note here!"></textarea>
+                                </div>
+                            </div>
+                            <x-admin.button type="submit" class="primary mt-3">Add Account</x-admin.button>
                         </div>
-                        <div class="mb-3">
-                            <label for="branch_name" class="form-label">Branch Name</label>
-                            <input type="text" class="form-control form-control-solid" id="branch_name"
-                                name="branch_name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="account_number" class="form-label">Account Number</label>
-                            <input type="text" class="form-control form-control-solid" id="account_number"
-                                name="account_number" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="date" class="form-label">Date</label>
-                            <input type="date" class="form-control form-control-solid" id="date" name="date">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-white">Add Account</button>
                     </form>
+
                 </div>
             </div>
         </div>

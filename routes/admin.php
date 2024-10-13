@@ -65,7 +65,7 @@ Route::get('/', function () {
     return redirect()->route('admin.login');
 })->name('home');
 
-Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('guest:admin')->name('admin.')->group(function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -85,7 +85,11 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
         ->name('password.store');
 });
 
-Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+// Route::get('/dashboard', [AdminController::class, 'dashboard'])
+//     ->middleware(['auth:admin', 'verified'])
+//     ->name('admin.dashboard');
+
+Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
@@ -125,6 +129,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
             'income-subcategory'  => IncomeSubCategoryController::class,
             'expense-category'    => ExpenseCategoryController::class,
             'expense-subcategory' => ExpenseSubCategoryController::class,
+            'account'             => AccountController::class,
         ],
         ['except' => ['show', 'create', 'edit']]
     );
@@ -139,7 +144,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
             'deal-banner'         => DealBannerController::class,
             'income'              => IncomeController::class,
             'expense'             => ExpenseController::class,
-            'account'             => AccountController::class,
             'balance-adjustment'  => BalanceAdjustmentController::class,
             'balance-transfer'    => BalanceTransferController::class,
             'transaction-history' => TransactionHistoryController::class,

@@ -75,5 +75,5 @@ class ExpenseCategoryController extends Controller
     {
         Session::flash('error', $message);
         return redirect()->back()->withInput();
-    }
+    } 
 }
