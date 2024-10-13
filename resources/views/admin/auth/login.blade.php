@@ -38,14 +38,15 @@
                             @csrf
                             <div class="input-group mb-4">
                                 <div class="form-floating">
-                                    <x-admin.input type="email" name="email"
-                                        class="form-control form-control-solid" placeholder="Enter your email address"
-                                        value="{{ old('email') }}" autocomplete="off"></x-admin.input>
+                                    <x-admin.input type="email" name="email" class="form-control form-control-solid"
+                                        placeholder="Enter your email address" value="{{ old('email') }}"
+                                        autocomplete="off"></x-admin.input>
                                     <x-admin.label for="loginEmail"
                                         class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-admin.label>
                                 </div>
                                 <div class="input-group-text"> <span class="bi bi-envelope"
-                                        style="color: #2486d0;"></span> </div>
+                                        style="color: #2486d0;"></span>
+                                </div>
                             </div>
                             <div class="input-group mb-4">
                                 <div class="form-floating">
@@ -59,7 +60,8 @@
                                         style="@error('password')top: 34% !important; @enderror"
                                         data-kt-password-meter-control="visibility"
                                         onclick="togglePasswordVisibility()">
-                                        <i id="eyeIcon" class="bi bi-eye-slash fs-2" style="color: #2486d0;font-size: 25px !important;"></i>
+                                        <i id="eyeIcon" class="bi bi-eye-slash fs-2"
+                                            style="color: #2486d0;font-size: 25px !important;"></i>
                                         <i class="bi bi-eye d-none"
                                             style="color: #2486d0; font-size: 25px !important;"></i>
                                     </span>
