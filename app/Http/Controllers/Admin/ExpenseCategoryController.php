@@ -17,7 +17,7 @@ class ExpenseCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->validateRequest($request);
+        $this->validateRequest($request); 
 
         try {
             $code = generateCode(ExpenseCategory::class, 'EC');
@@ -75,5 +75,5 @@ class ExpenseCategoryController extends Controller
     {
         Session::flash('error', $message);
         return redirect()->back()->withInput();
-    } 
+    }
 }

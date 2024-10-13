@@ -20,4 +20,12 @@ class ExpenseCategory extends Model
     {
         return $this->hasMany(ExpenseSubCategory::class, 'cat_id');
     }
+
+    /**
+     * Get all of the expneses for the category.
+     */
+    public function catAllExpenses()
+    {
+        return $this->hasManyThrough(Expense::class, ExpenseSubCategory::class, 'cat_id', 'sub_cat_id');
+    }
 }

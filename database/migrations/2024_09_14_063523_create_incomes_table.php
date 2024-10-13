@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('sub_cat_id')->nullable()->constrained('income_sub_categories')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('transaction_id')->nullable()->constrained('account_transactions')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('created_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
+            $table->foreignId('updated_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
             $table->timestamps();
         });
     }

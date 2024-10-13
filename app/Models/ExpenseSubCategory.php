@@ -21,4 +21,12 @@ class ExpenseSubCategory extends Model
     {
         return $this->belongsTo(ExpenseCategory::class, 'cat_id');
     }
+
+    /**
+     * Get all expenses.
+     */
+    public function allExpenses()
+    {
+        return $this->hasMany(Expense::class, 'sub_cat_id');
+    }
 }

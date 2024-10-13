@@ -16,6 +16,9 @@ class Account extends Model
      * @var array
      */
     protected $guarded = [];
+
+    protected $appends = ['available_balance'];
+    
     public function getAvailableBalanceAttribute()
     {
         return $this->availableBalance();
@@ -56,8 +59,13 @@ class Account extends Model
     /**
      * Get the user who has created this account
      */
-    public function user()
+    public function addUser()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updateUser()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
     }
 }
