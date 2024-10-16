@@ -1,4 +1,4 @@
-<x-admin-guest-layout>
+<x-admin-guest-layout :title="'AMS Login'">
     <style>
         .login-btns {
             background-color: #2486d0 !important;

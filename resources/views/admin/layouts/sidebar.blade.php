@@ -16,110 +16,6 @@
                             'routes' => [],
                         ],
                         [
-                            'title' => 'Reports',
-                            'icon' => 'fa-solid fa-file text-info',
-                            'routes' => [
-                                'admin.balance-sheet.index',
-                                'admin.balance-sheet.create',
-                                'admin.balance-sheet.edit',
-                                'admin.today-report.index',
-                                'admin.today-report.create',
-                                'admin.today-report.edit',
-                                'admin.summary-report.index',
-                                'admin.summary-report.create',
-                                'admin.summary-report.edit',
-                                'admin.expense-report.index',
-                                'admin.expense-report.create',
-                                'admin.expense-report.edit',
-                                'admin.client-receivable.index',
-                                'admin.client-receivable.create',
-                                'admin.client-receivable.edit',
-                                'admin.client-payable.index',
-                                'admin.client-payable.create',
-                                'admin.client-payable.edit',
-                                'admin.sales-user.index',
-                                'admin.sales-user.create',
-                                'admin.sales-user.edit',
-                                'admin.collection-report.index',
-                                'admin.collection-report.create',
-                                'admin.collection-report.edit',
-                            ],
-                            'subMenu' => [
-                                [
-                                    'title' => 'Balance Sheet',
-                                    'routes' => [
-                                        'admin.balance-sheet.index',
-                                        'admin.balance-sheet.create',
-                                        'admin.balance-sheet.edit',
-                                    ],
-                                    'route' => 'admin.balance-sheet.index',
-                                ],
-                                [
-                                    'title' => 'Today Report',
-                                    'routes' => [
-                                        'admin.today-report.index',
-                                        'admin.today-report.create',
-                                        'admin.today-report.edit',
-                                    ],
-                                    'route' => 'admin.today-report.index',
-                                ],
-                                [
-                                    'title' => 'Summary Report',
-                                    'routes' => [
-                                        'admin.summary-report.index',
-                                        'admin.summary-report.create',
-                                        'admin.summary-report.edit',
-                                    ],
-                                    'route' => 'admin.summary-report.index',
-                                ],
-                                [
-                                    'title' => 'Expense Report',
-                                    'routes' => [
-                                        'admin.expense-report.index',
-                                        'admin.expense-report.create',
-                                        'admin.expense-report.edit',
-                                    ],
-                                    'route' => 'admin.expense-report.index',
-                                ],
-                                [
-                                    'title' => 'Client Receivable Report',
-                                    'routes' => [
-                                        'admin.client-receivable.index',
-                                        'admin.client-receivable.create',
-                                        'admin.client-receivable.edit',
-                                    ],
-                                    'route' => 'admin.client-receivable.index',
-                                ],
-                                [
-                                    'title' => 'Client Payable Report',
-                                    'routes' => [
-                                        'admin.client-payable.index',
-                                        'admin.client-payable.create',
-                                        'admin.client-payable.edit',
-                                    ],
-                                    'route' => 'admin.client-payable.index',
-                                ],
-                                [
-                                    'title' => 'Sales By User Report',
-                                    'routes' => [
-                                        'admin.sales-user.index',
-                                        'admin.sales-user.create',
-                                        'admin.sales-user.edit',
-                                    ],
-                                    'route' => 'admin.sales-user.index',
-                                ],
-                                [
-                                    'title' => 'Collection By User Report',
-                                    'routes' => [
-                                        'admin.collection-report.index',
-                                        'admin.collection-report.create',
-                                        'admin.collection-report.edit',
-                                    ],
-                                    'route' => 'admin.collection-report.index',
-                                ],
-                            ],
-                        ],
-                        [
                             'title' => 'Expenses',
                             'icon' => 'fa-solid fa-calculator text-info',
                             'routes' => [
@@ -135,7 +31,7 @@
                             ],
                             'subMenu' => [
                                 [
-                                    'title' => 'Expense Category',
+                                    'title' => 'Category',
                                     'routes' => [
                                         'admin.expense-category.index',
                                         'admin.expense-category.create',
@@ -144,7 +40,7 @@
                                     'route' => 'admin.expense-category.index',
                                 ],
                                 [
-                                    'title' => 'Expense Sub Category',
+                                    'title' => 'Sub Category',
                                     'routes' => [
                                         'admin.expense-subcategory.index',
                                         'admin.expense-subcategory.create',
@@ -292,6 +188,47 @@
                             ],
                         ],
                         [
+                            'title' => 'Asset Management',
+                            'icon' => 'fa-solid fa-boxes-stacked text-info',
+                            'routes' => [
+                                'admin.client-invoice.index',
+                                'admin.client-invoice.create',
+                                'admin.client-invoice.edit',
+                                'admin.client-non-invoice.index',
+                                'admin.client-non-invoice.create',
+                                'admin.client-non-invoice.edit',
+                                'admin.payroll.index',
+                                'admin.payroll.create',
+                                'admin.payroll.edit',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Types',
+                                    'routes' => [
+                                        'admin.client-invoice.index',
+                                        'admin.client-invoice.create',
+                                        'admin.client-invoice.edit',
+                                    ],
+                                    'route' => 'admin.client-invoice.index',
+                                ],
+                                [
+                                    'title' => 'Assets',
+                                    'routes' => [
+                                        'admin.client-non-invoice.index',
+                                        'admin.client-non-invoice.create',
+                                        'admin.client-non-invoice.edit',
+                                    ],
+                                    'route' => 'admin.client-non-invoice.index',
+                                ],
+                            ],
+                        ],
+                        [
+                            'title' => 'Payroll',
+                            'icon' => 'fa-solid fa-comment-dollar text-info',
+                            'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
+                                    'route' => 'admin.payroll.index',
+                        ],
+                        [
                             'title' => 'Clients',
                             'icon' => 'fa-solid fa-users text-info',
                             'subMenu' => [
@@ -327,6 +264,110 @@
                                     'title' => 'Subscribed Emails List',
                                     'routes' => ['admin.newsletters.index'],
                                     'route' => 'admin.newsletters.index',
+                                ],
+                            ],
+                        ],
+                        [
+                            'title' => 'Reports',
+                            'icon' => 'fa-solid fa-file text-info',
+                            'routes' => [
+                                'admin.balance-sheet.index',
+                                'admin.balance-sheet.create',
+                                'admin.balance-sheet.edit',
+                                'admin.today-report.index',
+                                'admin.today-report.create',
+                                'admin.today-report.edit',
+                                'admin.summary-report.index',
+                                'admin.summary-report.create',
+                                'admin.summary-report.edit',
+                                'admin.expense-report.index',
+                                'admin.expense-report.create',
+                                'admin.expense-report.edit',
+                                'admin.client-receivable.index',
+                                'admin.client-receivable.create',
+                                'admin.client-receivable.edit',
+                                'admin.client-payable.index',
+                                'admin.client-payable.create',
+                                'admin.client-payable.edit',
+                                'admin.sales-user.index',
+                                'admin.sales-user.create',
+                                'admin.sales-user.edit',
+                                'admin.collection-report.index',
+                                'admin.collection-report.create',
+                                'admin.collection-report.edit',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Balance Sheet',
+                                    'routes' => [
+                                        'admin.balance-sheet.index',
+                                        'admin.balance-sheet.create',
+                                        'admin.balance-sheet.edit',
+                                    ],
+                                    'route' => 'admin.balance-sheet.index',
+                                ],
+                                [
+                                    'title' => 'Today Report',
+                                    'routes' => [
+                                        'admin.today-report.index',
+                                        'admin.today-report.create',
+                                        'admin.today-report.edit',
+                                    ],
+                                    'route' => 'admin.today-report.index',
+                                ],
+                                [
+                                    'title' => 'Summary Report',
+                                    'routes' => [
+                                        'admin.summary-report.index',
+                                        'admin.summary-report.create',
+                                        'admin.summary-report.edit',
+                                    ],
+                                    'route' => 'admin.summary-report.index',
+                                ],
+                                [
+                                    'title' => 'Expense Report',
+                                    'routes' => [
+                                        'admin.expense-report.index',
+                                        'admin.expense-report.create',
+                                        'admin.expense-report.edit',
+                                    ],
+                                    'route' => 'admin.expense-report.index',
+                                ],
+                                [
+                                    'title' => 'Client Receivable Report',
+                                    'routes' => [
+                                        'admin.client-receivable.index',
+                                        'admin.client-receivable.create',
+                                        'admin.client-receivable.edit',
+                                    ],
+                                    'route' => 'admin.client-receivable.index',
+                                ],
+                                [
+                                    'title' => 'Client Payable Report',
+                                    'routes' => [
+                                        'admin.client-payable.index',
+                                        'admin.client-payable.create',
+                                        'admin.client-payable.edit',
+                                    ],
+                                    'route' => 'admin.client-payable.index',
+                                ],
+                                [
+                                    'title' => 'Sales By User Report',
+                                    'routes' => [
+                                        'admin.sales-user.index',
+                                        'admin.sales-user.create',
+                                        'admin.sales-user.edit',
+                                    ],
+                                    'route' => 'admin.sales-user.index',
+                                ],
+                                [
+                                    'title' => 'Collection By User Report',
+                                    'routes' => [
+                                        'admin.collection-report.index',
+                                        'admin.collection-report.create',
+                                        'admin.collection-report.edit',
+                                    ],
+                                    'route' => 'admin.collection-report.index',
                                 ],
                             ],
                         ],
@@ -368,7 +409,7 @@
                             'routes' => [
                                 'admin.settings.index',
                                 'admin.email-settings.index',
-                                'admin.email-settings.index'
+                                'admin.email-settings.index',
                             ],
                             'subMenu' => [
                                 [
