@@ -1,68 +1,67 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
-use App\Models\IncomeCategory;
-use App\Models\IncomeSubCategory;
 use Illuminate\Http\Request;
 
 class IncomeSubCategoryController extends Controller
 {
-
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $data = [
-          'categorys'    => IncomeCategory::latest()->get(['id','name']),
-          'subcategorys' => IncomeSubCategory::latest()->get(),
-        ];
-        return view('admin.pages.incomeSubCategory.index', $data);
+        return view("admin.pages.incomeSubCategory.index");
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+       return view("admin.pages.incomeSubCategory.create");
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $this->validateRequest($request);
-        try {
-            $code = generateCode(IncomeSubCategory::class, 'ESC');
-            IncomeSubCategory::create([
-                'name'   => $request->name,
-                'code'   => $code,
-                'cat_id' => $request->cat_id,
-                'note'   => $request->note,
-                'status' => $request->status,
-            ]);
-            redirectWithSuccess('Income Sub Category Added Successfully');
-        } catch (\Exception $e) {
-            redirectWithError($e->getMessage());
-        }
+        //
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+       return view("admin.pages.expenseSubCategory.edit");
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
-        $category = IncomeSubCategory::findOrFail($id);
-        $this->validateRequest($request, $category->id);
-
-        try {
-            $category->update($request->only('name', 'cat_id', 'note', 'status'));
-            redirectWithSuccess('Income Sub Category Edited Successfully');
-        } catch (\Exception $e) {
-            redirectWithError($e->getMessage());
-        }
+        //
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
-        IncomeSubCategory::findOrFail($id)->delete();
-    }
-
-    private function validateRequest(Request $request, $categoryId = null)
-    {
-        $uniqueRule = $categoryId ? 'unique:income_sub_categories,name,' . $categoryId : 'unique:income_sub_categories';
-
-        $request->validate([
-            'name' => 'required|string|max:50|' . $uniqueRule,
-            'note' => 'required',
-            'note' => 'nullable|string|max:255',
-        ]);
+        //
     }
 }
+
+
