@@ -307,13 +307,22 @@ $(document).ready(function () {
         });
 
         // Set the default icon on load
-        $(".select2-selection__arrow").html('<i class="fa-solid fa-chevron-down custom-icon"></i>'); // Show down icon initially
+        $(".select2-selection__arrow").html(
+            '<i class="fa-solid fa-chevron-down custom-icon"></i>'
+        ); // Show down icon initially
     });
 
     // Change the icon when the Select2 dropdown is opened or closed
-    $(".select-with-search").on("select2:open", function () {
-        $(".select2-selection__arrow").html('<i class="fa-solid fa-chevron-up custom-icon"></i>'); // Show up icon when open
-    }).on("select2:close", function () {
-        $(".select2-selection__arrow").html('<i class="fa-solid fa-chevron-down custom-icon"></i>'); // Show down icon when closed
-    });
+    $(".select-with-search")
+        .on("select2:open", function () {
+            $(".select2-selection__arrow").html(
+                '<i class="fa-solid fa-chevron-up custom-icon"></i>'
+            ); // Show up icon when open
+        })
+        .on("select2:close", function () {
+            $(".select2-selection__arrow").html(
+                '<i class="fa-solid fa-chevron-down custom-icon"></i>'
+            ); // Show down icon when closed
+        });
 });
+

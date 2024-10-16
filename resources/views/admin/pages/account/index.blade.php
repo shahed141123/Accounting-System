@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Account List'">
+<x-admin-app-layout :title="'Accounts List'">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <div class="app-content">
         <div class="container-fluid mt-3">
@@ -8,137 +8,166 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Manage Your Accounts</h4>
+                                    <h4 class="mb-0">Mange Your Accounts</h4>
                                 </div>
-                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#addModal">
-                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
-                                    Add
-                                </button>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Export To Excel">
+                                        <i class="fa-solid fa-file-csv"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Download PDF">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Print Table">
+                                        <i class="fa-solid fa-print"></i>
+                                        <span class="tooltiptext">Print</span>
+                                    </button>
+                                    <a href="{{ route('admin.account.create') }}" class="btn btn-outline-light toltip"
+                                        data-tooltip="Create New"> Create
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Sl</th>
-                                        <th>Image</th>
-                                        <th>Bank Name</th>
-                                        <th>Branch Name</th>
-                                        <th>Account Number</th>
-                                        <th>Available Balance</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($accounts as $account)
+                        <div class="card-body p-0">
+                            <div class="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
+                                <h6>Filter Accounts From-To</h6>
+                                <div>
+                                    <input class="form-control" name='range' id='cal' />
+                                </div>
+                            </div>
+                            <div class="p-3 pt-1">
+                                <!-- Table -->
+                                <table class="table table-striped datatable" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                <div class="position-relative">
-                                                    <img class="w-50 h-50"
-                                                         src="{{ asset('storage/' . $account->image) }}"
-                                                         alt="{{ $account->account_number }}"
-                                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                                                    <div class="bg-secondary rounded no-preview-sm" style="display: none;">
-                                                        <p>No Preview</p>
-                                                    </div>
+                                            <th width="5%" class="text-center">Sl</th>
+                                            <th width="5%" class="text-center">Image</th>
+                                            <th width="20%" class="text-center">Bank Name</th>
+                                            <th width="15%" class="text-center">Branch Name</th>
+                                            <th width="15%" class="text-center">Account Number</th>
+                                            <th width="15%" class="text-center">Available Balance</th>
+                                            <th width="10%" class="text-center">Date</th>
+                                            <th width="5%" class="text-center">Status</th>
+                                            <th width="10%" class="text-end">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">
+                                                <div>
+                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
+                                                        alt="">
                                                 </div>
                                             </td>
-                                            <td>{{ $account->image }}</td>
-                                            <td>{{ $account->image }}</td>
-                                            <td>{{ $account->image }}</td>
-                                            <td>{{ $account->image }}</td>
-                                            <td>{{ $account->image }}</td>
-                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td class="text-center">Dutch Bangla Bank</td>
+                                            <td class="text-center">Mirpur</td>
+                                            <td class="text-center">DBBL-0003</td>
+                                            <td class="text-center">$195531.58</td>
+                                            <td class="text-center">17th Oct, 2024</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-danger">
+                                                    inactive</span>
+                                            </td>
                                             <td class="text-end">
                                                 <a href="javascript:void(0)" class="btn btn-sm btn-primary">
                                                     <i class="fa-solid fa-pen"></i>
                                                 </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                    <i class="fa-solid fa-eye"></i>
+                                                <a href="javascript:void(0)"
+                                                    class="btn btn-sm btn-warning text-white toltip"
+                                                    data-tooltip="Transection">
+                                                    <i class="fa-solid fa-handshake-angle"></i>
                                                 </a>
-                                                <a href="javascript:void(0)" type="submit"
-                                                    class="btn btn-sm btn-danger">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">
+                                                <div>
+                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
+                                                        alt="">
+                                                </div>
+                                            </td>
+                                            <td class="text-center">Islami Bank Bangladesh Ltd</td>
+                                            <td class="text-center">Mirpur</td>
+                                            <td class="text-center">IBBL-0002</td>
+                                            <td class="text-center">$162700.00</td>
+                                            <td class="text-center">17th Oct, 2024</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-success">
+                                                    Active</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                <a href="javascript:void(0)"
+                                                    class="btn btn-sm btn-warning text-white toltip"
+                                                    data-tooltip="Transection">
+                                                    <i class="fa-solid fa-handshake-angle"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Add New Account Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addModalLabel">Add New Account</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('admin.account.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="container">
-                            <div class="row">
-                                <div class="form-group mb-3">
-                                    <x-admin.label for="bankName">Bank Name *</x-admin.label>
-                                    <x-admin.input type="text" class="form-control" id="bankName" name="bank_name"
-                                        placeholder="Enter a bank name" required></x-admin.input>
-                                </div>
+    @push('scripts')
+        <script>
+            // Multi Select Date Picker
+            var dates = [];
+            $(document).ready(function() {
+                $("#cal").daterangepicker();
+                $("#cal").on("apply.daterangepicker", function(e, picker) {
+                    e.preventDefault();
+                    const obj = {
+                        key: dates.length + 1,
+                        start: picker.startDate.format("MM/DD/YYYY"),
+                        end: picker.endDate.format("MM/DD/YYYY"),
+                    };
+                    dates.push(obj);
+                    showDates();
+                });
+                $(".remove").on("click", function() {
+                    removeDate($(this).attr("key"));
+                });
+            });
 
-                                <div class="form-group mb-3">
-                                    <x-admin.label for="branchName">Branch Name</x-admin.label>
-                                    <x-admin.input type="text" class="form-control" id="branchName"
-                                        name="branch_name" placeholder="Enter a branch name"></x-admin.input>
-                                </div>
+            function showDates() {
+                $("#ranges").html("");
+                $.each(dates, function() {
+                    const el =
+                        "<li>" +
+                        this.start +
+                        "-" +
+                        this.end +
+                        "<button class='remove' onClick='removeDate(" +
+                        this.key +
+                        ")'>-</button></li>";
+                    $("#ranges").append(el);
+                });
+            }
 
-                                <div class="form-group mb-3">
-                                    <x-admin.label for="account_number">Account Number *</x-admin.label>
-                                    <x-admin.input type="text" class="form-control" id="account_number"
-                                        name="account_number" placeholder="Enter an account number"
-                                        required></x-admin.input>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <x-admin.label for="image">Image</x-admin.label>
-                                    <x-admin.file-input type="file" class="form-control-file" id="image"
-                                        name="image"></x-admin.file-input>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <x-admin.label for="date">Date</x-admin.label>
-                                    <x-admin.input type="date" class="form-control" id="date" name="date"
-                                        :value="now()->format('Y-m-d')"></x-admin.input>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <x-admin.label for="status">Status</x-admin.label>
-                                    <x-admin.select-option class="form-control" id="status" name="status">
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
-                                    </x-admin.select-option>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <x-admin.label for="note">Note</x-admin.label>
-                                    <textarea class="form-control" id="note" name="note" rows="3" placeholder="Write your note here!"></textarea>
-                                </div>
-                            </div>
-                            <x-admin.button type="submit" class="primary mt-3">Add Account</x-admin.button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
+            function removeDate(i) {
+                dates = dates.filter(function(o) {
+                    return o.key !== i;
+                });
+                showDates();
+            }
+        </script>
+    @endpush
 </x-admin-app-layout>

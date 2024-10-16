@@ -6,8 +6,8 @@
                     <div class="card mt-5">
                         <div class="card-header p-2">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4 class="text-gray-800">Create Adjustment</h4>
-                                <a href="{{ route('admin.balance-adjustment.index') }}" class="btn-common-one text-white"
+                                <h4 class="text-gray-800">Create An Account</h4>
+                                <a href="{{ route('admin.account.index') }}" class="btn-common-one text-white"
                                     tabindex="0">
                                     <i class="fa-solid fa-arrow-left-long pe-3"></i>
                                     Back
@@ -15,48 +15,48 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.balance-adjustment.store') }}"
+                            <form method="POST" action="{{ route('admin.account.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="account" class="form-label">Account</label>
-                                            <x-admin.select-option id="account" name="account" :allowClear="true">
-                                                <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
-                                                <option value="Dutch Bangla Bank[DBBL-0003]">Dutch Bangla
-                                                    Bank[DBBL-0003]</option>
-                                                <option value="Islami Bank Bangladesh Ltd[IBBL-0002]">Islami Bank
-                                                    Bangladesh Ltd[IBBL-0002]</option>
-                                            </x-admin.select-option>
+                                            <x-admin.label for="bankName" class="form-label">Bank Name</x-admin.label>
+                                            <x-admin.input type="text" :value="old('bankName')" id="bankName"
+                                                name="bankName" required></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <x-admin.label for="branchName" class="form-label">Branch
+                                                Name</x-admin.label>
+                                            <x-admin.input type="text" :value="old('branchName')" id="branchName"
+                                                name="branchName" required></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <x-admin.label for="accountNumber" class="form-label">Account
+                                                Number</x-admin.label>
+                                            <x-admin.input type="text" :value="old('accountNumber')" id="accountNumber"
+                                                name="accountNumber" required></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <x-admin.label for="accountNumber" class="form-label">Account
+                                                Number</x-admin.label>
+                                            <x-admin.input type="text" :value="old('accountNumber')" id="accountNumber"
+                                                name="accountNumber" required></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="type" class="form-label">Type</label>
-                                            <x-admin.select-option id="type" name="type" :allowClear="true">
-                                                <option value="Add Balance">Add Balance</option>
-                                                <option value="Remove Balance">Remove Balance</option>
-                                            </x-admin.select-option>
+                                            <x-admin.label for="date" class="form-label"> Image</x-admin.label>
+                                            <x-admin.input type="file" :value="old('image')" id="image"
+                                                name="image" required></x-admin.input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <x-admin.label for="availableAmount" class="form-label">Available
-                                                Balance</x-admin.label>
-                                            <x-admin.input type="text" :value="old('availableAmount')" id="availableAmount"
-                                                name="availableAmount" required disabled="disabled"></x-admin.input>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <x-admin.label for="amount" class="form-label"> Amount </x-admin.label>
-                                            <x-admin.input type="text" :value="old('amount')" id="amount"
-                                                name="amount" required></x-admin.input>
-                                        </div>
-                                    </div>
-
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <x-admin.label for="date" class="form-label"> Date</x-admin.label>
@@ -73,7 +73,6 @@
                                             </x-admin.select-option>
                                         </div>
                                     </div>
-
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="note" class="form-label">Note</label>

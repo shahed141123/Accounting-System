@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Account Transactions List'">
+<x-admin-app-layout :title="'Expence'">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <div class="app-content">
         <div class="container-fluid mt-3">
@@ -8,64 +8,139 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Transactions History</h4>
+                                    <h4 class="mb-0">Transaction History</h4>
                                 </div>
-                                <div>
-                                    <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                        data-bs-target="#addTransactionModal">
-                                        <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
-                                        Add
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Export To Excel">
+                                        <i class="fa-solid fa-file-csv"></i>
                                     </button>
-                                    <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                        data-bs-target="#exportModal">
-                                        <i class="fa-solid fa-file-export pe-2" aria-hidden="true"></i>
-                                        Export
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Download PDF">
+                                        <i class="fa-solid fa-file-pdf"></i>
                                     </button>
-                                    <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                        data-bs-target="#pdfModal">
-                                        <i class="fa-solid fa-file-pdf pe-2" aria-hidden="true"></i>
-                                        PDF
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Print Table">
+                                        <i class="fa-solid fa-print"></i>
+                                        <span class="tooltiptext">Print</span>
                                     </button>
-                                    <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                        data-bs-target="#printModal">
-                                        <i class="fa-solid fa-print pe-2" aria-hidden="true"></i>
-                                        Print
-                                    </button>
+                                    {{-- <a href="{{ route('admin.transaction-history.create') }}"
+                                        class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Sl</th>
-                                        <th>Reason</th>
-                                        <th>Date</th>
-                                        <th>Type</th>
-                                        <th>Account</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                        <th>Created By</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>[AE-2] February Payroll sent from [CASH-0001]</td>
-                                        <td>2nd Oct, 2024</td>
-                                        <td><span class="badge bg-danger">Debit</span></td>
-                                        <td>Cash[CASH-0001]</td>
-                                        <td>$9800.00</td>
-                                        <td><span class="badge bg-danger">Debit</span></td>
-                                        <td>Super Admin</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body p-0">
+                            <div class="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
+                                <h6>Filter Accounts From-To</h6>
+                                <div>
+                                    <input class="form-control" name='range' id='cal' />
+                                </div>
+                            </div>
+                            <div class="p-3 pt-1">
+                                <!-- Table -->
+                                <table class="table table-striped datatable" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%" class="text-center">Sl</th>
+                                            <th width="20%" class="text-center">Reason</th>
+                                            <th width="10%" class="text-center">Date</th>
+                                            <th width="10%" class="text-center">Type</th>
+                                            <th width="10%" class="text-center">Account</th>
+                                            <th width="10%" class="text-center">Amount</th>
+                                            <th width="5%" class="text-center">Status</th>
+                                            <th width="10%" class="text-end">Created By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">[AE-2] February Payroll sent from [CASH-0001]</td>
+                                            <td class="text-center">17th Oct, 2024</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-danger">
+                                                    Debit</span>
+                                            </td>
+                                            <td class="text-center">Cash[CASH-0001]</td>
+                                            <td class="text-center">$9800.00</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-danger">
+                                                    Status</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span>Super Admin</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">[AE-2] February Payroll sent from [CASH-0001]</td>
+                                            <td class="text-center">17th Oct, 2024</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-danger">
+                                                    Debit</span>
+                                            </td>
+                                            <td class="text-center">Cash[CASH-0001]</td>
+                                            <td class="text-center">$9800.00</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-danger">
+                                                    Status</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span>Super Admin</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            // Multi Select Date Picker
+            var dates = [];
+            $(document).ready(function() {
+                $("#cal").daterangepicker();
+                $("#cal").on("apply.daterangepicker", function(e, picker) {
+                    e.preventDefault();
+                    const obj = {
+                        key: dates.length + 1,
+                        start: picker.startDate.format("MM/DD/YYYY"),
+                        end: picker.endDate.format("MM/DD/YYYY"),
+                    };
+                    dates.push(obj);
+                    showDates();
+                });
+                $(".remove").on("click", function() {
+                    removeDate($(this).attr("key"));
+                });
+            });
+
+            function showDates() {
+                $("#ranges").html("");
+                $.each(dates, function() {
+                    const el =
+                        "<li>" +
+                        this.start +
+                        "-" +
+                        this.end +
+                        "<button class='remove' onClick='removeDate(" +
+                        this.key +
+                        ")'>-</button></li>";
+                    $("#ranges").append(el);
+                });
+            }
+
+            function removeDate(i) {
+                dates = dates.filter(function(o) {
+                    return o.key !== i;
+                });
+                showDates();
+            }
+        </script>
+    @endpush
 </x-admin-app-layout>

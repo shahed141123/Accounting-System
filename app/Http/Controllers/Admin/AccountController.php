@@ -25,10 +25,10 @@ class AccountController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    // public function create()
-    // {
-    //     return view("admin.pages.account.crate");
-    // }
+    public function create()
+    {
+        return view("admin.pages.account.crate");
+    }
 
     /**
      * Store a newly created resource in storage.
