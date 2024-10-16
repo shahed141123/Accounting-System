@@ -8,17 +8,27 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Manage Your Expenses</h4>
+                                    <h4 class="mb-0">Mange Your Expences</h4>
                                 </div>
-                                <a href="{{ route('admin.expense.create') }}" class="btn btn-white">
-                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
-                                    Add
-                                </a>
-                                {{-- <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#addModal">
-                                    <i class="fa-solid fa-plus pe-2" aria-hidden="true"></i>
-                                    Add
-                                </button> --}}
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Export To Excel">
+                                        <i class="fa-solid fa-file-csv"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Download PDF">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Print Table">
+                                        <i class="fa-solid fa-print"></i>
+                                        <span class="tooltiptext">Print</span>
+                                    </button>
+                                    <a href="{{ route('admin.expense.create') }}"
+                                        class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -26,21 +36,37 @@
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Reason</th>
-                                        <th>Date</th>
-                                        <th>Note</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Action</th>
+                                        <th width="5%" class="text-center">Sl</th>
+                                        <th width="5%" class="text-center">Image</th>
+                                        <th width="20%" class="text-center">Expense Reason</th>
+                                        <th width="10%" class="text-center">Category</th>
+                                        <th width="15%" class="text-center">Sub Category</th>
+                                        <th width="10%" class="text-center">Amount</th>
+                                        <th width="10%" class="text-center">Account</th>
+                                        <th width="10%" class="text-center">Date</th>
+                                        <th width="5%" class="text-center">Status</th>
+                                        <th width="10%" class="text-end">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>asdasdasd</td>
-                                        <td>asdadasd</td>
-                                        <td>asdadasd</td>
-                                        <td>asdasdasd</td>
-                                        <td>asdasdasd</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">
+                                            <div>
+                                                <img width="50px" src="{{ asset('images/no_image.jpg') }}"
+                                                    alt="">
+                                            </div>
+                                        </td>
+                                        <td class="text-center">Sticky Notes Purchase</td>
+                                        <td class="text-center">Stationary[AEC-2]</td>
+                                        <td class="text-center">Office Stationary [AES-2]</td>
+                                        <td class="text-center">$1000.00</td>
+                                        <td class="text-center">Cash[CASH-0001]</td>
+                                        <td class="text-center">17th Oct, 2024</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-danger">
+                                                inactive</span>
+                                        </td>
                                         <td class="text-end">
                                             <a href="javascript:void(0)" class="btn btn-sm btn-primary">
                                                 <i class="fa-solid fa-pen"></i>

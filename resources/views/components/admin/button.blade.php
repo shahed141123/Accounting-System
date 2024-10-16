@@ -1,9 +1,10 @@
 @if ($isLink ?? false)
-    <a href="{{ $href ?? 'JavaScript:void(0)' }}" class="btn btn-{{ $class ?? 'primary' }} font-weight-bold mr-2">
+    <a href="{{ $href ?? 'JavaScript:void(0)' }}" class="btn-common-one text-white">
         {{ $slot }}
     </a>
 @else
-    <button type="{{ $type ?? 'button' }}" class="btn btn-{{ $class ?? 'primary' }}" onclick="this.disabled = true; this.form.submit();">
+    <button type="{{ $type ?? 'button' }}" class="btn-common-one text-white border-0"
+        onclick="this.disabled = true; this.form.submit();">
         {{ $slot }}
     </button>
 @endif

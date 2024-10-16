@@ -37,8 +37,9 @@
 
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/overlayscrollbars.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('admin/assets/css/overlayscrollbars.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/icons/bootstrap-icons@1.11.0.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/apexcharts.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/jsvectormap.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.css') }}">
@@ -82,7 +83,7 @@
 
     <!-- JavaScript Files -->
     <script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/overlayscrollbars.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/js/overlayscrollbars.js') }}"></script> --}}
     <script src="{{ asset('admin/assets/js/sortable.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/jsvectormap.min.js') }}"></script>
@@ -95,8 +96,9 @@
     <script src="{{ asset('admin/assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('admin/assets/js/fontawesome6.js') }}"></script>
-    <script src="{{ asset('admin/js/custom.js') }}"></script>
     <script src="{{ asset('admin/assets/js/adminlte.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('admin/js/custom.js') }}"></script>
     <script>
         var preloader = document.getElementById('loading');
 

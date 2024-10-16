@@ -1,11 +1,13 @@
 // Password Show and Hide
 $(document).ready(function () {
-    $('.toggle-password').click(function () {
-        const passwordInput = $(this).closest('.position-relative').find('input');
-        const isVisible = passwordInput.attr('type') === 'text';
-        passwordInput.attr('type', isVisible ? 'password' : 'text');
-        $(this).find('.bi-eye').toggleClass('d-none');
-        $(this).find('.bi-eye-slash').toggleClass('d-none');
+    $(".toggle-password").click(function () {
+        const passwordInput = $(this)
+            .closest(".position-relative")
+            .find("input");
+        const isVisible = passwordInput.attr("type") === "text";
+        passwordInput.attr("type", isVisible ? "password" : "text");
+        $(this).find(".bi-eye").toggleClass("d-none");
+        $(this).find(".bi-eye-slash").toggleClass("d-none");
     });
 });
 function passwordMeter(inputElement, highlightElement, options) {
@@ -40,7 +42,9 @@ function passwordMeter(inputElement, highlightElement, options) {
     };
 
     var c = function () {
-        return /[~`!#@$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(inputElement.value);
+        return /[~`!#@$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(
+            inputElement.value
+        );
     };
 
     var m = function () {
@@ -79,70 +83,64 @@ function passwordMeter(inputElement, highlightElement, options) {
     // Expose public methods
     return {
         check: check,
-        getScore: g
+        getScore: g,
     };
 }
 
 // Delete action with reload page
-$(document).on('click', '.delete', function (e) {
+$(document).on("click", ".delete", function (e) {
     e.preventDefault();
 
-    var deleteUrl = $(this).attr('href');
+    var deleteUrl = $(this).attr("href");
 
     Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
         buttonsStyling: false,
         customClass: {
-            confirmButton: 'btn btn-danger',
-            cancelButton: 'btn btn-success'
-        }
+            confirmButton: "btn btn-danger",
+            cancelButton: "btn btn-success",
+        },
     }).then(function (result) {
         if (result.isConfirmed) {
             $.ajax({
                 url: deleteUrl,
-                type: 'DELETE',
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                type: "DELETE",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
                 success: function (data) {
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
                     ).then(function () {
                         location.reload();
                     });
                 },
                 error: function (xhr, status, error) {
-                    Swal.fire(
-                        'Error Occurred!',
-                        error,
-                        'error'
-                    );
-                }
+                    Swal.fire("Error Occurred!", error, "error");
+                },
             });
-        }
-        else if (result.dismiss === swal.DismissReason.cancel) {
-            Swal.fire(
-                'Cancelled',
-                'Your imaginary file is safe :)',
-                'error'
-            );
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+            Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
         }
     });
 });
 
-
 // --------------------------------
 // Delete Account with reload page
-$(document).on('click', '.delete-account', async function (e) {
+$(document).on("click", ".delete-account", async function (e) {
     e.preventDefault();
 
-    var deleteAccountUrl = $(this).attr('href');
-    var checkPasswordUrl = $(this).data('check-password-url');
+    var deleteAccountUrl = $(this).attr("href");
+    var checkPasswordUrl = $(this).data("check-password-url");
     const { value: password } = await Swal.fire({
         title: "Confirm Password",
         input: "password",
@@ -151,24 +149,26 @@ $(document).on('click', '.delete-account', async function (e) {
         inputAttributes: {
             maxlength: "30",
             autocapitalize: "off",
-            autocorrect: "off"
+            autocorrect: "off",
         },
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
         buttonsStyling: false,
         customClass: {
-            confirmButton: 'btn btn-danger',
-            cancelButton: 'btn btn-success'
-        }
+            confirmButton: "btn btn-danger",
+            cancelButton: "btn btn-success",
+        },
     });
 
     if (password) {
         // Check if the entered password matches the user's password in the database
         $.ajax({
             url: checkPasswordUrl,
-            type: 'POST',
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            type: "POST",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
             data: {
                 password: password,
             },
@@ -177,49 +177,41 @@ $(document).on('click', '.delete-account', async function (e) {
                     // Password matches, proceed with deletion
                     $.ajax({
                         url: deleteAccountUrl,
-                        type: 'DELETE',
-                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                        type: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
+                        },
                         success: function (data) {
                             Swal.fire(
-                                'Deleted!',
-                                'Your Account has been deleted.',
-                                'success'
+                                "Deleted!",
+                                "Your Account has been deleted.",
+                                "success"
                             ).then(function () {
                                 // location.reload();
-                                window.location.href = '/';
+                                window.location.href = "/";
                             });
                         },
                         error: function (xhr, status, error) {
-                            Swal.fire(
-                                'Error Occurred!',
-                                error,
-                                'error'
-                            );
-                        }
+                            Swal.fire("Error Occurred!", error, "error");
+                        },
                     });
                 } else {
                     // Password does not match, show error message
-                    Swal.fire(
-                        'Error Occurred!',
-                        response.message,
-                        'error'
-                    );
+                    Swal.fire("Error Occurred!", response.message, "error");
                 }
             },
             error: function (xhr, status, error) {
                 Swal.fire(
-                    'Error Occurred!',
-                    'An error occurred while checking the password. Please try again.',
-                    'error'
+                    "Error Occurred!",
+                    "An error occurred while checking the password. Please try again.",
+                    "error"
                 );
-            }
+            },
         });
     } else {
-        Swal.fire(
-            'Cancelled',
-            'Your Account is safe :)',
-            'error'
-        );
+        Swal.fire("Cancelled", "Your Account is safe :)", "error");
     }
 });
 
@@ -227,37 +219,101 @@ $(document).on('click', '.delete-account', async function (e) {
 function toggleStatus(route, id) {
     const Toast = Swal.mixin({
         toast: true,
-        position: 'top-end',
+        position: "top-end",
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;
             toast.onmouseleave = Swal.resumeTimer;
-        }
+        },
     });
 
-    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const csrfToken = $('meta[name="csrf-token"]').attr("content");
 
     $.ajax({
         url: route,
         type: "POST",
         headers: {
-            'X-CSRF-TOKEN': csrfToken
+            "X-CSRF-TOKEN": csrfToken,
         },
         success: function (response) {
-            $(`#status_toggle_${id}`).prop('checked', response.success);
+            $(`#status_toggle_${id}`).prop("checked", response.success);
             Toast.fire({
-                icon: 'success',
-                title: 'Status toggled successfully'
+                icon: "success",
+                title: "Status toggled successfully",
             });
         },
         error: function (xhr) {
-            console.error('Error - ' + xhr.status + ': ' + xhr.statusText);
+            console.error("Error - " + xhr.status + ": " + xhr.statusText);
             Toast.fire({
-                icon: 'error',
-                title: 'An error occurred'
+                icon: "error",
+                title: "An error occurred",
             });
-        }
+        },
     });
 }
+
+// Tool Tip js
+document.addEventListener("DOMContentLoaded", function () {
+    // Function to show the tooltip
+    function showTooltip(e) {
+        const tooltipText = e.target.getAttribute("data-tooltip");
+        if (!tooltipText) return;
+
+        // Create tooltip element
+        const tooltip = document.createElement("div");
+        tooltip.classList.add("tooltip");
+        tooltip.innerText = tooltipText;
+        document.body.appendChild(tooltip);
+
+        // Position the tooltip
+        const elementRect = e.target.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+
+        tooltip.style.left =
+            elementRect.left +
+            elementRect.width / 2 -
+            tooltipRect.width / 2 +
+            "px";
+        tooltip.style.top = elementRect.top - tooltipRect.height - 10 + "px"; // Adjust position above the element
+
+        // Show the tooltip
+        tooltip.style.opacity = "1";
+
+        // Remove tooltip on mouse leave
+        e.target.addEventListener("mouseleave", function () {
+            tooltip.style.opacity = "0";
+            tooltip.remove();
+        });
+    }
+
+    // Attach event listeners to elements with the data-tooltip attribute
+    const tooltipElements = document.querySelectorAll("[data-tooltip]");
+    tooltipElements.forEach(function (element) {
+        element.addEventListener("mouseenter", showTooltip);
+    });
+});
+
+//   Select 2
+$(document).ready(function () {
+    $(".select-with-search").each(function () {
+        var allowClear = $(this).data("allow-clear") === "true"; // Read data attribute
+
+        $(this).select2({
+            allowClear: allowClear, // Use the parsed allowClear value
+            width: "100%",
+            placeholder: "Select an option",
+        });
+
+        // Set the default icon on load
+        $(".select2-selection__arrow").html('<i class="fa-solid fa-chevron-down custom-icon"></i>'); // Show down icon initially
+    });
+
+    // Change the icon when the Select2 dropdown is opened or closed
+    $(".select-with-search").on("select2:open", function () {
+        $(".select2-selection__arrow").html('<i class="fa-solid fa-chevron-up custom-icon"></i>'); // Show up icon when open
+    }).on("select2:close", function () {
+        $(".select2-selection__arrow").html('<i class="fa-solid fa-chevron-down custom-icon"></i>'); // Show down icon when closed
+    });
+});

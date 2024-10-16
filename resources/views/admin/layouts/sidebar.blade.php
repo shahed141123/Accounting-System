@@ -4,7 +4,7 @@
             <img src="{{ asset('images/logo-color.png') }}" alt="AdminLTE Logo" class="brand-image" />
         </a>
     </div>
-    <div class="sidebar-wrapper position-relative"> <!-- Added position-relative -->
+    <div class="sidebar-wrapper main-sidebar position-relative"> <!-- Added position-relative -->
         <nav class="mt-2">
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
                 @php
@@ -226,7 +226,7 @@
                             'title' => 'Payroll',
                             'icon' => 'fa-solid fa-comment-dollar text-info',
                             'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
-                                    'route' => 'admin.payroll.index',
+                            'route' => 'admin.payroll.index',
                         ],
                         [
                             'title' => 'Clients',
@@ -482,17 +482,15 @@
             </ul>
         </nav>
         <div class="logout-btn-wrapper">
-            <div class="logout-btn">
-                <button class="btn btn-primary w-75">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        stroke-width="2" class="h-6 w-6" width="25px" height="25px">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                        </path>
-                    </svg>
-                    <span class="ps-3">Logout</span>
-                </button>
-            </div>
+            <a href="" class="btn-common-one mx-3 text-white" tabindex="0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="2" class="h-6 w-6" width="25px" height="25px">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                    </path>
+                </svg>
+                Logout
+            </a>
         </div>
     </div>
 </aside>

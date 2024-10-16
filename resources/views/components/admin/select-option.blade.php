@@ -1,7 +1,10 @@
-@props(['id', 'name'])
+@props(['id', 'name', 'allowClear' => false])
 
-<select id="{{ $id }}" name="{{ $name }}" class="form-select form-select-solid @error($name) is-invalid @enderror" data-allow-clear="true"
-    data-control="select2" data-allow-clear="true" {{ $attributes }}>
+<select id="{{ $id }}" name="{{ $name }}"
+    class="select-with-search form-select @error($name) is-invalid @enderror"
+    data-allow-clear="{{ $allowClear }}"
+    data-control="select2"
+    {{ $attributes }}>
     {{ $slot }}
 </select>
 

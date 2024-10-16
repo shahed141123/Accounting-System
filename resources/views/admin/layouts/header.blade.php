@@ -1,8 +1,9 @@
-<nav class="app-header navbar navbar-expand bg-body border-0">
+<nav class="app-header navbar navbar-expand bg-body main-header">
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link sidebar-toggler-btn" id="sidebarToggler" data-lte-toggle="sidebar" href="#" role="button">
+                <a class="nav-link sidebar-toggler-btn" id="sidebarToggler" data-lte-toggle="sidebar" href="#"
+                    role="button">
                     <i class="fa-solid fa-arrow-left" id="arrowLeft"></i>
                     <i class="fa-solid fa-arrow-right d-none" id="arrowRight"></i>
                 </a>
@@ -29,17 +30,17 @@
                     <a href="#" class="dropdown-item">
                         <div class="d-flex">
                             <div class="flex-shrink-0">
-                                <img src="./assets/img/user1-128x128.jpg" alt="User Avatar"
+                                <img src="{{ asset('images/user.jpg') }}" alt="User Avatar"
                                     class="img-size-50 rounded-circle me-3" />
                             </div>
                             <div class="flex-grow-1">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
-                                    <span class="float-end fs-7 text-danger"><i class="bi bi-star-fill"></i></span>
+                                    <span class="float-end fs-7 text-danger"><i class="fa-solid fa-star"></i></span>
                                 </h3>
                                 <p class="fs-7">Call me whenever you can...</p>
                                 <p class="fs-7 text-secondary">
-                                    <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
+                                    <i class="fa-solid fa-clock me-1"></i> 4 Hours Ago
                                 </p>
                             </div>
                         </div>
@@ -70,13 +71,13 @@
             </li>
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img src="./assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow"
+                    <img class="img-fluid users-img" src="{{ asset('images/user.jpg') }}" class="user-image rounded-circle shadow"
                         alt="User Image" />
                     <span class="d-none d-md-inline">{{ Auth::guard('admin')->user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <li class="user-header text-bg-primary">
-                        <img src="./assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image" />
+                        <img src="{{ asset('images/user.jpg') }}" class="rounded-circle shadow users-img" alt="User Image" />
                         <p>
                             {{ Auth::guard('admin')->user()->name }}
                             <small>Member since {{ Auth::guard('admin')->user()->created_at->format('M , Y') }}</small>

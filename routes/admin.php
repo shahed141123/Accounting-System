@@ -1,65 +1,65 @@
 <?php
 
-use App\Http\Controllers\Admin\AboutUsController;
-use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LogController;
+use App\Http\Controllers\Admin\IconController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\DealBannerController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\IncomeController;
+use App\Http\Controllers\Admin\AboutUsController;
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\ClientsController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\PayrollController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CatalogueController;
+use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\PageBannerController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
+use App\Http\Controllers\Admin\FaqCategoryController;
+use App\Http\Controllers\Admin\TodayReportController;
+use App\Http\Controllers\Admin\BalanceSheetController;
 use App\Http\Controllers\Admin\EmailSettingController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
+use App\Http\Controllers\Admin\ClientInvoiceController;
+use App\Http\Controllers\Admin\ExpenseReportController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
+use App\Http\Controllers\Admin\SummaryReportController;
+use App\Http\Controllers\Admin\IncomeCategoryController;
+use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Admin\BalanceTransferController;
+use App\Http\Controllers\Admin\ExpenseCategoryController;
+use App\Http\Controllers\Admin\OrderManagementController;
+use App\Http\Controllers\Admin\SalesUserReportController;
+use App\Http\Controllers\Admin\StockManagementController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\ClientNonInvoiceController;
+use App\Http\Controllers\Admin\CollectionReportController;
+use App\Http\Controllers\Admin\BalanceAdjustmentController;
+use App\Http\Controllers\Admin\IncomeSubCategoryController;
+use App\Http\Controllers\Admin\TermsAndConditionController;
+use App\Http\Controllers\Admin\ExpenseSubCategoryController;
+use App\Http\Controllers\Admin\ShippingManagementController;
+use App\Http\Controllers\Admin\TransactionHistoryController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Admin\ClientPayableReportController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\ClientReceivableReportController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\BalanceAdjustmentController;
-use App\Http\Controllers\Admin\BalanceSheetController;
-use App\Http\Controllers\Admin\BalanceTransferController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CatalogueController;
-use App\Http\Controllers\Admin\ClientInvoiceController;
-use App\Http\Controllers\Admin\ClientNonInvoiceController;
-use App\Http\Controllers\Admin\ClientPayableReportController;
-use App\Http\Controllers\Admin\ClientReceivableReportController;
-use App\Http\Controllers\Admin\ClientsController;
-use App\Http\Controllers\Admin\CollectionReportController;
-use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\FaqCategoryController;
-use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\IconController;
-use App\Http\Controllers\Admin\NewsletterController;
-use App\Http\Controllers\Admin\OrderManagementController;
-use App\Http\Controllers\Admin\PageBannerController;
-use App\Http\Controllers\Admin\PrivacyPolicyController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ShippingManagementController;
-use App\Http\Controllers\Admin\StaffController;
-use App\Http\Controllers\Admin\StockManagementController;
-use App\Http\Controllers\Admin\TermsAndConditionController;
-use App\Http\Controllers\Admin\UserManagementController;
-use App\Http\Controllers\DealBannerController;
-use App\Http\Controllers\Admin\ExpenseCategoryController;
-use App\Http\Controllers\Admin\ExpenseController;
-use App\Http\Controllers\Admin\ExpenseReportController;
-use App\Http\Controllers\Admin\ExpenseSubCategoryController;
-use App\Http\Controllers\Admin\IncomeCategoryController;
-use App\Http\Controllers\Admin\IncomeController;
-use App\Http\Controllers\Admin\IncomeSubCategoryController;
-use App\Http\Controllers\Admin\PayrollController;
-use App\Http\Controllers\Admin\SalesUserReportController;
-use App\Http\Controllers\Admin\SummaryReportController;
-use App\Http\Controllers\Admin\TodayReportController;
-use App\Http\Controllers\Admin\TransactionHistoryController;
 
 Route::get('/', function () {
     return redirect()->route('admin.login');
@@ -131,7 +131,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
             'expense-subcategory' => ExpenseSubCategoryController::class,
             'account'             => AccountController::class,
         ],
-        ['except' => ['show', 'create', 'edit']]
+        ['except' => ['show', 'edit']] // exclude 'show' and 'edit', but allow 'create'
     );
     Route::resources(
         [
