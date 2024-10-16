@@ -223,12 +223,6 @@
                             ],
                         ],
                         [
-                            'title' => 'Payroll',
-                            'icon' => 'fa-solid fa-comment-dollar text-info',
-                            'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
-                            'route' => 'admin.payroll.index',
-                        ],
-                        [
                             'title' => 'Clients',
                             'icon' => 'fa-solid fa-users text-info',
                             'subMenu' => [
@@ -482,7 +476,7 @@
             </ul>
         </nav>
         <div class="logout-btn-wrapper">
-            <a href="" class="btn-common-one mx-3 text-white" tabindex="0">
+            <a href="" class="-" tabindex="0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     stroke-width="2" class="h-6 w-6" width="25px" height="25px">
                     <path stroke-linecap="round" stroke-linejoin="round"

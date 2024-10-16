@@ -1,195 +1,159 @@
-<x-admin-app-layout :title="'Account Client Invoice Create'">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<x-admin-app-layout>
     <div class="app-content">
-        <div class="container-fluid mt-3">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card border-0 shadow-none">
-                        <div class="card-header p-3 bg-custom text-white border-0">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h4 class="mb-0">Invoices</h4>
-                                </div>
-                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#client_invoice">
-                                    <i class="fa-solid fa-plus pe-2"></i> Add
-                                </button>
+                <div class="col-lg-12">
+                    <div class="card mt-5">
+                        <div class="card-header p-2">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h4 class="text-gray-800">Create Client Invoice</h4>
+                                <a href="{{ route('admin.client-invoice.index') }}" class="btn-common-one text-white"
+                                    tabindex="0">
+                                    <i class="fa-solid fa-arrow-left-long pe-3"></i>
+                                    Back
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>01</th>
-                                        <th>Invoice No</th>
-                                        <th>Invoice Date</th>
-                                        <th>Subtotal</th>
-                                        <th>Transport</th>
-                                        <th>Discount</th>
-                                        <th>Tax</th>
-                                        <th>Net Total</th>
-                                        <th>Total Paid</th>
-                                        <th>Total Due</th>
-                                        <th>Status</th>
-                                        <th>Woocommerce Status</th>
-                                        <th class="text-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>AI-1</td>
-                                        <td>2nd Oct, 2024</td>
-                                        <td>Troy Walker</td>
-                                        <td>$18725.00</td>
-                                        <td>$0</td>
-                                        <td>$0</td>
-                                        <td>$1872.50</td>
-                                        <td>$20597.50</td>
-                                        <td>$15000.00</td>
-                                        <td>$5597.50</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                        <td>""</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <form method="POST" action="{{ route('admin.client-invoice.store') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="client" class="form-label">Client</label>
+                                            <x-admin.select-option id="client" name="client" :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="Walking Customer">Walking Customer</option>
+                                                <option value="Ruth Miles">Ruth Miles</option>
+                                                <option value=" Reed Montoya"> Reed Montoya</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <x-admin.label for="clientInvoiceTotal" class="form-label"> Invoice
+                                                Total</x-admin.label>
+                                            <x-admin.input type="text" :value="old('clientInvoiceTotal')" id="clientInvoiceTotal"
+                                                name="clientInvoiceTotal" required
+                                                placeholder="28836.5"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <x-admin.label for="clientTotalPaid" class="form-label"> Total
+                                                Paid</x-admin.label>
+                                            <x-admin.input type="text" :value="old('clientTotalPaid')" id="clientTotalPaid"
+                                                name="clientTotalPaid" required placeholder="35000"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <x-admin.label for="clientDue" class="form-label"> Total Due</x-admin.label>
+                                            <x-admin.input type="text" :value="old('clientDue')" id="clientDue"
+                                                name="clientDue" required placeholder="35000"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="invoice" class="form-label">Select Invoice</label>
+                                            <x-admin.select-option id="invoice" name="invoice" :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
+                                                <option value="Dutch Bangla Bank[DBBL-0003]">Dutch Bangla
+                                                    Bank[DBBL-0003]</option>
+                                                <option value="Islami Bank Bangladesh Ltd[IBBL-0002]">Islami Bank
+                                                    Bangladesh Ltd[IBBL-0002]</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <x-admin.label for="totalPayment" class="form-label"> Total
+                                                Payment</x-admin.label>
+                                            <x-admin.input type="text" :value="old('totalPayment')" id="totalPayment"
+                                                name="totalPayment" required placeholder="35000"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="subCategory" class="form-label">Account</label>
+                                            <x-admin.select-option id="subCategory" name="subCategory"
+                                                :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
+                                                <option value="Dutch Bangla Bank[DBBL-0003]">Dutch Bangla
+                                                    Bank[DBBL-0003]</option>
+                                                <option value="Islami Bank Bangladesh Ltd[IBBL-0002]">Islami Bank
+                                                    Bangladesh Ltd[IBBL-0002]</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <x-admin.label for="chequeNo" class="form-label">Cheque No
+                                                Balance</x-admin.label>
+                                            <x-admin.input type="text" :value="old('chequeNo')" id="chequeNo"
+                                                name="chequeNo" required></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <x-admin.label for="receiptNo" class="form-label">Receipt No
+                                                Balance</x-admin.label>
+                                            <x-admin.input type="text" :value="old('receiptNo')" id="receiptNo"
+                                                name="receiptNo" required></x-admin.input>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <x-admin.label for="date" class="form-label"> Date</x-admin.label>
+                                            <x-admin.input type="date" :value="old('date')" id="date"
+                                                name="date" required></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <label for="status" class="form-label">Status</label>
+                                            <x-admin.select-option id="status" name="status" :allowClear="true">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="note" class="form-label">Note</label>
+                                            <textarea class="form-control text-area-input" id="note" name="note" rows="3"
+                                                placeholder="write your note here"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- Switch for Send Email Notification -->
+                                    <div class="col-lg-12 mb-3">
+                                        <label class="form-label">Send Email Notification</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="sendEmailNotification" name="send_email_notification">
+                                            <label class="form-check-label" for="sendEmailNotification">Enable</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Switch for Send SMS Notification -->
+                                    <div class="col-lg-12 mb-3">
+                                        <label class="form-label">Send SMS Notification</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="sendSmsNotification"
+                                                name="send_sms_notification">
+                                            <label class="form-check-label" for="sendSmsNotification">Enable</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-admin.button type="submit" class="">Save Expence <i
+                                        class="fa-regular fa-floppy-disk ps-2"></i></x-admin.button>
+                            </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add New Transaction Modal -->
-    <div class="modal fade" id="client_invoice" tabindex="-1" aria-labelledby="addTransactionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addTransactionLabel">Client Invoice</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div>
-                            <x-admin.label for="client">Client *</x-admin.label>
-                            <x-admin.input type="text" id="client" name="client" value="Walking Customer"
-                                required></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="products">Select Products *</x-admin.label>
-                            <x-admin.input type="text" id="products" name="products" placeholder="Search products"
-                                required></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="discount_type">Discount Type</x-admin.label>
-                            <x-admin.select-option id="discount_type" name="discount_type">
-                                <option value="fixed">Fixed</option>
-                                <option value="percentage">Percentage</option>
-                            </x-admin.select-option>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="discount">Discount</x-admin.label>
-                            <x-admin.input type="text" id="discount" name="discount"
-                                placeholder="Enter discount"></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="invoice_tax">Invoice Tax *</x-admin.label>
-                            <x-admin.select-option id="invoice_tax" name="invoice_tax" required>
-                                <option value="VAT@0">VAT@0</option>
-                                <option value="VAT@5">VAT@5</option>
-                                <option value="VAT@10">VAT@10</option>
-                            </x-admin.select-option>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="total_tax">Total Tax</x-admin.label>
-                            <x-admin.input type="text" id="total_tax" name="total_tax" value="0"
-                                readonly></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="transport_cost">Transport Cost</x-admin.label>
-                            <x-admin.input type="text" id="transport_cost" name="transport_cost"
-                                placeholder="Enter transport cost"></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="po_reference">PO Reference</x-admin.label>
-                            <x-admin.input type="text" id="po_reference" name="po_reference"
-                                placeholder="Enter PO reference"></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="delivery_place">Delivery Place</x-admin.label>
-                            <x-admin.input type="text" id="delivery_place" name="delivery_place"
-                                placeholder="Enter a delivery place"></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="payment_terms">Payment Terms</x-admin.label>
-                            <x-admin.input type="text" id="payment_terms" name="payment_terms"
-                                placeholder="Enter payment terms"></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="date">Date</x-admin.label>
-                            <x-admin.input type="date" id="date" name="date"
-                                value="2024-10-02"></x-admin.input>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="status">Status</x-admin.label>
-                            <x-admin.select-option id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </x-admin.select-option>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="add_payment">Add Payment?</x-admin.label>
-                            <x-admin.select-option id="add_payment" name="add_payment">
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </x-admin.select-option>
-                        </div>
-
-                        <div>
-                            <x-admin.label for="note">Note</x-admin.label>
-                            <textarea id="note" name="note" placeholder="Write your note here!"></textarea>
-                        </div>
-
-                        <div>
-                            <x-admin.input type="checkbox" id="send_to_email" name="send_to_email"></x-admin.input>
-                            <x-admin.label for="send_to_email">Send To Email</x-admin.label>
-                        </div>
-
-                        <div>
-                            <x-admin.input type="checkbox" id="send_to_sms" name="send_to_sms"></x-admin.input>
-                            <x-admin.label for="send_to_sms">Send To SMS</x-admin.label>
-                        </div>
-
-                        <x-admin.button type="submit" class="btn btn-white">Edit
-                            Category</x-admin.button>
-                    </form>
-
                 </div>
             </div>
         </div>
