@@ -24,7 +24,7 @@
                                         <i class="fa-solid fa-print"></i>
                                         <span class="tooltiptext">Print</span>
                                     </button>
-                                    <a href="{{ route('admin.client-non-invoice.create') }}"
+                                    <a href="{{ route('admin.payroll.create') }}"
                                         class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
                                         <i class="fa-solid fa-plus"></i>
                                     </a>
