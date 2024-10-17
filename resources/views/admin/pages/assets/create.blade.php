@@ -6,8 +6,8 @@
                     <div class="card mt-5">
                         <div class="card-header p-2">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4 class="text-gray-800">Create Client</h4>
-                                <a href="{{ route('admin.clients.index') }}" class="btn-common-one text-white"
+                                <h4 class="text-gray-800">Create Assets</h4>
+                                <a href="{{ route('admin.assets.index') }}" class="btn-common-one text-white"
                                     tabindex="0">
                                     <i class="fa-solid fa-arrow-left-long pe-3"></i>
                                     Back
@@ -15,62 +15,57 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.clients.store') }}"
+                            <form method="POST" action="{{ route('admin.assets.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <x-admin.label for="name" class="form-label">Name</x-admin.label>
+                                            <x-admin.label for="name" class="form-label">Asset Name</x-admin.label>
                                             <x-admin.input type="text" :value="old('name')" id="name"
                                                 name="name" required></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <x-admin.label for="email" class="form-label">Email</x-admin.label>
-                                            <x-admin.input type="email" :value="old('email')" id="email"
-                                                name="email" required></x-admin.input>
+                                            <label for="assetType" class="form-label">Asset Type</label>
+                                            <x-admin.select-option id="assetType" name="assetType" :allowClear="true">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </x-admin.select-option>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <!-- form -->
-                                            <div class="form-group">
-                                                <x-admin.label for="login-mobile"
-                                                    class="font-weight-bold text-dark">Contact Number</x-admin.label>
-                                                <div class="input-group input-group-sm">
-                                                    <x-admin.input id="mobile" type="tel" name="mobile"
-                                                        :value="old('email')" class="form-control" autofocus
-                                                        required></x-admin.input>
-                                                </div>
-                                            </div>
+                                            <x-admin.label for="assetCost" class="form-label">Asset Cost</x-admin.label>
+                                            <x-admin.input type="text" :value="old('assetCost')" id="assetCost"
+                                                name="assetCost" required></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <x-admin.label for="company" class="form-label">Company
-                                                Name</x-admin.label>
-                                            <x-admin.input type="company" :value="old('company')" id="company"
-                                                name="company" required></x-admin.input>
+                                            <label for="depreciation" class="form-label">Depreciation</label>
+                                            <x-admin.select-option id="depreciation" name="depreciation"
+                                                :allowClear="true">
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="date" class="form-label">Date</x-admin.label>
+                                            <x-admin.input type="date" :value="old('date')" id="date"
+                                                name="date" required></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
                                             <x-admin.select-option id="status" name="status" :allowClear="true">
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
                                             </x-admin.select-option>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="mb-3">
-                                            <x-admin.label for="taxRegistrationNumber" class="form-label">Tax
-                                                Registration Number</x-admin.label>
-                                            <x-admin.input type="taxRegistrationNumber" :value="old('taxRegistrationNumber')"
-                                                id="taxRegistrationNumber" name="taxRegistrationNumber"
-                                                required></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -82,12 +77,12 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label for="address" class="form-label">Address</label>
-                                            <textarea class="form-control text-area-input" id="address" name="address" rows="3"></textarea>
+                                            <label for="note" class="form-label">Note</label>
+                                            <textarea class="form-control text-area-input" id="note" name="note" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <x-admin.button type="submit" class="">Create Client<i
+                                <x-admin.button type="submit" class="">Save Assets <i
                                         class="fa-regular fa-floppy-disk ps-2"></i></x-admin.button>
                             </form>
                         </div>

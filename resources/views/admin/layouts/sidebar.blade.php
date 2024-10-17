@@ -191,34 +191,27 @@
                             'title' => 'Asset Management',
                             'icon' => 'fa-solid fa-boxes-stacked text-info',
                             'routes' => [
-                                'admin.client-invoice.index',
-                                'admin.client-invoice.create',
-                                'admin.client-invoice.edit',
-                                'admin.client-non-invoice.index',
-                                'admin.client-non-invoice.create',
-                                'admin.client-non-invoice.edit',
-                                'admin.payroll.index',
-                                'admin.payroll.create',
-                                'admin.payroll.edit',
+                                'admin.assets-type.index',
+                                'admin.assets-type.create',
+                                'admin.assets-type.edit',
+                                'admin.assets.index',
+                                'admin.assets.create',
+                                'admin.assets.edit',
                             ],
                             'subMenu' => [
                                 [
                                     'title' => 'Types',
                                     'routes' => [
-                                        'admin.client-invoice.index',
-                                        'admin.client-invoice.create',
-                                        'admin.client-invoice.edit',
+                                        'admin.assets-type.index',
+                                        'admin.assets-type.create',
+                                        'admin.assets-type.edit',
                                     ],
-                                    'route' => 'admin.client-invoice.index',
+                                    'route' => 'admin.assets-type.index',
                                 ],
                                 [
                                     'title' => 'Assets',
-                                    'routes' => [
-                                        'admin.client-non-invoice.index',
-                                        'admin.client-non-invoice.create',
-                                        'admin.client-non-invoice.edit',
-                                    ],
-                                    'route' => 'admin.client-non-invoice.index',
+                                    'routes' => ['admin.assets.index', 'admin.assets.create', 'admin.assets.edit'],
+                                    'route' => 'admin.assets.index',
                                 ],
                             ],
                         ],
@@ -476,7 +469,7 @@
             </ul>
         </nav>
         <div class="logout-btn-wrapper">
-            <a href="" class="-" tabindex="0">
+            <a href="" class="btn-common-one mx-3 text-white" tabindex="0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     stroke-width="2" class="h-6 w-6" width="25px" height="25px">
                     <path stroke-linecap="round" stroke-linejoin="round"

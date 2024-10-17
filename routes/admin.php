@@ -11,6 +11,7 @@ use App\Http\Controllers\DealBannerController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\AssetsController;
 use App\Http\Controllers\Admin\IncomeController;
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\AccountController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CatalogueController;
+use App\Http\Controllers\Admin\AssetsTypeController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\PageBannerController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -130,6 +132,8 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
             'expense-category'    => ExpenseCategoryController::class,
             'expense-subcategory' => ExpenseSubCategoryController::class,
             'account'             => AccountController::class,
+            'assets'              => AssetsController::class,
+            'assets-type'         => AssetsTypeController::class,
         ],
         ['except' => ['show', 'edit']] // exclude 'show' and 'edit', but allow 'create'
     );

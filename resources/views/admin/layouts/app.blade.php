@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/icons/bootstrap-icons@1.11.0.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/css/intlTelInput.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/apexcharts.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/jsvectormap.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.css') }}">
@@ -101,6 +102,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/intlTelInput.min.js"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
     <script>
         var preloader = document.getElementById('loading');

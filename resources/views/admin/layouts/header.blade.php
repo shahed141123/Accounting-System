@@ -24,7 +24,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link pe-2" data-bs-toggle="dropdown" href="#">
                     <i class="fa-regular fa-comment"></i>
-                    <span class="navbar-badge badge text-bg-danger rounded-circle" style="margin-top: 20px;">3</span>
+                    {{-- <span class="navbar-badge badge text-bg-danger rounded-circle" style="margin-top: 20px;">3</span> --}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <a href="#" class="dropdown-item">
@@ -52,10 +52,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link pe-2" data-bs-toggle="dropdown" href="#">
                     <i class="fa-regular fa-bell"></i>
-                    <span class="navbar-badge badge text-bg-warning rounded-circle" style="margin-top: 20px;">15</span>
+                    {{-- <span class="navbar-badge badge text-bg-warning rounded-circle" style="margin-top: 20px;">15</span> --}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    {{-- <span class="dropdown-item dropdown-header">15 Notifications</span> --}}
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
                         <i class="fa-solid fa-envelope me-2"></i> 4 new messages
@@ -70,41 +70,33 @@
                 </a>
             </li>
             <li class="nav-item dropdown user-menu">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img class="img-fluid users-img" src="{{ asset('images/user.jpg') }}" class="user-image rounded-circle shadow"
-                        alt="User Image" />
+                <a href="#" class="nav-link dropdown-toggle user-top-icons" data-bs-toggle="dropdown">
+                    <img class="img-fluid users-img" src="{{ asset('images/user.jpg') }}"
+                        class="user-image rounded-circle shadow" alt="User Image" />
                     <span class="d-none d-md-inline">{{ Auth::guard('admin')->user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                    <li class="user-header text-bg-primary">
-                        <img src="{{ asset('images/user.jpg') }}" class="rounded-circle shadow users-img" alt="User Image" />
+                    <li class="user-header">
+                        <img src="{{ asset('images/user.jpg') }}" class="rounded-circle shadow users-img"
+                            alt="User Image" />
                         <p>
                             {{ Auth::guard('admin')->user()->name }}
                             <small>Member since {{ Auth::guard('admin')->user()->created_at->format('M , Y') }}</small>
                         </p>
                         <p>
-                            <a
-                                href="mailto:{{ Auth::guard('admin')->user()->email }}">{{ Auth::guard('admin')->user()->email }}</a>
+                            <small> <a class="user-email"
+                                href="mailto:{{ Auth::guard('admin')->user()->email }}">{{ Auth::guard('admin')->user()->email }}</a></small>
                         </p>
                     </li>
-                    {{-- <li class="user-body">
-                        <div class="row">
-                            <div class="col-4 text-center">
-                                <a href="#">Followers</a>
-                            </div>
-                            <div class="col-4 text-center"><a href="#">Sales</a></div>
-                            <div class="col-4 text-center"><a href="#">Friends</a></div>
-                        </div>
-                    </li> --}}
-                    <li class="user-footer">
-                        <a href="{{ route('admin.profile.edit') }}" class="btn btn-default btn-flat">My
+                    <li class="user-footer mx-auto">
+                        <a href="{{ route('admin.profile.edit') }}" class="btn-common-one btn-sm"><i class="fa-solid fa-user pe-2"></i>
                             Profile</a>
                         <form method="POST" action="{{ route('admin.logout') }}">
                             @csrf
                             <a href="{{ route('admin.logout') }}"
                                 onclick="event.preventDefault();
                                     this.closest('form').submit();"
-                                class="btn btn-default btn-flat float-end"> {{ __('Sign Out') }}
+                                class="btn-common-one float-end"><i class="fa-solid fa-arrow-right-from-bracket pe-2"></i> {{ __('Sign Out') }}
                             </a>
                         </form>
                     </li>

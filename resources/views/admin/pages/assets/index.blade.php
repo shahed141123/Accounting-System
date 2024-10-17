@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Clients'">
+<x-admin-app-layout :title="'Accounts List'">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <div class="app-content">
         <div class="container-fluid mt-3">
@@ -8,7 +8,7 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Mange Clients</h4>
+                                    <h4 class="mb-0">Mange Assets</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                     <button type="button" class="btn btn-outline-light toltip"
@@ -24,7 +24,7 @@
                                         <i class="fa-solid fa-print"></i>
                                         <span class="tooltiptext">Print</span>
                                     </button>
-                                    <a href="{{ route('admin.clients.create') }}" class="btn btn-outline-light toltip"
+                                    <a href="{{ route('admin.assets.create') }}" class="btn btn-outline-light toltip"
                                         data-tooltip="Create New"> Create
                                         <i class="fa-solid fa-plus"></i>
                                     </a>
@@ -45,11 +45,11 @@
                                         <tr>
                                             <th width="5%" class="text-center">Sl</th>
                                             <th width="5%" class="text-center">Image</th>
-                                            <th width="15%" class="text-center">Client ID</th>
-                                            <th width="15%" class="text-center">Name</th>
-                                            <th width="15%" class="text-center">Contact Number</th>
-                                            <th width="15%" class="text-center">Email</th>
-                                            <th width="15%" class="text-center">Company Name</th>
+                                            <th width="20%" class="text-center">Asset Name</th>
+                                            <th width="15%" class="text-center">Asset Type</th>
+                                            <th width="15%" class="text-center">Asset Cost</th>
+                                            <th width="15%" class="text-center">Current Value</th>
+                                            <th width="10%" class="text-center">Created At</th>
                                             <th width="5%" class="text-center">Status</th>
                                             <th width="10%" class="text-end">Action</th>
                                         </tr>
@@ -59,15 +59,15 @@
                                             <td class="text-center">1</td>
                                             <td class="text-center">
                                                 <div>
-                                                    <img width="50px" src="{{ asset('images/user.jpg') }}"
+                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
                                                         alt="">
                                                 </div>
                                             </td>
-                                            <td class="text-center">AC-5</td>
-                                            <td class="text-center">Troy Walker</td>
-                                            <td class="text-center">+1 (642) 971-4148</td>
-                                            <td class="text-center">namygyjyxe@mailinator.com</td>
-                                            <td class="text-center">Velasquez Plc</td>
+                                            <td class="text-center">Work Station</td>
+                                            <td class="text-center">Furniture</td>
+                                            <td class="text-center">$50000.00</td>
+                                            <td class="text-center">$50000.00</td>
+                                            <td class="text-center">17th Oct, 2024</td>
                                             <td class="text-center">
                                                 <span class="badge bg-success">
                                                     Active</span>
@@ -92,18 +92,18 @@
                                             <td class="text-center">2</td>
                                             <td class="text-center">
                                                 <div>
-                                                    <img width="50px" src="{{ asset('images/user.jpg') }}"
+                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
                                                         alt="">
                                                 </div>
                                             </td>
-                                            <td class="text-center">AC-5</td>
-                                            <td class="text-center">Troy Walker</td>
-                                            <td class="text-center">+1 (642) 971-4148</td>
-                                            <td class="text-center">namygyjyxe@mailinator.com</td>
-                                            <td class="text-center">Velasquez Plc</td>
+                                            <td class="text-center">Office Rent Advance</td>
+                                            <td class="text-center">Advance Payment</td>
+                                            <td class="text-center">$200000.00</td>
+                                            <td class="text-center">$200000.00</td>
+                                            <td class="text-center">17th Oct, 2024</td>
                                             <td class="text-center">
-                                                <span class="badge bg-warning">
-                                                    Inctive</span>
+                                                <span class="badge bg-success">
+                                                    Active</span>
                                             </td>
                                             <td class="text-end">
                                                 <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"

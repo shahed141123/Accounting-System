@@ -8,7 +8,7 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Mange Users</h4>
+                                    <h4 class="mb-0">Mange Assets Types</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                     <button type="button" class="btn btn-outline-light toltip"
@@ -24,7 +24,7 @@
                                         <i class="fa-solid fa-print"></i>
                                         <span class="tooltiptext">Print</span>
                                     </button>
-                                    <a href="{{ route('admin.user.create') }}"
+                                    <a href="{{ route('admin.assets-type.create') }}"
                                         class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
                                         <i class="fa-solid fa-plus"></i>
                                     </a>

@@ -1,5 +1,5 @@
-<ul class="nav nav-tabs nav-pills flex-row border-0 flex-md-column mb-3 mb-md-0 fs-6 w-100 pb-3" role="tablist">
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+<ul class="nav nav-tabs nav-pills flex-row border-0 flex-md-column w-100" role="tablist">
+    <li class="nav-item w-100 me-0" role="presentation">
         <a class="nav-link active w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab"
             href="#generalInfo" aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -36,7 +36,7 @@
             <span class="ps-2">General Information</span>
         </a>
     </li>
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#footer"
             aria-selected="false" role="tab" tabindex="-1">
             <i class="fas fa-duotone"></i>
@@ -44,7 +44,7 @@
         </a>
     </li>
 
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#businessHours"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -115,7 +115,7 @@
             <span class="ps-2">Business Hours</span>
         </a>
     </li>
-    {{-- <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    {{-- <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#companies"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -212,7 +212,7 @@
             <span class="ps-2">Companies</span>
         </a>
     </li>
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#services"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -325,7 +325,7 @@
             <span class="ps-2">Services</span>
         </a>
     </li> --}}
-    {{-- <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    {{-- <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#banner"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -366,7 +366,7 @@
             <span class="ps-2">Welcome Notice</span>
         </a>
     </li> --}}
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#seo"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -491,7 +491,7 @@
             </svg>
             <span class="ps-2">Seo</span></a>
     </li>
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab"
             href="#socialLinks" aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -552,7 +552,7 @@
             </svg>
             <span class="ps-2">Social links - Website</span></a>
     </li>
-    <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#advance"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -685,7 +685,7 @@
             </svg>
             <span class="ps-2">Advanced</span></a>
     </li>
-    {{-- <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    {{-- <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#privacy"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -739,7 +739,7 @@
             </svg>
             <span class="ps-2"> Privacy Policy</span></a>
     </li> --}}
-    {{-- <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    {{-- <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#terms"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -768,7 +768,7 @@
             <span class="ps-2">Terms & Condition</span>
         </a>
     </li> --}}
-    {{-- <li class="nav-item w-100 me-0 mb-md-2" role="presentation">
+    {{-- <li class="nav-item w-100 " role="presentation">
         <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#fonts"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"

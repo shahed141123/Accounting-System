@@ -36,8 +36,8 @@ class EmailSettingController extends Controller
                 ->addColumn('action', function ($row) {
                     $editUrl = route('admin.email-settings.edit', [$row->id]);
                     $deleteUrl = route('admin.email-settings.destroy', [$row->id]);
-                    return '<a href="' . $editUrl . '" class="text-primary"><i class="fas fa-pen text-primary"></i></a>' .
-                        '<a href="' . $deleteUrl . '" class="text-danger ms-4 delete"><i class="fas fa-trash-alt text-danger"></i></a>';
+                    return '<a href="' . $editUrl . '" class="btn btn-sm btn-primary toltip me-1" data-tooltip="Edit"><i class="fa-solid fa-pen"></i></a>' .
+                        '<a href="' . $deleteUrl . '" class="btn btn-sm btn-danger toltip delete" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>';
                 })
                 ->rawColumns(['action', 'checkbox'])
                 ->make(true);
