@@ -326,31 +326,38 @@ $(document).ready(function () {
         });
 });
 
-
-
 $(function () {
     var code = "+19876543210"; // Assigning value from model.
-    $('#mobile').val(code);
-    $('#mobile').intlTelInput({
+    $("#mobile").val(code);
+    $("#mobile").intlTelInput({
         autoHideDialCode: true,
         autoPlaceholder: "ON",
         dropdownContainer: document.body,
         formatOnDisplay: true,
-       // hiddenInput: "full_number",
+        // hiddenInput: "full_number",
         initialCountry: "us",
-      //  nationalMode: true,
+        //  nationalMode: true,
         placeholderNumberType: "MOBILE",
-        preferredCountries: ['us','gb','in'],
-        separateDialCode: true
+        preferredCountries: ["us", "gb", "in"],
+        separateDialCode: true,
     });
-    $('#btn-submit').on('click', function () {
+    $("#btn-submit").on("click", function () {
         var code = $("#mobile").intlTelInput("getSelectedCountryData").dialCode;
-        var phoneNumber = $('#mobile').val();
-      //  $('#mobile').val(code+phoneNumber);
+        var phoneNumber = $("#mobile").val();
+        //  $('#mobile').val(code+phoneNumber);
         //  alert('Country Code : ' + code + '\nPhone Number : ' + phoneNumber );
         document.getElementById("code").innerHTML = code;
         document.getElementById("mobile-number").innerHTML = phoneNumber;
     });
 });
+// Print this div
 
+function printTable() {
+    var printContents = document.querySelector(".printBody").innerHTML;
+    var originalContents = document.body.innerHTML;
 
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+// Print this div

@@ -237,23 +237,23 @@
                                 ],
                             ],
                         ],
-                        [
-                            'title' => 'Customer Support',
-                            'icon' => 'fa-solid fa-headset text-info',
-                            'routes' => ['admin.contacts.index', 'admin.newsletters.index'],
-                            'subMenu' => [
-                                [
-                                    'title' => 'Contact Messages',
-                                    'routes' => ['admin.contacts.index'],
-                                    'route' => 'admin.contacts.index',
-                                ],
-                                [
-                                    'title' => 'Subscribed Emails List',
-                                    'routes' => ['admin.newsletters.index'],
-                                    'route' => 'admin.newsletters.index',
-                                ],
-                            ],
-                        ],
+                        // [
+                        //     'title' => 'Customer Support',
+                        //     'icon' => 'fa-solid fa-headset text-info',
+                        //     'routes' => ['admin.contacts.index', 'admin.newsletters.index'],
+                        //     'subMenu' => [
+                        //         [
+                        //             'title' => 'Contact Messages',
+                        //             'routes' => ['admin.contacts.index'],
+                        //             'route' => 'admin.contacts.index',
+                        //         ],
+                        //         [
+                        //             'title' => 'Subscribed Emails List',
+                        //             'routes' => ['admin.newsletters.index'],
+                        //             'route' => 'admin.newsletters.index',
+                        //         ],
+                        //     ],
+                        // ],
                         [
                             'title' => 'Reports',
                             'icon' => 'fa-solid fa-file text-info',

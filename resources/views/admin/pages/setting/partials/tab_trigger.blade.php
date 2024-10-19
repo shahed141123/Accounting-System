@@ -37,7 +37,7 @@
         </a>
     </li>
     <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#footer"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#footer"
             aria-selected="false" role="tab" tabindex="-1">
             <i class="fas fa-duotone"></i>
             <span class="ps-2">Footer Section</span>
@@ -45,7 +45,7 @@
     </li>
 
     <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#businessHours"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#businessHours"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 512 512"
@@ -116,7 +116,7 @@
         </a>
     </li>
     {{-- <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#companies"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#companies"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 68 68"
@@ -213,7 +213,7 @@
         </a>
     </li>
     <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#services"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#services"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 66 66"
@@ -326,7 +326,7 @@
         </a>
     </li> --}}
     {{-- <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#banner"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#banner"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 512 512"
@@ -367,7 +367,7 @@
         </a>
     </li> --}}
     <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#seo"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#seo"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 512 512"
@@ -492,7 +492,7 @@
             <span class="ps-2">Seo</span></a>
     </li>
     <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab"
             href="#socialLinks" aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 511 512"
@@ -553,7 +553,7 @@
             <span class="ps-2">Social links - Website</span></a>
     </li>
     <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#advance"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#advance"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 512 512"
@@ -686,7 +686,7 @@
             <span class="ps-2">Advanced</span></a>
     </li>
     {{-- <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#privacy"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#privacy"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 512 512"
@@ -740,7 +740,7 @@
             <span class="ps-2"> Privacy Policy</span></a>
     </li> --}}
     {{-- <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#terms"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#terms"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 512 512"
@@ -769,7 +769,7 @@
         </a>
     </li> --}}
     {{-- <li class="nav-item w-100 " role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#fonts"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#fonts"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 510 510"
@@ -904,7 +904,7 @@
     </li>
 
     <li class="nav-item w-100 me-0" role="presentation">
-        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal" data-bs-toggle="tab" href="#setting"
+        <a class="nav-link w-100 btn btn-flex btn-active-info fs-6 fw-normal text-start text-black" data-bs-toggle="tab" href="#setting"
             aria-selected="false" role="tab" tabindex="-1">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="20" height="20" x="0" y="0" viewBox="0 0 512 512"
