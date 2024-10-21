@@ -39,7 +39,11 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('admin/assets/css/overlayscrollbars.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/icons/bootstrap-icons@1.11.0.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('admin/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/css/intlTelInput.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/apexcharts.css') }}">
@@ -84,8 +88,10 @@
     </div>
 
     <!-- JavaScript Files -->
+    <script src="{{ asset('admin/assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
     {{-- <script src="{{ asset('admin/assets/js/overlayscrollbars.js') }}"></script> --}}
+    <script src="{{ asset('admin/assets/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/sortable.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/jsvectormap.min.js') }}"></script>
@@ -94,12 +100,13 @@
     <script src="{{ asset('admin/assets/js/alpinejs@3.x.x.js') }}"></script>
     <script src="{{ asset('admin/assets/js/html2pdf.js') }}"></script>
     <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('admin/assets/js/fontawesome6.js') }}"></script>
     <script src="{{ asset('admin/assets/js/adminlte.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+    <!-- Select2 -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/intlTelInput.min.js"></script>
@@ -110,6 +117,31 @@
         function myFunction() {
             preloader.style.display = "none";
         }
+        $(document).ready(function() {
+            // $('.select2').select2()
+            var allowClear = $(this).data("allow-clear") === "true"; // Read data attribute
+
+            $('.select2').select2({
+                allowClear: allowClear, // Use the parsed allowClear value
+                width: "100%",
+                placeholder: "Select an option",
+            });
+
+            $('.modal').on('shown.bs.modal', function() {
+                $('.select2').select2({
+                    allowClear: allowClear,
+                    width: "100%",
+                    placeholder: "Select an option",
+                    dropdownParent: $(this),
+                });
+            });
+
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+        })
     </script>
 
     @include('toastr')
@@ -123,18 +155,18 @@
         };
         document.addEventListener("DOMContentLoaded", function() {
             const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-            if (
-                sidebarWrapper &&
-                typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
-            ) {
-                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-                    scrollbars: {
-                        theme: Default.scrollbarTheme,
-                        autoHide: Default.scrollbarAutoHide,
-                        clickScroll: Default.scrollbarClickScroll
-                    }
-                });
-            }
+            // if (
+            //     sidebarWrapper &&
+            //     typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
+            // ) {
+            //     OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+            //         scrollbars: {
+            //             theme: Default.scrollbarTheme,
+            //             autoHide: Default.scrollbarAutoHide,
+            //             clickScroll: Default.scrollbarClickScroll
+            //         }
+            //     });
+            // }
         });
     </script>
     <script>
@@ -268,52 +300,7 @@
         $(document).ready(function() {
             new DataTableInitializer('.my-datatable');
         });
-        // Modal js
-        // Make the DIV element draggable:
-        // var element = document.querySelector('.modal');
-        // dragElement(element);
 
-        // function dragElement(elmnt) {
-        //     var pos1 = 0,
-        //         pos2 = 0,
-        //         pos3 = 0,
-        //         pos4 = 0;
-        //     if (elmnt.querySelector('.modal-content')) {
-        //         // if present, the header is where you move the DIV from:
-        //         elmnt.querySelector('.modal-content').onmousedown = dragMouseDown;
-        //     } else {
-        //         // otherwise, move the DIV from anywhere inside the DIV:
-        //         elmnt.onmousedown = dragMouseDown;
-        //     }
-
-        //     function dragMouseDown(e) {
-        //         e = e || window.event;
-        //         // get the mouse cursor position at startup:
-        //         pos3 = e.clientX;
-        //         pos4 = e.clientY;
-        //         document.onmouseup = closeDragElement;
-        //         // call a function whenever the cursor moves:
-        //         document.onmousemove = elementDrag;
-        //     }
-
-        //     function elementDrag(e) {
-        //         e = e || window.event;
-        //         // calculate the new cursor position:
-        //         pos1 = pos3 - e.clientX;
-        //         pos2 = pos4 - e.clientY;
-        //         pos3 = e.clientX;
-        //         pos4 = e.clientY;
-        //         // set the element's new position:
-        //         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        //         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        //     }
-
-        //     function closeDragElement() {
-        //         // stop moving when mouse button is released:
-        //         document.onmouseup = null;
-        //         document.onmousemove = null;
-        //     }
-        // }
     </script>
     <script>
         @if (Session::has('message'))
@@ -358,7 +345,7 @@
             $('.datatable').DataTable();
             $('#addModal').modal('hide');
             // Reset form
-            $('#addEntryForm')[0].reset();
+            // $('#addEntryForm')[0].reset();
         });
     </script>
     <script>
@@ -397,10 +384,7 @@
             });
         });
     </script>
-    <script>
-        // Example of potential draggable code
-        $(".modal").draggable(); // Remove or comment this line
-    </script>
+
 </body>
 
 </html>

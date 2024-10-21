@@ -55,68 +55,40 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                                <div>
-                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
-                                                        alt="">
-                                                </div>
-                                            </td>
-                                            <td class="text-center">Dutch Bangla Bank</td>
-                                            <td class="text-center">Mirpur</td>
-                                            <td class="text-center">DBBL-0003</td>
-                                            <td class="text-center">$195531.58</td>
-                                            <td class="text-center">17th Oct, 2024</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-danger">
-                                                    inactive</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn-sm btn-warning text-white toltip"
-                                                    data-tooltip="Transection">
-                                                    <i class="fa-solid fa-handshake-angle"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">
-                                                <div>
-                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
-                                                        alt="">
-                                                </div>
-                                            </td>
-                                            <td class="text-center">Islami Bank Bangladesh Ltd</td>
-                                            <td class="text-center">Mirpur</td>
-                                            <td class="text-center">IBBL-0002</td>
-                                            <td class="text-center">$162700.00</td>
-                                            <td class="text-center">17th Oct, 2024</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">
-                                                    Active</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn-sm btn-warning text-white toltip"
-                                                    data-tooltip="Transection">
-                                                    <i class="fa-solid fa-handshake-angle"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($accounts as $account)
+                                            <tr>
+                                                <td class="text-center">1</td>
+                                                <td class="text-center">
+                                                    <div>
+                                                        <img width="50px" src="{{ getImageUrl($account->image) }}"
+                                                            alt="">
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">{{ $account->bank_name }}</td>
+                                                <td class="text-center">{{ $account->branch_name }}</td>
+                                                <td class="text-center">{{ $account->account_number }}</td>
+                                                <td class="text-center">{{ $account->availableBalance() }}</td>
+                                                <td class="text-center">{{ $account->date }}</td>
+                                                <td class="text-center">
+                                                    <span class="badge {{ $account->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $account->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="{{ route('admin.account.edit',$account->slug) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)"
+                                                        class="btn btn-sm btn-warning text-white toltip"
+                                                        data-tooltip="Transaction">
+                                                        <i class="fa-solid fa-handshake-angle"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.account.destroy',$account->id) }}" class="btn btn-sm btn-danger delete">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

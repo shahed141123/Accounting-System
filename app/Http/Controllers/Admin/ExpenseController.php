@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 
+use App\Models\Expense;
 use Illuminate\Http\Request;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
@@ -33,14 +34,14 @@ class ExpenseController extends Controller
     {
         // validate request
         $this->validate($request, [
-            'reason' => 'required|string|max:255',
-            'subCategory' => 'required',
-            'account' => 'required',
-            'amount' => 'required|numeric|max:' . $request->availableBalance,
-            'chequeNo' => 'nullable|string|max:255',
-            'voucherNo' => 'nullable|string|max:255',
-            'date' => 'nullable|date_format:Y-m-d',
-            'note' => 'nullable|string|max:255',
+            'reason'        => 'required|string|max:255',
+            'subCategory'   => 'required',
+            'account'       => 'required',
+            'amount'        => 'required|numeric|max:' . $request->availableBalance,
+            'chequeNo'      => 'nullable|string|max:255',
+            'voucherNo'     => 'nullable|string|max:255',
+            'date'          => 'nullable|date_format:Y-m-d',
+            'note'          => 'nullable|string|max:255',
         ]);
         try {
             // upload thumbnail and set the name
@@ -64,27 +65,27 @@ class ExpenseController extends Controller
 
             // store transaction
             $transaction = AccountTransaction::create([
-                'account_id' => $request->account['id'],
-                'amount' => $request->amount,
-                'reason' => $reason,
-                'type' => 0,
+                'account_id'       => $request->account['id'],
+                'amount'           => $request->amount,
+                'reason'           => $reason,
+                'type'             => 0,
                 'transaction_date' => $request->date,
-                'cheque_no' => $request->chequeNo,
-                'receipt_no' => $request->voucherNo,
-                'created_by' => $userId,
-                'status' => $request->status,
+                'cheque_no'        => $request->chequeNo,
+                'receipt_no'       => $request->voucherNo,
+                'created_by'       => $userId,
+                'status'           => $request->status,
             ]);
 
             // create expense
             Expense::create([
-                'reason' => $request->reason,
-                'sub_cat_id' => $request->subCategory['id'],
+                'reason'         => $request->reason,
+                'sub_cat_id'     => $request->subCategory['id'],
                 'transaction_id' => $transaction->id,
-                'date' => $request->date,
-                'created_by' => $userId,
-                'note' => clean($request->note),
-                'image_path' => $imageName,
-                'status' => $request->status,
+                'date'           => $request->date,
+                'created_by'     => $userId,
+                'note'           => $request->note,
+                'image'          => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+                'status'         => $request->status,
             ]);
 
             return $this->responseWithSuccess('Expense added successfully');

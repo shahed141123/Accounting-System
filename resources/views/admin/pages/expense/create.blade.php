@@ -40,10 +40,10 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="subCategory" class="form-label">Account</label>
-                                            <x-admin.select-option id="subCategory" name="subCategory"
+                                            <label for="account_id" class="form-label">Account</label>
+                                            <x-admin.select-option id="account_id" name="account_id"
                                                 :allowClear="true">
-                                                <option value="">-- Select Category --</option>
+                                                <option value="">-- Select Account --</option>
                                                 <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
                                                 <option value="Dutch Bangla Bank[DBBL-0003]">Dutch Bangla
                                                     Bank[DBBL-0003]</option>

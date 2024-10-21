@@ -19,42 +19,42 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="mb-3">
                                             <x-admin.label for="bankName" class="form-label">Bank Name</x-admin.label>
-                                            <x-admin.input type="text" :value="old('bankName')" id="bankName"
-                                                name="bankName" required></x-admin.input>
+                                            <x-admin.input type="text" :value="old('bank_name')" id="bankName"
+                                                name="bank_name" required></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <x-admin.label for="branchName" class="form-label">Branch
                                                 Name</x-admin.label>
-                                            <x-admin.input type="text" :value="old('branchName')" id="branchName"
-                                                name="branchName" required></x-admin.input>
+                                            <x-admin.input type="text" :value="old('branch_name')" id="branchName"
+                                                name="branch_name" required></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <x-admin.label for="accountNumber" class="form-label">Account
                                                 Number</x-admin.label>
-                                            <x-admin.input type="text" :value="old('accountNumber')" id="accountNumber"
-                                                name="accountNumber" required></x-admin.input>
+                                            <x-admin.input type="text" :value="old('account_number')" id="accountNumber"
+                                                name="account_number" required></x-admin.input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    {{-- <div class="col-lg-6">
                                         <div class="mb-3">
                                             <x-admin.label for="accountNumber" class="form-label">Account
                                                 Number</x-admin.label>
                                             <x-admin.input type="text" :value="old('accountNumber')" id="accountNumber"
                                                 name="accountNumber" required></x-admin.input>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <x-admin.label for="date" class="form-label"> Image</x-admin.label>
-                                            <x-admin.input type="file" :value="old('image')" id="image"
-                                                name="image" required></x-admin.input>
+                                            <x-admin.label for="image" class="form-label"> Image</x-admin.label>
+                                            <x-admin.file-input type="file" :value="old('image')" id="image"
+                                                name="image" required></x-admin.file-input>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -77,7 +77,7 @@
                                         <div class="mb-3">
                                             <label for="note" class="form-label">Note</label>
                                             <textarea class="form-control text-area-input" id="note" name="note" rows="3"
-                                                placeholder="write your note here"></textarea>
+                                                placeholder="write your note here">{{ old("note") }}</textarea>
                                         </div>
                                     </div>
                                 </div>

@@ -296,35 +296,66 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //   Select 2
-$(document).ready(function () {
-    $(".select-with-search").each(function () {
-        var allowClear = $(this).data("allow-clear") === "true"; // Read data attribute
+// $(document).ready(function () {
+//     $(".select-with-search").each(function () {
+//         var allowClear = $(this).data("allow-clear") === "true"; // Read data attribute
 
-        $(this).select2({
-            allowClear: allowClear, // Use the parsed allowClear value
-            width: "100%",
-            placeholder: "Select an option",
-        });
+//         $(this).select2({
+//             allowClear: allowClear, // Use the parsed allowClear value
+//             width: "100%",
+//             placeholder: "Select an option",
+//         });
 
-        // Set the default icon on load
-        $(".select2-selection__arrow").html(
-            '<i class="fa-solid fa-chevron-down custom-icon"></i>'
-        ); // Show down icon initially
-    });
+//         // Set the default icon on load
+//         $(".select2-selection__arrow").html(
+//             '<i class="fa-solid fa-chevron-down custom-icon"></i>'
+//         ); // Show down icon initially
+//     });
 
-    // Change the icon when the Select2 dropdown is opened or closed
-    $(".select-with-search")
-        .on("select2:open", function () {
-            $(".select2-selection__arrow").html(
-                '<i class="fa-solid fa-chevron-up custom-icon"></i>'
-            ); // Show up icon when open
-        })
-        .on("select2:close", function () {
-            $(".select2-selection__arrow").html(
-                '<i class="fa-solid fa-chevron-down custom-icon"></i>'
-            ); // Show down icon when closed
-        });
-});
+//     // Change the icon when the Select2 dropdown is opened or closed
+//     $(".select-with-search")
+//         .on("select2:open", function () {
+//             $(".select2-selection__arrow").html(
+//                 '<i class="fa-solid fa-chevron-up custom-icon"></i>'
+//             ); // Show up icon when open
+//         })
+//         .on("select2:close", function () {
+//             $(".select2-selection__arrow").html(
+//                 '<i class="fa-solid fa-chevron-down custom-icon"></i>'
+//             ); // Show down icon when closed
+//         });
+// });
+
+// $(document).ready(function () {
+//     $('.modal').on('shown.bs.modal', function () {
+//         $(".select-with-search").each(function () {
+//             var allowClear = $(this).data("allow-clear") === "true";
+
+//             $(this).select2({
+//                 allowClear: allowClear,
+//                 width: "100%",
+//                 placeholder: "Select an option",
+//             });
+
+//             // Set the default icon on load
+//             $(".select2-selection__arrow").html(
+//                 '<i class="fa-solid fa-chevron-down custom-icon"></i>'
+//             );
+//         });
+
+//         // Change the icon when the Select2 dropdown is opened or closed
+//         $(".select-with-search").on("select2:open", function () {
+//             $(".select2-selection__arrow").html(
+//                 '<i class="fa-solid fa-chevron-up custom-icon"></i>'
+//             ); // Show up icon when open
+//         }).on("select2:close", function () {
+//             $(".select2-selection__arrow").html(
+//                 '<i class="fa-solid fa-chevron-down custom-icon"></i>'
+//             ); // Show down icon when closed
+//         });
+//     });
+// });
+
 
 $(function () {
     var code = "+19876543210"; // Assigning value from model.

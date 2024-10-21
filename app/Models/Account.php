@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Account extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
+
+    protected $slugSourceColumn = 'bank_name';
 
 
     /**
@@ -18,7 +21,7 @@ class Account extends Model
     protected $guarded = [];
 
     protected $appends = ['available_balance'];
-    
+
     public function getAvailableBalanceAttribute()
     {
         return $this->availableBalance();
@@ -61,11 +64,11 @@ class Account extends Model
      */
     public function addUser()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(Admin::class, 'created_by');
     }
 
     public function updateUser()
     {
-        return $this->belongsTo(User::class, 'updated_by');
+        return $this->belongsTo(Admin::class, 'updated_by');
     }
 }

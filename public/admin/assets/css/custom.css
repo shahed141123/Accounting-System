@@ -11,6 +11,7 @@ p {
     margin: 0;
     font-size: 14px;
 }
+
 h1,
 h2,
 h3,
@@ -25,10 +26,12 @@ h6 {
     padding: 0 0.5rem;
     background-color: white;
 }
+
 .app-content {
     padding: 0 0.5rem;
     background-color: white;
 }
+
 .main-header {
     border-bottom: 1px solid #eee;
 }
@@ -41,17 +44,20 @@ th {
 .table {
     border-color: #eee !important;
 }
+
 .table.dataTable thead .sorting {
     background-image: none !important;
 }
-table.dataTable > thead .sorting:before,
-table.dataTable > thead .sorting_asc:before,
-table.dataTable > thead .sorting_desc:before,
-table.dataTable > thead .sorting_asc_disabled:before,
-table.dataTable > thead .sorting_desc_disabled:before {
+
+table.dataTable>thead .sorting:before,
+table.dataTable>thead .sorting_asc:before,
+table.dataTable>thead .sorting_desc:before,
+table.dataTable>thead .sorting_asc_disabled:before,
+table.dataTable>thead .sorting_desc_disabled:before {
     right: 1.3em !important;
     content: "↑";
 }
+
 td {
     vertical-align: middle;
 }
@@ -68,20 +74,24 @@ label {
     background-color: white !important;
     color: #2486d0 !important;
 }
+
 .sidebar-expand-lg.layout-fixed .app-sidebar {
     border: 1px solid white;
     border-right: 1px solid #eee;
 }
+
 .app-footer {
     border: 1px solid #eee;
     text-align: end;
 }
+
 .sidebar-toggler-btn {
     border-radius: 5px;
     background-color: #2486d0;
     color: white;
     margin-right: 30px;
 }
+
 .sidebar-toggler-btn:hover {
     border-radius: 5px;
     background-color: #2486d0;
@@ -96,10 +106,12 @@ label {
     color: white;
     margin-right: 30px;
 }
+
 .nav-link.active {
     color: white !important;
     background-color: #2486d0 !important;
 }
+
 .nav-link.active p,
 .nav-link.active i {
     color: white !important;
@@ -107,7 +119,8 @@ label {
 
 .app-sidebar {
     position: relative;
-    height: 100vh; /* Ensure full height of the sidebar */
+    height: 100vh;
+    /* Ensure full height of the sidebar */
     display: flex;
     flex-direction: column;
 }
@@ -131,6 +144,7 @@ table.dataTable tbody td {
     padding: 8px 10px;
     font-size: 14px;
 }
+
 table.dataTable thead th,
 table.dataTable thead td {
     padding: 10px 18px;
@@ -144,18 +158,14 @@ table.dataTable thead td {
     color: white !important;
     border: 0px solid #979797 !important;
     background-color: white;
-    background: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0%, #2486d0),
-        color-stop(100%, #2486d0)
-    ) !important;
-    background: -webkit-linear-gradient(
-        top,
-        #2486d0 0%,
-        #2486d0 100%
-    ) !important;
+    background: -webkit-gradient(linear,
+            left top,
+            left bottom,
+            color-stop(0%, #2486d0),
+            color-stop(100%, #2486d0)) !important;
+    background: -webkit-linear-gradient(top,
+            #2486d0 0%,
+            #2486d0 100%) !important;
     background: -moz-linear-gradient(top, #2486d0 0%, #2486d0 100%) !important;
     background: -ms-linear-gradient(top, #2486d0 0%, #2486d0 100%) !important;
     background: -o-linear-gradient(top, #2486d0 0%, #2486d0 100%) !important;
@@ -174,11 +184,13 @@ table.dataTable thead td {
     -webkit-transition: none;
     transition: none;
 }
+
 .no-preview-sm,
 .preview-sm {
     width: 60px;
     height: 60px;
 }
+
 .no-preview-sm {
     padding: 20px 5px;
     font-size: 75%;
@@ -196,8 +208,10 @@ table.dataTable thead td {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white; /* Set background to white */
-    z-index: 9999; /* Ensure it stays on top of other elements */
+    background-color: white;
+    /* Set background to white */
+    z-index: 9999;
+    /* Ensure it stays on top of other elements */
 }
 
 /* Spinner circle styles */
@@ -270,7 +284,8 @@ table.dataTable thead td {
 .tooltip::after {
     content: "";
     position: absolute;
-    bottom: -10px; /* Adjust as needed */
+    bottom: -10px;
+    /* Adjust as needed */
     left: 50%;
     transform: translateX(-50%);
     border-width: 5px;
@@ -297,6 +312,7 @@ table.dataTable thead td {
     overflow: auto;
     overflow-x: hidden;
 }
+
 /* sidebar scrollbar */
 
 .btn-common-one {
@@ -320,16 +336,19 @@ table.dataTable thead td {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%; /* Start position off-screen to the left */
+    left: -100%;
+    /* Start position off-screen to the left */
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.2); /* Shadow-like effect */
+    background: rgba(255, 255, 255, 0.2);
+    /* Shadow-like effect */
     z-index: 1;
     transition: left 0.5s ease;
 }
 
 .btn-common-one:hover::before {
-    left: 100%; /* End position off-screen to the right */
+    left: 100%;
+    /* End position off-screen to the right */
 }
 
 .btn-common-one:hover {
@@ -361,12 +380,15 @@ table.dataTable thead td {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
         rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
 }
+
 .card-header {
     border-bottom: 1px solid #eee;
 }
+
 .text-gray-800 {
     color: #3f4254 !important;
 }
+
 /* Form Field Style Start */
 .form-control.form-control-solid,
 .form-control.form-control-solid.active,
@@ -378,6 +400,7 @@ table.dataTable thead td {
     color: #5e6278;
     transition: color 0.2s ease, background-color 0.2s ease;
 }
+
 .form-control:focus {
     background-color: #eef3f7;
     border-color: #eef3f7;
@@ -393,16 +416,14 @@ table.dataTable thead td {
 }
 
 /* Select2 container */
-.select2-container--default
-    .select2-selection--single
-    .select2-selection__placeholder {
-    padding-left: 10px; /* Adjust placeholder padding if needed */
-    line-height: 40px; /* Match the height of the selection */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    padding-left: 10px;
+    /* Adjust placeholder padding if needed */
+    line-height: 40px;
+    /* Match the height of the selection */
 }
 
-.select2-container--default
-    .select2-selection--single
-    .select2-selection__rendered {
+.select2-container--default .select2-selection--single .select2-selection__rendered {
     line-height: 40px;
     height: 40px;
     border-radius: 5px;
@@ -410,9 +431,7 @@ table.dataTable thead td {
     background: #eef3f7;
 }
 
-.select2-container--default
-    .select2-selection--single
-    .select2-selection__clear {
+.select2-container--default .select2-selection--single .select2-selection__clear {
     cursor: pointer;
     float: right;
     font-weight: normal;
@@ -423,12 +442,14 @@ table.dataTable thead td {
     margin-right: 0;
     padding-right: 0px;
 }
+
 .select2-container--default .select2-selection--single {
     height: 40px;
     padding-right: 40px;
     border: 0;
     background-color: #eef3f7;
 }
+
 .select2-container--open .select2-dropdown--below {
     border: 0;
     box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
@@ -441,30 +462,35 @@ table.dataTable thead td {
     border: 1px solid #eee;
     border-radius: 5px;
 }
+
 /* Optional styling for the icon if needed */
 .select2-container--default .select2-selection--single .custom-icon {
     position: absolute;
-    right: 10px; /* Position the icon */
+    right: 10px;
+    /* Position the icon */
     top: 50%;
     transform: translateY(-50%);
-    pointer-events: none; /* Make sure clicks go through to the select */
+    pointer-events: none;
+    /* Make sure clicks go through to the select */
+    z-index: 9999;
 }
-.select2-container--default
-    .select2-selection--single
-    .select2-selection__arrow {
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 40px;
     font-size: 13px;
 }
-.select2-container--default
-    .select2-results__option--highlighted.select2-results__option--selectable {
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
     background-color: #f9f9f9;
     color: #1b84ff;
     transition: color 0.2s ease;
     position: relative;
 }
+
 .select2-results__option--selectable {
     font-size: 13px;
 }
+
 .select2-results__option {
     padding: 0.75rem 1.25rem;
 }
@@ -505,10 +531,12 @@ textarea::placeholder {
     font-size: 13px;
     color: #888;
 }
+
 .form-control {
     border-radius: 5px;
     font-size: 14px;
 }
+
 /* Form Field Style End */
 .users-img {
     width: 30px;
@@ -517,37 +545,44 @@ textarea::placeholder {
     border-radius: 100%;
     border: 2px solid #1b84ff;
 }
+
 .paginate_button .current {
     color: #fff !important;
 }
 
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .user-email {
     color: #888;
     text-decoration: none;
 }
+
 .user-email:hover {
     color: #888;
     text-decoration: none;
 }
 
-.table > thead > tr {
+.table>thead>tr {
     border: 2px solid #1b84ff;
 }
-.sidebar-menu .nav-item > .nav-link {
+
+.sidebar-menu .nav-item>.nav-link {
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .user-top-icons {
     padding-top: 5px;
 }
+
 .dataTables_wrapper .dataTables_filter input:focus {
     border: 1px solid #eee !important;
 }
+
 .dataTables_wrapper .dataTables_length {
     margin-bottom: 10px;
 }
@@ -559,14 +594,15 @@ textarea::placeholder {
     color: #5e6278 !important;
     transition: color 0.2s ease, background-color 0.2s ease;
 }
-.input-group > .intl-tel-input.allow-dropdown {
+
+.input-group>.intl-tel-input.allow-dropdown {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     width: 1%;
 }
 
-.input-group > .intl-tel-input.allow-dropdown > .flag-container {
+.input-group>.intl-tel-input.allow-dropdown>.flag-container {
     z-index: 4;
 }
 
@@ -575,20 +611,26 @@ textarea::placeholder {
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min--moz-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2 / 1),
-    only screen and (min-device-pixel-ratio: 2),
-    only screen and (min-resolution: 192dpi),
-    only screen and (min-resolution: 2dppx) {
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2 / 1),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
     .iti-flag {
         background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/img/flags@2x.png");
     }
 }
+
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 .selected-flag {
     width: 100px;
 }
+
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input,
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input[type="text"],
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input[type="tel"] {
     padding-left: 115px;
+}
+
+.swal2-confirm {
+    margin: 0px 10px !important;
 }

@@ -2,64 +2,86 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ExpenseCategory;
+use App\Models\ExpenseSubCategory;
+use App\Http\Controllers\Controller;
 
 class ExpenseSubCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view("admin.pages.expenseSubCategory.index");
+        $data = [
+            // 'categorys'    => ExpenseCategory::latest()->get(['id', 'name']),
+            'subcategorys' => ExpenseSubCategory::latest()->get(),
+        ];
+        return view('admin.pages.expenseSubCategory.index', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-       return view("admin.pages.expenseSubCategory.create");
+        $data = [
+            'categorys'    => ExpenseCategory::latest()->get(['id', 'name']),
+        ];
+        return view("admin.pages.expenseSubCategory.create", $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $this->validateRequest($request);
+        try {
+            $code = generateCode(ExpenseSubCategory::class, 'ESC');
+            ExpenseSubCategory::create([
+                'name'   => $request->name,
+                'code'   => $code,
+                'cat_id' => $request->cat_id,
+                'note'   => $request->note,
+                'status' => $request->status,
+            ]);
+            redirectWithSuccess('Expense Sub Category Added Successfully');
+            return redirect()->route('admin.expense-subcategory.index');
+        } catch (\Exception $e) {
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $data = [
+            'categorys'    => ExpenseCategory::latest()->get(['id', 'name']),
+            'subcategory'  => ExpenseSubCategory::where('slug', $id)->firstOrFail(),
+        ];
+        return view("admin.pages.expenseSubCategory.edit", $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-       return view("admin.pages.expenseSubCategory.edit");
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $category = ExpenseSubCategory::findOrFail($id);
+        $this->validateRequest($request, $category->id);
+
+        try {
+            $category->update($request->only('name', 'cat_id', 'note', 'status'));
+            redirectWithSuccess('Expense Sub Category Edited Successfully');
+            return redirect()->route('admin.expense-subcategory.index');
+        } catch (\Exception $e) {
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        ExpenseSubCategory::findOrFail($id)->delete();
+    }
+
+    private function validateRequest(Request $request, $categoryId = null)
+    {
+        $uniqueRule = $categoryId ? 'unique:expense_sub_categories,name,' . $categoryId : 'unique:expense_sub_categories';
+
+        $request->validate([
+            'name' => 'required|string|max:50|' . $uniqueRule,
+            'note' => 'required',
+            'note' => 'nullable|string|max:255',
+        ]);
     }
 }

@@ -31,8 +31,8 @@
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
                                             <x-admin.select-option id="status" name="status" :allowClear="true">
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
+                                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                             </x-admin.select-option>
                                         </div>
                                     </div>

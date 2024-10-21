@@ -40,7 +40,7 @@
                             </div>
                             <div class="p-3 pt-1">
                                 <!-- Table -->
-                                <table class="table table-striped datatable" style="width:100%">
+                                {{-- <table class="table table-striped datatable" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th width="5%" class="text-center">Sl</th>
@@ -90,6 +90,50 @@
                                                 <span>Super Admin</span>
                                             </td>
                                         </tr>
+                                    </tbody>
+                                </table> --}}
+                                <table class="table table-striped datatable" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%" class="text-center">Sl</th>
+                                            <th width="20%" class="text-center">Reason</th>
+                                            <th width="10%" class="text-center">Date</th>
+                                            <th width="10%" class="text-center">Type</th>
+                                            <th width="10%" class="text-center">Account</th>
+                                            <th width="10%" class="text-center">Amount</th>
+                                            <th width="5%" class="text-center">Status</th>
+                                            <th width="10%" class="text-end">Created By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-body">
+                                        @foreach ($transactions as $i => $data)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $data->reason }}</td>
+                                                <td>{{ $data->transactionDate ? \Carbon\Carbon::parse($data->transactionDate)->format('d M, Y') : '' }}
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="badge {{ $data->type == 1 ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $data->type == 1 ? __('common.credit') : __('common.debit') }}
+                                                    </span>
+                                                </td>
+                                                <td>{{ $data->account->label ?? '' }}</td>
+                                                <td>{{ number_format($data->amount, 2) }}</td>
+                                                <td>
+                                                    <span
+                                                        class="badge {{ $data->status == 1 ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $data->status == 1 ? __('common.active') : __('common.in_active') }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-right">{{ $data->user->name ?? '' }}</td>
+                                            </tr>
+                                        @endforeach
+                                        @if ($transactions->isEmpty())
+                                            <tr>
+                                                <td colspan="8">{{ __('No Data') }}</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

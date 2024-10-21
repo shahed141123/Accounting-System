@@ -31,15 +31,15 @@
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
                                             <x-admin.select-option id="status" name="status" :allowClear="true">
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
+                                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                             </x-admin.select-option>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="note" class="form-label">Note</label>
-                                            <textarea class="form-control text-area-input" id="note" name="note" rows="3"></textarea>
+                                            <textarea class="form-control text-area-input" id="note" name="note" rows="3">{{ old("note") }}</textarea>
                                         </div>
                                     </div>
                                 </div>

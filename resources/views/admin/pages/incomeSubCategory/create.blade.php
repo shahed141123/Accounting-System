@@ -31,8 +31,12 @@
                                             <label for="cat_id" class="form-label">Category Name</label>
                                             <x-admin.select-option id="cat_id" name="cat_id" :allowClear="true">
                                                 <option value="">-- Select Category --</option>
-                                                <option value="Rent">Rent</option>
-                                                <option value="Stationary">Stationary</option>
+                                                <!-- Default Option -->
+                                                @foreach ($categorys as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('cat_id') == $category->id ? 'selected' : '' }}>
+                                                        {{ $category->name }}</option>
+                                                @endforeach
                                             </x-admin.select-option>
                                         </div>
                                     </div>
@@ -40,8 +44,8 @@
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
                                             <x-admin.select-option id="status" name="status" :allowClear="true">
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
+                                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                             </x-admin.select-option>
                                         </div>
                                     </div>

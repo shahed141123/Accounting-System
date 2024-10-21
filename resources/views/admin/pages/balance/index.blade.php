@@ -35,6 +35,7 @@
                             <!-- Table -->
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
+
                                     <tr>
                                         <th width="3%" class="text-center">Sl</th>
                                         <th width="15%" class="text-center">Bank Name</th>
@@ -97,6 +98,63 @@
                                             </a>
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="3%" class="text-center">Sl</th>
+                                        <th width="15%" class="text-center">Bank Name</th>
+                                        <th width="20%" class="text-center">Account Number</th>
+                                        <th width="10%" class="text-center">Amount</th>
+                                        <th width="10%" class="text-center">Type</th>
+                                        <th width="15%" class="text-center">Date</th>
+                                        <th width="7%" class="text-center">Status</th>
+                                        <th width="10%" class="text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    @forelse($balances as $i => $data)
+                                    <tr>
+                                        <td>{{ $loop->iteration + (($pagination->current_page - 1) * $pagination->per_page) }}</td>
+                                        <td>{{ $data->account ? $data->account->bankName : '' }}</td>
+                                        <td>{{ $data->account ? $data->account->accountNumber : '' }}</td>
+                                        <td>{{ number_format($data->amount, 2) }}</td>
+                                        <td>
+                                            <span class="badge {{ $data->type == 1 ? 'bg-success' : 'bg-danger' }}">
+                                                {{ $data->type == 1 ? __('common.add_balance') : __('common.remove_balance') }}
+                                            </span>
+                                        </td>
+                                        <td>{{ $data->transactionDate->format('d M, Y') }}</td>
+                                        <td>
+                                            <span class="badge {{ $data->status == 1 ? 'bg-success' : 'bg-danger' }}">
+                                                {{ $data->status == 1 ? __('common.active') : __('common.in_active') }}
+                                            </span>
+                                        </td>
+                                        @if(auth()->user()->can('account-balance-edit') || auth()->user()->can('account-balance-delete'))
+                                        <td class="text-right no-print">
+                                            <div class="btn-group">
+                                                @can('account-balance-edit')
+                                                <a href="{{ route('balances.edit', ['slug' => $data->slug]) }}" class="btn btn-info btn-sm" title="{{ __('common.edit') }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                @endcan
+                                                @can('account-balance-delete')
+                                                <a href="#" class="btn btn-danger btn-sm" title="{{ __('common.delete') }}" onclick="deleteData('{{ $data->slug }}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                @endcan
+                                            </div>
+                                        </td>
+                                        @endif
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="8">
+                                            <div class="text-center">{{ __('common.no_data') }}</div>
+                                        </td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

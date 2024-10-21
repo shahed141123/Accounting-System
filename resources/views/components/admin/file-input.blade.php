@@ -15,7 +15,7 @@
     <div class="col-2 mt-n7">
         <img id="{{ $id ?? 'file-input' }}-preview" src="{{ !empty($source) ? $source : asset('images/no_image.png') }}"
             alt="Image Preview" class="img-thumbnail" style="display: {{ !empty($source) ? 'block' : 'none' }};"
-            width="40px" onerror="this.onerror=null;this.src='{{ asset('images/no_image.png') }}';">
+            width="80px" onerror="this.onerror=null;this.src='{{ asset('images/no_image.png') }}';">
     </div>
 </div>
 

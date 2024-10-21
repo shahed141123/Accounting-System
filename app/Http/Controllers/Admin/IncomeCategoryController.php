@@ -2,66 +2,92 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\IncomeCategory;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class IncomeCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        return view("admin.pages.incomeCategory.index");
+        $categorys = IncomeCategory::latest()->get();
+        return view('admin.pages.incomeCategory.index', compact('categorys'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-       return view("admin.pages.incomeCategory.create");
+        return view("admin.pages.incomeCategory.create");
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $this->validateRequest($request);
+
+        try {
+            $code = generateCode(IncomeCategory::class, 'IC');
+            IncomeCategory::create([
+                'name'   => $request->name,
+                'code'   => $code,
+                'note'   => $request->note,
+                'status' => $request->status,
+            ]);
+            return $this->redirectWithSuccess('Income Category Added Successfully');
+
+        } catch (\Exception $e) {
+            return $this->redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function edit($id)
     {
-        //
+        $data = [
+            'category' => IncomeCategory::where('slug', $id)->firstOrFail(),
+        ];
+        return view("admin.pages.incomeCategory.edit", $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-       return view("admin.pages.incomeCategory.edit");
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $category = IncomeCategory::findOrFail($id);
+        $this->validateRequest($request, $category->id);
+
+        try {
+            $category->update($request->only('name', 'note', 'status'));
+            return $this->redirectWithSuccess('Income Category Edited Successfully');
+
+        } catch (\Exception $e) {
+            return $this->redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        IncomeCategory::findOrFail($id)->delete();
+    }
+
+    private function validateRequest(Request $request, $categoryId = null)
+    {
+        $uniqueRule = $categoryId ? 'unique:income_categories,name,' . $categoryId : 'unique:income_categories';
+
+        $request->validate([
+            'name' => 'required|string|max:50|' . $uniqueRule,
+            'note' => 'nullable|string|max:255',
+        ]);
+    }
+
+    private function redirectWithSuccess(string $message)
+    {
+        Session::flash('success', $message);
+        return redirect()->route('admin.income-category.index');
+    }
+
+    private function redirectWithError(string $message)
+    {
+        Session::flash('error', $message);
+        return redirect()->back()->withInput();
     }
 }
-
-

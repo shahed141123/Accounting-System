@@ -156,3 +156,14 @@ if (!function_exists('redirectWithError')) {
         Session::flash('error', $message);
     }
 }
+
+if (!function_exists('getImageUrl')) {
+    function getImageUrl($imagePath, $defaultImage = 'images/no_image.jpg')
+    {
+        if (!empty($imagePath) && file_exists(public_path('storage/' . $imagePath))) {
+            return asset('storage/' . $imagePath);
+        }
+
+        return asset($defaultImage);
+    }
+}

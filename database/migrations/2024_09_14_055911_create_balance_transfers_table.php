@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('debit_id')->nullable()->constrained('account_transactions')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('credit_id')->nullable()->constrained('account_transactions')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('created_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
+            $table->foreignId('updated_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
             $table->timestamps();
         });
     }

@@ -36,78 +36,38 @@
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th width="5%" class="text-center">Sl</th>
-                                        <th width="10%" class="text-center">Code</th>
-                                        <th width="30%" class="text-center">Name</th>
-                                        <th width="35%" class="text-center">Note</th>
-                                        <th width="10%" class="text-center">Status</th>
-                                        <th width="10%" class="text-center">Action</th>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">AEC-1</td>
-                                        <td class="text-center">Rent</td>
-                                        <td class="text-center">Rent</td>
-                                        <td class="text-center">
-                                            <span class="badge bg-danger">
-                                                inactive</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-expand"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-danger delete">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">AEC-1</td>
-                                        <td class="text-center">Rent</td>
-                                        <td class="text-center">Rent</td>
-                                        <td class="text-center">
-                                            <span class="badge bg-success">
-                                                Active</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-expand"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-danger delete">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td class="text-center">AEC-1</td>
-                                        <td class="text-center">Rent</td>
-                                        <td class="text-center">Rent</td>
-                                        <td class="text-center">
-                                            <span class="badge bg-success">
-                                                Active</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-expand"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-danger delete">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($categorys as $category)
+                                        <tr>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->code }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $category->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ $category->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.income-category.edit',$category->slug ) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                {{-- <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCategoryModal{{ $category->id }}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a> --}}
+                                                <a href="{{ route('admin.income-category.destroy', $category->id) }}"
+                                                    class="btn btn-sm btn-danger delete">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

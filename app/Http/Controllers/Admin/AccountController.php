@@ -27,7 +27,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.account.crate");
+        return view("admin.pages.account.create");
     }
 
     /**
@@ -80,11 +80,17 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      */
-
+ 
     /**
      * Show the form for editing the specified resource.
      */
-
+    public function edit($id)
+    {
+        $data =[
+            'account' => Account::where('slug',$id)->firstOrFail(),
+        ];
+        return view("admin.pages.account.edit",$data);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -136,7 +142,8 @@ class AccountController extends Controller
                 'status'         => $request->status ?? 'active',
             ]);
 
-            redirectWithSuccess('Account added successfully');
+            redirectWithSuccess('Account updated successfully');
+            return redirect()->back();
         } catch (Exception $e) {
             redirectWithError($e->getMessage());
             return redirect()->back()->withInput();

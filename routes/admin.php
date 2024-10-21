@@ -127,11 +127,6 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
         [
             'catalogue'           => CatalogueController::class, //done
             'shipping-management' => ShippingManagementController::class, //done
-            'income-category'     => IncomeCategoryController::class,
-            'income-subcategory'  => IncomeSubCategoryController::class,
-            'expense-category'    => ExpenseCategoryController::class,
-            'expense-subcategory' => ExpenseSubCategoryController::class,
-            'account'             => AccountController::class,
             'assets'              => AssetsController::class,
             'assets-type'         => AssetsTypeController::class,
         ],
@@ -163,6 +158,11 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
             'sales-user'          => SalesUserReportController::class,
             'collection-report'   => CollectionReportController::class,
             'payroll'             => PayrollController::class,
+            'account'             => AccountController::class,
+            'income-category'     => IncomeCategoryController::class,
+            'income-subcategory'  => IncomeSubCategoryController::class,
+            'expense-category'    => ExpenseCategoryController::class,
+            'expense-subcategory' => ExpenseSubCategoryController::class,
         ],
         ['except' => ['show']]
     );
