@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 
+use App\Models\Account;
 use App\Models\Expense;
 use Illuminate\Http\Request;
+use App\Models\ExpenseCategory;
 use App\Models\AccountTransaction;
+use App\Models\ExpenseSubCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
@@ -16,6 +20,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
+        $data = [
+            'subcategorys' => Expense::latest()->get(),
+        ];
         return view('admin.pages.expense.index');
     }
 
@@ -24,7 +31,11 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.expense.create');
+        $data = [
+            'categories' => ExpenseSubCategory::latest()->get(['id', 'name']),
+            'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
+        ];
+        return view('admin.pages.expense.create', $data);
     }
 
     /**
@@ -34,10 +45,10 @@ class ExpenseController extends Controller
     {
         // validate request
         $this->validate($request, [
-            'reason'        => 'required|string|max:255',
-            'subCategory'   => 'required',
-            'account'       => 'required',
-            'amount'        => 'required|numeric|max:' . $request->availableBalance,
+            'reason'        => 'nullable|string|max:255',
+            'subCategory'   => 'nullable',
+            'account'       => 'nullable',
+            'amount'        => 'nullable|numeric|max:' . $request->availableBalance,
             'chequeNo'      => 'nullable|string|max:255',
             'voucherNo'     => 'nullable|string|max:255',
             'date'          => 'nullable|date_format:Y-m-d',
@@ -60,37 +71,47 @@ class ExpenseController extends Controller
                     $uploadedFiles[$key] = ['status' => 0];
                 }
             }
-            $userId = auth()->user()->id;
-            $reason = '[' . config('config.expSubCatPrefix') . '-' . $request->subCategory['code'] . '] Expense payment';
+            if (!empty($request->sub_cat_id)) {
+                $subCategory = ExpenseSubCategory::find($request->sub_cat_id);
+                $cat_id = $subCategory ? $subCategory->cat_id : '';
+            } else {
+                $cat_id = '';
+            }
+
+
+
 
             // store transaction
             $transaction = AccountTransaction::create([
-                'account_id'       => $request->account['id'],
+                'account_id'       => $request->account_id,
                 'amount'           => $request->amount,
-                'reason'           => $reason,
+                'reason'           => $request->reason,
                 'type'             => 0,
                 'transaction_date' => $request->date,
                 'cheque_no'        => $request->chequeNo,
                 'receipt_no'       => $request->voucherNo,
-                'created_by'       => $userId,
+                'created_by'       => Auth::guard('admin')->user()->id,
                 'status'           => $request->status,
             ]);
 
             // create expense
             Expense::create([
+                'name'           => $request->reason,
                 'reason'         => $request->reason,
-                'sub_cat_id'     => $request->subCategory['id'],
+                'sub_cat_id'     => $request->sub_cat_id,
+                'cat_id'         => $cat_id,
                 'transaction_id' => $transaction->id,
                 'date'           => $request->date,
-                'created_by'     => $userId,
+                'created_by'     => Auth::guard('admin')->user()->id,
                 'note'           => $request->note,
                 'image'          => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
                 'status'         => $request->status,
             ]);
-
-            return $this->responseWithSuccess('Expense added successfully');
+            redirectWithSuccess('Expense Added Successfully');
+            return redirect()->route('admin.expense.index');
         } catch (Exception $e) {
-            return $this->responseWithError($e->getMessage());
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
@@ -107,7 +128,11 @@ class ExpenseController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.pages.expense.edit');
+        $data = [
+            'categories' => ExpenseSubCategory::latest()->get(['id', 'name']),
+            'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
+        ];
+        return view('admin.pages.expense.edit',$data);
     }
 
     /**

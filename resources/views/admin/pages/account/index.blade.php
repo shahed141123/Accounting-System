@@ -38,7 +38,7 @@
                                     <input class="form-control" name='range' id='cal' />
                                 </div>
                             </div>
-                            <div class="p-3 pt-1">
+                            <div class="p-3 pt-1 table-responsive">
                                 <!-- Table -->
                                 <table class="table table-striped datatable" style="width:100%">
                                     <thead>

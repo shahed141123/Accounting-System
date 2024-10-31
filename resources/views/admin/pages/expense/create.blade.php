@@ -29,26 +29,26 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="subCategory" class="form-label">Category Name</label>
-                                            <x-admin.select-option id="subCategory" name="subCategory"
-                                                :allowClear="true">
+                                            <label for="cat_id" class="form-label">Category Name</label>
+                                            <x-admin.select-option id="cat_id" name="cat_id" :allowClear="true">
                                                 <option value="">-- Select Category --</option>
-                                                <option value="Office Rent">Office Rent</option>
-                                                <option value="Office Stationary">Office Stationary</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}" @selected(old('cat_id') == $category->id)>{{ $category->name }}</option>
+                                                @endforeach
                                             </x-admin.select-option>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="account_id" class="form-label">Account</label>
-                                            <x-admin.select-option id="account_id" name="account_id"
-                                                :allowClear="true">
+                                            <x-admin.select-option id="account_id" name="account_id" :allowClear="true">
                                                 <option value="">-- Select Account --</option>
-                                                <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
-                                                <option value="Dutch Bangla Bank[DBBL-0003]">Dutch Bangla
-                                                    Bank[DBBL-0003]</option>
-                                                <option value="Islami Bank Bangladesh Ltd[IBBL-0002]">Islami Bank
-                                                    Bangladesh Ltd[IBBL-0002]</option>
+                                                @foreach ($accounts as $account)
+                                                    <option value="{{ $account->id }}" @selected(old('account_id') == $account->id)
+                                                        data-balance="{{ $account->availableBalance() }}">
+                                                        {{ $account->bank_name }}[{{ $account->account_number }}]
+                                                    </option>
+                                                @endforeach
                                             </x-admin.select-option>
                                         </div>
                                     </div>
@@ -56,15 +56,16 @@
                                         <div class="mb-3">
                                             <x-admin.label for="availableBalance" class="form-label"> Available
                                                 Balance</x-admin.label>
-                                            <x-admin.input type="text" :value="old('availableBalance')" id="availableBalance"
-                                                name="availableBalance" required></x-admin.input>
+                                            <input class="form-control form-control-solid " type="text"
+                                                value="{{ old('availableBalance') }}" id="availableBalance"
+                                                name="availableBalance" readonly></input>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <x-admin.label for="amount" class="form-label"> Amount
                                                 Balance</x-admin.label>
-                                            <x-admin.input type="text" :value="old('amount')" id="amount"
+                                            <x-admin.input type="number" :value="old('amount')" id="amount"
                                                 name="amount" required></x-admin.input>
                                         </div>
                                     </div>
@@ -95,14 +96,14 @@
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
                                             <x-admin.select-option id="status" name="status" :allowClear="true">
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
+                                                <option value="active" @selected(old('status') == 'active')>Active</option>
+                                                <option value="inactive" @selected(old('status') == 'inactive')>Inactive</option>
                                             </x-admin.select-option>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <x-admin.label for="date" class="form-label"> Image</x-admin.label>
+                                            <x-admin.label for="image" class="form-label"> Image</x-admin.label>
                                             <x-admin.input type="file" :value="old('image')" id="image"
                                                 name="image" required></x-admin.input>
                                         </div>
@@ -111,11 +112,11 @@
                                         <div class="mb-3">
                                             <label for="note" class="form-label">Note</label>
                                             <textarea class="form-control text-area-input" id="note" name="note" rows="3"
-                                                placeholder="write your note here"></textarea>
+                                                placeholder="write your note here">{{ old('note') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <x-admin.button type="submit" class="">Save Expence <i
+                                <x-admin.button type="submit" class="">Save Expense <i
                                         class="fa-regular fa-floppy-disk ps-2"></i></x-admin.button>
                             </form>
                         </div>
@@ -124,4 +125,21 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                // Initialize Select2
+                // $('#account_id').select2();
+
+                // Listen for the Select2 select event
+                $('#account_id').on('change', function(e) {
+                    const selectedOption = $(this).find('option:selected');
+                    const availableBalance = selectedOption.data('balance');
+                    // alert(availableBalance);
+                    $('#availableBalance').val(availableBalance);
+                });
+            });
+        </script>
+    @endpush
 </x-admin-app-layout>

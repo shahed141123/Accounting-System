@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
-    use HasFactory;
-
+    use HasFactory,HasSlug;
+    protected $slugSourceColumn = 'reason';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -19,6 +20,10 @@ class Expense extends Model
     public function expSubCategory()
     {
         return $this->belongsTo(ExpenseSubCategory::class, 'sub_cat_id');
+    }
+    public function expCategory()
+    {
+        return $this->belongsTo(ExpenseCategory::class, 'cat_id');
     }
 
     /**
