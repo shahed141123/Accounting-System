@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use App\Models\BalanceTransfer;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BalanceTransferController extends Controller
 {
@@ -15,7 +17,10 @@ class BalanceTransferController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.balanceTransfer.index");
+        $data = [
+            'transfers' => BalanceTransfer::with('debitTransaction.cashbookAccount', 'creditTransaction.cashbookAccount', 'addUser')->latest()->get(),
+        ];
+        return view("admin.pages.balanceTransfer.index", $data);
     }
 
     /**
@@ -23,7 +28,10 @@ class BalanceTransferController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.balanceTransfer.create");
+        $data = [
+            'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
+        ];
+        return view("admin.pages.balanceTransfer.create", $data);
     }
 
     /**
@@ -32,22 +40,24 @@ class BalanceTransferController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'transferReason'    => 'required|string|max:255',
-            'fromAccount'       => 'required',
-            'toAccount'         => 'required|different:fromAccount',
-            'amount'            => 'required|numeric|min:1|max:'.$request->availableBalance,
+            'transferReason'    => 'nullable|string|max:255',
+            'fromAccount'       => 'nullable',
+            'toAccount'         => 'nullable|different:fromAccount',
+            'amount'            => 'nullable|numeric|min:1|max:' . $request->availableBalance,
             'date'              => 'nullable|date_format:Y-m-d',
             'note'              => 'nullable|string|max:255',
         ]);
 
         try {
             // get logged in user id
-            $userId = auth()->user()->id;
-            $fromAccountNumber = $request->fromAccount['accountNumber'];
+            $userId = Auth::guard('admin')->user()->id;
+            $fromAccount = Account::find($request->fromAccount);
+            $toAccount = Account::find($request->fromAccount);
+            $fromAccountNumber = $fromAccount->account_number;
             $debitReason = "Balance transfer from [$fromAccountNumber]";
             // store debit transaction
             $debitTransaction = AccountTransaction::create([
-                'account_id'       => $request->fromAccount['id'],
+                'account_id'       => $request->fromAccount,
                 'amount'           => $request->amount,
                 'reason'           => $debitReason,
                 'type'             => 0,
@@ -56,11 +66,11 @@ class BalanceTransferController extends Controller
                 'status'           => $request->status,
             ]);
 
-            $toAccountNumber = $request->toAccount['accountNumber'];
+            $toAccountNumber = $toAccount->account_number;;
             $creditReason = "Balance transfer to [$toAccountNumber]";
             // store credit transaction
             $creditTransaction = AccountTransaction::create([
-                'account_id'       => $request->toAccount['id'],
+                'account_id'       => $request->toAccount,
                 'amount'           => $request->amount,
                 'reason'           => $creditReason,
                 'type'             => 1,
@@ -81,9 +91,11 @@ class BalanceTransferController extends Controller
                 'created_by' => $userId,
             ]);
 
-            return $this->responseWithSuccess('Transfer added successfully');
+            redirectWithSuccess('Transfer added Successfully');
+            return redirect()->route('admin.balance-transfer.index');
         } catch (Exception $e) {
-            return $this->responseWithError($e->getMessage());
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
@@ -100,7 +112,11 @@ class BalanceTransferController extends Controller
      */
     public function edit(string $id)
     {
-        return view("admin.pages.balance-transfer.create");
+        $data = [
+            'transfer'   => BalanceTransfer::findOrFail($id),
+            'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
+        ];
+        return view("admin.pages.balanceTransfer.edit", $data);
     }
 
     /**

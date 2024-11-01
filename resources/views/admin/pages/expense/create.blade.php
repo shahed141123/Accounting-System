@@ -29,11 +29,11 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="cat_id" class="form-label">Category Name</label>
-                                            <x-admin.select-option id="cat_id" name="cat_id" :allowClear="true">
+                                            <label for="sub_cat_id" class="form-label">Category Name</label>
+                                            <x-admin.select-option id="sub_cat_id" name="sub_cat_id" :allowClear="true">
                                                 <option value="">-- Select Category --</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @selected(old('cat_id') == $category->id)>{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}" @selected(old('sub_cat_id') == $category->id)>{{ $category->name }}</option>
                                                 @endforeach
                                             </x-admin.select-option>
                                         </div>

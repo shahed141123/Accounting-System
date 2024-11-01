@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('reason')->nullable();
             $table->date('date')->nullable();
             $table->text('note')->nullable();
+            $table->double('amount')->nullable();
             $table->string('status')->default('active')->nullable()->comment('inactive,active');
             $table->string('image')->nullable();
             $table->foreignId('cat_id')->nullable()->constrained('expense_categories')->onDelete('cascade')->onUpdate('no action');

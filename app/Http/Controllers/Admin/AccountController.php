@@ -46,15 +46,19 @@ class AccountController extends Controller
         ]);
 
         try {
+            $files = [
+                'image' => $request->file('image'),
+            ];
             $uploadedFiles = [];
-
-            // Handle image upload
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $filePath = 'account/images';
-                $uploadedFiles['image'] = customUpload($file, $filePath);
-                if ($uploadedFiles['image']['status'] === 0) {
-                    return redirect()->back()->with('error', $uploadedFiles['image']['error_message']);
+            foreach ($files as $key => $file) {
+                if (!empty($file)) {
+                    $filePath = 'account/' . $key;
+                    $uploadedFiles[$key] = customUpload($file, $filePath);
+                    if ($uploadedFiles[$key]['status'] === 0) {
+                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                    }
+                } else {
+                    $uploadedFiles[$key] = ['status' => 0];
                 }
             }
 
@@ -80,7 +84,7 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      */
- 
+
     /**
      * Show the form for editing the specified resource.
      */
