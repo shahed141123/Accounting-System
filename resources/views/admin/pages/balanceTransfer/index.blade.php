@@ -38,7 +38,7 @@
                                     <input class="form-control" name='range' id='cal' />
                                 </div>
                             </div>
-                            <div class="p-3 pt-1">
+                            <div class="p-3 pt-1 table-responsive">
                                 <!-- Table -->
                                 <table class="table table-striped datatable" style="width:100%">
                                     <thead>
@@ -68,16 +68,16 @@
                                                         {{ $transfer->status == 'active' ? 'Active' : 'InActive' }}</span>
                                                 </td>
                                                 <td class="text-end">
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"
+                                                    <a href="{{ route('admin.balance-transfer.edit',$transfer->slug) }}" class="btn btn-sm btn-primary toltip"
                                                         data-tooltip="Edit">
                                                         <i class="fa-solid fa-pen"></i>
                                                     </a>
-                                                    <a href="javascript:void(0)"
+                                                    {{-- <a href="javascript:void(0)"
                                                         class="btn btn-sm btn-warning text-white toltip"
                                                         data-tooltip="View">
                                                         <i class="fa-solid fa-expand"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
+                                                    </a> --}}
+                                                    <a href="{{ route('admin.balance-transfer.destroy',$transfer->id) }}" class="btn btn-sm btn-danger toltip"
                                                         data-tooltip="Delete">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>

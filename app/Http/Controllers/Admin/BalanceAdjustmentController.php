@@ -3,34 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BalanceAdjustmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
-    /**
-     * Show the form for creating a new resource.
-     */
 
     public function index(Request $request)
     {
         $data = [
             'balances' => AccountTransaction::with('cashbookAccount', 'user')->where('reason', 'LIKE', 'Non invoice balance added%')->orWhere('reason', 'LIKE', 'Non invoice balance removed from%')->latest()->get(),
         ];
-        return view("admin.pages.balance.index",$data);
+        return view("admin.pages.balance.index", $data);
     }
 
     public function create()
     {
-        return view("admin.pages.balance.create");
+        $data = [
+            'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
+        ];
+        return view("admin.pages.balance.create", $data);
     }
 
-    
+
     public function store(Request $request)
     {
         // validate request
@@ -43,55 +42,45 @@ class BalanceAdjustmentController extends Controller
         try {
 
             // generate reason
-            $accountNumber = $request->account['accountNumber'];
-            if ($request->type == 1) {
-                $reason = "Non invoice balance added to [$accountNumber]";
-            } else {
-                $reason = "Non invoice balance removed from [$accountNumber]";
-            }
+            $account = Account::findOrFail($request->account);
+
+            // Generate reason based on the type
+            $reason = ($request->type == 1)
+                ? "Non-invoice balance added to $account->bank_name [$account->account_number]"
+                : "Non-invoice balance removed from $account->bank_name [$account->account_number]";
+
 
             // store transaction
             AccountTransaction::create([
-                'account_id' => $request->account['id'],
-                'amount' => $request->amount,
-                'reason' => $reason,
-                'type' => $request->type,
+                'account_id'       => $request->account_id,
+                'amount'           => $request->amount,
+                'reason'           => $reason,
+                'type'             => $request->type,
                 'transaction_date' => $request->date,
-                'created_by' => auth()->user()->id,
-                'note' => $request->note,
-                'status' => $request->status,
+                'created_by'       => Auth::guard('admin')->user()->id,
+                'note'             => $request->note,
+                'status'           => $request->status,
             ]);
 
-            return $this->responseWithSuccess('Balance added successfully!');
+            redirectWithSuccess('Balance updated successfully');
+            return redirect()->route('admin.balance-adjustment.index');
         } catch (Exception $e) {
-            return $this->responseWithError($e->getMessage());
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($slug)
+
+
+    public function edit(string $slug)
     {
-        try {
-            $transaction = AccountTransaction::with('cashbookAccount')->where('slug', $slug)->first();
-
-            return new AccountTransactionResource($transaction);
-        } catch (Exception $e) {
-            return $this->responseWithError($e->getMessage());
-        }
+        $data = [
+            'balanceAdjustment' => AccountTransaction::where('slug', $slug)->first(),
+            'accounts'          => Account::latest()->get(['id', 'bank_name', 'account_number']),
+        ];
+        return view("admin.pages.balance.edit", $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $slug)
     {
         $transaction = AccountTransaction::where('slug', $slug)->first();
@@ -170,7 +159,7 @@ class BalanceAdjustmentController extends Controller
                     });
             })->latest()->paginate($request->perPage);
 
-        return AccountTransactionResource::collection($allQuery);
+        // return AccountTransactionResource::collection($allQuery);
     }
 
     /**
@@ -182,15 +171,6 @@ class BalanceAdjustmentController extends Controller
     {
         $transactions = AccountTransaction::where('status', 1)->latest()->paginate(10);
 
-        return AccountTransactionResource::collection($transactions);
+        // return AccountTransactionResource::collection($transactions);
     }
-
-    public function edit(string $id)
-    {
-        return view("admin.pages.balance.edit");
-    }
-
-
-
-
 }

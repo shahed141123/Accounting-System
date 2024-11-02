@@ -123,15 +123,15 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
         ],
         ['except' => ['show', 'index', 'create', 'edit']]
     );
-    Route::resources(
-        [
-            'catalogue'           => CatalogueController::class, //done
-            'shipping-management' => ShippingManagementController::class, //done
-            'assets'              => AssetsController::class,
-            'assets-type'         => AssetsTypeController::class,
-        ],
-        ['except' => ['show', 'edit']] // exclude 'show' and 'edit', but allow 'create'
-    );
+    // Route::resources(
+    //     [
+    //         'catalogue'           => CatalogueController::class, //done
+    //         'shipping-management' => ShippingManagementController::class, //done
+    //         'assets'              => AssetsController::class,
+    //         'assets-type'         => AssetsTypeController::class,
+    //     ],
+    //     ['except' => ['show', 'edit']] // exclude 'show' and 'edit', but allow 'create'
+    // );
     Route::resources(
         [
             'faq'                 => FaqController::class,
@@ -163,6 +163,8 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
             'income-subcategory'  => IncomeSubCategoryController::class,
             'expense-category'    => ExpenseCategoryController::class,
             'expense-subcategory' => ExpenseSubCategoryController::class,
+            'assets'              => AssetsController::class,
+            'assets-type'         => AssetsTypeController::class,
         ],
         ['except' => ['show']]
     );
@@ -210,7 +212,8 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::post('user/toggle-status/{id}', [UserController::class, 'toggleStatus'])->name('user.toggle-status');
     // Route::post('services/toggle-status/{id}', [ServiceController::class, 'toggleStatus'])->name('services.toggle-status');
 
-    Route::get('/backup', [Controller::class, 'downloadBackup']);
+    Route::get('/database/backup', [Controller::class, 'databaseBackup'])->name('database.backup');
+    Route::get('/backup', [Controller::class, 'downloadBackup'])->name('database.download');
 
     Route::get('role/{roleId}/give-permission', [RoleController::class, 'givePermission'])->name('role.give-permission');
     Route::patch('role/{roleId}/give-permission', [RoleController::class, 'storePermission'])->name('role.store-permission');

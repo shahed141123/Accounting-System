@@ -48,7 +48,7 @@ class TransactionHistoryController extends Controller
                 });
         });
 
-        return AccountTransactionResource::collection($query->latest()->paginate($request->perPage));
+        // return AccountTransactionResource::collection($query->latest()->paginate($request->perPage));
     }
     /**
      * Store a newly created resource in storage.

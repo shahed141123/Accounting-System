@@ -397,6 +397,7 @@
                                 'admin.settings.index',
                                 'admin.email-settings.index',
                                 'admin.email-settings.index',
+                                'admin.database.backup',
                             ],
                             'subMenu' => [
                                 [
@@ -408,6 +409,11 @@
                                     'title' => 'Email Setting',
                                     'routes' => ['admin.email-settings.index'],
                                     'route' => 'admin.email-settings.index',
+                                ],
+                                [
+                                    'title' => 'Database Backup',
+                                    'routes' => ['admin.database.backup'],
+                                    'route' => 'admin.database.backup',
                                 ],
                                 [
                                     'title' => 'Profile Setting',

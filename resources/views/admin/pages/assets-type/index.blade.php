@@ -44,52 +44,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">Wendy Jimenez</td>
-                                        <td class="text-center">Dolore libero adipis</td>
-                                        <td class="text-center">
-                                            <span class="badge bg-success">
-                                                Active</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"
-                                                data-tooltip="Edit">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)"
-                                                class="btn btn-sm btn-warning text-white toltip" data-tooltip="View">
-                                                <i class="fa-solid fa-expand"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
-                                                data-tooltip="Delete">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">Wendy Jimenez</td>
-                                        <td class="text-center">Dolore libero adipis</td>
-                                        <td class="text-center">
-                                            <span class="badge bg-danger">
-                                                inactive</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"
-                                                data-tooltip="Edit">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)"
-                                                class="btn btn-sm btn-warning text-white toltip" data-tooltip="View">
-                                                <i class="fa-solid fa-expand"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
-                                                data-tooltip="Delete">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($asset_types as $asset_type)
+                                        <tr>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td class="text-center">{{ $asset_type->name }}</td>
+                                            <td class="text-center">{{ $asset_type->note }}</td>
+                                            <td class="text-center">
+                                                <span class="badge {{ $asset_type->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ $asset_type->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="{{ route('admin.assets-type.edit',$asset_type->slug) }}" class="btn btn-sm btn-primary toltip"
+                                                    data-tooltip="Edit">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                {{-- <a href="javascript:void(0)"
+                                                    class="btn btn-sm btn-warning text-white toltip" data-tooltip="View">
+                                                    <i class="fa-solid fa-expand"></i>
+                                                </a> --}}
+                                                <a href="{{ route('admin.assets-type.destroy',$asset_type->slug) }}" class="btn btn-sm btn-danger toltip delete"
+                                                    data-tooltip="Delete">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

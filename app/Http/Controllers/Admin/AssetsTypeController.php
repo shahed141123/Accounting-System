@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Exception;
+use App\Models\AssetType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AssetsTypeController extends Controller
 {
@@ -12,7 +14,10 @@ class AssetsTypeController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.assets-type.index');
+        $data = [
+            'asset_types' => AssetType::latest('id')->get(),
+        ];
+        return view('admin.pages.assets-type.index', $data);
     }
 
     /**
@@ -28,7 +33,26 @@ class AssetsTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate request
+        $this->validate($request, [
+            'name' => 'required|string|max:150|unique:asset_types',
+            'note' => 'nullable|string|max:255',
+        ]);
+        // save asset type
+        try {
+
+            AssetType::create([
+                'name'   => $request->name,
+                'note'   => $request->note,
+                'status' => $request->status,
+            ]);
+
+            redirectWithSuccess('Asset Type created successfully');
+            return redirect()->route('admin.assets-type.index');
+        } catch (Exception $e) {
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -44,7 +68,10 @@ class AssetsTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = [
+            'asset_type' => AssetType::where('slug', $id)->first(),
+        ];
+        return view('admin.pages.assets-type.edit', $data);
     }
 
     /**
@@ -52,7 +79,27 @@ class AssetsTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $assetType = AssetType::where('id', $id)->first();
+        // validate request
+        $this->validate($request, [
+            'name' => 'required|string|max:50|unique:asset_types,name,' . $assetType->id,
+            'note' => 'nullable|string|max:255',
+        ]);
+        // save asset type
+        try {
+
+            $assetType->update([
+                'name'   => $request->name,
+                'note'   => $request->note,
+                'status' => $request->status,
+            ]);
+
+            redirectWithSuccess('Asset Type updated successfully');
+            return redirect()->route('admin.assets-type.index');
+        } catch (Exception $e) {
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -60,6 +107,7 @@ class AssetsTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $assetType = AssetType::where('slug', $id)->first();
+        $assetType->delete();
     }
 }

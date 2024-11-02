@@ -113,7 +113,7 @@ class BalanceTransferController extends Controller
     public function edit(string $id)
     {
         $data = [
-            'transfer'   => BalanceTransfer::findOrFail($id),
+            'transfer'   => BalanceTransfer::with('debitTransaction', 'creditTransaction', 'addUser', 'updateUser')->where('id', $id)->first(),
             'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
         ];
         return view("admin.pages.balanceTransfer.edit", $data);
@@ -122,16 +122,107 @@ class BalanceTransferController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'transferReason'    => 'nullable|string|max:255',
+            'fromAccount'       => 'nullable',
+            'toAccount'         => 'nullable|different:fromAccount',
+            'amount'            => 'nullable|numeric|min:1|max:' . $request->availableBalance,
+            'date'              => 'nullable|date_format:Y-m-d',
+            'note'              => 'nullable|string|max:255',
+            'status'            => 'nullable|string|in:active,inactive',
+        ]);
+
+        try {
+            // Get the existing balance transfer
+            $transfer = BalanceTransfer::with('debitTransaction', 'creditTransaction', 'addUser', 'updateUser')->where('id', $id)->first();
+
+            // Update debit transaction
+
+            $transfer->debitTransaction->update([
+                'account_id'       => $request->fromAccount,
+                'amount'           => $request->amount,
+                'transaction_date' => $request->date,
+                'status'           => $request->status,
+                'reason'           => $request->transferReason,
+            ]);
+
+            // Update credit transaction
+
+            $transfer->creditTransaction->update([
+                'account_id'       => $request->toAccount,
+                'amount'           => $request->amount,
+                'transaction_date' => $request->date,
+                'status'           => $request->status,
+                'reason'           => $request->transferReason,
+            ]);
+
+            // Update balance transfer record
+            $transfer->update([
+                'reason'     => $request->transferReason,
+                'amount'     => $request->amount,
+                'date'       => $request->date,
+                'note'       => $request->note,
+                'status'     => $request->status,
+            ]);
+
+            redirectWithSuccess('Transfer updated successfully');
+            return redirect()->route('admin.balance-transfer.index');
+        } catch (Exception $e) {
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $transfer = BalanceTransfer::where('id', $id)->first();
+
+            // check if the transfer can be delete
+            $canDelete = true;
+            if ($transfer->creditTransaction->cashbookAccount->availableBalance() < $transfer->amount) {
+                $canDelete = false;
+            }
+
+            if ($canDelete) {
+                // delete transfer transactions
+                $transfer->debitTransaction->delete();
+                $transfer->creditTransaction->delete();
+                $transfer->delete();
+            }
+    }
+
+    public function search(Request $request)
+    {
+        $term = $request->term;
+        $query = BalanceTransfer::with('debitTransaction.cashbookAccount', 'creditTransaction.cashbookAccount', 'user');
+
+        if ($request->startDate && $request->endDate) {
+            $query = $query->whereBetween('date', [$request->startDate, $request->endDate]);
+        }
+
+        $query->where(function ($query) use ($term) {
+            $query->where('reason', 'LIKE', '%'.$term.'%')
+                ->orWhere('amount', 'LIKE', '%'.$term.'%')
+                ->orWhereHas('debitTransaction', function ($newQuery) use ($term) {
+                    $newQuery->whereHas('cashbookAccount', function ($newQuery) use ($term) {
+                        $newQuery->where('account_number', 'LIKE', '%'.$term.'%')
+                            ->orWhere('bank_name', 'LIKE', '%'.$term.'%');
+                    });
+                })
+                ->orWhereHas('creditTransaction', function ($newQuery) use ($term) {
+                    $newQuery->whereHas('cashbookAccount', function ($newQuery) use ($term) {
+                        $newQuery->where('account_number', 'LIKE', '%'.$term.'%')
+                            ->orWhere('bank_name', 'LIKE', '%'.$term.'%');
+                    });
+                });
+        });
+
+        // return BalanceTransferResource::collection($query->latest()->paginate($request->perPage));
     }
 }
