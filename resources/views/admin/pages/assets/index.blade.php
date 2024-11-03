@@ -38,13 +38,12 @@
                                     <input class="form-control" name='range' id='cal' />
                                 </div>
                             </div>
-                            <div class="p-3 pt-1">
-                                <!-- Table -->
+                            <div class="table-responsive p-3 pt-1">
                                 <table class="table table-striped datatable" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th width="5%" class="text-center">Sl</th>
-                                            <th width="5%" class="text-center">Image</th>
+                                            {{-- <th width="5%" class="text-center">Image</th> --}}
                                             <th width="20%" class="text-center">Asset Name</th>
                                             <th width="15%" class="text-center">Asset Type</th>
                                             <th width="15%" class="text-center">Asset Cost</th>
@@ -55,72 +54,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                                <div>
-                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
-                                                        alt="">
-                                                </div>
-                                            </td>
-                                            <td class="text-center">Work Station</td>
-                                            <td class="text-center">Furniture</td>
-                                            <td class="text-center">$50000.00</td>
-                                            <td class="text-center">$50000.00</td>
-                                            <td class="text-center">17th Oct, 2024</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">
-                                                    Active</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"
-                                                    data-tooltip="Edit">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn-sm btn-warning text-white toltip"
-                                                    data-tooltip="View">
-                                                    <i class="fa-solid fa-expand"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
-                                                    data-tooltip="Delete">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">
-                                                <div>
-                                                    <img width="50px" src="{{ asset('images/no_image.jpg') }}"
-                                                        alt="">
-                                                </div>
-                                            </td>
-                                            <td class="text-center">Office Rent Advance</td>
-                                            <td class="text-center">Advance Payment</td>
-                                            <td class="text-center">$200000.00</td>
-                                            <td class="text-center">$200000.00</td>
-                                            <td class="text-center">17th Oct, 2024</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">
-                                                    Active</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"
-                                                    data-tooltip="Edit">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn-sm btn-warning text-white toltip"
-                                                    data-tooltip="View">
-                                                    <i class="fa-solid fa-expand"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
-                                                    data-tooltip="Delete">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($assets as $asset)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                {{-- <td class="text-center">
+                                                    <div>
+                                                        <img width="50px" src="{{ asset('images/no_image.jpg') }}"
+                                                            alt="">
+                                                    </div>
+                                                </td> --}}
+                                                <td class="text-center">{{ $asset->name }}</td>
+                                                <td class="text-center">{{ $asset->assetType->name }}</td>
+                                                <td class="text-center">{{ $asset->asset_cost }}</td>
+                                                <td class="text-center">{{ $asset->currentValue() }}</td>
+                                                <td class="text-center">{{ optional($asset->date) ? \Carbon\Carbon::parse($asset->date)->format('jS M, Y') : '' }}</td>
+                                                <td class="text-center">
+                                                    <span
+                                                        class="badge {{ $asset->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $asset->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="{{ route('admin.assets.edit' , $asset->slug) }}" class="btn btn-sm btn-primary toltip"
+                                                        data-tooltip="Edit">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </a>
+                                                    {{-- <a href="javascript:void(0)"
+                                                        class="btn btn-sm btn-warning text-white toltip"
+                                                        data-tooltip="View">
+                                                        <i class="fa-solid fa-expand"></i>
+                                                    </a> --}}
+                                                    <a href="{{ route('admin.assets.destroy' , $asset->slug) }}" class="btn btn-sm btn-danger toltip"
+                                                        data-tooltip="Delete">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

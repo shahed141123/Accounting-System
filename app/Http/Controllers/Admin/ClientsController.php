@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ClientsController extends Controller
 {
@@ -28,7 +29,61 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            // generate code
+            $code = 1;
+            $lastClient = Client::latest()->first();
+            if ($lastClient) {
+                $code = $lastClient->client_id + 1;
+            }
+
+            // upload thumbnail and set the name
+            $files = [
+                'image' => $request->file('image'),
+            ];
+            $uploadedFiles = [];
+            foreach ($files as $key => $file) {
+                if (!empty($file)) {
+                    $filePath = 'account/' . $key;
+                    $uploadedFiles[$key] = customUpload($file, $filePath);
+                    if ($uploadedFiles[$key]['status'] === 0) {
+                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                    }
+                } else {
+                    $uploadedFiles[$key] = ['status' => 0];
+                }
+            }
+
+            // create client
+            $userSchema = Client::create([
+                'name' => $request->name,
+                'client_id' => $code,
+                'email' => $request->email,
+                'phone' => $request->phoneNumber,
+                'company_name' => $request->companyName,
+                'type' => $request->supplierType,
+                'address' => $request->address,
+                'status' => $request->status,
+                'image_path' => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+            ]);
+
+            //send welcome notification
+            try {
+                if ($request->isSendEmail || $request->isSendSMS) {
+                    Notification::send($userSchema, new WelcomeNotification($userSchema, [
+                        'isSendEmail' => $request->isSendEmail,
+                        'isSendSMS' => $request->isSendSMS,
+                    ]));
+                }
+            } catch (Exception $e) {
+                //handle email error here if necessary
+                throw new Exception($e);
+            }
+
+            return $this->responseWithSuccess('Client added successfully');
+        } catch (Exception $e) {
+            return $this->responseWithError($e->getMessage());
+        }
     }
 
     /**
