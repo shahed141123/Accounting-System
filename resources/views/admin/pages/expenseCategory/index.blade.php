@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="card-body">
                             <!-- Table -->
                             <table class="table table-striped datatable" style="width:100%">
@@ -158,10 +158,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <x-admin.select-option class="form-select form-select-solid" id="status"
-                                name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                            <x-admin.select-option id="status" name="status" :allowClear="true">
+                                <option value="active" @selected(old('status') == 'active')>Active</option>
+                                <option value="inactive" @selected(old('status') == 'inactive')>Inactive</option>
                             </x-admin.select-option>
                         </div>
                         <x-admin.button type="submit" class="btn btn-white">Add Category</x-admin.button>

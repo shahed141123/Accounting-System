@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\WelcomeNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ClientsController extends Controller
 {
@@ -21,7 +24,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-       return view("admin.pages.clients.create");
+        return view("admin.pages.clients.create");
     }
 
     /**
@@ -30,13 +33,8 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         try {
-            // generate code
-            $code = 1;
-            $lastClient = Client::latest()->first();
-            if ($lastClient) {
-                $code = $lastClient->client_id + 1;
-            }
 
+            $code = generateCode(User::class, 'AMSC');
             // upload thumbnail and set the name
             $files = [
                 'image' => $request->file('image'),
@@ -44,7 +42,7 @@ class ClientsController extends Controller
             $uploadedFiles = [];
             foreach ($files as $key => $file) {
                 if (!empty($file)) {
-                    $filePath = 'account/' . $key;
+                    $filePath = 'clients/' . $key;
                     $uploadedFiles[$key] = customUpload($file, $filePath);
                     if ($uploadedFiles[$key]['status'] === 0) {
                         return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
@@ -54,17 +52,21 @@ class ClientsController extends Controller
                 }
             }
 
+
             // create client
-            $userSchema = Client::create([
-                'name' => $request->name,
-                'client_id' => $code,
-                'email' => $request->email,
-                'phone' => $request->phoneNumber,
-                'company_name' => $request->companyName,
-                'type' => $request->supplierType,
-                'address' => $request->address,
-                'status' => $request->status,
-                'image_path' => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+            $userSchema = User::create([
+                'name'                      => $request->name,
+                'client_id'                 => $code,
+                'email'                     => $request->email,
+                'phone'                     => $request->phone,
+                'company_name'              => $request->companyName,
+                'tax_registration_number'   => $request->tax_registration_number,
+                // 'type'                      => $request->supplierType,
+                'address'                   => $request->address,
+                'status'                    => $request->status,
+                'isSendEmail'               => $request->isSendEmail,
+                'isSendSMS'                 => $request->isSendSMS,
+                'image'                     => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
             ]);
 
             //send welcome notification
@@ -79,10 +81,11 @@ class ClientsController extends Controller
                 //handle email error here if necessary
                 throw new Exception($e);
             }
-
-            return $this->responseWithSuccess('Client added successfully');
+            redirectWithSuccess('Client added successfully');
+            return redirect()->route('admin.clients.index');
         } catch (Exception $e) {
-            return $this->responseWithError($e->getMessage());
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
@@ -99,7 +102,7 @@ class ClientsController extends Controller
      */
     public function edit(string $id)
     {
-       return view("admin.pages.clients.edit");
+        return view("admin.pages.clients.edit");
     }
 
     /**
