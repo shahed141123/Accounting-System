@@ -1,4 +1,4 @@
-<x-admin-app-layout>
+<x-admin-app-layout :title="'Client Create'">
     <div class="app-content">
         <div class="container-fluid">
             <div class="row">

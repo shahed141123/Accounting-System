@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class NonPurchasePayment extends Model
+{
+    use HasFactory;
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+
+    /**
+     * Get the  tansaction for this payment.
+     */
+    public function paymentTransaction()
+    {
+        return $this->belongsTo(AccountTransaction::class, 'transaction_id');
+    }
+
+    /**
+     * Get the user who has created this account
+     */
+    public function user()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+}

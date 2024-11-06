@@ -59,11 +59,11 @@
                                                     data-bs-target="#editCategoryModal{{ $category->id }}">
                                                     <i class="fa-solid fa-pen"></i>
                                                 </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white"
+                                                {{-- <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#editCategoryModal{{ $category->id }}">
                                                     <i class="fa-solid fa-eye"></i>
-                                                </a>
+                                                </a> --}}
                                                 <a href="{{ route('admin.expense-category.destroy', $category->id) }}"
                                                     class="btn btn-sm btn-danger delete">
                                                     <i class="fa-solid fa-trash"></i>

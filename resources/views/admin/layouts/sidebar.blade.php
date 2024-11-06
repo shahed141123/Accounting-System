@@ -227,13 +227,26 @@
                             ],
                         ],
                         [
-                            'title' => 'Users',
+                            'title' => 'Employees',
                             'icon' => 'fa-solid fa-users text-info',
+                            'routes' => [
+                                'admin.employeee-department.index',
+                                'admin.employeee-department.create',
+                                'admin.employeee-department.edit',
+                                'admin.employee.index',
+                                'admin.employee.create',
+                                'admin.employee.edit',
+                            ],
                             'subMenu' => [
                                 [
-                                    'title' => 'User List',
-                                    'routes' => ['admin.user.index'],
-                                    'route' => 'admin.user.index',
+                                    'title' => 'Departments',
+                                    'routes' => ['admin.employeee-department.index'],
+                                    'route' => 'admin.employeee-department.index',
+                                ],
+                                [
+                                    'title' => 'Employee List',
+                                    'routes' => ['admin.employee.index'],
+                                    'route' => 'admin.employee.index',
                                 ],
                             ],
                         ],
@@ -358,38 +371,38 @@
                                 ],
                             ],
                         ],
-                        [
-                            'title' => 'Site Contents',
-                            'icon' => 'fa-solid fa-file-pen text-info',
-                            'routes' => [
-                                'admin.terms-condition.index',
-                                'admin.terms-condition.create',
-                                'admin.terms-condition.edit',
-                                'admin.privacy-policy.index',
-                                'admin.privacy-policy.create',
-                                'admin.privacy-policy.edit',
-                            ],
-                            'subMenu' => [
-                                [
-                                    'title' => 'Terms & Condition',
-                                    'routes' => [
-                                        'admin.terms-condition.index',
-                                        'admin.terms-condition.create',
-                                        'admin.terms-condition.edit',
-                                    ],
-                                    'route' => 'admin.terms-condition.index',
-                                ],
-                                [
-                                    'title' => 'Privacy Policy',
-                                    'routes' => [
-                                        'admin.privacy-policy.index',
-                                        'admin.privacy-policy.create',
-                                        'admin.privacy-policy.edit',
-                                    ],
-                                    'route' => 'admin.privacy-policy.index',
-                                ],
-                            ],
-                        ],
+                        // [
+                        //     'title' => 'Site Contents',
+                        //     'icon' => 'fa-solid fa-file-pen text-info',
+                        //     'routes' => [
+                        //         'admin.terms-condition.index',
+                        //         'admin.terms-condition.create',
+                        //         'admin.terms-condition.edit',
+                        //         'admin.privacy-policy.index',
+                        //         'admin.privacy-policy.create',
+                        //         'admin.privacy-policy.edit',
+                        //     ],
+                        //     'subMenu' => [
+                        //         [
+                        //             'title' => 'Terms & Condition',
+                        //             'routes' => [
+                        //                 'admin.terms-condition.index',
+                        //                 'admin.terms-condition.create',
+                        //                 'admin.terms-condition.edit',
+                        //             ],
+                        //             'route' => 'admin.terms-condition.index',
+                        //         ],
+                        //         [
+                        //             'title' => 'Privacy Policy',
+                        //             'routes' => [
+                        //                 'admin.privacy-policy.index',
+                        //                 'admin.privacy-policy.create',
+                        //                 'admin.privacy-policy.edit',
+                        //             ],
+                        //             'route' => 'admin.privacy-policy.index',
+                        //         ],
+                        //     ],
+                        // ],
                         [
                             'title' => 'Setup',
                             'icon' => 'fa-solid fa-gear text-info',

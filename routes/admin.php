@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\IconController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\TodayReportController;
 use App\Http\Controllers\Admin\BalanceSheetController;
 use App\Http\Controllers\Admin\EmailSettingController;
+use App\Http\Controllers\EmployeeDepartmentController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\ClientInvoiceController;
 use App\Http\Controllers\Admin\ExpenseReportController;
@@ -123,6 +125,19 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
         ],
         ['except' => ['show', 'index', 'create', 'edit']]
     );
+    Route::resources(
+        [
+            'balance-sheet'       => BalanceSheetController::class,
+            'today-report'        => TodayReportController::class,
+            'summary-report'      => SummaryReportController::class,
+            'expense-report'      => ExpenseReportController::class,
+            'client-receivable'   => ClientReceivableReportController::class,
+            'client-payable'      => ClientPayableReportController::class,
+            'sales-user'          => SalesUserReportController::class,
+            'collection-report'   => CollectionReportController::class,
+        ],
+        ['except' => ['show', 'create', 'edit', 'store', 'update', 'destroy']]
+    );
     // Route::resources(
     //     [
     //         'catalogue'           => CatalogueController::class, //done
@@ -134,6 +149,8 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     // );
     Route::resources(
         [
+            'employeee-department' => EmployeeDepartmentController::class,
+            'employee'            => EmployeeController::class,
             'faq'                 => FaqController::class,
             'role'                => RoleController::class,
             'permission'          => PermissionController::class,
@@ -146,17 +163,13 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
             'balance-adjustment'  => BalanceAdjustmentController::class,
             'balance-transfer'    => BalanceTransferController::class,
             'transaction-history' => TransactionHistoryController::class,
-            'balance-sheet'       => BalanceSheetController::class,
-            'clients'             => ClientsController::class,
+
             'client-invoice'      => ClientInvoiceController::class,
             'client-non-invoice'  => ClientNonInvoiceController::class,
-            'today-report'        => TodayReportController::class,
-            'summary-report'      => SummaryReportController::class,
-            'expense-report'      => ExpenseReportController::class,
-            'client-receivable'   => ClientReceivableReportController::class,
-            'client-payable'      => ClientPayableReportController::class,
-            'sales-user'          => SalesUserReportController::class,
-            'collection-report'   => CollectionReportController::class,
+
+
+
+
             'payroll'             => PayrollController::class,
             'account'             => AccountController::class,
             'income-category'     => IncomeCategoryController::class,
@@ -180,6 +193,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
             'brands'                => BrandController::class, //done
             'contacts'              => ContactController::class,
             'product'               => ProductController::class,
+            'clients'               => ClientsController::class,
             'banner'                => PageBannerController::class,
         ],
     );

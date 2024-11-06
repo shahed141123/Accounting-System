@@ -77,11 +77,11 @@
                                                     <a href="{{ route('admin.account.edit',$account->slug) }}" class="btn btn-sm btn-primary">
                                                         <i class="fa-solid fa-pen"></i>
                                                     </a>
-                                                    <a href="javascript:void(0)"
+                                                    {{-- <a href="javascript:void(0)"
                                                         class="btn btn-sm btn-warning text-white toltip"
                                                         data-tooltip="Transaction">
                                                         <i class="fa-solid fa-handshake-angle"></i>
-                                                    </a>
+                                                    </a> --}}
                                                     <a href="{{ route('admin.account.destroy',$account->id) }}" class="btn btn-sm btn-danger delete">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>

@@ -55,72 +55,44 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                                <div>
-                                                    <img width="50px" src="{{ asset('images/user.jpg') }}"
-                                                        alt="">
-                                                </div>
-                                            </td>
-                                            <td class="text-center">AC-5</td>
-                                            <td class="text-center">Troy Walker</td>
-                                            <td class="text-center">+1 (642) 971-4148</td>
-                                            <td class="text-center">namygyjyxe@mailinator.com</td>
-                                            <td class="text-center">Velasquez Plc</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">
-                                                    Active</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"
-                                                    data-tooltip="Edit">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn-sm btn-warning text-white toltip"
-                                                    data-tooltip="View">
-                                                    <i class="fa-solid fa-expand"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
-                                                    data-tooltip="Delete">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">
-                                                <div>
-                                                    <img width="50px" src="{{ asset('images/user.jpg') }}"
-                                                        alt="">
-                                                </div>
-                                            </td>
-                                            <td class="text-center">AC-5</td>
-                                            <td class="text-center">Troy Walker</td>
-                                            <td class="text-center">+1 (642) 971-4148</td>
-                                            <td class="text-center">namygyjyxe@mailinator.com</td>
-                                            <td class="text-center">Velasquez Plc</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-warning">
-                                                    Inctive</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary toltip"
-                                                    data-tooltip="Edit">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn-sm btn-warning text-white toltip"
-                                                    data-tooltip="View">
-                                                    <i class="fa-solid fa-expand"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
-                                                    data-tooltip="Delete">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($clients as $client)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">
+                                                    <div>
+                                                        <img width="50px" src="{{ asset('storage/'.$client->image) }}"
+                                                            alt="{{ $client->name }}">
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">{{ $client->client_id }}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('admin.clients.show',$client->slug) }}">{{ $client->name }}</a>
+                                                </td>
+                                                <td class="text-center">{{ $client->phone }}</td>
+                                                <td class="text-center">{{ $client->email }}</td>
+                                                <td class="text-center">{{ $client->company_name }}</td>
+                                                <td class="text-center">
+                                                    <span
+                                                        class="badge {{ $client->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $client->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="{{ route('admin.clients.edit',$client->slug) }}" class="btn btn-sm btn-primary toltip mb-2"
+                                                        data-tooltip="Edit">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.clients.show',$client->slug) }}"
+                                                        class="btn btn-sm btn-warning text-white toltip mb-2"
+                                                        data-tooltip="View">
+                                                        <i class="fa-solid fa-expand"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.clients.destroy',$client->slug) }}" class="btn btn-sm btn-danger toltip mb-2"
+                                                        data-tooltip="Delete">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

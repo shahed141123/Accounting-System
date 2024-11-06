@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->string('website')->nullable();
             $table->string('biometric_id')->nullable();
+            $table->tinyInteger('account_role')->default(1)->nullable();
+            $table->tinyInteger('is_active')->nullable()->default(1);
             $table->date('deactivation_start')->nullable();
             $table->integer('deactivation_period')->nullable();
             $table->date('deactivation_end')->nullable();
