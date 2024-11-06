@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('non_purchase_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade')->onUpdate('no action');
+            $table->foreignId('supplier_id')->nullable()->constrained('suppliers')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('transaction_id')->nullable()->constrained('account_transactions')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('created_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
             $table->foreignId('updated_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');

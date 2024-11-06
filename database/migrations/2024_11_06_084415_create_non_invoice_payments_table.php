@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('non_invoice_payments', function (Blueprint $table) {
-            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('no action');
+            $table->foreignId('client_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('transaction_id')->nullable()->constrained('account_transactions')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('created_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
             $table->foreignId('updated_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
