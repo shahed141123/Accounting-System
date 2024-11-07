@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class BalanceAdjustmentController extends Controller
 {
@@ -65,7 +66,8 @@ class BalanceAdjustmentController extends Controller
             redirectWithSuccess('Balance updated successfully');
             return redirect()->route('admin.balance-adjustment.index');
         } catch (Exception $e) {
-            redirectWithError($e->getMessage());
+            // redirectWithError($e->getMessage());
+            Session::flash('error' , $e->getMessage());
             return redirect()->back()->withInput();
         }
     }
