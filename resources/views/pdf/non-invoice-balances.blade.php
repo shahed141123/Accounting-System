@@ -21,17 +21,17 @@
                         <td>{{ ++$key }}</td>
                         <td>{{ $balance['cashbook_account']['bank_name'] }}</td>
                         <td>{{ $balance['cashbook_account']['account_number'] }}</td>
-                        <td>@currency($balance['amount'])</td>
+                        <td>{{ $balance['amount'] }}</td>
                         <td>
                             @if ($balance['type'] == 1)
-                                <span class="badge bg-success">@lang('common.add_balance') </span>
+                                <span class="badge bg-success">@lang('Add Balance') </span>
                             @else
-                                <span class="badge bg-danger">@lang('common.remove_balance')</span>
+                                <span class="badge bg-danger">@lang('Remove Balance')</span>
                             @endif
                         </td>
                         <td>{{ \Carbon\Carbon::parse($balance['transaction_date'])->format('d-M-Y') }}</td>
                         <td>
-                            @if ($balance['status'])
+                            @if ($balance['status'] == "active")
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

@@ -28,6 +28,7 @@ use App\Models\PaymentMethod;
 use App\Models\BalanceTansfer;
 use App\Models\InvoicePayment;
 use App\Models\PurchaseReturn;
+use App\Models\BalanceTransfer;
 use App\Models\ExpenseCategory;
 use App\Models\ProductCategory;
 use App\Models\PurchasePayment;
@@ -237,7 +238,7 @@ class TableExportController extends Controller
     // return non invoice add balances pdf
     public function nonInvoiceBalancesPDF()
     {
-        $data = AccountTransaction::with('cashbookAccount')->where('reason', 'LIKE', 'Non invoice balance added%')->latest()->get()->toArray();
+        $data = AccountTransaction::with('cashbookAccount')->where('reason', 'LIKE', 'Non-invoice balance%')->latest()->get()->toArray();
         // share data to view
         view()->share('balances', $data);
         $pdf = PDF::loadView('pdf.non-invoice-balances', $data)->setPaper('a4', 'landscape');
@@ -248,7 +249,7 @@ class TableExportController extends Controller
     // return transfer balances pdf
     public function transferBalancesPDF()
     {
-        $data = BalanceTansfer::with('debitTransaction.cashbookAccount', 'creditTransaction.cashbookAccount', 'user')->latest()->get()->toArray();
+        $data = BalanceTransfer::with('debitTransaction.cashbookAccount', 'creditTransaction.cashbookAccount', 'addUser')->latest()->get()->toArray();
         // share data to view
         view()->share('transfers', $data);
         $pdf = PDF::loadView('pdf.transfer-balances', $data)->setPaper('a4', 'landscape');

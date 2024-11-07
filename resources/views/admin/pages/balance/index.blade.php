@@ -11,14 +11,14 @@
                                     <h4 class="mb-0">Balance Adjustments</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-light toltip"
+                                    {{-- <button type="button" class="btn btn-outline-light toltip"
                                         data-tooltip="Export To Excel">
                                         <i class="fa-solid fa-file-csv"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-light toltip"
+                                    </button> --}}
+                                    <a href="{{ route('admin.account.balances.pdf') }}" class="btn btn-outline-light toltip"
                                         data-tooltip="Download PDF">
                                         <i class="fa-solid fa-file-pdf"></i>
-                                    </button>
+                                    </a>
                                     <button type="button" class="btn btn-outline-light toltip"
                                         data-tooltip="Print Table">
                                         <i class="fa-solid fa-print"></i>

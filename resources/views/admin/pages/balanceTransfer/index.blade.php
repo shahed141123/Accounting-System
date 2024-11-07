@@ -14,11 +14,11 @@
                                     {{-- <button type="button" class="btn btn-outline-light toltip"
                                         data-tooltip="Export To Excel">
                                         <i class="fa-solid fa-file-csv"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-light toltip"
+                                    </button> --}}
+                                    <a href="{{ route('admin.account.transferBalances.pdf') }}" class="btn btn-outline-light toltip"
                                         data-tooltip="Download PDF">
                                         <i class="fa-solid fa-file-pdf"></i>
-                                    </button>
+                                    </a>
                                     <button type="button" class="btn btn-outline-light toltip"
                                         data-tooltip="Print Table">
                                         <i class="fa-solid fa-print"></i>
@@ -27,7 +27,7 @@
                                     <a href="{{ route('admin.balance-transfer.create') }}"
                                         class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
                                         <i class="fa-solid fa-plus"></i>
-                                    </a> --}}
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -29,11 +29,11 @@
                             [{{ $transfer['credit_transaction']['cashbook_account']['account_number'] }}]
                         </td>
                         <td>
-                            @currency($transfer['amount'])
+                            {{ $transfer['amount'] }}
                         </td>
                         <td>{{ \Carbon\Carbon::parse($transfer['date'])->format('d-M-Y') }}</td>
                         <td>
-                            @if ($transfer['status'])
+                            @if ($transfer['status'] == "active")
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

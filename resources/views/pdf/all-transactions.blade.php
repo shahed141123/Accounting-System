@@ -31,10 +31,10 @@
                         </td>
                         <td>{{ $transaction['cashbook_account']['account_number'] }}</td>
                         <td>
-                            @currency($transaction['amount'])
+                            {{ $transaction['amount'] }}
                         </td>
                         <td>
-                            @if ($transaction['status'])
+                            @if ($transaction['status'] == "active")
                                 @lang('Active')
                             @else
                                 @lang('Inactive')
