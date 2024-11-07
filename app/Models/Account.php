@@ -40,7 +40,7 @@ class Account extends Model
      */
     public function totalCredits()
     {
-        return $this->balanceTransactions->where('status', 1)->where('type', 1)->sum('amount');
+        return $this->balanceTransactions->where('status', 'active')->where('type', 1)->sum('amount');
     }
 
     /**
@@ -48,7 +48,7 @@ class Account extends Model
      */
     public function totalDebits()
     {
-        return $this->balanceTransactions->where('status', 1)->where('type', 0)->sum('amount');
+        return $this->balanceTransactions->where('status', 'active')->where('type', 0)->sum('amount');
     }
 
     /**
