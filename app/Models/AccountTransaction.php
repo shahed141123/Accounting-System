@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class AccountTransaction extends Model
 {
     use HasFactory, HasSlug;
-    protected $slugSourceColumn = 'name';
+    protected $slugSourceColumn = 'reason';
     /**
      * The attributes that aren't mass assignable.
      *

@@ -43,7 +43,7 @@
                                             <th width="10%" class="text-center">Amount</th>
                                             <th width="10%" class="text-center">Type</th>
                                             <th width="15%" class="text-center">Date</th>
-                                            <th width="7%" class="text-center">Status</th>
+                                            {{-- <th width="7%" class="text-center">Status</th> --}}
                                             <th width="10%" class="text-end">Action</th>
                                         </tr>
                                     </thead>
@@ -55,14 +55,14 @@
                                                 <td class="text-center">{{ $balance->cashbookAccount->account_number }}</td>
                                                 <td class="text-center">{{ $balance->amount }}</td>
                                                 <td class="text-center">
-                                                    <span class="badge {{ $balance->status == '1' ? 'bg-success' : 'bg-danger' }}">
-                                                        {{ $balance->status == '1' ? 'Add Balance' : 'Remove Balance' }}</span>
+                                                    <span class="badge {{ $balance->type == '1' ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $balance->type == '1' ? 'Add Balance' : 'Remove Balance' }}</span>
                                                 </td>
                                                 <td class="text-center">{{ optional($balance->date) ? \Carbon\Carbon::parse($balance->date)->format('jS M, Y') : '' }}</td>
-                                                <td class="text-center">
+                                                {{-- <td class="text-center">
                                                     <span class="badge {{ $balance->status == 'active' ? 'bg-success' : 'bg-danger' }}">
                                                         {{ $balance->status == 'active' ? 'Active' : 'InActive' }}</span>
-                                                </td>
+                                                </td> --}}
                                                 <td class="text-end">
                                                     <a href="{{ route('admin.balance-adjustment.edit',$balance->slug) }}" class="btn btn-sm btn-primary toltip"
                                                         data-tooltip="Edit">
