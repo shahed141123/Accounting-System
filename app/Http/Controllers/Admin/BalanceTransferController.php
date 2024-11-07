@@ -233,12 +233,15 @@ class BalanceTransferController extends Controller
         $endDate = $request->input('end_date');
 
         // Fetch the filtered transactions based on the date range
+        if ($request->startDate && $request->endDate) {
+            $query = $query->whereBetween('date', [$request->startDate, $request->endDate]);
+        }
         $transfers = AccountTransaction::with('cashbookAccount', 'user')
             ->where(function ($query) {
                 $query->where('reason', 'LIKE', 'Non invoice balance added%')
                     ->orWhere('reason', 'LIKE', 'Non invoice balance removed from%');
             })
-            ->whereBetween('transaction_date', [$startDate, $endDate]) // Filter by date range
+            ->whereBetween('date', [$startDate, $endDate]) // Filter by date range
             ->latest()
             ->get();
 
