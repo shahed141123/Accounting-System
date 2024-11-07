@@ -205,6 +205,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     // Route::controller(ShippingManagementController::class)->group(function () {
     //     Route::get('/shipping-management', 'index')->name('shipping-management.index');
     // });
+    Route::get('admin/balance-history/filter', [BalanceTransferController::class, 'filter'])->name('admin.balance-history.filter');
     Route::controller(OrderManagementController::class)->group(function () {
         Route::get('/order-management', 'index')->name('order-management.index');
         Route::get('/order/{id}/details', 'orderDetails')->name('orderDetails');

@@ -11,7 +11,7 @@
                                     <h4 class="mb-0">Balance Transfers</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-light toltip"
+                                    {{-- <button type="button" class="btn btn-outline-light toltip"
                                         data-tooltip="Export To Excel">
                                         <i class="fa-solid fa-file-csv"></i>
                                     </button>
@@ -27,7 +27,7 @@
                                     <a href="{{ route('admin.balance-transfer.create') }}"
                                         class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
                                         <i class="fa-solid fa-plus"></i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
@@ -58,18 +58,22 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $transfer->reason }}</td>
-                                                <td>{{ optional($transfer->debitTransaction->cashbookAccount)->bank_name . '[' . optional($transfer->debitTransaction->cashbookAccount)->account_number . ']' ?? '' }}</td>
-                                                <td>{{ optional($transfer->creditTransaction->cashbookAccount)->bank_name . '[' . optional($transfer->creditTransaction->cashbookAccount)->account_number . ']' ?? '' }}</td>
+                                                <td>{{ optional($transfer->debitTransaction->cashbookAccount)->bank_name . '[' . optional($transfer->debitTransaction->cashbookAccount)->account_number . ']' ?? '' }}
+                                                </td>
+                                                <td>{{ optional($transfer->creditTransaction->cashbookAccount)->bank_name . '[' . optional($transfer->creditTransaction->cashbookAccount)->account_number . ']' ?? '' }}
+                                                </td>
                                                 <td class="text-center">{{ $transfer->amount }}</td>
-                                                <td class="text-center">{{ optional($transfer->date) ? \Carbon\Carbon::parse($transfer->date)->format('jS M, Y') : '' }}</td>
+                                                <td class="text-center">
+                                                    {{ optional($transfer->date) ? \Carbon\Carbon::parse($transfer->date)->format('jS M, Y') : '' }}
+                                                </td>
                                                 <td>
                                                     <span
                                                         class="badge {{ $transfer->status == 'active' ? 'bg-success' : 'bg-danger' }}">
                                                         {{ $transfer->status == 'active' ? 'Active' : 'InActive' }}</span>
                                                 </td>
                                                 <td class="text-end">
-                                                    <a href="{{ route('admin.balance-transfer.edit',$transfer->slug) }}" class="btn btn-sm btn-primary toltip"
-                                                        data-tooltip="Edit">
+                                                    <a href="{{ route('admin.balance-transfer.edit', $transfer->slug) }}"
+                                                        class="btn btn-sm btn-primary toltip" data-tooltip="Edit">
                                                         <i class="fa-solid fa-pen"></i>
                                                     </a>
                                                     {{-- <a href="javascript:void(0)"
@@ -77,8 +81,8 @@
                                                         data-tooltip="View">
                                                         <i class="fa-solid fa-expand"></i>
                                                     </a> --}}
-                                                    <a href="{{ route('admin.balance-transfer.destroy',$transfer->id) }}" class="btn btn-sm btn-danger toltip"
-                                                        data-tooltip="Delete">
+                                                    <a href="{{ route('admin.balance-transfer.destroy', $transfer->id) }}"
+                                                        class="btn btn-sm btn-danger toltip" data-tooltip="Delete">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -96,45 +100,38 @@
     </div>
     @push('scripts')
         <script>
-            // Multi Select Date Picker
-            var dates = [];
             $(document).ready(function() {
                 $("#cal").daterangepicker();
+
+                // When the date range is applied
                 $("#cal").on("apply.daterangepicker", function(e, picker) {
                     e.preventDefault();
-                    const obj = {
-                        key: dates.length + 1,
-                        start: picker.startDate.format("MM/DD/YYYY"),
-                        end: picker.endDate.format("MM/DD/YYYY"),
-                    };
-                    dates.push(obj);
-                    showDates();
-                });
-                $(".remove").on("click", function() {
-                    removeDate($(this).attr("key"));
+                    // Get the start and end date from the picker
+                    const startDate = picker.startDate.format("YYYY-MM-DD");
+                    const endDate = picker.endDate.format("YYYY-MM-DD");
+
+                    // Send an AJAX request to the server to fetch filtered data
+                    fetchFilteredData(startDate, endDate);
                 });
             });
 
-            function showDates() {
-                $("#ranges").html("");
-                $.each(dates, function() {
-                    const el =
-                        "<li>" +
-                        this.start +
-                        "-" +
-                        this.end +
-                        "<button class='remove' onClick='removeDate(" +
-                        this.key +
-                        ")'>-</button></li>";
-                    $("#ranges").append(el);
+            // Function to send the AJAX request to the server
+            function fetchFilteredData(startDate, endDate) {
+                $.ajax({
+                    url: "{{ route('admin.balance-history.filter') }}", // Your route for filtering the balance history
+                    method: 'GET',
+                    data: {
+                        start_date: startDate,
+                        end_date: endDate
+                    },
+                    success: function(response) {
+                        // Assuming the response contains the filtered table HTML
+                        $('tbody').html(response.tableHtml); // Replace the table rows with the new filtered data
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching filtered data: ", error);
+                    }
                 });
-            }
-
-            function removeDate(i) {
-                dates = dates.filter(function(o) {
-                    return o.key !== i;
-                });
-                showDates();
             }
         </script>
     @endpush

@@ -183,18 +183,18 @@ class BalanceTransferController extends Controller
     {
         $transfer = BalanceTransfer::where('id', $id)->first();
 
-            // check if the transfer can be delete
-            $canDelete = true;
-            if ($transfer->creditTransaction->cashbookAccount->availableBalance() < $transfer->amount) {
-                $canDelete = false;
-            }
+        // check if the transfer can be delete
+        $canDelete = true;
+        if ($transfer->creditTransaction->cashbookAccount->availableBalance() < $transfer->amount) {
+            $canDelete = false;
+        }
 
-            if ($canDelete) {
-                // delete transfer transactions
-                $transfer->debitTransaction->delete();
-                $transfer->creditTransaction->delete();
-                $transfer->delete();
-            }
+        if ($canDelete) {
+            // delete transfer transactions
+            $transfer->debitTransaction->delete();
+            $transfer->creditTransaction->delete();
+            $transfer->delete();
+        }
     }
 
     public function search(Request $request)
@@ -207,22 +207,44 @@ class BalanceTransferController extends Controller
         }
 
         $query->where(function ($query) use ($term) {
-            $query->where('reason', 'LIKE', '%'.$term.'%')
-                ->orWhere('amount', 'LIKE', '%'.$term.'%')
+            $query->where('reason', 'LIKE', '%' . $term . '%')
+                ->orWhere('amount', 'LIKE', '%' . $term . '%')
                 ->orWhereHas('debitTransaction', function ($newQuery) use ($term) {
                     $newQuery->whereHas('cashbookAccount', function ($newQuery) use ($term) {
-                        $newQuery->where('account_number', 'LIKE', '%'.$term.'%')
-                            ->orWhere('bank_name', 'LIKE', '%'.$term.'%');
+                        $newQuery->where('account_number', 'LIKE', '%' . $term . '%')
+                            ->orWhere('bank_name', 'LIKE', '%' . $term . '%');
                     });
                 })
                 ->orWhereHas('creditTransaction', function ($newQuery) use ($term) {
                     $newQuery->whereHas('cashbookAccount', function ($newQuery) use ($term) {
-                        $newQuery->where('account_number', 'LIKE', '%'.$term.'%')
-                            ->orWhere('bank_name', 'LIKE', '%'.$term.'%');
+                        $newQuery->where('account_number', 'LIKE', '%' . $term . '%')
+                            ->orWhere('bank_name', 'LIKE', '%' . $term . '%');
                     });
                 });
         });
 
         // return BalanceTransferResource::collection($query->latest()->paginate($request->perPage));
+    }
+
+    public function filter(Request $request)
+    {
+        // Get start and end dates from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Fetch the filtered transactions based on the date range
+        $transfers = AccountTransaction::with('cashbookAccount', 'user')
+            ->where(function ($query) {
+                $query->where('reason', 'LIKE', 'Non invoice balance added%')
+                    ->orWhere('reason', 'LIKE', 'Non invoice balance removed from%');
+            })
+            ->whereBetween('date', [$startDate, $endDate]) // Filter by date range
+            ->latest()
+            ->get();
+
+        // Return the updated table HTML
+        $tableHtml = view('admin.pages.balanceTransfer.filter_table', compact('transfers'))->render();
+
+        return response()->json(['tableHtml' => $tableHtml]);
     }
 }
