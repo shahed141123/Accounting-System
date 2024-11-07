@@ -11,14 +11,14 @@
                                     <h4 class="mb-0">Mange Your Accounts</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-light toltip"
+                                    {{-- <button type="button" class="btn btn-outline-light toltip"
                                         data-tooltip="Export To Excel">
                                         <i class="fa-solid fa-file-csv"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-light toltip"
+                                    </button> --}}
+                                    <a href="{{ route('admin.accounts.pdf') }}" class="btn btn-outline-light toltip"
                                         data-tooltip="Download PDF">
                                         <i class="fa-solid fa-file-pdf"></i>
-                                    </button>
+                                    </a>
                                     <button type="button" class="btn btn-outline-light toltip"
                                         data-tooltip="Print Table">
                                         <i class="fa-solid fa-print"></i>
@@ -32,12 +32,7 @@
                             </div>
                         </div>
                         <div class="card-body p-0">
-                            <div class="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
-                                <h6>Filter Accounts From-To</h6>
-                                <div>
-                                    <input class="form-control" name='range' id='cal' />
-                                </div>
-                            </div>
+
                             <div class="p-3 pt-1 table-responsive">
                                 <!-- Table -->
                                 <table class="table table-striped datatable" style="width:100%">

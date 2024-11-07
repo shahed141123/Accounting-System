@@ -35,7 +35,6 @@
                             <div class="table-responsive">
                                 <table class="table table-striped datatable" style="width:100%">
                                     <thead>
-
                                         <tr>
                                             <th width="3%" class="text-center">Sl</th>
                                             <th width="15%" class="text-center">Bank Name</th>

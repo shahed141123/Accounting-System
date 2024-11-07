@@ -11,19 +11,8 @@
                                     <h4 class="mb-0">Mange Your Income</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-light toltip"
-                                        data-tooltip="Export To Excel">
-                                        <i class="fa-solid fa-file-csv"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-light toltip"
-                                        data-tooltip="Download PDF">
-                                        <i class="fa-solid fa-file-pdf"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-light toltip"
-                                        data-tooltip="Print Table">
-                                        <i class="fa-solid fa-print"></i>
-                                        <span class="tooltiptext">Print</span>
-                                    </button>
+
+                                    
                                     <a href="{{ route('admin.income.create') }}" class="btn btn-outline-light toltip"
                                         data-tooltip="Create New"> Create
                                         <i class="fa-solid fa-plus"></i>

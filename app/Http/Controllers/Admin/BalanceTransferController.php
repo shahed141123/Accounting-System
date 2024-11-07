@@ -23,6 +23,29 @@ class BalanceTransferController extends Controller
         return view("admin.pages.balanceTransfer.index", $data);
     }
 
+    public function filter(Request $request)
+    {
+        // Get the start and end date from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // If no date filter is provided, fetch all transactions
+        if (!$startDate || !$endDate) {
+            $transfers = BalanceTransfer::with('debitTransaction.cashbookAccount', 'creditTransaction.cashbookAccount', 'addUser')
+                ->latest()
+                ->get();
+        } else {
+            // Query to filter the transfers based on the date range
+            $transfers = BalanceTransfer::with('debitTransaction.cashbookAccount', 'creditTransaction.cashbookAccount', 'addUser')
+                ->whereBetween('date', [$startDate, $endDate])
+                ->latest()
+                ->get();
+        }
+
+        // Return a view fragment (HTML table rows)
+        return response()->view('admin.pages.balanceTransfer.filter_table', compact('transfers'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -224,30 +247,5 @@ class BalanceTransferController extends Controller
         });
 
         // return BalanceTransferResource::collection($query->latest()->paginate($request->perPage));
-    }
-
-    public function filter(Request $request)
-    {
-        // Get start and end dates from the request
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-
-        // Fetch the filtered transactions based on the date range
-        if ($request->startDate && $request->endDate) {
-            $query = $query->whereBetween('date', [$request->startDate, $request->endDate]);
-        }
-        $transfers = AccountTransaction::with('cashbookAccount', 'user')
-            ->where(function ($query) {
-                $query->where('reason', 'LIKE', 'Non invoice balance added%')
-                    ->orWhere('reason', 'LIKE', 'Non invoice balance removed from%');
-            })
-            ->whereBetween('date', [$startDate, $endDate]) // Filter by date range
-            ->latest()
-            ->get();
-
-        // Return the updated table HTML
-        $tableHtml = view('admin.pages.balanceTransfer.filter_table', compact('transfers'))->render();
-
-        return response()->json(['tableHtml' => $tableHtml]);
     }
 }

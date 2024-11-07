@@ -32,15 +32,20 @@
                             </div>
                         </div>
                         <div class="card-body p-0">
-                            <div class="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
-                                <h6>Filter Balance History From-To</h6>
+
+                            <div class="d-flex justify-content-end align-items-center mb-3 bg-light p-3">
+                                <h6 class="me-5">Filter Balance Transfer History From-To</h6>
                                 <div>
-                                    <input class="form-control" name='range' id='cal' />
+                                    <input class="form-control me-3" name='range' id='datefilter' />
+                                </div>
+                                <div>
+                                    <button type="button" class="ms-3 btn btn-sm btn-secondary" id="clear-filter">Clear
+                                        Filter</button>
                                 </div>
                             </div>
                             <div class="p-3 pt-1 table-responsive balanceTransFer">
                                 <!-- Table -->
-                                <table class="table table-striped datatable" style="width:100%">
+                                <table class="table table-striped datatable text-center" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th width="3%" class="text-center">Sl</th>
@@ -53,7 +58,7 @@
                                             <th width="10%" class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="data-body">
                                         @foreach ($transfers as $transfer)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
@@ -101,38 +106,51 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-                $("#cal").daterangepicker();
+                // Initialize datepicker or date range picker (e.g., flatpickr, jQuery UI Datepicker)
+                $('#datefilter').daterangepicker({
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    },
+                    autoUpdateInput: false, // We will manually update the input field
+                    opens: 'left', // Optional: Adjust the dropdown position
+                });
 
-                // When the date range is applied
-                $("#cal").on("apply.daterangepicker", function(e, picker) {
-                    e.preventDefault();
-                    // Get the start and end date from the picker
-                    const startDate = picker.startDate.format("YYYY-MM-DD");
-                    const endDate = picker.endDate.format("YYYY-MM-DD");
-
-                    // Send an AJAX request to the server to fetch filtered data
+                // When the user selects a date range
+                $('#datefilter').on('apply.daterangepicker', function(ev, picker) {
+                    // Set the selected date range in the input field
+                    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format(
+                        'YYYY-MM-DD'));
+                    let startDate = picker.startDate.format('YYYY-MM-DD');
+                    let endDate = picker.endDate.format('YYYY-MM-DD');
                     fetchFilteredData(startDate, endDate);
                 });
-            });
 
-            // Function to send the AJAX request to the server
-            function fetchFilteredData(startDate, endDate) {
-                $.ajax({
-                    url: "{{ route('admin.balance-history.filter') }}", // Your route for filtering the balance history
-                    method: 'GET',
-                    data: {
-                        start_date: startDate,
-                        end_date: endDate
-                    },
-                    success: function(response) {
-                        // Assuming the response contains the filtered table HTML
-                        $('.balanceTransFer').html(response.tableHtml); // Replace the table rows with the new filtered data
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error fetching filtered data: ", error);
-                    }
+                // "Clear Filter" button click handler
+                $('#clear-filter').click(function() {
+                    // Reset the date filter input
+                    $('#datefilter').val('');
+                    // Fetch all data (no filter applied)
+                    fetchFilteredData('', '');
                 });
-            }
+
+                function fetchFilteredData(startDate, endDate) {
+                    $.ajax({
+                        url: '{{ route('admin.balance-transfer.filter') }}', // Add your route here
+                        method: 'GET',
+                        data: {
+                            start_date: startDate,
+                            end_date: endDate,
+                        },
+                        success: function(response) {
+                            // Update the table body with the filtered data
+                            $('#data-body').html(response);
+                        },
+                        error: function() {
+                            alert('Error fetching data');
+                        }
+                    });
+                }
+            });
         </script>
     @endpush
 </x-admin-app-layout>

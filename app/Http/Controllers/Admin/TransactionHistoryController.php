@@ -25,30 +25,31 @@ class TransactionHistoryController extends Controller
         $data = [
             'transactions' => AccountTransaction::with('cashbookAccount', 'user')->latest()->get(),
         ];
-        return view("admin.pages.transactionHistory.index",$data);
+        return view("admin.pages.transactionHistory.index", $data);
     }
 
     // search and return transactions
-    public function searchTransactions(Request $request)
+    public function filter(Request $request)
     {
-        $term = $request->term;
-        $query = AccountTransaction::with('cashbookAccount', 'user');
+        // Get the start and end date from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
 
-        if ($request->startDate && $request->endDate) {
-            $query = $query->whereBetween('transaction_date', [$request->startDate, $request->endDate]);
+        // If no date filter is provided, fetch all transactions
+        if (!$startDate || !$endDate) {
+            $transactions = AccountTransaction::with('cashbookAccount', 'user')
+                ->latest()
+                ->get();
+        } else {
+            // Query to filter the transactions based on the date range
+            $transactions = AccountTransaction::with('cashbookAccount', 'user')
+                ->whereBetween('transaction_date', [$startDate, $endDate])
+                ->latest()
+                ->get();
         }
 
-        $query->where(function ($query) use ($term) {
-            $query->where('reason', 'LIKE', '%'.$term.'%')
-                ->orWhere('amount', 'LIKE', '%'.$term.'%')
-                ->orWhereHas('cashbookAccount', function ($newQuery) use ($term) {
-                    $newQuery->where('bank_name', 'LIKE', '%'.$term.'%')
-                        ->orWhere('branch_name', 'LIKE', '%'.$term.'%')
-                        ->orWhere('account_number', 'LIKE', '%'.$term.'%');
-                });
-        });
-
-        // return AccountTransactionResource::collection($query->latest()->paginate($request->perPage));
+        // Return a view fragment (HTML table rows)
+        return response()->view('admin.pages.transactionHistory.filter_table', compact('transactions'));
     }
     /**
      * Store a newly created resource in storage.

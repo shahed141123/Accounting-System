@@ -32,66 +32,19 @@
                             </div>
                         </div>
                         <div class="card-body p-0">
-                            <div class="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
-                                <h6>Filter Accounts From-To</h6>
+                            <div class="d-flex justify-content-end align-items-center mb-3 bg-light p-3">
+                                <h6 class="me-5">Filter Transactions From-To</h6>
                                 <div>
-                                    <input class="form-control" name='range' id='cal' />
+                                    <input class="form-control me-3" name='range' id='datefilter' />
+                                </div>
+                                <div>
+                                    <button type="button" class="ms-3 btn btn-sm btn-secondary" id="clear-filter">Clear
+                                        Filter</button>
                                 </div>
                             </div>
+
                             <div class="p-3 pt-1">
                                 <!-- Table -->
-                                {{-- <table class="table table-striped datatable" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th width="5%" class="text-center">Sl</th>
-                                            <th width="20%" class="text-center">Reason</th>
-                                            <th width="10%" class="text-center">Date</th>
-                                            <th width="10%" class="text-center">Type</th>
-                                            <th width="10%" class="text-center">Account</th>
-                                            <th width="10%" class="text-center">Amount</th>
-                                            <th width="5%" class="text-center">Status</th>
-                                            <th width="10%" class="text-end">Created By</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">[AE-2] February Payroll sent from [CASH-0001]</td>
-                                            <td class="text-center">17th Oct, 2024</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-danger">
-                                                    Debit</span>
-                                            </td>
-                                            <td class="text-center">Cash[CASH-0001]</td>
-                                            <td class="text-center">$9800.00</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-danger">
-                                                    Status</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <span>Super Admin</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">[AE-2] February Payroll sent from [CASH-0001]</td>
-                                            <td class="text-center">17th Oct, 2024</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-danger">
-                                                    Debit</span>
-                                            </td>
-                                            <td class="text-center">Cash[CASH-0001]</td>
-                                            <td class="text-center">$9800.00</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-danger">
-                                                    Status</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <span>Super Admin</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table> --}}
                                 <div class="table-responsive">
                                     <table class="table table-striped datatable text-center" style="width:100%">
                                         <thead>
@@ -119,7 +72,8 @@
                                                             {{ $data->type == 1 ? __('Credit') : __('Debit') }}
                                                         </span>
                                                     </td>
-                                                    <td>{{ optional($data->cashbookAccount)->bank_name . '[' . optional($data->cashbookAccount)->account_number . ']' ?? '' }}</td>
+                                                    <td>{{ optional($data->cashbookAccount)->bank_name . '[' . optional($data->cashbookAccount)->account_number . ']' ?? '' }}
+                                                    </td>
                                                     <td>{{ number_format($data->amount, 2) }}</td>
                                                     <td>
                                                         <span
@@ -147,46 +101,52 @@
     </div>
     @push('scripts')
         <script>
-            // Multi Select Date Picker
-            var dates = [];
             $(document).ready(function() {
-                $("#cal").daterangepicker();
-                $("#cal").on("apply.daterangepicker", function(e, picker) {
-                    e.preventDefault();
-                    const obj = {
-                        key: dates.length + 1,
-                        start: picker.startDate.format("MM/DD/YYYY"),
-                        end: picker.endDate.format("MM/DD/YYYY"),
-                    };
-                    dates.push(obj);
-                    showDates();
+                // Initialize datepicker or date range picker (e.g., flatpickr, jQuery UI Datepicker)
+                $('#datefilter').daterangepicker({
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    },
+                    autoUpdateInput: false, // We will manually update the input field
+                    opens: 'left', // Optional: Adjust the dropdown position
                 });
-                $(".remove").on("click", function() {
-                    removeDate($(this).attr("key"));
+
+                // When the user selects a date range
+                $('#datefilter').on('apply.daterangepicker', function(ev, picker) {
+                    // Set the selected date range in the input field
+                    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format(
+                        'YYYY-MM-DD'));
+                    let startDate = picker.startDate.format('YYYY-MM-DD');
+                    let endDate = picker.endDate.format('YYYY-MM-DD');
+                    fetchFilteredData(startDate, endDate);
                 });
+
+                // "Clear Filter" button click handler
+                $('#clear-filter').click(function() {
+                    // Reset the date filter input
+                    $('#datefilter').val('');
+                    // Fetch all data (no filter applied)
+                    fetchFilteredData('', '');
+                });
+
+                function fetchFilteredData(startDate, endDate) {
+                    $.ajax({
+                        url: '{{ route('admin.transactions.filter') }}', // Add your route here
+                        method: 'GET',
+                        data: {
+                            start_date: startDate,
+                            end_date: endDate,
+                        },
+                        success: function(response) {
+                            // Update the table body with the filtered data
+                            $('#data-body').html(response);
+                        },
+                        error: function() {
+                            alert('Error fetching data');
+                        }
+                    });
+                }
             });
-
-            function showDates() {
-                $("#ranges").html("");
-                $.each(dates, function() {
-                    const el =
-                        "<li>" +
-                        this.start +
-                        "-" +
-                        this.end +
-                        "<button class='remove' onClick='removeDate(" +
-                        this.key +
-                        ")'>-</button></li>";
-                    $("#ranges").append(el);
-                });
-            }
-
-            function removeDate(i) {
-                dates = dates.filter(function(o) {
-                    return o.key !== i;
-                });
-                showDates();
-            }
         </script>
     @endpush
 </x-admin-app-layout>
