@@ -38,7 +38,7 @@
                                     <input class="form-control" name='range' id='cal' />
                                 </div>
                             </div>
-                            <div class="p-3 pt-1 table-responsive">
+                            <div class="p-3 pt-1 table-responsive balanceTransFer">
                                 <!-- Table -->
                                 <table class="table table-striped datatable" style="width:100%">
                                     <thead>
@@ -126,7 +126,7 @@
                     },
                     success: function(response) {
                         // Assuming the response contains the filtered table HTML
-                        $('tbody').html(response.tableHtml); // Replace the table rows with the new filtered data
+                        $('.balanceTransFer').html(response.tableHtml); // Replace the table rows with the new filtered data
                     },
                     error: function(xhr, status, error) {
                         console.error("Error fetching filtered data: ", error);
