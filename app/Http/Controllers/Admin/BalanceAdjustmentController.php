@@ -17,7 +17,13 @@ class BalanceAdjustmentController extends Controller
     public function index(Request $request)
     {
         $data = [
-            'balances' => AccountTransaction::with('cashbookAccount', 'user')->where('reason', 'LIKE', 'Non invoice balance added%')->orWhere('reason', 'LIKE', 'Non invoice balance removed from%')->latest()->get(),
+            'balances' => AccountTransaction::with('cashbookAccount', 'user')
+                ->where(function ($query) {
+                    $query->where('reason', 'LIKE', 'Non-invoice balance added%')
+                        ->orWhere('reason', 'LIKE', 'Non-invoice balance removed from%');
+                })
+                ->latest()
+                ->get(),
         ];
         return view("admin.pages.balance.index", $data);
     }
@@ -63,11 +69,18 @@ class BalanceAdjustmentController extends Controller
                 'status'           => $request->status,
             ]);
 
+            if ($request->type == 1) {
+                # code...
+            } else {
+                # code...
+            }
+
+
             redirectWithSuccess('Balance updated successfully');
             return redirect()->route('admin.balance-adjustment.index');
         } catch (Exception $e) {
             // redirectWithError($e->getMessage());
-            Session::flash('error' , $e->getMessage());
+            Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();
         }
     }
