@@ -24,7 +24,7 @@
                                             <label for="account_id" class="form-label">Account</label>
                                             <x-admin.select-option id="account_id" name="account_id" :allowClear="true">
                                                 @foreach ($accounts as $account)
-                                                    <option value="{{ $account->id }}" @selected(old('fromAccount') == $account->id)
+                                                    <option value="{{ $account->id }}" @selected(old('account_id') == $account->id)
                                                         data-balance="{{ $account->availableBalance() }}">
                                                         {{ $account->bank_name }}[{{ $account->account_number }}]
                                                     </option>
@@ -107,7 +107,7 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-                $('#account').on('change', function(e) {
+                $('#account_id').on('change', function(e) {
                     const selectedOption = $(this).find('option:selected');
                     const availableBalance = selectedOption.data('balance');
                     // alert(availableBalance);

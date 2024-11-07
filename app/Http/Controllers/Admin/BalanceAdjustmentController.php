@@ -35,10 +35,10 @@ class BalanceAdjustmentController extends Controller
     {
         // validate request
         $this->validate($request, [
-            'account' => 'required',
-            'amount' => 'required|numeric|min:1',
-            'date' => 'nullable|date_format:Y-m-d',
-            'note' => 'nullable|string|max:255',
+            'account_id' => 'required',
+            'amount'     => 'required|numeric|min:1',
+            'date'       => 'nullable|date_format:Y-m-d',
+            'note'       => 'nullable|string|max:255',
         ]);
         try {
 
