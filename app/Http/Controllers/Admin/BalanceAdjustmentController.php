@@ -43,7 +43,7 @@ class BalanceAdjustmentController extends Controller
         try {
 
             // generate reason
-            $account = Account::findOrFail($request->account);
+            $account = Account::findOrFail($request->account_id);
 
             // Generate reason based on the type
             $reason = ($request->type == 1)
