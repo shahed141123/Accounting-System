@@ -238,7 +238,7 @@ class BalanceTransferController extends Controller
                 $query->where('reason', 'LIKE', 'Non invoice balance added%')
                     ->orWhere('reason', 'LIKE', 'Non invoice balance removed from%');
             })
-            ->whereBetween('date', [$startDate, $endDate]) // Filter by date range
+            ->whereBetween('transaction_date', [$startDate, $endDate]) // Filter by date range
             ->latest()
             ->get();
 
