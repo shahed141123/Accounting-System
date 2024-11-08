@@ -8,7 +8,7 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Mange Users</h4>
+                                    <h4 class="mb-0">Manage Users</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                     <button type="button" class="btn btn-outline-light toltip"

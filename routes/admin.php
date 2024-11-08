@@ -34,7 +34,6 @@ use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\TodayReportController;
 use App\Http\Controllers\Admin\BalanceSheetController;
 use App\Http\Controllers\Admin\EmailSettingController;
-use App\Http\Controllers\EmployeeDepartmentController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\ClientInvoiceController;
 use App\Http\Controllers\Admin\ExpenseReportController;
@@ -54,6 +53,7 @@ use App\Http\Controllers\Admin\CollectionReportController;
 use App\Http\Controllers\Admin\BalanceAdjustmentController;
 use App\Http\Controllers\Admin\IncomeSubCategoryController;
 use App\Http\Controllers\Admin\TermsAndConditionController;
+use App\Http\Controllers\Admin\EmployeeDepartmentController;
 use App\Http\Controllers\Admin\ExpenseSubCategoryController;
 use App\Http\Controllers\Admin\ShippingManagementController;
 use App\Http\Controllers\Admin\TransactionHistoryController;
@@ -151,19 +151,19 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::resources(
         [
             'employeee-department' => EmployeeDepartmentController::class,
-            'employee'            => EmployeeController::class,
-            'faq'                 => FaqController::class,
-            'role'                => RoleController::class,
-            'permission'          => PermissionController::class,
-            'email-settings'      => EmailSettingController::class,
-            'terms-condition'     => TermsAndConditionController::class,
-            'privacy-policy'      => PrivacyPolicyController::class,
-            'deal-banner'         => DealBannerController::class,
-            'income'              => IncomeController::class,
-            'expense'             => ExpenseController::class,
-            'balance-adjustment'  => BalanceAdjustmentController::class,
-            'balance-transfer'    => BalanceTransferController::class,
-            'transaction-history' => TransactionHistoryController::class,
+            'employee'             => EmployeeController::class,
+            'faq'                  => FaqController::class,
+            'role'                 => RoleController::class,
+            'permission'           => PermissionController::class,
+            'email-settings'       => EmailSettingController::class,
+            'terms-condition'      => TermsAndConditionController::class,
+            'privacy-policy'       => PrivacyPolicyController::class,
+            'deal-banner'          => DealBannerController::class,
+            'income'               => IncomeController::class,
+            'expense'              => ExpenseController::class,
+            'balance-adjustment'   => BalanceAdjustmentController::class,
+            'balance-transfer'     => BalanceTransferController::class,
+            'transaction-history'  => TransactionHistoryController::class,
 
             'client-invoice'      => ClientInvoiceController::class,
             'client-non-invoice'  => ClientNonInvoiceController::class,
@@ -311,7 +311,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
 
     Route::get('/payroll/pdf', [TableExportController::class, 'payrollPDF'])->name('payroll.pdf');
 
-    Route::get('/clients/pdf', [TableExportController::class, 'clientsPDF'])->name('clients.pdf');
+    Route::get('/clients/download/pdf', [TableExportController::class, 'clientsPDF'])->name('clients.pdf');
     Route::get('/suppliers/pdf', [TableExportController::class, 'suppliersPDF'])->name('suppliers.pdf');
 
     Route::get('/departments/pdf', [TableExportController::class, 'departmentsPDF'])->name('departments.pdf');

@@ -8,7 +8,7 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Manage Your Expenses</h4>
+                                    <h4 class="mb-0">Expense Reports</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                     {{-- <button type="button" class="btn btn-outline-light toltip"
@@ -24,10 +24,6 @@
                                         <i class="fa-solid fa-print"></i>
                                         <span class="tooltiptext">Print</span>
                                     </button>
-                                    <a href="{{ route('admin.expense.create') }}" class="btn btn-outline-light toltip"
-                                        data-tooltip="Create New"> Create
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +41,6 @@
                                             <th width="10%" class="text-center">Account</th>
                                             <th width="10%" class="text-center">Date</th>
                                             <th width="5%" class="text-center">Status</th>
-                                            <th width="10%" class="text-end">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,18 +68,7 @@
                                                         class="badge {{ $expense->status == 'active' ? 'bg-success' : 'bg-danger' }}">
                                                         {{ $expense->status == 'active' ? 'Active' : 'InActive' }}</span>
                                                 </td>
-                                                <td class="text-end">
-                                                    <a href="{{ route('admin.expense.edit',optional($expense)->id) }}" class="btn btn-sm btn-primary">
-                                                        <i class="fa-solid fa-pen"></i>
-                                                    </a>
-                                                    {{-- <a href="javascript:void(0)"
-                                                        class="btn btn-sm btn-warning text-white">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </a> --}}
-                                                    <a href="{{ route('admin.expense.destroy',optional($expense)->id) }}" class="btn btn-sm btn-danger delete">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </a>
-                                                </td>
+
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -22,10 +22,10 @@
                         <td>{{ $asset['name'] }}</td>
                         <td>{{ $asset['asset_type']['name'] }}</td>
                         <td>
-                            @currency($asset['asset_cost'])
+                            {{ $asset['asset_cost'] }}
                         </td>
                         <td>
-                            @currency($asset['calculated_value'])
+                            {{ $asset['asset_cost'] }}
                         </td>
                         <td>{{ \Carbon\Carbon::parse($asset['date'])->format('d-M-Y') }}</td>
                         <td>

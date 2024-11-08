@@ -37,18 +37,18 @@
                                             <div class="d-flex justify-content-between align-items-center py-4">
                                                 <div>
                                                     <a href="{{ route('admin.dashboard') }}" class="brand-link">
-                                                        <img src="{{ asset('images/logo-color.png') }}"
-                                                            alt="AdminLTE Logo" class="brand-image" width="150px" />
+
+                                                        <img src="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('images/logo-color.png') }}"
+                                                            alt="{{ optional($setting)->site_title }}" class="brand-image" width="150px" />
                                                     </a>
-                                                    <p class="pt-3">Ultimate Sales, Inventory <br>
-                                                        Accounting Management System
+                                                    <p class="pt-3">{{ optional($setting)->site_title }}
                                                     </p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <p><b>Phone:</b> 0170000000</p>
-                                                    <p><b>Email:</b> support@codeshape.net</p>
-                                                    <p><b>Address:</b> Ground Floor, Road# 24, House# 339 <br> New DOHS,
-                                                        Mohakhali, Dhaka - 1206, Bangladesh</p>
+                                                    <p><b>Phone:</b> {{ optional($setting)->primary_phone }}</p>
+                                                    <p><b>Email:</b> {{ optional($setting)->support_email }}</p>
+                                                    <p><b>Address:</b> {{ optional($setting)->address_line_one }} <br>
+                                                        {{ optional($setting)->address_line_two }}</p>
                                                 </div>
                                             </div>
                                             {{-- Logo Area End --}}
@@ -66,27 +66,24 @@
                                                                 <tr>
                                                                     <td>1</td>
                                                                     <td>Total Security/Asset=></td>
-                                                                    <td class="text-end">$250000.00</td>
+                                                                    <td class="text-end">{{ $assets }}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                {{-- <tr>
                                                                     <td>2</td>
                                                                     <td>Inventory Value=></td>
                                                                     <td class="text-end">$65681.80</td>
+                                                                </tr> --}}
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>Client's Dues=></td>
+                                                                    <td class="text-end">{{ $clientTotalDue }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>3</td>
-                                                                    <td>Client's Dues=></td>
-                                                                    <td class="text-end">$109495.25</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>4</td>
                                                                     <td>Bank Balance=></td>
-                                                                    <td class="text-end">$424878.08</td>
+                                                                    <td class="text-end">{{ $bankBalance }}</td>
                                                                 </tr>
-                                                                <tr class="table-primary border-0">
-                                                                    <td colspan="2">Total Income=></td>
-                                                                    <td class="text-end">$850055.13</td>
-                                                                </tr>
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -102,10 +99,10 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>1</td>
-                                                                    <td>Supplier's Dues=></td>
-                                                                    <td class="text-end">$128109.00</td>
+                                                                    <td>Payable =></td>
+                                                                    <td class="text-end">{{ $clientTotalDue }}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                {{-- <tr>
                                                                     <td>2</td>
                                                                     <td>Bank Loan=></td>
                                                                     <td class="text-end">$190454.60</td>
@@ -119,10 +116,31 @@
                                                                     <td>4</td>
                                                                     <td>Bank Loan=></td>
                                                                     <td class="text-end">$190454.60</td>
-                                                                </tr>
+                                                                </tr> --}}
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered mb-0">
+                                                            <tbody>
                                                                 <tr class="table-primary border-0">
-                                                                    <td colspan="2">Total Liability=></td>
-                                                                    <td class="text-end">$318563.60</td>
+                                                                    <td colspan="3">Total Income=></td>
+                                                                    <td class="text-end">{{ $businessTotal }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered mb-0">
+                                                            <tbody>
+                                                                <tr class="table-primary border-0">
+                                                                    <td colspan="3">Total Liability=></td>
+                                                                    <td class="text-end">{{ $liabilities }}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -130,19 +148,21 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="table-responsive">
-                                                        <table class="table table-bordered mb-0">
+                                                        <table class="table text-center table-bordered mb-0">
                                                             <tbody>
-                                                                <tr>
-                                                                    <td width="50%">Total Liability & Total Income <br> (Income -
-                                                                        Liabilities)</td>
-                                                                    <td width="50%" class="text-end" colspan="2">($850055.13 -
-                                                                        $318563.60)</td>
+                                                                <tr class="text-center">
+                                                                    <h6 class="p-3 text-center">Total Liability & Total
+                                                                        Income
+                                                                        <br> (Income - Liabilities) :
+                                                                        ({{ $businessTotal }} - {{ $liabilities }})
+                                                                    </h6>
+
                                                                 </tr>
                                                             </tbody>
                                                             <tbody>
-                                                                <tr class="table-info border-0 fw-bold">
-                                                                    <td>Total Asset:</td>
-                                                                    <td class="text-end" colspan="2">$850055.13</td>
+                                                                <tr class="text-center table-info border-0 fw-bold">
+                                                                    <h5 class="p-3 text-center">Total Asset :
+                                                                        {{ $totalAsset }}</h5>
                                                                 </tr>
                                                             </tbody>
                                                         </table>

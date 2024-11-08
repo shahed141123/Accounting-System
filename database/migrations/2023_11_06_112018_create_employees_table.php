@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('emp_id');
             $table->string('slug');
-            $table->string('designation');
+            $table->string('designation')->nullable();
             $table->double('salary', 12, 2)->nullable();
             $table->double('commission', 12, 2)->nullable();
-            $table->string('mobile_number');
+            $table->string('mobile_number')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('gender')->nullable();
             $table->string('blood_group')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->date('appointment_date')->nullable();
             $table->date('joining_date')->nullable();
             $table->string('address')->nullable();
-            $table->boolean('status')->nullable()->default(1);
+            $table->string('status')->nullable();
             $table->string('image')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('admins')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('department_id')->nullable()->constrained('departments')->onDelete('cascade')->onUpdate('no action');

@@ -25,5 +25,10 @@ class AdminSeeder extends Seeder
             'email' => 'khandkershahed23@gmail.com',
             'password' => Hash::make('password'),
         ]);
+        Admin::factory()->create([
+            'name' => 'FlixzaGlobal Admin',
+            'email' => 'admin@flixzaglobal.com',
+            'password' => Hash::make('flixza@admin'),
+        ]);
     }
 }

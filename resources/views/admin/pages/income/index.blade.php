@@ -8,11 +8,11 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Mange Your Income</h4>
+                                    <h4 class="mb-0">Manage Your Income</h4>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
 
-                                    
+
                                     <a href="{{ route('admin.income.create') }}" class="btn btn-outline-light toltip"
                                         data-tooltip="Create New"> Create
                                         <i class="fa-solid fa-plus"></i>
@@ -52,7 +52,7 @@
                                                     [{{ optional($income->incomeCategory)->code }}]</td>
                                                 <td class="text-center">{{ optional($income->incomeSubCategory)->name }}
                                                     [{{ optional($income->incomeSubCategory)->code }}]</td>
-                                                <td class="text-center">${{ optional($income)->amount }}</td>
+                                                <td class="text-center">{{ optional($income)->amount }}</td>
                                                 <td class="text-center">
                                                     {{ optional($income->incomeTransaction)->cashbookAccount->bank_name }}[{{ optional($income->incomeTransaction)->cashbookAccount->account_number }}]
                                                 </td>

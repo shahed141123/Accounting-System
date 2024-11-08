@@ -20,7 +20,7 @@
                     <tr>
                         <td> {{ ++$key }} </td>
                         <td>{{ $client['name'] }}</td>
-                        <td>{{ config('config.clientPrefix') . '-' . $client['client_id'] }}</td>
+                        <td>{{ $client['client_id'] }}</td>
                         <td>{{ $client['phone'] }}</td>
                         <td>{{ $client['email'] }}</td>
                         <td>{{ $client['company_name'] }}</td>

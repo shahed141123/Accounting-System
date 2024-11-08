@@ -147,46 +147,46 @@
                                 ],
                             ],
                         ],
-                        [
-                            'title' => 'Payments',
-                            'icon' => 'fa-solid fa-receipt text-info',
-                            'routes' => [
-                                'admin.client-invoice.index',
-                                'admin.client-invoice.create',
-                                'admin.client-invoice.edit',
-                                'admin.client-non-invoice.index',
-                                'admin.client-non-invoice.create',
-                                'admin.client-non-invoice.edit',
-                                'admin.payroll.index',
-                                'admin.payroll.create',
-                                'admin.payroll.edit',
-                            ],
-                            'subMenu' => [
-                                [
-                                    'title' => 'Client Invoice',
-                                    'routes' => [
-                                        'admin.client-invoice.index',
-                                        'admin.client-invoice.create',
-                                        'admin.client-invoice.edit',
-                                    ],
-                                    'route' => 'admin.client-invoice.index',
-                                ],
-                                [
-                                    'title' => 'Client Non Invoice',
-                                    'routes' => [
-                                        'admin.client-non-invoice.index',
-                                        'admin.client-non-invoice.create',
-                                        'admin.client-non-invoice.edit',
-                                    ],
-                                    'route' => 'admin.client-non-invoice.index',
-                                ],
-                                [
-                                    'title' => 'Payroll',
-                                    'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
-                                    'route' => 'admin.payroll.index',
-                                ],
-                            ],
-                        ],
+                        // [
+                        //     'title' => 'Payments',
+                        //     'icon' => 'fa-solid fa-receipt text-info',
+                        //     'routes' => [
+                        //         'admin.client-invoice.index',
+                        //         'admin.client-invoice.create',
+                        //         'admin.client-invoice.edit',
+                        //         'admin.client-non-invoice.index',
+                        //         'admin.client-non-invoice.create',
+                        //         'admin.client-non-invoice.edit',
+                        //         'admin.payroll.index',
+                        //         'admin.payroll.create',
+                        //         'admin.payroll.edit',
+                        //     ],
+                        //     'subMenu' => [
+                        //         [
+                        //             'title' => 'Client Invoice',
+                        //             'routes' => [
+                        //                 'admin.client-invoice.index',
+                        //                 'admin.client-invoice.create',
+                        //                 'admin.client-invoice.edit',
+                        //             ],
+                        //             'route' => 'admin.client-invoice.index',
+                        //         ],
+                        //         [
+                        //             'title' => 'Client Non Invoice',
+                        //             'routes' => [
+                        //                 'admin.client-non-invoice.index',
+                        //                 'admin.client-non-invoice.create',
+                        //                 'admin.client-non-invoice.edit',
+                        //             ],
+                        //             'route' => 'admin.client-non-invoice.index',
+                        //         ],
+                        //         [
+                        //             'title' => 'Payroll',
+                        //             'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
+                        //             'route' => 'admin.payroll.index',
+                        //         ],
+                        //     ],
+                        // ],
                         [
                             'title' => 'Asset Management',
                             'icon' => 'fa-solid fa-boxes-stacked text-info',
@@ -328,47 +328,45 @@
                                     'title' => 'Expense Report',
                                     'routes' => [
                                         'admin.expense-report.index',
-                                        'admin.expense-report.create',
-                                        'admin.expense-report.edit',
                                     ],
                                     'route' => 'admin.expense-report.index',
                                 ],
-                                [
-                                    'title' => 'Client Receivable Report',
-                                    'routes' => [
-                                        'admin.client-receivable.index',
-                                        'admin.client-receivable.create',
-                                        'admin.client-receivable.edit',
-                                    ],
-                                    'route' => 'admin.client-receivable.index',
-                                ],
-                                [
-                                    'title' => 'Client Payable Report',
-                                    'routes' => [
-                                        'admin.client-payable.index',
-                                        'admin.client-payable.create',
-                                        'admin.client-payable.edit',
-                                    ],
-                                    'route' => 'admin.client-payable.index',
-                                ],
-                                [
-                                    'title' => 'Sales By User Report',
-                                    'routes' => [
-                                        'admin.sales-user.index',
-                                        'admin.sales-user.create',
-                                        'admin.sales-user.edit',
-                                    ],
-                                    'route' => 'admin.sales-user.index',
-                                ],
-                                [
-                                    'title' => 'Collection By User Report',
-                                    'routes' => [
-                                        'admin.collection-report.index',
-                                        'admin.collection-report.create',
-                                        'admin.collection-report.edit',
-                                    ],
-                                    'route' => 'admin.collection-report.index',
-                                ],
+                                // [
+                                //     'title' => 'Client Receivable Report',
+                                //     'routes' => [
+                                //         'admin.client-receivable.index',
+                                //         'admin.client-receivable.create',
+                                //         'admin.client-receivable.edit',
+                                //     ],
+                                //     'route' => 'admin.client-receivable.index',
+                                // ],
+                                // [
+                                //     'title' => 'Client Payable Report',
+                                //     'routes' => [
+                                //         'admin.client-payable.index',
+                                //         'admin.client-payable.create',
+                                //         'admin.client-payable.edit',
+                                //     ],
+                                //     'route' => 'admin.client-payable.index',
+                                // ],
+                                // [
+                                //     'title' => 'Sales By User Report',
+                                //     'routes' => [
+                                //         'admin.sales-user.index',
+                                //         'admin.sales-user.create',
+                                //         'admin.sales-user.edit',
+                                //     ],
+                                //     'route' => 'admin.sales-user.index',
+                                // ],
+                                // [
+                                //     'title' => 'Collection By User Report',
+                                //     'routes' => [
+                                //         'admin.collection-report.index',
+                                //         'admin.collection-report.create',
+                                //         'admin.collection-report.edit',
+                                //     ],
+                                //     'route' => 'admin.collection-report.index',
+                                // ],
                             ],
                         ],
                         // [
@@ -423,6 +421,7 @@
                                     'routes' => ['admin.email-settings.index'],
                                     'route' => 'admin.email-settings.index',
                                 ],
+
                                 [
                                     'title' => 'Database Backup',
                                     'routes' => ['admin.database.backup'],
@@ -436,6 +435,13 @@
                             ],
                         ],
                     ];
+                    if (Auth::guard('admin')->user()->account_role == '0') {
+                        $menuItems[8]['subMenu'][] = [
+                            'title' => 'Admin Setting',
+                            'routes' => ['admin.admin-managemnet.index'],
+                            'route' => 'admin.admin-managemnet.index',
+                        ];
+                    }
                 @endphp
 
                 @foreach ($menuItems as $item)

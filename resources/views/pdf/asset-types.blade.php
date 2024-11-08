@@ -12,7 +12,7 @@
                     <th>@lang('Status')</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody> 
                 @foreach ($assetTypes as $key => $assetType)
                     <tr>
                         <td> {{ ++$key }} </td>

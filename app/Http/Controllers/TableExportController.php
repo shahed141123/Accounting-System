@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Loan;
 use App\Models\Role;
 use App\Models\Unit;
+use App\Models\User;
 use App\Models\Asset;
 use App\Models\Brand;
 use App\Models\Client;
@@ -388,7 +389,7 @@ class TableExportController extends Controller
     public function clientsPDF()
     {
         // retreive all records from db
-        $data = Client::latest()->get()->toArray();
+        $data = User::latest()->get()->toArray();
         // share data to view
         view()->share('clients', $data);
         $pdf = PDF::loadView('pdf.clients', $data)->setPaper('a4', 'landscape');
