@@ -16,19 +16,22 @@ class AdminSeeder extends Seeder
     {
         // Create the first admin user
         Admin::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@example.com',
+            'name'     => 'admin',
+            'email'    => 'admin@example.com',
             'password' => Hash::make('password'),
         ]);
         Admin::factory()->create([
-            'name' => 'Shahed',
-            'email' => 'khandkershahed23@gmail.com',
-            'password' => Hash::make('password'),
+            'name'         => 'Shahed',
+            'email'        => 'khandkershahed23@gmail.com',
+            'password'     => Hash::make('password'),
+            'account_role' => '0',
+
         ]);
         Admin::factory()->create([
-            'name' => 'FlixzaGlobal Admin',
-            'email' => 'admin@flixzaglobal.com',
-            'password' => Hash::make('flixza@admin'),
+            'name'         => 'FlixzaGlobal Admin',
+            'email'        => 'admin@flixzaglobal.com',
+            'password'     => Hash::make('flixza@admin'),
+            'account_role' => '0',
         ]);
     }
 }
