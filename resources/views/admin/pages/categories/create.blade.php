@@ -24,63 +24,63 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 mb-7">
-                        <x-metronic.label for="parent_id"
-                            class="col-form-label fw-bold fs-6">{{ __('Select a parent Category') }}</x-metronic.label>
-                        <x-metronic.select-option id="parent_id" name="parent_id" data-hide-search="false"
+                        <x-admin.label for="parent_id"
+                            class="col-form-label fw-bold fs-6">{{ __('Select a parent Category') }}</x-admin.label>
+                        <x-admin.select-option id="parent_id" name="parent_id" data-hide-search="false"
                             data-placeholder="Select an option">
                             <option></option>
                             {!! $categoriesOptions !!}
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
 
                     <div class="col-lg-6 mb-7">
-                        <x-metronic.label for="name"
-                            class="col-form-label required fw-bold fs-6">{{ __('Category Name') }}</x-metronic.label>
-                        <x-metronic.input id="name" type="text" name="name" placeholder="Enter the name" :value="old('name')"></x-metronic.input>
+                        <x-admin.label for="name"
+                            class="col-form-label required fw-bold fs-6">{{ __('Category Name') }}</x-admin.label>
+                        <x-admin.input id="name" type="text" name="name" placeholder="Enter the name" :value="old('name')"></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="logo" class="col-form-label fw-bold fs-6 ">{{ __('Icon') }}
-                        </x-metronic.label>
+                        <x-admin.label for="logo" class="col-form-label fw-bold fs-6 ">{{ __('Icon') }}
+                        </x-admin.label>
 
-                        <x-metronic.file-input id="logo" name="logo" :value="old('logo')"></x-metronic.file-input>
+                        <x-admin.file-input id="logo" name="logo" :value="old('logo')"></x-admin.file-input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="image"
+                        <x-admin.label for="image"
                             class="col-form-label fw-bold fs-6">{{ __('Thumbnail Image') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.file-input id="image" name="image" :value="old('image')"></x-metronic.file-input>
+                        <x-admin.file-input id="image" name="image" :value="old('image')"></x-admin.file-input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="banner_image"
+                        <x-admin.label for="banner_image"
                             class="col-form-label fw-bold fs-6 ">{{ __('Banner Image') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.file-input id="banner_image" :value="old('banner_image')" name="banner_image"></x-metronic.file-input>
+                        <x-admin.file-input id="banner_image" :value="old('banner_image')" name="banner_image"></x-admin.file-input>
                     </div>
                     <div class="col-lg-8 mb-7">
-                        <x-metronic.label for="description" class="col-form-label fw-bold fs-6 ">{{ __('Description') }}
-                        </x-metronic.label>
+                        <x-admin.label for="description" class="col-form-label fw-bold fs-6 ">{{ __('Description') }}
+                        </x-admin.label>
 
-                        <x-metronic.textarea id="description" name="description"></x-metronic.textarea>
+                        <x-admin.textarea id="description" name="description"></x-admin.textarea>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                            {{ __('Select a Status ') }}</x-metronic.label>
-                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                        <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Status ') }}</x-admin.label>
+                        <x-admin.select-option id="status" name="status" data-hide-search="true"
                             data-placeholder="Select an option">
                             <option></option>
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
                 </div>
                 <div class="text-center pt-15">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Submit') }}
-                    </x-metronic.button>
+                    </x-admin.button>
                 </div>
             </form>
         </div>

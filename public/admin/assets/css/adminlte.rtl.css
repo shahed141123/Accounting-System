@@ -13647,7 +13647,6 @@ fieldset:disabled .btn {
   padding-left: 0.5rem;
   padding-bottom: 0.5rem;
   padding-right: 0.5rem;
-  scrollbar-color: var(--bs-secondary-bg) transparent;
   scrollbar-width: thin;
 }
 .sidebar-wrapper::-webkit-scrollbar-thumb {

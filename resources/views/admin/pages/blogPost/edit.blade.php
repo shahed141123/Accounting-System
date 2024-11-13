@@ -91,16 +91,16 @@
                                     <input class="form-check-input" type="checkbox" name="featured" value="1"
                                         id="featured" @checked($blogPost->featured == '1')>
 
-                                    <x-metronic.label class="form-check-label" for="featured">
+                                    <x-admin.label class="form-check-label" for="featured">
                                         {{ __('Is Featured') }}
-                                    </x-metronic.label>
+                                    </x-admin.label>
                                 </div>
                             </div>
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <x-metronic.label class="form-label">{{ __('Status') }}</x-metronic.label>
-                                <x-metronic.select-option class="form-select mb-2" name="status" id="status"
+                                <x-admin.label class="form-label">{{ __('Status') }}</x-admin.label>
+                                <x-admin.select-option class="form-select mb-2" name="status" id="status"
                                     data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
                                     <option value="publish" @selected($blogPost->status === 'publish')>
@@ -112,13 +112,13 @@
                                     <option value="unpublish" @selected($blogPost->status === 'unpublish')>
                                         Unpublish
                                     </option>
-                                </x-metronic.select-option>
+                                </x-admin.select-option>
                             </div>
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <x-metronic.label class="form-label">{{ __('Blog Type') }}</x-metronic.label>
-                                <x-metronic.select-option class="form-select mb-2" name="type" id="type"
+                                <x-admin.label class="form-label">{{ __('Blog Type') }}</x-admin.label>
+                                <x-admin.select-option class="form-select mb-2" name="type" id="type"
                                     data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
                                     <option value="blog" {{ $blogPost->type === 'blog' ? 'selected' : '' }}>
@@ -131,19 +131,19 @@
                                         {{ $blogPost->type === 'promotional_article' ? 'selected' : '' }}>
                                         Promotional Article
                                     </option>
-                                </x-metronic.select-option>
+                                </x-admin.select-option>
                             </div>
                         </div>
                         <div class="fv-row">
                             <div class="mb-5">
-                                <x-metronic.label class="form-label">{{ __('Badge') }}</x-metronic.label>
-                                <x-metronic.input type="text" name="badge" class="form-control mb-2"
-                                    placeholder="Set the blog badge" :value="old('badge', $blogPost->badge)"></x-metronic.input>
+                                <x-admin.label class="form-label">{{ __('Badge') }}</x-admin.label>
+                                <x-admin.input type="text" name="badge" class="form-control mb-2"
+                                    placeholder="Set the blog badge" :value="old('badge', $blogPost->badge)"></x-admin.input>
                             </div>
                             <div class="">
-                                <x-metronic.label class="form-label">{{ __('Additional Url') }}</x-metronic.label>
-                                <x-metronic.input type="url" name="additional_url" class="form-control mb-2"
-                                    placeholder="Set the blog additional URL" :value="old('additional_url', $blogPost->additional_url)"></x-metronic.input>
+                                <x-admin.label class="form-label">{{ __('Additional Url') }}</x-admin.label>
+                                <x-admin.input type="url" name="additional_url" class="form-control mb-2"
+                                    placeholder="Set the blog additional URL" :value="old('additional_url', $blogPost->additional_url)"></x-admin.input>
                             </div>
                         </div>
                     </div>
@@ -162,28 +162,28 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">{{ __('Blog Title') }}</x-metronic.label>
-                                    <x-metronic.input type="text" name="title" class="form-control mb-2"
-                                        placeholder="Set the blog title" :value="old('title', $blogPost->title)"></x-metronic.input>
+                                    <x-admin.label class="form-label">{{ __('Blog Title') }}</x-admin.label>
+                                    <x-admin.input type="text" name="title" class="form-control mb-2"
+                                        placeholder="Set the blog title" :value="old('title', $blogPost->title)"></x-admin.input>
                                     <div class="text-muted fs-7">
                                         A blog title is recommended.
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">{{ __('Blog Header') }}</x-metronic.label>
-                                    <x-metronic.textarea id="header" name="header" placeholder="Add Blog Header"
+                                    <x-admin.label class="form-label">{{ __('Blog Header') }}</x-admin.label>
+                                    <x-admin.textarea id="header" name="header" placeholder="Add Blog Header"
                                         class="form-control mb-2" cols="30"
-                                        rows="3">{{ old('header', $blogPost->header) }}</x-metronic.textarea>
+                                        rows="3">{{ old('header', $blogPost->header) }}</x-admin.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">{{ __('Address') }}</x-metronic.label>
-                                    <x-metronic.textarea id="address" name="address" placeholder="Add Blog Address"
+                                    <x-admin.label class="form-label">{{ __('Address') }}</x-admin.label>
+                                    <x-admin.textarea id="address" name="address" placeholder="Add Blog Address"
                                         class="form-control mb-2" cols="30"
-                                        rows="3">{{ old('address', $blogPost->address) }}</x-metronic.textarea>
+                                        rows="3">{{ old('address', $blogPost->address) }}</x-admin.textarea>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label
-                                        class="form-label">{{ __('Blog Short Description') }}</x-metronic.label>
+                                    <x-admin.label
+                                        class="form-label">{{ __('Blog Short Description') }}</x-admin.label>
                                     <textarea class="ckeditor" name="short_description">
                                         {!! old('short_description', $blogPost->short_description) !!}
                                     </textarea>
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">Blog Long Description</x-metronic.label>
+                                    <x-admin.label class="form-label">Blog Long Description</x-admin.label>
                                     <textarea class="ckeditor" name="long_description">
                                         {!! old('long_description', $blogPost->long_description) !!}
                                     </textarea>
@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <x-metronic.label class="form-label">Blog Footer</x-metronic.label>
+                                    <x-admin.label class="form-label">Blog Footer</x-admin.label>
                                     <textarea class="ckeditor" name="footer">
                                         {!! old('footer', $blogPost->footer) !!}
                                     </textarea>
@@ -217,8 +217,8 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="fv-row">
-                                    <x-metronic.label class="form-label">Category Id</x-metronic.label>
-                                    <x-metronic.select-option class="form-select mb-2" name="category_id[]"
+                                    <x-admin.label class="form-label">Category Id</x-admin.label>
+                                    <x-admin.select-option class="form-select mb-2" name="category_id[]"
                                         data-control="select2" data-placeholder="Select an option"
                                         data-allow-clear="true" id="category_id" multiple>
                                         <option></option>
@@ -244,8 +244,8 @@
                                                 {{ $blogcategory->name }}
                                             </option>
                                         @endforeach
-                                    </x-metronic.select-option>
-                                    {{-- <x-metronic.select-option class="form-select mb-2" name="category_id[]"
+                                    </x-admin.select-option>
+                                    {{-- <x-admin.select-option class="form-select mb-2" name="category_id[]"
                                         data-control="select2" data-placeholder="Select an option"
                                         data-allow-clear="true" id="category_id" multiple>
                                         <option></option>
@@ -264,11 +264,11 @@
                                                 {{ $blogcategory->name }}
                                             </option>
                                         @endforeach
-                                    </x-metronic.select-option> --}}
+                                    </x-admin.select-option> --}}
                                 </div>
                                 <div class="fv-row">
-                                    <x-metronic.label class="form-label">Tag Id</x-metronic.label>
-                                    <x-metronic.select-option class="form-select mb-2" name="tag_id[]" id="tag_id"
+                                    <x-admin.label class="form-label">Tag Id</x-admin.label>
+                                    <x-admin.select-option class="form-select mb-2" name="tag_id[]" id="tag_id"
                                         data-control="select2" data-placeholder="Select an option"
                                         data-allow-clear="true" multiple>
                                         <option></option>
@@ -278,13 +278,13 @@
                                                 {{ $blogtag->name }}
                                             </option>
                                         @endforeach
-                                    </x-metronic.select-option>
+                                    </x-admin.select-option>
                                 </div>
                                 <div class="fv-row">
                                     <div class="mb-5">
-                                        <x-metronic.label class="form-label">Blog Author</x-metronic.label>
-                                        <x-metronic.input type="text" name="author" class="form-control mb-2"
-                                            placeholder="Set the blog author" :value="old('author', $blogPost->author)"></x-metronic.input>
+                                        <x-admin.label class="form-label">Blog Author</x-admin.label>
+                                        <x-admin.input type="text" name="author" class="form-control mb-2"
+                                            placeholder="Set the blog author" :value="old('author', $blogPost->author)"></x-admin.input>
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +295,7 @@
                     <a href="{{ route('admin.blog-post.index') }}" class="btn btn-danger me-5">
                         Back To Blog List
                     </a>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-white">
                         <span class="indicator-label"> Save Changes
                         </span>
                     </button>

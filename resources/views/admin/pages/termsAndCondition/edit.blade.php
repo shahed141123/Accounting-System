@@ -27,19 +27,19 @@
                 @method('PUT')
                 <div class="row">
                     <div class="col-lg-8 mb-7 offset-lg-2">
-                        <x-metronic.label for="title"
+                        <x-admin.label for="title"
                             class="col-form-label fw-bold fs-6 required">{{ __('Title') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="title" type="text" name="title" :value="$term->title"
-                            placeholder="Enter the Title" required></x-metronic.input>
+                        <x-admin.input id="title" type="text" name="title" :value="$term->title"
+                            placeholder="Enter the Title" required></x-admin.input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3 mb-lg-7 mb-3">
-                        <x-metronic.label for="effective_date"
+                        <x-admin.label for="effective_date"
                             class="col-form-label fw-bold fs-6 required">{{ __('Effective Date') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
                         <input type="date" name="effective_date"
                             class="form-control @error('effective_date') is-invalid @enderror"
@@ -51,9 +51,9 @@
                         @enderror
                     </div>
                     <div class="col-lg-3 mb-lg-7 mb-3">
-                        <x-metronic.label for="expiration_date"
+                        <x-admin.label for="expiration_date"
                             class="col-form-label fw-bold fs-6 required">{{ __('Expiration Date') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
                         <input type="date" name="expiration_date"
                             class="form-control @error('expiration_date') is-invalid @enderror"
@@ -66,36 +66,36 @@
                     </div>
 
                     <div class="col-lg-3 mb-lg-7 mb-3">
-                        <x-metronic.label for="version" class="col-form-label fw-bold fs-6">{{ __('Version') }}
-                        </x-metronic.label>
+                        <x-admin.label for="version" class="col-form-label fw-bold fs-6">{{ __('Version') }}
+                        </x-admin.label>
 
-                        <x-metronic.input id="version" type="text" name="version" :value="old('version', $term->version)"
-                            placeholder="Enter the version"></x-metronic.input>
+                        <x-admin.input id="version" type="text" name="version" :value="old('version', $term->version)"
+                            placeholder="Enter the version"></x-admin.input>
                     </div>
 
                     <div class="col-lg-3 mb-lg-7 mb-3">
-                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                            {{ __('Select a Status ') }}</x-metronic.label>
-                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                        <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Status ') }}</x-admin.label>
+                        <x-admin.select-option id="status" name="status" data-hide-search="true"
                             data-placeholder="Select an option">
                             <option></option>
                             <option value="active" @selected($term->status == 'active')>Active</option>
                             <option value="inactive" @selected($term->status == 'inactive')>Inactive</option>
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
                 </div>
                 <div class="row">
-                    <x-metronic.label for="content" class="col-form-label required fw-bold fs-6">
-                        {{ __('Content') }}</x-metronic.label>
+                    <x-admin.label for="content" class="col-form-label required fw-bold fs-6">
+                        {{ __('Content') }}</x-admin.label>
                     <textarea rows="3" cols="3" name="content" class="ckeditor w-100 @error('content') is-invalid @enderror">{!! $term->content !!}</textarea>
                     @error('content')
                         <span class="text-danger"> {{ $message }} </span>
                     @enderror
                 </div>
                 <div class="text-center pt-15">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Submit') }}
-                    </x-metronic.button>
+                    </x-admin.button>
                 </div>
 
             </form>

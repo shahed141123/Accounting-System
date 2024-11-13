@@ -21,31 +21,33 @@
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Reason</th>
-                                        <th>Amount</th>
-                                        <th>Type</th>
-                                        <th>Transaction Date</th>
+                                        <th>Sl</th>
+                                        <th>Client ID</th>
+                                        <th>Name</th>
+                                        <th>Contact Number</th>
+                                        <th>Email</th>
+                                        <th>Company Name</th>
+                                        <th>Invoice Due</th>
+                                        <th>Non Invoice Due</th>
+                                        <th>Total Due</th>
                                         <th>Status</th>
-                                        <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Sample Reason</td>
-                                        <td>$100.00</td>
-                                        <td>Credit</td>
-                                        <td>2024-09-15</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
+                                        <td>1</td>
+                                        <td>AC-1</td>
+                                        <td>Walking Customer</td>
+                                        <td>017000000</td>
+                                        <td>acculance@example.com</td>
+                                        <td>Codeshaper</td>
+                                        <td>$2408.25</td>
+                                        <td>$0</td>
+                                        <td>$2408.25</td>
+                                        <td>
+                                            <span class="badge bg-primary">
+                                                $2408.25
+                                            </span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -119,7 +121,7 @@
                                 <!-- Add dynamic account options -->
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
+                        <button type="submit" class="btn btn-white">Add Transaction</button>
                     </form>
                 </div>
             </div>

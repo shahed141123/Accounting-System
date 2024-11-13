@@ -2,27 +2,55 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\AccountTransaction;
+use App\Http\Controllers\Controller;
 
 class TransactionHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view("admin.pages.transactionHistory.index");
-    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    // public function create()
+    // {
+    //     return view("admin.pages.transactionHistory.create");
+    // }
+    //return all transactions
+    public function index(Request $request)
     {
-        return view("admin.pages.transactionHistory.create");
+        $data = [
+            'transactions' => AccountTransaction::with('cashbookAccount', 'user')->latest()->get(),
+        ];
+        return view("admin.pages.transactionHistory.index", $data);
     }
 
+    // search and return transactions
+    public function filter(Request $request)
+    {
+        // Get the start and end date from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // If no date filter is provided, fetch all transactions
+        if (!$startDate || !$endDate) {
+            $transactions = AccountTransaction::with('cashbookAccount', 'user')
+                ->latest()
+                ->get();
+        } else {
+            // Query to filter the transactions based on the date range
+            $transactions = AccountTransaction::with('cashbookAccount', 'user')
+                ->whereBetween('transaction_date', [$startDate, $endDate])
+                ->latest()
+                ->get();
+        }
+
+        // Return a view fragment (HTML table rows)
+        return response()->view('admin.pages.transactionHistory.filter_table', compact('transactions'));
+    }
     /**
      * Store a newly created resource in storage.
      */

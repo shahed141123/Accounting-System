@@ -9,10 +9,10 @@
                 data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
                 <!--begin::Input group-->
                 <div class="fv-row mb-10">
-                    <x-metronic.label for="role-name"
-                        class="col-form-label required fw-bold fs-6">{{ __('Role Name') }}</x-metronic.label>
-                    <x-metronic.input id="role-name" type="text" name="name" :value="old('name',$role->name)"
-                        placeholder="Enter the Role name"></x-metronic.input>
+                    <x-admin.label for="role-name"
+                        class="col-form-label required fw-bold fs-6">{{ __('Role Name') }}</x-admin.label>
+                    <x-admin.input id="role-name" type="text" name="name" :value="old('name',$role->name)"
+                        placeholder="Enter the Role name"></x-admin.input>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Permissions-->
@@ -81,9 +81,9 @@
             <!--end::Scroll-->
             <!--begin::Actions-->
             <div class="card-footer text-center">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Save Changes') }}
-                    </x-metronic.button>
+                    </x-admin.button>
             </div>
             <!--end::Actions-->
         </form>

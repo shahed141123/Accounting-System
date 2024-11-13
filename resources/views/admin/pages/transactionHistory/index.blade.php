@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Account Transactions List'">
+<x-admin-app-layout :title="'Expence'">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <div class="app-content">
         <div class="container-fluid mt-3">
@@ -8,121 +8,145 @@
                         <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Manage Account Transactions</h4>
+                                    <h4 class="mb-0">Transaction History</h4>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#addTransactionModal">
-                                    Add New Transaction
-                                </button>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    {{-- <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Export To Excel">
+                                        <i class="fa-solid fa-file-csv"></i>
+                                    </button> --}}
+                                    <a href="{{ route('admin.transactions.pdf') }}" class="btn btn-outline-light toltip"
+                                        data-tooltip="Download PDF">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Print Table">
+                                        <i class="fa-solid fa-print"></i>
+                                        <span class="tooltiptext">Print</span>
+                                    </button>
+                                    {{-- <a href="{{ route('admin.transaction-history.create') }}"
+                                        class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a> --}}
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Reason</th>
-                                        <th>Amount</th>
-                                        <th>Type</th>
-                                        <th>Transaction Date</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sample Reason</td>
-                                        <td>$100.00</td>
-                                        <td>Credit</td>
-                                        <td>2024-09-15</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body p-0">
+                            <div class="d-flex justify-content-end align-items-center mb-3 bg-light p-3">
+                                <h6 class="me-5">Filter Transactions From-To</h6>
+                                <div>
+                                    <input class="form-control me-3" name='range' id='datefilter' />
+                                </div>
+                                <div>
+                                    <button type="button" class="ms-3 btn btn-sm btn-secondary" id="clear-filter">Clear
+                                        Filter</button>
+                                </div>
+                            </div>
+
+                            <div class="p-3 pt-1">
+                                <!-- Table -->
+                                <div class="table-responsive">
+                                    <table class="table table-striped datatable text-center" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%" class="text-center">Sl</th>
+                                                <th width="20%" class="text-center">Reason</th>
+                                                <th width="10%" class="text-center">Date</th>
+                                                <th width="10%" class="text-center">Type</th>
+                                                <th width="10%" class="text-center">Account</th>
+                                                <th width="10%" class="text-center">Amount</th>
+                                                <th width="5%" class="text-center">Status</th>
+                                                <th width="10%" class="text-end">Created By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="data-body">
+                                            @foreach ($transactions as $i => $data)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $data->reason }}</td>
+                                                    <td>{{ $data->transaction_date ? \Carbon\Carbon::parse($data->transaction_date)->format('d M, Y') : '' }}
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="badge {{ $data->type == 1 ? 'bg-success' : 'bg-danger' }}">
+                                                            {{ $data->type == 1 ? __('Credit') : __('Debit') }}
+                                                        </span>
+                                                    </td>
+                                                    <td>{{ optional($data->cashbookAccount)->bank_name . '[' . optional($data->cashbookAccount)->account_number . ']' ?? '' }}
+                                                    </td>
+                                                    <td>{{ number_format($data->amount, 2) }}</td>
+                                                    <td>
+                                                        <span
+                                                            class="badge {{ $data->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                            {{ $data->status == 'active' ? __('Active') : __('In Active') }}
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">{{ $data->user->name ?? '' }}</td>
+                                                </tr>
+                                            @endforeach
+                                            @if ($transactions->isEmpty())
+                                                <tr>
+                                                    <td colspan="8">{{ __('No Data') }}</td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                // Initialize datepicker or date range picker (e.g., flatpickr, jQuery UI Datepicker)
+                $('#datefilter').daterangepicker({
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    },
+                    autoUpdateInput: false, // We will manually update the input field
+                    opens: 'left', // Optional: Adjust the dropdown position
+                });
 
-    <!-- Add New Transaction Modal -->
-    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTransactionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addTransactionLabel">Add New Account Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="reason" class="form-label">Reason</label>
-                            <input type="text" class="form-control form-control-solid" id="reason" name="reason">
-                        </div>
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
-                                name="amount" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="type" class="form-label">Transaction Type</label>
-                            <select class="form-select form-select-solid" id="type" name="type" required>
-                                <option value="0">Debit</option>
-                                <option value="1">Credit</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="transaction_date" class="form-label">Transaction Date</label>
-                            <input type="datetime-local" class="form-control form-control-solid" id="transaction_date"
-                                name="transaction_date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cheque_no" class="form-label">Cheque No</label>
-                            <input type="text" class="form-control form-control-solid" id="cheque_no"
-                                name="cheque_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="receipt_no" class="form-label">Receipt No</label>
-                            <input type="text" class="form-control form-control-solid" id="receipt_no"
-                                name="receipt_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="account_id" class="form-label">Account</label>
-                            <select class="form-select form-select-solid" id="account_id" name="account_id">
-                                <option value="1">Account 1</option>
-                                <option value="2">Account 2</option>
-                                <!-- Add dynamic account options -->
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                // When the user selects a date range
+                $('#datefilter').on('apply.daterangepicker', function(ev, picker) {
+                    // Set the selected date range in the input field
+                    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format(
+                        'YYYY-MM-DD'));
+                    let startDate = picker.startDate.format('YYYY-MM-DD');
+                    let endDate = picker.endDate.format('YYYY-MM-DD');
+                    fetchFilteredData(startDate, endDate);
+                });
+
+                // "Clear Filter" button click handler
+                $('#clear-filter').click(function() {
+                    // Reset the date filter input
+                    $('#datefilter').val('');
+                    // Fetch all data (no filter applied)
+                    fetchFilteredData('', '');
+                });
+
+                function fetchFilteredData(startDate, endDate) {
+                    $.ajax({
+                        url: '{{ route('admin.transactions.filter') }}', // Add your route here
+                        method: 'GET',
+                        data: {
+                            start_date: startDate,
+                            end_date: endDate,
+                        },
+                        success: function(response) {
+                            // Update the table body with the filtered data
+                            $('#data-body').html(response);
+                        },
+                        error: function() {
+                            alert('Error fetching data');
+                        }
+                    });
+                }
+            });
+        </script>
+    @endpush
 </x-admin-app-layout>

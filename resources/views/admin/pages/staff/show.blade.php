@@ -342,9 +342,9 @@
 
 
                         <div class="text-center pt-15">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Save Changes') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
 
                     </form>
@@ -412,8 +412,8 @@
                                     <span
                                         class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
                                         data-kt-password-meter-control="visibility">
-                                        <i class="bi bi-eye-slash fs-2"></i>
-                                        <i class="bi bi-eye fs-2 d-none"></i>
+                                        <i class="fa-solid fa-eye fs-2"></i>
+                                        <i class="fa-solid fa-eye fs-2 d-none"></i>
                                     </span>
                                 </div>
                                 <div class="invalid-feedback">
@@ -450,9 +450,9 @@
 
 
                         <div class="text-center pt-15">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Save Changes') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
 
                     </form>
@@ -542,11 +542,11 @@
 
                                     <div class="form-check form-check-custom form-check-solid">
 
-                                        <x-metronic.checkbox id="role-name-{{ $role->id }}" type="checkbox"
+                                        <x-admin.checkbox id="role-name-{{ $role->id }}" type="checkbox"
                                             name="roles[]" :value="$role->name" :checked="$user->roles->contains($role->id)" />
 
-                                        <x-metronic.label for="role-name-{{ $role->id }}"
-                                            class="form-check-label">{{ $role->name }}</x-metronic.label>
+                                        <x-admin.label for="role-name-{{ $role->id }}"
+                                            class="form-check-label">{{ $role->name }}</x-admin.label>
                                     </div>
 
                                 </div>
@@ -558,9 +558,9 @@
 
 
                         <div class="text-center pt-15">
-                            <x-metronic.button type="submit" class="primary">
+                            <x-admin.button type="submit" class="primary">
                                 {{ __('Save Changes') }}
-                            </x-metronic.button>
+                            </x-admin.button>
                         </div>
 
                     </form>
@@ -727,7 +727,7 @@
                         <div class="text-center pt-15">
                             <button type="reset" class="btn btn-light me-3"
                                 data-kt-users-modal-action="cancel">Cancel</button>
-                            <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button type="submit" class="btn btn-white" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Submit</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

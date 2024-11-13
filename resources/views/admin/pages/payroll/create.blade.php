@@ -1,126 +1,197 @@
-<x-admin-app-layout :title="'Account Payroll Create'">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<x-admin-app-layout>
     <div class="app-content">
-        <div class="container-fluid mt-3">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card border-0 shadow-none">
-                        <div class="card-header p-3 bg-custom text-white border-0">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h4 class="mb-0">Manage Payroll</h4>
-                                </div>
-                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#addTransactionModal">
-                                    <i class="fa-solid fa-plus pe-2"></i> Add
-                                </button>
+                <div class="col-lg-12">
+                    <div class="card mt-5">
+                        <div class="card-header p-2">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h4 class="text-gray-800">Create Payroll</h4>
+                                <a href="{{ route('admin.payroll.index') }}" class="btn-common-one text-white"
+                                    tabindex="0">
+                                    <i class="fa-solid fa-arrow-left-long pe-3"></i>
+                                    Back
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Reason</th>
-                                        <th>Amount</th>
-                                        <th>Type</th>
-                                        <th>Transaction Date</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sample Reason</td>
-                                        <td>$100.00</td>
-                                        <td>Credit</td>
-                                        <td>2024-09-15</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <form method="POST" action="{{ route('admin.payroll.store') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="employee" class="form-label">Employee</label>
+                                            <x-admin.select-option id="employee" name="employee" :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="Walking Customer">Walking Customer</option>
+                                                <option value="Ruth Miles">Ruth Miles</option>
+                                                <option value=" Reed Montoya"> Reed Montoya</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="salaryMonth" class="form-label">Salary Month</label>
+                                            <x-admin.select-option id="salaryMonth" name="salaryMonth"
+                                                :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="January">January</option>
+                                                <option value="February">February</option>
+                                                <option value="March">March</option>
+                                                <option value="April">April</option>
+                                                <option value="May">May</option>
+                                                <option value="June">June</option>
+                                                <option value="July">July</option>
+                                                <option value="August">August</option>
+                                                <option value="September">September</option>
+                                                <option value="October">October</option>
+                                                <option value="November">November</option>
+                                                <option value="December">December</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="mobileBill" class="form-label"> Mobile
+                                                Bill</x-admin.label>
+                                            <x-admin.input type="text" :value="old('mobileBill')" id="mobileBill"
+                                                name="mobileBill" required
+                                                placeholder="Enter Mobile Bill"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="foodBill" class="form-label">Food Bill</x-admin.label>
+                                            <x-admin.input type="text" :value="old('foodBill')" id="foodBill"
+                                                name="foodBill" required placeholder="Enter Food Bill"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="bonus" class="form-label">Bonus</x-admin.label>
+                                            <x-admin.input type="text" :value="old('bonus')" id="bonus"
+                                                name="bonus" required placeholder="Enter Bonus"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="commission"
+                                                class="form-label">Commission</x-admin.label>
+                                            <x-admin.input type="text" :value="old('commission')" id="commission"
+                                                name="commission" required
+                                                placeholder="Enter commission"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="festivalBonus" class="form-label">Festival
+                                                Bonus</x-admin.label>
+                                            <x-admin.input type="text" :value="old('festivalBonus')" id="festivalBonus"
+                                                name="festivalBonus" required
+                                                placeholder="Enter festivalBonus"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="travelAllowance" class="form-label">Travel
+                                                Allowance(TA)</x-admin.label>
+                                            <x-admin.input type="text" :value="old('travelAllowance')" id="travelAllowance"
+                                                name="travelAllowance" required
+                                                placeholder="Enter travelAllowance"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="others" class="form-label">Others</x-admin.label>
+                                            <x-admin.input type="text" :value="old('others')" id="others"
+                                                name="others" required placeholder="Enter others"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="advance" class="form-label">Advance</x-admin.label>
+                                            <x-admin.input type="text" :value="old('advance')" id="advance"
+                                                name="advance" required placeholder="Enter advance"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="totalSalary" class="form-label">Total
+                                                Salary</x-admin.label>
+                                            <x-admin.input type="text" :value="old('totalSalary')" id="totalSalary"
+                                                name="totalSalary" required
+                                                placeholder="Enter totalSalary"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="subCategory" class="form-label">Account</label>
+                                            <x-admin.select-option id="subCategory" name="subCategory"
+                                                :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
+                                                <option value="Dutch Bangla Bank[DBBL-0003]">Dutch Bangla
+                                                    Bank[DBBL-0003]</option>
+                                                <option value="Islami Bank Bangladesh Ltd[IBBL-0002]">Islami Bank
+                                                    Bangladesh Ltd[IBBL-0002]</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="availableBalance" class="form-label">Available
+                                                Balance</x-admin.label>
+                                            <x-admin.input type="text" :value="old('availableBalance')" id="availableBalance"
+                                                name="availableBalance" required
+                                                placeholder="Enter availableBalance"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-admin.label for="image" class="form-label">Image</x-admin.label>
+                                            <x-admin.input type="file" :value="old('image')" id="image"
+                                                name="image" required placeholder="Enter image"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <x-admin.label for="chequeNo" class="form-label">Cheque No</x-admin.label>
+                                            <x-admin.input type="text" :value="old('chequeNo')" id="chequeNo"
+                                                name="chequeNo" required placeholder="Enter chequeNo"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <x-admin.label for="salaryDate" class="form-label">Salary
+                                                Date</x-admin.label>
+                                            <x-admin.input type="date" :value="old('salaryDate')" id="salaryDate"
+                                                name="salaryDate" required
+                                                placeholder="Enter salaryDate"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <label for="status" class="form-label">Status</label>
+                                            <x-admin.select-option id="status" name="status" :allowClear="true">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="note" class="form-label">Note</label>
+                                            <textarea class="form-control text-area-input" id="note" name="note" rows="3"
+                                                placeholder="write your note here"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-admin.button type="submit" class="">Save Invoice <i
+                                        class="fa-regular fa-floppy-disk ps-2"></i></x-admin.button>
+                            </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add New Transaction Modal -->
-    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTransactionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addTransactionLabel">Add New Account Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="reason" class="form-label">Reason</label>
-                            <input type="text" class="form-control form-control-solid" id="reason" name="reason">
-                        </div>
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
-                                name="amount" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="type" class="form-label">Transaction Type</label>
-                            <select class="form-select form-select-solid" id="type" name="type" required>
-                                <option value="0">Debit</option>
-                                <option value="1">Credit</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="transaction_date" class="form-label">Transaction Date</label>
-                            <input type="datetime-local" class="form-control form-control-solid" id="transaction_date"
-                                name="transaction_date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cheque_no" class="form-label">Cheque No</label>
-                            <input type="text" class="form-control form-control-solid" id="cheque_no"
-                                name="cheque_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="receipt_no" class="form-label">Receipt No</label>
-                            <input type="text" class="form-control form-control-solid" id="receipt_no"
-                                name="receipt_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="account_id" class="form-label">Account</label>
-                            <select class="form-select form-select-solid" id="account_id" name="account_id">
-                                <option value="1">Account 1</option>
-                                <option value="2">Account 2</option>
-                                <!-- Add dynamic account options -->
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
-                    </form>
                 </div>
             </div>
         </div>

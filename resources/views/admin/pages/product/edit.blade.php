@@ -86,14 +86,14 @@
                             </div>
                         </div>
                         <div class="card-body pt-0">
-                            <x-metronic.select-option id="kt_ecommerce_add_product_status_select"
+                            <x-admin.select-option id="kt_ecommerce_add_product_status_select"
                                 class="form-select mb-2" data-control="select2" data-hide-search="true" name="status"
                                 data-placeholder="Select an option">
                                 <option></option>
                                 <option value="published" @selected($product->status == 'published')>Published</option>
                                 <option value="draft" @selected($product->status == 'draft')>Draft</option>
                                 <option value="inactive" @selected($product->status == 'inactive')>Inactive</option>
-                            </x-metronic.select-option>
+                            </x-admin.select-option>
                             <div class="text-muted fs-7">Set the product status.</div>
                         </div>
                     </div>
@@ -107,9 +107,9 @@
                         </div>
                         <div class="card-body pt-0">
                             <div class="fv-row">
-                                <x-metronic.label for="brand_id" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Select Brand') }}</x-metronic.label>
-                                <x-metronic.select-option id="brand_id" class="form-select mb-2" name="brand_id"
+                                <x-admin.label for="brand_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Brand') }}</x-admin.label>
+                                <x-admin.select-option id="brand_id" class="form-select mb-2" name="brand_id"
                                     data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
                                     <option></option>
                                     @foreach ($brands as $brand)
@@ -117,12 +117,12 @@
                                             {{ $brand->name }}
                                         </option>
                                     @endforeach
-                                </x-metronic.select-option>
+                                </x-admin.select-option>
                             </div>
                             <div class="fv-row">
-                                <x-metronic.label for="category_id" class="col-form-label required fw-bold fs-6">
-                                    {{ __('Select Category') }}</x-metronic.label>
-                                <x-metronic.select-option id="category_id" class="form-control select mb-2"
+                                <x-admin.label for="category_id" class="col-form-label required fw-bold fs-6">
+                                    {{ __('Select Category') }}</x-admin.label>
+                                <x-admin.select-option id="category_id" class="form-control select mb-2"
                                     name="category_id[]" multiple multiselect-search="true"
                                     multiselect-select-all="true" data-control="select2"
                                     data-placeholder="Select an option" data-allow-clear="true">
@@ -141,12 +141,12 @@
                                         @endforeach
                                     @endif
 
-                                </x-metronic.select-option>
+                                </x-admin.select-option>
                             </div>
                             <div class="fv-row">
-                                <x-metronic.label for="color" class="col-form-label required fw-bold fs-6">
+                                <x-admin.label for="color" class="col-form-label required fw-bold fs-6">
                                     {{ __('Add Color') }}
-                                </x-metronic.label>
+                                </x-admin.label>
                                 <!-- Input element for Tagify -->
                                 <input class="form-control d-flex align-items-center" name="color"
                                     :value="old('color', $product - > color)" id="kt_tagify_color" />
@@ -194,43 +194,43 @@
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="mb-5 fv-row">
-                                            <x-metronic.label class="form-label">Product Name</x-metronic.label>
-                                            <x-metronic.input type="text" name="name" class="form-control mb-2"
+                                            <x-admin.label class="form-label">Product Name</x-admin.label>
+                                            <x-admin.input type="text" name="name" class="form-control mb-2"
                                                 placeholder="Product name recommended" :value="old('name', $product->name)">
-                                            </x-metronic.input>
+                                            </x-admin.input>
                                             <div class="text-muted fs-7">
                                                 A product name is and recommended to be unique.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
-                                            <x-metronic.label class="form-label">Tags</x-metronic.label>
+                                            <x-admin.label class="form-label">Tags</x-admin.label>
                                             <input class="form-control" name="tags" id="product_Tags"
                                                 value="{{ old('tags', $product->tags) }}" />
                                         </div>
                                         <div class="mb-5 fv-row">
-                                            <x-metronic.label class="form-label">Short Description</x-metronic.label>
-                                            <x-metronic.textarea id="short_description" name="short_description"
+                                            <x-admin.label class="form-label">Short Description</x-admin.label>
+                                            <x-admin.textarea id="short_description" name="short_description"
                                                 placeholder="Add Product Short Description" class="form-control mb-2"
                                                 cols="30"
-                                                rows="3">{!! old('short_description', $product->short_description) !!}</x-metronic.textarea>
+                                                rows="3">{!! old('short_description', $product->short_description) !!}</x-admin.textarea>
                                         </div>
                                         <div class="mb-5 fv-row">
-                                            <x-metronic.label class="form-label">Product Overview</x-metronic.label>
+                                            <x-admin.label class="form-label">Product Overview</x-admin.label>
                                             <textarea name="overview" class="ckeditor">{!! old('overview', $product->overview) !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product overview here.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
-                                            <x-metronic.label class="form-label">Product Description</x-metronic.label>
+                                            <x-admin.label class="form-label">Product Description</x-admin.label>
                                             <textarea name="description" class="ckeditor">{!! old('description', $product->description) !!}</textarea>
                                             <div class="text-muted fs-7">
                                                 Add product description here.
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
-                                            <x-metronic.label class="form-label">Product
-                                                Specification</x-metronic.label>
+                                            <x-admin.label class="form-label">Product
+                                                Specification</x-admin.label>
                                             <textarea name="specification" class="ckeditor">{!! old('specification', $product->specification) !!}</textarea>
                                         </div>
                                     </div>
@@ -335,24 +335,24 @@
                                     </div>
                                     <div class="card-body pt-0 row">
                                         <div class="mb-10 fv-row col-6">
-                                            <x-metronic.label class="form-label">SKU Code</x-metronic.label>
-                                            <x-metronic.input type="text" name="sku_code"
+                                            <x-admin.label class="form-label">SKU Code</x-admin.label>
+                                            <x-admin.input type="text" name="sku_code"
                                                 class="form-control mb-2" placeholder="SKU Number"
-                                                :value="old('sku_code', $product->sku_code)"></x-metronic.file-input>
+                                                :value="old('sku_code', $product->sku_code)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">Enter the product SKU.</div>
                                         </div>
                                         <div class="mb-10 fv-row col-6">
-                                            <x-metronic.label class="form-label">MF Code</x-metronic.label>
-                                            <x-metronic.input type="text" name="mf_code" class="form-control mb-2"
-                                                placeholder="MF Number" :value="old('mf_code', $product->mf_code)"></x-metronic.file-input>
+                                            <x-admin.label class="form-label">MF Code</x-admin.label>
+                                            <x-admin.input type="text" name="mf_code" class="form-control mb-2"
+                                                placeholder="MF Number" :value="old('mf_code', $product->mf_code)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">Enter the product MF.</div>
                                         </div>
 
                                         <div class="mb-10 fv-row col-12">
-                                            <x-metronic.label class="form-label">Barcode</x-metronic.label>
-                                            <x-metronic.input type="text" name="barcode_id"
+                                            <x-admin.label class="form-label">Barcode</x-admin.label>
+                                            <x-admin.input type="text" name="barcode_id"
                                                 class="form-control mb-2" placeholder="Barcode Number"
-                                                :value="old('barcode_id', $product->barcode_id)"></x-metronic.file-input>
+                                                :value="old('barcode_id', $product->barcode_id)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">
                                                     Enter the product barcode number.
                                                 </div>
@@ -372,70 +372,70 @@
                                     </div>
                                     <div class="card-body pt-0 row">
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Box Contains</x-metronic.label>
-                                            <x-metronic.input type="number" name="box_contains" id="box_contains"
+                                            <x-admin.label class="form-label">Box Contains</x-admin.label>
+                                            <x-admin.input type="number" name="box_contains" id="box_contains"
                                                 class="form-control mb-2" placeholder="how much in a box"
-                                                :value="old('box_contains', $product->box_contains)"></x-metronic.file-input>
+                                                :value="old('box_contains', $product->box_contains)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much product in a box.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Box Price</x-metronic.label>
-                                            <x-metronic.input type="number" name="box_price" id="box_price"
+                                            <x-admin.label class="form-label">Box Price</x-admin.label>
+                                            <x-admin.input type="number" name="box_price" id="box_price"
                                                 class="form-control mb-2" placeholder="how much the box price"
-                                                :value="old('box_price', $product->box_price)"></x-metronic.file-input>
+                                                :value="old('box_price', $product->box_price)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much box price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Box Discount Price</x-metronic.label>
-                                            <x-metronic.input type="number" name="box_discount_price"
+                                            <x-admin.label class="form-label">Box Discount Price</x-admin.label>
+                                            <x-admin.input type="number" name="box_discount_price"
                                                 id="box_discount_price" class="form-control mb-2"
                                                 placeholder="how much the box discount price"
-                                                :value="old('box_discount_price', $product->box_discount_price)"></x-metronic.file-input>
+                                                :value="old('box_discount_price', $product->box_discount_price)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much box discount price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Unit Price</x-metronic.label>
-                                            <x-metronic.input type="number" name="unit_price" id="unit_price"
+                                            <x-admin.label class="form-label">Unit Price</x-admin.label>
+                                            <x-admin.input type="number" name="unit_price" id="unit_price"
                                                 class="form-control mb-2" placeholder="how much the unit price"
-                                                :value="old('unit_price', $product->unit_price)" readonly></x-metronic.file-input>
+                                                :value="old('unit_price', $product->unit_price)" readonly></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much unit price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Unit Discount</x-metronic.label>
-                                            <x-metronic.input type="number" name="unit_discount_price"
+                                            <x-admin.label class="form-label">Unit Discount</x-admin.label>
+                                            <x-admin.input type="number" name="unit_discount_price"
                                                 id="unit_discount" class="form-control mb-2"
                                                 placeholder="how much the unit discount price" :value="old('unit_discount_price', $product->unit_discount_price)"
-                                                readonly></x-metronic.file-input>
+                                                readonly></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much unit discount price.</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Box Stock</x-metronic.label>
-                                            <x-metronic.input type="number" name="box_stock" id="box_stock"
+                                            <x-admin.label class="form-label">Box Stock</x-admin.label>
+                                            <x-admin.input type="number" name="box_stock" id="box_stock"
                                                 class="form-control mb-2" placeholder="how much the box stock"
-                                                :value="old('box_stock', $product->box_stock)"></x-metronic.file-input>
+                                                :value="old('box_stock', $product->box_stock)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much box stock. Eg: 50</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Vat</x-metronic.label>
-                                            <x-metronic.input type="number" name="vat" id="vat"
+                                            <x-admin.label class="form-label">Vat</x-admin.label>
+                                            <x-admin.input type="number" name="vat" id="vat"
                                                 class="form-control mb-2" placeholder="how much the vat"
-                                                :value="old('vat',$product->vat)"></x-metronic.file-input>
+                                                :value="old('vat',$product->vat)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much box vat. Eg: 5%</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
-                                            <x-metronic.label class="form-label">Tax</x-metronic.label>
-                                            <x-metronic.input type="number" name="tax" id="tax"
+                                            <x-admin.label class="form-label">Tax</x-admin.label>
+                                            <x-admin.input type="number" name="tax" id="tax"
                                                 class="form-control mb-2" placeholder="how much the tax "
-                                                :value="old('tax',$product->tax)"></x-metronic.file-input>
+                                                :value="old('tax',$product->tax)"></x-admin.file-input>
                                                 <div class="text-muted fs-7">How much tax Eg: 5%</div>
                                         </div>
                                         <div class="fv-row col-4 mt-10">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_refurbished" type="checkbox"
                                                     value="1" id="is_refurbished" @checked($product->is_refurbished == '1') />
-                                                <x-metronic.label class="form-check-label" for="is_refurbished">
+                                                <x-admin.label class="form-check-label" for="is_refurbished">
                                                     Is Refurbished
-                                                </x-metronic.label>
+                                                </x-admin.label>
                                             </div>
                                         </div>
 
@@ -457,32 +457,32 @@
                                             <div class="col-lg-6">
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <x-metronic.label class="form-label">Weight
-                                                            (gm)</x-metronic.label>
-                                                        <x-metronic.input type="number" name="weight"
+                                                        <x-admin.label class="form-label">Weight
+                                                            (gm)</x-admin.label>
+                                                        <x-admin.input type="number" name="weight"
                                                             id="weight" class="form-control mb-2"
-                                                            placeholder="1.5" :value="old('weight', $product->weight)"></x-metronic.input>
+                                                            placeholder="1.5" :value="old('weight', $product->weight)"></x-admin.input>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <x-metronic.label class="form-label">Length
-                                                            (cm)</x-metronic.label>
-                                                        <x-metronic.input type="number" name="length"
+                                                        <x-admin.label class="form-label">Length
+                                                            (cm)</x-admin.label>
+                                                        <x-admin.input type="number" name="length"
                                                             id="length" class="form-control mb-2" placeholder="15"
-                                                            :value="old('length', $product->length)"></x-metronic.file-input>
+                                                            :value="old('length', $product->length)"></x-admin.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <x-metronic.label class="form-label">Width
-                                                            (cm)</x-metronic.label>
-                                                        <x-metronic.input type="number" name="width"
+                                                        <x-admin.label class="form-label">Width
+                                                            (cm)</x-admin.label>
+                                                        <x-admin.input type="number" name="width"
                                                             id="width" class="form-control mb-2" placeholder="10"
-                                                            :value="old('width', $product->width)"></x-metronic.file-input>
+                                                            :value="old('width', $product->width)"></x-admin.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <x-metronic.label class="form-label">Height
-                                                            (cm)</x-metronic.label>
-                                                        <x-metronic.input type="number" name="height"
+                                                        <x-admin.label class="form-label">Height
+                                                            (cm)</x-admin.label>
+                                                        <x-admin.input type="number" name="height"
                                                             id="height" class="form-control mb-2" placeholder="9"
-                                                            :value="old('height', $product->height)"></x-metronic.file-input>
+                                                            :value="old('height', $product->height)"></x-admin.file-input>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <p id="dimensionPreview">Length(0") X Width(0") X Height(0")
@@ -516,11 +516,11 @@
                                     <div class="card-body pt-0">
                                         <div class="mb-10">
                                             <div class="mb-5 fv-row">
-                                                <x-metronic.label class="form-label">Product Meta
-                                                    Title</x-metronic.label>
-                                                <x-metronic.input class="form-control" type="text"
+                                                <x-admin.label class="form-label">Product Meta
+                                                    Title</x-admin.label>
+                                                <x-admin.input class="form-control" type="text"
                                                     name="meta_title" placeholder="Meta Title"
-                                                    :value="old('meta_title', $product->meta_title)"></x-metronic.input>
+                                                    :value="old('meta_title', $product->meta_title)"></x-admin.input>
                                             </div>
                                             <div class="text-muted fs-7">
                                                 Add Product Meta Title.
@@ -528,8 +528,8 @@
                                         </div>
                                         <div class="mb-10">
                                             <div class="mb-5 fv-row">
-                                                <x-metronic.label class="form-label">Meta
-                                                    Description</x-metronic.label>
+                                                <x-admin.label class="form-label">Meta
+                                                    Description</x-admin.label>
                                                 <textarea name="meta_description" class="ckeditor">{!! old('meta_description', $product->meta_description) !!}</textarea>
                                                 <div class="text-muted fs-7">
                                                     Add Meta Meta details.
@@ -538,8 +538,8 @@
                                         </div>
                                         <div>
                                             <div class="mb-5 fv-row">
-                                                <x-metronic.label class="form-label">Meta Tag
-                                                    Keywords</x-metronic.label>
+                                                <x-admin.label class="form-label">Meta Tag
+                                                    Keywords</x-admin.label>
                                                 <input class="form-control" name="meta_keywords"
                                                     placeholder="Meta tag keywords" id="product_meta_keyword"
                                                     value="{{ old('meta_keywords', $product->meta_keywords) }}" />
@@ -557,14 +557,14 @@
                         <a href="{{ route('admin.product.index') }}" class="btn btn-danger me-5">
                             Back To Product List
                         </a>
-                        {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                        {{-- <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-white">
                             <span class="indicator-label"> Save Changes </span>
                             <span class="indicator-progress">
                                 Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                             </span>
                         </button> --}}
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-white">
                             <span class="indicator-label"> Save Changes </span>
                             </span>
                         </button>

@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('bank_name');
+            $table->string('bank_name')->nullable();
             $table->string('branch_name')->nullable();
-            $table->string('account_number');
-            $table->string('slug');
+            $table->string('account_number')->nullable();
+            $table->string('slug')->nullable();
             $table->date('date')->nullable();
+            $table->string('image')->nullable();
             $table->string('note')->nullable();
-            $table->string('status')->default('active')->comment('inactive,active');
+            $table->string('status')->default('active')->nullable()->comment('inactive,active');
             $table->foreignId('created_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
+            $table->foreignId('updated_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
             $table->timestamps();
         });
     }

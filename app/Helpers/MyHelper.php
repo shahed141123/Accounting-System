@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -122,5 +123,47 @@ if (!function_exists('noImage')) {
     function noImage()
     {
         return 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg';
+    }
+}
+
+if (!function_exists('generateCode')) {
+    function generateCode($model, $prefix)
+    {
+        // Get the latest record from the specified model
+        $lastRecord = $model::latest()->first();
+        $code = 1;
+        if ($lastRecord) {
+            // Extract numeric part from the last code and increment it
+            $lastNumericCode = intval(str_replace($prefix . '-', '', $lastRecord->code));
+            $code = $lastNumericCode + 1;
+        }
+        // Combine the prefix with the incremented code
+        return $prefix . '-' . $code;
+    }
+}
+if (!function_exists('redirectWithSuccess')) {
+    function redirectWithSuccess(string $message)
+    {
+        Session::flash('success', $message);
+    }
+
+
+}
+if (!function_exists('redirectWithError')) {
+
+    function redirectWithError(string $message)
+    {
+        Session::flash('error', $message);
+    }
+}
+
+if (!function_exists('getImageUrl')) {
+    function getImageUrl($imagePath, $defaultImage = 'images/no_image.jpg')
+    {
+        if (!empty($imagePath) && file_exists(public_path('storage/' . $imagePath))) {
+            return asset('storage/' . $imagePath);
+        }
+
+        return asset($defaultImage);
     }
 }

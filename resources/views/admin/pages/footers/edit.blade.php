@@ -32,37 +32,37 @@
                 <!--begin::Input group-->
                 <div class="row">
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="menu_name"
+                        <x-admin.label for="menu_name"
                             class="col-form-label fw-bold fs-6 required">{{ __('Menu Name') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="menu_name" type="text" name="menu_name" :value="$footer->menu_name"
-                            placeholder="Enter the Menu Name" required></x-metronic.input>
+                        <x-admin.input id="menu_name" type="text" name="menu_name" :value="$footer->menu_name"
+                            placeholder="Enter the Menu Name" required></x-admin.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="menu_url"
+                        <x-admin.label for="menu_url"
                             class="col-form-label fw-bold fs-6 required">{{ __('Menu Url') }}
-                        </x-metronic.label>
+                        </x-admin.label>
 
-                        <x-metronic.input id="menu_url" type="url" name="menu_url" :value="$footer->menu_url"
-                            placeholder="Enter the Menu Url" required></x-metronic.input>
+                        <x-admin.input id="menu_url" type="url" name="menu_url" :value="$footer->menu_url"
+                            placeholder="Enter the Menu Url" required></x-admin.input>
                     </div>
 
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                            {{ __('Select a Status ') }}</x-metronic.label>
-                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                        <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Status ') }}</x-admin.label>
+                        <x-admin.select-option id="status" name="status" data-hide-search="true"
                             data-placeholder="Select an option">
                             <option></option>
                             <option value="1" {{ $footer->status == 1 ? 'selected' : '' }}>Active</option>
                             <option value="0" {{ $footer->status == 0 ? 'selected' : '' }}>Inactive</option>
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
                 </div>
                 <div class="text-center pt-15">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Update') }}
-                    </x-metronic.button>
+                    </x-admin.button>
                 </div>
                 <!--end::Actions-->
             </form>

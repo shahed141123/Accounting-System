@@ -13,17 +13,19 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->index();
+            $table->string('name')->nullable();
             $table->string('slug')->unique();
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->date('date')->nullable();
             $table->text('note')->nullable();
-            $table->string('status')->default('active')->comment('inactive,active');
+            $table->double('amount')->nullable();
+            $table->string('status')->default('active')->nullable()->comment('inactive,active');
             $table->string('image')->nullable();
             $table->foreignId('cat_id')->nullable()->constrained('expense_categories')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('sub_cat_id')->nullable()->constrained('expense_sub_categories')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('transaction_id')->nullable()->constrained('account_transactions')->onDelete('cascade')->onUpdate('no action');
             $table->foreignId('created_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
+            $table->foreignId('updated_by')->nullable()->constrained('admins')->onDelete('no action')->onUpdate('no action');
             $table->timestamps();
         });
     }

@@ -29,39 +29,39 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <x-metronic.label
-                            class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
+                        <x-admin.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-admin.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <x-metronic.input type="email" name="email"
+                        <x-admin.input type="email" name="email"
                             class="form-control form-control-lg form-control-solid" placeholder="Enter your password"
-                            :value="old('email', $request->email)" autofocus autocomplete="username"></x-metronic.input>
+                            :value="old('email', $request->email)" autofocus autocomplete="username"></x-admin.input>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <x-metronic.label
-                            class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</x-metronic.label>
+                        <x-admin.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</x-admin.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <x-metronic.input type="password" name="password"
+                        <x-admin.input type="password" name="password"
                             class="form-control form-control-lg form-control-solid" placeholder="Enter your password"
-                            required autocomplete="new-password"></x-metronic.input>
+                            required autocomplete="new-password"></x-admin.input>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <x-metronic.label
-                            class="form-label fs-6 fw-bolder text-dark">{{ __('Confirm Password') }}</x-metronic.label>
+                        <x-admin.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Confirm Password') }}</x-admin.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <x-metronic.input type="password" name="password_confirmation"
+                        <x-admin.input type="password" name="password_confirmation"
                             class="form-control form-control-lg form-control-solid" placeholder="Enter your password"
-                            required autocomplete="new-password"></x-metronic.input>
+                            required autocomplete="new-password"></x-admin.input>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -69,9 +69,9 @@
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
-                        <x-metronic.button type="submit" class="primary btn-lg w-100 mb-5">
+                        <x-admin.button type="submit" class="primary btn-lg w-100 mb-5">
                             <span class="indicator-label"> {{ __('Continue') }}</span>
-                        </x-metronic.button>
+                        </x-admin.button>
                         <!--end::Submit button-->
                     </div>
                     <!--end::Actions-->

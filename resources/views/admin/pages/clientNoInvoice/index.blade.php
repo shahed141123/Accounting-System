@@ -1,19 +1,34 @@
-<x-admin-app-layout :title="'Account Client No Invoice List'">
+<x-admin-app-layout :title="'Expence'">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <div class="app-content">
         <div class="container-fluid mt-3">
             <div class="row">
                 <div class="col-12">
                     <div class="card border-0 shadow-none">
-                        <div class="card-header p-3 bg-custom text-white border-0">
+                        <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Manage Client No Invoice</h4>
+                                    <h4 class="mb-0">Payments Non Invoice</h4>
                                 </div>
-                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#addTransactionModal">
-                                    <i class="fa-solid fa-plus pe-2"></i> Add
-                                </button>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Export To Excel">
+                                        <i class="fa-solid fa-file-csv"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Download PDF">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Print Table">
+                                        <i class="fa-solid fa-print"></i>
+                                        <span class="tooltiptext">Print</span>
+                                    </button>
+                                    <a href="{{ route('admin.client-non-invoice.create') }}"
+                                        class="btn btn-outline-light toltip" data-tooltip="Create New"> Create
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -21,29 +36,41 @@
                             <table class="table table-striped datatable" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Reason</th>
-                                        <th>Amount</th>
-                                        <th>Type</th>
-                                        <th>Transaction Date</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Action</th>
+                                        <th width="5%" class="text-center">Sl</th>
+                                        <th width="15%" class="text-center">Client</th>
+                                        <th width="15%" class="text-center">Payment Type</th>
+                                        <th width="15%" class="text-center">Paid Amount</th>
+                                        <th width="15%" class="text-center">Account</th>
+                                        <th width="10%" class="text-center">Payment Date</th>
+                                        <th width="5%" class="text-center">Status</th>
+                                        <th width="10%" class="text-end">Action</th>
                                     </tr>
+
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Sample Reason</td>
-                                        <td>$100.00</td>
-                                        <td>Credit</td>
-                                        <td>2024-09-15</td>
-                                        <td>Active</td>
+                                        <td class="text-center">1</td>
+
+                                        <td class="text-center">Troy Walker</td>
+                                        <td class="text-center"> Due Added</td>
+                                        <td class="text-center">Paid Amount</td>
+                                        <td class="text-center">Account</td>
+                                        <td class="text-center">Payment Date</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-success">
+                                                Active</span>
+                                        </td>
                                         <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary  toltip"
+                                                data-tooltip="Edit">
                                                 <i class="fa-solid fa-pen"></i>
                                             </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
+                                            <a href="javascript:void(0)"
+                                                class="btn btn-sm btn-warning text-white toltip" data-tooltip="View">
+                                                <i class="fa-solid fa-expand"></i>
                                             </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
+                                                data-tooltip="Delete">
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
                                         </td>
@@ -57,72 +84,4 @@
         </div>
     </div>
 
-    <!-- Add New Transaction Modal -->
-    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTransactionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addTransactionLabel">Add New Account Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="reason" class="form-label">Reason</label>
-                            <input type="text" class="form-control form-control-solid" id="reason" name="reason">
-                        </div>
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
-                                name="amount" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="type" class="form-label">Transaction Type</label>
-                            <select class="form-select form-select-solid" id="type" name="type" required>
-                                <option value="0">Debit</option>
-                                <option value="1">Credit</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="transaction_date" class="form-label">Transaction Date</label>
-                            <input type="datetime-local" class="form-control form-control-solid" id="transaction_date"
-                                name="transaction_date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cheque_no" class="form-label">Cheque No</label>
-                            <input type="text" class="form-control form-control-solid" id="cheque_no"
-                                name="cheque_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="receipt_no" class="form-label">Receipt No</label>
-                            <input type="text" class="form-control form-control-solid" id="receipt_no"
-                                name="receipt_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="account_id" class="form-label">Account</label>
-                            <select class="form-select form-select-solid" id="account_id" name="account_id">
-                                <option value="1">Account 1</option>
-                                <option value="2">Account 2</option>
-                                <!-- Add dynamic account options -->
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </x-admin-app-layout>

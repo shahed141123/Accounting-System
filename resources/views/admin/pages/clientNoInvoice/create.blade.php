@@ -1,126 +1,84 @@
-<x-admin-app-layout :title="'Account Client No Invoice Create'">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<x-admin-app-layout>
     <div class="app-content">
-        <div class="container-fluid mt-3">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card border-0 shadow-none">
-                        <div class="card-header p-3 bg-custom text-white border-0">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h4 class="mb-0">Manage Client No Invoice</h4>
-                                </div>
-                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#addTransactionModal">
-                                    <i class="fa-solid fa-plus pe-2"></i> Add
-                                </button>
+                <div class="col-lg-12">
+                    <div class="card mt-5">
+                        <div class="card-header p-2">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h4 class="text-gray-800">Create Non Payment Invoice</h4>
+                                <a href="{{ route('admin.client-invoice.index') }}" class="btn-common-one text-white"
+                                    tabindex="0">
+                                    <i class="fa-solid fa-arrow-left-long pe-3"></i>
+                                    Back
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Reason</th>
-                                        <th>Amount</th>
-                                        <th>Type</th>
-                                        <th>Transaction Date</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sample Reason</td>
-                                        <td>$100.00</td>
-                                        <td>Credit</td>
-                                        <td>2024-09-15</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <form method="POST" action="{{ route('admin.client-invoice.store') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="client" class="form-label">Client</label>
+                                            <x-admin.select-option id="client" name="client" :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="Walking Customer">Walking Customer</option>
+                                                <option value="Ruth Miles">Ruth Miles</option>
+                                                <option value=" Reed Montoya"> Reed Montoya</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="type" class="form-label">Type</label>
+                                            <x-admin.select-option id="type" name="type" :allowClear="true">
+                                                <option value="">-- Select Category --</option>
+                                                <option value="Walking Customer">Walking Customer</option>
+                                                <option value="Ruth Miles">Ruth Miles</option>
+                                                <option value=" Reed Montoya"> Reed Montoya</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <x-admin.label for="amount" class="form-label"> Amount </x-admin.label>
+                                            <x-admin.input type="text" :value="old('amount')" id="amount"
+                                                name="amount" required placeholder="28836.5"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <x-admin.label for="date" class="form-label"> Payment
+                                                Date</x-admin.label>
+                                            <x-admin.input type="text" :value="old('date')" id="date"
+                                                name="date" required placeholder="35000"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="status" class="form-label">Status</label>
+                                            <x-admin.select-option id="status" name="status" :allowClear="true">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </x-admin.select-option>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="note" class="form-label">Note</label>
+                                            <textarea class="form-control text-area-input" id="note" name="note" rows="3"
+                                                placeholder="write your note here"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-admin.button type="submit" class="">Save Invoice <i
+                                        class="fa-regular fa-floppy-disk ps-2"></i></x-admin.button>
+                            </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add New Transaction Modal -->
-    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTransactionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addTransactionLabel">Add New Account Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="reason" class="form-label">Reason</label>
-                            <input type="text" class="form-control form-control-solid" id="reason" name="reason">
-                        </div>
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
-                                name="amount" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="type" class="form-label">Transaction Type</label>
-                            <select class="form-select form-select-solid" id="type" name="type" required>
-                                <option value="0">Debit</option>
-                                <option value="1">Credit</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="transaction_date" class="form-label">Transaction Date</label>
-                            <input type="datetime-local" class="form-control form-control-solid" id="transaction_date"
-                                name="transaction_date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cheque_no" class="form-label">Cheque No</label>
-                            <input type="text" class="form-control form-control-solid" id="cheque_no"
-                                name="cheque_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="receipt_no" class="form-label">Receipt No</label>
-                            <input type="text" class="form-control form-control-solid" id="receipt_no"
-                                name="receipt_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="account_id" class="form-label">Account</label>
-                            <select class="form-select form-select-solid" id="account_id" name="account_id">
-                                <option value="1">Account 1</option>
-                                <option value="2">Account 2</option>
-                                <!-- Add dynamic account options -->
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
-                    </form>
                 </div>
             </div>
         </div>

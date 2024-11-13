@@ -1,126 +1,180 @@
 <x-admin-app-layout :title="'Account Balance Sheet'">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <div class="app-content">
         <div class="container-fluid mt-3">
             <div class="row">
                 <div class="col-12">
                     <div class="card border-0 shadow-none">
-                        <div class="card-header p-3 bg-custom text-white border-0">
+                        <div class="card-header p-3 bg-custom text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4 class="mb-0">Manage Balance Sheet</h4>
+                                    <h4 class="mb-0">Balance Sheet</h4>
                                 </div>
-                                <button type="button" class="btn btn-white" data-bs-toggle="modal"
-                                    data-bs-target="#addTransactionModal">
-                                    <i class="fa-solid fa-plus pe-2"></i> Add
-                                </button>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Export To Excel">
+                                        <i class="fa-solid fa-file-csv"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light toltip"
+                                        data-tooltip="Download PDF">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light" onclick="printTable()">
+                                        <i class="fa-solid fa-print"></i>
+                                    </button>
+                                    <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light toltip"
+                                        data-tooltip="Back To Home">
+                                        <i class="fa-solid fa-arrow-left-long"></i> Back
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <!-- Table -->
-                            <table class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Reason</th>
-                                        <th>Amount</th>
-                                        <th>Type</th>
-                                        <th>Transaction Date</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sample Reason</td>
-                                        <td>$100.00</td>
-                                        <td>Credit</td>
-                                        <td>2024-09-15</td>
-                                        <td>Active</td>
-                                        <td class="text-end">
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-warning text-white">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body printBody">
+                            <div class="row gx-0 p-3">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            {{-- Logo Area --}}
+                                            <div class="d-flex justify-content-between align-items-center py-4">
+                                                <div>
+                                                    <a href="{{ route('admin.dashboard') }}" class="brand-link">
+
+                                                        <img src="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('images/logo-color.png') }}"
+                                                            alt="{{ optional($setting)->site_title }}" class="brand-image" width="150px" />
+                                                    </a>
+                                                    <p class="pt-3">{{ optional($setting)->site_title }}
+                                                    </p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <p><b>Phone:</b> {{ optional($setting)->primary_phone }}</p>
+                                                    <p><b>Email:</b> {{ optional($setting)->support_email }}</p>
+                                                    <p><b>Address:</b> {{ optional($setting)->address_line_one }} <br>
+                                                        {{ optional($setting)->address_line_two }}</p>
+                                                </div>
+                                            </div>
+                                            {{-- Logo Area End --}}
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="row gx-0">
+                                                <div class="col-lg-6">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered mb-0">
+                                                            <tbody>
+                                                                <tr class="table-info border-0">
+                                                                    <td colspan="3" class="text-center"><strong
+                                                                            class="text-uppercase">Income</strong></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>Total Security/Asset=></td>
+                                                                    <td class="text-end">{{ $assets }}</td>
+                                                                </tr>
+                                                                {{-- <tr>
+                                                                    <td>2</td>
+                                                                    <td>Inventory Value=></td>
+                                                                    <td class="text-end">$65681.80</td>
+                                                                </tr> --}}
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>Client's Dues=></td>
+                                                                    <td class="text-end">{{ $clientTotalDue }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>3</td>
+                                                                    <td>Bank Balance=></td>
+                                                                    <td class="text-end">{{ $bankBalance }}</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered mb-0">
+                                                            <tbody>
+                                                                <tr class="table-info border-0">
+                                                                    <td colspan="3" class="text-center"><strong
+                                                                            class="text-uppercase">Liability</strong>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>Payable =></td>
+                                                                    <td class="text-end">{{ $clientTotalDue }}</td>
+                                                                </tr>
+                                                                {{-- <tr>
+                                                                    <td>2</td>
+                                                                    <td>Bank Loan=></td>
+                                                                    <td class="text-end">$190454.60</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>3</td>
+                                                                    <td>Bank Loan=></td>
+                                                                    <td class="text-end">$190454.60</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>4</td>
+                                                                    <td>Bank Loan=></td>
+                                                                    <td class="text-end">$190454.60</td>
+                                                                </tr> --}}
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered mb-0">
+                                                            <tbody>
+                                                                <tr class="table-primary border-0">
+                                                                    <td colspan="3">Total Income=></td>
+                                                                    <td class="text-end">{{ $businessTotal }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered mb-0">
+                                                            <tbody>
+                                                                <tr class="table-primary border-0">
+                                                                    <td colspan="3">Total Liability=></td>
+                                                                    <td class="text-end">{{ $liabilities }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table text-center table-bordered mb-0">
+                                                            <tbody>
+                                                                <tr class="text-center">
+                                                                    <h6 class="p-3 text-center">Total Liability & Total
+                                                                        Income
+                                                                        <br> (Income - Liabilities) :
+                                                                        ({{ $businessTotal }} - {{ $liabilities }})
+                                                                    </h6>
+
+                                                                </tr>
+                                                            </tbody>
+                                                            <tbody>
+                                                                <tr class="text-center table-info border-0 fw-bold">
+                                                                    <h5 class="p-3 text-center">Total Asset :
+                                                                        {{ $totalAsset }}</h5>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add New Transaction Modal -->
-    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTransactionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addTransactionLabel">Add New Account Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="reason" class="form-label">Reason</label>
-                            <input type="text" class="form-control form-control-solid" id="reason" name="reason">
-                        </div>
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" step="0.01" class="form-control form-control-solid" id="amount"
-                                name="amount" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="type" class="form-label">Transaction Type</label>
-                            <select class="form-select form-select-solid" id="type" name="type" required>
-                                <option value="0">Debit</option>
-                                <option value="1">Credit</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="transaction_date" class="form-label">Transaction Date</label>
-                            <input type="datetime-local" class="form-control form-control-solid" id="transaction_date"
-                                name="transaction_date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cheque_no" class="form-label">Cheque No</label>
-                            <input type="text" class="form-control form-control-solid" id="cheque_no"
-                                name="cheque_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="receipt_no" class="form-label">Receipt No</label>
-                            <input type="text" class="form-control form-control-solid" id="receipt_no"
-                                name="receipt_no">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control form-control-solid" id="note" name="note"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select form-select-solid" id="status" name="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="account_id" class="form-label">Account</label>
-                            <select class="form-select form-select-solid" id="account_id" name="account_id">
-                                <option value="1">Account 1</option>
-                                <option value="2">Account 2</option>
-                                <!-- Add dynamic account options -->
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Transaction</button>
-                    </form>
                 </div>
             </div>
         </div>

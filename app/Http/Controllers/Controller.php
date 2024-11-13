@@ -22,4 +22,8 @@ class Controller extends BaseController
 
         return Response::download($file);
     }
+    public function databaseBackup()
+    {
+        return view('admin.pages.database.index');
+    }
 }

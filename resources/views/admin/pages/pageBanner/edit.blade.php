@@ -26,10 +26,10 @@
                 @method('PUT')
                 <div class="row">
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="name"
+                        <x-admin.label for="name"
                             class="col-form-label fw-bold fs-6 required">{{ __('Page Name') }}
-                        </x-metronic.label>
-                        <x-metronic.select-option id="page_name" name="page_name" data-hide-search="true"
+                        </x-admin.label>
+                        <x-admin.select-option id="page_name" name="page_name" data-hide-search="true"
                             data-placeholder="Select an option">
                             <option></option>
                             <option value="home_slider" @selected($banner->page_name == 'home_slider')>Home Page Slider</option>
@@ -42,77 +42,77 @@
                             <option value="faq" @selected($banner->page_name == 'faq')>FAQ</option>
                             <option value="terms" @selected($banner->page_name == 'terms')>Terms & Condition</option>
                             <option value="privacy" @selected($banner->page_name == 'privacy')>Privacy Policy</option>
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
                     {{-- <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="image" class="col-form-label fw-bold fs-6 required">{{ __('Image') }}
-                        </x-metronic.label>
-                        <x-metronic.file-input id="image" type="file" name="image" :source="asset('storage/'.$banner->image)"></x-metronic.file-input>
+                        <x-admin.label for="image" class="col-form-label fw-bold fs-6 required">{{ __('Image') }}
+                        </x-admin.label>
+                        <x-admin.file-input id="image" type="file" name="image" :source="asset('storage/'.$banner->image)"></x-admin.file-input>
                     </div> --}}
                     <div class="col-lg-4">
-                        <x-metronic.label for="bg_image" class="col-form-label fw-bold fs-6 required">{{ __('Background Image') }}
-                        </x-metronic.label>
-                        <x-metronic.file-input id="bg_image" type="file" name="bg_image" :source="asset('storage/'.$banner->bg_image)"></x-metronic.file-input>
+                        <x-admin.label for="bg_image" class="col-form-label fw-bold fs-6 required">{{ __('Background Image') }}
+                        </x-admin.label>
+                        <x-admin.file-input id="bg_image" type="file" name="bg_image" :source="asset('storage/'.$banner->bg_image)"></x-admin.file-input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="title" class="col-form-label fw-bold fs-6 ">{{ __('Title') }}
-                        </x-metronic.label>
+                        <x-admin.label for="title" class="col-form-label fw-bold fs-6 ">{{ __('Title') }}
+                        </x-admin.label>
 
-                        <x-metronic.input id="title" type="text" name="title" placeholder="Enter the Title"
-                            :value="old('title',$banner->title)"></x-metronic.input>
+                        <x-admin.input id="title" type="text" name="title" placeholder="Enter the Title"
+                            :value="old('title',$banner->title)"></x-admin.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="subtitle" class="col-form-label fw-bold fs-6 ">{{ __('Subtitle') }}
-                        </x-metronic.label>
+                        <x-admin.label for="subtitle" class="col-form-label fw-bold fs-6 ">{{ __('Subtitle') }}
+                        </x-admin.label>
 
-                        <x-metronic.input id="subtitle" type="text" name="subtitle" placeholder="Enter the Subtitle"
-                            :value="old('subtitle',$banner->subtitle)"></x-metronic.input>
+                        <x-admin.input id="subtitle" type="text" name="subtitle" placeholder="Enter the Subtitle"
+                            :value="old('subtitle',$banner->subtitle)"></x-admin.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="banner_link" class="col-form-label fw-bold fs-6 ">{{ __('Banner Link') }}
-                        </x-metronic.label>
+                        <x-admin.label for="banner_link" class="col-form-label fw-bold fs-6 ">{{ __('Banner Link') }}
+                        </x-admin.label>
 
-                        <x-metronic.input id="banner_link" type="text" name="banner_link" placeholder="Enter the Banner_Link"
-                            :value="old('banner_link',$banner->banner_link)"></x-metronic.input>
+                        <x-admin.input id="banner_link" type="text" name="banner_link" placeholder="Enter the Banner_Link"
+                            :value="old('banner_link',$banner->banner_link)"></x-admin.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="badge" class="col-form-label fw-bold fs-6 ">{{ __('Badge') }}
-                        </x-metronic.label>
+                        <x-admin.label for="badge" class="col-form-label fw-bold fs-6 ">{{ __('Badge') }}
+                        </x-admin.label>
 
-                        <x-metronic.input id="badge" type="text" name="badge" placeholder="Enter the Badge"
-                            :value="old('badge',$banner->badge)"></x-metronic.input>
+                        <x-admin.input id="badge" type="text" name="badge" placeholder="Enter the Badge"
+                            :value="old('badge',$banner->badge)"></x-admin.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="button_name" class="col-form-label fw-bold fs-6 ">{{ __('Button Name') }}
-                        </x-metronic.label>
+                        <x-admin.label for="button_name" class="col-form-label fw-bold fs-6 ">{{ __('Button Name') }}
+                        </x-admin.label>
 
-                        <x-metronic.input id="button_name" type="text" name="button_name"
-                            placeholder="Enter the Button Name" :value="old('button_name',$banner->button_name)"></x-metronic.input>
+                        <x-admin.input id="button_name" type="text" name="button_name"
+                            placeholder="Enter the Button Name" :value="old('button_name',$banner->button_name)"></x-admin.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="button_link" class="col-form-label fw-bold fs-6 ">{{ __('Button Link') }}
-                        </x-metronic.label>
+                        <x-admin.label for="button_link" class="col-form-label fw-bold fs-6 ">{{ __('Button Link') }}
+                        </x-admin.label>
 
-                        <x-metronic.input id="button_link" type="url" name="button_link"
-                            placeholder="Enter the Button Link" :value="old('button_link',$banner->button_link)"></x-metronic.input>
+                        <x-admin.input id="button_link" type="url" name="button_link"
+                            placeholder="Enter the Button Link" :value="old('button_link',$banner->button_link)"></x-admin.input>
                     </div>
                     <div class="col-lg-4 mb-7">
-                        <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
-                            {{ __('Select a Status ') }}</x-metronic.label>
-                        <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                        <x-admin.label for="status" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Status ') }}</x-admin.label>
+                        <x-admin.select-option id="status" name="status" data-hide-search="true"
                             data-placeholder="Select an option">
                             <option></option>
                             <option value="active" @selected($banner->status == "active") >Active</option>
                             <option value="inactive" @selected($banner->status == "inactive") >Inactive</option>
-                        </x-metronic.select-option>
+                        </x-admin.select-option>
                     </div>
 
 
                 </div>
                 <div class="text-center pt-15">
-                    <x-metronic.button type="submit" class="primary">
+                    <x-admin.button type="submit" class="primary">
                         {{ __('Submit') }}
-                    </x-metronic.button>
+                    </x-admin.button>
                 </div>
 
             </form>

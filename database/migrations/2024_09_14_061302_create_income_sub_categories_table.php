@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->index();
             $table->string('slug')->unique();
-            $table->integer('code')->nullable();
+            $table->string('code')->nullable();
             $table->text('note')->nullable();
             $table->string('status')->default('active')->comment('inactive,active');
             $table->foreignId('cat_id')->nullable()->constrained('income_categories')->onDelete('cascade')->onUpdate('no action');
