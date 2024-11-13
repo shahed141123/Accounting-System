@@ -25,7 +25,7 @@
                         <td>{{ $client['email'] }}</td>
                         <td>{{ $client['company_name'] }}</td>
                         <td>
-                            @if ($client['status'])
+                            @if ($client['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')
