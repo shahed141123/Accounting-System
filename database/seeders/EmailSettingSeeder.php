@@ -13,6 +13,6 @@ class EmailSettingSeeder extends Seeder
      */
     public function run(): void
     {
-        EmailSetting::factory()->count(10)->create();
+        // EmailSetting::factory()->count(10)->create();
     }
 }
