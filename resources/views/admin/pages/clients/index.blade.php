@@ -86,7 +86,7 @@
                                                         data-tooltip="View">
                                                         <i class="fa-solid fa-expand"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.clients.destroy',$client->slug) }}" class="btn btn-sm btn-danger toltip mb-2"
+                                                    <a href="{{ route('admin.clients.destroy',$client->id) }}" class="btn btn-sm btn-danger toltip mb-2 delete"
                                                         data-tooltip="Delete">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>

@@ -70,7 +70,7 @@
                                                         <i class="fa-solid fa-pen"></i>
                                                     </a>
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#showIncome"
+                                                        data-bs-target="#showIncome_{{ optional($income)->id }}"
                                                         class="btn btn-sm btn-warning text-white">
                                                         <i class="fa-solid fa-expand"></i>
                                                     </a>
@@ -92,7 +92,8 @@
     </div>
     <!-- Modal Body -->
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-    <div class="modal fade" id="showIncome" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    @foreach ($incomes as $income)
+    <div class="modal fade" id="showIncome_{{ optional($income)->id }}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg rounded-0" role="document">
             <div class="modal-content border-0 rounded-0">
@@ -351,13 +352,13 @@
             </div>
         </div>
     </div>
-
+@endforeach
     <!-- Optional: Place to the bottom of scripts -->
-    <script>
+    {{-- <script>
         const myModal = new bootstrap.Modal(
             document.getElementById("modalId"),
             options,
         );
-    </script>
+    </script> --}}
 
 </x-admin-app-layout>
