@@ -12,8 +12,8 @@
                                             loading="lazy" />
                                     </a>
                                 @else
-                                    <div class="bg-secondary no-preview-lg">
-                                        <small>{{ __('common.no_preview') }}</small>
+                                    <div class="bg-secondary no-preview-lg text-center">
+                                        <small style="height: 100px;">{{ __('common.no_preview') }}</small>
                                     </div>
                                 @endif
                             </div>
