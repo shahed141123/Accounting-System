@@ -99,7 +99,7 @@
             <div class="modal-content border-0 rounded-0">
                 <div class="modal-header rounded-0">
                     <h5 class="modal-title" id="modalTitleId">
-                        Freelance Project Payment
+                        {{ optional($income)->reason }}
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -115,15 +115,15 @@
                                                 <div>
                                                     <h3 class="fw-bold mb-4 light-text-color">Invoice</h3>
                                                     <div class="d-flex align-items-center">
-                                                        <div class="me-5">
+                                                        {{-- <div class="me-5">
                                                             <p class="mb-0 fw-semibold light-text-color">Invoice Number
                                                             </p>
                                                             <p class="mb-0">0001</p>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="">
                                                             <p class="mb-0 fw-semibold light-text-color">Date Of Issue
                                                             </p>
-                                                            <p class="mb-0">MM/DD/YYYY</p>
+                                                            <p class="mb-0">{{ optional($income) ? \Carbon\Carbon::parse($income->date)->format('jS M, Y') : '' }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
