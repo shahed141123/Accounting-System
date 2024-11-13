@@ -1,6 +1,6 @@
 @props(['id' => '', 'name', 'source' => ''])
 
-<div class="row gx-1">
+<div class="row align-items-center">
     <div class="col-10">
         <input id="{{ $id ?? 'file-input' }}" type="file"
             class="form-control form-control-solid @error($name)is-invalid @enderror" name="{{ $name }}"

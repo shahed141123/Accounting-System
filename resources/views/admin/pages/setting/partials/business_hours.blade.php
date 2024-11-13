@@ -1,4 +1,11 @@
-<div class="row py-10">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="py-3 bg-light">
+            <h5 class="text-center">Business Hour</h5>
+        </div>
+    </div>
+</div>
+<div class="row p-3">
     <div class="col-lg-8 mb-4 bg-light mx-auto">
         <div class="row border-info gx-2 py-2 align-items-center px-3 rounded-2">
             <div class="col-lg-12 pt-3">

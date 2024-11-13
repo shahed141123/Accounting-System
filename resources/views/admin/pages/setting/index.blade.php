@@ -148,10 +148,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-end mt-1 ms-3">
-                                <x-admin.button type="submit" class="primary">
-                                    {{ __('Save Settings ') }}
-                                </x-admin.button>
+                            <div class="form-btn-info">
+                                <div class="mt-1 me-3">
+                                    <x-admin.button type="submit" class="primary">
+                                        {{ __('Save Settings ') }}
+                                    </x-admin.button>
+                                </div>
                             </div>
                         </div>
                     </form>

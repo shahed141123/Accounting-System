@@ -6,7 +6,7 @@
             </div>
         </div>
     </div>
-    <div class="row p-3 pb-0">
+    <div class="row p-3 align-items-center">
         <div class="col-lg-3">
             <div class="mb-3">
                 <x-admin.label for="website_name" class="form-label">{{ __('Website Name') }}

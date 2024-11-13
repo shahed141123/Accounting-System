@@ -1,7 +1,12 @@
-<div class="row text-center py-5">
-    <h5 class="text-center m-0 p-0">Footer Section</h5>
-</div>
+
 <div class="row">
+    <div class="col-lg-12">
+        <div class="py-3 bg-light">
+            <h5 class="text-center">Footer Section</h5>
+        </div>
+    </div>
+</div>
+<div class="row p-3">
     <div class="col-lg-6 mb-7">
         <x-admin.label for="copyright_title" class="col-form-label fw-bold fs-6 ">{{ __('Copyright Title') }}
         </x-admin.label>
