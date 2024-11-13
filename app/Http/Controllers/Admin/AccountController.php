@@ -74,7 +74,7 @@ class AccountController extends Controller
                 'status'         => $request->status ?? 'active', // Default to 'active'
             ]);
             redirectWithSuccess('Account added successfully');
-            return redirect()->back();
+            return redirect()->route('admin.account.index');
         } catch (Exception $e) {
             redirectWithError($e->getMessage());
             return redirect()->back()->withInput();
@@ -147,7 +147,7 @@ class AccountController extends Controller
             ]);
 
             redirectWithSuccess('Account updated successfully');
-            return redirect()->back();
+            return redirect()->route('admin.account.index');
         } catch (Exception $e) {
             redirectWithError($e->getMessage());
             return redirect()->back()->withInput();

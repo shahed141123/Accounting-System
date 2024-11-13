@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientInvoiceController extends Controller
@@ -20,6 +21,9 @@ class ClientInvoiceController extends Controller
      */
     public function create()
     {
+        $data= [
+            'clients' => User::where('status','active')->get(['id','name']),
+        ];
         return view("admin.pages.clientInvoice.create");
     }
 

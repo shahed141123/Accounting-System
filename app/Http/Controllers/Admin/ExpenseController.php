@@ -48,7 +48,7 @@ class ExpenseController extends Controller
         $this->validate($request, [
             'reason'        => 'nullable|string|max:255',
             'subCategory'   => 'nullable',
-            'account'       => 'nullable',
+            'account'       => 'required',
             'amount'        => 'nullable|numeric|max:' . $request->availableBalance,
             'chequeNo'      => 'nullable|string|max:255',
             'voucherNo'     => 'nullable|string|max:255',

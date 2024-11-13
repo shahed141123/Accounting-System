@@ -1,8 +1,8 @@
-@props(['id', 'name', 'allowClear' => false])
+@props(['id', 'name' , 'allowClear' => false])
 
 <select id="{{ $id }}" name="{{ $name }}"
     class="form-control select2 @error($name) is-invalid @enderror"
-    data-allow-clear="{{ $allowClear }}"
+    data-allow-clear="{{ $allowClear }}" {{ $required ?? '' }}
     {{ $attributes }}>
     {{ $slot }}
 </select>

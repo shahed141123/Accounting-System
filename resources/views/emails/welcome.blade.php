@@ -8,11 +8,11 @@
                     <td class="content-cell">
                         <div class="f-fallback">
                             <h1>Hi {{ ucfirst($user->name) }}, good day!</h1>
-                            <p>Welcome to {{ $setting->website_name }}! Thank you for being a part of our company.
+                            <p>Welcome to {{ $setting->website_name ?? 'AMS' }}! Thank you for being a part of our company.
                                 Hope we are going to have a good business relationship together! Have a nice day.</p>
                             <p>Thanks,
-                                <br>{{ $setting->website_name }}<br />
-                                {{ $setting->info_email }}
+                                <br>{{ $setting->website_name ?? 'AMS' }}<br />
+                                {{ $setting->info_email ?? '' }}
                             </p>
                             <!-- Sub copy -->
                         </div>

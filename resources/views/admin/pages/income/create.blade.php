@@ -41,7 +41,7 @@
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="account_id" class="form-label">Account</label>
-                                            <x-admin.select-option id="account_id" name="account_id" :allowClear="true">
+                                            <x-admin.select-option id="account_id" name="account_id" :allowClear="true" required>
                                                 <option value="">-- Select Account --</option>
                                                 @foreach ($accounts as $account)
                                                     <option value="{{ $account->id }}" @selected(old('account_id') == $account->id)

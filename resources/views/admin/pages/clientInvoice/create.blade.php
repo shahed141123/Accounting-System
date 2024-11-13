@@ -23,10 +23,10 @@
                                         <div class="mb-3">
                                             <label for="client" class="form-label">Client</label>
                                             <x-admin.select-option id="client" name="client" :allowClear="true">
-                                                <option value="">-- Select Category --</option>
-                                                <option value="Walking Customer">Walking Customer</option>
-                                                <option value="Ruth Miles">Ruth Miles</option>
-                                                <option value=" Reed Montoya"> Reed Montoya</option>
+                                                <option value="">-- Select Client --</option>
+                                                @foreach ($clients as $client)
+                                                    <option value="Walking Customer">Walking Customer</option>
+                                                @endforeach
                                             </x-admin.select-option>
                                         </div>
                                     </div>
