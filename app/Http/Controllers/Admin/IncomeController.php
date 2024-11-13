@@ -10,7 +10,9 @@ use App\Models\IncomeSubCategory;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class IncomeController extends Controller
 {
@@ -40,7 +42,7 @@ class IncomeController extends Controller
     public function store(Request $request)
     {
         // validate request
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'reason'        => 'nullable|string|max:255',
             'subCategory'   => 'nullable',
             'account'       => 'required',
@@ -50,6 +52,12 @@ class IncomeController extends Controller
             'date'          => 'nullable|date_format:Y-m-d',
             'note'          => 'nullable|string|max:255',
         ]);
+        if ($validator->fails()) {
+            foreach ($validator->messages()->all() as $message) {
+                Session::flash('error', $message);
+            }
+            return redirect()->back()->withInput();
+        }
         try {
             // upload thumbnail and set the name
             $files = [
