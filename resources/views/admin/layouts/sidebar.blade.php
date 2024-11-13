@@ -147,46 +147,46 @@
                                 ],
                             ],
                         ],
-                        // [
-                        //     'title'          => 'Payments',
-                        //     'icon'           => 'fa-solid fa-receipt text-info',
-                        //     'routes'         => [
-                        //         'admin.client-invoice.index',
-                        //         'admin.client-invoice.create',
-                        //         'admin.client-invoice.edit',
-                        //         'admin.client-non-invoice.index',
-                        //         'admin.client-non-invoice.create',
-                        //         'admin.client-non-invoice.edit',
-                        //         'admin.payroll.index',
-                        //         'admin.payroll.create',
-                        //         'admin.payroll.edit',
-                        //     ],
-                        //     'subMenu'        => [
-                        //         [
-                        //             'title'  => 'Client Invoice',
-                        //             'routes' => [
-                        //                 'admin.client-invoice.index',
-                        //                 'admin.client-invoice.create',
-                        //                 'admin.client-invoice.edit',
-                        //             ],
-                        //             'route'  => 'admin.client-invoice.index',
-                        //         ],
-                        //         [
-                        //             'title'  => 'Client Non Invoice',
-                        //             'routes' => [
-                        //                 'admin.client-non-invoice.index',
-                        //                 'admin.client-non-invoice.create',
-                        //                 'admin.client-non-invoice.edit',
-                        //             ],
-                        //             'route'  => 'admin.client-non-invoice.index',
-                        //         ],
-                        //         [
-                        //             'title'  => 'Payroll',
-                        //             'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
-                        //             'route'  => 'admin.payroll.index',
-                        //         ],
-                        //     ],
-                        // ],
+                        [
+                            'title'          => 'Payments',
+                            'icon'           => 'fa-solid fa-receipt text-info',
+                            'routes'         => [
+                                'admin.client-invoice.index',
+                                'admin.client-invoice.create',
+                                'admin.client-invoice.edit',
+                                'admin.client-non-invoice.index',
+                                'admin.client-non-invoice.create',
+                                'admin.client-non-invoice.edit',
+                                'admin.payroll.index',
+                                'admin.payroll.create',
+                                'admin.payroll.edit',
+                            ],
+                            'subMenu'        => [
+                                [
+                                    'title'  => 'Client Invoice',
+                                    'routes' => [
+                                        'admin.client-invoice.index',
+                                        'admin.client-invoice.create',
+                                        'admin.client-invoice.edit',
+                                    ],
+                                    'route'  => 'admin.client-invoice.index',
+                                ],
+                                [
+                                    'title'  => 'Client Non Invoice',
+                                    'routes' => [
+                                        'admin.client-non-invoice.index',
+                                        'admin.client-non-invoice.create',
+                                        'admin.client-non-invoice.edit',
+                                    ],
+                                    'route'  => 'admin.client-non-invoice.index',
+                                ],
+                                [
+                                    'title'  => 'Payroll',
+                                    'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
+                                    'route'  => 'admin.payroll.index',
+                                ],
+                            ],
+                        ],
                         [
                             'title'             => 'Asset Management',
                             'icon'              => 'fa-solid fa-boxes-stacked text-info',
