@@ -50,12 +50,31 @@ class ExpenseController extends Controller
         $validator = Validator::make($request->all(), [
             'reason'        => 'nullable|string|max:255',
             'subCategory'   => 'nullable',
-            'account'       => 'required',
+            'account_id'    => 'required',
             'amount'        => 'nullable|numeric|max:' . $request->availableBalance,
             'chequeNo'      => 'nullable|string|max:255',
             'voucherNo'     => 'nullable|string|max:255',
             'date'          => 'nullable|date_format:Y-m-d',
             'note'          => 'nullable|string|max:255',
+        ], [
+            'category_id.exists'        => 'The selected category does not exist.',
+            'question.required'         => 'The question field is required.',
+            'question.string'           => 'The question must be a string.',
+            'question.max'              => 'The question may not be greater than :max characters.',
+            'account_id.required'       => 'You must choose an account',
+            'answer.string'             => 'The answer must be a string.',
+            'tag.string'                => 'The tag must be a string.',
+            'tag.max'                   => 'The tag may not be greater than :max characters.',
+            'order.integer'             => 'The order must be an integer.',
+            'order.min'                 => 'The order must be at least :min.',
+            'order.unique'              => 'The order value has already been taken.',
+            'status.required'           => 'The status field is required.',
+            'status.in'                 => 'The status must be one of: active, inactive.',
+            'views.integer'             => 'The views must be an integer.',
+            'views.min'                 => 'The views must be at least :min.',
+            'related_faqs.json'         => 'The related FAQs must be a valid JSON string.',
+            'is_featured.boolean'       => 'The is featured field must be true or false.',
+            'additional_info.string'    => 'The additional info must be a string.',
         ]);
         if ($validator->fails()) {
             foreach ($validator->messages()->all() as $message) {
