@@ -327,9 +327,9 @@
                                 [
                                     'title'  => 'Income Report',
                                     'routes' => [
-                                        'admin.income-report.index',
+                                        'admin.income.report',
                                     ],
-                                    'route'  => 'admin.income-report.index',
+                                    'route'  => 'admin.income.report',
                                 ],
                                 [
                                     'title'  => 'Expense Report',
