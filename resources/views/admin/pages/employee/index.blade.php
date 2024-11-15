@@ -76,10 +76,10 @@
                                                 <td>
                                                     {{ $employee->name }}
                                                 </td>
-                                                <td>{{ $employee->empID }}</td>
+                                                <td>{{ $employee->emp_id }}</td>
                                                 <td>{{ optional($employee->department)->name ?? 'N/A' }}</td>
                                                 <td>{{ $employee->designation }}</td>
-                                                <td>{{ $employee->totalSalary }}</td>
+                                                <td>{{ $employee->totalSalary() }}</td>
                                                 <td>{{ $employee->mobile_number }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($employee->birth_date)->format('d M, Y') }}
                                                 </td>
@@ -89,8 +89,7 @@
                                                     @if ($employee->status == 'active')
                                                         <span class="badge bg-success">{{ __('Active') }}</span>
                                                     @else
-                                                        <span
-                                                            class="badge bg-danger">{{ __('InActive') }}</span>
+                                                        <span class="badge bg-danger">{{ __('InActive') }}</span>
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
@@ -106,12 +105,12 @@
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                     @endcan
-                                                    @can('employee-delete')
-                                                        <button class="btn btn-danger btn-sm"
-                                                            onclick="deleteEmployee('{{ $employee->slug }}')">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    @endcan
+                                                    {{-- @can('employee-delete') --}}
+                                                        <a href="{{ route('admin.employee.destroy', optional($employee)->id) }}"
+                                                            class="btn btn-sm btn-danger delete">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    {{-- @endcan --}}
                                                 </td>
                                             </tr>
                                         @endforeach

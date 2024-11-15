@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Employee extends Model
 {
-    use HasFactory;
+    use HasFactory,HasSlug;
+    protected $slugSourceColumn = 'name';
 
     /**
      * The attributes that aren't mass assignable.
@@ -32,9 +34,9 @@ class Employee extends Model
      */
     public function totalSalary()
     {
-        if (! empty($this->salaryIncrements)) {
-            return $this->salary + $this->salaryIncrements->where('status', 1)->sum('increment_amount');
-        }
+        // if (! empty($this->salaryIncrements)) {
+        //     return $this->salary + $this->salaryIncrements->where('status', 1)->sum('increment_amount');
+        // }
 
         return $this->salary;
     }

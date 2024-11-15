@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Models\Admin;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -24,7 +30,8 @@ class EmployeeController extends Controller
     public function create()
     {
         $data = [
-            'departments' => Employee::with('department', 'user')->latest()->get(),
+            'departments' => Department::latest()->get(),
+            'roles'       => Role::latest()->get(),
         ];
         return view('admin.pages.employee.create', $data);
     }
@@ -35,78 +42,92 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'employeeName' => 'required|string|max:255',
-            'department' => 'required',
-            'designation' => 'required|string|max:255',
-            'salary' => 'required|numeric',
-            'commission' => 'nullable|numeric',
-            'mobileNumber' => 'required|string|max:20',
-            'birthDate' => 'required|date|date_format:Y-m-d|before:today',
-            'appointmentDate' => 'required|date|date_format:Y-m-d',
-            'joiningDate' => 'required|date|date_format:Y-m-d',
-            'gender' => 'required|string',
-            'bloodGroup' => 'nullable|string',
-            'religion' => 'nullable|string',
-            'address' => 'nullable|string|max:255',
-            'email' => $request->allowLogin == true ? 'required|string|email|max:255|unique:users,email' : 'nullable',
-            'password' => $request->allowLogin == true ? 'required|string|max:255|min:8' : 'nullable',
-            'role' => $request->allowLogin == true ? 'required' : 'nullable',
+            'name'              => 'required|string|max:255',
+            'department'        => 'nullable',
+            'designation'       => 'required|string|max:255',
+            'salary'            => 'required|numeric',
+            'commission'        => 'nullable|numeric',
+            'mobile_number'     => 'nullable|string|max:20',
+            'birth_date'        => 'nullable|date|date_format:Y-m-d|before:today',
+            'appointment_date'  => 'nullable|date|date_format:Y-m-d',
+            'joining_date'      => 'required|date|date_format:Y-m-d',
+            'gender'            => 'nullable|string',
+            'blood_group'       => 'nullable|string',
+            'religion'          => 'nullable|string',
+            'address'           => 'nullable|string|max:255',
+            'email'             => $request->allowLogin == true ? 'required|string|email|max:255|unique:users,email' : 'nullable',
+            'password'          => $request->allowLogin == true ? 'required|string|max:255|min:8' : 'nullable',
+            'role'              => $request->allowLogin == true ? 'nullable' : 'nullable',
         ]);
 
         try {
             // generate code
-            $code = 1;
+            $code = 1; // Default value
             $lastEmployee = Employee::latest()->first();
+
             if ($lastEmployee) {
-                $code = $lastEmployee->emp_id + 1;
+                // Extract the numeric part of the last employee's emp_id (e.g., 'EMP-123' => 123)
+                preg_match('/(\d+)$/', $lastEmployee->emp_id, $matches);
+
+                // Increment the numeric value
+                $code = (int)$matches[0] + 1;
             }
 
-            // upload thumbnail and set the name
-            $imageName = '';
-            if ($request->image) {
-                $imageName = time().'.'.explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-                Image::make($request->image)->save(public_path('images/employees/').$imageName);
+            $emp_id = 'EMP-' . $code; // Format as EMP-1, EMP-2, etc.
+            $files = [
+                'image' => $request->file('image'),
+            ];
+            $uploadedFiles = [];
+            foreach ($files as $key => $file) {
+                if (!empty($file)) {
+                    $filePath = 'employee/' . $key;
+                    $uploadedFiles[$key] = customUpload($file, $filePath);
+                    if ($uploadedFiles[$key]['status'] === 0) {
+                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                    }
+                } else {
+                    $uploadedFiles[$key] = ['status' => 0];
+                }
             }
-
             // create a user if allowLogin is true
             if ($request->allowLogin == true) {
                 // get role
-                $role = Role::where('slug', $request->role['slug'])->first();
                 // store user
-                $user = User::create([
-                    'name' => $request->employeeName,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'account_role' => 0,
+                $user = Admin::create([
+                    'name'         => $request->name,
+                    'email'        => $request->email,
+                    'password'     => Hash::make($request->password),
+                    'account_role' => 1,
                 ]);
-                $user->roles()->attach($role->id);
-                $user->permissions()->attach($user->roles[0]->permissions);
+                $user->syncRoles($request->role);
             }
 
             // create employee
             Employee::create([
-                'name' => $request->employeeName,
-                'emp_id' => $code,
-                'department_id' => $request->department['id'],
-                'designation' => $request->designation,
-                'salary' => $request->salary,
-                'commission' => $request->commission,
-                'mobile_number' => $request->mobileNumber,
-                'birth_date' => $request->birthDate,
-                'gender' => $request->gender,
-                'blood_group' => $request->bloodGroup,
-                'religion' => $request->religion,
-                'appointment_date' => $request->appointmentDate,
-                'joining_date' => $request->joiningDate,
-                'address' => $request->address,
-                'status' => $request->status,
-                'image_path' => $imageName,
-                'user_id' => isset($user) ? $user->id : null,
+                'name'             => $request->name,
+                'emp_id'           => $emp_id,
+                'department_id'    => $request->department_id,
+                'designation'      => $request->designation,
+                'salary'           => $request->salary,
+                'commission'       => $request->commission,
+                'mobile_number'    => $request->mobile_number,
+                'birth_date'       => $request->birth_date,
+                'gender'           => $request->gender,
+                'blood_group'      => $request->blood_group,
+                'religion'         => $request->religion,
+                'appointment_date' => $request->appointment_date,
+                'joining_date'     => $request->joining_date,
+                'address'          => $request->address,
+                'status'           => $request->status,
+                'image'            => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+                'user_id'          => isset($user) ? $user->id : null,
             ]);
 
-            return $this->responseWithSuccess('Employee added successfully');
+            redirectWithSuccess('Employee Added Successfully');
+            return redirect()->route('admin.employee.index');
         } catch (Exception $e) {
-            return $this->responseWithError($e->getMessage());
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 
@@ -139,6 +160,23 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $employee = Employee::where('id', $id)->first();
+        $employee_login = Admin::where('id', $employee->user_id)->first();
+        $files = [
+            'image' => $employee->image,
+        ];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $oldFile = $employee->$key ?? null;
+                if ($oldFile) {
+                    Storage::delete("public/" . $oldFile);
+                }
+            }
+        }
+        $employee->delete();
+        if ($employee_login) {
+            $employee_login->delete();
+        }
+
     }
 }
