@@ -284,6 +284,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::get('/expense-categories/pdf', [TableExportController::class, 'expCategoriesPDF'])->name('expCategories.pdf');
     Route::get('/expense-sub-categories/pdf', [TableExportController::class, 'expSubCategoriesPDF'])->name('expSubCategories.pdf');
     Route::get('/expenses/pdf', [TableExportController::class, 'expensesPDF'])->name('expenses.pdf');
+    Route::get('/income/pdf', [TableExportController::class, 'incomePDF'])->name('income.pdf');
 
     Route::get('/purchases/pdf', [TableExportController::class, 'purchasesPDF'])->name('purchases.pdf');
     Route::get('/purchase-returns/pdf', [TableExportController::class, 'purchaseReturnsPDF'])->name('purchaseReturns.pdf');

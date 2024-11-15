@@ -225,25 +225,34 @@
                                                             <table class="table mb-4 light-bg-color">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td class="invoice_bg border-0"
-                                                                            colspan="3">
+                                                                        <!-- Merged column with colspan="3" -->
+                                                                        <td class="invoice_bg border-0">
                                                                             <h6 class="light-text-color">Terms</h6>
                                                                         </td>
                                                                         <td class="invoice_bg border-0">
-                                                                            <small class="light-text-color">Sub
-                                                                                Total
-                                                                            </small>
+                                                                            <small class="light-text-color"></small>
                                                                         </td>
+                                                                        <td class="invoice_bg border-0">
+                                                                            <small class="light-text-color"></small>
+                                                                        </td>
+                                                                        <!-- Single column for 'Sub Total' -->
+                                                                        <td class="invoice_bg border-0">
+                                                                            <small class="light-text-color">Sub
+                                                                                Total</small>
+                                                                        </td>
+                                                                        <!-- Single column for amount, with text alignment -->
                                                                         <td class="invoice_bg border-0 text-end">
                                                                             {{ optional($income)->amount }}
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td class="invoice_bg border-0"
-                                                                            colspan="3">
+                                                                        <!-- First TD with colspan="3" -->
+                                                                        <td class="invoice_bg border-0">
                                                                             <small class="light-text-color"></small>
                                                                         </td>
+
+                                                                        <!-- Second TD with colspan="2" -->
                                                                         <td class="invoice_bg border" colspan="2">
                                                                             <h5 class="light-text-color text-center">
                                                                                 Grand Total <br>
@@ -257,7 +266,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row gx-0 align-items-end">
-                                                    <div class="col-lg-6 offset-lg-3">
+                                                    <div class="col-lg-12">
                                                         <div class="p-4">
                                                             <p class="mb-0 fw-semibold light-text-color">BANK ACCOUNT
                                                                 DETAILS:</p>
