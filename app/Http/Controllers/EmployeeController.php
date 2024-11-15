@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Admin;
-use App\Models\Department;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -61,19 +62,25 @@ class EmployeeController extends Controller
 
         try {
             // generate code
-            $code = 1;
+            $code = 1; // Default value
             $lastEmployee = Employee::latest()->first();
+
             if ($lastEmployee) {
-                $code = 'EMP-'.$lastEmployee->emp_id + 1;
+                // Extract the numeric part of the last employee's emp_id (e.g., 'EMP-123' => 123)
+                preg_match('/(\d+)$/', $lastEmployee->emp_id, $matches);
+
+                // Increment the numeric value
+                $code = (int)$matches[0] + 1;
             }
 
+            $emp_id = 'EMP-' . $code; // Format as EMP-1, EMP-2, etc.
             $files = [
                 'image' => $request->file('image'),
             ];
             $uploadedFiles = [];
             foreach ($files as $key => $file) {
                 if (!empty($file)) {
-                    $filePath = 'income/' . $key;
+                    $filePath = 'employee/' . $key;
                     $uploadedFiles[$key] = customUpload($file, $filePath);
                     if ($uploadedFiles[$key]['status'] === 0) {
                         return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
@@ -85,22 +92,20 @@ class EmployeeController extends Controller
             // create a user if allowLogin is true
             if ($request->allowLogin == true) {
                 // get role
-                $role = Role::where('slug', $request->role['slug'])->first();
                 // store user
                 $user = Admin::create([
-                    'name'         => $request->employeeName,
+                    'name'         => $request->name,
                     'email'        => $request->email,
                     'password'     => Hash::make($request->password),
                     'account_role' => 1,
                 ]);
-                $user->roles()->attach($role->id);
-                $user->permissions()->attach($user->roles[1]->permissions);
+                $user->syncRoles($request->role);
             }
 
             // create employee
             Employee::create([
-                'name'             => $request->employeeName,
-                'emp_id'           => $code,
+                'name'             => $request->name,
+                'emp_id'           => $emp_id,
                 'department_id'    => $request->department_id,
                 'designation'      => $request->designation,
                 'salary'           => $request->salary,
@@ -114,7 +119,7 @@ class EmployeeController extends Controller
                 'joining_date'     => $request->joining_date,
                 'address'          => $request->address,
                 'status'           => $request->status,
-                'image_path'       => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+                'image'            => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
                 'user_id'          => isset($user) ? $user->id : null,
             ]);
 
@@ -155,6 +160,23 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $employee = Employee::where('id', $id)->first();
+        $employee_login = Admin::where('id', $employee->user_id)->first();
+        $files = [
+            'image' => $employee->image,
+        ];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $oldFile = $employee->$key ?? null;
+                if ($oldFile) {
+                    Storage::delete("public/" . $oldFile);
+                }
+            }
+        }
+        $employee->delete();
+        if ($employee_login) {
+            $employee_login->delete();
+        }
+
     }
 }

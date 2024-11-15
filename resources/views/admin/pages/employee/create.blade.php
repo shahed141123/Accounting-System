@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="mb-3">
                                 <x-admin.label for="mobile_number" class="form-label">
                                     {{ __('Contact Number') }} <span class="text-danger">*</span>
@@ -73,7 +73,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="mb-3">
                                 <x-admin.label for="salary" class="form-label">
                                     {{ __('Salary') }} <span class="text-danger">*</span>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="mb-3">
                                 <x-admin.label for="commission" class="form-label">
                                     {{ __('Commission (%)') }}
@@ -98,9 +98,6 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-lg-3 col-md-6">
                             <div class="mb-3">
                                 <x-admin.label for="birth_date"
@@ -111,6 +108,10 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+
 
                         <div class="col-lg-3 col-md-6">
                             <div class="mb-3">
@@ -171,6 +172,17 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="mb-3">
+                                <x-admin.label for="status" class="form-label">Status <span
+                                        class="text-danger">*</span></x-admin.label>
+                                <x-admin.select-option id="status" name="status" :allowClear="true"
+                                    required>
+                                    <option value="active" @selected(old('status') == 'active')>Active</option>
+                                    <option value="inactive" @selected(old('status') == 'inactive')>Inactive</option>
+                                </x-admin.select-option>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -213,7 +225,7 @@
                                 <label class="form-check form-switch d-flex align-items-center">
                                     <div>
                                         <input class="form-check-input me-2" type="checkbox" name="allowLogin"
-                                            id="allowLogin" :checked="old('allowLogin') ? true : false" />
+                                            id="allowLogin" @checked(old('allowLogin') == true)/>
                                     </div>
                                     <div class="my-auto">
                                         <span class="form-check-label fw-semibold text-muted mt-1">
@@ -255,8 +267,8 @@
                                     <x-admin.select-option name="role" id="role" required>
                                         <option value="" disabled>{{ __('Select Role') }}</option>
                                         @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}" @selected(old('role') == $role->id)>
-                                                {{ $role->name }}</option>
+                                            <option value="{{ $role->name }}" @selected(old('role') == $role)>
+                                                {{ $role->name}}</option>
                                         @endforeach
                                     </x-admin.select-option>
 

@@ -34,9 +34,9 @@ class Employee extends Model
      */
     public function totalSalary()
     {
-        if (! empty($this->salaryIncrements)) {
-            return $this->salary + $this->salaryIncrements->where('status', 1)->sum('increment_amount');
-        }
+        // if (! empty($this->salaryIncrements)) {
+        //     return $this->salary + $this->salaryIncrements->where('status', 1)->sum('increment_amount');
+        // }
 
         return $this->salary;
     }
