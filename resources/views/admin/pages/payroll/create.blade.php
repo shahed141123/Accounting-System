@@ -15,14 +15,15 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.payroll.store') }}"
+                            <form id="payroll-form" method="POST" action="{{ route('admin.payroll.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
                                             <label for="employee_id" class="form-label">Employee</label>
-                                            <x-admin.select-option id="employee_id" name="employee_id" :allowClear="true" required>
+                                            <x-admin.select-option id="employee_id" name="employee_id" :allowClear="true"
+                                                required>
                                                 <option value="" disabled>-- Select Employee --</option>
                                                 @foreach ($employees as $employee)
                                                     <option value="{{ $employee->id }}">{{ $employee->name }}</option>
@@ -30,24 +31,16 @@
                                             </x-admin.select-option>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
                                             <label for="salary_month" class="form-label">Salary Month</label>
                                             <x-admin.select-option id="salary_month" name="salary_month"
                                                 :allowClear="true">
                                                 <option value="" disabled> -- Select Month -- </option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                                <option value="April">April</option>
-                                                <option value="May">May</option>
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
+                                                @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
+                                                    <option value="{{ $month }}" @selected(old('salary_month') == $month)>
+                                                        {{ $month }}</option>
+                                                @endforeach
                                             </x-admin.select-option>
                                         </div>
                                     </div>
@@ -78,7 +71,7 @@
                                         <div class="mb-3">
                                             <x-admin.label for="commission"
                                                 class="form-label">Commission</x-admin.label>
-                                            <x-admin.input type="text" :value="old('commission')" id="commission"
+                                            <x-admin.input type="number" :value="old('commission')" id="commission"
                                                 name="commission" required
                                                 placeholder="Enter commission"></x-admin.input>
                                         </div>
@@ -87,7 +80,7 @@
                                         <div class="mb-3">
                                             <x-admin.label for="festivalBonus" class="form-label">Festival
                                                 Bonus</x-admin.label>
-                                            <x-admin.input type="text" :value="old('festivalBonus')" id="festivalBonus"
+                                            <x-admin.input type="number" :value="old('festivalBonus')" id="festivalBonus"
                                                 name="festivalBonus" required
                                                 placeholder="Enter festivalBonus"></x-admin.input>
                                         </div>
@@ -96,7 +89,7 @@
                                         <div class="mb-3">
                                             <x-admin.label for="travelAllowance" class="form-label">Travel
                                                 Allowance(TA)</x-admin.label>
-                                            <x-admin.input type="text" :value="old('travelAllowance')" id="travelAllowance"
+                                            <x-admin.input type="number" :value="old('travelAllowance')" id="travelAllowance"
                                                 name="travelAllowance" required
                                                 placeholder="Enter travelAllowance"></x-admin.input>
                                         </div>
@@ -104,27 +97,26 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <x-admin.label for="others" class="form-label">Others</x-admin.label>
-                                            <x-admin.input type="text" :value="old('others')" id="others"
+                                            <x-admin.input type="number" :value="old('others')" id="others"
                                                 name="others" required placeholder="Enter others"></x-admin.input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="mb-3">
                                             <x-admin.label for="advance" class="form-label">Advance</x-admin.label>
-                                            <x-admin.input type="text" :value="old('advance')" id="advance"
+                                            <x-admin.input type="number" :value="old('advance')" id="advance"
                                                 name="advance" required placeholder="Enter advance"></x-admin.input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4 col-md-6">
                                         <div class="mb-3">
                                             <x-admin.label for="totalSalary" class="form-label">Total
                                                 Salary</x-admin.label>
-                                            <x-admin.input type="text" :value="old('totalSalary')" id="totalSalary"
-                                                name="totalSalary" required
-                                                placeholder="Enter totalSalary"></x-admin.input>
+                                            <input type="number" value="{{ old('total_salary') }}" id="totalSalary" readonly
+                                                name="total_salary" required placeholder="Enter totalSalary"></input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6">
+                                    <div class="col-lg-4 col-md-6">
                                         <div class="mb-3">
                                             <label for="toAccount" class="form-label">From Account</label>
                                             <x-admin.select-option id="toAccount" name="toAccount" :allowClear="true">
@@ -135,7 +127,6 @@
                                                     </option>
                                                 @endforeach
                                             </x-admin.select-option>
-
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
@@ -157,14 +148,14 @@
                                                 name="image" placeholder="Enter image"></x-admin.file-input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <x-admin.label for="chequeNo" class="form-label">Cheque No</x-admin.label>
                                             <x-admin.input type="text" :value="old('chequeNo')" id="chequeNo"
                                                 name="chequeNo" required placeholder="Enter chequeNo"></x-admin.input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <x-admin.label for="salaryDate" class="form-label">Salary
                                                 Date</x-admin.label>
@@ -173,7 +164,7 @@
                                                 placeholder="Enter salaryDate"></x-admin.input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
                                             <x-admin.select-option id="status" name="status" :allowClear="true">
@@ -209,9 +200,25 @@
                 $('#from_account_id').on('change', function(e) {
                     const selectedOption = $(this).find('option:selected');
                     const availableBalance = selectedOption.data('balance');
-                    // alert(availableBalance);
                     $('#availableBalance').val(availableBalance);
                 });
+            });
+        </script>
+        <script>
+            // Calculate Total Salary on input change
+            document.getElementById('payroll-form').addEventListener('input', function() {
+                const mobile_bill = parseFloat(document.getElementById('mobile_bill').value) || 0;
+                const food_bill = parseFloat(document.getElementById('food_bill').value) || 0;
+                const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+                const commission = parseFloat(document.getElementById('commission').value) || 0;
+                const festivalBonus = parseFloat(document.getElementById('festivalBonus').value) || 0;
+                const travelAllowance = parseFloat(document.getElementById('travelAllowance').value) || 0;
+                const others = parseFloat(document.getElementById('others').value) || 0;
+                const advance = parseFloat(document.getElementById('advance').value) || 0;
+
+                const totalSalary = mobile_bill + food_bill + bonus + commission + festivalBonus + travelAllowance +
+                    others - advance;
+                document.getElementById('totalSalary').value = totalSalary.toFixed(2);
             });
         </script>
     @endpush

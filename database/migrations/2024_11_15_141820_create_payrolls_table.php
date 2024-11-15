@@ -31,10 +31,11 @@ return new class extends Migration
             $table->double('festival_bonus', 12, 2)->nullable();
             $table->double('travel_allowance', 12, 2)->nullable();
             $table->double('others', 12, 2)->nullable();
+            $table->double('total_salary', 12, 2)->nullable();
             $table->date('salary_date')->nullable();
             $table->string('note')->nullable();
             $table->boolean('status')->nullable()->default(1);
-            $table->string('image_path')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

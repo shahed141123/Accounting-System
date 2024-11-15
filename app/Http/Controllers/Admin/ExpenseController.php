@@ -161,7 +161,7 @@ class ExpenseController extends Controller
     public function edit(string $id)
     {
         $data = [
-            'expense'    => Expense::with('debitTransaction','creditTransaction')->findOrFail($id),
+            'expense'    => Expense::findOrFail($id),
             'categories' => ExpenseSubCategory::latest()->get(['id', 'name']),
             'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
         ];

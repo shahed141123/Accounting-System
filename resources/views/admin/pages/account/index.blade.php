@@ -52,7 +52,7 @@
                                     <tbody>
                                         @foreach ($accounts as $account)
                                             <tr>
-                                                <td class="text-center">1</td>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">
                                                     <div>
                                                         <img width="50px" src="{{ getImageUrl($account->image) }}"
