@@ -46,6 +46,17 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="mb-3">
+                                <label for="client_id" class="form-label">Client Name</label>
+                                <x-admin.select-option id="client_id" name="client_id" :allowClear="true">
+                                    <option value="">-- Select Client --</option>
+                                    @foreach ($clients as $client)
+                                        <option value="{{ $client->id }}" @selected(old('client_id', $expense->client_id) == $client->id)>{{ $client->name }}</option>
+                                    @endforeach
+                                </x-admin.select-option>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
                                 <label for="account_id" class="form-label">Account</label>
                                 <x-admin.select-option id="account_id" name="account_id" :allowClear="true">
                                     <option value="">-- Select Account --</option>

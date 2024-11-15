@@ -189,7 +189,6 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
             'user-management'       => UserManagementController::class, //done
             'admin-managemnet'      => UserManagementController::class, //done
             'categories'            => CategoryController::class, //done
-            'icons'                 => IconController::class, //done
             'newsletters'           => NewsletterController::class,
             'brands'                => BrandController::class, //done
             'contacts'              => ContactController::class,
@@ -211,6 +210,9 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::get('balance-adjustment/filter', [BalanceTransferController::class, 'filter'])->name('balance-adjustment.filter');
     Route::get('balance-transfer/filter', [BalanceTransferController::class, 'filter'])->name('balance-transfer.filter');
     Route::get('transactions/filter', [TransactionHistoryController::class, 'filter'])->name('transactions.filter');
+    Route::get('incomes/filter', [IncomeController::class, 'incomeFilter'])->name('income.filter');
+    Route::get('expenses/filter', [ExpenseController::class, 'expenseFilter'])->name('expense.filter');
+    Route::get('incomes/report', [IncomeController::class, 'incomeReport'])->name('income.report');
 
 
 
@@ -228,7 +230,6 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
 
     Route::post('email-settings/toggle-status/{id}', [EmailSettingController::class, 'toggleStatus'])->name('email-settings.toggle-status');
 
-    Route::post('icons/toggle-status/{id}', [IconController::class, 'toggleStatus'])->name('icons.toggle-status');
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
     Route::post('categories/toggle-status/{id}', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
     Route::post('banner/toggle-status/{id}', [PageBannerController::class, 'toggleStatus'])->name('banner.toggle-status');

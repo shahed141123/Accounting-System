@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 
+use App\Models\User;
 use App\Models\Account;
 use App\Models\Expense;
 use Illuminate\Http\Request;
@@ -36,6 +37,7 @@ class ExpenseController extends Controller
     {
         $data = [
             'categories' => ExpenseSubCategory::latest()->get(['id', 'name']),
+            'clients'    => User::latest()->get(['id', 'name']),
             'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
         ];
         return view('admin.pages.expense.create', $data);
@@ -127,6 +129,7 @@ class ExpenseController extends Controller
                 'name'           => $request->reason,
                 'reason'         => $request->reason,
                 'sub_cat_id'     => $request->sub_cat_id,
+                'client_id'      => $request->client_id,
                 'amount'         => $request->amount,
                 'cat_id'         => $cat_id,
                 'transaction_id' => $transaction->id,
@@ -229,6 +232,7 @@ class ExpenseController extends Controller
             $expense->update([
                 'name'           => $request->reason,
                 'reason'         => $request->reason,
+                'client_id'      => $request->client_id,
                 'sub_cat_id'     => $request->sub_cat_id,
                 'cat_id'         => $cat_id,
                 'amount'         => $request->amount,
@@ -295,5 +299,27 @@ class ExpenseController extends Controller
         });
 
         // return ExpenseResource::collection($query->latest()->paginate($request->perPage));
+    }
+    public function expenseFilter(Request $request)
+    {
+        // Get the start and end date from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // If no date filter is provided, fetch all transactions
+        if (!$startDate || !$endDate) {
+            $expenses = Expense::with('client', 'expTransaction')
+                ->latest()
+                ->get();
+        } else {
+            // Query to filter the expenses based on the date range
+            $expenses = Expense::with('client', 'expTransaction')
+                ->whereBetween('date', [$startDate, $endDate])
+                ->latest()
+                ->get();
+        }
+
+        // Return a view fragment (HTML table rows)
+        return response()->view('admin.pages.expense.filter_table', compact('expenses'));
     }
 }

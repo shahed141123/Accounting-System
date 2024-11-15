@@ -162,24 +162,24 @@
                                 'admin.payroll.edit',
                             ],
                             'subMenu'        => [
-                                [
-                                    'title'  => 'Client Invoice',
-                                    'routes' => [
-                                        'admin.client-invoice.index',
-                                        'admin.client-invoice.create',
-                                        'admin.client-invoice.edit',
-                                    ],
-                                    'route'  => 'admin.client-invoice.index',
-                                ],
-                                [
-                                    'title'  => 'Client Non Invoice',
-                                    'routes' => [
-                                        'admin.client-non-invoice.index',
-                                        'admin.client-non-invoice.create',
-                                        'admin.client-non-invoice.edit',
-                                    ],
-                                    'route'  => 'admin.client-non-invoice.index',
-                                ],
+                                // [
+                                //     'title'  => 'Client Invoice',
+                                //     'routes' => [
+                                //         'admin.client-invoice.index',
+                                //         'admin.client-invoice.create',
+                                //         'admin.client-invoice.edit',
+                                //     ],
+                                //     'route'  => 'admin.client-invoice.index',
+                                // ],
+                                // [
+                                //     'title'  => 'Client Non Invoice',
+                                //     'routes' => [
+                                //         'admin.client-non-invoice.index',
+                                //         'admin.client-non-invoice.create',
+                                //         'admin.client-non-invoice.edit',
+                                //     ],
+                                //     'route'  => 'admin.client-non-invoice.index',
+                                // ],
                                 [
                                     'title'  => 'Payroll',
                                     'routes' => ['admin.payroll.index', 'admin.payroll.create', 'admin.payroll.edit'],
@@ -323,6 +323,13 @@
                                         'admin.summary-report.edit',
                                     ],
                                     'route'     => 'admin.summary-report.index',
+                                ],
+                                [
+                                    'title'  => 'Income Report',
+                                    'routes' => [
+                                        'admin.income-report.index',
+                                    ],
+                                    'route'  => 'admin.income-report.index',
                                 ],
                                 [
                                     'title'  => 'Expense Report',

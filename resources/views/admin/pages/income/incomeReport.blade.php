@@ -44,7 +44,7 @@
                                             <th width="10%" class="text-center">Account</th>
                                             <th width="10%" class="text-center">Date</th>
                                             <th width="5%" class="text-center">Status</th>
-                                            <th width="10%" class="text-end">Action</th>
+                                            <th width="10%" class="text-end">Invoice</th>
                                         </tr>
                                     </thead>
                                     <tbody id="data-body">
@@ -74,19 +74,11 @@
                                                         class="badge {{ $income->status == 'active' ? 'bg-success' : 'bg-danger' }}">
                                                         {{ $income->status == 'active' ? 'Active' : 'InActive' }}</span>
                                                 </td>
-                                                <td class="text-end">
-                                                    <a href="{{ route('admin.income.edit', optional($income)->id) }}"
-                                                        class="btn btn-sm btn-primary">
-                                                        <i class="fa-solid fa-pen"></i>
-                                                    </a>
+                                                <td class="text-center">
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#showIncome_{{ optional($income)->id }}"
                                                         class="btn btn-sm btn-warning text-white">
                                                         <i class="fa-solid fa-expand"></i>
-                                                    </a>
-                                                    <a href="{{ route('admin.income.destroy', optional($income)->id) }}"
-                                                        class="btn btn-sm btn-danger delete">
-                                                        <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </td>
                                             </tr>

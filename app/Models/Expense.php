@@ -25,7 +25,10 @@ class Expense extends Model
     {
         return $this->belongsTo(ExpenseCategory::class, 'cat_id');
     }
-
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'client_id');
+    }
     /**
      * Get the tansaction for this expense.
      **/

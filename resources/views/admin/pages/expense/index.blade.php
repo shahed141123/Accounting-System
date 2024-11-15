@@ -48,7 +48,7 @@
                                             <th width="10%" class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="data-body">
                                         @foreach ($expenses as $expense)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
@@ -67,21 +67,25 @@
                                                 <td class="text-center">
                                                     {{ optional($expense->expTransaction)->cashbookAccount->bank_name }}[{{ optional($expense->expTransaction)->cashbookAccount->account_number }}]
                                                 </td>
-                                                <td class="text-center">{{ optional($expense->date) ? \Carbon\Carbon::parse($expense->date)->format('jS M, Y') : '' }}</td>
+                                                <td class="text-center">
+                                                    {{ optional($expense->date) ? \Carbon\Carbon::parse($expense->date)->format('jS M, Y') : '' }}
+                                                </td>
                                                 <td>
                                                     <span
                                                         class="badge {{ $expense->status == 'active' ? 'bg-success' : 'bg-danger' }}">
                                                         {{ $expense->status == 'active' ? 'Active' : 'InActive' }}</span>
                                                 </td>
                                                 <td class="text-end">
-                                                    <a href="{{ route('admin.expense.edit',optional($expense)->id) }}" class="btn btn-sm btn-primary">
+                                                    <a href="{{ route('admin.expense.edit', optional($expense)->id) }}"
+                                                        class="btn btn-sm btn-primary">
                                                         <i class="fa-solid fa-pen"></i>
                                                     </a>
                                                     {{-- <a href="javascript:void(0)"
                                                         class="btn btn-sm btn-warning text-white">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a> --}}
-                                                    <a href="{{ route('admin.expense.destroy',optional($expense)->id) }}" class="btn btn-sm btn-danger delete">
+                                                    <a href="{{ route('admin.expense.destroy', optional($expense)->id) }}"
+                                                        class="btn btn-sm btn-danger delete">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -96,5 +100,54 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                // Initialize datepicker or date range picker (e.g., flatpickr, jQuery UI Datepicker)
+                $('#datefilter').daterangepicker({
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    },
+                    autoUpdateInput: false, // We will manually update the input field
+                    opens: 'left', // Optional: Adjust the dropdown position
+                });
 
+                // When the user selects a date range
+                $('#datefilter').on('apply.daterangepicker', function(ev, picker) {
+                    // Set the selected date range in the input field
+                    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format(
+                        'YYYY-MM-DD'));
+                    let startDate = picker.startDate.format('YYYY-MM-DD');
+                    let endDate = picker.endDate.format('YYYY-MM-DD');
+                    fetchFilteredData(startDate, endDate);
+                });
+
+                // "Clear Filter" button click handler
+                $('#clear-filter').click(function() {
+                    // Reset the date filter input
+                    $('#datefilter').val('');
+                    // Fetch all data (no filter applied)
+                    fetchFilteredData('', '');
+                });
+
+                function fetchFilteredData(startDate, endDate) {
+                    $.ajax({
+                        url: '{{ route('admin.income.filter') }}', // Add your route here
+                        method: 'GET',
+                        data: {
+                            start_date: startDate,
+                            end_date: endDate,
+                        },
+                        success: function(response) {
+                            // Update the table body with the filtered data
+                            $('#data-body').html(response);
+                        },
+                        error: function() {
+                            alert('Error fetching data');
+                        }
+                    });
+                }
+            });
+        </script>
+    @endpush
 </x-admin-app-layout>

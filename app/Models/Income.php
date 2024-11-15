@@ -21,6 +21,10 @@ class Income extends Model
     {
         return $this->belongsTo(IncomeSubCategory::class, 'sub_cat_id');
     }
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'client_id');
+    }
     public function incomeCategory()
     {
         return $this->belongsTo(IncomeCategory::class, 'cat_id');
@@ -39,11 +43,11 @@ class Income extends Model
      **/
     public function addUser()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(Admin::class, 'created_by');
     }
 
     public function updateUser()
     {
-        return $this->belongsTo(User::class, 'updated_by');
+        return $this->belongsTo(Admin::class, 'updated_by');
     }
 }

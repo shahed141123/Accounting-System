@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\IncomeSubCategory;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,13 @@ class IncomeController extends Controller
         ];
         return view('admin.pages.income.index', $data);
     }
+    public function incomeReport()
+    {
+        $data = [
+            'incomes' => Income::with('incomeSubCategory', 'incomeCategory', 'incomeTransaction.cashbookAccount', 'addUser', 'updateUser')->latest()->get(),
+        ];
+        return view('admin.pages.income.incomeReport', $data);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -31,6 +39,7 @@ class IncomeController extends Controller
     {
         $data = [
             'categories' => IncomeSubCategory::latest()->get(['id', 'name']),
+            'clients'    => User::latest()->get(['id', 'name']),
             'accounts'   => Account::latest()->get(['id', 'bank_name', 'account_number']),
         ];
         return view('admin.pages.income.create', $data);
@@ -118,6 +127,7 @@ class IncomeController extends Controller
             Income::create([
                 'name'           => $request->reason,
                 'reason'         => $request->reason,
+                'client_id'      => $request->client_id,
                 'sub_cat_id'     => $request->sub_cat_id,
                 'amount'         => $request->amount,
                 'cat_id'         => $cat_id,
@@ -287,5 +297,28 @@ class IncomeController extends Controller
         });
 
         // return IncomeResource::collection($query->latest()->paginate($request->perPage));
+    }
+
+    public function incomeFilter(Request $request)
+    {
+        // Get the start and end date from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // If no date filter is provided, fetch all transactions
+        if (!$startDate || !$endDate) {
+            $incomes = Income::with('client', 'incomeTransaction')
+                ->latest()
+                ->get();
+        } else {
+            // Query to filter the incomes based on the date range
+            $incomes = Income::with('client', 'incomeTransaction')
+                ->whereBetween('date', [$startDate, $endDate])
+                ->latest()
+                ->get();
+        }
+
+        // Return a view fragment (HTML table rows)
+        return response()->view('admin.pages.income.filter_table', compact('incomes'));
     }
 }
