@@ -1,12 +1,7 @@
 @foreach ($incomes as $income)
     <tr>
         <td class="text-center">{{ $loop->iteration }}</td>
-        {{-- <td class="text-center">
-                                                    <div>
-                                                        <img width="50px" src="{{ asset('images/no_image.jpg') }}"
-                                                            alt="">
-                                                    </div>
-                                                </td> --}}
+        
         <td class="text-center">{{ optional($income)->reason }}</td>
         <td class="text-center">{{ optional($income->incomeCategory)->name }}
             [{{ optional($income->incomeCategory)->code }}]</td>
