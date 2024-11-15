@@ -143,38 +143,40 @@
                                                 </div>
                                                 <div class="row my-5">
                                                     <div class="col-lg-4">
+                                                        <p class="mb-0 fw-semibold light-text-color">Billed To</p>
+                                                        <div class="pt-2 text-end">
+                                                            <p class="mb-0">
+                                                                {{ optional($setting)->website_name }}</p>
+                                                            <p class="mb-0">
+                                                                {{ optional($setting)->address_line_one }}</p>
+                                                            <p class="mb-0">
+                                                                {{ optional($setting)->address_line_two }}</p>
+                                                            <p class="mb-0">
+                                                                {{ optional($setting)->primary_phone }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+
+                                                    </div>
+                                                    <div class="col-lg-4">
                                                         @if (!empty(optional($income)->client_id))
-                                                            <p class="mb-0 fw-semibold light-text-color">Billed To</p>
-                                                            <div class="pt-2 text-end">
+                                                            <p class="mb-0 fw-semibold light-text-color text-end">
+                                                                Billed From
+                                                            </p>
+                                                            <div class="pt-2">
                                                                 <p class="mb-0">
-                                                                    {{ optional($setting)->website_name }}</p>
+                                                                    {{ optional($income->client)->name }}
+                                                                </p>
                                                                 <p class="mb-0">
-                                                                    {{ optional($setting)->address_line_one }}</p>
+                                                                    {{ optional($income->client)->company_name }}</p>
                                                                 <p class="mb-0">
-                                                                    {{ optional($setting)->address_line_two }}</p>
+                                                                    {{ optional($income->client)->address }}
+                                                                </p>
                                                                 <p class="mb-0">
-                                                                    {{ optional($setting)->primary_phone }}</p>
+                                                                    {{ optional($income->client)->phone }}
+                                                                </p>
                                                             </div>
                                                         @endif
-                                                    </div>
-                                                    <div class="col-lg-4">
-
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <p class="mb-0 fw-semibold light-text-color text-end">
-                                                            Billed From
-                                                        </p>
-                                                        <div class="pt-2">
-                                                            <p class="mb-0">{{ optional($income->client)->name }}
-                                                            </p>
-                                                            <p class="mb-0">
-                                                                {{ optional($income->client)->company_name }}</p>
-                                                            <p class="mb-0">{{ optional($income->client)->address }}
-                                                            </p>
-                                                            <p class="mb-0">{{ optional($income->client)->phone }}
-                                                            </p>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                                 {{-- Logo Area End --}}
