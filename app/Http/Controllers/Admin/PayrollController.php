@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Payroll;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Employee;
 
 class PayrollController extends Controller
 {
@@ -12,7 +15,10 @@ class PayrollController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.payroll.index");
+        $data = [
+            'payrolls' => Payroll::with('department', 'user')->latest()->get(),
+        ];
+        return view("admin.pages.payroll.index",$data);
     }
 
     /**
@@ -20,7 +26,11 @@ class PayrollController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.payroll.create");
+        $data = [
+            'employees'   => Employee::latest()->get(['id','name']),
+            'accounts'    => Account::latest()->get(['id', 'bank_name', 'account_number']),
+        ];
+        return view("admin.pages.payroll.create",$data);
     }
 
     /**

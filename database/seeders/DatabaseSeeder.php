@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class, // 3rd
             ActivityLogSeeder::class, // 4th
             EmailSettingSeeder::class, // 5th
+            SettingSeeder::class, // 5th
         ]);
     }
 }

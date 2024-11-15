@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by');
 
             $table->foreign('empolyee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('no action');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('created_by')->references('id')->on('admins')->onDelete('no action')->onUpdate('no action');
         });
     }
 

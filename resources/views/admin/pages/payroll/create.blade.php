@@ -21,21 +21,21 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <label for="employee" class="form-label">Employee</label>
-                                            <x-admin.select-option id="employee" name="employee" :allowClear="true">
-                                                <option value="">-- Select Category --</option>
-                                                <option value="Walking Customer">Walking Customer</option>
-                                                <option value="Ruth Miles">Ruth Miles</option>
-                                                <option value=" Reed Montoya"> Reed Montoya</option>
+                                            <label for="employee_id" class="form-label">Employee</label>
+                                            <x-admin.select-option id="employee_id" name="employee_id" :allowClear="true" required>
+                                                <option value="" disabled>-- Select Employee --</option>
+                                                @foreach ($employees as $employee)
+                                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                                @endforeach
                                             </x-admin.select-option>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <label for="salaryMonth" class="form-label">Salary Month</label>
-                                            <x-admin.select-option id="salaryMonth" name="salaryMonth"
+                                            <label for="salary_month" class="form-label">Salary Month</label>
+                                            <x-admin.select-option id="salary_month" name="salary_month"
                                                 :allowClear="true">
-                                                <option value="">-- Select Category --</option>
+                                                <option value="" disabled> -- Select Month -- </option>
                                                 <option value="January">January</option>
                                                 <option value="February">February</option>
                                                 <option value="March">March</option>
@@ -53,24 +53,24 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <x-admin.label for="mobileBill" class="form-label"> Mobile
+                                            <x-admin.label for="mobile_bill" class="form-label"> Mobile
                                                 Bill</x-admin.label>
-                                            <x-admin.input type="text" :value="old('mobileBill')" id="mobileBill"
-                                                name="mobileBill" required
+                                            <x-admin.input type="number" :value="old('mobile_bill')" id="mobile_bill"
+                                                name="mobile_bill" required
                                                 placeholder="Enter Mobile Bill"></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <x-admin.label for="foodBill" class="form-label">Food Bill</x-admin.label>
-                                            <x-admin.input type="text" :value="old('foodBill')" id="foodBill"
-                                                name="foodBill" required placeholder="Enter Food Bill"></x-admin.input>
+                                            <x-admin.label for="food_bill" class="form-label">Food Bill</x-admin.label>
+                                            <x-admin.input type="number" :value="old('food_bill')" id="food_bill"
+                                                name="food_bill" required placeholder="Enter Food Bill"></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <x-admin.label for="bonus" class="form-label">Bonus</x-admin.label>
-                                            <x-admin.input type="text" :value="old('bonus')" id="bonus"
+                                            <x-admin.input type="number" :value="old('bonus')" id="bonus"
                                                 name="bonus" required placeholder="Enter Bonus"></x-admin.input>
                                         </div>
                                     </div>
@@ -124,34 +124,37 @@
                                                 placeholder="Enter totalSalary"></x-admin.input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="mb-3">
-                                            <label for="subCategory" class="form-label">Account</label>
-                                            <x-admin.select-option id="subCategory" name="subCategory"
-                                                :allowClear="true">
-                                                <option value="">-- Select Category --</option>
-                                                <option value="Cash[CASH-0001]">Cash[CASH-0001]</option>
-                                                <option value="Dutch Bangla Bank[DBBL-0003]">Dutch Bangla
-                                                    Bank[DBBL-0003]</option>
-                                                <option value="Islami Bank Bangladesh Ltd[IBBL-0002]">Islami Bank
-                                                    Bangladesh Ltd[IBBL-0002]</option>
+                                            <label for="toAccount" class="form-label">From Account</label>
+                                            <x-admin.select-option id="toAccount" name="toAccount" :allowClear="true">
+                                                @foreach ($accounts as $account)
+                                                    <option value="{{ $account->id }}" @selected(old('toAccount') == $account->id)
+                                                        data-balance="{{ $account->availableBalance() }}">
+                                                        {{ $account->bank_name }}[{{ $account->account_number }}]
+                                                    </option>
+                                                @endforeach
                                             </x-admin.select-option>
+
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="mb-3">
-                                            <x-admin.label for="availableBalance" class="form-label">Available
+                                            <x-admin.label for="availableBalance" class="form-label"> Available
                                                 Balance</x-admin.label>
-                                            <x-admin.input type="text" :value="old('availableBalance')" id="availableBalance"
-                                                name="availableBalance" required
-                                                placeholder="Enter availableBalance"></x-admin.input>
+                                            <input class="form-control form-control-solid " type="text"
+                                                value="{{ old('availableBalance') }}" id="availableBalance"
+                                                name="availableBalance" readonly></input>
+                                            @error('availableBalance')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <x-admin.label for="image" class="form-label">Image</x-admin.label>
-                                            <x-admin.input type="file" :value="old('image')" id="image"
-                                                name="image" required placeholder="Enter image"></x-admin.input>
+                                            <x-admin.file-input type="file" :value="old('image')" id="image"
+                                                name="image" placeholder="Enter image"></x-admin.file-input>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -196,4 +199,20 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                // Initialize Select2
+                // $('#account_id').select2();
+
+                // Listen for the Select2 select event
+                $('#from_account_id').on('change', function(e) {
+                    const selectedOption = $(this).find('option:selected');
+                    const availableBalance = selectedOption.data('balance');
+                    // alert(availableBalance);
+                    $('#availableBalance').val(availableBalance);
+                });
+            });
+        </script>
+    @endpush
 </x-admin-app-layout>
