@@ -118,10 +118,10 @@
                                                         <h3 class="fw-bold mb-4 light-text-color">Invoice</h3>
                                                         <div class="d-flex align-items-center">
                                                             {{-- <div class="me-5">
-                                                            <p class="mb-0 fw-semibold light-text-color">Invoice Number
-                                                            </p>
-                                                            <p class="mb-0">0001</p>
-                                                        </div> --}}
+                                                                    <p class="mb-0 fw-semibold light-text-color">Invoice Number
+                                                                    </p>
+                                                                    <p class="mb-0">0001</p>
+                                                                </div> --}}
                                                             <div class="">
                                                                 <p class="mb-0 fw-semibold light-text-color">Date Of
                                                                     Issue
@@ -168,7 +168,7 @@
                                                             <p class="mb-0">{{ optional($income->client)->name }}
                                                             </p>
                                                             <p class="mb-0">
-                                                                {{ optional($income->client)->company_name }}/p>
+                                                                {{ optional($income->client)->company_name }}</p>
                                                             <p class="mb-0">{{ optional($income->client)->address }}
                                                             </p>
                                                             <p class="mb-0">{{ optional($income->client)->phone }}
@@ -295,6 +295,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     @endforeach
     <!-- Optional: Place to the bottom of scripts -->
     {{-- <script>
