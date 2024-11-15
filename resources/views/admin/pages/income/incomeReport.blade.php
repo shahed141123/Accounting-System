@@ -165,13 +165,13 @@
                                                             Billed From
                                                         </p>
                                                         <div class="pt-2">
-                                                            <p class="mb-0">{{ optional($income)->client->name }}
+                                                            <p class="mb-0">{{ optional($income->client)->name }}
                                                             </p>
                                                             <p class="mb-0">
-                                                                {{ optional($income)->client->company_name }}/p>
-                                                            <p class="mb-0">{{ optional($income)->client->address }}
+                                                                {{ optional($income->client)->company_name }}/p>
+                                                            <p class="mb-0">{{ optional($income->client)->address }}
                                                             </p>
-                                                            <p class="mb-0">{{ optional($income)->client->phone }}
+                                                            <p class="mb-0">{{ optional($income->client)->phone }}
                                                             </p>
                                                         </div>
 
@@ -210,7 +210,7 @@
                                                                     <td class="text-center">
                                                                         {{ optional($income)->amount }}</td>
                                                                     <td class="text-center">
-                                                                        {{ optional($income->incomeTransaction)->cashbookAccount->bank_name }}[{{ optional($income->incomeTransaction)->cashbookAccount->account_number }}]
+                                                                        {{ optional($income->incomeTransaction->cashbookAccount)->bank_name }}[{{ optional($income->incomeTransaction->cashbookAccount)->account_number }}]
                                                                     </td>
                                                                     <td class="text-center">
                                                                         {{ optional($income) ? \Carbon\Carbon::parse($income->date)->format('jS M, Y') : '' }}
@@ -259,15 +259,15 @@
                                                             <div class="pt-2">
                                                                 <p class="mb-1 fw-semibold">Bank Name:
                                                                     <span
-                                                                        class="ps-2 fw-normal">{{ optional($income->incomeTransaction)->cashbookAccount->bank_name }}</span>
+                                                                        class="ps-2 fw-normal">{{ optional($income->incomeTransaction->cashbookAccount)->bank_name }}</span>
                                                                 </p>
                                                                 <p class="mb-1 fw-semibold">Branch Name:
                                                                     <span
-                                                                        class="ps-2 fw-normal">{{ optional($income->incomeTransaction)->cashbookAccount->branch_name }}</span>
+                                                                        class="ps-2 fw-normal">{{ optional($income->incomeTransaction->cashbookAccount)->branch_name }}</span>
                                                                 </p>
                                                                 <p class="mb-1 fw-semibold">Account Number:
                                                                     <span
-                                                                        class="ps-2 fw-normal">{{ optional($income->incomeTransaction)->cashbookAccount->account_number }}</span>
+                                                                        class="ps-2 fw-normal">{{ optional($income->incomeTransaction->cashbookAccount)->account_number }}</span>
                                                                 </p>
                                                             </div>
                                                         </div>
