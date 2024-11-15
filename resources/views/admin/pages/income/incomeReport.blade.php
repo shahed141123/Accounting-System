@@ -118,10 +118,10 @@
                                                         <h3 class="fw-bold mb-4 light-text-color">Invoice</h3>
                                                         <div class="d-flex align-items-center">
                                                             {{-- <div class="me-5">
-                                                                    <p class="mb-0 fw-semibold light-text-color">Invoice Number
-                                                                    </p>
-                                                                    <p class="mb-0">0001</p>
-                                                                </div> --}}
+                                                                <p class="mb-0 fw-semibold light-text-color">Invoice Number
+                                                                </p>
+                                                                <p class="mb-0">0001</p>
+                                                            </div> --}}
                                                             <div class="">
                                                                 <p class="mb-0 fw-semibold light-text-color">Date Of
                                                                     Issue
@@ -143,17 +143,19 @@
                                                 </div>
                                                 <div class="row my-5">
                                                     <div class="col-lg-4">
-                                                        <p class="mb-0 fw-semibold light-text-color">Billed To</p>
-                                                        <div class="pt-2 text-end">
-                                                            <p class="mb-0">
-                                                                {{ optional($setting)->website_name }}</p>
-                                                            <p class="mb-0">
-                                                                {{ optional($setting)->address_line_one }}</p>
-                                                            <p class="mb-0">
-                                                                {{ optional($setting)->address_line_two }}</p>
-                                                            <p class="mb-0">
-                                                                {{ optional($setting)->primary_phone }}</p>
-                                                        </div>
+                                                        @if (!empty(optional($setting)->website_name))
+                                                            <p class="mb-0 fw-semibold light-text-color">Billed To</p>
+                                                            <div class="pt-2 text-end">
+                                                                <p class="mb-0">
+                                                                    {{ optional($setting)->website_name }}</p>
+                                                                <p class="mb-0">
+                                                                    {{ optional($setting)->address_line_one }}</p>
+                                                                <p class="mb-0">
+                                                                    {{ optional($setting)->address_line_two }}</p>
+                                                                <p class="mb-0">
+                                                                    {{ optional($setting)->primary_phone }}</p>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     <div class="col-lg-4">
 
@@ -177,6 +179,7 @@
                                                                 </p>
                                                             </div>
                                                         @endif
+
                                                     </div>
                                                 </div>
                                                 {{-- Logo Area End --}}

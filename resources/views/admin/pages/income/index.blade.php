@@ -151,7 +151,7 @@
                                                 </div>
                                                 <div class="row my-5">
                                                     <div class="col-lg-4">
-                                                        @if (!empty(optional($income)->client_id))
+                                                        @if (!empty(optional($setting)->website_name))
                                                             <p class="mb-0 fw-semibold light-text-color">Billed To</p>
                                                             <div class="pt-2 text-end">
                                                                 <p class="mb-0">
@@ -169,19 +169,21 @@
 
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <p class="mb-0 fw-semibold light-text-color text-end">
-                                                            Billed From
-                                                        </p>
-                                                        <div class="pt-2">
-                                                            <p class="mb-0">{{ optional($income->client)->name }}
+                                                        @if (!empty(optional($income)->client_id))
+                                                            <p class="mb-0 fw-semibold light-text-color text-end">
+                                                                Billed From
                                                             </p>
-                                                            <p class="mb-0">
-                                                                {{ optional($income->client)->company_name }}</p>
-                                                            <p class="mb-0">{{ optional($income->client)->address }}
-                                                            </p>
-                                                            <p class="mb-0">{{ optional($income->client)->phone }}
-                                                            </p>
-                                                        </div>
+                                                            <div class="pt-2">
+                                                                <p class="mb-0">{{ optional($income->client)->name }}
+                                                                </p>
+                                                                <p class="mb-0">
+                                                                    {{ optional($income->client)->company_name }}</p>
+                                                                <p class="mb-0">{{ optional($income->client)->address }}
+                                                                </p>
+                                                                <p class="mb-0">{{ optional($income->client)->phone }}
+                                                                </p>
+                                                            </div>
+                                                        @endif
 
                                                     </div>
                                                 </div>
