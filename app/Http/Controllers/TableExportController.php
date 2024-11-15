@@ -152,6 +152,17 @@ class TableExportController extends Controller
         return $pdf->download('expenses-list.pdf');
     }
 
+    public function incomePDF()
+    {
+        // retreive all records from db
+        $data = Expense::with('expSubCategory.incomeCategory', 'expTransaction.cashbookAccount')->latest()->get()->toArray();
+        // share data to view
+        view()->share('income', $data);
+        $pdf = PDF::loadView('pdf.income', $data)->setPaper('a4', 'landscape');
+        // download PDF file with download method
+        return $pdf->download('income-list.pdf');
+    }
+
     // return purchases pdf
     public function purchasesPDF()
     {

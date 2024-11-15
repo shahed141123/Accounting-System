@@ -20,7 +20,7 @@
                                         <i class="fa-solid fa-file-pdf"></i>
                                     </a>
                                     <button type="button" class="btn btn-outline-light toltip"
-                                        data-tooltip="Print Table">
+                                        data-tooltip="Print Table" onclick='printDiv();'>
                                         <i class="fa-solid fa-print"></i>
                                         <span class="tooltiptext">Print</span>
                                     </button>
@@ -32,7 +32,21 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="d-flex justify-content-between align-items-center mb-3 bg-light p-3 rounded-3">
+                                <h6 class="me-5">Filter Transactions From-To</h6>
+                                <div class="d-flex justify-content-end align-items-center">
+                                    <div>
+                                        <input class="form-control" name='range' id='datefilter'
+                                            placeholder="12/05/24 to 12/08/24" />
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-primary text-white py-2 border-0" id="clear-filter">
+                                            <i class="fa-solid fa-broom"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" id='print-table'>
                                 <table class="table table-striped datatable" style="width:100%">
                                     <thead>
                                         <tr>
@@ -113,12 +127,12 @@
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="print-table-invoice">
                         <div class="row p-3">
                             <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-12 px-0">
-                                        <div class="card">
+                                        <div class="card card-download">
                                             <div class="card-header">
                                                 {{-- Logo Area --}}
                                                 <div class="d-flex justify-content-between align-items-center my-4">
@@ -198,72 +212,71 @@
                                                                 style="border-bottom: 2px solid #5D7079 !important;">
                                                                 <thead class="border-0">
                                                                     <tr>
-                                                                        <th width="30%" class="text-center">Expense
+                                                                        <th width="25%" class="text-start">Expense
                                                                             Reason</th>
-                                                                        <th width="20%" class="text-center">
+                                                                        <th width="25%" class="text-start">
                                                                             Category</th>
-                                                                        <th width="15%" class="text-center">Amount
+                                                                        <th width="20%" class="text-start">Account
                                                                         </th>
-                                                                        <th width="23%" class="text-center">Account
+                                                                        <th width="20%" class="text-start">Date
                                                                         </th>
-                                                                        <th width="12%" class="text-center">Date
+                                                                        <th width="10%" class="text-start">Amount
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
 
-                                                                    <td class="text-center">
+                                                                    <td class="text-start">
                                                                         {{ optional($expense)->reason }}</td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-start">
                                                                         {{ optional($expense->expCategory)->name }}
                                                                         [{{ optional($expense->expCategory)->code }}]
                                                                     </td>
-                                                                    <td class="text-center">
-                                                                        {{ optional($expense)->amount }}</td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-start">
                                                                         {{ optional($expense->expTransaction->cashbookAccount)->bank_name }}[{{ optional($expense->expTransaction->cashbookAccount)->account_number }}]
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-start">
                                                                         {{ optional($expense) ? \Carbon\Carbon::parse($expense->date)->format('jS M, Y') : '' }}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <span
+                                                                            class="ps-4">{{ optional($expense)->amount }}</span>
                                                                     </td>
                                                                 </tbody>
                                                             </table>
-                                                            <table class="table mb-4 light-bg-color">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="invoice_bg border-0"
-                                                                            colspan="3">
-                                                                            <h6 class="light-text-color">Terms</h6>
-                                                                        </td>
-                                                                        <td class="invoice_bg border-0">
-                                                                            <small class="light-text-color">Sub
-                                                                                Total
-                                                                            </small>
-                                                                        </td>
-                                                                        <td class="invoice_bg border-0 text-end">
-                                                                            {{ optional($expense)->amount }}
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <td class="invoice_bg border-0"
-                                                                            colspan="3">
-                                                                            <small class="light-text-color"></small>
-                                                                        </td>
-                                                                        <td class="invoice_bg border" colspan="2">
-                                                                            <h5 class="light-text-color text-center">
-                                                                                Grand Total <br>
-                                                                                {{ optional($expense)->amount }}
-                                                                            </h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                                        </div>
+                                                        <div class="row px-3 pb-3">
+                                                            <div class="col-lg-8">
+                                                                <h6 class="light-text-color">Terms</h6>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <p class="light-text-color">Sub
+                                                                        Total
+                                                                    </p>
+                                                                    <p class="fw-semibold pe-3">
+                                                                        {{ optional($expense)->amount }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-8"></div>
+                                                            <div class="col-lg-4">
+                                                                <div class="border mt-3">
+                                                                    <h6 class="light-text-color text-center py-3 px-3">
+                                                                        <div
+                                                                            class="d-flex justify-content-between align-items-center">
+                                                                            <span>Grand Total</span>
+                                                                            <span
+                                                                                class="fw-bold">{{ optional($expense)->amount }}</span>
+                                                                        </div>
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row gx-0 align-items-end">
-                                                    <div class="col-lg-6 offset-lg-3">
+                                                    <div class="col-lg-12">
                                                         <div class="p-4">
                                                             <p class="mb-0 fw-semibold light-text-color">BANK ACCOUNT
                                                                 DETAILS:</p>
@@ -295,9 +308,9 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="d-flex justify-content-end align-items-center">
-                                        <button class="btn-common-one border-0 me-2"><i
+                                        <button class="btn-common-one border-0 me-2" onclick="downloadInvoice()"><i
                                                 class="fa-solid fa-file-arrow-down pe-2"></i> Download</button>
-                                        <button class="btn-common-one border-0"><i
+                                        <button class="btn-common-one border-0" onclick='printDivInvoice();'><i
                                                 class="fa-solid fa-print pe-2"></i>Print</button>
                                     </div>
                                 </div>
@@ -308,10 +321,72 @@
             </div>
         </div>
     @endforeach
-
-
-
     @push('scripts')
+        {{-- Download Invoice As pdf --}}
+        <script>
+            function downloadInvoice() {
+                const invoice = document.querySelector('.card-download'); // Select the invoice element
+                html2pdf(invoice, {
+                    margin: 10,
+                    filename: `Invoice-${Date.now()}.pdf`,
+                    image: {
+                        type: 'jpeg',
+                        quality: 0.98
+                    },
+                    html2canvas: {
+                        scale: 2
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    }
+                });
+            }
+        </script>
+        {{-- Download Invoice As pdf End --}}
+        {{-- For Table Print Start --}}
+        <script>
+            function printDiv() {
+
+                var divToPrint = document.getElementById('print-table');
+
+                var newWin = window.open('', 'Print-Window');
+
+                newWin.document.open();
+
+                newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+                newWin.document.close();
+
+                setTimeout(function() {
+                    newWin.close();
+                }, 10);
+
+            }
+        </script>
+        {{-- For Table Print End --}}
+        {{-- For Invoice Print Start --}}
+        <script>
+            function printDivInvoice() {
+
+                var divToPrint = document.getElementById('print-table-invoice');
+
+                var newWin = window.open('', 'Print-Window');
+
+                newWin.document.open();
+
+                newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+                newWin.document.close();
+
+                setTimeout(function() {
+                    newWin.close();
+                }, 10);
+
+            }
+        </script>
+        {{-- For Invoice Print End --}}
         <script>
             $(document).ready(function() {
                 // Initialize datepicker or date range picker (e.g., flatpickr, jQuery UI Datepicker)

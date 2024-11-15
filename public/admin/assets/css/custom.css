@@ -1,4 +1,16 @@
 /* Ensure body takes full height */
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    outline: 1px solid transparent;
+}
 html,
 body {
     height: 100%;
@@ -657,6 +669,14 @@ textarea::placeholder {
 .form-btn-info {
     display: flex;
     justify-content: end;
+}
+@media (max-width: 1200px) {
+    .logout-btn-wrapper {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        top: 135px;
+    }
 }
 @media (max-width: 600px) {
     .form-btn-info {

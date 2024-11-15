@@ -390,7 +390,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div>
-                        <img class="img-fluid w-100" style="height: 130px; object-fit: cover; background-position: center"
+                        <img class="img-fluid w-100 rounded-2" style="height: 130px; object-fit: cover; background-position: center"
                             src="https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467_1280.jpg" alt="">
                     </div>
                 </div>
