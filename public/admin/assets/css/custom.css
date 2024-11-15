@@ -664,3 +664,22 @@ textarea::placeholder {
         justify-content: center;
     }
 }
+
+.dashboard-tabs {
+    color: #252525;
+}
+.dashboard-tabs:hover {
+    color: #252525;
+}
+
+.recent-icons {
+    width: 40px;
+    height: 40px;
+    background-color: #eee;
+    text-align: center;
+    padding: 5px;
+    font-size: 22px;
+    line-height: 1.4;
+    color: #2486d0;
+    border-radius: 100%;
+}
