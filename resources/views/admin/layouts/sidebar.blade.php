@@ -2,7 +2,7 @@
     <div class="sidebar-brand">
         <a href="{{ route('admin.dashboard') }}" class="brand-link">
             {{-- <img src="{{ asset('images/logo-color.png') }}" alt="AdminLTE Logo" class="brand-image" /> --}}
-            <img src="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" alt="{{ $setting->site_title }} Logo" class="brand-image" />
+            <img src="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" alt="{{ optional($setting)->site_title }} Logo" class="brand-image" />
         </a>
     </div>
     <div class="sidebar-wrapper main-sidebar position-relative"> <!-- Added position-relative -->
