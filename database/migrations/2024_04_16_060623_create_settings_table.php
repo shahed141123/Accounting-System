@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('site_logo_white', 255)->nullable();
             $table->string('site_logo_black', 255)->nullable();
 
+            $table->string('currency', 10)->nullable();
             $table->string('contact_email', 100)->nullable();
             $table->string('support_email', 100)->nullable();
             $table->string('info_email', 100)->nullable();

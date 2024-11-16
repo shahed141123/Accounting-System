@@ -29,7 +29,7 @@ class PayrollController extends Controller
     public function create()
     {
         $data = [
-            'employees'   => Employee::latest()->get(['id', 'name']),
+            'employees'   => Employee::where('status','active')->latest()->get(['id', 'name', 'salary']),
             'accounts'    => Account::latest()->get(['id', 'bank_name', 'account_number']),
         ];
         return view("admin.pages.payroll.create", $data);
@@ -43,10 +43,10 @@ class PayrollController extends Controller
         // Validate request
         $this->validate($request, [
             'employee_id'           => 'required',
-            'salary_month'          => 'nullable|string|max:255',
+            'salary_month'          => 'required|string|max:255',
             'chequeNo'              => 'nullable|string|max:255',
-            'deductionAmount'       => 'nullable|numeric|min:0',
-            'deductionReason'       => 'nullable|string|max:255',
+            'deduction_amount'      => 'nullable|numeric|min:0',
+            'deduction_reason'      => 'nullable',
             'mobileBill'            => 'nullable|numeric|min:0',
             'foodBill'              => 'nullable|numeric|min:0',
             'bonus'                 => 'nullable|numeric|min:0',
@@ -58,7 +58,7 @@ class PayrollController extends Controller
             'totalSalary'           => 'required|numeric|min:0|max:' . $request->availableBalance,
             'salaryDate'            => 'nullable|date|date_format:Y-m-d',
             'note'                  => 'nullable|string|max:255',
-            'status'                => 'nullable|boolean',
+            'status'                => 'required',
             'image'                 => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -91,8 +91,8 @@ class PayrollController extends Controller
                 'employee_id'       => $request->employee_id,
                 'transaction_id'    => $transaction->id,
                 'salary_month'      => $request->salary_month,
-                'deduction_reason'  => $request->deductionReason,
-                'deduction_amount'  => $request->deductionAmount,
+                'deduction_amount'  => $request->deduction_amount,
+                'deduction_reason'  => $request->deduction_reason,
                 'mobile_bill'       => $request->mobileBill,
                 'food_bill'         => $request->foodBill,
                 'bonus'             => $request->bonus,
