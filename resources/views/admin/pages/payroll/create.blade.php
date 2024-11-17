@@ -19,19 +19,33 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-5 col-md-6">
                                         <div class="mb-3">
                                             <label for="employee_id" class="form-label">Employee</label>
-                                            <x-admin.select-option id="employee_id" name="employee_id" :allowClear="true"
-                                                required>
-                                                <option value="" disabled>-- Select Employee --</option>
+                                            <x-admin.select-option placeholder="Select Employee" id="employee_id"
+                                                name="employee_id" :allowClear="true" required>
+                                                <option value="">-- Select Employee --</option>
                                                 @foreach ($employees as $employee)
-                                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                                    <option value="{{ $employee->id }}"
+                                                        data-salary="{{ $employee->salary }}">{{ $employee->name }}
+                                                    </option>
                                                 @endforeach
                                             </x-admin.select-option>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mb-3">
+                                            <x-admin.label for="currentSalary" class="form-label"> Current
+                                                Salary</x-admin.label>
+                                            <input class="form-control form-control-solid " type="text"
+                                                value="{{ old('currentSalary') }}" id="currentSalary"
+                                                name="currentSalary" readonly></input>
+                                            @error('currentSalary')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="mb-3">
                                             <label for="salary_month" class="form-label">Salary Month</label>
                                             <x-admin.select-option id="salary_month" name="salary_month"
@@ -42,6 +56,20 @@
                                                         {{ $month }}</option>
                                                 @endforeach
                                             </x-admin.select-option>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5">
+                                        <div class="mb-3">
+                                            <x-admin.label for="deduction_amount" class="form-label">Deduction Amount</x-admin.label>
+                                            <x-admin.input type="number" :value="old('deduction_amount')" id="deduction_amount"
+                                                name="deduction_amount" placeholder="Enter Deduction Amount"></x-admin.input>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <div class="mb-3">
+                                            <x-admin.label for="deduction_reason" class="form-label">Deduction Reason</x-admin.label>
+                                            <x-admin.textarea id="deduction_reason"
+                                                name="deduction_reason" placeholder="Enter Deduction Reason">{{ old('deduction_reason') }}</x-admin.textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -112,17 +140,17 @@
                                         <div class="mb-3">
                                             <x-admin.label for="totalSalary" class="form-label">Total
                                                 Salary</x-admin.label>
-                                            <input type="number" value="{{old('total_salary')}}" id="totalSalary" readonly
-                                                name="total_salary" required
-                                                placeholder="Enter totalSalary"></input>
+                                            <input class="form-control form-control-solid" type="number"
+                                                value="{{ old('total_salary') }}" id="totalSalary" readonly
+                                                name="total_salary" required placeholder="Enter totalSalary"></input>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6">
                                         <div class="mb-3">
                                             <label for="toAccount" class="form-label">From Account</label>
-                                            <x-admin.select-option id="toAccount" name="toAccount" :allowClear="true">
+                                            <x-admin.select-option id="toAccount" name="account_id" :allowClear="true">
                                                 @foreach ($accounts as $account)
-                                                    <option value="{{ $account->id }}" @selected(old('toAccount') == $account->id)
+                                                    <option value="{{ $account->id }}" @selected(old('account_id') == $account->id)
                                                         data-balance="{{ $account->availableBalance() }}">
                                                         {{ $account->bank_name }}[{{ $account->account_number }}]
                                                     </option>
@@ -193,6 +221,19 @@
     </div>
     @push('scripts')
         <script>
+            $('#employee_id').on('change', function() {
+                const selectedOption = $(this).find('option:selected'); // jQuery object
+                const currentSalary = selectedOption.data('salary'); // Use jQuery's data() method
+                alert(currentSalary);
+
+                if (currentSalary) {
+                    $('#currentSalary').val(parseFloat(currentSalary).toFixed(2)); // jQuery val() method
+                } else {
+                    $('#currentSalary').val('');
+                }
+            });
+
+
             $(document).ready(function() {
                 // Initialize Select2
                 // $('#account_id').select2();
@@ -208,6 +249,8 @@
         <script>
             // Calculate Total Salary on input change
             document.getElementById('payroll-form').addEventListener('input', function() {
+                const currentSalary = parseFloat(document.getElementById('currentSalary').value) || 0;
+                const deduction_amount = parseFloat(document.getElementById('deduction_amount').value) || 0;
                 const mobile_bill = parseFloat(document.getElementById('mobile_bill').value) || 0;
                 const food_bill = parseFloat(document.getElementById('food_bill').value) || 0;
                 const bonus = parseFloat(document.getElementById('bonus').value) || 0;
@@ -217,8 +260,8 @@
                 const others = parseFloat(document.getElementById('others').value) || 0;
                 const advance = parseFloat(document.getElementById('advance').value) || 0;
 
-                const totalSalary = mobile_bill + food_bill + bonus + commission + festivalBonus + travelAllowance +
-                    others - advance;
+                const totalSalary = currentSalary + mobile_bill + food_bill + bonus + commission + festivalBonus + travelAllowance +
+                    others - advance - deduction_amount;
                 document.getElementById('totalSalary').value = totalSalary.toFixed(2);
             });
         </script>

@@ -1,14 +1,18 @@
 <x-admin-app-layout>
     <div class="app-content pt-3">
         <div class="container-fluid">
+            <div class="row mb-5">
+                <h3 class="text-center">Fiscal Year : {{ date('Y') }}</h3>
+            </div>
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <div class="small-box py-3">
                         <div class="inner">
-                            <h3>195,00<sup class="fs-5">$</sup></h3>
+                            <h3>{{ number_format($total_incomes) }}<sup
+                                    class="fs-5">{{ optional($setting)->currency }}</sup></h3>
                             <div class="d-flex justify-content-between align-items-center pt-4">
                                 <p>Total Income</p>
-                                <p>15/11/2024</p>
+                                <p>{{ date('d M, Y') }}</p>
                             </div>
                         </div>
                         <svg class="small-box-icon" xmlns="http://www.w3.org/2000/svg" version="1.1"
@@ -89,10 +93,11 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box py-3">
                         <div class="inner">
-                            <h3>195,00<sup class="fs-5">$</sup></h3>
+                            <h3>{{ number_format($total_expenses) }}<sup
+                                    class="fs-5">{{ optional($setting)->currency }}</sup></h3>
                             <div class="d-flex justify-content-between align-items-center pt-4">
                                 <p>Total Expenses</p>
-                                <p>15/11/2024</p>
+                                <p>{{ date('d M, Y') }}</p>
                             </div>
                         </div>
                         <svg class="small-box-icon" xmlns="http://www.w3.org/2000/svg" version="1.1"
@@ -154,10 +159,10 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box py-3">
                         <div class="inner">
-                            <h3>8</h3>
+                            <h3>{{ $clients }}</h3>
                             <div class="d-flex justify-content-between align-items-center pt-4">
                                 <p>Total Client</p>
-                                <p>15/11/2024</p>
+                                <p>{{ date('d M, Y') }}</p>
                             </div>
                         </div>
                         <svg class="small-box-icon" xmlns="http://www.w3.org/2000/svg" version="1.1"
@@ -202,10 +207,10 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box py-3">
                         <div class="inner">
-                            <h3>8</h3>
+                            <h3>{{ $employees }}</h3>
                             <div class="d-flex justify-content-between align-items-center pt-4">
                                 <p>Total Employee</p>
-                                <p>15/11/2024</p>
+                                <p>{{ date('d M, Y') }}</p>
                             </div>
                         </div>
                         <svg class="small-box-icon" xmlns="http://www.w3.org/2000/svg" version="1.1"
@@ -383,14 +388,14 @@
                                     style="" fill="#d8dce5" data-original="#d8dce5"></path>
                             </g>
                         </svg>
-
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div>
-                        <img class="img-fluid w-100 rounded-2" style="height: 130px; object-fit: cover; background-position: center"
+                        <img class="img-fluid w-100 rounded-2"
+                            style="height: 130px; object-fit: cover; background-position: center"
                             src="https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467_1280.jpg" alt="">
                     </div>
                 </div>
@@ -399,7 +404,8 @@
                 <div class="col-lg-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <h6>Recent Transection</h6>
-                        <a href="" class="text-black" style="text-decoration: none"><small>View All <i
+                        <a href="{{ route('admin.transaction-history.index') }}" class="text-black"
+                            style="text-decoration: none"><small>View All <i
                                     class="fa-solid fa-chevron-right"></i></small></a>
                     </div>
                     <div class="card mt-2">
@@ -436,107 +442,26 @@
                                         aria-labelledby="allTransection-tab">
                                         {{-- Transection History Details --}}
                                         <div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
+                                            @foreach ($transactions as $i => $transaction)
+                                                <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
+                                                    style="border-bottom: 1px solid #eee;">
+                                                    <div class="d-flex align-items-center">
+                                                        {{-- icons --}}
+                                                        <div class="recent-icons">
+                                                            <i class="fa-solid fa-file"></i>
+                                                        </div>
+                                                        <div class="ps-3">
+                                                            <p class="fw-semibold pb-1">{{ $transaction->reason }}</p>
+                                                            <small>{{ optional($transaction->cashbookAccount)->bank_name . '[' . optional($transaction->cashbookAccount)->account_number . ']' ?? '' }}</small>
+                                                        </div>
                                                     </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Product Sale</p>
-                                                        <small>Company Income</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">This Month Salary</p>
-                                                        <small>Company Cost</small>
+                                                    <div class="text-end">
+                                                        <h6 class="pb-2">{{ optional($setting)->currency }}
+                                                            {{ number_format($transaction->amount) }}</h6>
+                                                        <small>{{ $transaction->transaction_date ? \Carbon\Carbon::parse($transaction->transaction_date)->format('d M, Y') : '' }}</small>
                                                     </div>
                                                 </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         {{-- Transection History Details --}}
                                     </div>
@@ -544,90 +469,27 @@
                                         aria-labelledby="incomeTabs-tab">
                                         {{-- Transection History Details --}}
                                         <div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
+                                            @foreach ($incomes as $income)
+                                                <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
+                                                    style="border-bottom: 1px solid #eee;">
+                                                    <div class="d-flex align-items-center">
+                                                        {{-- icons --}}
+                                                        <div class="recent-icons">
+                                                            <i class="fa-solid fa-file"></i>
+                                                        </div>
+                                                        <div class="ps-3">
+                                                            <p class="fw-semibold pb-1">
+                                                                {{ optional($income)->reason }}</p>
+                                                            <small>{{ optional($income->incomeTransaction->cashbookAccount)->bank_name }}[{{ optional($income->incomeTransaction->cashbookAccount)->account_number }}]</small>
+                                                        </div>
                                                     </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">This Month Salary</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
+                                                    <div class="text-end">
+                                                        <h6 class="pb-2">{{ optional($setting)->currency }}
+                                                            {{ optional($income)->amount }}</h6>
+                                                        <small>{{ optional($income->incomeTransaction)->transaction_date ? \Carbon\Carbon::parse(optional($income->incomeTransaction)->transaction_date)->format('d M, Y') : '' }}</small>
                                                     </div>
                                                 </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         {{-- Transection History Details --}}
                                     </div>
@@ -635,90 +497,27 @@
                                         aria-labelledby="expensesTabs-tab">
                                         {{-- Transection History Details --}}
                                         <div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
+                                            @foreach ($expenses as $expense)
+                                                <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
+                                                    style="border-bottom: 1px solid #eee;">
+                                                    <div class="d-flex align-items-center">
+                                                        {{-- icons --}}
+                                                        <div class="recent-icons">
+                                                            <i class="fa-solid fa-file"></i>
+                                                        </div>
+                                                        <div class="ps-3">
+                                                            <p class="fw-semibold pb-1">
+                                                                {{ optional($expense)->reason }}</p>
+                                                            <small>{{ optional($expense->expTransaction->cashbookAccount)->bank_name }}[{{ optional($expense->expTransaction->cashbookAccount)->account_number }}]</small>
+                                                        </div>
                                                     </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Product Sale</p>
-                                                        <small>Company Income</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">This Month Salary</p>
-                                                        <small>Company Cost</small>
+                                                    <div class="text-end">
+                                                        <h6 class="pb-2">{{ optional($setting)->currency }}
+                                                            {{ optional($expense)->amount }}</h6>
+                                                        <small>{{ optional($expense->expTransaction)->transaction_date ? \Carbon\Carbon::parse(optional($expense->expTransaction)->transaction_date)->format('d M, Y') : '' }}</small>
                                                     </div>
                                                 </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3"
-                                                style="border-bottom: 1px solid #eee;">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    {{-- icons --}}
-                                                    <div class="recent-icons">
-                                                        <i class="fa-solid fa-file"></i>
-                                                    </div>
-                                                    <div class="ps-3">
-                                                        <p class="fw-semibold pb-1">Tender Cost</p>
-                                                        <small>Company Cost</small>
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <h6 class="pb-2">$1456,00</h6>
-                                                    <small>12/11/2024</small>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                             {{-- Transection History Details --}}
                                         </div>
                                     </div>

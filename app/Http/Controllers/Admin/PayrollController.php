@@ -29,7 +29,7 @@ class PayrollController extends Controller
     public function create()
     {
         $data = [
-            'employees'   => Employee::latest()->get(['id', 'name']),
+            'employees'   => Employee::where('status','active')->latest()->get(['id', 'name', 'salary']),
             'accounts'    => Account::latest()->get(['id', 'bank_name', 'account_number']),
         ];
         return view("admin.pages.payroll.create", $data);
@@ -43,10 +43,10 @@ class PayrollController extends Controller
         // Validate request
         $this->validate($request, [
             'employee_id'           => 'required',
-            'salary_month'          => 'nullable|string|max:255',
-            'cheque_no'             => 'nullable|string|max:255',
-            'deductionAmount'       => 'nullable|numeric|min:0',
-            'deductionReason'       => 'nullable|string|max:255',
+            'salary_month'          => 'required|string|max:255',
+            'chequeNo'              => 'nullable|string|max:255',
+            'deduction_amount'      => 'nullable|numeric|min:0',
+            'deduction_reason'      => 'nullable',
             'mobileBill'            => 'nullable|numeric|min:0',
             'foodBill'              => 'nullable|numeric|min:0',
             'bonus'                 => 'nullable|numeric|min:0',
@@ -55,63 +55,78 @@ class PayrollController extends Controller
             'travelAllowance'       => 'nullable|numeric|min:0',
             'others'                => 'nullable|numeric|min:0',
             'advance'               => 'nullable|numeric|min:0',
-            'totalSalary'           => 'required|numeric|min:0|max:' . $request->availableBalance,
+            'total_salary'           => 'required|numeric|min:0|max:' . $request->availableBalance,
             'salaryDate'            => 'nullable|date|date_format:Y-m-d',
             'note'                  => 'nullable|string|max:255',
-            'status'                => 'nullable|boolean',
+            'status'                => 'required',
             'image'                 => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         try {
             // Handle file upload for image (if present)
-            $imageName = null;
-            if ($request->hasFile('image')) {
-                $imageName = time() . '.' . $request->image->extension();
-                $request->image->storeAs('payrolls', $imageName, 'public');
+            $files = [
+                'image' => $request->file('image'),
+            ];
+            $uploadedFiles = [];
+            foreach ($files as $key => $file) {
+                if (!empty($file)) {
+                    $filePath = 'payroll/' . $key;
+                    $uploadedFiles[$key] = customUpload($file, $filePath);
+                    if ($uploadedFiles[$key]['status'] === 0) {
+                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                    }
+                } else {
+                    $uploadedFiles[$key] = ['status' => 0];
+                }
             }
-
             $userID = auth()->user()->id;
-            $reason = '[' . config('config.employeePrefix') . '-' . $request->employee_id . '] ' . $request->salary_month . ' Payroll sent from [' . $request->account['accountNumber'] . ']';
+            $employee = Employee::find($request->employee_id);
+            $reason = '[' . $employee->name. '] ' . $request->salary_month . ' Payroll sent from [' . $request->account['accountNumber'] . ']';
 
             // Store the transaction
             $transaction = AccountTransaction::create([
-                'account_id'        => $request->account['id'],
-                'amount'            => $request->totalSalary,
+                'account_id'        => $request->account_id,
+                'amount'            => $request->total_salary,
                 'reason'            => $reason,
                 'type'              => 0, // Assuming '0' indicates debit
                 'cheque_no'         => $request->cheque_no,
                 'transaction_date'  => $request->salaryDate,
                 'created_by'        => $userID,
-                'status'            => $request->status ?? 1, // Default to active if status is not provided
+                'status'            => $request->status, // Default to active if status is not provided
             ]);
 
             // Store the payroll
             Payroll::create([
-                'slug'              => uniqid(),
-                'employee_id'       => $request->employee_id,
-                'transaction_id'    => $transaction->id,
-                'salary_month'      => $request->salary_month,
-                'deduction_reason'  => $request->deductionReason,
-                'deduction_amount'  => $request->deductionAmount,
-                'mobile_bill'       => $request->mobileBill,
-                'food_bill'         => $request->foodBill,
-                'bonus'             => $request->bonus,
-                'commission'        => $request->commission,
-                'advance'           => $request->advance,
+                'slug'             => uniqid(),
+                'transaction_id'   => $transaction->id,
+                'employee_id'      => $request->employee_id,
+                'currentSalary'    => $request->currentSalary,
+                'salary_month'     => $request->salary_month,
+                'deduction_amount' => $request->deduction_amount,
+                'deduction_reason' => $request->deduction_reason,
+                'mobile_bill'      => $request->mobile_bill,
+                'food_bill'        => $request->food_bill,
+                'bonus'            => $request->bonus,
+                'commission'       => $request->commission,
                 'festival_bonus'    => $request->festivalBonus,
                 'travel_allowance'  => $request->travelAllowance,
-                'others'            => $request->others,
-                'total_salary'      => $request->totalSalary,
+                'others'           => $request->others,
+                'advance'          => $request->advance,
+                'total_salary'     => $request->total_salary,
+                'availableBalance' => $request->availableBalance,
+                'image'            => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+                'chequeNo'         => $request->chequeNo,
                 'salary_date'       => $request->salaryDate,
+                'status'           => $request->status,
+                'note'             => $request->note,
                 'created_by'        => $userID,
-                'note'              => $request->note,
-                'status'            => $request->status ?? 1, // Default to active
-                'image'             => $imageName, // Store the image name if available
             ]);
 
-            return $this->responseWithSuccess('Payroll added successfully');
+            redirectWithSuccess('Payroll added Successfully');
+            return redirect()->route('admin.income.index');
         } catch (Exception $e) {
-            return $this->responseWithError($e->getMessage());
+            redirectWithError($e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 

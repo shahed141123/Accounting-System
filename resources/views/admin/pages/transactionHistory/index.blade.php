@@ -72,7 +72,8 @@
                                                             {{ $data->type == 1 ? __('Credit') : __('Debit') }}
                                                         </span>
                                                     </td>
-                                                    <td>{{ optional($data->cashbookAccount)->bank_name . '[' . optional($data->cashbookAccount)->account_number . ']' ?? '' }}
+                                                    <td>
+                                                        {{ optional($data->cashbookAccount)->bank_name . '[' . optional($data->cashbookAccount)->account_number . ']' ?? '' }}
                                                     </td>
                                                     <td>{{ number_format($data->amount, 2) }}</td>
                                                     <td>
@@ -81,7 +82,7 @@
                                                             {{ $data->status == 'active' ? __('Active') : __('In Active') }}
                                                         </span>
                                                     </td>
-                                                    <td class="text-center">{{ $data->user->name ?? '' }}</td>
+                                                    <td class="text-center">{{ optional($data->user)->name ?? '' }}</td>
                                                 </tr>
                                             @endforeach
                                             @if ($transactions->isEmpty())

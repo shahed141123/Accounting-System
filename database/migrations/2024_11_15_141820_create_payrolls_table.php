@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string('slug');
             $table->string('salary_month')->nullable();
-            $table->string('deduction_reason')->nullable();
+            $table->text('deduction_reason')->nullable();
             $table->double('deduction_amount', 12, 2)->nullable();
             $table->double('mobile_bill', 12, 2)->nullable();
             $table->double('food_bill', 12, 2)->nullable();
