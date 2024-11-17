@@ -112,8 +112,9 @@
                                         <div class="mb-3">
                                             <x-admin.label for="totalSalary" class="form-label">Total
                                                 Salary</x-admin.label>
-                                            <input type="number" value="{{ old('total_salary') }}" id="totalSalary" readonly
-                                                name="total_salary" required placeholder="Enter totalSalary"></input>
+                                            <input type="number" value="{{old('total_salary')}}" id="totalSalary" readonly
+                                                name="total_salary" required
+                                                placeholder="Enter totalSalary"></input>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6">

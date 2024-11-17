@@ -44,7 +44,7 @@ class PayrollController extends Controller
         $this->validate($request, [
             'employee_id'           => 'required',
             'salary_month'          => 'nullable|string|max:255',
-            'chequeNo'              => 'nullable|string|max:255',
+            'cheque_no'             => 'nullable|string|max:255',
             'deductionAmount'       => 'nullable|numeric|min:0',
             'deductionReason'       => 'nullable|string|max:255',
             'mobileBill'            => 'nullable|numeric|min:0',
@@ -79,7 +79,7 @@ class PayrollController extends Controller
                 'amount'            => $request->totalSalary,
                 'reason'            => $reason,
                 'type'              => 0, // Assuming '0' indicates debit
-                'cheque_no'         => $request->chequeNo,
+                'cheque_no'         => $request->cheque_no,
                 'transaction_date'  => $request->salaryDate,
                 'created_by'        => $userID,
                 'status'            => $request->status ?? 1, // Default to active if status is not provided
