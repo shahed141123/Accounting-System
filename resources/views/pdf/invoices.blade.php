@@ -35,7 +35,7 @@
                         <td>@currency($invoice['calculated_total'])</td>
                         <td>@currency($invoice['calculated_due'])</td>
                         <td>
-                            @if ($invoice['status'])
+                            @if ($invoice['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

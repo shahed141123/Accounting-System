@@ -20,7 +20,7 @@
                         <td>{{ $paymentMethod['name'] }}</td>
                         <td>{{ $paymentMethod['code'] }}</td>
                         <td>
-                            @if ($paymentMethod['status'])
+                            @if ($paymentMethod['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

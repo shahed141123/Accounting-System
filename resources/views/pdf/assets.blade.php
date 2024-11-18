@@ -29,7 +29,7 @@
                         </td>
                         <td>{{ \Carbon\Carbon::parse($asset['date'])->format('d-M-Y') }}</td>
                         <td>
-                            @if ($asset['status'])
+                            @if ($asset['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

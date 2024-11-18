@@ -26,7 +26,7 @@
                         <td>{{ $currency['position'] }}</td>
                         <td>@currency(0)</td>
                         <td>
-                            @if ($currency['status'])
+                            @if ($currency['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

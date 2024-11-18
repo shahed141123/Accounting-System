@@ -140,9 +140,12 @@
                                         <div class="mb-3">
                                             <x-admin.label for="totalSalary" class="form-label">Total
                                                 Salary</x-admin.label>
-                                            <input class="form-control form-control-solid" type="number"
+                                            <input class="form-control form-control-solid @error($name)is-invalid @enderror" type="number"
                                                 value="{{ old('total_salary') }}" id="totalSalary" readonly
                                                 name="total_salary" required placeholder="Enter totalSalary"></input>
+                                                @error('total_salary')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6">

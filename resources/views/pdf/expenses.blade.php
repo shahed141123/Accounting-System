@@ -39,7 +39,7 @@
                         </td>
                         <td>{{ \Carbon\Carbon::parse($expense['date'])->format('d-M-Y') }}</td>
                         <td>
-                            @if ($expense['status'])
+                            @if ($expense['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

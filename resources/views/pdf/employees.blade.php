@@ -31,7 +31,7 @@
                         <td>{{ $employee['mobile_number'] }}</td>
                         <td>{{ $employee['joining_date'] }}</td>
                         <td>
-                            @if ($employee['status'])
+                            @if ($employee['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

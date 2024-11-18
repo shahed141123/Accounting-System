@@ -27,7 +27,7 @@
                         <td> @currency($return['total_return']) </td>
                         <td>{{ \Carbon\Carbon::parse($return['date'])->format('d-M-Y') }}</td>
                         <td>
-                            @if ($return['status'])
+                            @if ($return['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

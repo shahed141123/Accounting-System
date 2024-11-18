@@ -26,7 +26,7 @@
                         <td>{{ $subCategory['name'] }}</td>
                         <td>{{ $subCategory['note'] }}</td>
                         <td>
-                            @if ($subCategory['status'])
+                            @if ($subCategory['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

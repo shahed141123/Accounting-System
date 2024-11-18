@@ -22,7 +22,7 @@
                         <td>{{ $vatRate['code'] }}</td>
                         <td>{{ $vatRate['rate'] }}%</td>
                         <td>
-                            @if ($vatRate['status'])
+                            @if ($vatRate['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

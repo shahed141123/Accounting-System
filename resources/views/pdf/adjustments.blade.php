@@ -21,7 +21,7 @@
                         </td>
                         <td>{{ $adjustment->date }}</td>
                         <td>
-                            @if ($adjustment->status)
+                            @if ($adjustment->status == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

@@ -19,7 +19,7 @@
                         <td>{{ $department['name'] }}</td>
                         <td>{{ $department['note'] }}</td>
                         <td>
-                            @if ($department['status'])
+                            @if ($department['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

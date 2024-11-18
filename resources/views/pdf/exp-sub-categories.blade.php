@@ -26,7 +26,7 @@
                         <td>{{ $category['code'] }}</td>
                         <td>{{ $category['name'] }}</td>
                         <td>
-                            @if ($category['status'])
+                            @if ($category['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

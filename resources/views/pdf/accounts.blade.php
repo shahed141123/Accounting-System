@@ -27,7 +27,7 @@
                         </td>
                         <td>{{ $account['date'] }}</td>
                         <td>
-                            @if ($account['status'])
+                            @if ($account['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

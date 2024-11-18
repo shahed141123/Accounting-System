@@ -29,7 +29,7 @@
                         <td> @currency($quotation['discount']) </td>
                         <td> @currency($quotation['total_tax']) </td>
                         <td>
-                            @if ($quotation['status'])
+                            @if ($quotation['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

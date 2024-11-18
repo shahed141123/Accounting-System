@@ -21,7 +21,7 @@
                         <td>{{ config('config.proCatPrefix') . '-' . $category['code'] }} </td>
                         <td>{{ $category['note'] }} </td>
                         <td>
-                            @if ($category['status'])
+                            @if ($category['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

@@ -25,7 +25,7 @@
                         <td>{{ $supplier['email'] }}</td>
                         <td>{{ $supplier['company_name'] }}</td>
                         <td>
-                            @if ($supplier['status'])
+                            @if ($supplier['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

@@ -56,7 +56,7 @@ class PayrollController extends Controller
             'travelAllowance'       => 'nullable|numeric|min:0',
             'others'                => 'nullable|numeric|min:0',
             'advance'               => 'nullable|numeric|min:0',
-            'total_salary'           => 'required|numeric|min:0|max:' . $request->availableBalance,
+            'total_salary'          => 'required|numeric|min:0|max:' . ($request->availableBalance ?? 0),
             'salaryDate'            => 'nullable|date|date_format:Y-m-d',
             'note'                  => 'nullable|string|max:255',
             'status'                => 'required',

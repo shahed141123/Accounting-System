@@ -23,7 +23,7 @@
                         <td>{{ $authority['contact_number'] }}</td>
                         <td>@currency($authority['cc_limit'])</td>
                         <td>
-                            @if ($authority['status'])
+                            @if ($authority['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

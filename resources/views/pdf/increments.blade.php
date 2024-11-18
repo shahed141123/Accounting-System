@@ -37,7 +37,7 @@
                         </td>
                         <td>{{ $salIncrement['increment_date'] }}</td>
                         <td>
-                            @if ($salIncrement['status'])
+                            @if ($salIncrement['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

@@ -31,7 +31,7 @@
                         <td> @currency($purchase['calculated_total']) </td>
                         <td> @currency($purchase['calculated_due']) </td>
                         <td>
-                            @if ($purchase['status'])
+                            @if ($purchase['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

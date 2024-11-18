@@ -20,7 +20,7 @@
                         <td>{{ $brand['name'] }}</td>
                         <td>{{ $brand['code'] }}</td>
                         <td>
-                            @if ($brand['status'])
+                            @if ($brand['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

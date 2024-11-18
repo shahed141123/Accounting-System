@@ -12,14 +12,14 @@
                     <th>@lang('Status')</th>
                 </tr>
             </thead>
-            <tbody> 
+            <tbody>
                 @foreach ($assetTypes as $key => $assetType)
                     <tr>
                         <td> {{ ++$key }} </td>
                         <td>{{ $assetType['name'] }}</td>
                         <td>{{ $assetType['note'] }}</td>
                         <td>
-                            @if ($assetType['status'])
+                            @if ($assetType['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

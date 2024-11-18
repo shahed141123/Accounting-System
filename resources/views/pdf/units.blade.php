@@ -20,7 +20,7 @@
                         <td>{{ $unit['name'] }}</td>
                         <td>{{ $unit['code'] }}</td>
                         <td>
-                            @if ($unit['status'])
+                            @if ($unit['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')

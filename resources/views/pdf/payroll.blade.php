@@ -22,14 +22,14 @@
                     <tr>
                         <td> {{ ++$key }} </td>
                         <td>{{ $payroll['employee']['name'] }}</td>
-                        <td>{{ config('config.employeePrefix') . '-' . $payroll['employee']['emp_id'] }}</td>
+                        <td>{{ $payroll['employee']['emp_id'] }}</td>
                         <td>{{ $payroll['employee']['designation'] }}</td>
                         <td>{{ $payroll['salary_month'] }}</td>
                         <td>@currency($payroll['payroll_transaction']['amount'])</td>
                         <td>{{ $payroll['payroll_transaction']['cashbook_account']['account_number'] }}</td>
                         <td>{{ \Carbon\Carbon::parse($payroll['salary_date'])->format('d-M-Y') }}</td>
                         <td>
-                            @if ($payroll['status'])
+                            @if ($payroll['status'] == 'active')
                                 @lang('Active')
                             @else
                                 @lang('Inactive')
