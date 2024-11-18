@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Models\Account;
+use App\Models\Expense;
 use App\Models\Payroll;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PayrollController extends Controller
@@ -19,7 +21,7 @@ class PayrollController extends Controller
     public function index()
     {
         $data = [
-            'payrolls' => Payroll::with('department', 'user')->latest()->get(),
+            'payrolls' => Payroll::with('employee', 'payrollTransaction')->latest()->get(),
         ];
         return view("admin.pages.payroll.index", $data);
     }
@@ -30,7 +32,7 @@ class PayrollController extends Controller
     public function create()
     {
         $data = [
-            'employees'   => Employee::where('status','active')->latest()->get(['id', 'name', 'salary']),
+            'employees'   => Employee::where('status', 'active')->latest()->get(['id', 'name', 'salary']),
             'accounts'    => Account::latest()->get(['id', 'bank_name', 'account_number']),
         ];
         return view("admin.pages.payroll.create", $data);
@@ -80,9 +82,10 @@ class PayrollController extends Controller
                     $uploadedFiles[$key] = ['status' => 0];
                 }
             }
-            $userID = auth()->user()->id;
+            $userID = Auth::guard('admin')->user()->id;
             $employee = Employee::find($request->employee_id);
-            $reason = '[' . $employee->name. '] ' . $request->salary_month . ' Payroll sent from [' . $request->account['accountNumber'] . ']';
+            $account = Account::where('id', $request->account_id)->first();
+            $reason = '[' . $employee->name . '] ' . $request->salary_month . ' Payroll sent from [' . $account->bank_name . ' ' . $account->account_number . ']';
 
             // Store the transaction
             $transaction = AccountTransaction::create([
@@ -95,13 +98,26 @@ class PayrollController extends Controller
                 'created_by'        => $userID,
                 'status'            => $request->status, // Default to active if status is not provided
             ]);
+            $expense = Expense::create([
+                'name'           => $reason,
+                'reason'         => $reason,
+                // 'client_id'      => $request->client_id,
+                'amount'         => $request->total_salary,
+                'transaction_id' => $transaction->id,
+                'date'           => $request->salaryDate,
+                'created_by'     => $userID,
+                'note'           => $request->note,
+                'image'          => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
+                'status'         => $request->status,
+            ]);
 
             // Store the payroll
             Payroll::create([
                 'slug'             => uniqid(),
                 'transaction_id'   => $transaction->id,
+                'expense_id'       => $expense->id,
                 'employee_id'      => $request->employee_id,
-                'currentSalary'    => $request->currentSalary,
+                // 'currentSalary'    => $request->currentSalary,
                 'salary_month'     => $request->salary_month,
                 'deduction_amount' => $request->deduction_amount,
                 'deduction_reason' => $request->deduction_reason,
@@ -109,15 +125,15 @@ class PayrollController extends Controller
                 'food_bill'        => $request->food_bill,
                 'bonus'            => $request->bonus,
                 'commission'       => $request->commission,
-                'festival_bonus'    => $request->festivalBonus,
-                'travel_allowance'  => $request->travelAllowance,
+                'festival_bonus'   => $request->festivalBonus,
+                'travel_allowance' => $request->travelAllowance,
                 'others'           => $request->others,
                 'advance'          => $request->advance,
                 'total_salary'     => $request->total_salary,
-                'availableBalance' => $request->availableBalance,
+                // 'availableBalance' => $request->availableBalance,
                 'image'            => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
                 'chequeNo'         => $request->chequeNo,
-                'salary_date'       => $request->salaryDate,
+                'salary_date'      => $request->salaryDate,
                 'status'           => $request->status,
                 'note'             => $request->note,
                 'total_salary'     => $request->total_salary,
@@ -125,7 +141,7 @@ class PayrollController extends Controller
             ]);
 
             redirectWithSuccess('Payroll added Successfully');
-            return redirect()->route('admin.income.index');
+            return redirect()->route('admin.payroll.index');
         } catch (Exception $e) {
             redirectWithError($e->getMessage());
             return redirect()->back()->withInput();

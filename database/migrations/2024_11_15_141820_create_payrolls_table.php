@@ -34,7 +34,8 @@ return new class extends Migration
             $table->double('total_salary', 12, 2)->nullable();
             $table->date('salary_date')->nullable();
             $table->string('note')->nullable();
-            $table->boolean('status')->nullable()->default(1);
+            $table->string('chequeNo')->nullable();
+            $table->string('status')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

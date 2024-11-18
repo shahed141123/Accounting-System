@@ -26,7 +26,7 @@
                                                 name="employee_id" :allowClear="true" required>
                                                 <option value="">-- Select Employee --</option>
                                                 @foreach ($employees as $employee)
-                                                    <option value="{{ $employee->id }}"
+                                                    <option value="{{ $employee->id }}" @selected(old('employee_id' == $employee->id))
                                                         data-salary="{{ $employee->salary }}">{{ $employee->name }}
                                                     </option>
                                                 @endforeach
@@ -207,8 +207,8 @@
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
                                             <x-admin.select-option id="status" name="status" :allowClear="true">
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
+                                                <option value="active" @selected(old('status' =='active'))>Active</option>
+                                                <option value="inactive" @selected(old('status' =='inactive'))>Inactive</option>
                                             </x-admin.select-option>
                                         </div>
                                     </div>
@@ -216,7 +216,7 @@
                                         <div class="mb-3">
                                             <label for="note" class="form-label">Note</label>
                                             <textarea class="form-control text-area-input" id="note" name="note" rows="3"
-                                                placeholder="write your note here"></textarea>
+                                                placeholder="write your note here">{{ old('note') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
