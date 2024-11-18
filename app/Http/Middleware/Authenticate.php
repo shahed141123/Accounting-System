@@ -15,11 +15,11 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             if ($request->routeIs('admin.*') && !$request->user('admin')) {
-                Session::flash('warning', 'You have to login first to get access');
+                // Session::flash('warning', 'You have to login first to get access');
                 return route('admin.login');
             }
             if ($request->routeIs('user.*') && !$request->user('web')) {
-                Session::flash('warning', 'You have to login first to get access');
+                // Session::flash('warning', 'You have to login first to get access');
                 return route('login');
             }
         }

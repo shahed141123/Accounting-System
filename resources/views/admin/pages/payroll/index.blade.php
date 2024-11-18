@@ -51,7 +51,6 @@
                                             <th width="15%" class="text-center">Designation</th>
                                             <th width="10%" class="text-center">Salary Month</th>
                                             <th width="10%" class="text-center">Total Paid</th>
-                                            <th width="10%" class="text-center">Account</th>
                                             <th width="10%" class="text-center">Salary Date</th>
                                             <th width="5%" class="text-center">Status</th>
                                             <th width="10%" class="text-end">Action</th>
@@ -59,35 +58,37 @@
 
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">Paki Wolf</td>
-                                            <td class="text-center">AE-2</td>
-                                            <td class="text-center">Marketing Manager</td>
-                                            <td class="text-center">February</td>
-                                            <td class="text-center">$9800.00</td>
-                                            <td class="text-center">CASH-0001</td>
-                                            <td class="text-center">17th Oct, 2024</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">
-                                                    Active</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary  toltip"
-                                                    data-tooltip="Edit">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn-sm btn-warning text-white toltip"
-                                                    data-tooltip="View">
-                                                    <i class="fa-solid fa-expand"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger toltip"
-                                                    data-tooltip="Delete">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($payrolls as $payroll)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $payroll->employee->name }}</td>
+                                                <td class="text-center">{{ $payroll->employee->emp_id }}</td>
+                                                <td class="text-center">{{ $payroll->employee->designation }}</td>
+                                                <td class="text-center">{{ $payroll->salary_month }}</td>
+                                                <td class="text-center">{{ $payroll->total_salary }}</td>
+                                                <td class="text-center">{{ $payroll->salary_date }}</td>
+                                                <td>
+                                                    <span
+                                                        class="badge {{ $payroll->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $payroll->status == 'active' ? 'Active' : 'InActive' }}</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary  toltip"
+                                                        data-tooltip="Edit">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </a>
+                                                    {{-- <a href="javascript:void(0)"
+                                                        class="btn btn-sm btn-warning text-white toltip"
+                                                        data-tooltip="View">
+                                                        <i class="fa-solid fa-expand"></i>
+                                                    </a> --}}
+                                                    <a href="{{ route('admin.payroll.destroy',$payroll->id) }}" class="btn btn-sm btn-danger toltip delete"
+                                                        data-tooltip="Delete">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

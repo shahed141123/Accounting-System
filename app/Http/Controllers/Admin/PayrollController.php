@@ -9,6 +9,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\AccountTransaction;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PayrollController extends Controller
 {
@@ -119,6 +120,7 @@ class PayrollController extends Controller
                 'salary_date'       => $request->salaryDate,
                 'status'           => $request->status,
                 'note'             => $request->note,
+                'total_salary'     => $request->total_salary,
                 'created_by'        => $userID,
             ]);
 
@@ -160,6 +162,18 @@ class PayrollController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $payroll = Payroll::where('id', $id)->first();
+        $files = [
+            'image' => $payroll->image,
+        ];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $oldFile = $payroll->$key ?? null;
+                if ($oldFile) {
+                    Storage::delete("public/" . $oldFile);
+                }
+            }
+        }
+        $payroll->delete();
     }
 }
