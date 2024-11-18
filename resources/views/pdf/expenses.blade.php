@@ -18,16 +18,30 @@
             </thead>
             <tbody>
                 @foreach ($expenses as $key => $expense)
-                {{-- @dd($expense) --}}
+                    {{-- @dd($expense) --}}
                     <tr>
                         <td> {{ ++$key }} </td>
                         <td>
+                            @isset($expense->exp_sub_category->expense_category)
+                                {{ $expense->exp_sub_category->expense_category->name }}<br />
+                                [{{ $expense->exp_sub_category->expense_category->code }}]
+                            @else
+                                N/A
+                            @endisset
+                        </td>
+                        {{-- <td>
                             {{ $expense['exp_sub_category']['expense_category']['name'] }}<br />
                             [{{ $expense['exp_sub_category']['expense_category']['code'] }}]
-                        </td>
+                        </td> --}}
                         <td>
-                            {{ $expense['exp_sub_category']['name'] }}<br />
-                            [{{ $expense['exp_sub_category']['code'] }}]
+                            @isset($expense->exp_sub_category)
+                                {{ $expense->exp_sub_category->name }}<br />
+                                [{{ $expense->exp_sub_category->code }}]
+                            @else
+                                N/A
+                            @endisset
+                            {{-- {{ $expense['exp_sub_category']['name'] }}<br />
+                            [{{ $expense['exp_sub_category']['code'] }}] --}}
                         </td>
                         <td>{{ $expense['reason'] }}</td>
                         <td>
