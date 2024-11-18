@@ -60,16 +60,19 @@
                                     </div>
                                     <div class="col-lg-5 col-md-5">
                                         <div class="mb-3">
-                                            <x-admin.label for="deduction_amount" class="form-label">Deduction Amount</x-admin.label>
+                                            <x-admin.label for="deduction_amount" class="form-label">Deduction
+                                                Amount</x-admin.label>
                                             <x-admin.input type="number" :value="old('deduction_amount')" id="deduction_amount"
-                                                name="deduction_amount" placeholder="Enter Deduction Amount"></x-admin.input>
+                                                name="deduction_amount"
+                                                placeholder="Enter Deduction Amount"></x-admin.input>
                                         </div>
                                     </div>
                                     <div class="col-lg-7 col-md-7">
                                         <div class="mb-3">
-                                            <x-admin.label for="deduction_reason" class="form-label">Deduction Reason</x-admin.label>
-                                            <x-admin.textarea id="deduction_reason"
-                                                name="deduction_reason" placeholder="Enter Deduction Reason">{{ old('deduction_reason') }}</x-admin.textarea>
+                                            <x-admin.label for="deduction_reason" class="form-label">Deduction
+                                                Reason</x-admin.label>
+                                            <x-admin.textarea id="deduction_reason" name="deduction_reason"
+                                                placeholder="Enter Deduction Reason">{{ old('deduction_reason') }}</x-admin.textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -140,18 +143,22 @@
                                         <div class="mb-3">
                                             <x-admin.label for="totalSalary" class="form-label">Total
                                                 Salary</x-admin.label>
-                                            <input class="form-control form-control-solid @error('total_salary')is-invalid @enderror" type="number"
-                                                value="{{ old('total_salary') }}" id="totalSalary" readonly
-                                                name="total_salary" required placeholder="Enter totalSalary"></input>
-                                                @error('total_salary')
+                                            <input
+                                                class="form-control form-control-solid @error('total_salary')is-invalid @enderror"
+                                                type="number" value="{{ old('total_salary') }}" id="totalSalary"
+                                                readonly name="total_salary" required
+                                                placeholder="Enter totalSalary"></input>
+                                            @error('total_salary')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6">
                                         <div class="mb-3">
-                                            <label for="toAccount" class="form-label">From Account</label>
-                                            <x-admin.select-option id="toAccount" name="account_id" :allowClear="true">
+                                            <label for="from_account_id" class="form-label">From Account</label>
+                                            <x-admin.select-option id="from_account_id" name="account_id" :allowClear="true"
+                                                placeholder="Select Account">
+                                                <option value="">-- Select Account --</option>
                                                 @foreach ($accounts as $account)
                                                     <option value="{{ $account->id }}" @selected(old('account_id') == $account->id)
                                                         data-balance="{{ $account->availableBalance() }}">
@@ -227,7 +234,7 @@
             $('#employee_id').on('change', function() {
                 const selectedOption = $(this).find('option:selected'); // jQuery object
                 const currentSalary = selectedOption.data('salary'); // Use jQuery's data() method
-                alert(currentSalary);
+                // alert(currentSalary);
 
                 if (currentSalary) {
                     $('#currentSalary').val(parseFloat(currentSalary).toFixed(2)); // jQuery val() method
@@ -238,10 +245,6 @@
 
 
             $(document).ready(function() {
-                // Initialize Select2
-                // $('#account_id').select2();
-
-                // Listen for the Select2 select event
                 $('#from_account_id').on('change', function(e) {
                     const selectedOption = $(this).find('option:selected');
                     const availableBalance = selectedOption.data('balance');
@@ -263,7 +266,8 @@
                 const others = parseFloat(document.getElementById('others').value) || 0;
                 const advance = parseFloat(document.getElementById('advance').value) || 0;
 
-                const totalSalary = currentSalary + mobile_bill + food_bill + bonus + commission + festivalBonus + travelAllowance +
+                const totalSalary = currentSalary + mobile_bill + food_bill + bonus + commission + festivalBonus +
+                    travelAllowance +
                     others - advance - deduction_amount;
                 document.getElementById('totalSalary').value = totalSalary.toFixed(2);
             });
